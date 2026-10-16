@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Superbill Generator</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Insurance superbill generator page with a background texture of stacked firewood logs">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Organized Chaos</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/superbillgenerator/index.html" aria-current="page">Superbill Generator</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-6">Insurance Superbill Generator</h1>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
+            <button type="button" id="importSuperbillJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import Data (.json)</button>
+            <input type="file" id="importSuperbillJsonFile" class="hidden" accept=".json">
+            <button type="reset" form="superbillForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
+        </div>
+        
+        <form id="superbillForm" class="space-y-4">
+            
+            <section class="form-section">
+                <h3 class="text-xl font-semibold mb-4">Practice Information</h3>
+                <label for="superbillPracticeName" class="block text-lg font-semibold mb-2">Practice Name:</label>
+                <input type="text" id="superbillPracticeName" placeholder="[Your Practice Name]" class="w-full p-2 border rounded-md">
+                <label for="superbillPracticeAddress" class="block text-lg font-semibold mb-2 mt-2">Practice Address:</label>
+                <input type="text" id="superbillPracticeAddress" placeholder="[Street Address]" class="w-full p-2 border rounded-md">
+                <input type="text" id="superbillPracticeCityStateZip" placeholder="[City, State, Zip]" class="w-full p-2 mt-2 border rounded-md">
+                <label for="superbillPracticePhone" class="block text-lg font-semibold mb-2 mt-2">Practice Phone:</label>
+                <input type="tel" id="superbillPracticePhone" placeholder="[Your Phone Number]" class="w-full p-2 border rounded-md">
+                <label for="superbillPracticeEmail" class="block text-lg font-semibold mb-2 mt-2">Practice Email:</label>
+                <input type="email" id="superbillPracticeEmail" placeholder="[Your Email Address]" class="w-full p-2 border rounded-md">
+            </section>
+
+            <section class="form-section">
+                <h3 class="text-xl font-semibold mb-4">Provider Information</h3>
+                <label for="superbillProviderName" class="block text-lg font-semibold mb-2">Provider Name:</label>
+                <input type="text" id="superbillProviderName" placeholder="[Your Full Name]" class="w-full p-2 border rounded-md mb-2">
+                <label for="superbillProviderLicense" class="block text-lg font-semibold mb-2 mt-2">Provider License Number:</label>
+                <input type="text" id="superbillProviderLicense" placeholder="[Your License Number]" class="w-full p-2 border rounded-md">
+                <label for="superbillNpi" class="block text-lg font-semibold mb-2 mt-2" title="Your unique 10-digit identification number issued to health care providers.">National Provider Identifier (NPI):</label>
+                <input type="text" id="superbillNpi" pattern="\d{10}" title="NPI must be 10 digits" placeholder="[Your 10-digit NPI]" class="w-full p-2 border rounded-md">
+            </section>
+
+            <section class="form-section">
+                <h3 class="text-xl font-semibold mb-4">Client Information</h3>
+                <input type="hidden" id="superbillClientId" value="">
+                <label for="superbillClientName" class="block text-lg font-semibold mb-2">Client Name (Legal):</label>
+                <input type="text" id="superbillClientName" class="w-full p-2 border rounded-md">
+                <label for="superbillClientDOB" class="block text-lg font-semibold mb-2 mt-2">Client Date of Birth:</label>
+                <input type="date" id="superbillClientDOB" class="w-full p-2 border rounded-md">
+                <label for="superbillClientMRN" class="block text-lg font-semibold mb-2 mt-2">Medical Record Number (MRN, Optional):</label>
+                <input type="text" id="superbillClientMRN" class="w-full p-2 border rounded-md">
+                <label for="superbillClientAddress" class="block text-lg font-semibold mb-2 mt-2">Client Address:</label>
+                <input type="text" id="superbillClientAddress" placeholder="[Street Address]" class="w-full p-2 border rounded-md">
+                <input type="text" id="superbillClientCityStateZip" placeholder="[City, State, Zip]" class="w-full p-2 mt-2 border rounded-md">
+                <label for="superbillClientPhone" class="block text-lg font-semibold mb-2 mt-2">Client Phone Number:</label>
+                <input type="tel" id="superbillClientPhone" placeholder="[Client Phone]" class="w-full p-2 border rounded-md">
+                <label for="superbillClientInsuranceId" class="block text-lg font-semibold mb-2 mt-2" title="The member ID number found on the client's insurance card.">Client Insurance ID Number:</label>
+                <input type="text" id="superbillClientInsuranceId" class="w-full p-2 border rounded-md">
+            </section>
+
+            <section class="form-section">
+                <h3 class="text-xl font-semibold mb-4">Diagnosis Information</h3>
+                <label for="superbillPrimaryDiagnosisDescription" class="block text-lg font-semibold mb-2">Primary Diagnosis Description:</label>
+                <input type="text" id="superbillPrimaryDiagnosisDescription" class="w-full p-2 border rounded-md">
+                <label for="superbillPrimaryDiagnosisCode" class="block text-lg font-semibold mb-2 mt-2">Primary Diagnosis (ICD-10 Code):</label>
+                <input type="text" id="superbillPrimaryDiagnosisCode" placeholder="e.g., F41.1" class="w-full p-2 border rounded-md">
+                <label for="superbillSecondaryDiagnosisDescription" class="block text-lg font-semibold mb-2 mt-2">Secondary Diagnosis Description (Optional):</label>
+                <input type="text" id="superbillSecondaryDiagnosisDescription" class="w-full p-2 border rounded-md">
+                <label for="superbillSecondaryDiagnosisCode" class="block text-lg font-semibold mb-2 mt-2">Secondary Diagnosis (ICD-10 Code, Optional):</label>
+                <input type="text" id="superbillSecondaryDiagnosisCode" placeholder="e.g., F32.1" class="w-full p-2 border rounded-md">
+            </section>
+
+            <section class="form-section">
+                <h3 class="text-xl font-semibold mb-4">Services Rendered</h3>
+                <div id="superbillServiceEntries"></div>
+                <button type="button" id="addSuperbillService" class="btn btn-primary mt-2 px-4 py-2 font-semibold rounded-md">Add Another Service</button>
+            </section>
+
+            <div class="flex flex-wrap justify-center items-center gap-4 mt-8 pt-6 border-t">
+                <button type="submit" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Superbill</button>
+                <button type="button" id="printSuperbill" class="btn px-6 py-3 font-semibold rounded-md">Print Superbill</button>
+                <button type="button" id="exportSuperbillJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export Data (.json)</button>
+            </div>
+        </form>
+
+        <div id="superbillOutput" class="subpanel superbill-output mt-8 p-6 rounded-md hidden"></div>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+        
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+        </p>
+        <div class="footer-controls">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

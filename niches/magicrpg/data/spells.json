@@ -1,0 +1,317 @@
+[
+  {
+    "name": "Floating Charm",
+    "shortDescription": "Levitation spell",
+    "damage": "Indirect",
+    "year": "1st",
+    "description": "Causes objects to gently rise and hover. Not effective on living beings."
+  },
+  {
+    "name": "Open Sesame",
+    "shortDescription": "Unlocking spell",
+    "damage": "No",
+    "year": "1st",
+    "description": "Unlocks mundane or magically secured doors, windows, and containers."
+  },
+  {
+    "name": "Secure Lock",
+    "shortDescription": "Locking charm",
+    "damage": "No",
+    "year": "1st",
+    "description": "Magically seals doors, preventing manual opening by non-magical means."
+  },
+  {
+    "name": "Repelling Push",
+    "shortDescription": "Knockback jinx",
+    "damage": "No",
+    "year": "1st",
+    "description": "Forcefully shoves a target backwards, causing them to lose balance and fall prone in their current space."
+  },
+  {
+    "name": "Light Beam",
+    "shortDescription": "Illumination charm",
+    "damage": "No",
+    "year": "1st",
+    "description": "Causes the caster's focus tool tip to glow. Emits bright light in a 5-foot radius and dim light for an additional 10 feet. Requires learning Darken Light to extinguish."
+  },
+  {
+    "name": "Darken Light",
+    "shortDescription": "Light-extinguishing spell",
+    "damage": "No",
+    "year": "1st",
+    "description": "Extinguishes magical light sources, such as those created by the 'Light Beam' spell."
+  },
+  {
+    "name": "Mend Object",
+    "shortDescription": "Repairing charm",
+    "damage": "No",
+    "year": "1st",
+    "description": "Restores small, non-magical broken objects to their original state."
+  },
+  {
+    "name": "Elasticize",
+    "shortDescription": "Softening charm",
+    "damage": "No",
+    "year": "1st",
+    "description": "Makes targeted objects pliable, rubbery, and bouncy to the touch."
+  },
+  {
+    "name": "Shrink Object",
+    "shortDescription": "Diminishing charm",
+    "damage": "Indirect",
+    "year": "2nd",
+    "description": "Causes a non-living object to reduce to half its original size. Not to be used on living creatures due to unpredictable effects."
+  },
+  {
+    "name": "Fiery Blast",
+    "shortDescription": "Flame-creating spell",
+    "damage": "Indirect",
+    "year": "2nd",
+    "description": "Ejects a small stream of fire, capable of igniting flammable objects. Cannot be directly used to cause damage to living creatures."
+  },
+  {
+    "name": "Blend In",
+    "shortDescription": "Camouflage charm",
+    "damage": "No",
+    "year": "2nd",
+    "description": "Allows the target to blend seamlessly into their surroundings, becoming nearly invisible until they move or perform a significant action."
+  },
+  {
+    "name": "Release Object",
+    "shortDescription": "Dislodging spell",
+    "damage": "No",
+    "year": "2nd",
+    "description": "Compels a held object to fly from a person's grasp."
+  },
+  {
+    "name": "End Effect",
+    "shortDescription": "Counter-spell",
+    "damage": "No",
+    "year": "2nd",
+    "description": "Terminates the magical effects of most simple spells. Can be used as a reaction once per round."
+  },
+  {
+    "name": "Stillness",
+    "shortDescription": "Freezing charm",
+    "damage": "No",
+    "year": "2nd",
+    "description": "Halts all movement and actions of a target for 1 minute. The target is unable to move or communicate."
+  },
+  {
+    "name": "Gourd Head",
+    "shortDescription": "Pumpkin transformation",
+    "damage": "No",
+    "year": "2nd",
+    "description": "Causes the target's head to be encased in a magically formed gourd or pumpkin for 1 minute."
+  },
+  {
+    "name": "Tickle",
+    "shortDescription": "Laughter-inducing charm",
+    "damage": "No",
+    "year": "2nd",
+    "description": "Induces uncontrollable tickling in the target, causing them to convulse and buckle over. Spells cast while under this effect are at a disadvantage."
+  },
+  {
+    "name": "Expel Object",
+    "shortDescription": "Banishing charm",
+    "damage": "Indirect",
+    "year": "3rd",
+    "description": "Propels objects away from the caster. Can be used with precision to affect living creatures indirectly."
+  },
+  {
+    "name": "Total Stasis",
+    "shortDescription": "Paralysis curse",
+    "damage": "Indirect",
+    "year": "3rd",
+    "description": "Temporarily paralyzes the target. When used on a living creature, their limbs snap together, and they fall prone, stiff as a board. However, the target retains awareness of sight (straight ahead), sound, touch, and thought. Lasts for 1d4 rounds."
+  },
+  {
+    "name": "Web Snare",
+    "shortDescription": "Spiderweb creation",
+    "damage": "Indirect",
+    "year": "3rd",
+    "description": "Generates a 15’ x 15’ area covered in a dense, sticky web-like material. Any creature in or entering the area for the spell’s duration (1 minute) becomes entangled. Movement is reduced to half until their next turn (even if they leave the web)."
+  },
+  {
+    "name": "Dance Mania",
+    "shortDescription": "Compulsory dance jinx",
+    "damage": "No",
+    "year": "3rd",
+    "description": "Causes targets to dance uncontrollably. A shimmering orb appears, creating a lighting effect in a 15’ x 15’ area. Those affected have their speed reduced by half (rounded down) and attacks are at Disadvantage."
+  },
+  {
+    "name": "Aura Bubble",
+    "shortDescription": "Bubble encapsulation",
+    "damage": "No",
+    "year": "3rd",
+    "description": "Encapsulates a targeted individual or object within a large, transparent, magically reinforced bubble that resists physical force."
+  },
+  {
+    "name": "Vegetal Growth",
+    "shortDescription": "Leek growth jinx",
+    "damage": "No",
+    "year": "3rd",
+    "description": "Causes a creature to sprout leeks from their ears. Lasts 1 minute, causing deafness to the subject."
+  },
+  {
+    "name": "Fire Orb",
+    "shortDescription": "Fireball hex",
+    "damage": "Direct",
+    "year": "4th",
+    "description": "Launches a fiery orb from the caster's focus tool, causing direct flame damage upon impact."
+  },
+  {
+    "name": "Lightning Bolt",
+    "shortDescription": "Electrical curse",
+    "damage": "Direct",
+    "year": "4th",
+    "description": "Unleashes a concentrated bolt of lightning from the caster's focus tool, inflicting direct electrical damage."
+  },
+  {
+    "name": "Forceful Burst",
+    "shortDescription": "Exploding charm",
+    "damage": "Indirect",
+    "year": "4th",
+    "description": "Generates a minor explosion. Effective against non-living objects within a 5' x 5' square, causing no harm to living creatures."
+  },
+  {
+    "name": "Gather Object",
+    "shortDescription": "Attraction charm",
+    "damage": "No",
+    "year": "4th",
+    "description": "Compels a targeted non-living object to fly directly towards the caster. Ineffective on living beings."
+  },
+  {
+    "name": "Color Shift",
+    "shortDescription": "Color alteration charm",
+    "damage": "No",
+    "year": "4th",
+    "description": "Changes the color of a targeted object or creature."
+  },
+  {
+    "name": "Pestilence Hex",
+    "shortDescription": "Insect transformation",
+    "damage": "No",
+    "year": "4th",
+    "description": "Induces insect-like traits in a victim for 1 minute, impairing their speech and causing them to crawl, potentially developing feelers."
+  },
+  {
+    "name": "Healing Touch",
+    "shortDescription": "Minor healing charm",
+    "damage": "No",
+    "year": "4th",
+    "description": "Restores minor injuries. Heals 1 Health Point. Can only be used once per target per in-game day (long rest)."
+  },
+  {
+    "name": "Movement Restrict",
+    "shortDescription": "Slowing jinx",
+    "damage": "No",
+    "year": "4th",
+    "description": "Reduces the target's movement speed by half (rounded down). Lasts for 1d4 rounds."
+  },
+  {
+    "name": "Speed Up",
+    "shortDescription": "Acceleration jinx",
+    "damage": "No",
+    "year": "4th",
+    "description": "Doubles the target's movement speed (rounded up). Lasts for 1d4 rounds."
+  },
+  {
+    "name": "Protective Shield",
+    "shortDescription": "Defensive charm",
+    "damage": "No",
+    "year": "4th",
+    "description": "Manifests a magical shield in a 5' square, capable of deflecting attacks from creatures directly behind it for 1 round. Can be used as a reaction once per round."
+  },
+  {
+    "name": "Purge Filth",
+    "shortDescription": "Cleaning charm",
+    "damage": "No",
+    "year": "4th",
+    "description": "Cleanses dirt and grime from small to medium-sized objects."
+  },
+  {
+    "name": "Blizzard",
+    "shortDescription": "Winter storm hex",
+    "damage": "Direct",
+    "year": "5th",
+    "description": "Conjures a localized snowstorm in a 10' x 10' square, inflicting cold damage to all within its area. Lasts for a short duration."
+  },
+  {
+    "name": "Thunderclap",
+    "shortDescription": "Shockwave hex",
+    "damage": "Direct",
+    "year": "5th",
+    "description": "Creates a powerful shockwave that fractures the ground in a 10' x 10' square, causing thunder damage to those affected."
+  },
+  {
+    "name": "Enlarge Object",
+    "shortDescription": "Swelling charm",
+    "damage": "Indirect",
+    "year": "5th",
+    "description": "Causes the target to rapidly expand in size. Excessive use on an object can lead to its explosive rupture."
+  },
+  {
+    "name": "Suspend Foe",
+    "shortDescription": "Dangling jinx",
+    "damage": "Indirect",
+    "year": "5th",
+    "description": "Causes a victim to be abruptly hoisted into the air by their ankle, leaving them suspended."
+  },
+  {
+    "name": "Release Suspend",
+    "shortDescription": "Dangling jinx counterspell",
+    "damage": "Indirect",
+    "year": "5th",
+    "description": "Reverses the effect of the 'Suspend Foe' jinx, gently lowering the target to the ground."
+  },
+  {
+    "name": "Hover Object",
+    "shortDescription": "Levitation charm",
+    "damage": "Indirect",
+    "year": "5th",
+    "description": "Enables an object to float a few inches above the ground, allowing it to be maneuvered in a specific direction."
+  },
+  {
+    "name": "Muddle Mind",
+    "shortDescription": "Confusion charm",
+    "damage": "No",
+    "year": "5th",
+    "description": "Confounds and disorients the target. Effective on living and inanimate objects with a discernible mental capacity. Can cause varying degrees of confusion, from unawareness to forgetting critical information or becoming highly suggestible."
+  },
+  {
+    "name": "Leg-Bind Curse",
+    "shortDescription": "Leg-locking spell",
+    "damage": "No",
+    "year": "5th",
+    "description": "Magically binds the target's legs together, rendering them immobile. The target cannot use their movement. Lasts for 1d4 rounds."
+  },
+  {
+    "name": "Disintegrate",
+    "shortDescription": "Reduction curse",
+    "damage": "No",
+    "year": "5th",
+    "description": "Destroys solid non-living objects, reducing them to dust. Ineffective on living creatures."
+  },
+  {
+    "name": "Hush",
+    "shortDescription": "Silencing charm",
+    "damage": "No",
+    "year": "5th",
+    "description": "Silences the target, rendering them unable to make sound, for 1 minute."
+  },
+  {
+    "name": "Toxic Vapor",
+    "shortDescription": "Poison curse",
+    "damage": "Direct",
+    "year": "5th",
+    "description": "Emits a cloud of noxious gas from the focus tool's tip, impacting a creature in close proximity."
+  },
+  {
+    "name": "Sever",
+    "shortDescription": "Cutting charm",
+    "damage": "Indirect",
+    "year": "5th",
+    "description": "Creates a precise magical incision, capable of cutting through various materials."
+  }
+]

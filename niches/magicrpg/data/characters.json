@@ -1,0 +1,91 @@
+[
+  {
+    "id": "char1",
+    "playerName": "",
+    "characterName": "",
+    "pronouns": "",
+    "customPronouns": "",
+    "heritage": "",
+    "year": 1,
+    "magicalFaction": "",
+    "favoriteSubject1": "",
+    "favoriteSubject2": "",
+    "wand": "",
+    "traits": {
+      "bravery": null,
+      "mischief": null,
+      "knowledge": null,
+      "loyalty": null,
+      "magic": null
+    },
+    "yearBonusAllocations": {
+      "bravery": 0,
+      "mischief": 0,
+      "knowledge": 0,
+      "loyalty": 0,
+      "magic": 0
+    },
+    "abilities": {
+      "animalHandling": 0,
+      "athletics": 0,
+      "flying": 0,
+      "intimidation": 0,
+      "investigation": 0,
+      "perception": 0,
+      "performance": 0,
+      "persuasion": 0,
+      "potions": 0,
+      "slightOfHand": 0,
+      "stealth": 0,
+      "survival": 0
+    },
+    "healthPoints": {
+      "current": 3,
+      "max": 3
+    },
+    "turnOrder": 0,
+    "currency": {
+      "goldCoins": 0,   
+      "silverShards": 0,
+      "copperBits": 0   
+    },
+    "spells": [],
+    "inventory": [],
+    "characterBackstory": {
+      "parents": [
+        {
+          "label": "Birth Parent 1",
+          "gender": "",
+          "name": "",
+          "heritage": "",
+          "house": "",
+          "status": ""
+        },
+        {
+          "label": "Birth Parent 2",
+          "gender": "",
+          "name": "",
+          "heritage": "",
+          "house": "",
+          "status": ""
+        }
+      ],
+      "additionalInfo": ""
+    },
+    "petStats": {
+      "type": "",
+      "movement": "",
+      "abilities": {
+        "vision": "",
+        "hearing": "",
+        "smell": ""
+      },
+      "attack": {
+        "claw": "",
+        "bite": "",
+        "other": ""
+      },
+      "notes": ""
+    }
+  }
+]

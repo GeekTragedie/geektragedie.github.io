@@ -1,0 +1,589 @@
+{
+    "F20": [
+        {
+            "name": "Note-Taking Assistance",
+            "reason": "may have difficulty with concentration and auditory processing, making it challenging to simultaneously listen, comprehend, and take comprehensive notes",
+            "recommendation": "be provided with a peer note-taker or be permitted to audio-record lectures to ensure they can review the material accurately."
+        },
+        {
+            "name": "Flexible Attendance",
+            "reason": "may experience fluctuations in symptoms that can impact their ability to attend class consistently",
+            "recommendation": "have an agreed-upon number of excused absences without penalty and be able to obtain materials for any missed classes."
+        },
+        {
+            "name": "Reduced Distraction Environment for Exams",
+            "reason": "is susceptible to sensory overstimulation and distracting internal thoughts, which can interfere with performance in a standard testing environment",
+            "recommendation": "take all exams in a separate, quiet room to minimize distractions."
+        }
+    ],
+    "295.xx": [
+        {
+            "name": "Note-Taking Assistance",
+            "reason": "may have difficulty with concentration and auditory processing, making it challenging to simultaneously listen, comprehend, and take comprehensive notes",
+            "recommendation": "be provided with a peer note-taker or be permitted to audio-record lectures to ensure they can review the material accurately."
+        },
+        {
+            "name": "Flexible Attendance",
+            "reason": "may experience fluctuations in symptoms that can impact their ability to attend class consistently",
+            "recommendation": "have an agreed-upon number of excused absences without penalty and be able to obtain materials for any missed classes."
+        },
+        {
+            "name": "Reduced Distraction Environment for Exams",
+            "reason": "is susceptible to sensory overstimulation and distracting internal thoughts, which can interfere with performance in a standard testing environment",
+            "recommendation": "take all exams in a separate, quiet room to minimize distractions."
+        }
+    ],
+    "F25": [
+        {
+            "name": "Deadline and Exam Flexibility",
+            "reason": "experiences cyclical mood and thought disruptions that can unpredictably affect their ability to complete work and prepare for exams",
+            "recommendation": "have the ability to request extensions on assignments and, in coordination with the professor, reschedule an exam if symptoms are acute."
+        },
+        {
+            "name": "Structured Feedback",
+            "reason": "benefits from clear, concrete, and structured feedback to aid with focus and reduce potential for misinterpretation during periods of cognitive stress",
+            "recommendation": "receive assignment feedback in writing and have the opportunity to ask clarifying questions with the instructor or a TA."
+        }
+    ],
+    "F31": [
+        {
+            "name": "Attendance and Deadline Flexibility",
+            "reason": "experiences significant variations in energy, concentration, and motivation due to mood episodes (manic and depressive)",
+            "recommendation": "be granted flexibility on attendance and assignment deadlines, with a clear communication plan established with the professor."
+        },
+        {
+            "name": "Breaks During Class and Exams",
+            "reason": "may experience racing thoughts or psychomotor agitation during manic phases, or fatigue and cognitive slowing during depressive phases",
+            "recommendation": "be permitted to take short, unobtrusive breaks during long classes or exams as needed to manage symptoms."
+        }
+    ],
+    "F31.9": [
+        {
+            "name": "Attendance and Deadline Flexibility",
+            "reason": "experiences significant variations in energy, concentration, and motivation due to mood episodes (manic and depressive)",
+            "recommendation": "be granted flexibility on attendance and assignment deadlines, with a clear communication plan established with the professor."
+        },
+        {
+            "name": "Breaks During Class and Exams",
+            "reason": "may experience racing thoughts or psychomotor agitation during manic phases, or fatigue and cognitive slowing during depressive phases",
+            "recommendation": "be permitted to take short, unobtrusive breaks during long classes or exams as needed to manage symptoms."
+        }
+    ],
+    "296.89": [
+        {
+            "name": "Attendance and Deadline Flexibility",
+            "reason": "experiences significant variations in energy, concentration, and motivation due to mood episodes (manic and depressive)",
+            "recommendation": "be granted flexibility on attendance and assignment deadlines, with a clear communication plan established with the professor."
+        },
+        {
+            "name": "Breaks During Class and Exams",
+            "reason": "may experience racing thoughts or psychomotor agitation during manic phases, or fatigue and cognitive slowing during depressive phases",
+            "recommendation": "be permitted to take short, unobtrusive breaks during long classes or exams as needed to manage symptoms."
+        }
+    ],
+    "296.0x, 296.4x, 296.5x, 296.6x, 296.7": [
+        {
+            "name": "Attendance and Deadline Flexibility",
+            "reason": "experiences significant variations in energy, concentration, and motivation due to mood episodes (manic and depressive)",
+            "recommendation": "be granted flexibility on attendance and assignment deadlines, with a clear communication plan established with the professor."
+        },
+        {
+            "name": "Breaks During Class and Exams",
+            "reason": "may experience racing thoughts or psychomotor agitation during manic phases, or fatigue and cognitive slowing during depressive phases",
+            "recommendation": "be permitted to take short, unobtrusive breaks during long classes or exams as needed to manage symptoms."
+        }
+    ],
+     "296.5": [
+        {
+            "name": "Attendance and Deadline Flexibility",
+            "reason": "experiences significant variations in energy, concentration, and motivation due to mood episodes (hypomanic and depressive)",
+            "recommendation": "be granted flexibility on attendance and assignment deadlines, with a clear communication plan established with the professor."
+        },
+        {
+            "name": "Reduced Course Load",
+            "reason": "may find a full course load overwhelming while managing symptoms, which can exacerbate mood episodes",
+            "recommendation": "be permitted to take a reduced course load without affecting their status as a student."
+        }
+    ],
+    "301.13": [
+         {
+            "name": "Attendance and Deadline Flexibility",
+            "reason": "experiences fluctuating moods and energy levels that, while less severe than bipolar disorder, can still impact consistency and performance",
+            "recommendation": "have flexibility with deadlines and attendance, allowing them to manage their work around periods of low mood or heightened energy."
+        }
+    ],
+    "F32": [
+         {
+            "name": "Flexible Deadlines",
+            "reason": "may face challenges with motivation, energy levels, and concentration, making it difficult to complete assignments on a fixed schedule",
+            "recommendation": "be able to negotiate deadline extensions with professors, especially for larger projects, when symptoms are present."
+        },
+        {
+            "name": "Support with Participation",
+            "reason": "may find it difficult to engage in classroom discussions due to low energy or feelings of worthlessness",
+            "recommendation": "be allowed to participate in alternative ways, such as through online discussion boards or one-on-one meetings with the instructor."
+        }
+    ],
+    "F32.9": [
+         {
+            "name": "Flexible Deadlines",
+            "reason": "may face challenges with motivation, energy levels, and concentration, making it difficult to complete assignments on a fixed schedule",
+            "recommendation": "be able to negotiate deadline extensions with professors, especially for larger projects, when symptoms are present."
+        },
+        {
+            "name": "Support with Participation",
+            "reason": "may find it difficult to engage in classroom discussions due to low energy or feelings of worthlessness",
+            "recommendation": "be allowed to participate in alternative ways, such as through online discussion boards or one-on-one meetings with the instructor."
+        }
+    ],
+    "F33": [
+         {
+            "name": "Flexible Deadlines",
+            "reason": "may face challenges with motivation, energy levels, and concentration, making it difficult to complete assignments on a fixed schedule",
+            "recommendation": "be able to negotiate deadline extensions with professors, especially for larger projects, when symptoms are present."
+        },
+        {
+            "name": "Support with Participation",
+            "reason": "may find it difficult to engage in classroom discussions due to low energy or feelings of worthlessness",
+            "recommendation": "be allowed to participate in alternative ways, such as through online discussion boards or one-on-one meetings with the instructor."
+        }
+    ],
+    "F33.9": [
+         {
+            "name": "Flexible Deadlines",
+            "reason": "may face challenges with motivation, energy levels, and concentration, making it difficult to complete assignments on a fixed schedule",
+            "recommendation": "be able to negotiate deadline extensions with professors, especially for larger projects, when symptoms are present."
+        },
+        {
+            "name": "Support with Participation",
+            "reason": "may find it difficult to engage in classroom discussions due to low energy or feelings of worthlessness",
+            "recommendation": "be allowed to participate in alternative ways, such as through online discussion boards or one-on-one meetings with the instructor."
+        }
+    ],
+     "296.32": [
+        {
+            "name": "Flexible Deadlines",
+            "reason": "may face challenges with motivation, energy levels, and concentration, making it difficult to complete assignments on a fixed schedule",
+            "recommendation": "be able to negotiate deadline extensions with professors, especially for larger projects, when symptoms are present."
+        },
+        {
+            "name": "Support with Participation",
+            "reason": "may find it difficult to engage in classroom discussions due to low energy or feelings of worthlessness",
+            "recommendation": "be allowed to participate in alternative ways, such as through online discussion boards or one-on-one meetings with the instructor."
+        }
+    ],
+     "296.2x-3x": [
+        {
+            "name": "Flexible Deadlines",
+            "reason": "may face challenges with motivation, energy levels, and concentration, making it difficult to complete assignments on a fixed schedule",
+            "recommendation": "be able to negotiate deadline extensions with professors, especially for larger projects, when symptoms are present."
+        },
+        {
+            "name": "Support with Participation",
+            "reason": "may find it difficult to engage in classroom discussions due to low energy or feelings of worthlessness",
+            "recommendation": "be allowed to participate in alternative ways, such as through online discussion boards or one-on-one meetings with the instructor."
+        }
+    ],
+    "300.4": [
+        {
+            "name": "Flexible Deadlines",
+            "reason": "may face challenges with motivation, energy levels, and concentration, making it difficult to complete assignments on a fixed schedule",
+            "recommendation": "be able to negotiate deadline extensions with professors, especially for larger projects, when symptoms are present."
+        },
+        {
+            "name": "Support with Participation",
+            "reason": "may find it difficult to engage in classroom discussions due to low energy or feelings of worthlessness",
+            "recommendation": "be allowed to participate in alternative ways, such as through online discussion boards or one-on-one meetings with the instructor."
+        }
+    ],
+    "F40": [
+        {
+            "name": "Alternative to In-Class Presentations",
+            "reason": "experiences intense fear and anxiety related to public speaking or being in front of a large group",
+            "recommendation": "be provided with an alternative to oral presentations, such as a written paper, a pre-recorded presentation, or a one-on-one presentation with the instructor."
+        }
+    ],
+    "F40.00": [
+        {
+            "name": "Preferential Seating",
+            "reason": "may experience intense anxiety or panic in crowded spaces or situations where they feel 'trapped'",
+            "recommendation": "be allowed to sit near an exit to ease feelings of confinement and allow for a quick departure if symptoms escalate."
+        }
+    ],
+     "300.22": [
+        {
+            "name": "Preferential Seating",
+            "reason": "may experience intense anxiety or panic in crowded spaces or situations where they feel 'trapped'",
+            "recommendation": "be allowed to sit near an exit to ease feelings of confinement and allow for a quick departure if symptoms escalate."
+        }
+    ],
+    "F41": [
+        {
+            "name": "Extended Time on Exams",
+            "reason": "may experience cognitive difficulties, such as racing thoughts or trouble concentrating, due to anxiety",
+            "recommendation": "receive 1.5x the standard time on all exams and timed assignments."
+        }
+    ],
+     "F41.1": [
+        {
+            "name": "Flexible Deadlines",
+            "reason": "experiences symptoms of anxiety that can be exacerbated by rigid deadlines, impacting their ability to produce work that reflects their knowledge",
+            "recommendation": "be permitted to request a 2-3 day extension on assignments when needed, in communication with the professor"
+        },
+        {
+            "name": "Ability to Take Breaks",
+            "reason": "may experience episodes of heightened anxiety or panic during long lectures or exams",
+            "recommendation": "be allowed to step out of the classroom or testing environment for short breaks without penalty, as needed to manage symptoms"
+        }
+    ],
+    "F41.9": [
+        {
+            "name": "Extended Time on Exams",
+            "reason": "may experience cognitive difficulties, such as racing thoughts or trouble concentrating, due to anxiety",
+            "recommendation": "receive 1.5x the standard time on all exams and timed assignments."
+        }
+    ],
+     "300.00": [
+        {
+            "name": "Extended Time on Exams",
+            "reason": "may experience cognitive difficulties, such as racing thoughts or trouble concentrating, due to anxiety",
+            "recommendation": "receive 1.5x the standard time on all exams and timed assignments."
+        }
+    ],
+     "300.02": [
+        {
+            "name": "Flexible Deadlines",
+            "reason": "experiences symptoms of anxiety that can be exacerbated by rigid deadlines, impacting their ability to produce work that reflects their knowledge",
+            "recommendation": "be permitted to request a 2-3 day extension on assignments when needed, in communication with the professor"
+        },
+        {
+            "name": "Ability to Take Breaks",
+            "reason": "may experience episodes of heightened anxiety or panic during long lectures or exams",
+            "recommendation": "be allowed to step out of the classroom or testing environment for short breaks without penalty, as needed to manage symptoms"
+        }
+    ],
+     "300.23": [
+        {
+            "name": "Alternative to In-Class Presentations",
+            "reason": "experiences intense fear and anxiety related to public speaking and being the center of attention",
+            "recommendation": "be provided with an alternative to oral presentations, such as a written paper, a pre-recorded presentation, or a one-on-one presentation with the instructor."
+        },
+        {
+            "name": "Advance notice for group work",
+            "reason": "may require mental preparation for group interactions",
+            "recommendation": "be given advance notice for group projects to mentally prepare and manage anxiety."
+        }
+    ],
+     "300.01": [
+        {
+            "name": "Ability to Take Breaks",
+            "reason": "may experience sudden, intense episodes of panic",
+            "recommendation": "be permitted to leave the classroom without penalty if they experience a panic attack."
+        }
+    ],
+    "300.09": [
+        {
+            "name": "Extended Time on Exams",
+            "reason": "may experience cognitive difficulties, such as racing thoughts or trouble concentrating, due to anxiety",
+            "recommendation": "receive 1.5x the standard time on all exams and timed assignments."
+        }
+    ],
+     "300.11": [
+        {
+            "name": "Flexible Attendance",
+            "reason": "may have frequent medical appointments or periods of intense health-related anxiety that affect their ability to attend class",
+            "recommendation": "have flexibility with attendance, with a clear plan for making up missed work."
+        }
+    ],
+    "F42.2": [
+        {
+            "name": "Flexibility on Timed Assignments",
+            "reason": "may engage in compulsive behaviors or require extra time for re-checking work due to obsessional thoughts, which can be debilitating under timed pressure",
+            "recommendation": "be granted extended time (1.5x or 2x) on all timed exams and in-class assignments"
+        }
+    ],
+    "F42.8": [
+        {
+            "name": "Flexibility on Timed Assignments",
+            "reason": "may engage in compulsive behaviors or require extra time for re-checking work due to obsessional thoughts, which can be debilitating under timed pressure",
+            "recommendation": "be granted extended time (1.5x or 2x) on all timed exams and in-class assignments"
+        }
+    ],
+     "300.3": [
+        {
+            "name": "Flexibility on Timed Assignments",
+            "reason": "may engage in compulsive behaviors or require extra time for re-checking work due to obsessional thoughts, which can be debilitating under timed pressure",
+            "recommendation": "be granted extended time (1.5x or 2x) on all timed exams and in-class assignments"
+        }
+    ],
+    "F43.10": [
+        {
+            "name": "Preferential Seating",
+            "reason": "may experience hypervigilance and can be easily startled or triggered by their surroundings",
+            "recommendation": "be permitted to choose seating near an exit or at the back of the room to minimize feelings of being trapped or surrounded"
+        },
+        {
+            "name": "Advance Notice of Content",
+            "reason": "can be activated by specific topics or content that may be triggering",
+            "recommendation": "receive advance notice or a content warning for potentially graphic or traumatic material discussed in lectures or required readings"
+        }
+    ],
+     "309.81": [
+        {
+            "name": "Preferential Seating",
+            "reason": "may experience hypervigilance and can be easily startled or triggered by their surroundings",
+            "recommendation": "be permitted to choose seating near an exit or at the back of the room to minimize feelings of being trapped or surrounded"
+        },
+        {
+            "name": "Advance Notice of Content",
+            "reason": "can be activated by specific topics or content that may be triggering",
+            "recommendation": "receive advance notice or a content warning for potentially graphic or traumatic material discussed in lectures or required readings"
+        }
+    ],
+    "F43.20": [
+         {
+            "name": "Flexible Deadlines",
+            "reason": "is experiencing significant distress while adjusting to a new stressor, which can temporarily impact their academic functioning",
+            "recommendation": "be granted short-term flexibility with deadlines as they navigate their situation."
+        }
+    ],
+     "309.0": [
+         {
+            "name": "Flexible Deadlines",
+            "reason": "is experiencing significant distress while adjusting to a new stressor, which can temporarily impact their academic functioning",
+            "recommendation": "be granted short-term flexibility with deadlines as they navigate their situation."
+        }
+    ],
+    "309.28": [
+         {
+            "name": "Flexible Deadlines",
+            "reason": "is experiencing significant distress while adjusting to a new stressor, which can temporarily impact their academic functioning",
+            "recommendation": "be granted short-term flexibility with deadlines as they navigate their situation."
+        }
+    ],
+    "F44": [
+        {
+            "name": "Memory Aids",
+            "reason": "may experience memory gaps or difficulty recalling information due to dissociative symptoms",
+            "recommendation": "be permitted to use an instructor-approved note sheet or memory aid during exams."
+        },
+        {
+            "name": "Rest Breaks",
+            "reason": "may experience dissociative episodes that require a moment to reorient and ground themselves",
+            "recommendation": "be allowed to take short breaks during exams and classes in a pre-arranged quiet space."
+        }
+    ],
+    "F50": [
+        {
+            "name": "Medical Absence Flexibility",
+            "reason": "requires ongoing medical and therapeutic appointments that may conflict with class schedules",
+            "recommendation": "have excused absences for treatment-related appointments without penalty."
+        },
+        {
+            "name": "Alternative to Food-Related Assignments",
+            "reason": "may find assignments involving nutrition, meal planning, or food-centric cultural discussions to be triggering",
+            "recommendation": "be offered alternative assignments or topics in courses like health or nutrition."
+        }
+    ],
+     "307.51": [
+        {
+            "name": "Medical Absence Flexibility",
+            "reason": "requires ongoing medical and therapeutic appointments that may conflict with class schedules",
+            "recommendation": "have excused absences for treatment-related appointments without penalty."
+        },
+        {
+            "name": "Alternative to Food-Related Assignments",
+            "reason": "may find assignments involving nutrition, meal planning, or food-centric cultural discussions to be triggering",
+            "recommendation": "be offered alternative assignments or topics in courses like health or nutrition."
+        }
+    ],
+    "307.1": [
+        {
+            "name": "Medical Absence Flexibility",
+            "reason": "requires ongoing medical and therapeutic appointments that may conflict with class schedules",
+            "recommendation": "have excused absences for treatment-related appointments without penalty."
+        },
+        {
+            "name": "Alternative to Food-Related Assignments",
+            "reason": "may find assignments involving nutrition, meal planning, or food-centric cultural discussions to be triggering",
+            "recommendation": "be offered alternative assignments or topics in courses like health or nutrition."
+        }
+    ],
+    "307.52": [
+        {
+            "name": "Medical Absence Flexibility",
+            "reason": "requires ongoing medical and therapeutic appointments that may conflict with class schedules",
+            "recommendation": "have excused absences for treatment-related appointments without penalty."
+        },
+        {
+            "name": "Alternative to Food-Related Assignments",
+            "reason": "may find assignments involving nutrition, meal planning, or food-centric cultural discussions to be triggering",
+            "recommendation": "be offered alternative assignments or topics in courses like health or nutrition."
+        }
+    ],
+    "F60": [
+        {
+            "name": "Clear and Direct Communication",
+            "reason": "may have difficulties with interpersonal relationships and interpreting social cues",
+            "recommendation": "benefit from clear, explicit, and written communication regarding expectations and feedback to avoid misunderstandings."
+        }
+    ],
+    "301.81": [
+        {
+            "name": "Clear and Direct Communication",
+            "reason": "may have difficulties with interpersonal relationships and interpreting social cues",
+            "recommendation": "benefit from clear, explicit, and written communication regarding expectations and feedback to avoid misunderstandings."
+        },
+        {
+            "name": "Emotionally Regulated Feedback",
+            "reason": "may experience intense emotional reactions to perceived criticism",
+            "recommendation": "receive feedback in a structured, non-evaluative, and private manner to help manage emotional responses."
+        }
+    ],
+    "301.9": [
+        {
+            "name": "Clear and Direct Communication",
+            "reason": "may have difficulties with interpersonal relationships and interpreting social cues",
+            "recommendation": "benefit from clear, explicit, and written communication regarding expectations and feedback to avoid misunderstandings."
+        }
+    ],
+    "F84.0": [
+        {
+            "name": "Clear & Direct Instructions",
+            "reason": "processes information most effectively when instructions are explicit, concrete, and provided in writing",
+            "recommendation": "receive written instructions and rubrics for all major assignments and have the opportunity to ask clarifying questions"
+        },
+        {
+            "name": "Sensory Breaks",
+            "reason": "can experience sensory overstimulation in a typical classroom environment",
+            "recommendation": "be permitted to use noise-cancelling headphones or step out for brief sensory breaks to prevent overwhelm"
+        }
+    ],
+     "299.00": [
+        {
+            "name": "Clear & Direct Instructions",
+            "reason": "processes information most effectively when instructions are explicit, concrete, and provided in writing",
+            "recommendation": "receive written instructions and rubrics for all major assignments and have the opportunity to ask clarifying questions"
+        },
+        {
+            "name": "Sensory Breaks",
+            "reason": "can experience sensory overstimulation in a typical classroom environment",
+            "recommendation": "be permitted to use noise-cancelling headphones or step out for brief sensory breaks to prevent overwhelm"
+        }
+    ],
+    "F90.0": [
+        {
+            "name": "Extended Time",
+            "reason": "can have trouble with sustained focus and time management, which can impact their ability to complete tasks within standard time limits",
+            "recommendation": "receive 1.5x the standard time for all exams and have the ability to request a 48-hour extension on major assignments when communicated in advance"
+        },
+        {
+            "name": "Quiet Testing Environment",
+            "reason": "can be easily distracted by auditory or visual stimuli in a standard classroom setting",
+            "recommendation": "be provided a separate, quiet room for all major exams to minimize distractions"
+        }
+    ],
+    "F90.1": [
+        {
+            "name": "Movement Breaks",
+            "reason": "may experience hyperactivity and have difficulty remaining seated for long periods",
+            "recommendation": "be allowed to take short, discreet movement breaks, such as standing in the back of the room or walking out for a minute."
+        },
+        {
+            "name": "Use of Fidget Tools",
+            "reason": "can improve focus and manage hyperactivity through small, non-disruptive motor movements",
+            "recommendation": "be permitted to use quiet fidget tools in the classroom to aid concentration."
+        }
+    ],
+    "F90.2": [
+        {
+            "name": "Extended Time",
+            "reason": "can have trouble with sustained focus and time management, which can impact their ability to complete tasks within standard time limits",
+            "recommendation": "receive 1.5x the standard time for all exams and have the ability to request a 48-hour extension on major assignments when communicated in advance"
+        },
+         {
+            "name": "Movement Breaks",
+            "reason": "may experience hyperactivity and have difficulty remaining seated for long periods",
+            "recommendation": "be allowed to take short, discreet movement breaks, such as standing in the back of the room or walking out for a minute."
+        }
+    ],
+    "314.01": [
+        {
+            "name": "Extended Time",
+            "reason": "can have trouble with sustained focus and time management, which can impact their ability to complete tasks within standard time limits",
+            "recommendation": "receive 1.5x the standard time for all exams and have the ability to request a 48-hour extension on major assignments when communicated in advance"
+        },
+         {
+            "name": "Movement Breaks",
+            "reason": "may experience hyperactivity and have difficulty remaining seated for long periods",
+            "recommendation": "be allowed to take short, discreet movement breaks, such as standing in the back of the room or walking out for a minute."
+        }
+    ],
+    "314.00": [
+        {
+            "name": "Extended Time",
+            "reason": "can have trouble with sustained focus and time management, which can impact their ability to complete tasks within standard time limits",
+            "recommendation": "receive 1.5x the standard time for all exams and have the ability to request a 48-hour extension on major assignments when communicated in advance"
+        },
+        {
+            "name": "Quiet Testing Environment",
+            "reason": "can be easily distracted by auditory or visual stimuli in a standard classroom setting",
+            "recommendation": "be provided a separate, quiet room for all major exams to minimize distractions"
+        }
+    ],
+    "F91": [
+        {
+            "name": "Behavioral Contracts",
+            "reason": "benefits from clear, predictable rules and consequences to help manage behavior",
+            "recommendation": "establish a behavioral contract with clear expectations for classroom conduct and assignment completion, co-created with the student and instructor."
+        },
+        {
+            "name": "Positive Reinforcement",
+            "reason": "responds well to positive reinforcement for meeting behavioral and academic goals",
+            "recommendation": "implement a system that acknowledges and rewards progress towards positive classroom engagement."
+        }
+    ],
+    "312.8": [
+        {
+            "name": "Behavioral Contracts",
+            "reason": "benefits from clear, predictable rules and consequences to help manage behavior",
+            "recommendation": "establish a behavioral contract with clear expectations for classroom conduct and assignment completion, co-created with the student and instructor."
+        },
+        {
+            "name": "Positive Reinforcement",
+            "reason": "responds well to positive reinforcement for meeting behavioral and academic goals",
+            "recommendation": "implement a system that acknowledges and rewards progress towards positive classroom engagement."
+        }
+    ],
+    "313.89": [
+        {
+            "name": "Choice in Assignments",
+            "reason": "may exhibit oppositional behavior when feeling a lack of control",
+            "recommendation": "be provided with choices in assignment topics or formats, where possible, to increase buy-in and cooperation."
+        },
+        {
+            "name": "Non-Confrontational Redirection",
+            "reason": "can escalate in response to direct confrontation",
+            "recommendation": "be redirected using non-confrontational language and offered a chance to cool down in a designated space if behavior becomes disruptive."
+        }
+    ],
+    "312.3": [
+        {
+            "name": "Cooling-Off Period",
+            "reason": "may experience sudden outbursts of anger or aggression",
+            "recommendation": "be allowed to leave the classroom for a pre-arranged 'cooling-off' space when they feel their anger escalating, without penalty."
+        }
+    ],
+    "315.00": [
+        {
+            "name": "Use of Assistive Technology",
+            "reason": "has specific deficits in reading, writing, or math that can be supported by technology",
+            "recommendation": "be permitted to use text-to-speech, speech-to-text software, or calculators as appropriate for their specific learning disability."
+        },
+        {
+            "name": "Alternative Formats for Materials",
+            "reason": "may struggle with standard print materials",
+            "recommendation": "be provided with course materials in an alternative format, such as audiobooks, large print, or digital text that can be used with assistive technology."
+        }
+    ]
+}

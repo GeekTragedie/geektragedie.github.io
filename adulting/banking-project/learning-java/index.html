@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Neuro-Friendly Bank</title>
+    <link rel="stylesheet" href="../../../assets/site.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body aria-label="Simple Neuro-Friendly Bank page with a background texture of stacked firewood logs">
+<script src="../../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../../index.html" class="nav-brand">GeekTragedie's Organized Chaos</a>
+    <ul class="nav-links">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="../../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../adulting/index.html" class="dropbtn active">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../../adulting/banking-project/learning-java/index.html" aria-current="page">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<header class="bank-header">
+    <div class="hero-panel">
+        <h1>Welcome to Your Bank!</h1>
+        <p>A simple and clear way to manage your accounts.</p>
+    </div>
+</header>
+
+    <div class="bank-layout">
+        <aside class="sidebar panel">
+            <h2>Instructions</h2>
+            <p>
+                1. Enter your name and address to get started.
+                <br>2. Your checking and savings accounts will be created automatically.
+                <br>3. Use the Deposit section to add funds to your accounts.
+                <br>4. Use the Withdraw section to take out funds. Watch for messages regarding your balance!
+                <br>5. "Fast Withdraw" instantly takes out a preset amount (default $60).
+                <br>6. Look for messages at the bottom of the page confirming your transactions or alerting you to issues.
+            </p>
+        </aside>
+
+        <main>
+            <section class="user-setup panel">
+                <h2>Your Information</h2>
+                <div class="input-group">
+                    <label for="userName">Name:</label>
+                    <input type="text" id="userName" placeholder="Enter your name">
+                </div>
+                <div class="input-group">
+                    <label for="userAddress">Address:</label>
+                    <input type="text" id="userAddress" placeholder="Enter your address">
+                </div>
+                <button id="createAccountBtn" class="btn btn-primary">Create Accounts</button>
+            </section>
+
+            <section class="account-display panel" style="display: none;">
+                <h2>Account Summary</h2>
+                <p><strong>Customer:</strong> <span id="displayCustomerName"></span> from <span id="displayCustomerAddress"></span></p>
+                <p><strong>Checking Account:</strong> <span id="displayCheckingBalance">0.00</span></p>
+                <p><strong>Savings Account:</strong> <span id="displaySavingsBalance">0.00</span></p>
+            </section>
+
+            <section class="transactions panel" style="display: none;">
+                <h2>Transactions</h2>
+
+                <div class="transaction-section">
+                    <h3>Deposit</h3>
+                    <div class="input-group">
+                        <label for="depositAmount">Amount:</label>
+                        <input type="number" id="depositAmount" placeholder="Enter amount" min="0" step="0.01">
+                    </div>
+                    <button id="depositCheckingBtn" class="btn">Deposit to Checking</button>
+                    <button id="depositSavingsBtn" class="btn">Deposit to Savings</button>
+                </div>
+
+                <div class="transaction-section">
+                    <h3>Withdraw</h3>
+                    <div class="input-group">
+                        <label for="withdrawAmount">Amount:</label>
+                        <input type="number" id="withdrawAmount" placeholder="Enter amount" min="0" step="0.01">
+                    </div>
+                    <button id="withdrawCheckingBtn" class="btn">Withdraw from Checking</button>
+                    <button id="withdrawSavingsBtn" class="btn">Withdraw from Savings</button>
+                    <button id="fastWithdrawCheckingBtn" class="btn">Fast Withdraw Checking ($60)</button>
+                    <button id="fastWithdrawSavingsBtn" class="btn">Fast Withdraw Savings ($60)</button>
+                </div>
+            </section>
+
+            <section class="messages panel" style="display: none;">
+                <h2>Messages</h2>
+                <p id="messageDisplay" class="feedback-message"></p>
+            </section>
+        </main>
+    </div>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+        </p>
+        <div class="footer-controls">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

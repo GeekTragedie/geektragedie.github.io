@@ -1,0 +1,36 @@
+{
+    "letterTypes": [
+        {
+            "id": "esa",
+            "name": "Emotional Support Animal Letter",
+            "templatePath": "templates/esa_letter.json",
+            "citations": [
+                "Fair Housing Act, 42 U.S.C. § 3601 et seq. (1968).",
+                "U.S. Department of Housing and Urban Development. (2020). <em>Assessing a person’s request to have an animal as a reasonable accommodation under the Fair Housing Act</em> (Notice No. FHEO-2020-01).",
+                "Brooks, H. L., Rushton, K., Lovell, K., Bee, P., Walker, L., Grant, L., & Rogers, A. (2018). The power of support from companion animals for people living with mental health problems: A systematic review and narrative synthesis of the evidence. <em>BMC Psychiatry, 18</em>(1), 31.",
+                "Hoy-Gerlach, J., Vincent, A., Scheuermann, B., & Ojha, M. (2022). Exploring benefits of emotional support animals (ESAs): A longitudinal pilot study with adults with serious mental illness (SMI). <em>Human-Animal Interactions, 1</em>(1), 1-16.",
+                "Linder, D. E., & Mueller, M. K. (2021). A systematic review of research on emotional support animals and mental health. <em>Anthrozoös, 34</em>(5), 635-650."
+            ]
+        },
+        {
+            "id": "accommodation",
+            "name": "Academic Accommodation Letter",
+            "templatePath": "templates/accommodation_letter.json",
+            "citations": [
+                "Americans with Disabilities Act of 1990, 42 U.S.C. § 12101 et seq. (1990).",
+                "Section 504 of the Rehabilitation Act of 1973, 29 U.S.C. § 794.",
+                "American Psychiatric Association. (2022). <em>Diagnostic and statistical manual of mental disorders</em> (5th ed., text rev.).",
+                "World Health Organization. (2019). <em>International statistical classification of diseases and related health problems (10th ed.)</em>."
+            ]
+        },
+        {
+            "id": "referral",
+            "name": "Referral Letter",
+            "templatePath": "templates/referral_letter.json",
+            "citations": [
+                "American Counseling Association. (2014). <em>2014 ACA code of ethics</em>.",
+                "American Psychological Association. (2017). <em>Ethical principles of psychologists and code of conduct</em>."
+            ]
+        }
+    ]
+}

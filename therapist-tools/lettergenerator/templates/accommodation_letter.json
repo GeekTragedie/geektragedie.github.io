@@ -1,0 +1,57 @@
+{
+  "title": "Academic Accommodation Letter",
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Date: [DATE_GENERATED]"
+    },
+    {
+      "type": "paragraph",
+      "content": "To: [RECIPIENT_NAME_OR_DEPARTMENT]"
+    },
+    {
+      "type": "paragraph",
+      "content": "From: [CLINICIAN_NAME], [LICENSE_TYPE]"
+    },
+    {
+      "type": "paragraph",
+      "content": "Regarding: Academic Accommodation for [CLIENT_FULL_NAME]"
+    },
+    {
+      "type": "paragraph",
+      "content": "To Whom It May Concern,"
+    },
+    {
+      "type": "paragraph",
+      "content": "I am the mental health counselor for [CLIENT_FIRST_NAME], a student at [INSTITUTION_NAME]. This letter is provided at their request to support their need for academic accommodations."
+    },
+    {
+      "type": "paragraph",
+      "content": "[CLIENT_FIRST_NAME] has a diagnosed mental health condition that presents challenges within a traditional academic setting. To ensure equitable access to their education, the following accommodations are recommended based on the functional limitations associated with their diagnosis:"
+    },
+    {
+      "type": "paragraph",
+      "content": "[ACCOMMODATION_DETAILS]"
+    },
+    {
+      "type": "paragraph",
+      "content": "[CLIENT_FIRST_NAME] is a capable and dedicated student. These accommodations are intended to mitigate barriers and provide them with the opportunity to demonstrate their knowledge and skills. They understand their responsibility to communicate with their professors in a timely manner regarding these accommodations."
+    },
+    {
+      "type": "paragraph",
+      "content": "Thank you for your partnership in supporting this student. Please feel free to contact me if you require further information."
+    },
+    {
+      "type": "paragraph",
+      "content": "Sincerely,"
+    },
+    {
+      "type": "signature",
+      "lines": [
+        "[CLINICIAN_NAME], [LICENSE_TYPE]",
+        "License #: [LICENSE_NUMBER]",
+        "[CLINICIAN_EMAIL]"
+      ]
+    }
+  ]
+}

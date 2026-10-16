@@ -1,0 +1,60 @@
+{
+  "templates": [
+    {
+      "id": "generic",
+      "name": "Generic Progress Note",
+      "citations": []
+    },
+    {
+      "id": "dap",
+      "name": "DAP Note",
+      "citations": [
+        "Cameron, S., & Turtle-song, I. (2002). Learning to write case notes using the SOAP format. <em>Journal of Counseling & Development, 80</em>(3), 286–292. https://doi.org/10.1002/j.1556-6678.2002.tb00193.x",
+        "Kettenbach, G. (2009). <em>Writing patient/client notes: Ensuring accuracy in documentation</em> (4th ed.). F.A. Davis Company."
+      ]
+    },
+    {
+      "id": "soap",
+      "name": "SOAP Note",
+      "citations": [
+        "Weed, L. L. (1968). Medical records that guide and teach. <em>The New England Journal of Medicine, 278</em>(11), 593–600. https://doi.org/10.1056/NEJM196803142781105",
+        "Jacobs, L. (2009). The SOAP note. In <em>The effective physician assistant: A guide for PA students and new clinicians</em>. F.A. Davis Company."
+      ]
+    },
+    {
+      "id": "birp",
+      "name": "BIRP Note",
+      "citations": [
+        "Baird, B. N. (2016). <em>The internship, practicum, and field placement handbook: A guide for the helping professions</em> (8th ed.). Routledge.",
+        "Sutton, J. (2021, November 18). <em>Psychology Notes: Formats, Examples, & Templates</em>. PositivePsychology.com."
+      ]
+    },
+    {
+      "id": "girp",
+      "name": "GIRP Note",
+      "citations": [
+        "Baird, B. N. (2016). <em>The internship, practicum, and field placement handbook: A guide for the helping professions</em> (8th ed.). Routledge."
+      ]
+    },
+    {
+      "id": "pirp",
+      "name": "PIRP Note",
+      "citations": [
+        "Baird, B. N. (2016). <em>The internship, practicum, and field placement handbook: A guide for the helping professions</em> (8th ed.). Routledge."
+      ]
+    },
+    {
+      "id": "narrative",
+      "name": "Narrative Note",
+      "citations": []
+    },
+    {
+      "id": "mse",
+      "name": "Mental Status Exam (MSE)",
+      "citations": [
+        "Trzepacz, P. T., & Baker, R. W. (1993). <em>The psychiatric mental status examination</em>. Oxford University Press.",
+        "Zimmerman, M. (2016). Interviewing guide for evaluating DSM-5 psychiatric disorders and the mental status examination (2nd ed.). The Clinician's Toolbox."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../assets/site.css">
+<title>GeekTragedie | Therapist Tools</title>
+<style>
+    .hero-panel { margin-bottom: 35px; }
+    .category-section {
+        margin-bottom: 40px;
+    }
+    .section-title {
+        color: var(--text-heading);
+        font-size: 1.6em;
+        margin-bottom: 8px;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 8px;
+    }
+    .section-desc {
+        color: var(--text-muted);
+        margin-bottom: 20px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin-bottom: 20px;
+    }
+    .card h3 {
+        margin-bottom: 10px;
+    }
+    .card p {
+        margin-bottom: 16px;
+    }
+    .card-action {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.9em;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .tag {
+        color: var(--badge-color);
+        background-color: var(--badge-bg);
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        align-self: flex-start;
+    }
+
+    details.collapsible {
+        background-color: var(--bg-panel);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+    details.collapsible summary {
+        padding: 16px 20px;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--text-heading);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    details.collapsible summary:hover {
+        background-color: var(--bg-panel-hover);
+    }
+    details.collapsible[open] summary {
+        border-bottom: 1px solid var(--border-color);
+    }
+    .collapsible-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .future-tool {
+        border-left: 3px solid var(--border-color);
+        padding-left: 14px;
+    }
+    .future-tool h4 {
+        margin: 0 0 4px 0;
+        color: var(--accent);
+        font-size: 1em;
+    }
+    .future-tool p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9em;
+    }
+</style>
+</head>
+<body aria-label="Therapist Tools hub page with a background texture of stacked firewood logs">
+<script src="../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../index.html" class="nav-brand">GeekTragedie's Organized Chaos</a>
+    <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../adulting/my-budget/index.html">My Budget</a>
+                <a href="../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../therapist-tools/index.html" aria-current="page" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="hero-panel">
+        <h1>Welcome to Your Therapist Toolkit!</h1>
+        <p>A static web-based toolkit designed by a private practice clinician, for private practice clinicians. These tools help manage private practice workflows with the confidence of knowing all client data stays 100% local on your machine for HIPAA compliance and security.</p>
+    </div>
+
+    <!-- Day-to-Day Operations -->
+    <section class="category-section" id="day-to-day-operations">
+        <h2 class="section-title">Day-to-Day Operations</h2>
+        <p class="section-desc">Tools to streamline clinical documentation, resource management, and client support.</p>
+        
+        <div class="card-grid">
+            <a href="./lettergenerator/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Letter Generator</h3>
+                    <p>Fillable templates for professional clinical letters, including Emotional Support Animals (ESA), Academic Accommodations, and Clinical Referrals with diagnosis-based suggestions.</p>
+                </div>
+                <div class="card-action">Open Letter Generator &rarr;</div>
+            </a>
+
+            <a href="./notegenerator/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Note Generator</h3>
+                    <p>Fillable templates for psychotherapy session notes across multiple formats including DAP, SOAP, BIRP, and standard progress notes with ICD/DSM diagnosis pickers.</p>
+                </div>
+                <div class="card-action">Open Note Generator &rarr;</div>
+            </a>
+        </div>
+
+        <details class="collapsible">
+            <summary>
+                <span>Future Tools in Development (7)</span>
+                <span>▾</span>
+            </summary>
+            <div class="collapsible-body">
+                <div class="future-tool">
+                    <h4>Referral Database</h4>
+                    <p>A tool to find, organize, and manage trusted professional referrals for your clients.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Self-Care Dashboard</h4>
+                    <p>Interactive tools for tracking clinician wellness check-ins, caseload capacity, and work-life balance.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Intake Note + Packet Generator</h4>
+                    <p>A dynamic tool to generate full intake packets including Informed Consent, HIPAA notices, and practice policy agreements.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Client Diagnosis (Cx Dx) Pie Chart Generator</h4>
+                    <p>A client-side visualization tool generating pie charts representing the prevalence of different diagnoses in your practice caseload.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Treatment Plan Builder</h4>
+                    <p>Generate treatment plan objectives and interventions based on diagnosis, theory, or symptoms with SMART goal generation aids.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Assessment Database</h4>
+                    <p>Static database of evidence-based clinical assessments categorized by diagnosis and symptom presentation.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Crisis Plan Generator</h4>
+                    <p>Customizable, fillable crisis and safety plan templates that can be completed collaboratively with clients and exported.</p>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <!-- Finance and Business -->
+    <section class="category-section" id="finance-and-business">
+        <h2 class="section-title">Finance and Business</h2>
+        <p class="section-desc">Manage the financial aspects and general business information of your private practice.</p>
+
+        <div class="card-grid">
+            <a href="./superbillgenerator/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Insurance Superbill Generator</h3>
+                    <p>Fillable template for generating formatted superbills for out-of-network reimbursement with automated calculations, JSON client data import/export, and print formatting.</p>
+                </div>
+                <div class="card-action">Open Superbill Generator &rarr;</div>
+            </a>
+        </div>
+
+        <details class="collapsible">
+            <summary>
+                <span>Future Tools in Development (2)</span>
+                <span>▾</span>
+            </summary>
+            <div class="collapsible-body">
+                <div class="future-tool">
+                    <h4>Business Tracking Tool & Financial Dashboard</h4>
+                    <p>Tools and guidance for projecting revenue, managing estimated quarterly taxes, and tracking practice income and expenses.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Business Information Management & Printable Pages</h4>
+                    <p>A dedicated area to organize and securely export essential practice identifiers like NPI, EIN, taxonomy, and license numbers.</p>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <!-- Licensure -->
+    <section class="category-section" id="licensure">
+        <h2 class="section-title">Licensure & Continuing Education</h2>
+        <p class="section-desc">Supports the ongoing maintenance of professional licensure, continuing education, and supervision requirements.</p>
+
+        <details class="collapsible">
+            <summary>
+                <span>Future Tools in Development (2)</span>
+                <span>▾</span>
+            </summary>
+            <div class="collapsible-body">
+                <div class="future-tool">
+                    <h4>CE Tracker</h4>
+                    <p>A client-side log to manage Continuing Education credits. Track total hours, renewal cycles, and mandatory breakdown categories (Ethics, Suicide Prevention, Diversity).</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Supervision Log (Associate & Supervisor)</h4>
+                    <p>A dynamic interface to log, calculate, and verify clinical supervision hours for both supervisors and pre-licensed associates.</p>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <!-- Starting Practice -->
+    <section class="category-section" id="starting-practice">
+        <h2 class="section-title">Starting Practice</h2>
+        <p class="section-desc">Foundational information and a detailed checklist for launching a solo mental health private practice.</p>
+
+        <details class="collapsible">
+            <summary>
+                <span>Future Tools in Development (2)</span>
+                <span>▾</span>
+            </summary>
+            <div class="collapsible-body">
+                <div class="future-tool">
+                    <h4>Private Practice Starting Aid</h4>
+                    <p>A step-by-step checklist covering business entity formation, obtaining an NPI/EIN, setting up business banking, liability insurance, and choosing an EHR.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Resources for Business Formation</h4>
+                    <p>Curated guides and links to state business hubs, Small Business Administration (SBA), SCORE mentors, and healthcare legal guidelines.</p>
+                </div>
+            </div>
+        </details>
+    </section>
+
+    <!-- Miscellaneous -->
+    <section class="category-section" id="miscellaneous">
+        <h2 class="section-title">Miscellaneous</h2>
+        <p class="section-desc">Practice utility extensions, dashboard widgets, and user interaction tools.</p>
+
+        <details class="collapsible">
+            <summary>
+                <span>Future Tools in Development (2)</span>
+                <span>▾</span>
+            </summary>
+            <div class="collapsible-body">
+                <div class="future-tool">
+                    <h4>Therapist Dashboard</h4>
+                    <p>A customizable daily landing page providing quick shortcuts to all active tools, quick clinical calculator widgets, and daily reminders.</p>
+                </div>
+                <div class="future-tool">
+                    <h4>Submit Suggestion Option</h4>
+                    <p>Direct channel for clinicians to request new templates, CPT codes, DSM/ICD entries, or feature improvements.</p>
+                </div>
+            </div>
+        </details>
+    </section>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+        </p>
+        <div class="footer-controls">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+/* Counseling Session Notes Generator page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+/* Print-specific styles */
+@media print {
+    /* Hide all elements on the page that should not be printed. */
+    body > :not(#generatedNoteContainer) {
+        display: none !important;
+    }
+    
+    #generatedNoteContainer {
+        /* Make the container for the note visible and format it for printing. */
+        display: block !important;
+        position: static;
+        margin: 0;
+        padding: 1in; /* A standard print margin */
+        background-color: #fff;
+        color: #000;
+        box-shadow: none;
+    }
+
+    #generatedNoteContainer h3 {
+        color: #000 !important;
+    }
+
+    #generatedNote {
+        /* Ensure the generated text is styled for print */
+        color: #000 !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+}

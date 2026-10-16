@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeekTragedie | Mental Health Resource Index</title>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body aria-label="Mental health resource index page with a background texture of stacked firewood logs">
+<script src="../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../index.html" class="nav-brand">GeekTragedie's Organized Chaos</a>
+    <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../resources/index.html" aria-current="page" class="active">Resources</a></li>
+        <li class="dropdown">
+            <a href="../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../adulting/my-budget/index.html">My Budget</a>
+                <a href="../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="hero-panel">
+        <h1>Mental Health & Psychoeducation Resource Index</h1>
+    </div>
+    
+    <div class="layout-wrapper">
+        <div class="sidebar">
+            <h2>Filter Resources</h2>
+            <div id="filter-container"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search resources, topics, descriptions...">
+                <select id="sort-by" class="sort-select">
+                    <option value="a-z">Sort: A-Z</option>
+                    <option value="z-a">Sort: Z-A</option>
+                </select>
+            </div>
+
+            <div id="active-filters-display" class="active-filters-bar"></div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('title')" style="width: 22%;">Resource &#x21D5;</th>
+                        <th onclick="sortTable('format')" style="width: 12%;">Format &#x21D5;</th>
+                        <th style="width: 32%; cursor: default;">Description</th>
+                        <th style="width: 16%; cursor: default;">Tags</th>
+                        <th onclick="sortTable('citation')" style="width: 18%;">Citation &#x21D5;</th>
+                    </tr>
+                </thead>
+                <tbody id="resource-list"></tbody>
+            </table>
+
+            <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#x2191; Back to Top</button>
+        </div>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+        </p>
+        <div class="footer-controls">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

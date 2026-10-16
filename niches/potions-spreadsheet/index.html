@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../assets/site.css">
+<title>GeekTragedie | RPG Potion Creation Index</title>
+<style>
+    body {
+        --table-header-bg: rgba(42, 42, 42, 0.95);
+        --table-header-hover: rgba(58, 58, 58, 0.95);
+    }
+    body.light-mode {
+        --table-header-bg: #e2e8f0;
+        --table-header-hover: #cbd5e1;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+    .hero-panel {
+        margin-bottom: 20px;
+    }
+    .hero-panel h1 {
+        margin-bottom: 0;
+    }
+    /* Tabs */
+    .tab-container {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .tab-btn {
+        background-color: var(--bg-panel);
+        color: var(--text-heading);
+        border: 1px solid var(--border-color);
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s;
+    }
+    .tab-btn:hover {
+        background-color: var(--bg-panel-hover);
+    }
+    .tab-btn.active {
+        background-color: var(--table-header-hover);
+        border-color: var(--border-color);
+    }
+    
+    .layout-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: flex-start;
+    }
+    .sidebar {
+        flex: 1 1 250px;
+        background-color: var(--bg-panel);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        position: sticky;
+        top: 70px;
+    }
+    .sidebar h2 {
+        font-size: 1.2em;
+        margin-top: 0;
+        color: var(--text-heading);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+    }
+    .crafting-table {
+        width: 100%;
+        font-size: 0.9em;
+        margin-top: 15px;
+        border-collapse: collapse;
+    }
+    .crafting-table th, .crafting-table td {
+        padding: 8px 0;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .crafting-table th {
+        color: var(--text-muted);
+    }
+    .main-content {
+        flex: 3 1 600px;
+    }
+    .search-container {
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+    }
+    input[type="text"] {
+        flex: 1;
+        padding: 12px;
+        background-color: var(--bg-panel);
+        border: 1px solid var(--border-color);
+        color: var(--text-heading);
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    table.data-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: var(--bg-panel);
+    }
+    .data-table th, .data-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .data-table th {
+        background-color: var(--table-header-bg);
+        color: var(--text-heading);
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+    }
+    .data-table th:hover {
+        background-color: var(--table-header-hover);
+    }
+    .cost-cell {
+        white-space: nowrap;
+    }
+    .back-to-top {
+        display: block;
+        margin: 30px 0 0 0;
+        padding: 10px 20px;
+        background-color: var(--bg-panel);
+        color: var(--text-heading);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s;
+    }
+    .back-to-top:hover {
+        background-color: var(--bg-panel-hover);
+    }
+
+    .references-section {
+        margin-top: 50px;
+        font-size: 0.9em;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border-color);
+        padding-top: 20px;
+    }
+    .apa-citation {
+        padding-left: 2em;
+        text-indent: -2em;
+        margin-bottom: 12px;
+    }
+    
+    .view-hidden {
+        display: none;
+    }
+
+</style>
+</head>
+<body aria-label="RPG Potion Creation Index page with a background texture of stacked firewood logs">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Organized Chaos</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn active">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html" aria-current="page">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="hero-panel">
+        <h1>GeekTragedie's RPG Potion Creation Index</h1>
+    </div>
+    
+    <div class="tab-container">
+        <button class="tab-btn active" id="btn-potions" onclick="switchTab('potions')">Potions Index</button>
+        <button class="tab-btn" id="btn-ingredients" onclick="switchTab('ingredients')">Ingredients & Locations</button>
+    </div>
+    
+    <div class="layout-wrapper">
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>How to Learn Recipes</h2>
+            <p style="font-size: 0.95em;">When you come across a new recipe, you add it to your recipes known. To become proficient and use the recipe requires time and money spent in experimentation.</p>
+            <p style="font-size: 0.95em; color: var(--text-muted);"><em>Note: Learning a new recipe always succeeds, but does not result in any product.</em></p>
+            
+            <table class="crafting-table">
+                <thead>
+                    <tr>
+                        <th>Recipe Level</th>
+                        <th>Time</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Common (3)</td>
+                        <td>8 hrs</td>
+                        <td>50 gp</td>
+                    </tr>
+                    <tr>
+                        <td>Uncommon</td>
+                        <td>40 hrs</td>
+                        <td>250 gp</td>
+                    </tr>
+                    <tr>
+                        <td>Rare</td>
+                        <td>80 hrs</td>
+                        <td>500 gp</td>
+                    </tr>
+                    <tr>
+                        <td>Very Rare</td>
+                        <td>240 hrs</td>
+                        <td>1000 gp</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search current table..." onkeyup="filterTable()">
+            </div>
+
+            <!-- Potions View -->
+            <div id="view-potions">
+                <table class="data-table" id="potionTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortPotions(0)">Potion &#x21D5;</th>
+                            <th onclick="sortPotions(1)">Type &#x21D5;</th>
+                            <th onclick="sortPotions(2)">Rarity &#x21D5;</th>
+                            <th onclick="sortPotions(3)">Cost &#x21D5;</th>
+                            <th onclick="sortPotions(4)">Ingredients &#x21D5;</th>
+                        </tr>
+                    </thead>
+                    <tbody id="potionTableBody">
+                        <!-- Data populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Ingredients View -->
+            <div id="view-ingredients" class="view-hidden">
+                <table class="data-table" id="ingredientTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortIngredients(0)">Ingredient &#x21D5;</th>
+                            <th onclick="sortIngredients(1)">Location &#x21D5;</th>
+                            <th onclick="sortIngredients(2)">Rarity &#x21D5;</th>
+                            <th onclick="sortIngredients(3)">Cost &#x21D5;</th>
+                            <th onclick="sortIngredients(4)">Used In &#x21D5;</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ingredientTableBody">
+                        <!-- Data populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#x2191; Back to Top</button>
+        </div>
+    </div>
+
+    <!-- References Block -->
+    <div class="references-section">
+        <p style="margin-bottom: 20px;"><strong>Mechanics & System Design Note:</strong> This crafting index operates independently of standard clinical resources and represents an open-source hyperfixation sandbox. Do not distribute without attribution.</p>
+        
+        <h3 style="color: var(--text-muted); font-size: 1em; margin-bottom: 15px;">References</h3>
+        
+        <div class="apa-citation">
+            Wizards of the Coast. (2014). <em>Dungeons & dragons dungeon master's guide</em> (5th ed.). Wizards of the Coast.
+        </div>
+        <div class="apa-citation">
+            Wizards of the Coast. (2014). <em>Dungeons & dragons player's handbook</em> (5th ed.). Wizards of the Coast.
+        </div>
+        <div class="apa-citation">
+            Wizards of the Coast. (2024). <em>Dungeons & dragons player's handbook</em> (Revised 5th ed.). Wizards of the Coast.
+        </div>
+        <div class="apa-citation">
+            World Anvil. (n.d.). <em>Worldbuilding, RPG campaign management & VTT</em>. Retrieved from https://www.worldanvil.com
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+        </p>
+        <div class="footer-controls">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script>
+    const potionsData = [{"Potion": "Alchemist's Fire (flask)", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Firepeas, Oil (flask)"}, {"Potion": "Angel's Powder", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Angel's Trumpet, Dreamlily"}, {"Potion": "Antitoxin", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Cat's Tongue, Everfrost Berry"}, {"Potion": "Assassin's Blood (Ingested) ", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Basic Poison (vial), Moonstalker, Nightshade"}, {"Potion": "Bane Berry Extract", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Bane Berry"}, {"Potion": "Biza's Breath (Inhaled)", "Type": "Poison", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Angel's Trumpet, Frost Lichen"}, {"Potion": "Black Paste", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Black Cap Mushroom, Black Sap"}, {"Potion": "Blasting Powder", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Charcoal, Flame Lily"}, {"Potion": "Blight Ichor", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Blight Spores"}, {"Potion": "Bottled Breath", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Air Elemental Wisp"}, {"Potion": "Brew of Babel", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Singing Nettle (x2)"}, {"Potion": "Burnt Othur Fumes (Inhaled)", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Ashblossom, Moonstalker"}, {"Potion": "Deathsleep", "Type": "Poison", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Black Cap Mushroom, Dracula's Blood"}, {"Potion": "Devil's Powder", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Angel's Trumpet, Blight Spores"}, {"Potion": "Direted Delay", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Death Cap, Idle Claws"}, {"Potion": "Dracula's Essence", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Bloodroot, Dracula's Blood, Dragon's Blood, Red Amanita Mushroom"}, {"Potion": "Drow Poison (Injury)", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Drider Poison, Mandrake Root"}, {"Potion": "Elixir of Health", "Type": "Herbalism ", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Fairy Stool, Gillyweed"}, {"Potion": "Essence of Ether (Inhaled)", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Mandrake Root, Nightshade"}, {"Potion": "Essence of Rage", "Type": "Poison", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Dracula's Blood, Lightning Struck Metal, Moonstalker"}, {"Potion": "Fake Blood", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Bloodroot"}, {"Potion": "Fire Balm ", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Flame Lily, Oil (flask), Theki Root"}, {"Potion": "Greater Antitoxin", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Sourgrass, Theki Root"}, {"Potion": "Grenade, Smoke", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Flame Lily, Frost Lichen"}, {"Potion": "Ink (5 oz bottle)", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Charcoal"}, {"Potion": "Ink (Legendary)", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Charcoal, Willowshade Oil (x3)"}, {"Potion": "Ink (rare)", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Charcoal"}, {"Potion": "Ink (Very Rare)", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Charcoal, Willowshade Fruit"}, {"Potion": "Invisibility Ink", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Ink (5 oz bottle), Pixie Parasol"}, {"Potion": "Lava Paste", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Fire Peas, Flame Lily"}, {"Potion": "Lesser Potion of Mana", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Pixie Parasol, Silverthorn"}, {"Potion": "Life's Liquor", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Muroosa Twigs, Red Amanita Mushroom"}, {"Potion": "Liquid Luck", "Type": "Herbalism ", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Fairy Stool, Muroosa Twigs, Rainbow Mushroom"}, {"Potion": "Liquid Paranoia", "Type": "Poison", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Moostalker"}, {"Potion": "Magebane", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Drider Poison, Serpent's Venom, Wolfsbane"}, {"Potion": "Malice (Inhaled) ", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Black Sap, Morning Dew"}, {"Potion": "Midnight Oil", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Oil (flask), Pixie Parasol"}, {"Potion": "Midnight Tears (Ingested)", "Type": "Poison", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Ankheg Ichor, Death Cap"}, {"Potion": "Murgaxor's Elixor of Life", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "White Ghost Orchid Seed"}, {"Potion": "Muroosa Balm", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Flame Lily, Muroosa Twigs"}, {"Potion": "Oil of Dragon's Bane", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Dragon's Blood, Wyvern Poison"}, {"Potion": "Oil of Etherealness", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Ectoplasm, Oil (flask)"}, {"Potion": "Oil of Sharpness", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Ankheg Ichor, Silverthorn"}, {"Potion": "Oil of Slipperiness", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Crawler Mucus, Oil (flask), Water Elemental Droplets"}, {"Potion": "Oil of Taggit (Contact)", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Oil (flask), Wolfsbane"}, {"Potion": "Pale Tincture (Ingested)", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Black Sap, Death Cap"}, {"Potion": "Pepper Peppers (6)", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Fire Peas"}, {"Potion": "Philter of Love", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Fairy Stool, Serpent's Venom"}, {"Potion": "Basic Poison (vial)", "Type": "Poison", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Nightshade"}, {"Potion": "Polymorph Potion", "Type": "Herbalism ", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Dreamlily, Rainbow Mushroom, Willowshade Fruit"}, {"Potion": "Pomander of Warding", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Hagfinger"}, {"Potion": "Potion of Acid Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Crawler Mucus, Hagfinger"}, {"Potion": "Potion of Advantage", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Rainbow Mushroom, Willowshade Fruit"}, {"Potion": "Potion of Animal friendship", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Cat's Tongue, Quipper Scale"}, {"Potion": "Potion of Clairvoyance", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Mandrake Root, Morning Dew"}, {"Potion": "Potion of Climbing", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Giant Wolf Spider Hair, Skulk Claw"}, {"Potion": "Potion of Cold Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Frost Lichen, Hagfinger"}, {"Potion": "Potion of Diminution", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Moonstalker, Pixie's Parasol"}, {"Potion": "Potion of Fire Breath", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Ashblossom, Fire Elemental Embers"}, {"Potion": "Potion of Fire Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Ashblossom, Hagfinger"}, {"Potion": "Potion of Flying", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Air Elemental Wisp, Singing Nettle"}, {"Potion": "Potion of Force Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Amphibian Saliva, Hagfinger"}, {"Potion": "Potion of Gaseous Form", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Ectoplasm, Singing Nettle"}, {"Potion": "Potion of Giant Strength", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Frost Lichen, Giant's Fingernail"}, {"Potion": "Potion of Growth ", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Everfrost Berry, Giant Wolf Spider Hair, Sourgrass"}, {"Potion": "Potion of Healing", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Red Amanita Mushroom"}, {"Potion": "Potion of Healing (Greater)", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Red Amanita Mushroom (x2)"}, {"Potion": "Potion of Healing (Superior)", "Type": "Herbalism ", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Red Amanita Mushroom (x3)"}, {"Potion": "Potion of Healing (Supreme)", "Type": "Herbalism ", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Red Amanita Mushroom (x 4)"}, {"Potion": "Potion of Heroism", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Cat's Tongue, Hagfinger"}, {"Potion": "Potion of Invisibility", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Fairy Stool, Skulk Claw"}, {"Potion": "Potion of Lightning Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Hagfinger, Lightning Moss"}, {"Potion": "Potion of Longevity", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Imp Heart, Red Amanita Mushroom"}, {"Potion": "Potion of Mana", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Dragon's Blood, Pixie's Parasol, Silverthorn"}, {"Potion": "Potion of Maximum Power ", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Olisuba Leaf, Rainbow Mushroom"}, {"Potion": "Potion of Mind Reading", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Mindflayer Stinkhorn, Moonstalker"}, {"Potion": "Potion of Necrotic Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Hagfinger, Nightshade"}, {"Potion": "Potion of Plantspeak", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Cat's Tongue, Muroosa Twigs"}, {"Potion": "Potion of Poison ", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Bane Berry, Potion of Healing"}, {"Potion": "Potion of Poison Resistance ", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Earth Elemental Pebbles, Hagfinger"}, {"Potion": "Potion of Possibility", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Ectoplasm, Skulk Claw"}, {"Potion": "Potion of Protection", "Type": "Herbalism ", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Hagfinger, Idle Claws, White Ghost Orchid Seed"}, {"Potion": "Potion of Psychic Resistance ", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Hagfinger, Mindflayer Sinkhorn"}, {"Potion": "Potion of Radiant Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Hagfinger, Sourgrass"}, {"Potion": "Potion of Restoration", "Type": "Herbalism ", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Acid Dew (x2), Morning Dew, Red Amanita Mushroom (x2)"}, {"Potion": "Potion of Rivival", "Type": "Herbalism ", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Acid Dew, Dreamlily, White Ghost Orchid Seed"}, {"Potion": "Potion of Speed", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Eagle Claw (x4), Lightning Moss, Sugar"}, {"Potion": "Potion of Swimming", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Quipper Scale"}, {"Potion": "Potion of Thunder Resistance", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Hagfinger, Singing Nettle"}, {"Potion": "Potion of True Dreaming", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Nothic Tears, Willowshade Fruit, Willowshade Oil"}, {"Potion": "Potion of Truesight", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Fairy Stool, Nothic Tears"}, {"Potion": "Potion of Vitality", "Type": "Herbalism ", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Cat's Tongue (x2), Morning Dew (x2), Olisuba Leaf"}, {"Potion": "Potion of Water Breathing", "Type": "Alchemy", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Gilllyweed, Water Elemental Droplets"}, {"Potion": "Quenching Polther", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Gillyweed, Muroosa Twigs"}, {"Potion": "Soothing Salve", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Acid Dew, Sourgrass"}, {"Potion": "Soothsalts", "Type": "Alchemy", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Soothsalt Geode"}, {"Potion": "Superior Potion of Mana", "Type": "Alchemy", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Dragon's Blood, Pixie's Parasol, Remorhaz Ichor, Silverthorn"}, {"Potion": "Tea of Refreshment", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Cat's Tongue, Morning Dew"}, {"Potion": "Thessaltoxin", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Black Cap Mushroom, Dracula's Blood"}, {"Potion": "Thessaltoxin Antidote", "Type": "Herbalism ", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Theki Root, White Ghost Orchid Seed"}, {"Potion": "Thor's Might", "Type": "Alchemy", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Air Elemental Wisp, Giant's Fingernail, Lightning Moss, Singing Nettle"}, {"Potion": "Tincture of Werewolf's Bane", "Type": "Herbalism ", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Silverthorn, Wolfsbane"}, {"Potion": "Torpor (Ingested)", "Type": "Poison", "Rarity": "Rare", "Price": "500 gp", "Ingredients": "Lightning Moss, Mandrake Root"}, {"Potion": "Truth Serum (Ingested) ", "Type": "Poison", "Rarity": "Uncommon", "Price": "250 gp", "Ingredients": "Ferry Stool, Mindflayer Stinkhorn"}, {"Potion": "Water of Death", "Type": "Poison", "Rarity": "Very Rare", "Price": "1,000 gp", "Ingredients": "Black Cap Mushroom, Dreamlily, Hagfinger, Wyvern Poison"}, {"Potion": "Willowshade Oil ", "Type": "Herbalism ", "Rarity": "Common", "Price": "50 gp", "Ingredients": "Willowshade Fruit"}];
+    
+    const ingredientsData = [{"Ingredient": "Acid Dew", "Location": "Forest, Swamps", "Used_In": "Dandruff Draught, Fire Balm, Potion of Restoration, Potion of Revival, Soothing Salve", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Angel's Trumpet", "Location": "Forests, Hills", "Used_In": "Angel Powder, Biza's Breath, Devil's Powder", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Ashblossom", "Location": "Deserts, Volcanos", "Used_In": "Burnt Othur Fumes, Potion of Fire Breath, Potion of Resistance (Fire)", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Bane Berry", "Location": "Urban Areas", "Used_In": "Bane Berry extract, Common Herbicide, Potion of Poison", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Blight Spore", "Location": "Blightshore", "Used_In": "Bilght Ichor, Devil's Powder", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Bloodroot", "Location": "Grasslands, Savanah", "Used_In": "Dracula's Essence, Fake Blood", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Cat's Tongue", "Location": "Grassland, Forests", "Used_In": "Antitoxin, Potion of Animal Friendship, Potion of Heroism, Potion of Plantspeak, Potion of Vitality, Tea of Refreshment", "Rarity": "Common", "Cost": "5 gp"}, {"Ingredient": "Death Cap", "Location": "Forests, Swamps", "Used_In": "Directed Delay, Midnight Tears, Pale Tincture", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Dreamlily", "Location": "Coast, Grassland", "Used_In": "Angel Powder, Polymorph Potion, Potion of Maximum Power, Potion of Poison, Potion of Revival, Sleeping Pill", "Rarity": "Common", "Cost": "5 gp"}, {"Ingredient": "Everfrost Berry", "Location": "Grasslands, Forests", "Used_In": "Anti-Acne Aid, Antitoxin, Potion of Growth, Potion of Resistance (Poison)", "Rarity": "Common", "Cost": "5 gp"}, {"Ingredient": "Fairy Stool", "Location": "Forests", "Used_In": "Elixer of Health, Liquid Luck, Philter of Love, Potion of Invisibility, Potion of Trusight, Truth Serum", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Fire Peas", "Location": "Desert, Savanah", "Used_In": "Alchemist's Fire, Lava Paste, Pepper Peppers", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Flame Lily", "Location": "Desert, Savanah", "Used_In": "Blasting Powder, Fire Balm, Grenade, Lava Paste, Muroosa Balm, Smoke", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Frost Lichen", "Location": "Arctic", "Used_In": "Biza's Breath, Grenade, Potion of Giant's Strength, Potion of Resistance (Cold), Smoke", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Gillyweed", "Location": "Coast, Swamp", "Used_In": "Elixer of Health, Patch-up Potion, Potion of Waterbreathing, Quenching Pilther", "Rarity": "Common", "Cost": "5 gp"}, {"Ingredient": "Hagfinger", "Location": "Forest, Swamps", "Used_In": "Pomander of Warding, Potion of Heroism, Potion of Protection, Potion of Resistance", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Idle Claws", "Location": "Hills, Mountains", "Used_In": "Directed Deay, Potion of Protection, Potion of Speed", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Lightning Moss", "Location": "Coasts, Mountains", "Used_In": "Potion of Resistance (Lighting), Potion of Speed, Thor's Might, Torpor", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Mandrake Root", "Location": "Underground", "Used_In": "Drow Posion, Essence of Ether, Potion of Clairvoyance, Torpor", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Mindflayer Stinkhorn", "Location": "Underground", "Used_In": "Potion of Mind Reading, Potion of Resistance (Psychic), Truth Serum", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Moonstalker", "Location": "Coasts, Swamps", "Used_In": "Essence of Rage, Liquid Paranoia, Potion of Diminution, Potion of Mind Reading", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Morning Dew", "Location": "Forest, Savannah", "Used_In": "Malice, Potion of Clairvoyance, Potion of Restoration, Potion of Vitality, Tea of Refreshment", "Rarity": "Common", "Cost": "5 gp"}, {"Ingredient": "Muroosa Twigs", "Location": "Desert, Savanah", "Used_In": "Life's Liquor, Liquid Luck, Muroosa Balm, Potion of Plantspeak, Quenching Pilther", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Nightshade", "Location": "Forests", "Used_In": "Basic Poison, Essence of Ether, Potion of Resistance (Necrotic)", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Olisuba Leaf", "Location": "Forest, Grasslands", "Used_In": "Potion of Maximum Power, Potion of Shapeshifting, Potion of Vitality", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Pixie's Parasol", "Location": "Fallen logs in non-dry climates", "Used_In": "Invisible Ink, Lesser Potion of Mana, Midnight Oil, Potion of Diminution, Potion of Mana, Superior Potion of Mana", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Rainbow Mushroom", "Location": "Forests, Mountains, Hills", "Used_In": "Liquid Luck, Polymorph Potion, Potion of Advantage, Potion of Shapeshifting", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Red Amanita Mushroom", "Location": "Forest, Swamps", "Used_In": "Dracula's Essence, Life's Liquor, Potion of Greater Healing, Potion of Healing, Potion of Longevity, Potion of Restoration, Potion of Superior Healing, Potion of Supreme Healing", "Rarity": "Common", "Cost": "5 gp"}, {"Ingredient": "Silverthorn", "Location": "Arctic", "Used_In": "Lesser Potion of Mana, Oil of Sharpness, Potion of Mana, Potion of Vitality, Superior Potion of Mana, Tincture of Werewolf's Bane", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Singing Nettle", "Location": "Swamps, Mountains, Forests", "Used_In": "Brew of Babel, Potion of Flying, Potion of Gaseous Form, Potion of Resistance (Thunder), Thor's Might", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Sourgrass", "Location": "Grasslands, Mountains", "Used_In": "Greater Antitoxin, Potion of Growth, Potion of Resistance (Radiant), Soothing Salve", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Theki Root", "Location": "Swamps", "Used_In": "Fire Balm, Greater Antitoxin, Potion of Maximum Power, Thessaltoxin Antidote", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "White Ghost Orchid Seed", "Location": "Forest, Coasts", "Used_In": "Murgaxor's Elixer of Life, Potion of Protection, Potion of Revival, Thessaltoxin Antidote", "Rarity": "Rare", "Cost": "50 gp"}, {"Ingredient": "Willowshade Fruit", "Location": "Swamps, Coasts, Riversides", "Used_In": "Polymorph Potion, Potion of Advantage, Potion of True Dreaming, Willowshade Oil", "Rarity": "Uncommon", "Cost": "10 gp"}, {"Ingredient": "Wolfsbane", "Location": "Mountains", "Used_In": "Magebane, Oil of Taggit, Tincture of Werewolf's Bane", "Rarity": "Rare", "Cost": "50 gp"}];
+
+    let currentView = 'potions';
+
+    function switchTab(tab) {
+        currentView = tab;
+        document.getElementById('searchInput').value = '';
+        
+        if (tab === 'potions') {
+            document.getElementById('view-potions').classList.remove('view-hidden');
+            document.getElementById('view-ingredients').classList.add('view-hidden');
+            document.getElementById('btn-potions').classList.add('active');
+            document.getElementById('btn-ingredients').classList.remove('active');
+            renderPotions(potionsData);
+        } else {
+            document.getElementById('view-potions').classList.add('view-hidden');
+            document.getElementById('view-ingredients').classList.remove('view-hidden');
+            document.getElementById('btn-potions').classList.remove('active');
+            document.getElementById('btn-ingredients').classList.add('active');
+            renderIngredients(ingredientsData);
+        }
+    }
+
+    function renderPotions(data) {
+        const tbody = document.getElementById('potionTableBody');
+        tbody.innerHTML = '';
+        data.forEach(item => {
+            let tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.Potion}</td>
+                <td>${item.Type}</td>
+                <td>${item.Rarity}</td>
+                <td class="cost-cell">${item.Price}</td>
+                <td>${item.Ingredients}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function renderIngredients(data) {
+        const tbody = document.getElementById('ingredientTableBody');
+        tbody.innerHTML = '';
+        data.forEach(item => {
+            let tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.Ingredient}</td>
+                <td>${item.Location}</td>
+                <td>${item.Rarity}</td>
+                <td class="cost-cell">${item.Cost}</td>
+                <td>${item.Used_In}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    renderPotions(potionsData);
+
+    function filterTable() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        
+        if (currentView === 'potions') {
+            let filtered = potionsData.filter(item => {
+                return item.Potion.toLowerCase().includes(input) || 
+                       item.Ingredients.toLowerCase().includes(input) ||
+                       item.Type.toLowerCase().includes(input) ||
+                       item.Rarity.toLowerCase().includes(input);
+            });
+            renderPotions(filtered);
+        } else {
+            let filtered = ingredientsData.filter(item => {
+                return item.Ingredient.toLowerCase().includes(input) || 
+                       item.Location.toLowerCase().includes(input) ||
+                       item.Used_In.toLowerCase().includes(input);
+            });
+            renderIngredients(filtered);
+        }
+    }
+
+    let sortColPotions = -1;
+    let sortAscPotions = true;
+    function sortPotions(colIndex) {
+        const keys = ['Potion', 'Type', 'Rarity', 'Price', 'Ingredients'];
+        const key = keys[colIndex];
+        
+        if (sortColPotions === colIndex) { sortAscPotions = !sortAscPotions; } 
+        else { sortAscPotions = true; sortColPotions = colIndex; }
+
+        let sorted = [...potionsData].sort((a, b) => {
+            let valA = a[key].toString().toLowerCase();
+            let valB = b[key].toString().toLowerCase();
+            if (valA < valB) return sortAscPotions ? -1 : 1;
+            if (valA > valB) return sortAscPotions ? 1 : -1;
+            return 0;
+        });
+        renderPotions(sorted);
+    }
+
+    let sortColIng = -1;
+    let sortAscIng = true;
+    function sortIngredients(colIndex) {
+        const keys = ['Ingredient', 'Location', 'Rarity', 'Cost', 'Used_In'];
+        const key = keys[colIndex];
+        
+        if (sortColIng === colIndex) { sortAscIng = !sortAscIng; } 
+        else { sortAscIng = true; sortColIng = colIndex; }
+
+        let sorted = [...ingredientsData].sort((a, b) => {
+            let valA = a[key].toString().toLowerCase();
+            let valB = b[key].toString().toLowerCase();
+            if (valA < valB) return sortAscIng ? -1 : 1;
+            if (valA > valB) return sortAscIng ? 1 : -1;
+            return 0;
+        });
+        renderIngredients(sorted);
+    }
+
+</script>
+
+</body>
+</html>

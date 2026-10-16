@@ -1,0 +1,52 @@
+{
+  "title": "Referral Letter",
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Date: [DATE_GENERATED]"
+    },
+    {
+      "type": "paragraph",
+      "content": "To: [REFERRED_TO_PROVIDER]"
+    },
+    {
+      "type": "paragraph",
+      "content": "From: [CLINICIAN_NAME], [LICENSE_TYPE]"
+    },
+    {
+      "type": "paragraph",
+      "content": "Regarding: Referral for [CLIENT_FULL_NAME]"
+    },
+    {
+      "type": "paragraph",
+      "content": "Dear [REFERRED_TO_PROVIDER],"
+    },
+    {
+      "type": "paragraph",
+      "content": "I am writing to refer my client, [CLIENT_FULL_NAME] (DOB: [CLIENT_DOB]), for [REASON_FOR_REFERRAL]. [CLIENT_FIRST_NAME] has been my client since [START_DATE] for treatment of [CLIENT_DIAGNOSIS]."
+    },
+    {
+      "type": "paragraph",
+      "content": "During our work together, we have identified a need for the specialized services you provide. I believe your expertise in this area would be of great benefit to [CLIENT_FIRST_NAME] and would complement our ongoing therapeutic work."
+    },
+    {
+        "type": "paragraph",
+        "content": "I have discussed this referral with [CLIENT_FIRST_NAME], and they have consented to the release of this information to you. Please feel free to contact me at [CLINICIAN_EMAIL] if you require any further information."
+    },
+    {
+      "type": "paragraph",
+      "content": "Thank you for your time and consideration."
+    },
+    {
+      "type": "paragraph",
+      "content": "Sincerely,"
+    },
+    {
+      "type": "signature",
+      "lines": [
+        "[CLINICIAN_NAME], [LICENSE_TYPE]",
+        "License #: [LICENSE_NUMBER]"
+      ]
+    }
+  ]
+}

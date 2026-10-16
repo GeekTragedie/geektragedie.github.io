@@ -1,0 +1,163 @@
+/* Insurance Superbill Generator page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+/* General form section styling for both tools */
+.form-section {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--bg-subpanel);
+}
+
+.form-section h3 {
+    color: var(--accent);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Specific styles for superbill output */
+.superbill-output {
+    background-color: var(--bg-subpanel);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    overflow-x: auto; /* For table scroll on smaller screens */
+    color: var(--text-main);
+}
+
+.superbill-output h2,
+.superbill-output h3 {
+    color: var(--accent);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.superbill-output p {
+    margin-bottom: 0.5rem;
+}
+
+.superbill-output table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: var(--bg-input);
+}
+
+.superbill-output th,
+.superbill-output td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.superbill-output th {
+    background-color: var(--bg-panel-hover);
+    font-weight: bold;
+    color: var(--text-heading);
+}
+
+.superbill-output .section-title {
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.1em;
+    color: var(--accent);
+}
+
+.superbill-output .footer-notes {
+    font-size: 0.9em;
+    margin-top: 1.5rem;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 1rem;
+    color: var(--text-muted);
+}
+
+/* Print-specific styles */
+@media print {
+    body {
+        background-color: #fff;
+        color: #000;
+        padding: 0;
+        margin: 0;
+    }
+    .container, .panel, .form-section {
+        box-shadow: none;
+        backdrop-filter: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+        border: none;
+        background-color: #fff;
+    }
+
+    /* Hide specific UI elements that should not appear on the printed superbill */
+    .tool-panel > h1, /* Main page title */
+    .tool-panel > div.flex, /* Import / clear buttons */
+    #superbillForm, /* The entire input form */
+    #addSuperbillService, /* Hide the add service button */
+    #printSuperbill,
+    #exportSuperbillJsonButton,
+    #importSuperbillJsonButton,
+    #importSuperbillJsonFile,
+    button[type="reset"],
+    .text-center.mt-8 /* The "Back to Top" button */ {
+        display: none !important;
+    }
+
+    /* Ensure the superbill output is fully visible and positioned correctly for printing */
+    .superbill-output {
+        display: block !important;
+        visibility: visible !important;
+        position: static !important;
+        width: auto !important;
+        left: auto !important;
+        top: auto !important;
+        margin: 0 auto;
+        padding: 0;
+        box-shadow: none;
+        background-color: #fff;
+        color: #000;
+    }
+
+    /* Adjust font sizes and margins for readability in print */
+    .superbill-output h2,
+    .superbill-output h3,
+    .superbill-output .section-title {
+        color: #000 !important;
+        border-color: #000 !important;
+        font-size: 1.2em;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .superbill-output p, .superbill-output li {
+        color: #000;
+        font-size: 0.9em;
+        margin-bottom: 0.3em;
+    }
+    .superbill-output table {
+        width: 100%;
+        font-size: 0.8em;
+        background-color: #fff;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+    .superbill-output th, .superbill-output td {
+        padding: 4px;
+        border: 1px solid #000;
+        color: #000;
+    }
+    .superbill-output th {
+        background-color: #e0e0e0;
+    }
+    .superbill-output .footer-notes {
+        font-size: 0.8em;
+        margin-top: 1.5rem;
+        border-top: 1px dashed #000;
+        padding-top: 0.8rem;
+        color: #555;
+    }
+}

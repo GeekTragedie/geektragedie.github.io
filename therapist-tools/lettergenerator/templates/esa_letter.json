@@ -1,0 +1,57 @@
+{
+  "title": "Emotional Support Animal Recommendation",
+  "sections": [
+    {
+      "type": "paragraph",
+      "content": "Date: [DATE_GENERATED]"
+    },
+    {
+      "type": "paragraph",
+      "content": "RE: Emotional Support Animal Recommendation for [CLIENT_FIRST_NAME]"
+    },
+    {
+      "type": "paragraph",
+      "content": "To Whom This May Concern,"
+    },
+    {
+      "type": "paragraph",
+      "content": "I am a [LICENSE_TYPE] (No. [LICENSE_NUMBER]), and [CLIENT_FULL_NAME] has been my client since [START_DATE]."
+    },
+    {
+      "type": "paragraph",
+      "content": "I am familiar with their history and with the impact their mental health has in their everyday life."
+    },
+    {
+      "type": "paragraph",
+      "content": "To help support the challenges brought on from mental health, [CLIENT_FIRST_NAME] needs to have a support animal."
+    },
+    {
+      "type": "paragraph",
+      "content": "The presence of this animal is supportive of the emotional and mental health of my client as their animal helps mitigate the symptoms currently experienced."
+    },
+    {
+      "type": "paragraph",
+      "content": "The symptoms currently faced by my client, [CLIENT_FIRST_NAME], meet the definition of disability under the Americans with Disabilities Act, the Fair Housing Act, and the Rehabilitation Act of 1973. To keep the confidentiality of my client, the particular emotional and mental health challenges faced will not be disclosed."
+    },
+    {
+      "type": "paragraph",
+      "content": "Please allow [CLIENT_FIRST_NAME]’s residence to be accompanied by an emotional support animal."
+    },
+    {
+      "type": "paragraph",
+      "content": "Should you have any further questions, please feel free to get in touch with me via email [CLINICIAN_EMAIL]."
+    },
+    {
+      "type": "paragraph",
+      "content": "Best Wishes,"
+    },
+    {
+      "type": "signature",
+      "lines": [
+        "[CLINICIAN_NAME]",
+        "State License: [LICENSE_NUMBER], [LICENSE_EXPIRATION]",
+        "Animal Type: [ANIMAL_TYPE] | [PET_DESCRIPTION]"
+      ]
+    }
+  ]
+}

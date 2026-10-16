@@ -1,0 +1,404 @@
+/* =========================================================
+   GeekTragedie's Organized Chaos - shared site styles
+   Every page links this file. Page-specific styles stay in
+   the page itself. To change a page's background photo,
+   override `background-image` on body in the page's <style>
+   (keep the overlay gradient first), e.g.:
+     body { background-image:
+         linear-gradient(var(--overlay-color), var(--overlay-color)),
+         url('./bird-eggs.jpg'); }
+   To change a page's accent, set `body { --accent: ...; }`.
+   ========================================================= */
+
+:root {
+    --bg-main: #121212;
+    --bg-panel: rgba(30, 30, 30, 0.85);
+    --bg-panel-hover: rgba(42, 42, 42, 0.95);
+    --bg-subpanel: rgba(255, 255, 255, 0.04);
+    --bg-input: rgba(18, 18, 18, 0.7);
+    --bg-nav: rgba(30, 30, 30, 0.95);
+    --bg-dropdown: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-muted: #bbb;
+    --text-heading: #ffffff;
+    --accent-blue: #38bdf8;
+    --danger: #f87171;
+    --success: #4ade80;
+    --border-color: #333333;
+    --overlay-color: rgba(18, 18, 18, 0.88);
+    --badge-bg: rgba(56, 189, 248, 0.15);
+    --badge-color: #38bdf8;
+}
+
+body.light-mode {
+    --bg-main: #f8fafc;
+    --bg-panel: rgba(255, 255, 255, 0.9);
+    --bg-panel-hover: rgba(255, 255, 255, 1);
+    --bg-subpanel: rgba(15, 23, 42, 0.04);
+    --bg-input: #ffffff;
+    --bg-nav: rgba(255, 255, 255, 0.95);
+    --bg-dropdown: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --text-heading: #0f172a;
+    --accent-blue: #0284c7;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --border-color: #cbd5e1;
+    --overlay-color: rgba(248, 250, 252, 0.88);
+    --badge-bg: rgba(2, 132, 199, 0.12);
+    --badge-color: #0284c7;
+}
+
+body {
+    /* Declared on body (not :root) so it follows the light-mode override */
+    --accent: var(--accent-blue);
+    --accent-contrast: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    background-image:
+        linear-gradient(var(--overlay-color), var(--overlay-color)),
+        url('../stacked-logs.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background-color 0.2s, color 0.2s;
+}
+body.light-mode {
+    --accent-contrast: #ffffff;
+}
+button, input, select, textarea {
+    font-family: inherit;
+}
+* {
+    scrollbar-color: var(--border-color) transparent;
+}
+
+/* --- Top navigation --- */
+.top-nav {
+    background-color: var(--bg-nav);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    line-height: 1.6;
+}
+.nav-brand {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-heading);
+    text-decoration: none;
+    padding: 15px 0;
+}
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 15px 10px;
+    display: block;
+    transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-heading);
+    border-bottom: 2px solid var(--text-heading);
+}
+
+.nav-links .dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--bg-dropdown);
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    z-index: 1001;
+    top: 100%;
+    left: 0;
+}
+.dropdown-content a {
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+.dropdown-content a:hover {
+    background-color: var(--bg-panel-hover);
+    color: var(--text-heading);
+}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    display: block;
+}
+
+/* --- Page layout --- */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.hero, .hero-panel {
+    margin-bottom: 40px;
+    background-color: var(--bg-panel);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(4px);
+}
+.hero h1, .hero-panel h1 {
+    color: var(--text-heading);
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.hero p, .hero-panel p {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    max-width: 750px;
+    margin: 0;
+}
+
+/* --- Cards --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+.card {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(4px);
+}
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    background-color: var(--bg-panel-hover);
+}
+.card h2, .card h3 {
+    margin-top: 0;
+    color: var(--text-heading);
+    font-size: 1.3em;
+}
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95em;
+    margin-bottom: 0;
+}
+.tag {
+    display: inline-block;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* --- Panels & form controls (tool pages) --- */
+.panel {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    backdrop-filter: blur(4px);
+    color: var(--text-main);
+}
+.panel h1, .panel h2, .panel h3, .panel h4 {
+    color: var(--text-heading);
+    margin-top: 0;
+}
+.subpanel {
+    background-color: var(--bg-subpanel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+.muted { color: var(--text-muted); }
+.accent-text { color: var(--accent); }
+.danger-text { color: var(--danger); }
+
+.panel label,
+.field-label {
+    color: var(--text-heading);
+}
+.panel :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="button"]):not([type="submit"]):not([type="reset"]), select, textarea) {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font: inherit;
+    box-sizing: border-box;
+}
+.panel :is(input, select, textarea):focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+.panel ::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+.panel input[type="checkbox"], .panel input[type="radio"] {
+    accent-color: var(--accent);
+}
+.panel input[type="file"] {
+    color: var(--text-main);
+}
+.panel input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 6px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-dropdown);
+    color: var(--text-heading);
+    font-weight: 600;
+    cursor: pointer;
+}
+body.light-mode .panel :is(input[type="date"], input[type="month"], input[type="time"]) {
+    color-scheme: light;
+}
+.panel :is(input[type="date"], input[type="month"], input[type="time"]) {
+    color-scheme: dark;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-dropdown);
+    color: var(--text-heading);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s, border-color 0.2s, filter 0.2s;
+}
+.btn:hover {
+    border-color: var(--accent);
+    background-color: var(--bg-panel-hover);
+}
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.btn-primary {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+}
+.btn-primary:hover {
+    background-color: var(--accent);
+    filter: brightness(1.1);
+}
+.btn-danger {
+    background-color: transparent;
+    border-color: var(--danger);
+    color: var(--danger);
+}
+.btn-danger:hover {
+    background-color: var(--danger);
+    border-color: var(--danger);
+    color: var(--accent-contrast);
+}
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.9em;
+}
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* --- Footer --- */
+.site-footer {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.85em;
+    line-height: 1.6;
+    background-color: var(--bg-panel);
+}
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.disclaimer, .copyright {
+    margin: 0;
+}
+.disclaimer strong {
+    color: var(--text-heading);
+}
+.footer-controls {
+    display: flex;
+    justify-content: flex-end;
+}
+.theme-toggle-btn {
+    background-color: var(--bg-dropdown);
+    border: 1px solid var(--border-color);
+    color: var(--text-heading);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+.theme-toggle-btn:hover {
+    background-color: var(--bg-panel-hover);
+}
+/* The toggle label is switched with CSS (not JS) so it also works in the React apps */
+.theme-toggle-btn .label-for-light { display: none; }
+body.light-mode .theme-toggle-btn .label-for-dark { display: none; }
+body.light-mode .theme-toggle-btn .label-for-light { display: inline; }
+
+@media print {
+    .top-nav, .site-footer { display: none !important; }
+    body { background: #fff !important; }
+}

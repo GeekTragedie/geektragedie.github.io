@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Therapy Letter Generator</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Client therapy letter generator page with a background texture of stacked firewood logs">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Organized Chaos</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../therapist-tools/lettergenerator/index.html" aria-current="page">Letter Generator</a>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-6">Client Therapy Letter Generator</h1>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
+            <button type="button" id="importJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import .json</button>
+            <input type="file" id="importJsonFile" accept=".json" class="hidden">
+            <button type="reset" form="letterGeneratorForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
+        </div>
+
+        <form id="letterGeneratorForm" class="space-y-4">
+            <div class="mb-4">
+                <label for="letterTypeSelect" class="block text-lg font-semibold mb-2">Select Letter Type:</label>
+                <select id="letterTypeSelect" class="w-full p-2 border rounded-md"></select>
+            </div>
+
+            <div id="formFields" class="hidden space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="clientFirstName" class="block text-lg font-semibold mb-2">Client's First Name:</label>
+                        <input type="text" id="clientFirstName" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="clientLastName" class="block text-lg font-semibold mb-2">Client's Last Name:</label>
+                        <input type="text" id="clientLastName" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="clinicianFirstName" class="block text-lg font-semibold mb-2">Clinician's First Name:</label>
+                        <input type="text" id="clinicianFirstName" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="clinicianLastName" class="block text-lg font-semibold mb-2">Clinician's Last Name:</label>
+                        <input type="text" id="clinicianLastName" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+                <div>
+                    <label for="signatureUpload" class="block text-lg font-semibold mb-2">Upload Signature Image:</label>
+                    <input type="file" id="signatureUpload" accept="image/*" class="w-full">
+                    <img id="signaturePreview" src="#" alt="Signature Preview" class="hidden mt-4 max-h-20">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="licenseTypeSelect" class="block text-lg font-semibold mb-2">Clinician's License Type:</label>
+                        <select id="licenseTypeSelect" class="w-full p-2 border rounded-md"></select>
+                    </div>
+                    <div id="customLicenseTypeWrapper" class="hidden">
+                        <label for="customLicenseType" class="block text-lg font-semibold mb-2">Custom License Type:</label>
+                        <input type="text" id="customLicenseType" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="licenseNumber" class="block text-lg font-semibold mb-2">License Number:</label>
+                        <input type="text" id="licenseNumber" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+                <div>
+                    <label for="clinicianEmail" class="block text-lg font-semibold mb-2">Clinician's Email:</label>
+                    <input type="email" id="clinicianEmail" class="w-full p-2 border rounded-md">
+                </div>
+
+                <div id="esaFields" class="hidden space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="startDate" class="block text-lg font-semibold mb-2">Client Since (Month and Year):</label>
+                            <input type="month" id="startDate" class="w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label for="licenseExpiration" class="block text-lg font-semibold mb-2">License Expiration Date:</label>
+                            <input type="date" id="licenseExpiration" class="w-full p-2 border rounded-md">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="animalType" class="block text-lg font-semibold mb-2">Animal Type:</label>
+                        <input type="text" id="animalType" class="w-full p-2 border rounded-md" placeholder="e.g., dog, cat">
+                    </div>
+                    <div>
+                        <label for="petDescription" class="block text-lg font-semibold mb-2">Description of Pet:</label>
+                        <textarea id="petDescription" rows="3" class="w-full p-3 border rounded-md"></textarea>
+                    </div>
+                </div>
+
+                <div id="accommodationFields" class="hidden space-y-4">
+                    <div class="subpanel p-4 rounded-lg space-y-4 border">
+                        <h4 class="text-xl font-semibold">Clinical Information</h4>
+                        <div class="flex items-center gap-x-4">
+                            <span class="text-lg font-semibold">Coding System:</span>
+                            <label><input type="radio" name="codingSystem" value="ICD" class="mr-1"> ICD</label>
+                            <label><input type="radio" name="codingSystem" value="DSM" class="mr-1"> DSM</label>
+                        </div>
+                        <div>
+                            <label for="diagnosisSelect" class="block text-lg font-semibold mb-2">Select Diagnosis:</label>
+                            <select id="diagnosisSelect" class="w-full"></select>
+                        </div>
+                        <hr>
+                        <h4 class="text-xl font-semibold">Accommodation Builder</h4>
+                        <div>
+                            <label for="suggestionSelect" class="block text-lg font-semibold mb-2">Add a Suggested Accommodation:</label>
+                            <div class="flex gap-2">
+                                <select id="suggestionSelect" class="w-full p-2 border rounded-md" disabled>
+                                    <option value="">-- First Select a Diagnosis --</option>
+                                </select>
+                                <button type="button" id="addAccommodationButton" class="btn btn-primary px-4 py-2 font-semibold rounded-md" disabled>Add</button>
+                            </div>
+                        </div>
+                         <div class="space-y-2">
+                             <label class="block text-lg font-semibold">Or Write a Custom Accommodation:</label>
+                            <input type="text" id="customAccomName" placeholder="Custom Accommodation Name (e.g., Use of a Calculator)" class="w-full p-2 border rounded-md">
+                             <textarea id="customAccomDesc" rows="2" placeholder="Recommendation/Description..." class="w-full p-3 border rounded-md"></textarea>
+                            <button type="button" id="addCustomAccommodationButton" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Add Custom</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="text-xl font-semibold">Selected Accommodations for Letter:</h4>
+                        <div id="selectedAccommodations" class="subpanel p-4 rounded-lg min-h-[50px] space-y-3">
+                            <p class="muted">No accommodations added yet.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="recipientName" class="block text-lg font-semibold mb-2">Recipient Name/Department:</label>
+                        <input type="text" id="recipientName" class="w-full p-2 border rounded-md" placeholder="e.g., Disability Resource Center">
+                    </div>
+                    <div>
+                        <label for="institutionName" class="block text-lg font-semibold mb-2">Institution Name:</label>
+                        <input type="text" id="institutionName" class="w-full p-2 border rounded-md" placeholder="e.g., University of Washington">
+                    </div>
+                </div>
+
+                <div id="referralFields" class="hidden space-y-4">
+                    <div>
+                        <label for="referredToProvider" class="block text-lg font-semibold mb-2">Referred To Provider/Practice:</label>
+                        <input type="text" id="referredToProvider" class="w-full p-2 border rounded-md" placeholder="e.g., Dr. Jane Smith">
+                    </div>
+                    <div>
+                        <label for="reasonForReferral" class="block text-lg font-semibold mb-2">Reason for Referral:</label>
+                        <input type="text" id="reasonForReferral" class="w-full p-2 border rounded-md" placeholder="e.g., Medication Management">
+                    </div>
+                     <div>
+                        <label for="clientDiagnosis" class="block text-lg font-semibold mb-2">Client's Primary Diagnosis:</label>
+                        <input type="text" id="clientDiagnosis" class="w-full p-2 border rounded-md" placeholder="e.g., Generalized Anxiety Disorder">
+                    </div>
+                     <div>
+                        <label for="clientStartDate" class="block text-lg font-semibold mb-2">Client Since (Month and Year):</label>
+                        <input type="month" id="clientStartDate" class="w-full p-2 border rounded-md">
+                    </div>
+                     <div>
+                        <label for="clientDOB" class="block text-lg font-semibold mb-2">Client Date of Birth:</label>
+                        <input type="date" id="clientDOB" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+            </div>
+
+            <div id="generatedLetterContainer" class="subpanel hidden p-4 rounded-md mb-6">
+                <h3 class="text-xl font-semibold mb-2">Generated Letter:</h3>
+                <div id="generatedLetter"></div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
+                <button type="button" id="generateLetterButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Letter</button>
+                <button type="button" id="printLetterButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md hidden">Print Letter</button>
+                <button type="button" id="exportJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export .json</button>
+            </div>
+        </form>
+        
+        <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
+            <h3 class="text-xl font-semibold mb-4 text-center">Sources</h3>
+            <div id="sourcesList" class="text-sm space-y-2 text-center">
+                </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+        </p>
+        <div class="footer-controls">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

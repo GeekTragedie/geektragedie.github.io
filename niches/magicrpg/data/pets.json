@@ -1,0 +1,120 @@
+[
+  {
+    "type": "Cat",
+    "abilities": { "vision": "Dark", "hearing": "High", "smell": "Low" },
+    "movement": { "speed": "30 ft", "climb": "Yes - 20 ft", "fly": "No", "swim": "No" },
+    "attack": { "claw": "Yes", "bite": "Yes", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "Dog",
+    "abilities": { "vision": "Dim", "hearing": "High", "smell": "High" },
+    "movement": { "speed": "35 ft", "climb": "No", "fly": "No", "swim": "Yes - 20 ft" },
+    "attack": { "claw": "Yes", "bite": "Yes", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "Rat",
+    "abilities": { "vision": "Dim", "hearing": "High", "smell": "High" },
+    "movement": { "speed": "20 ft", "climb": "Yes - 10 ft", "fly": "No", "swim": "Yes - 20 ft" },
+    "attack": { "claw": "Yes", "bite": "Yes", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "Toad",
+    "abilities": { "vision": "Dark", "hearing": "Medium", "smell": "None" },
+    "movement": { "speed": "15 ft", "climb": "No", "fly": "No", "swim": "Yes - 20 ft" },
+    "attack": { "claw": "No", "bite": "Yes", "other": "None" },
+    "notes": "Breathe air and water; Jump as high as 5 ft."
+  },
+  {
+    "type": "Rock",
+    "abilities": { "vision": "Blind", "hearing": "Deaf", "smell": "None" },
+    "movement": { "speed": "0 ft", "climb": "No", "fly": "No", "swim": "No" },
+    "attack": { "claw": "No", "bite": "No", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "Coin-Sniffing Rodent",
+    "abilities": { "vision": "Day", "hearing": "Medium", "smell": "None" },
+    "movement": { "speed": "10 ft", "climb": "No", "fly": "No", "swim": "Yes - 5 ft" },
+    "attack": { "claw": "Yes", "bite": "No", "other": "None" },
+    "notes": "Burrow speed: 10 ft; has an affinity for shiny objects."
+  },
+  {
+    "type": "Intelligent Raven",
+    "abilities": { "vision": "Day", "hearing": "High", "smell": "None" },
+    "movement": { "speed": "10 ft", "climb": "No", "fly": "Yes - 50 ft", "swim": "No" },
+    "attack": { "claw": "Yes", "bite": "No", "other": "None" },
+    "notes": "Can mimic human sounds and simple phrases."
+  },
+  {
+    "type": "Owl",
+    "abilities": { "vision": "Dark", "hearing": "High", "smell": "None" },
+    "movement": { "speed": "10 ft", "climb": "No", "fly": "Yes - 50 ft", "swim": "No" },
+    "attack": { "claw": "Yes", "bite": "Yes", "other": "Can be trained to carry (on a broom or by hand) or be dropped on a target." }
+  },
+  {
+    "type": "Ferret",
+    "abilities": { "vision": "Dark", "hearing": "High", "smell": "High" },
+    "movement": { "speed": "20 ft", "climb": "Yes - 1 ft", "fly": "No", "swim": "No" },
+    "attack": { "claw": "Yes", "bite": "Yes", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "Goose",
+    "abilities": { "vision": "Day", "hearing": "Medium", "smell": "Low" },
+    "movement": { "speed": "15 ft", "climb": "No", "fly": "Yes - 30 ft", "swim": "Yes - 25 ft" },
+    "attack": { "claw": "No", "bite": "No", "other": "None" },
+    "notes": "Can startle creatures; possesses unusual intelligence."
+  },
+  {
+    "type": "Phantom Bird",
+    "abilities": { "vision": "Day", "hearing": "High", "smell": "Low" },
+    "movement": { "speed": "10 ft", "climb": "No", "fly": "Yes - 50 ft", "swim": "No" },
+    "attack": { "claw": "No", "bite": "No", "other": "Teleportation" },
+    "notes": "Capable of instantaneous disappearance and reappearance."
+  },
+  {
+    "type": "Hoo-hoo",
+    "abilities": { "vision": "Dim", "hearing": "High", "smell": "None" },
+    "movement": { "speed": "10 ft", "climb": "Yes", "fly": "Yes - 30 ft", "swim": "No" },
+    "attack": { "claw": "No", "bite": "No", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "Baby Pony",
+    "abilities": { "vision": "Day", "hearing": "High", "smell": "High" },
+    "movement": { "speed": "15 ft", "climb": "No", "fly": "No", "swim": "Yes - 10 ft" },
+    "attack": { "claw": "No", "bite": "No", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "Spider",
+    "abilities": { "vision": "Dark", "hearing": "Low", "smell": "Low" },
+    "movement": { "speed": "15 ft", "climb": "Yes - 15 ft", "fly": "No", "swim": "No" },
+    "attack": { "claw": "Yes", "bite": "No", "other": "None" },
+    "notes": "Can spin intricate webs."
+  },
+  {
+    "type": "Animate Hand",
+    "abilities": { "vision": "Blind", "hearing": "Deaf", "smell": "None" },
+    "movement": { "speed": "15 ft", "climb": "Yes - 10 ft", "fly": "No", "swim": "No" },
+    "attack": { "claw": "Yes", "bite": "No", "other": "None" },
+    "notes": "A disembodied hand capable of independent movement and grasping."
+  },
+  {
+    "type": "Flying Serpent",
+    "abilities": { "vision": "Dark", "hearing": "Low", "smell": "Low" },
+    "movement": { "speed": "15 ft", "climb": "Yes - 10 ft", "fly": "Yes - 30 ft", "swim": "No" },
+    "attack": { "claw": "Yes", "bite": "No", "other": "None" },
+    "notes": ""
+  },
+  {
+    "type": "House Fly",
+    "abilities": { "vision": "Dim", "hearing": "Low", "smell": "High" },
+    "movement": { "speed": "20 ft", "climb": "Yes - 1 ft", "fly": "Yes - 15 ft", "swim": "No" },
+    "attack": { "claw": "No", "bite": "No", "other": "None" },
+    "notes": "Lifespan: 15-20 days."
+  }
+]

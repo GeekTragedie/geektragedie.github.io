@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling Session Notes Generator</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Counseling session notes generator page with a background texture of stacked firewood logs">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Organized Chaos</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/notegenerator/index.html" aria-current="page">Note Generator</a>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-6">Counseling Session Notes Generator</h1>
+        
+        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
+            <button type="button" id="importJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import .json</button>
+            <input type="file" id="importJsonFile" accept=".json" class="hidden">
+            <button type="reset" form="noteForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
+        </div>
+        
+        <form id="noteForm" class="space-y-4">
+            
+            <div class="mb-4">
+                <label for="noteTemplateSelect" class="block text-lg font-semibold mb-2">Note Template:</label>
+                <select id="noteTemplateSelect" class="w-full p-2 border rounded-md">
+                    </select>
+            </div>
+
+            <div id="common-fields" class="space-y-4">
+                <div class="mb-4">
+                    <p class="text-lg font-semibold mb-2">Session location:</p>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="inline-flex items-center"><input type="checkbox" name="location" value="in person"><span class="ml-2">In-person</span></label>
+                        <label class="inline-flex items-center"><input type="checkbox" name="location" value="via telehealth"><span class="ml-2">Via Telehealth</span></label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="text-lg font-semibold mb-2">Diagnosis Classification:</p>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="inline-flex items-center"><input type="radio" name="diagnosisClassification" value="ICD"><span class="ml-2">ICD</span></label>
+                        <label class="inline-flex items-center"><input type="radio" name="diagnosisClassification" value="DSM"><span class="ml-2">DSM</span></label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="diagnosisSelect" class="block text-lg font-semibold mb-2">Client's diagnosis:</label>
+                    <select id="diagnosisSelect" class="w-full" multiple="multiple" disabled></select>
+                    <p id="diagnosisSelectPlaceholder" class="muted text-sm mt-1">Please select a classification first.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="theorySelect" class="block text-lg font-semibold mb-2">Clinical theory used:</label>
+                    <select id="theorySelect" class="w-full" multiple="multiple"></select>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div><label for="sessionDate" class="block text-lg font-semibold mb-2">Session Date:</label><input type="date" id="sessionDate" class="w-full p-2 rounded-md"></div>
+                    <div><label for="sessionTime" class="block text-lg font-semibold mb-2">Session Time:</label><input type="time" id="sessionTime" class="w-full p-2 rounded-md"></div>
+                    <div><label for="sessionLength" class="block text-lg font-semibold mb-2">Session Length:</label><input type="text" id="sessionLength" placeholder="e.g., 50 minutes" class="w-full p-2 rounded-md"></div>
+                    <div><label for="clinicianInitials" class="block text-lg font-semibold mb-2">Clinician's Initials:</label><input type="text" id="clinicianInitials" placeholder="e.g., ABC" class="w-full p-2 rounded-md"></div>
+                </div>
+            </div>
+            
+            <hr class="my-6">
+
+            <div id="template-specific-fields-container">
+                <div id="generic-note-fields" class="note-template-section"><div class="mb-6"><label for="summary" class="block text-lg font-semibold mb-2">Session Summary:</label><textarea id="summary" rows="5" class="w-full p-3 rounded-md" placeholder="The client discussed..."></textarea></div></div>
+                <div id="dap-note-fields" class="hidden note-template-section space-y-4">
+                    <div><label for="dap-data" class="block text-lg font-semibold mb-2">Data:</label><textarea id="dap-data" rows="4" class="w-full p-3 border rounded-md" placeholder="Subjective and objective data..."></textarea></div>
+                    <div><label for="dap-assessment" class="block text-lg font-semibold mb-2">Assessment:</label><textarea id="dap-assessment" rows="4" class="w-full p-3 border rounded-md" placeholder="Clinician's assessment..."></textarea></div>
+                    <div><label for="dap-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="dap-plan" rows="4" class="w-full p-3 border rounded-md" placeholder="Treatment plan for next session..."></textarea></div>
+                </div>
+                <div id="soap-note-fields" class="hidden note-template-section space-y-4">
+                    <div><label for="soap-subjective" class="block text-lg font-semibold mb-2">Subjective:</label><textarea id="soap-subjective" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's subjective report..."></textarea></div>
+                    <div><label for="soap-objective" class="block text-lg font-semibold mb-2">Objective:</label><textarea id="soap-objective" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's objective observations..."></textarea></div>
+                    <div><label for="soap-assessment" class="block text-lg font-semibold mb-2">Assessment:</label><textarea id="soap-assessment" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's assessment..."></textarea></div>
+                    <div><label for="soap-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="soap-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Treatment plan..."></textarea></div>
+                </div>
+                <div id="birp-note-fields" class="hidden note-template-section space-y-4">
+                    <div><label for="birp-behavior" class="block text-lg font-semibold mb-2">Behavior:</label><textarea id="birp-behavior" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's presenting behavior..."></textarea></div>
+                    <div><label for="birp-intervention" class="block text-lg font-semibold mb-2">Intervention:</label><textarea id="birp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's interventions..."></textarea></div>
+                    <div><label for="birp-response" class="block text-lg font-semibold mb-2">Response:</label><textarea id="birp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's response to interventions..."></textarea></div>
+                    <div><label for="birp-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="birp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Plan for future sessions..."></textarea></div>
+                </div>
+                <div id="girp-note-fields" class="hidden note-template-section space-y-4">
+                    <div><label for="girp-goals" class="block text-lg font-semibold mb-2">Goals:</label><textarea id="girp-goals" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's stated goals..."></textarea></div>
+                    <div><label for="girp-intervention" class="block text-lg font-semibold mb-2">Intervention:</label><textarea id="girp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="Methods used to address goals..."></textarea></div>
+                    <div><label for="girp-response" class="block text-lg font-semibold mb-2">Response:</label><textarea id="girp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's response..."></textarea></div>
+                    <div><label for="girp-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="girp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Next steps..."></textarea></div>
+                </div>
+                <div id="pirp-note-fields" class="hidden note-template-section space-y-4">
+                    <div><label for="pirp-problem" class="block text-lg font-semibold mb-2">Problem:</label><textarea id="pirp-problem" rows="3" class="w-full p-3 border rounded-md" placeholder="Presenting problem..."></textarea></div>
+                    <div><label for="pirp-intervention" class="block text-lg font-semibold mb-2">Intervention:</label><textarea id="pirp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's intervention..."></textarea></div>
+                    <div><label for="pirp-response" class="block text-lg font-semibold mb-2">Response:</label><textarea id="pirp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's response..."></textarea></div>
+                    <div><label for="pirp-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="pirp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Future plan..."></textarea></div>
+                </div>
+                <div id="narrative-note-fields" class="hidden note-template-section"><label for="narrative-summary" class="block text-lg font-semibold mb-2">Session Narrative:</label><textarea id="narrative-summary" rows="10" class="w-full p-3 border rounded-md" placeholder="Describe the session from beginning to end..."></textarea></div>
+                <div id="mse-note-fields" class="hidden note-template-section space-y-4">
+                    <div><label for="mse-appearance" class="block text-lg font-semibold mb-2">Appearance:</label><textarea id="mse-appearance" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-behavior" class="block text-lg font-semibold mb-2">Behavior/Psychomotor Activity:</label><textarea id="mse-behavior" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-attitude" class="block text-lg font-semibold mb-2">Attitude toward Examiner:</label><textarea id="mse-attitude" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-affect" class="block text-lg font-semibold mb-2">Affect and Mood:</label><textarea id="mse-affect" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-speech" class="block text-lg font-semibold mb-2">Speech and Thought:</label><textarea id="mse-speech" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-perceptual" class="block text-lg font-semibold mb-2">Perceptual Disturbances:</label><textarea id="mse-perceptual" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-orientation" class="block text-lg font-semibold mb-2">Orientation and Consciousness:</label><textarea id="mse-orientation" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-memory" class="block text-lg font-semibold mb-2">Memory and Intelligence:</label><textarea id="mse-memory" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="mse-reliability" class="block text-lg font-semibold mb-2">Reliability, Judgment, and Insight:</label><textarea id="mse-reliability" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                </div>
+            </div>
+
+            <div id="generatedNoteContainer" class="subpanel hidden p-4 rounded-md mb-6">
+                <h3 class="text-xl font-semibold mb-2">Generated Note:</h3>
+                <p id="generatedNote" class="whitespace-pre-wrap"></p>
+            </div>
+        </form>
+        
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
+            <button type="submit" form="noteForm" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Note</button>
+            <button type="button" id="copyNoteButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Copy Note</button>
+            <button type="button" id="printNoteButton" class="btn px-6 py-3 font-semibold rounded-md">Print Note</button>
+            <button type="button" id="exportNoteButton" class="btn px-6 py-3 font-semibold rounded-md">Export Note (.txt)</button>
+            <button type="button" id="exportJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export as .json</button>
+        </div>
+
+        <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
+            <h3 class="text-xl font-semibold mb-4 text-center">Sources</h3>
+            <div id="sourcesList" class="text-sm space-y-2 text-center"></div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+        </p>
+        <div class="footer-controls">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

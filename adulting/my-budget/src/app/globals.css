@@ -1,0 +1,71 @@
+/* My Budget global styles. The site theme, nav, footer and background come
+   from ../../assets/site.css (linked in layout.js); these variables add the
+   budget table shades on top of it. */
+
+body {
+  --accent: #7289da;
+  --budget-header: rgba(18, 18, 18, 0.6);
+  --budget-row-alt: rgba(255, 255, 255, 0.07);
+  --budget-row-strong: rgba(255, 255, 255, 0.1);
+  --budget-glow: rgba(114, 137, 218, 0.35);
+  --budget-error-bg: rgba(248, 113, 113, 0.15);
+}
+body.light-mode {
+  --accent: #4f63c2;
+  --budget-header: #e2e8f0;
+  --budget-row-alt: rgba(15, 23, 42, 0.06);
+  --budget-row-strong: rgba(15, 23, 42, 0.09);
+  --budget-glow: rgba(79, 99, 194, 0.25);
+  --budget-error-bg: rgba(220, 38, 38, 0.1);
+}
+
+.skip-link {
+  /* Visually hidden until focused. Clipped rather than moved off-screen,
+     because the budget panel's backdrop-filter makes it the containing block. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  background: var(--bg-dropdown);
+  color: var(--text-heading);
+  padding: 8px 12px;
+  z-index: 9999; /* Ensure it's on top */
+  font-size: 1em;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px; /* Rounded bottom corners */
+}
+.skip-link:focus {
+  clip-path: none; /* Bring it into view on focus */
+  outline: 2px solid var(--accent); /* Strong focus outline */
+  outline-offset: 2px;
+}
+
+@media print {
+    body {
+        background-color: var(--text-heading) !important;
+        color: #000000 !important;
+    }
+}
+
+/* Add this to style the textarea in budget.module.css */
+.notesInput {
+    width: 100%; 
+    background-color: var(--bg-input); 
+    color: var(--text-main); 
+    border: 1px solid var(--border-color); 
+    padding: 10px 8px; 
+    box-sizing: border-box;
+    border-radius: 4px; 
+    font-size: 0.9em; 
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 40px; /* Minimum height for textarea */
+}
+
+.notesInput:focus {
+    outline: none;
+    border-color: var(--accent); 
+    box-shadow: 0 0 5px var(--budget-glow); 
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}

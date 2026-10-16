@@ -1,0 +1,85 @@
+{
+  "Food": [
+    { "itemName": "Frothy Brew", "cost": "9 s", "description": "A delightful, non-alcoholic beverage with a creamy head, popular among students." },
+    { "itemName": "Chirping Sweets", "cost": "6 s", "description": "Magical confections that emit faint chirping sounds until consumed." },
+    { "itemName": "Traveler's Rations", "cost": "5 s", "description": "A compact, nutritious meal for journeys, designed to keep fresh for weeks." },
+    { "itemName": "Pepper Imps", "cost": "2 s", "description": "Small, chewy candies that cause smoke to issue from the eater’s ears." },
+    { "itemName": "Fizzing Whizbees", "cost": "7 s", "description": "Sherbet balls that lift one a few inches off the ground as they fizz." }
+  ],
+  "Ingredient": [
+    { "itemName": "Giant Spider Venom", "cost": "100 G", "description": "A potent, highly toxic fluid extracted from monstrous arachnids, often used in dark potions." },
+    { "itemName": "Unicorn Hair", "cost": "10 G/hair", "description": "A single strand of pure white unicorn hair, prized for its purity in warding spells and healing concoctions." },
+    { "itemName": "Dragon Scale Shard", "cost": "50 G", "description": "A small, iridescent shard from a dragon's hide, possessing residual magical energy useful in potent concoctions and enchantments." },
+    { "itemName": "Phoenix Feather", "cost": "200 G", "description": "A rare feather shed by a phoenix, known for its incredible restorative and protective properties." },
+    { "itemName": "Bile of Three-Headed Hound", "cost": "150 G", "description": "A viscous, dark green fluid from a formidable beast, used in powerful, often dangerous, brews." }
+  ],
+  "Magical Object": [
+    { "itemName": "Everbright Lantern", "cost": "15 G", "description": "A sturdy lantern designed to house Everbright Stones, producing consistent light without fuel." },
+    { "itemName": "Everbright Stone (regular)", "cost": "1 G", "description": "A small stone marked with a 'Flame/Light' rune that glows steadily for 1 hour when placed in an Everbright lantern." },
+    { "itemName": "Everbright Stone (varied)", "cost": "3 G", "description": "A magical stone similar to the regular type, but its light output can be adjusted for dim, regular, or bright illumination." },
+    { "itemName": "Recall Globe", "cost": "15 G", "description": "A small, clear orb containing swirling smoke that glows red when an uncompleted task remains, though it doesn't reveal what was forgotten." },
+    { "itemName": "Invisible Ink Eraser", "cost": "7 S", "description": "A bright red magical eraser that causes hidden messages written in invisible ink to appear." },
+    { "itemName": "Expanded Satchel", "cost": "100 G", "description": "A deceptively small bag charmed with a Spatial Expansion enchantment, allowing it to hold far more than its appearance suggests. Not safe for living creatures." },
+    { "itemName": "Focus Wand", "cost": "7 G", "description": "A magical conduit, typically wood with a core, used by spellcasters to channel and focus their arcane energies." },
+    { "itemName": "Communicating Mirrors", "cost": "20 G", "description": "A pair of magically linked mirrors that allow two people to converse across different locations." },
+    { "itemName": "Blighted Amulet", "cost": "3,500 G", "description": "A necklace imbued with very powerful, dark enchantments. Contact with it results in instant demise." },
+    { "itemName": "Teleport Dust (scoop)", "cost": "2 S", "description": "A pinch of shimmering powder that, when thrown onto a designated focus sigil or transit threshold, allows instant travel to another connected location." },
+    { "itemName": "Suspicion Sensor", "cost": "40 G", "description": "A glass-topped device that lights up, spins, and whistles if someone nearby is acting deceptively." },
+    { "itemName": "Wall-Climber Trainers", "cost": "35 G", "description": "A pair of enchanted shoes with suction cups on the soles, enabling the wearer to walk effortlessly up walls and across ceilings." },
+    { "itemName": "Stench Bombs (5)", "cost": "1 G", "description": "Small, spherical devices that, upon impact, release an overwhelmingly foul and lingering odor." },
+    { "itemName": "Automated Scribe Quill", "cost": "20 G", "description": "A self-writing quill that records spoken words onto parchment once a day; requires magical ink to refill overnight." },
+    { "itemName": "Amulet of Protection", "cost": "75 G", "description": "A simple amulet that glows faintly when danger is near, offering minor magical resistance." },
+    { "itemName": "Invisibility Cloak (minor)", "cost": "500 G", "description": "A cloak woven with obscure enchantments, capable of rendering the wearer partially invisible in shadows." },
+    { "itemName": "Hourglass of Reversal", "cost": "120 G", "description": "A small hourglass that can briefly rewind minor mistakes or actions when flipped." }
+  ],
+  "Potion": [
+    { "itemName": "Common Antidote", "cost": "5 G", "description": "A basic remedy that counteracts ordinary poisons, such as those from minor creature bites and stings." },
+    { "itemName": "Guiding Potion", "cost": "10 G", "description": "Allows the drinker to roll with advantage on the next spells used against an enemy. Roll 1d6 [1-2] = 1 roll w/ advantage, [3-4] = 2 rolls w/ advantage, [5-6] = 3 rolls w/ advantage" },
+    { "itemName": "Healing Elixir", "cost": "5 G", "description": "A vital potion that restores 1 Health point to the drinker and acts as an antidote to common sleeping concoctions." },
+    { "itemName": "Extra Arms Potion", "cost": "10 G", "description": "Temporarily grants the drinker 2 additional limbs. Drinker rolls a 4d to determine their placement (1=Head, 2=Shoulders, 3=Hips, 4=Feet)." },
+    { "itemName": "Plant Wilt Potion", "cost": "5 G", "description": "A specialized herbicide that causes a targeted plant to lose 1 Health point." },
+    { "itemName": "Deep Slumber Draught", "cost": "10 G", "description": "Causes the drinker to fall almost instantaneously into a profound, deep sleep lasting for 1d4+1 hours." },
+    { "itemName": "Wall-Crawler Potion", "cost": "10 G", "description": "Allows the drinker to adhere to and walk on walls or ceilings for a duration of 10 minutes." },
+    { "itemName": "Potent Strength Potion", "cost": "10 G", "description": "An orange-colored liquid that bestows increased physical strength upon the drinker for 10 minutes." },
+    { "itemName": "Aqua Breathing Potion", "cost": "10 G", "description": "Small vial with an aqua-colored liquid. One-time use. Drink. Allows breathing underwater for up to an hour. Effects end if the drinker surfaces before the hour." },
+    { "itemName": "Silent Step Potion", "cost": "10 G", "description": "Silences the drinker's footsteps completely for 1 minute, aiding in stealth." },
+    { "itemName": "Amnesia Potion", "cost": "10 G", "description": "Induces an unknown degree of memory loss in the drinker, which can vary from minor forgetfulness to significant amnesia." },
+    { "itemName": "Corrosion Antidote", "cost": "5 G", "description": "A rapid-acting potion that reverses the destructive effects of corrosive substances on the skin or material." },
+    { "itemName": "Second Chance Potion", "cost": "10 G", "description": "Allows the drinker to reroll a single dice roll, potentially altering an outcome." },
+    { "itemName": "Swiftness Concoction", "cost": "12 G", "description": "Temporarily increases the drinker's agility and speed for a short duration." },
+    { "itemName": "Fortitude Brew", "cost": "15 G", "description": "A thick, earthy potion that grants temporary resistance to physical damage." }
+  ],
+  "Spell": [
+    { "itemName": "Scroll of Incantation", "cost": "5 G - 35 G", "description": "A magical scroll imbued with a single spell, consumable upon casting. Cost varies by spell year (Spell Year x 5 G)." }
+  ],
+  "Weapon": [
+    { "itemName": "Dagger of Swiftness", "cost": "25 G", "description": "A light dagger that feels exceptionally balanced in hand, granting a slight advantage in quick strikes." },
+    { "itemName": "Staff of Minor Elements", "cost": "70 G", "description": "A wooden staff imbued with basic elemental energies (fire, water, air, earth), capable of minor elemental effects." },
+    { "itemName": "Enchanted Blade", "cost": "150 G", "description": "A well-forged sword that hums with a faint magical aura, making its strikes more potent." },
+    { "itemName": "Hunter's Bow", "cost": "40 G", "description": "A sturdy, well-crafted bow, ideal for precision and long-range attacks." },
+    { "itemName": "Glowstone Mace", "cost": "60 G", "description": "A heavy mace with an embedded glowing crystal, emitting faint light and a dull thrum when swung." }
+  ],
+  "Armor": [
+    { "itemName": "Leather Vest", "cost": "30 G", "description": "Light, flexible leather armor providing basic protection without hindering movement." },
+    { "itemName": "Iron Gauntlets", "cost": "45 G", "description": "Sturdy iron gloves that protect the hands and forearms." },
+    { "itemName": "Enchanted Shield", "cost": "90 G", "description": "A sturdy wooden shield with a faint protective aura, deflecting minor magical attacks." }
+  ],
+  "Clothing": [
+    { "itemName": "Ranger Hat", "cost": "10 G", "description": "A wide-brimmed hat, perfect for outdoor adventures and sun protection." },
+    { "itemName": "Ranger Boots", "cost": "20 G", "description": "Durable, comfortable boots designed for long treks through varied terrain." },
+    { "itemName": "Ranger Leggings", "cost": "16 G", "description": "Practical and robust leg coverings, offering flexibility and minor protection." },
+    { "itemName": "Cloak of Shadows", "cost": "80 G", "description": "A dark cloak woven with minor enchantments, providing a slight advantage in remaining unseen in dim light or darkness." }
+  ],
+  "School Supply": [
+    { "itemName": "Bottle of ink (black)", "cost": "", "description": "Standard black ink for quills and writing." },
+    { "itemName": "Writing quills (2)", "cost": "", "description": "A pair of traditional quills for writing on parchment." },
+    { "itemName": "Durable Beast-Hide Gloves", "cost": "", "description": "Durable gloves made from the hide of a tough magical creature, offering good protection." },
+    { "itemName": "Measuring Scales (weights)", "cost": "", "description": "Precise scales with accompanying weights, essential for potion-making and accurate measurements." },
+    { "itemName": "Brewing Cauldron", "cost": "", "description": "A standard-issue, heat-resistant cauldron for brewing potions and concoctions." },
+    { "itemName": "Parchment (3 ft)", "cost": "", "description": "A roll of fine parchment, suitable for note-taking, spell-writing, or official documents." }
+  ],
+  "Other": [
+    { "itemName": "Beast Claw", "cost": "", "description": "A sharp claw from an unidentified beast, possibly useful as a component or trophy." },
+    { "itemName": "Mysterious Orb", "cost": "5 G", "description": "A small, heavy orb that occasionally hums faintly with an unknown energy, hinting at hidden properties." }
+  ]
+}

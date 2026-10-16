@@ -1,0 +1,517 @@
+/* budget.module.css */
+
+.container {
+    margin: 40px auto;
+    padding: 24px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(4px);
+    color: var(--text-main);
+    max-width: 900px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.headerControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.headerControls h2 {
+    text-align: left;
+    margin: 0;
+    font-size: 1.5em;
+    flex-grow: 1;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nameInputsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px 40px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--budget-header);
+    border-radius: 8px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nameInputGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 1 calc(50% - 20px);
+    min-width: 250px;
+    max-width: calc(50% - 20px);
+}
+
+.nameInputLabel {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.nameInputFieldContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.nameInputField {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    flex-grow: 1;
+}
+
+.nameInputField:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 5px var(--budget-glow);
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.removePersonButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.removePersonButton:hover {
+    background-color: #da190b;
+}
+
+.addPersonButtonContainer {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Base style for Add buttons */
+.addButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #45a049;
+}
+
+.addButtonSmall {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    line-height: 1.2;
+}
+
+.removeButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+.removeButton:hover {
+    background-color: #da190b;
+}
+
+/* Error message styling */
+.errorMessage {
+    background-color: var(--budget-error-bg);
+    color: var(--danger);
+    border: 1px solid #cc0000;
+    padding: 10px 15px;
+    margin: 15px auto;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 80%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.errorMessage span {
+    font-size: 1.2em;
+}
+
+/* --- New Grid-based Layout for Budget Breakdown --- */
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--bg-subpanel);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    background-color: var(--budget-header);
+    color: var(--text-heading);
+    font-weight: bold;
+    font-size: 1.05em;
+    padding: 15px 12px;
+    border: 1px solid var(--border-color);
+}
+
+.itemCellHeader,
+.amountCellHeader,
+.notesCellHeader {
+    text-align: left;
+}
+
+.amountCellHeader {
+    text-align: center;
+}
+
+.categoryGroup {
+    border-top: 2px solid var(--border-color);
+}
+
+.categoryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--budget-header);
+    color: var(--text-heading);
+    font-weight: bold;
+    padding: 10px 12px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+}
+
+.categoryHeader input {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font-weight: inherit;
+    font-size: 1em;
+    flex-grow: 1;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.categoryHeader input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.categoryHeader span {
+    font-size: 1.2em;
+    color: var(--accent);
+}
+
+.itemRow, .subheaderRow, .totalRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-subpanel);
+}
+
+.itemRow:nth-child(even), .subheaderRow:nth-child(even), .totalRow:nth-child(even) {
+    background-color: var(--budget-row-alt);
+}
+
+.itemCell, .amountCell, .notesCell {
+    padding: 4px;
+}
+
+.itemCell, .notesCell {
+    word-break: break-word;
+}
+
+/* Income rows keep their "+ Add" button inside the item cell so every
+   row stays in the three-column grid */
+.itemCellWithAction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.itemCellWithAction > :last-child {
+    flex-grow: 1;
+}
+
+.itemCellWithAction > button {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.amountCell {
+    text-align: center;
+}
+
+.subheaderRow {
+    background-color: var(--budget-row-strong);
+    font-weight: bold;
+    color: var(--text-muted);
+}
+
+.subheaderInput {
+    width: 100%;
+    background-color: transparent;
+    color: inherit;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.subheaderInput:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.totalRow {
+    font-weight: bold;
+    color: var(--text-main);
+    background-color: var(--budget-row-strong);
+}
+
+.totalLabel {
+    grid-column: 1 / span 2;
+    padding-left: 12px;
+}
+
+.totalAmount {
+    text-align: center;
+}
+
+.totalNotes {
+    font-style: normal;
+    font-size: 0.95em;
+    color: var(--text-muted);
+    margin-left: 20px;
+}
+
+.itemInputContainer {
+    width: 100%;
+}
+
+.itemNameInput {
+    width: 100%;
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 1em;
+    min-width: 100px;
+}
+
+.itemNameInput:hover,
+.itemNameInput:focus {
+    background-color: var(--bg-panel-hover);
+    border-color: var(--accent);
+}
+
+.amountInputText {
+    width: 75px;
+    text-align: center;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    padding: 10px 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--text-main);
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+.amountInputText::-webkit-inner-spin-button,
+.amountInputText::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.amountInputText:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 5px var(--budget-glow);
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.amountInputTextDeposited {
+    color: var(--success) !important;
+}
+
+.amountInputTextWithdrawn {
+    color: var(--danger) !important;
+}
+
+.notesInput {
+    width: 100%;
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    line-height: 1.4;
+    resize: vertical;
+    min-height: 40px;
+}
+
+.notesInput:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 5px var(--budget-glow);
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.highlightNewRow {
+    animation: highlightFade 0.5s ease-out forwards;
+}
+
+@keyframes highlightFade {
+    from {
+        background-color: var(--budget-glow);
+    }
+    to {
+        background-color: transparent;
+    }
+}
+
+/* --- Summary Section --- */
+.summarySection {
+    margin-top: 40px;
+}
+
+.summaryHeader {
+    background-color: var(--budget-header);
+    color: var(--text-heading);
+    font-weight: bold;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+}
+
+.summaryTitleCell {
+    text-align: center;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-subpanel);
+}
+
+.summaryRow:nth-child(even) {
+    background-color: var(--budget-row-alt);
+}
+
+.summaryLabel {
+    flex-grow: 1;
+}
+
+.summaryAmount {
+    text-align: right;
+    font-weight: bold;
+}
+
+.summaryNote {
+    text-align: right;
+    font-style: normal;
+    font-size: 0.95em;
+    color: var(--text-muted);
+    margin-left: 20px;
+}
+
+.summaryIcon {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.deficit {
+    color: var(--danger) !important;
+}
+
+.surplus {
+    color: var(--success) !important;
+}
+
+@media (max-width: 768px) {
+    .itemRow, .subheaderRow, .totalRow {
+        grid-template-columns: 1fr;
+    }
+    .tableHeader {
+        display: none;
+    }
+    .itemCell, .amountCell, .notesCell {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+    }
+    .itemRow > div:last-child, .subheaderRow > div:last-child, .totalRow > div:last-child {
+        border-bottom: none;
+        padding-bottom: 4px;
+    }
+}
