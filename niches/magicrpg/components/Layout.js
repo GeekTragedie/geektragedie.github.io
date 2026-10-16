@@ -12,7 +12,7 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
       </Head>
 
       <nav className="top-nav" aria-label="Main Navigation">
-          <a href="../../index.html" className="nav-brand">GeekTragedie&apos;s Organized Chaos</a>
+          <a href="../../index.html" className="nav-brand">GeekTragedie&apos;s Wonderland</a>
           <ul className="nav-links">
               <li><a href="../../index.html">Home</a></li>
               <li><a href="../../resources/index.html">Resources</a></li>
