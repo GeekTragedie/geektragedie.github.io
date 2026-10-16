@@ -24,3 +24,6 @@ yarn-error.log*
 Thumbs.db
 
 plans/
+
+# Symlink to a gitignored build dir; GitHub Pages rejects symlinks
+niches/magicrpg_sheet/
