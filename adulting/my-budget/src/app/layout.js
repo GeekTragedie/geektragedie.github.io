@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
                     <div className="dropdown-content">
                         <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
                         <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                        <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
                         <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
                     </div>
                 </li>
@@ -53,7 +54,10 @@ export default function RootLayout({ children }) {
         <footer className="site-footer">
             <div className="footer-container">
                 <p className="disclaimer">
-                    <strong>Disclaimer:</strong> The materials, tools, and resources provided on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+                    <strong>Clinical Disclaimer:</strong> The materials, tools, and resources on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+                </p>
+                <p className="disclaimer">
+                    <strong>Site Status:</strong> GeekTragedie’s Wonderland is a living archive and a perpetual work in progress. Each section is updated organically as time, life stages, and GeekTragedie’s shifting interests allow.
                 </p>
                 <div className="footer-controls">
                     <button id="theme-toggle-btn" className="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
