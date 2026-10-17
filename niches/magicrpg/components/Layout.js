@@ -50,10 +50,10 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
       <footer className="site-footer">
           <div className="footer-container">
               <p className="disclaimer">
-                  <strong>Clinical Disclaimer:</strong> The materials, tools, and resources on this site are for educational, informational, and self-advocacy purposes only. They do not constitute clinical advice, therapy, or medical diagnosis, nor do they establish a therapist-client relationship. If you are experiencing a mental health crisis, please dial 988 or contact emergency services immediately.
+                  <strong>Clinical Disclaimer:</strong> Everything here is for learning and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and using it doesn’t make us therapist and client. If you’re in crisis, please call or text 988, or call your local emergency number.
               </p>
               <p className="disclaimer">
-                  <strong>Site Status:</strong> GeekTragedie’s Wonderland is a living archive and a perpetual work in progress. Each section is updated organically as time, life stages, and GeekTragedie’s shifting interests allow.
+                  <strong>Site Status:</strong> This site is always a work in progress. I add to it when life and my interests allow, so things come and go.
               </p>
               <div className="footer-controls">
                   <button id="theme-toggle-btn" className="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">

@@ -6,7 +6,7 @@
 
 ### Overview
 
-Al Capone's trajectory through the American penal system illustrates the intersection of municipal celebrity, federal maximum-security isolation, and the eventual somatic confinement of late-stage neurosyphilis.
+Al Capone went from celebrity gangster to Alcatraz inmate, and then to a man whose illness kept him confined long after prison let him go. These are the places along the way.
 
 ---
 
@@ -29,5 +29,5 @@ Al Capone's trajectory through the American penal system illustrates the interse
 #### 5. The Medical Hand-Off: Terminal Island FCI (San Pedro, CA)
 *   **Confinement Phase:** In early 1939, as neurosyphilis severely damaged his brain, federal authorities transferred Capone out of Alcatraz to Terminal Island (an active federal facility on a man-made island in Los Angeles) for the final months of his sentence—marking the point where the state recognized his mind was too deteriorated for maximum-security confinement.
 
-#### 6. Final "Somatic" Confinement: The Palm Island Estate (Miami, FL)
+#### 6. Trapped in His Own Body: The Palm Island Estate (Miami, FL)
 *   **Confinement Phase:** Following his release in late 1939, Capone spent his remaining years sequestered at his private Miami estate with his cognitive capacity regressed to that of a 12-year-old child. Having outlasted state incarceration, his own biology became his final confinement.

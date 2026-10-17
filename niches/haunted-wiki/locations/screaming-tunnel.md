@@ -1,7 +1,7 @@
 # The Screaming Tunnel
 
-**Type:** Tunnel[cite: 26]  
-**Location:** Niagara Falls, ON[cite: 26]  
+**Type:** Tunnel  
+**Location:** Niagara Falls, ON  
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### History
 * **Built:** [Year]
-* **Original Purpose:** Tunnel[cite: 26]
+* **Original Purpose:** Tunnel
 * **Notable Events:** [Fires, deaths, historical significance]
 
 [Paragraph expanding on the history and background of the location.]
@@ -24,4 +24,4 @@
 > *— Name, Year*
 
 ### Notable Investigations
-* **KallMeKris & Celina Spookyboo:** [Brief summary of their findings][cite: 26]
+* **KallMeKris & Celina Spookyboo:** [Brief summary of their findings]

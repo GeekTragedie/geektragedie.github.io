@@ -1,5 +1,5 @@
-### THE ARCHIVES
-- [Main Dashboard](#home)
+### START HERE
+- [Home](#home)
 - [Recent Activity](#recent)
 
 ### LOCATIONS

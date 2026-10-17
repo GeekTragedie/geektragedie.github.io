@@ -1,26 +1,24 @@
 # Incarceration & Confinement Museum Wiki
 
-Welcome to the historical and architectural archive of global confinement sites, penitentiaries, and state memorialization museums.
+I’m fascinated by how people have been locked up, and how we remember it. These are the prisons, internment sites, and memorial museums I’ve visited or hope to.
 
 ---
 
-### Archive Categories
+### How It’s Organized
 
 * **I. Pre-Modern:** Ancient civic prisons, dungeons, royal fortresses, and ecclesiastical confinement sites.
 * **II. Modern:** 19th- and 20th-century penitentiaries, frontier jailhouses, and radial/Panopticon prisons.
 * **III. State Confinement & Memorialization:** Sites and museums documenting forced state confinement, internment, colonial displacement, and genocide memorialization.
 
-Use the sidebar navigation or visit the [Master Index](#master-index) to browse documented locations.
+Use the sidebar or the [Master Index](#master-index) to find a place.
 
 ---
 
-## Future Adventures & Research Watchlist
+## Places I Want to Visit Next
 
-Locations and historical corridors queued for future archival documentation and on-site visitation.
+### Museums & Memorials on My List
 
-### Target Confinement & Memorial Sites
-
-| Target Site | Location | Focus Area |
+| Site | Location | Category |
 | :--- | :--- | :--- |
 | **Stewart Indian School Cultural Center** | Carson City, NV, USA | III. State Confinement & Memorialization |
 | **Heard Museum ("Away From Home" Exhibit)** | Phoenix, AZ, USA | III. State Confinement & Memorialization |
@@ -30,9 +28,9 @@ Locations and historical corridors queued for future archival documentation and 
 | **Auschwitz-Birkenau Memorial and Museum** | Oświęcim, Poland | III. State Confinement & Memorialization |
 | **Dachau Concentration Camp Memorial Site** | Dachau, Germany | III. State Confinement & Memorialization |
 
-### Target Biographical Corridors ([Al Capone](#people/al-capone))
+### Following [Al Capone](#people/al-capone)’s Trail
 
 * **Terminal Island Federal Correctional Institution** — *San Pedro, CA, USA* (Active federal facility; 1939 medical transfer site)
 * **The Gangster Museum of America & The Arlington Hotel (Room 311)** — *Hot Springs, AR, USA*
-* **The Palm Island Estate** — *Miami, FL, USA* (Site of final somatic confinement)
-* **Atlanta Urban Lore Corridor (Ponce de Leon Ave, Briarcliff Summit, Clermont Hotel, Georgian Terrace)** — *Atlanta, GA, USA*
+* **The Palm Island Estate** — *Miami, FL, USA* (where he spent his last years)
+* **Atlanta Capone Lore (Ponce de Leon Ave, Briarcliff Summit, Clermont Hotel, Georgian Terrace)** — *Atlanta, GA, USA*

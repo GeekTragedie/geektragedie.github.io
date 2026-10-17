@@ -1,12 +1,12 @@
 # The Beck House
 
-**Type:** Home[cite: 21]  
-**Location:** Penetanguishene, ON[cite: 21]  
+**Type:** Home  
+**Location:** Penetanguishene, ON  
 
 ---
 
 ### Overview
-The Beck House is a historic residence that also operates as an Airbnb (notably providing snacks to guests), allowing visitors to experience its paranormal activity firsthand[cite: 21].
+The Beck House is a historic residence that also operates as an Airbnb (notably providing snacks to guests), allowing visitors to experience its paranormal activity firsthand.
 
 ### History
 * **Built:** [Year]
@@ -16,12 +16,12 @@ The Beck House is a historic residence that also operates as an Airbnb (notably 
 [Paragraph expanding on the history and background of the location.]
 
 ### Reported Activity
-* **Apparitions:** There are reports of two female ghosts residing in the home[cite: 21].
-* **Poltergeist Activity:** Unexplained knocking is a common phenomenon[cite: 21].
+* **Apparitions:** There are reports of two female ghosts residing in the home.
+* **Poltergeist Activity:** Unexplained knocking is a common phenomenon.
 * **EVP/Audio:** [Description]
 
 > "[Insert a notable quote from an investigator or eyewitness here.]"  
 > *— Name, Year*
 
 ### Notable Investigations
-* **Celina Spookyboo (x2):** Has investigated this location twice[cite: 21].
+* **Celina Spookyboo (x2):** Has investigated this location twice.

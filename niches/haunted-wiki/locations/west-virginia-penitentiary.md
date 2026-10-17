@@ -1,7 +1,7 @@
 # West Virginia Penitentiary
 
-**Type:** Penitentiary[cite: 18]  
-**Location:** Moundsville, WV[cite: 18]  
+**Type:** Penitentiary  
+**Location:** Moundsville, WV  
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### History
 * **Built:** [Year]
-* **Original Purpose:** Penitentiary[cite: 18]
+* **Original Purpose:** Penitentiary
 * **Notable Events:** [Fires, deaths, historical significance]
 
 [Paragraph expanding on the history and background of the location.]
@@ -24,6 +24,6 @@
 > *— Name, Year*
 
 ### Notable Investigations
-* **Ghost Adventures:** [Brief summary of their findings][cite: 18]
-* **KallMeKris & Celina Spookyboo:** [Brief summary of their findings][cite: 18]
-* **Sam & Colby:** [Brief summary of their findings][cite: 18]
+* **Ghost Adventures:** [Brief summary of their findings]
+* **KallMeKris & Celina Spookyboo:** [Brief summary of their findings]
+* **Sam & Colby:** [Brief summary of their findings]

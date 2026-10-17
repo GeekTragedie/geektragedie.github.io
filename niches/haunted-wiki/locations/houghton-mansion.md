@@ -1,7 +1,7 @@
 # Houghton Mansion
 
-**Type:** Home[cite: 16]  
-**Location:** North Adams, MA[cite: 16]  
+**Type:** Home  
+**Location:** North Adams, MA  
 
 ---
 
@@ -24,4 +24,4 @@
 > *— Name, Year*
 
 ### Notable Investigations
-* **Ghost Adventures:** [Insert findings][cite: 16]
+* **Ghost Adventures:** [Insert findings]

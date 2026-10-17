@@ -1,11 +1,8 @@
-# The Haunted Archives Database
+# The Haunted Places Wiki
 
-Welcome to the central repository for documented paranormal activity, haunted locations, and the individuals who have experienced them. 
+Welcome, ghoul friends! This is my running list of haunted places visited by the ghost hunters and paranormal investigators I follow, plus who went and what they found.
 
-> "We are not alone in the dark. The shadows have a memory, and these walls have a voice."  
-> *— Unknown Investigator, 1994*
-
-### Media Source Legend
+### Who's Who
 * **GA:** Ghost Adventures
 * **CSB:** Celina Spookyboo
 * **S&C:** Sam & Colby
@@ -13,7 +10,7 @@ Welcome to the central repository for documented paranormal activity, haunted lo
 * **GW:** Garrett Watts
 * **CS:** Can't Sleep
 
-### Location Index
+### All the Places
 | Place | Type | Location | Media Sources |
 |---|---|---|---|
 | ["X" Salon](#locations/x-salon) | Salon | Spokane, WA | GW |

@@ -1,7 +1,7 @@
 # Crescent Hotel
 
-**Type:** Lodging[cite: 23]  
-**Location:** Eureka Springs, AR[cite: 23]  
+**Type:** Lodging  
+**Location:** Eureka Springs, AR  
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### History
 * **Built:** [Year]
-* **Original Purpose:** Lodging[cite: 23]
+* **Original Purpose:** Lodging
 * **Notable Events:** [Fires, deaths, historical significance]
 
 [Paragraph expanding on the history and background of the location.]
@@ -24,4 +24,4 @@
 > *— Name, Year*
 
 ### Notable Investigations
-* **Sam & Colby:** [Brief summary of their findings][cite: 23]
+* **Sam & Colby:** [Brief summary of their findings]

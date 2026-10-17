@@ -1,7 +1,7 @@
 # The Washoe Club
 
-**Type:** Bar[cite: 19]  
-**Location:** Virginia City, NV[cite: 19]  
+**Type:** Bar  
+**Location:** Virginia City, NV  
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### History
 * **Built:** [Year]
-* **Original Purpose:** Bar[cite: 19]
+* **Original Purpose:** Bar
 * **Notable Events:** [Fires, deaths, historical significance]
 
 [Paragraph expanding on the history and background of the location.]
@@ -24,4 +24,4 @@
 > *— Name, Year*
 
 ### Notable Investigations
-* **Sam & Colby:** [Brief summary of their findings][cite: 19]
+* **Sam & Colby:** [Brief summary of their findings]

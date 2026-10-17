@@ -1,12 +1,12 @@
-# Future Research & Visitation Watchlist
+# Places I Want to Visit Next
 
-Locations and historical corridors queued for future archival documentation and on-site visitation.
+My someday list of prisons, memorials, and museums.
 
 ---
 
-### Target Confinement & Memorial Sites
+### Museums & Memorials on My List
 
-| Target Site | Location | Focus Area |
+| Site | Location | Category |
 | :--- | :--- | :--- |
 | **Stewart Indian School Cultural Center** | Carson City, NV, USA | III. State Confinement & Memorialization |
 | **Heard Museum ("Away From Home" Exhibit)** | Phoenix, AZ, USA | III. State Confinement & Memorialization |
@@ -18,9 +18,9 @@ Locations and historical corridors queued for future archival documentation and 
 
 ---
 
-### Target Biographical Corridors ([Al Capone](#people/al-capone))
+### Following [Al Capone](#people/al-capone)’s Trail
 
 *   **Terminal Island Federal Correctional Institution** — *San Pedro, CA, USA* (Active federal facility; 1939 medical transfer site)
 *   **The Gangster Museum of America & The Arlington Hotel (Room 311)** — *Hot Springs, AR, USA*
-*   **The Palm Island Estate** — *Miami, FL, USA* (Site of final somatic confinement)
-*   **Atlanta Urban Lore Corridor (Ponce de Leon Ave, Briarcliff Summit, Clermont Hotel, Georgian Terrace)** — *Atlanta, GA, USA*
+*   **The Palm Island Estate** — *Miami, FL, USA* (where he spent his last years)
+*   **Atlanta Capone Lore (Ponce de Leon Ave, Briarcliff Summit, Clermont Hotel, Georgian Terrace)** — *Atlanta, GA, USA*
