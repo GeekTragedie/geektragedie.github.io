@@ -1,17 +1,17 @@
 # Myrtles Plantation
 
-**Type:** Home[cite: 13]  
-**Location:** St. Francisville, LA[cite: 13]  
+**Type:** Home  
+**Location:** St. Francisville, LA  
 
 ---
 
 ### Overview
-The Myrtles Plantation is an infamous historic property steeped in tragedy, disease, and murder, making it one of the most widely recognized haunted homes in the South[cite: 13].
+The Myrtles Plantation is an infamous historic property steeped in tragedy, disease, and murder, making it one of the most widely recognized haunted homes in the South.
 
 ### History
 * **Built:** [Year]
-* **Original Purpose:** Plantation Home[cite: 13]
-* **Notable Events:** The property has a dense history of tragedy. A child died of yellow fever on the premises. In a separate incident, the original owner's husband, wife, and two children were accidentally murdered by a slave, who was subsequently killed as punishment. Additionally, previous owners murdered a consultant who had incorrectly claimed their child would survive yellow fever[cite: 13].
+* **Original Purpose:** Plantation Home
+* **Notable Events:** The property has a dense history of tragedy. A child died of yellow fever on the premises. In a separate incident, the original owner's husband, wife, and two children were accidentally murdered by a slave, who was subsequently killed as punishment. Additionally, previous owners murdered a consultant who had incorrectly claimed their child would survive yellow fever.
 
 ### Reported Activity
 * **Apparitions:** [Description]
@@ -22,4 +22,4 @@ The Myrtles Plantation is an infamous historic property steeped in tragedy, dise
 > *— Name, Year*
 
 ### Notable Investigations
-* **Sam & Colby:** [Insert findings][cite: 13]
+* **Sam & Colby:** [Insert findings]

@@ -1,8 +1,8 @@
 # [Location Name]
 
-**Era / Category:** [I. Pre-Modern | II. Modern | III. State Confinement & Memorialization][cite: 2, 3]  
+**Era / Category:** [I. Pre-Modern | II. Modern | III. State Confinement & Memorialization]  
 **Type:** [e.g., Federal Penitentiary / Civic Prison / Internment Site / Memorial Museum]  
-**Location:** [City, State/Country] <sup>1</sup>[cite: 9]  
+**Location:** [City, State/Country] <sup>1</sup>  
 **Current Status:** [Museum / Active Facility / Memorial / Unmarked Site]  
 
 ---
@@ -18,7 +18,7 @@
 ### Architecture & Facility Directory
 
 #### [Area / Cellhouse / Exhibit 1]
-*   **Architectural Model & Conditions:** [Details on surveillance design (e.g., Panopticon/radial), isolation conditions, labor, or living quarters <sup>1</sup>.][cite: 3]
+*   **Architectural Model & Conditions:** [Details on surveillance design (e.g., Panopticon/radial), isolation conditions, labor, or living quarters <sup>1</sup>.]
 *   **Historical Significance:** [Specific events or curation details in this area <sup>1</sup>.]
 
 #### [Area / Cellhouse / Exhibit 2]
@@ -28,7 +28,7 @@
 ---
 
 ### Preservation & Curation
-[Details on how the site is preserved today, museum exhibits, audio tours, ecological reclamation, or community memorialization <sup>1</sup>.][cite: 3]
+[Details on how the site is preserved today, museum exhibits, audio tours, ecological reclamation, or community memorialization <sup>1</sup>.]
 
 ---
 

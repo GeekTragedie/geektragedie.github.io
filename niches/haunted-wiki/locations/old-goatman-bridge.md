@@ -1,7 +1,7 @@
 # Old Goatman's Bridge
 
-**Type:** Bridge[cite: 25]  
-**Location:** Denton, TX[cite: 25]  
+**Type:** Bridge  
+**Location:** Denton, TX  
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### History
 * **Built:** [Year]
-* **Original Purpose:** Bridge[cite: 25]
+* **Original Purpose:** Bridge
 * **Notable Events:** [Fires, deaths, historical significance]
 
 [Paragraph expanding on the history and background of the location.]
@@ -24,4 +24,4 @@
 > *— Name, Year*
 
 ### Notable Investigations
-* **Sam & Colby:** [Brief summary of their findings][cite: 25]
+* **Sam & Colby:** [Brief summary of their findings]

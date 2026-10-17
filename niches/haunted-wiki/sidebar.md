@@ -1,6 +1,5 @@
-### THE ARCHIVES
-- [Main Dashboard](#home)
-- [Recent Activity](#recent)
+### START HERE
+- [Home](#home)
 
 ### LOCATIONS
 - ["X" Salon](#locations/x-salon)

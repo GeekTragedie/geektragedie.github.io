@@ -12,7 +12,7 @@
 | Place | Type | Location | Media Sources |
 |---|---|---|---|
 | ["X" Salon](#locations/x-salon) | Salon | Spokane, WA | GW |
-| [Beck House](#locations/beck-house) | Home | Dallas, TX | CSB |
+| [Beck House](#locations/carl-beck) | Home | Dallas, TX | CSB |
 | [Billie Creek Village](#locations/billie-creek-village) | Village | Rockville, IN | S&C et al. |
 | [Bobby Mackey’s Music World](#locations/bobby-mackeys-music-world) | Bar | Wilder, KY | GA, S&C |
 | [Carl Beck House](#locations/carl-beck) | Home | Penetanguishene, ON | CSB |

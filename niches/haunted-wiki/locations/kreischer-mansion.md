@@ -1,7 +1,7 @@
 # Kreischer Mansion
 
-**Type:** Home[cite: 20]  
-**Location:** Staten Island, NY[cite: 20]  
+**Type:** Home  
+**Location:** Staten Island, NY  
 
 ---
 
@@ -24,4 +24,4 @@
 > *— Name, Year*
 
 ### Notable Investigations
-* **Sam & Colby:** [Brief summary of their findings][cite: 20]
+* **Sam & Colby:** [Brief summary of their findings]

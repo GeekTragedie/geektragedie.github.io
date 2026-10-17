@@ -1,17 +1,17 @@
 # One of a Kind Antique Mall
 
-**Type:** Mall[cite: 17]  
-**Location:** Woodstock, ON[cite: 17]  
+**Type:** Mall  
+**Location:** Woodstock, ON  
 
 ---
 
 ### Overview
-This location holds the title of the biggest antique mall in Canada[cite: 17]. Spanning three stories, it was the site of the first-ever documented ghost hunt by KallMeKris and Celina Spookyboo[cite: 17].
+This location holds the title of the biggest antique mall in Canada. Spanning three stories, it was the site of the first-ever documented ghost hunt by KallMeKris and Celina Spookyboo.
 
 ### History
 * **Built:** [Year]
-* **Original Purpose:** Factory[cite: 17]
-* **Notable Events:** Before becoming a massive antique mall, the building operated as a factory[cite: 17].
+* **Original Purpose:** Factory
+* **Notable Events:** Before becoming a massive antique mall, the building operated as a factory.
 
 [Paragraph expanding on the history and background of the location.]
 
@@ -24,4 +24,4 @@ This location holds the title of the biggest antique mall in Canada[cite: 17]. S
 > *— Name, Year*
 
 ### Notable Investigations
-* **KallMeKris & Celina Spookyboo:** Conducted the first documented ghost hunt at this location[cite: 17].
+* **KallMeKris & Celina Spookyboo:** Conducted the first documented ghost hunt at this location.

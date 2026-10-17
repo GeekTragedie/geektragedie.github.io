@@ -29,7 +29,7 @@
 ---
 
 ### Investigation Log
-**[Channel / Platform]** - *"[Video Title]"*
+**[Show / Channel / Investigator]** - *"[Episode or Video Title]"*
 * **Investigators:** [Names]
 * **Date Watched:** [Date]
 
@@ -50,7 +50,7 @@
 - [ ] Other: [List]
 
 **Observed Evidence & Phenomena:**
-[Delete the categories that were NOT observed during this specific video]
+[Delete the categories that were NOT observed during this investigation]
 * **[Category]:** [Details, timestamps, and elaborations]
 * **Names Received:** [List names given during the investigation]
 * **Debunked Notes:** [List any explanations for activity]
