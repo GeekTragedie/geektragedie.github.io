@@ -2,6 +2,8 @@
 
 I’m fascinated by how people have been locked up, and how we remember it. These are the prisons, internment sites, and memorial museums I’ve visited or hope to.
 
+Want the personal side? My visit write-ups live in [Progress Notes on Confinement](../../authors-library/pnoc/index.html).
+
 ---
 
 ### How It’s Organized

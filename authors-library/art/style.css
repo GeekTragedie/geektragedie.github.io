@@ -1,0 +1,223 @@
+/* Art page styles. Shared nav, footer, theme variables and background
+   live in ../../assets/site.css; this page keeps its own teal accent,
+   plus gallery spacing and captions. */
+
+body {
+    --accent: #4fc3b8; /* Teal */
+    --accent-contrast: #ffffff;
+    --link-color: #90caf9; /* Soft pale blue */
+    --table-header-bg: rgba(23, 23, 23, 0.9);
+}
+body.light-mode {
+    --accent: #0f766e;
+    --link-color: #0284c7;
+    --table-header-bg: #e2e8f0;
+}
+
+/* --- LAYOUT --- */
+.wiki-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+#sidebar {
+    flex: 0 0 260px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    padding: 10px 20px 20px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 70px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+}
+
+#content {
+    flex: 1 1 500px;
+    min-width: 0;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    padding: 30px 40px;
+}
+
+/* --- TYPOGRAPHY & LINKS --- */
+.wiki-layout a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.wiki-layout a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+#content h1, #content h2, #content h3 {
+    color: var(--text-heading);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+
+/* --- SIDEBAR STYLING --- */
+#sidebar h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+#sidebar a {
+    color: var(--text-main);
+}
+
+#sidebar a:hover {
+    color: var(--accent);
+}
+
+/* --- CONTENT STYLING --- */
+#content blockquote {
+    border-left: 4px solid var(--accent);
+    margin: 20px 0;
+    padding: 15px 20px;
+    font-style: italic;
+    color: var(--text-muted);
+    background-color: var(--bg-subpanel);
+    border-radius: 0 4px 4px 0;
+}
+
+/* --- TABLE STYLING --- */
+#content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    font-size: 0.95rem;
+    background-color: var(--bg-subpanel);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#content th, #content td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#content th {
+    background-color: var(--table-header-bg);
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+#content tr:last-child td {
+    border-bottom: none;
+}
+
+#content td a {
+    font-weight: 500;
+}
+
+@media (max-width: 700px) {
+    #sidebar {
+        flex-basis: 100%;
+        position: static;
+        max-height: none;
+    }
+    #content {
+        padding: 20px;
+    }
+}
+
+/* --- IMAGE STYLING --- */
+#content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+/* --- BLOG POST HEADER & PDF VIEWER --- */
+.blog-meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.blog-meta-bar a {
+    font-weight: bold;
+}
+
+.wiki-layout .pdf-download-btn {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+}
+
+.wiki-layout .pdf-download-btn:hover {
+    text-decoration: none;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 800px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+/* --- GALLERY --- */
+#content h3 {
+    margin-top: 50px;
+}
+
+/* The italic line under a piece's title is its caption */
+#content h3 + p > em:only-child {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+#content img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Reading time doesn't mean much for a gallery */
+.blog-meta-bar span {
+    display: none;
+}

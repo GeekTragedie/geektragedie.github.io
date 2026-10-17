@@ -1,3 +1,8 @@
+// Escape text from the URL hash before it goes into HTML
+function escapeHtml(text) {
+    return text.replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
+}
+
 // Function to load and render a markdown file
 async function loadMarkdown(filename, elementId) {
     try {
@@ -6,7 +11,7 @@ async function loadMarkdown(filename, elementId) {
         const text = await response.text();
         document.getElementById(elementId).innerHTML = marked.parse(text);
     } catch (error) {
-        document.getElementById(elementId).innerHTML = `<h1>404</h1><p>Sorry, the page <b>${filename}</b> could not be found.</p>`;
+        document.getElementById(elementId).innerHTML = `<h1>404</h1><p>Sorry, the page <b>${escapeHtml(filename)}</b> could not be found.</p>`;
     }
 }
 

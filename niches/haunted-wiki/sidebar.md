@@ -1,6 +1,5 @@
 ### START HERE
 - [Home](#home)
-- [Recent Activity](#recent)
 
 ### LOCATIONS
 - ["X" Salon](#locations/x-salon)

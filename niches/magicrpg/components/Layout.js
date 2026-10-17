@@ -17,6 +17,15 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
               <li><a href="../../index.html">Home</a></li>
               <li><a href="../../resources/index.html">Resources</a></li>
               <li className="dropdown">
+                  <a href="../../authors-library/index.html" className="dropbtn">Author&apos;s Library ▾</a>
+                  <div className="dropdown-content">
+                      <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                      <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                      <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                      <a href="../../authors-library/art/index.html">Art</a>
+                  </div>
+              </li>
+              <li className="dropdown">
                   <a href="../../niches/index.html" className="dropbtn active">Niches ▾</a>
                   <div className="dropdown-content">
                       <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>

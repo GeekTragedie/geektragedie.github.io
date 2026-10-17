@@ -18,4 +18,7 @@
 ### Preservation & Ecological Curation
 
 *   **National Park & Bird Sanctuary:** Today, Alcatraz is preserved under the National Park Service, in significant part due to the protected seabird colonies that rely on the island for nesting and reproduction.
-*   **Seasonal Conditions:** During late summer (particularly September), hatching bird eggs and nesting colonies create dense fly swarms across the island tour routes.
+
+---
+
+**My visit:** [Read my progress note →](../../authors-library/pnoc/index.html#posts/alcatraz)
