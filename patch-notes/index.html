@@ -5,6 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GeekTragedie | Patch Notes</title>
 <link rel="stylesheet" href="../assets/site.css">
+<style>
+    .repo-line {
+        margin: -20px 0 24px;
+    }
+    /* Tabs (same look as the potions page) */
+    .tab-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .tab-container[hidden] {
+        display: none;
+    }
+    .tab-btn {
+        background-color: var(--bg-panel);
+        color: var(--text-heading);
+        border: 1px solid var(--border-color);
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s;
+    }
+    .tab-btn:hover {
+        background-color: var(--bg-panel-hover);
+    }
+    .tab-btn[aria-selected="true"] {
+        background-color: var(--bg-panel-hover);
+        border-bottom: 2px solid var(--accent);
+    }
+    .tab-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+    .notes-panel {
+        margin-bottom: 24px;
+        /* Keeps the tabs visible below the sticky nav when opened via #hash */
+        scroll-margin-top: 140px;
+    }
+    .notes-panel h3 {
+        margin: 24px 0 8px;
+    }
+    .notes-panel h3 code {
+        font-size: 0.75em;
+        font-weight: normal;
+        color: var(--text-muted);
+        margin-left: 6px;
+    }
+    .notes-panel ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    .notes-panel li {
+        margin-bottom: 8px;
+    }
+    .change-type {
+        display: inline-block;
+        min-width: 64px;
+        margin-right: 6px;
+        font-size: 0.75em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+    }
+    .site-notes {
+        margin-top: 28px;
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+    }
+    .notes-panel code {
+        font-size: 0.9em;
+        overflow-wrap: anywhere;
+    }
+    @media print {
+        .tab-container { display: none !important; }
+        .notes-panel[hidden] { display: block !important; }
+    }
+</style>
 </head>
 <body aria-label="Patch notes page with a background texture of stacked firewood logs">
 <script src="../assets/theme.js"></script>
@@ -53,13 +133,177 @@
 <div class="container">
     <div class="hero">
         <h1>Patch Notes</h1>
-        <p>A running list of updates this site goes through.</p>
+        <p>A running list of changes to the site. Choose the version written for you.</p>
     </div>
 
-    <div class="panel">
-        <h2>Work in Progress</h2>
-        <p>This page is still under construction. Over time it will become a running list of the updates, additions, and fixes made to the site.</p>
-        <p>In the meantime, if you’re curious about what’s changed, you can review the full history on GitHub: <a href="https://github.com/GeekTragedie/geektragedie.github.io" class="accent-text" target="_blank" rel="noopener noreferrer">GeekTragedie/geektragedie.github.io</a>.</p>
+    <p class="repo-line muted">Want every change, line by line? The full history is on GitHub: <a href="https://github.com/GeekTragedie/geektragedie.github.io" class="accent-text" target="_blank" rel="noopener noreferrer">GeekTragedie/geektragedie.github.io</a>.</p>
+
+    <div class="tab-container" role="tablist" aria-label="Patch notes audience" hidden>
+        <button class="tab-btn" type="button" role="tab" id="tab-general" aria-controls="general">General</button>
+        <button class="tab-btn" type="button" role="tab" id="tab-therapists" aria-controls="therapists">Therapists</button>
+        <button class="tab-btn" type="button" role="tab" id="tab-tech" aria-controls="tech">Tech</button>
+    </div>
+
+    <!-- General audience -->
+    <div class="panel notes-panel" role="tabpanel" id="general" aria-labelledby="tab-general">
+        <h2>For Everyone</h2>
+
+        <section class="release">
+            <h3>October 22, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> The <strong>Paranormal Investigation Note Generator</strong> in the Haunted Locations Wiki, a worksheet for logging haunted places and ghost-hunting videos. It can save your progress to a file, print as a worksheet, and turn your notes into a ready-to-share page.</li>
+                <li><span class="change-type">Added</span> This Patch Notes page, linked from the bottom of every page.</li>
+                <li><span class="change-type">Changed</span> Patch Notes now come in three versions, General, Therapists, and Tech, so you can read the one written for you. Each version also lists known issues, accessibility updates, privacy details, and what’s coming soon.</li>
+                <li><span class="change-type">Changed</span> Rewrote the clinical disclaimer and site status note at the bottom of every page so they’re clearer. Crisis information now has its own line: call or text <strong>988</strong> in the U.S., or call <strong>911</strong> in an emergency.</li>
+                <li><span class="change-type">Fixed</span> On the Resources page, the filter menu now sits beside the list instead of covering it while you scroll.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 16, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> The <strong>Author’s Library</strong>, a home for Progress Notes on Confinement, academic writing, creative writing, and art.</li>
+                <li><span class="change-type">Changed</span> Refreshed the wording across the site and the Haunted Locations Wiki.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 15, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> Launched <strong>GeekTragedie’s Wonderland</strong> with mental health resources, everyday “adulting” tools, therapist tools, and hobby projects.</li>
+                <li><span class="change-type">Added</span> The <strong>Incarceration Museum Wiki</strong>.</li>
+                <li><span class="change-type">Added</span> A clinical disclaimer and site status note on every page.</li>
+            </ul>
+        </section>
+
+        <section class="site-notes">
+            <h3>Known Issues</h3>
+            <ul>
+                <li>Printing and saving as PDF can look a little different from browser to browser.</li>
+                <li>The Note Generator doesn’t save on its own, so use <strong>Save JSON</strong> before closing the page.</li>
+            </ul>
+            <h3>Accessibility</h3>
+            <ul>
+                <li>The Resources filters move above the list on phones.</li>
+                <li>Every field in the Note Generator is labeled, and the page works with a keyboard.</li>
+            </ul>
+            <h3>Privacy &amp; Data</h3>
+            <ul>
+                <li>No accounts and no tracking.</li>
+                <li>The tools work inside your browser, and what you type isn’t sent to or saved by this site. Files only download when you click a save button.</li>
+            </ul>
+            <h3>Coming Soon</h3>
+            <p class="muted">Planned updates will be listed here.</p>
+        </section>
+    </div>
+
+    <!-- Therapist audience -->
+    <div class="panel notes-panel" role="tabpanel" id="therapists" aria-labelledby="tab-therapists">
+        <h2>For Therapists</h2>
+
+        <section class="release">
+            <h3>October 22, 2026</h3>
+            <ul>
+                <li><span class="change-type">Changed</span> <strong>Clinical disclaimer revised.</strong> It now states that the content is for education and self-advocacy, isn’t therapy, diagnosis, or medical advice, doesn’t replace individualized care from a qualified professional, and that using the site doesn’t establish a clinician-client relationship.</li>
+                <li><span class="change-type">Changed</span> <strong>Crisis resources</strong> are now on a separate line: 988 Suicide &amp; Crisis Lifeline (call or text) and 911 for imminent danger.</li>
+                <li><span class="change-type">Changed</span> <strong>Site Status &amp; Archival Note added.</strong> Some materials reflect earlier stages of training or historical research rather than current guidance. Check the dates and cited sources on each page before relying on it clinically.</li>
+                <li><span class="change-type">Fixed</span> Resources page filters (audience, format, diagnosis, symptom, therapy style) stay beside the results while scrolling, which makes them easier to use when looking up client handouts.</li>
+                <li><span class="change-type">Added</span> <strong>Therapist-specific patch notes</strong> (this tab), covering disclaimer and scope-of-use changes, plus a Privacy &amp; Data section on how the tools handle what you enter and guidance on de-identified information.</li>
+                <li>No changes to the Letter, Note, or Superbill Generators in this update.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 16, 2026</h3>
+            <ul>
+                <li><span class="change-type">Changed</span> Updated the wording on the Therapist Tools overview page and the Letter Generator.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 15, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> <strong>Therapist Tools</strong>: the Letter Generator (accommodation, ESA, and referral letter templates), the Note Generator (progress-note templates with diagnosis and therapy-style options), and the Superbill Generator.</li>
+                <li><span class="change-type">Added</span> The mental health <strong>Resource Index</strong> with filters by diagnosis, symptom, and therapy style.</li>
+                <li><span class="change-type">Added</span> Clinical disclaimer and crisis line on every page.</li>
+            </ul>
+        </section>
+
+        <section class="site-notes">
+            <h3>Known Issues</h3>
+            <ul>
+                <li>The therapist tools need an internet connection because they load helper libraries from public CDNs.</li>
+                <li>Print and PDF output can vary by browser, so review documents before sending them.</li>
+            </ul>
+            <h3>Accessibility</h3>
+            <ul>
+                <li>Resource filters stack above results on small screens.</li>
+            </ul>
+            <h3>Privacy &amp; Data</h3>
+            <ul>
+                <li>The tools run entirely in your browser. What you enter isn’t sent to or stored by this site, and the site has no analytics.</li>
+                <li><strong>This site is not a HIPAA-covered service.</strong> Use initials or de-identified details, and store finished documents in your own secure, compliant system.</li>
+            </ul>
+            <h3>Coming Soon</h3>
+            <p class="muted">Planned updates will be listed here.</p>
+        </section>
+    </div>
+
+    <!-- Tech audience -->
+    <div class="panel notes-panel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
+        <h2>For the Tech-Savvy</h2>
+
+        <section class="release">
+            <h3>October 22, 2026 <code>a48afe5</code></h3>
+            <ul>
+                <li><span class="change-type">Added</span> <code>niches/haunted-wiki/note-generator.html</code> and <code>.js</code>, a vanilla-JS form with JSON export and import (versioned schema, keyed checklists), live Markdown generation using Chicago-style notes and bibliography with UTC-safe date formatting, and two print modes (a worksheet print, plus a <code>body.print-note</code> mode rendered with <code>marked</code>). Printed text is copied into mirror elements so long entries don’t get cut off.</li>
+                <li><span class="change-type">Added</span> <code>patch-notes/</code> page and a <code>.footer-link</code> in <code>.footer-controls</code> across all 20+ footers, including the two Next.js apps.</li>
+                <li><span class="change-type">Changed</span> <code>patch-notes/</code> split into General, Therapists, and Tech panels using the ARIA tabs pattern (<code>role="tablist"</code>/<code>tab</code>/<code>tabpanel</code>, roving <code>tabindex</code>, Arrow/Home/End keys). Each tab has its own link via <code>#general</code>, <code>#therapists</code>, <code>#tech</code> (<code>history.replaceState</code>), and <code>scroll-margin-top</code> keeps the panel clear of the sticky nav. Without JS the panels show stacked with the tablist hidden, and print shows all panels. The script is a small inline IIFE with no dependencies.</li>
+                <li><span class="change-type">Changed</span> Footer disclaimer copy updated in all static pages and in the <code>layout.js</code> files. The <code>my-budget</code> and <code>magicrpg</code> static exports were rebuilt and re-synced from <code>out/</code>.</li>
+                <li><span class="change-type">Fixed</span> Resources <code>.layout-wrapper</code> changed from <code>flex-wrap</code> to a <code>260px minmax(0,1fr)</code> grid. The table’s min-content width was forcing the main column to wrap below the sticky sidebar. Also added <code>overflow-wrap:anywhere</code> on cells and a stacked layout at 800px and below.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 16, 2026 <code>3c194e7</code> <code>cc7522c</code> PR #2</h3>
+            <ul>
+                <li><span class="change-type">Added</span> <code>authors-library/</code> with four Markdown-driven sections that use the same <code>app.js</code> + <code>marked</code> hash-routing pattern as the wikis.</li>
+                <li><span class="change-type">Changed</span> Site-wide copy edits, including the Next.js exports.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 15, 2026 <code>f299cb0</code> … PR #1</h3>
+            <ul>
+                <li><span class="change-type">Added</span> Consolidated the standalone projects into one GitHub Pages repo, with shared <code>assets/site.css</code> and <code>theme.js</code> for theme variables and the dark/light toggle.</li>
+                <li><span class="change-type">Added</span> <code>incarceration-museum-wiki/</code>.</li>
+                <li><span class="change-type">Fixed</span> Removed a symlink that broke the Pages artifact upload, and removed leftover per-repo LICENSE, README, and workflow files.</li>
+                <li><span class="change-type">Changed</span> Rebranded “Organized Chaos” as “Wonderland”.</li>
+            </ul>
+        </section>
+
+        <section class="site-notes">
+            <h3>Known Issues</h3>
+            <ul>
+                <li>The footer is duplicated by hand across pages rather than templated.</li>
+                <li>Next.js exports have to be rebuilt by hand after footer edits.</li>
+                <li>The Note Generator’s bibliography doesn’t invert personal names.</li>
+                <li>CDN dependencies aren’t pinned or SRI-hashed.</li>
+            </ul>
+            <h3>Accessibility</h3>
+            <ul>
+                <li>The tabs on this page use the ARIA tabs pattern with keyboard navigation.</li>
+                <li>Note Generator controls all have labels, and radio groups use <code>role="radiogroup"</code>.</li>
+            </ul>
+            <h3>Privacy &amp; Data</h3>
+            <ul>
+                <li>Static hosting on GitHub Pages, no analytics, and no backend.</li>
+                <li>Third-party requests go to jsDelivr (<code>marked</code>, Select2) and code.jquery.com.</li>
+                <li>GitHub may log standard request metadata.</li>
+            </ul>
+            <h3>Coming Soon</h3>
+            <p class="muted">Planned updates will be listed here. For the full history, see the <a href="https://github.com/GeekTragedie/geektragedie.github.io" class="accent-text" target="_blank" rel="noopener noreferrer">GitHub repo</a>.</p>
+        </section>
     </div>
 </div>
 
@@ -86,5 +330,39 @@
     </div>
 </footer>
 
+<script>
+// Audience tabs. Without JS all three panels stay visible, stacked.
+(function () {
+    const tablist = document.querySelector('[role="tablist"]');
+    const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+    const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+
+    function select(index, focus) {
+        tabs.forEach((tab, i) => {
+            const active = i === index;
+            tab.setAttribute('aria-selected', active);
+            tab.tabIndex = active ? 0 : -1;
+            panels[i].hidden = !active;
+        });
+        if (focus) tabs[index].focus();
+        history.replaceState(null, '', `#${panels[index].id}`);
+    }
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(i, false));
+        tab.addEventListener('keydown', event => {
+            const moves = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 };
+            if (!(event.key in moves)) return;
+            event.preventDefault();
+            select((moves[event.key] + tabs.length) % tabs.length, true);
+        });
+    });
+
+    panels.forEach(panel => panel.tabIndex = 0);
+    tablist.hidden = false;
+    const fromHash = panels.findIndex(panel => `#${panel.id}` === location.hash);
+    select(fromHash === -1 ? 0 : fromHash, false);
+})();
+</script>
 </body>
 </html>
