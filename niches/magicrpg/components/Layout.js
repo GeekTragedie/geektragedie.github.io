@@ -59,12 +59,16 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
       <footer className="site-footer">
           <div className="footer-container">
               <p className="disclaimer">
-                  <strong>Clinical Disclaimer:</strong> Everything here is for learning and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and using it doesn’t make us therapist and client. If you’re in crisis, please call or text 988, or call your local emergency number.
+                  <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
               </p>
               <p className="disclaimer">
-                  <strong>Site Status:</strong> This site is always a work in progress. I add to it when life and my interests allow, so things come and go.
+                  If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+              </p>
+              <p className="disclaimer">
+                  <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
               </p>
               <div className="footer-controls">
+                  <a href="../../patch-notes/index.html" className="footer-link">Patch Notes</a>
                   <button id="theme-toggle-btn" className="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
                       <span className="label-for-dark">☀️ Light Mode</span><span className="label-for-light">🌙 Dark Mode</span>
                   </button>

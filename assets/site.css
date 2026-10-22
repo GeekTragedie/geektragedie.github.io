@@ -374,7 +374,16 @@ body.light-mode .panel :is(input[type="date"], input[type="month"], input[type="
 }
 .footer-controls {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+.footer-link:hover {
+    text-decoration: underline;
 }
 .theme-toggle-btn {
     background-color: var(--bg-dropdown);

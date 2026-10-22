@@ -23,14 +23,13 @@ body.light-mode {
 }
 
 .layout-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
     gap: 30px;
-    align-items: flex-start;
+    align-items: start;
 }
 
 .sidebar {
-    flex: 1 1 280px;
     background-color: var(--bg-panel);
     padding: 20px;
     border-radius: 8px;
@@ -106,7 +105,7 @@ body.light-mode {
 }
 
 .main-content {
-    flex: 3 1 600px;
+    min-width: 0;
 }
 .search-container {
     margin-bottom: 15px;
@@ -176,6 +175,7 @@ table.data-table {
     text-align: left;
     border-bottom: 1px solid var(--border-color);
     vertical-align: top;
+    overflow-wrap: anywhere;
 }
 .data-table th {
     background-color: var(--bg-header);
@@ -232,4 +232,15 @@ table.data-table {
 }
 .back-to-top:hover {
     background-color: var(--bg-header-hover);
+}
+
+/* Narrow screens: stack the filters above the table instead of a side column */
+@media (max-width: 800px) {
+    .layout-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        position: static;
+        max-height: none;
+    }
 }

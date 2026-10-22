@@ -155,3 +155,337 @@ body.light-mode {
         padding: 20px;
     }
 }
+
+/* =========================================================
+   Paranormal Investigation Note Generator (note-generator.html)
+   Layout mirrors the paper "Haunted Investigation Data Page".
+   ========================================================= */
+.note-gen .back-link {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--link-color);
+    text-decoration: none;
+}
+.note-gen .back-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+.note-gen .hero {
+    border-top: 3px solid var(--accent);
+    margin-bottom: 20px;
+}
+.note-gen .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ws-page {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    color: var(--text-main);
+}
+.ws-page .page-title {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.7em;
+    color: var(--text-heading);
+    margin: 0 0 18px;
+}
+.ws-page .section-heading {
+    display: block;
+    font-size: 1.15em;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 22px 0 8px;
+}
+.ws-page .section-heading .hint {
+    font-size: 0.72em;
+    margin-left: 6px;
+    color: var(--text-muted);
+}
+.ws-page .small-label {
+    display: block;
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 18px 0 6px;
+}
+.ws-page .small-label-regular {
+    font-weight: 400;
+}
+
+/* Form controls */
+.ws-page input[type="text"],
+.ws-page input[type="date"],
+.ws-page textarea {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+.ws-page textarea,
+.ws-page .wide-input {
+    width: 100%;
+    resize: vertical;
+}
+.ws-page :is(input, textarea):focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+.ws-page input[type="checkbox"],
+.ws-page input[type="radio"] {
+    accent-color: var(--accent);
+}
+.ws-page input[type="date"] {
+    color-scheme: dark;
+}
+body.light-mode .ws-page input[type="date"] {
+    color-scheme: light;
+}
+
+/* Metadata table: label | input | label | input */
+.meta-table {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr);
+    border-top: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}
+.meta-table > label,
+.meta-table > input,
+.meta-table > .print-mirror {
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.meta-table > label {
+    font-weight: 700;
+    font-size: 0.85em;
+    color: var(--text-heading);
+    padding: 8px 10px;
+    background-color: var(--bg-subpanel);
+}
+.ws-page .meta-table > input {
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Checklist tables: [ ] Label: [notes] */
+.checklist {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}
+.check-cell {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9em;
+    min-width: 0;
+}
+.check-cell label {
+    white-space: nowrap;
+    cursor: pointer;
+}
+.ws-page .check-cell .check-note {
+    flex: 1;
+    min-width: 60px;
+    border: none;
+    border-bottom: 1px dashed var(--border-color);
+    border-radius: 0;
+    background: transparent;
+    padding: 4px 2px;
+}
+
+/* Status block at the bottom of page 1 */
+.status-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 30px;
+    margin-top: 24px;
+    font-size: 0.9em;
+}
+.status-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.status-col label {
+    cursor: pointer;
+}
+.yes-no {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.yes-no > span {
+    min-width: 150px;
+}
+
+.print-mirror {
+    display: none;
+}
+
+/* Markdown output */
+.output-panel h2 {
+    margin-bottom: 4px;
+}
+.output-panel textarea {
+    width: 100%;
+    margin: 12px 0;
+    padding: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85em;
+    resize: vertical;
+}
+.output-panel .toolbar {
+    margin-bottom: 0;
+}
+
+.note-print {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .meta-table {
+        grid-template-columns: max-content minmax(0, 1fr);
+    }
+    .checklist {
+        grid-template-columns: 1fr;
+    }
+    .ws-page {
+        padding: 18px;
+    }
+}
+
+/* --- Printing: worksheet (default) and note PDF (body.print-note) --- */
+@page {
+    size: letter;
+    margin: 0.5in;
+}
+@media print {
+    body.note-gen-page,
+    body.note-gen-page.light-mode {
+        --text-main: #000;
+        --text-muted: #000;
+        --text-heading: #000;
+        --border-color: #000;
+        --bg-subpanel: transparent;
+        --bg-input: transparent;
+        background: #fff !important;
+        color: #000;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 10.5pt;
+        line-height: 1.35;
+    }
+    .note-gen-page .no-print,
+    .note-gen-page .note-print {
+        display: none !important;
+    }
+    .note-gen {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+    .ws-page {
+        background: none;
+        border: none;
+        border-radius: 0;
+        backdrop-filter: none;
+        padding: 0;
+        margin: 0;
+    }
+    .ws-page-break {
+        break-before: page;
+    }
+    .ws-page .page-title {
+        font-size: 20pt;
+        margin-bottom: 10pt;
+    }
+    .ws-page .section-heading {
+        margin: 12pt 0 4pt;
+    }
+    .ws-page .small-label {
+        margin: 10pt 0 2pt;
+    }
+    .meta-table,
+    .checklist,
+    .status-block {
+        break-inside: avoid;
+    }
+    .meta-table > label {
+        padding: 4pt 6pt;
+    }
+    .check-cell {
+        padding: 3pt 6pt;
+        font-size: 9.5pt;
+    }
+
+    /* Show the mirrors (full text) in place of the form controls */
+    .ws-page input[type="text"],
+    .ws-page input[type="date"],
+    .ws-page textarea {
+        display: none;
+    }
+    .print-mirror {
+        display: block;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+    .meta-table > .print-mirror {
+        padding: 4pt 6pt;
+    }
+    .check-cell .print-mirror {
+        display: inline;
+        flex: 1;
+    }
+    .status-block {
+        margin-top: 14pt;
+    }
+
+    /* Note PDF: only the rendered Markdown note */
+    body.print-note .note-gen > * {
+        display: none !important;
+    }
+    body.print-note .note-gen > .note-print {
+        display: block !important;
+        font-size: 11pt;
+        line-height: 1.5;
+    }
+    .note-print h1 {
+        font-size: 22pt;
+        margin: 0 0 8pt;
+    }
+    .note-print h3 {
+        font-size: 13pt;
+        border-bottom: 1px solid #000;
+        padding-bottom: 2pt;
+    }
+    .note-print h4 {
+        font-size: 11.5pt;
+    }
+    .note-print hr {
+        border: none;
+        border-top: 1px solid #999;
+        margin: 10pt 0;
+    }
+    .note-print li {
+        break-inside: avoid;
+    }
+}

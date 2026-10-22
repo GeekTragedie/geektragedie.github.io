@@ -1,6 +1,9 @@
 ### START HERE
 - [Home](#home)
 
+### TOOLS
+- [Investigation Note Generator](note-generator.html)
+
 ### LOCATIONS
 - ["X" Salon](#locations/x-salon)
 - [Billie Creek Village](#locations/billie-creek-village)

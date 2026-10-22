@@ -69,3 +69,10 @@ Welcome, ghoul friends! This is my running list of haunted places visited by the
 | [White Hill Mansion](#locations/white-hill-mansion) | Home | Fieldsboro, NJ | S&C |
 | [Wilson Castle](#locations/wilson-castle) | Home | Proctor, VT | S&C |
 | [Winchester Mystery House](#locations/winchester-mystery-house) | Home | San Jose, CA | S&C |
+
+---
+
+### Curious About How This Information Was Gathered?
+Want to see how I collect data for these archives—or log your own paranormal video investigations? Check out the interactive worksheet I use to track historical lore, equipment triggers, and active investigation evidence!
+
+**[Launch the Paranormal Investigation Note Generator](note-generator.html)**
