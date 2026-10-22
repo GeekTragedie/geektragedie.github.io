@@ -3,6 +3,8 @@ import "./globals.css";
 export const metadata = {
   title: "GeekTragedie | My Budget",
   description: "A simple and accessible budgeting tool.",
+  // Shared site favicon, served from the site root rather than this app
+  icons: { icon: { url: "/assets/favicon.jpg", type: "image/jpeg" } },
 };
 
 // The shared site stylesheet and theme toggle are linked relative to /adulting/my-budget/.
@@ -15,7 +17,7 @@ export default function RootLayout({ children }) {
         {/* eslint-disable-next-line @next/next/no-css-tags */}
         <link rel="stylesheet" href="../../assets/site.css" />
       </head>
-      <body suppressHydrationWarning aria-label="My Budget page with a background texture of stacked firewood logs">
+      <body suppressHydrationWarning aria-label="My Budget page">
         {/* Must run before the page paints so the saved theme never flashes */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="../../assets/theme.js"></script>

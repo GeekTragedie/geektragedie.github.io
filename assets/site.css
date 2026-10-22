@@ -1,9 +1,11 @@
 /* =========================================================
    GeekTragedie's Wonderland - shared site styles
    Every page links this file. Page-specific styles stay in
-   the page itself. To change a page's background photo,
-   override `background-image` on body in the page's <style>
-   (keep the overlay gradient first), e.g.:
+   the page itself. Pages have a plain background by default
+   so reading, wiki and tool pages stay easy to read. Hub pages
+   opt into a background photo by setting `background-image`
+   on body in the page's <style> (keep the overlay gradient
+   first), e.g.:
      body { background-image:
          linear-gradient(var(--overlay-color), var(--overlay-color)),
          url('./bird-eggs.jpg'); }
@@ -56,9 +58,6 @@ body {
     --accent-contrast: #0f172a;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-main);
-    background-image:
-        linear-gradient(var(--overlay-color), var(--overlay-color)),
-        url('../stacked-logs.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

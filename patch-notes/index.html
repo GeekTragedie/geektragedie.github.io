@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GeekTragedie | Patch Notes</title>
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
 <style>
     .repo-line {
         margin: -20px 0 24px;
@@ -86,7 +87,7 @@
     }
 </style>
 </head>
-<body aria-label="Patch notes page with a background texture of stacked firewood logs">
+<body aria-label="Patch notes page">
 <script src="../assets/theme.js"></script>
 
 <nav class="top-nav" aria-label="Main Navigation">
@@ -156,6 +157,9 @@
                 <li><span class="change-type">Changed</span> Patch Notes now come in three versions, General, Therapists, and Tech, so you can read the one written for you. Each version also lists known issues, accessibility updates, privacy details, and what’s coming soon.</li>
                 <li><span class="change-type">Changed</span> Rewrote the clinical disclaimer and site status note at the bottom of every page so they’re clearer. Crisis information now has its own line: call or text <strong>988</strong> in the U.S., or call <strong>911</strong> in an emergency.</li>
                 <li><span class="change-type">Fixed</span> On the Resources page, the filter menu now sits beside the list instead of covering it while you scroll.</li>
+                <li><span class="change-type">Added</span> A new site icon: a glowing jellyfish now shows in your browser tab and bookmarks.</li>
+                <li><span class="change-type">Changed</span> New background photos on the Author’s Library (a feather with water droplets) and Therapist Tools (a robin in the trees) hub pages.</li>
+                <li><span class="change-type">Changed</span> Reading pages, wikis, tools, and the Resources page now have a plain background with no photo behind the text, so they’re easier to read.</li>
             </ul>
         </section>
 
@@ -186,6 +190,7 @@
             <ul>
                 <li>The Resources filters move above the list on phones.</li>
                 <li>Every field in the Note Generator is labeled, and the page works with a keyboard.</li>
+                <li>Plain backgrounds on reading and tool pages improve text contrast. Page descriptions for screen readers now match each page’s background.</li>
             </ul>
             <h3>Privacy &amp; Data</h3>
             <ul>
@@ -209,7 +214,9 @@
                 <li><span class="change-type">Changed</span> <strong>Site Status &amp; Archival Note added.</strong> Some materials reflect earlier stages of training or historical research rather than current guidance. Check the dates and cited sources on each page before relying on it clinically.</li>
                 <li><span class="change-type">Fixed</span> Resources page filters (audience, format, diagnosis, symptom, therapy style) stay beside the results while scrolling, which makes them easier to use when looking up client handouts.</li>
                 <li><span class="change-type">Added</span> <strong>Therapist-specific patch notes</strong> (this tab), covering disclaimer and scope-of-use changes, plus a Privacy &amp; Data section on how the tools handle what you enter and guidance on de-identified information.</li>
-                <li>No changes to the Letter, Note, or Superbill Generators in this update.</li>
+                <li><span class="change-type">Changed</span> The Therapist Tools hub has a new background photo. The Letter, Note, and Superbill Generators and the Resource Index now use a plain background, which reduces visual clutter and improves contrast while you work or share your screen with a client.</li>
+                <li><span class="change-type">Changed</span> New site icon (a jellyfish) in browser tabs, which makes the site easier to spot among other open tabs.</li>
+                <li>No functional changes to the Letter, Note, or Superbill Generators in this update.</li>
             </ul>
         </section>
 
@@ -238,6 +245,7 @@
             <h3>Accessibility</h3>
             <ul>
                 <li>Resource filters stack above results on small screens.</li>
+                <li>Higher text contrast on the tool and resource pages, and corrected screen-reader page descriptions.</li>
             </ul>
             <h3>Privacy &amp; Data</h3>
             <ul>
@@ -259,6 +267,10 @@
                 <li><span class="change-type">Added</span> <code>niches/haunted-wiki/note-generator.html</code> and <code>.js</code>, a vanilla-JS form with JSON export and import (versioned schema, keyed checklists), live Markdown generation using Chicago-style notes and bibliography with UTC-safe date formatting, and two print modes (a worksheet print, plus a <code>body.print-note</code> mode rendered with <code>marked</code>). Printed text is copied into mirror elements so long entries don’t get cut off.</li>
                 <li><span class="change-type">Added</span> <code>patch-notes/</code> page and a <code>.footer-link</code> in <code>.footer-controls</code> across all 20+ footers, including the two Next.js apps.</li>
                 <li><span class="change-type">Changed</span> <code>patch-notes/</code> split into General, Therapists, and Tech panels using the ARIA tabs pattern (<code>role="tablist"</code>/<code>tab</code>/<code>tabpanel</code>, roving <code>tabindex</code>, Arrow/Home/End keys). Each tab has its own link via <code>#general</code>, <code>#therapists</code>, <code>#tech</code> (<code>history.replaceState</code>), and <code>scroll-margin-top</code> keeps the panel clear of the sticky nav. Without JS the panels show stacked with the tablist hidden, and print shows all panels. The script is a small inline IIFE with no dependencies.</li>
+                <li><span class="change-type">Changed</span> <code>assets/site.css</code> no longer sets a default <code>background-image</code> on <code>body</code>. Pages are plain (<code>--bg-main</code>) by default, and hubs opt in with the <code>linear-gradient(var(--overlay-color)…), url('./*.jpg')</code> override. Home now declares <code>stacked-logs.jpg</code> explicitly.</li>
+                <li><span class="change-type">Added</span> <code>assets/favicon.jpg</code> (128×128, center-cropped), linked as <code>&lt;link rel="icon" href="/assets/favicon.jpg"&gt;</code> on all static pages. In My Budget, <code>metadata.icons</code> is set and the app’s <code>favicon.ico</code> removed, then the app was rebuilt and its export re-synced.</li>
+                <li><span class="change-type">Added</span> <code>authors-library/feather.jpg</code> and <code>therapist-tools/robin.jpg</code>. All new images were passed through <code>magick -strip</code>, which removed EXIF metadata, including GPS from the original phone photo.</li>
+                <li><span class="change-type">Fixed</span> <code>&lt;body aria-label&gt;</code> text on 10 pages that still described a firewood-logs background they no longer show.</li>
                 <li><span class="change-type">Changed</span> Footer disclaimer copy updated in all static pages and in the <code>layout.js</code> files. The <code>my-budget</code> and <code>magicrpg</code> static exports were rebuilt and re-synced from <code>out/</code>.</li>
                 <li><span class="change-type">Fixed</span> Resources <code>.layout-wrapper</code> changed from <code>flex-wrap</code> to a <code>260px minmax(0,1fr)</code> grid. The table’s min-content width was forcing the main column to wrap below the sticky sidebar. Also added <code>overflow-wrap:anywhere</code> on cells and a stacked layout at 800px and below.</li>
             </ul>
@@ -289,6 +301,7 @@
                 <li>Next.js exports have to be rebuilt by hand after footer edits.</li>
                 <li>The Note Generator’s bibliography doesn’t invert personal names.</li>
                 <li>CDN dependencies aren’t pinned or SRI-hashed.</li>
+                <li>Magic RPG still uses its old favicon, and its <code>_document.js</code> aria-label still mentions firewood logs. Both need a rebuild of that app.</li>
             </ul>
             <h3>Accessibility</h3>
             <ul>
@@ -300,6 +313,7 @@
                 <li>Static hosting on GitHub Pages, no analytics, and no backend.</li>
                 <li>Third-party requests go to jsDelivr (<code>marked</code>, Select2) and code.jquery.com.</li>
                 <li>GitHub may log standard request metadata.</li>
+                <li>Image metadata is stripped before photos are published.</li>
             </ul>
             <h3>Coming Soon</h3>
             <p class="muted">Planned updates will be listed here. For the full history, see the <a href="https://github.com/GeekTragedie/geektragedie.github.io" class="accent-text" target="_blank" rel="noopener noreferrer">GitHub repo</a>.</p>
