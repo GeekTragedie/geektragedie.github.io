@@ -14,10 +14,10 @@ One of the longest-running and most influential paranormal television shows in h
 
 ### Locations Investigated in the Archives
 * [Bobby Mackey’s Music World](#locations/bobby-mackeys-music-world)
+* [Edinburgh Vaults](#locations/edinburgh-vaults)
 * [Houghton Mansion](#locations/houghton-mansion)
 * [Old Idaho Penitentiary](#locations/old-idaho-penitentiary)
 * [Overbrook Asylum (Essex County Hospital)](#locations/essex-county-hospital)
 * [Riddle House](#locations/riddle-house)
 * [Sloss Furnaces](#locations/sloss-furnaces)
-* [The Edinburgh Vaults](#locations/edinburgh-vaults)
 * [West Virginia Penitentiary](#locations/west-virginia-penitentiary)

@@ -1,4 +1,4 @@
-# Celina Spookyboo's House & Land
+# X Home (Canada)
 
 **Type:** Home  
 **Location:** Canada  

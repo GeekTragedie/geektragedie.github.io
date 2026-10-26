@@ -1,4 +1,4 @@
-# X Salon
+# The Studio
 
 **Type:** Salon  
 **Location:** Spokane, WA  

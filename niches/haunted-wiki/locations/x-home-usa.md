@@ -1,7 +1,7 @@
-# Kris & Oompa's Old Home
+# X Home (USA)
 
 **Type:** Home  
-**Location:** Texas  
+**Location:** USA  
 
 ---
 

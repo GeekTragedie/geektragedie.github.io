@@ -13,14 +13,13 @@ Can't Sleep is a collaborative paranormal project spearheaded by creators Kris C
 * **Key Equipment:** Spirit Boxes, REM Pods, EMF Detectors, and occasionally the Estes Method. 
 
 ### Locations Investigated in the Archives
-* [Celina's House](#locations/celina-house)
+* [Comedy Store, The](#locations/comedy-store)
 * [Critters Lane](#locations/critters-lane)
-* [Kris & Oompa's Old House](#locations/kris-and-oompa-old-house)
+* [Dr. Willella Howe-Waffle House](#locations/dr-willella-howe-waffle-house)
 * [Olde Angel Inn](#locations/olde-angel-inn)
 * [One of a Kind Antique Mall](#locations/one-of-a-kind-antique-mall)
-* [The Comedy Store](#locations/comedy-store)
-* [The Dr. Willella Howe-Waffle House](#locations/dr-willella-howe-waffle-house)
-* [The Screaming Tunnel](#locations/screaming-tunnel)
-* [Trans-Allegheny Lunatic Asylum](#locations/trans-allegheny-lunatic-asylum)
+* [Screaming Tunnel, The](#locations/screaming-tunnel)
 * [Wade Manor](#locations/wade-manor)
 * [West Virginia Penitentiary](#locations/west-virginia-penitentiary)
+* [X Home (Canada)](#locations/x-home-canada)
+* [X Home (USA)](#locations/x-home-usa)

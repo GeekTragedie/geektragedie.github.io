@@ -1,7 +1,7 @@
-# Historic Apartments
+# X Historic Apartment
 
-**Type:** Residence  
-**Location:** Spokane, WA  
+**Type:** Home  
+**Location:** Spokane, WA, USA  
 
 ---
 

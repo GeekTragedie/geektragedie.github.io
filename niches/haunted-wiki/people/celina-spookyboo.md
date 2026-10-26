@@ -13,15 +13,17 @@ Celina Myers, known online as Celina Spookyboo, is a massive presence in the par
 * **Key Equipment:** Dowsing rods, Spirit Boxes, Estes Method, and traditional audio recorders.
 
 ### Locations Investigated in the Archives
-* [Carl Beck House](#locations/carl-beck)
-* [Celina's House](#locations/celina-house)
+* [Beck House](#locations/beck-house)
+* [Carl Beck House](#locations/carl-beck-house)
 * [Cresson Sanatorium](#locations/cresson-sanatorium)
+* [Doss House](#locations/doss-house)
 * [Driskill Hotel](#locations/driskill-hotel)
+* [Hinsdale / Dandy House](#locations/hinsdale-dandy-house)
 * [Lancaster Smokehouse](#locations/lancaster-smokehouse)
+* [Mill Restraunt & Inn](#locations/mill-restraunt-and-inn)
 * [Palace Theatre](#locations/palace-theatre)
 * [Reel Treats](#locations/reel-treats)
-* [The Doss House](#locations/doss-house)
-* [The Hinsdale / Dandy House](#locations/hinsdale-dandy-house)
-* [The Mill Restraunt & Inn](#locations/mill-restraunt-and-inn)
-* [The Ross House](#locations/ross-house)
+* [Ross House](#locations/ross-house)
+* [Trans-Allegheny Lunatic Asylum](#locations/trans-allegheny-lunatic-asylum)
 * [Wade Manor](#locations/wade-manor)
+* [X Home (Canada)](#locations/x-home-canada)

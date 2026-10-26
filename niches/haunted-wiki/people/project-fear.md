@@ -13,10 +13,10 @@ Born from the ashes of the Travel Channel show "Destination Fear," Project Fear 
 * **Key Equipment:** Sleep cameras, Spirit Boxes, REM Pods, and Ovilus.
 
 ### Locations Investigated in the Archives
+* [Edinburgh Vaults](#locations/edinburgh-vaults)
 * [Farrar Elementary School](#locations/farrar-elementary)
+* [Hinsdale / Dandy House](#locations/hinsdale-dandy-house)
 * [Preston Castle](#locations/preston-castle)
 * [Sallie House](#locations/sallie-house)
-* [The Edinburgh Vaults](#locations/edinburgh-vaults)
-* [The Hinsdale / Dandy House](#locations/hinsdale-dandy-house)
-* [The Stanley Hotel](#locations/stanley-hotel)
+* [Stanley Hotel](#locations/stanley-hotel)
 * [Trans-Allegheny Lunatic Asylum](#locations/trans-allegheny-lunatic-asylum)

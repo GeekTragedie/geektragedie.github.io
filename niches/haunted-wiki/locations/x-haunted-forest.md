@@ -1,7 +1,7 @@
-# The Haunted Forest (Cobb Estate)
+# X Haunted Forest (Cobb Estate)
 
 **Type:** Outdoors  
-**Location:** Altadena, CA  
+**Location:** Altadena, CA, USA  
 
 ---
 

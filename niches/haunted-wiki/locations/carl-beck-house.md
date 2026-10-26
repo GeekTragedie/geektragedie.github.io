@@ -1,4 +1,4 @@
-# The Beck House
+# Carl Beck House
 
 **Type:** Home  
 **Location:** Penetanguishene, ON  
@@ -6,7 +6,7 @@
 ---
 
 ### Overview
-The Beck House is a historic residence that also operates as an Airbnb (notably providing snacks to guests), allowing visitors to experience its paranormal activity firsthand.
+The Carl Beck House is a historic residence that also operates as an Airbnb (notably providing snacks to guests), allowing visitors to experience its paranormal activity firsthand.
 
 ### History
 * **Built:** [Year]

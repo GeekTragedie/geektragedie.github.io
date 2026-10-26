@@ -13,11 +13,11 @@ Kris Collins (KallMeKris) gained massive popularity for her comedic sketches, bu
 * **Key Equipment:** Spirit Boxes, REM Pods, EMF Detectors, and Flashlights.
 
 ### Locations Investigated in the Archives
+* [Comedy Store, The](#locations/comedy-store)
 * [Driskill Hotel](#locations/driskill-hotel)
-* [Kris & Oompa's Old House](#locations/kris-and-oompa-old-house)
 * [One of a Kind Antique Mall](#locations/one-of-a-kind-antique-mall)
 * [Palace Theatre](#locations/palace-theatre)
-* [The Comedy Store](#locations/comedy-store)
-* [The Screaming Tunnel](#locations/screaming-tunnel)
+* [Screaming Tunnel, The](#locations/screaming-tunnel)
 * [Trans-Allegheny Lunatic Asylum](#locations/trans-allegheny-lunatic-asylum)
 * [West Virginia Penitentiary](#locations/west-virginia-penitentiary)
+* [X Home (USA)](#locations/x-home-usa)

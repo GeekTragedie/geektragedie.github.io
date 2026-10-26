@@ -13,9 +13,9 @@ Garrett Watts is a YouTube creator known for his eccentric, highly entertaining,
 * **Key Equipment:** Handheld cameras, EMF meters, and Spirit Boxes.
 
 ### Locations Investigated in the Archives
-* ["X" Salon](#locations/x-salon)
 * [Cresson Sanatorium](#locations/cresson-sanatorium)
 * [Elis Hotel](#locations/elis-hotel)
-* [Historic Apartment](#locations/historic-apartment)
-* [The Perkin House](#locations/perkin-house)
+* [Perkin House](#locations/perkin-house)
+* [Studio, The](#locations/the-studio)
 * [Winchester Mystery House](#locations/winchester-mystery-house)
+* [X Historic Apartment](#locations/x-historic-apartment)

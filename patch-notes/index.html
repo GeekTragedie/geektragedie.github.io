@@ -55,6 +55,10 @@
         color: var(--text-muted);
         margin-left: 6px;
     }
+    .notes-panel h4 {
+        margin: 16px 0 6px;
+        color: var(--text-heading);
+    }
     .notes-panel ul {
         margin: 0;
         padding-left: 20px;
@@ -141,6 +145,7 @@
 
     <div class="tab-container" role="tablist" aria-label="Patch notes audience" hidden>
         <button class="tab-btn" type="button" role="tab" id="tab-general" aria-controls="general">General</button>
+        <button class="tab-btn" type="button" role="tab" id="tab-niches" aria-controls="niches">Niches</button>
         <button class="tab-btn" type="button" role="tab" id="tab-therapists" aria-controls="therapists">Therapists</button>
         <button class="tab-btn" type="button" role="tab" id="tab-tech" aria-controls="tech">Tech</button>
     </div>
@@ -148,6 +153,14 @@
     <!-- General audience -->
     <div class="panel notes-panel" role="tabpanel" id="general" aria-labelledby="tab-general">
         <h2>For Everyone</h2>
+
+        <section class="release">
+            <h3>October 26, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> A <strong>Niches</strong> tab on this page, with more detail on updates to the Haunted Locations Wiki, Incarceration Museum Wiki, RPG Potion Creation Index, and Magic RPG Character Creator.</li>
+                <li><span class="change-type">Changed</span> Updated the <strong>Haunted Locations Wiki</strong> index. A few locations were renamed for privacy, Beck House in Dallas now has its own page, and the list of who investigated each place is up to date. Some pages have new web addresses, so update any bookmarks.</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>October 22, 2026</h3>
@@ -202,9 +215,104 @@
         </section>
     </div>
 
+    <!-- Niches audience -->
+    <div class="panel notes-panel" role="tabpanel" id="niches" aria-labelledby="tab-niches">
+        <h2>For Niche Explorers</h2>
+
+        <section class="release">
+            <h3>October 26, 2026</h3>
+            <h4>Haunted Locations Wiki</h4>
+            <ul>
+                <li><span class="change-type">Changed</span> The Master Index, the home page table, and the sidebar now match my latest notes, and all three use the same names and order.</li>
+                <li><span class="change-type">Changed</span> Renamed some locations for privacy. They are now listed as <strong>The Studio</strong>, <strong>X Home (Canada)</strong>, <strong>X Home (USA)</strong>, <strong>X Historic Apartment</strong>, and <strong>X Haunted Forest (Cobb Estate)</strong>. These pages have new web addresses, so update any bookmarks.</li>
+                <li><span class="change-type">Changed</span> Names that start with “The” are now sorted by their main word, such as “Comedy Store, The” and “Screaming Tunnel, The.”</li>
+                <li><span class="change-type">Added</span> <strong>Beck House</strong> (Dallas, TX) now has its own page. Its row used to open the Carl Beck House page by mistake.</li>
+                <li><span class="change-type">Changed</span> The Carl Beck House page title now reads “Carl Beck House” to match the index, and the page has a new web address.</li>
+                <li><span class="change-type">Fixed</span> Pennhurst Asylum is back in the Master Index.</li>
+                <li><span class="change-type">Changed</span> Updated media sources for the Edinburgh Vaults (adds Project Fear), the Hinsdale / Dandy House (Celina Spookyboo with Haunted Estate, Sam &amp; Colby, and two Project Fear visits), Trans-Allegheny Lunatic Asylum (Sam &amp; Colby, KallMeKris, Celina Spookyboo, Celina Spookyboo with Haunted Estate, and two Project Fear visits), and the Winchester Mystery House (adds Garrett Watts).</li>
+                <li><span class="change-type">Added</span> <strong>HE</strong> (Haunted Estate) and <strong>KMK</strong> (KallMeKris) in the media source legend.</li>
+                <li><span class="change-type">Changed</span> The investigator pages under The People now match the index. Celina Spookyboo adds Beck House and Trans-Allegheny Lunatic Asylum, and Can’t Sleep no longer lists Trans-Allegheny.</li>
+                <li><span class="change-type">Changed</span> More locations now include the country (USA, Canada) in the Location column.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 22, 2026</h3>
+            <h4>Haunted Locations Wiki</h4>
+            <ul>
+                <li><span class="change-type">Added</span> The <strong>Paranormal Investigation Note Generator</strong>, a worksheet for logging haunted places and ghost-hunting videos. It covers historical lore, a lore checklist, equipment used, and evidence observed. It can save and reopen your progress as a file, print as a blank or filled-in worksheet, and turn your notes into a ready-to-share page with notes and a bibliography.</li>
+                <li><span class="change-type">Added</span> A <strong>Tools</strong> section in the sidebar and a link to the Note Generator at the bottom of the wiki home page.</li>
+            </ul>
+            <h4>All Niches</h4>
+            <ul>
+                <li><span class="change-type">Changed</span> The Haunted Locations Wiki, Incarceration Museum Wiki, and RPG Potion Creation Index now have a plain background with no photo behind the text. The Niches hub page keeps its background photo.</li>
+                <li><span class="change-type">Changed</span> Rewrote the clinical disclaimer and site status note, and added a Patch Notes link to the bottom of every niche page, including the Magic RPG Character Creator.</li>
+                <li><span class="change-type">Added</span> The jellyfish site icon on the niche pages.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 16, 2026</h3>
+            <h4>Haunted Locations Wiki</h4>
+            <ul>
+                <li><span class="change-type">Changed</span> Refreshed the wording on the home page and on about twenty location pages.</li>
+                <li><span class="change-type">Fixed</span> Removed an unused “Recent Activity” link from the sidebar.</li>
+            </ul>
+            <h4>Incarceration Museum Wiki</h4>
+            <ul>
+                <li><span class="change-type">Added</span> Links to my visit write-ups in Progress Notes on Confinement, from the wiki home page and from the 1880 Town, Alcatraz, Cárcel de la Corona, Ukraine WWII Museum, and U.S. Holocaust Memorial Museum pages.</li>
+                <li><span class="change-type">Changed</span> The Cárcel de la Corona photos moved to its Progress Notes write-up, and the page wording was refreshed.</li>
+            </ul>
+            <h4>All Niches</h4>
+            <ul>
+                <li><span class="change-type">Changed</span> Refreshed the wording on the Niches hub, the RPG Potion Creation Index, and the Magic RPG Character Creator.</li>
+            </ul>
+        </section>
+
+        <section class="release">
+            <h3>October 15, 2026</h3>
+            <h4>Incarceration Museum Wiki</h4>
+            <ul>
+                <li><span class="change-type">Added</span> The <strong>Incarceration Museum Wiki</strong>, with 16 prisons, internment sites, and memorial museums, a Master Index, a Future Adventures list, and a page on Al Capone.</li>
+            </ul>
+            <h4>All Niches</h4>
+            <ul>
+                <li><span class="change-type">Added</span> The Haunted Locations Wiki, RPG Potion Creation Index, and Magic RPG Character Creator moved into GeekTragedie’s Wonderland under the new <strong>Niches</strong> hub.</li>
+            </ul>
+        </section>
+
+        <section class="site-notes">
+            <h3>Known Issues</h3>
+            <ul>
+                <li>Bookmarks to Haunted Locations Wiki pages that were renamed on October 26 now open a “page not found” message. Find the page again from the sidebar.</li>
+                <li>The Note Generator doesn’t save on its own, so use <strong>Save JSON</strong> before closing the page.</li>
+                <li>The Magic RPG Character Creator still shows its old site icon.</li>
+            </ul>
+            <h3>Accessibility</h3>
+            <ul>
+                <li>Plain backgrounds on the wiki and potion pages make the text easier to read.</li>
+                <li>Every field in the Note Generator is labeled, and the page works with a keyboard.</li>
+            </ul>
+            <h3>Privacy &amp; Data</h3>
+            <ul>
+                <li>Some Haunted Locations Wiki entries use general names to protect the privacy of private homes and businesses.</li>
+                <li>The Note Generator runs in your browser. Your notes aren’t sent to or saved by this site, and files only download when you click a save button.</li>
+            </ul>
+            <h3>Coming Soon</h3>
+            <p class="muted">Planned updates will be listed here.</p>
+        </section>
+    </div>
+
     <!-- Therapist audience -->
     <div class="panel notes-panel" role="tabpanel" id="therapists" aria-labelledby="tab-therapists">
         <h2>For Therapists</h2>
+
+        <section class="release">
+            <h3>October 26, 2026</h3>
+            <ul>
+                <li>No changes to the therapist tools or the Resource Index in this update. The changes were to the Haunted Locations Wiki, and this page now has a Niches tab for hobby-project updates.</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>October 22, 2026</h3>
@@ -260,6 +368,16 @@
     <!-- Tech audience -->
     <div class="panel notes-panel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
         <h2>For the Tech-Savvy</h2>
+
+        <section class="release">
+            <h3>October 26, 2026</h3>
+            <ul>
+                <li><span class="change-type">Changed</span> <code>git mv</code> of six <code>niches/haunted-wiki/locations/</code> files: five to neutral slugs (<code>the-studio</code>, <code>x-home-canada</code>, <code>x-home-usa</code>, <code>x-historic-apartment</code>, <code>x-haunted-forest</code>), and <code>carl-beck</code> to <code>carl-beck-house</code>, with their <code>#</code> titles and Type/Location headers updated. Old <code>#locations/…</code> hashes now fall through to the 404 branch in <code>loadMarkdown()</code>.</li>
+                <li><span class="change-type">Added</span> <code>locations/beck-house.md</code>. The Beck House row had been pointing at the Carl Beck House page.</li>
+                <li><span class="change-type">Changed</span> Regenerated the tables in <code>home.md</code> and <code>master-index.md</code> from the updated master index. The <code>sidebar.md</code> locations and <code>people/*.md</code> lists are regenerated in the same order, so every <code>#locations/</code> link resolves to a file.</li>
+                <li><span class="change-type">Added</span> A fourth <code>#niches</code> tabpanel on <code>patch-notes/</code>, plus a <code>.notes-panel h4</code> style for per-project subheadings. The tab script needed no changes because it builds its tab list from the <code>role="tab"</code> buttons.</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>October 22, 2026 <code>a48afe5</code></h3>
@@ -345,7 +463,7 @@
 </footer>
 
 <script>
-// Audience tabs. Without JS all three panels stay visible, stacked.
+// Audience tabs. Without JS all panels stay visible, stacked.
 (function () {
     const tablist = document.querySelector('[role="tablist"]');
     const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
