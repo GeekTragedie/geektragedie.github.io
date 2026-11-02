@@ -22,9 +22,9 @@ const EQUIPMENT_ITEMS = [
     'Motion Detector', 'Other'
 ];
 const METHOD_ITEMS = [
-    'Estes Method', 'Solo lockdown',
+    'Estes Method', 'Solo Lockdown',
     'Provocation / Taunting', 'Flashlight Session',
-    'Card Reading', 'Automatic Writer',
+    'Card Reading', 'Interview',
     { key: 'other-1', label: 'Other' }, { key: 'other-2', label: 'Other' }
 ];
 const OBSERVED_ITEMS = [
