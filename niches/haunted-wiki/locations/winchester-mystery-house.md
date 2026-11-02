@@ -5,22 +5,16 @@
 
 ---
 
-### Overview
-The Winchester Mystery House is a massive, highly unusual architectural marvel featuring over 600 doors and 2,000 windows, including stairs that lead to nowhere. 
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Private Residence
-* **Notable Events:** The home was built by the wife of the Winchester gun maker. According to legend, she continuously built and expanded the house to capture or house the spirits of those who were killed by Winchester rifles.
+*   **Layout & Hotspots:** Over 600 doors and 2,000 windows, including stairs that lead to nowhere.
+*   **Historical Background:** The Winchester Mystery House is a massive, highly unusual architectural marvel. The home was built by the wife of the Winchester gun maker. According to legend, she continuously built and expanded the house to capture or house the spirits of those who were killed by Winchester rifles.
+*   **Reported Lore:** Shadow Figures / Apparitions (shadow figures are frequently reported); Other (unexplained lights and anomalies); Noises (strange noises are regularly heard throughout the sprawling estate)
 
-### Reported Activity
-* **Apparitions:** Shadow figures are frequently reported.
-* **Poltergeist Activity:** Unexplained lights and anomalies.
-* **EVP/Audio:** Strange noises are regularly heard throughout the sprawling estate.
+---
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
+### Investigation Log
 
-### Notable Investigations
-* **Sam & Colby:** [Brief summary of their findings]
-* **Garrett Watts:** [Brief summary of their findings]
+**Sam & Colby**
+
+**Garrett Watts**

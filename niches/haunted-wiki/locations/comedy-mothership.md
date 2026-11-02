@@ -5,23 +5,14 @@
 
 ---
 
-### Overview
-The Comedy Mothership is a popular modern comedy club housed in a historic building with a complex past and dark underlying rumors.
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Theatre
-* **Notable Events:** The building has transitioned through many phases: it was originally a theatre, then a strip club, then a theatre again, then the Alamo Draft House, before finally becoming the Comedy Mothership. There are dark rumors attached to the location regarding a murderer and 7 possible victims.
+*   **Historical Background:** The Comedy Mothership is a popular modern comedy club housed in a historic building with a complex past and dark underlying rumors. The building has transitioned through many phases: it was originally a theatre, then a strip club, then a theatre again, then the Alamo Draft House, before finally becoming the Comedy Mothership. There are dark rumors attached to the location regarding a murderer and 7 possible victims.
 
-[Paragraph expanding on the history and background of the location.]
+---
 
-### Reported Activity
-* **Apparitions:** [Description]
-* **Poltergeist Activity:** [Description]
-* **EVP/Audio:** [Description]
+### Investigation Log
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
+**Sam & Colby**
 
-### Notable Investigations
-* **Sam & Colby:** This location had never been investigated prior to Sam & Colby's visit.
+*   **Evidence Findings:** This location had never been investigated prior to Sam & Colby's visit.

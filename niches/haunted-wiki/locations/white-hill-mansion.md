@@ -5,21 +5,14 @@
 
 ---
 
-### Overview
-White Hill Mansion is a highly historic property, being approximately 300 years old and one of the first homes built in the original United States. 
+### Overview & Historical Lore
 
-### History
-* **Built:** ~1720s (approx. 300 years old)
-* **Original Purpose:** Private Residence
-* **Notable Events:** The home has deep historical roots and was protected during the Revolutionary War.
+*   **Historical Background:** White Hill Mansion is a highly historic property, built around the 1720s (approximately 300 years old) and one of the first homes built in the original United States. The home has deep historical roots and was protected during the Revolutionary War.
+*   **Reported Lore:** Shadow Figures / Apparitions (the "Lady of the House" is said to remain on the property, continuing to protect it); Felt Touch (visitors report physical touches); Moving Objects (potential poltergeist activity); Noises (unexplained sounds are regularly heard throughout the historic home)
+*   **Known Entities:** The "Lady of the House"
 
-### Reported Activity
-* **Apparitions:** The "Lady of the House" is said to remain on the property, continuing to protect it.
-* **Poltergeist Activity:** Visitors report physical touches and potential poltergeist activity.
-* **EVP/Audio:** Unexplained sounds are regularly heard throughout the historic home.
+---
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
+### Investigation Log
 
-### Notable Investigations
-* **Sam & Colby:** [Insert findings]
+**Sam & Colby**

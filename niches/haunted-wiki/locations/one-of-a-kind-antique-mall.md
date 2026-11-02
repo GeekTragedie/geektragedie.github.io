@@ -5,23 +5,15 @@
 
 ---
 
-### Overview
-This location holds the title of the biggest antique mall in Canada. Spanning three stories, it was the site of the first-ever documented ghost hunt by KallMeKris and Celina Spookyboo.
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Factory
-* **Notable Events:** Before becoming a massive antique mall, the building operated as a factory.
+*   **Layout & Hotspots:** Spans three stories.
+*   **Historical Background:** This location holds the title of the biggest antique mall in Canada. Before becoming a massive antique mall, the building operated as a factory. It was the site of the first-ever documented ghost hunt by KallMeKris and Celina Spookyboo.
 
-[Paragraph expanding on the history and background of the location.]
+---
 
-### Reported Activity
-* **Apparitions:** [Description]
-* **Poltergeist Activity:** [Description]
-* **EVP/Audio:** [Description]
+### Investigation Log
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
+**KallMeKris & Celina Spookyboo**
 
-### Notable Investigations
-* **KallMeKris & Celina Spookyboo:** Conducted the first documented ghost hunt at this location.
+*   **Evidence Findings:** Conducted the first documented ghost hunt at this location.

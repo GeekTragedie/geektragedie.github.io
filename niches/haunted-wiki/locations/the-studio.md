@@ -5,23 +5,13 @@
 
 ---
 
-### Overview
-[A brief 2-3 sentence summary of the location, its current status, and why it is notable in the paranormal community.]
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Salon
-* **Notable Events:** This location is owned by the sisters of paranormal investigator Garrett Watts.
+*   **Historical Background:** This location is owned by the sisters of paranormal investigator Garrett Watts.
+*   **Reported Lore:** Moving Objects (the movement of physical objects is frequently reported); Noises (unexplained noises are commonly heard in the salon)
 
-[Paragraph expanding on the history and background of the location.]
+---
 
-### Reported Activity
-* **Apparitions:** [Description]
-* **Poltergeist Activity:** The movement of physical objects is frequently reported.
-* **EVP/Audio:** Unexplained noises are commonly heard in the salon.
+### Investigation Log
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
-
-### Notable Investigations
-* **Garrett Watts:** [Brief summary of their findings]
+**Garrett Watts**

@@ -5,23 +5,14 @@
 
 ---
 
-### Overview
-The Fairfield County Infirmary is a historic facility with a multi-layered past, known for its dark atmosphere and reports of varied paranormal phenomena. 
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Infirmary / Orphanage
-* **Notable Events:** The facility operated as both a hospital and an orphanage over its history. Patients housed here were often referred to as "inmates." The building also features a notoriously dark area referred to as "the dungeon."
+*   **Layout & Hotspots:** A notoriously dark area referred to as "the dungeon."
+*   **Historical Background:** The Fairfield County Infirmary is a historic facility with a multi-layered past, known for its dark atmosphere and reports of varied paranormal phenomena. The facility operated as both a hospital and an orphanage over its history. Patients housed here were often referred to as "inmates."
+*   **Reported Lore:** Shadow Figures / Apparitions (frequently witnessed throughout the building); EVPs / Disembodied Voices (reported by investigators and visitors); Noises (unexplained noises and distinct howls)
 
-[Paragraph expanding on the history and background of the location.]
+---
 
-### Reported Activity
-* **Apparitions:** Shadow figures are frequently witnessed throughout the building.
-* **Poltergeist Activity:** [Description]
-* **EVP/Audio:** Investigators and visitors report hearing disembodied voices, unexplained noises, and distinct howls.
+### Investigation Log
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
-
-### Notable Investigations
-* **Sam & Colby:** [Brief summary of their findings]
+**Sam & Colby**

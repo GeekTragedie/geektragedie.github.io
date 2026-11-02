@@ -5,23 +5,13 @@
 
 ---
 
-### Overview
-The Driskill Hotel is a historic, luxurious lodging in Texas that is famously plagued by high volumes of paranormal activity and dozens of reported spirits.
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Hotel
-* **Notable Events:** [Fires, deaths, historical significance]
+*   **Historical Background:** The Driskill Hotel is a historic, luxurious lodging in Texas that is famously plagued by high volumes of paranormal activity and dozens of reported spirits.
+*   **Reported Lore:** Shadow Figures / Apparitions (the hotel is widely rumored to be inhabited by "90 ghosts")
 
-[Paragraph expanding on the history and background of the location.]
+---
 
-### Reported Activity
-* **Apparitions:** The hotel is widely rumored to be inhabited by "90 ghosts."
-* **Poltergeist Activity:** [Description]
-* **EVP/Audio:** [Description]
+### Investigation Log
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
-
-### Notable Investigations
-* **KallMeKris & Celina Spookyboo:** [Brief summary of their findings]
+**KallMeKris & Celina Spookyboo**

@@ -5,22 +5,16 @@
 
 ---
 
-### Overview
-Considered one of the most haunted houses in the United States, the Sallie House is an unassuming property in a normal neighborhood that harbors aggressive entities and a famous "child" spirit. Investigators are routinely warned about spiritual attachments.
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Private Residence
-* **Notable Events:** According to legend, a child died of appendicitis while a doctor owned the home. In 1993, the Pickman family moved in and documented severe paranormal experiences, including physical attacks. Their children also reported playing with an "imaginary friend" named Sallie.
+*   **Historical Background:** Considered one of the most haunted houses in the United States, the Sallie House is an unassuming property in a normal neighborhood that harbors aggressive entities and a famous "child" spirit. Investigators are routinely warned about spiritual attachments. According to legend, a child died of appendicitis while a doctor owned the home. In 1993, the Pickman family moved in and documented severe paranormal experiences, including physical attacks. Their children also reported playing with an "imaginary friend" named Sallie.
+*   **Reported Lore:** Shadow Figures / Apparitions (a "child" spirit believed to be Sallie is frequently reported); Physical Mark (entities specifically target and scratch men); Felt Touch (physically aggressive entities); Other (investigators are routinely warned about spiritual attachments)
+*   **Known Entities:** Sallie (a "child" spirit).
 
-### Reported Activity
-* **Apparitions:** A "child" spirit believed to be Sallie is frequently reported.
-* **Poltergeist Activity:** The entities here are known to be physically aggressive, specifically targeting and scratching men. 
-* **EVP/Audio:** [Description]
+---
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
+### Investigation Log
 
-### Notable Investigations
-* **Sam & Colby:** [Insert findings]
-* **Project Fear:** [Insert findings]
+**Sam & Colby**
+
+**Project Fear**

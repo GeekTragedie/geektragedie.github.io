@@ -5,22 +5,21 @@
 
 ---
 
-### Overview
-Farrar Elementary is an abandoned three-story school, now owned by paranormal investigators Sam and Colby. The building and its grounds, which sit across the street from a cemetery, are host to a highly diverse and potentially dangerous collection of spirits.
+### Overview & Historical Lore
 
-### History
-* **Built:** Opened in 1922
-* **Original Purpose:** School and town event center
-* **Notable Events:** Aside from serving as an educational facility, the building was used for various town events. The location's darker history includes reports of previous child abuse. 
+*   **Layout & Hotspots:** Abandoned three-story school; the grounds sit across the street from a cemetery. Shadow figures and doppelgangers are reported specifically in the boiler room.
+*   **Historical Background:** Farrar Elementary is an abandoned three-story school, now owned by paranormal investigators Sam and Colby. The building and its grounds, which sit across the street from a cemetery, are host to a highly diverse and potentially dangerous collection of spirits. Opened in 1922, the building served as a school and town event center; aside from serving as an educational facility, it was used for various town events. The location's darker history includes reports of previous child abuse.
+*   **Reported Lore:** Shadow Figures / Apparitions (many different spirits inside and outside the school; shadow figures in the boiler room); Mimics / Doppelgangers (boiler room); Portals / Hellmouths (a dangerous "portal" is reported); Possessions / Trances (potential for possession); Other (severe poltergeist activity; investigators theorize there may be one powerful spirit pretending to be whatever the visitors want to see)
+*   **Known Entities:** A Principal, a Janitor, and a Librarian.
 
-### Reported Activity
-* **Apparitions:** There are many different spirits inside and outside the school. Specific entities include a Principal, Janitor, and Librarian. Shadow figures and doppelgangers have been reported, specifically in the boiler room.
-* **Poltergeist Activity:** Severe poltergeist activity and a dangerous "portal" are reported. There is also potential for possession. Investigators theorize there may be one powerful spirit pretending to be whatever the visitors want to see.
-* **EVP/Audio:** [Description]
+---
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
+### Investigation Log
 
-### Notable Investigations
-* **Sam & Colby:** Currently own the property.
-* **Project Fear (x2):** Have investigated the school twice.
+**Sam & Colby**
+
+*   **Notes:** Currently own the property.
+
+**Project Fear (x2)**
+
+*   **Notes:** Have investigated the school twice.

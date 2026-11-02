@@ -2,27 +2,16 @@
 
 **Type:** Home  
 **Location:** Spokane, WA, USA  
+**Status:** Open to Public: No  
 
 ---
 
-### Overview
-[A brief 2-3 sentence summary of the location, its current status, and why it is notable in the paranormal community.]
+### Overview & Historical Lore
 
-### History
-* **Built:** [Year]
-* **Original Purpose:** Residence
-* **Notable Events:** [Fires, deaths, historical significance]
+*   **Historical Background:** This location was rented for one year by Garrett Watts and is not open to the public, though others have supported the paranormal stories locally.
 
-[Paragraph expanding on the history and background of the location.]
+---
 
-### Reported Activity
-* **Apparitions:** [Description]
-* **Poltergeist Activity:** [Description]
-* **EVP/Audio:** [Description]
-* **General:** This location was rented for one year by Garrett Watts and is not open to the public, though others have supported the paranormal stories locally.
+### Investigation Log
 
-> "[Insert a notable quote from an investigator or eyewitness here.]"  
-> *— Name, Year*
-
-### Notable Investigations
-* **Garrett Watts:** [Brief summary of their findings]
+**Garrett Watts**
