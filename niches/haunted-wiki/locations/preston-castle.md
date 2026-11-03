@@ -1,7 +1,7 @@
 # Preston Castle
 
 **Type:** Home / Juvenile home  
-**Location:** Ione, CA  
+**Location:** Ione, CA, USA  
 
 ---
 

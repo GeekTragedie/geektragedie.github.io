@@ -1,7 +1,7 @@
 # The Sallie House
 
 **Type:** Home  
-**Location:** Atchinson, KS  
+**Location:** Atchison, KS, USA  
 
 ---
 

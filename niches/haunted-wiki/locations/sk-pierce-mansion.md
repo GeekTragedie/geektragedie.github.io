@@ -1,7 +1,7 @@
 # SK Pierce Mansion
 
 **Type:** Home  
-**Location:** Gardner, MA  
+**Location:** Gardner, MA, USA  
 
 ---
 
