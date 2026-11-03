@@ -15,7 +15,7 @@ Garrett Watts is a YouTube creator known for his eccentric, highly entertaining,
 ### Locations Investigated in the Archives
 * [Cresson Sanatorium](#locations/cresson-sanatorium)
 * [Elis Hotel](#locations/elis-hotel)
-* [Perkin House](#locations/perkin-house)
+* [Perkins House](#locations/perkin-house)
 * [Studio, The](#locations/the-studio)
 * [Winchester Mystery House](#locations/winchester-mystery-house)
 * [X Historic Apartment](#locations/x-historic-apartment)

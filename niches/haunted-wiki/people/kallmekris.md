@@ -14,10 +14,14 @@ Kris Collins (KallMeKris) gained massive popularity for her comedic sketches, bu
 
 ### Locations Investigated in the Archives
 * [Comedy Store, The](#locations/comedy-store)
+* [Crescent Hotel](#locations/crescent-hotel)
+* [Critter's Lane](#locations/critters-lane)
 * [Driskill Hotel](#locations/driskill-hotel)
+* [Kreischer Mansion](#locations/kreischer-mansion)
+* [Old Washoe Club](#locations/washoe-club)
+* [Olde Angel Inn](#locations/olde-angel-inn)
 * [One of a Kind Antique Mall](#locations/one-of-a-kind-antique-mall)
 * [Palace Theatre](#locations/palace-theatre)
+* [Reel Treats](#locations/reel-treats)
 * [Screaming Tunnel, The](#locations/screaming-tunnel)
 * [Trans-Allegheny Lunatic Asylum](#locations/trans-allegheny-lunatic-asylum)
-* [West Virginia Penitentiary](#locations/west-virginia-penitentiary)
-* [X Home (USA)](#locations/x-home-usa)
