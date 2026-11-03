@@ -1,0 +1,63 @@
+/* Referral Database page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+.referral-card {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.referral-card.selected-for-handout {
+    border: 2px solid var(--accent);
+}
+
+.avail-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.avail-open {
+    background-color: rgba(22, 163, 74, 0.16);
+    color: var(--success);
+}
+
+.avail-wait {
+    background-color: rgba(234, 179, 8, 0.2);
+    color: var(--warning);
+}
+
+.avail-full {
+    background-color: rgba(220, 38, 38, 0.16);
+    color: var(--danger);
+}
+
+.avail-unknown {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+.ref-tag {
+    display: inline-block;
+    padding: 2px 7px;
+    margin: 2px 3px 2px 0;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.tag-ins {
+    background-color: rgba(59, 130, 246, 0.15);
+}
+
+.tag-spec {
+    background-color: rgba(139, 92, 246, 0.15);
+}
+
+.tag-pop {
+    background-color: rgba(16, 185, 129, 0.15);
+}
+
+.private-note-box {
+    background-color: rgba(128, 128, 128, 0.1);
+    border-left: 3px solid currentColor;
+}

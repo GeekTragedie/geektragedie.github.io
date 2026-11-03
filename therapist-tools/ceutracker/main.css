@@ -1,0 +1,61 @@
+/* CEU Tracker page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+.progress-card {
+    background-color: rgba(128, 128, 128, 0.05);
+}
+
+.progress-track {
+    height: 12px;
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.35s ease;
+}
+
+.fill-active {
+    background-color: var(--accent);
+}
+
+.fill-complete {
+    background-color: var(--success);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-complete {
+    background-color: rgba(22, 163, 74, 0.18);
+    color: var(--success);
+}
+
+.status-pending {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: var(--accent);
+}
+
+.mandate-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    margin: 2px 2px 2px 0;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background-color: rgba(128, 128, 128, 0.18);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.ceu-table th,
+.ceu-table td {
+    vertical-align: top;
+}

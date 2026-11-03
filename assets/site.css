@@ -26,6 +26,7 @@
     --accent-blue: #38bdf8;
     --danger: #f87171;
     --success: #4ade80;
+    --warning: #fbbf24;
     --border-color: #333333;
     --overlay-color: rgba(18, 18, 18, 0.88);
     --badge-bg: rgba(56, 189, 248, 0.15);
@@ -46,6 +47,7 @@ body.light-mode {
     --accent-blue: #0284c7;
     --danger: #dc2626;
     --success: #16a34a;
+    --warning: #b45309;
     --border-color: #cbd5e1;
     --overlay-color: rgba(248, 250, 252, 0.88);
     --badge-bg: rgba(2, 132, 199, 0.12);
@@ -135,6 +137,14 @@ button, input, select, textarea {
     z-index: 1001;
     top: 100%;
     left: 0;
+    /* The Therapist Tools menu is long, so let it scroll on short screens */
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+}
+/* The last menu opens leftward so it stays on screen */
+.nav-links > .dropdown:last-child .dropdown-content {
+    left: auto;
+    right: 0;
 }
 .dropdown-content a {
     color: var(--text-muted);
@@ -149,6 +159,18 @@ button, input, select, textarea {
 .dropdown-content a:hover {
     background-color: var(--bg-panel-hover);
     color: var(--text-heading);
+}
+/* Group heading inside a dropdown (not a link) */
+.dropdown-label {
+    display: block;
+    padding: 10px 16px 4px;
+    color: var(--accent);
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-color);
+    cursor: default;
 }
 .dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content {
@@ -345,6 +367,98 @@ body.light-mode .panel :is(input[type="date"], input[type="month"], input[type="
 }
 .btn-link:hover {
     text-decoration: underline;
+}
+
+/* --- Collapsible sections ---
+   <details class="collapsible"> with a <summary>. Used by the Therapist Tools
+   hub ("Coming soon"), the reference lists, and "How this works" help. */
+details.collapsible {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+details.collapsible summary {
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-heading);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+details.collapsible summary:hover {
+    background-color: var(--bg-panel-hover);
+}
+details.collapsible[open] > summary {
+    border-bottom: 1px solid var(--border-color);
+}
+details.collapsible summary .chevron {
+    transition: transform 0.15s;
+}
+details.collapsible[open] > summary .chevron {
+    transform: rotate(180deg);
+}
+.collapsible-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+/* Smaller, quieter variant for "How this works" help inside tools */
+details.collapsible.help {
+    background-color: var(--bg-subpanel);
+    margin: 0 0 1rem;
+}
+details.collapsible.help summary {
+    padding: 10px 14px;
+    font-size: 0.9em;
+    background-color: transparent;
+}
+details.collapsible.help .collapsible-body {
+    padding: 12px 14px;
+    font-size: 0.9em;
+    color: var(--text-muted);
+    gap: 8px;
+}
+/* Reference lists: groups nest inside the outer section */
+details.collapsible.references {
+    margin-top: 2rem;
+}
+details.collapsible .collapsible.ref-group {
+    margin-top: 0;
+    background-color: var(--bg-subpanel);
+}
+details.collapsible .collapsible.ref-group summary {
+    padding: 10px 14px;
+    font-size: 0.95em;
+    background-color: transparent;
+}
+.ref-count {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 0.85em;
+    margin-left: auto;
+}
+.reference-list {
+    font-size: 0.9em;
+    line-height: 1.55;
+}
+.collapsible-body.reference-list {
+    gap: 0;
+}
+.reference-list p {
+    margin: 0 0 0.6em;
+    padding-left: 2em;
+    text-indent: -2em;
+    overflow-wrap: anywhere;
+}
+.reference-list a {
+    color: var(--accent);
 }
 
 /* --- Footer --- */

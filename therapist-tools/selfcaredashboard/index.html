@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Self-Care Dashboard</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body aria-label="Self-Care Dashboard page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html" aria-current="page">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Self-Care Dashboard</h1>
+        <p class="muted text-center text-sm mb-6">
+            Working solo means no one else is watching your battery. Check in on your body right now, look at your client order and end-of-day transition, weigh your caseload, and keep up with the bigger picture, one view at a time.
+        </p>
+
+        <!-- Top Controls: Import .json, Export .json, Print Summary, Cache Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
+                <button type="button" id="printReflectionBtn" class="btn px-4 py-2 font-semibold rounded-md">Print / Save PDF Snapshot</button>
+                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Reset Check-In</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache in Browser (Auto-save locally on this device)
+                </label>
+            </div>
+        </div>
+
+        <!-- Live Clinician Battery & Sustainability Snapshot Bar -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6" aria-label="Clinician Battery Snapshot">
+            <div class="subpanel p-3 rounded-md border text-center">
+                <div class="muted text-xs font-semibold">Right-Now Nervous System Battery</div>
+                <div id="statCurrentBattery" class="text-xl font-bold mt-1">75% — Grounded</div>
+                <div id="statPleaseCount" class="muted text-xs mt-1">PLEASE Basics: 0 / 5 Checked</div>
+            </div>
+            <div class="subpanel p-3 rounded-md border text-center">
+                <div class="muted text-xs font-semibold">Schedule &amp; Client-Order Pacing</div>
+                <div id="statScheduleScore" class="text-xl font-bold mt-1">Sustainable</div>
+                <div id="statTransitionCount" class="muted text-xs mt-1">After-Work Transition: 0 / 6</div>
+            </div>
+            <div class="subpanel p-3 rounded-md border text-center">
+                <div class="muted text-xs font-semibold">Weighted Caseload Load</div>
+                <div id="statCaseloadLoad" class="text-xl font-bold mt-1">0 Clients (0% Load)</div>
+                <div id="statCaseloadAdvice" class="muted text-xs mt-1">Enter caseload tiers in Tab 3</div>
+            </div>
+            <div class="subpanel p-3 rounded-md border text-center">
+                <div class="muted text-xs font-semibold">Big-Picture Self-Care &amp; ProQOL</div>
+                <div id="statMacroDone" class="text-xl font-bold mt-1">0 Completed</div>
+                <div id="statProqolStatus" class="muted text-xs mt-1">Burnout Check: Not Taken</div>
+            </div>
+        </section>
+
+        <!-- Primary Navigation Toggles (Prevents Overwhelm!) -->
+        <div class="subpanel p-3 rounded-md mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider muted">Choose Your Check-In Scale:</span>
+                <div class="flex flex-wrap gap-2" role="tablist">
+                    <button type="button" class="sc-tab-btn btn btn-primary px-3 py-2 text-xs font-semibold rounded-md" data-tab="micro">
+                        1. Right Now (PLEASE &amp; Between Sessions)
+                    </button>
+                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="daily">
+                        2. Daily Energy, Client Order &amp; Transition
+                    </button>
+                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="caseload">
+                        3. Caseload Weight &amp; Boundaries
+                    </button>
+                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="macro">
+                        4. Weekly / Monthly / Yearly Checklists
+                    </button>
+                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="proqol">
+                        5. Burnout &amp; Vicarious Trauma Check
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================
+             TAB 1: RIGHT NOW / MICRO CHECK-IN (DBT PLEASE & SOMATIC)
+             ========================================================= -->
+        <section id="sc-tab-micro" class="sc-tab-section space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Left: Somatic & Energy Sliders -->
+                <div class="subpanel p-5 rounded-md space-y-4">
+                    <div>
+                        <h2 class="text-xl font-bold">In-the-Moment Somatic &amp; Energy Check-In</h2>
+                        <p class="muted text-xs">Take 30 seconds between sessions to check your own body and nervous system.</p>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-1">
+                            <label for="sliderPhysicalEnergy">Physical &amp; Somatic Energy (1 = Depleted, 10 = Rested):</label>
+                            <span id="valPhysicalEnergy">7 / 10</span>
+                        </div>
+                        <input type="range" id="sliderPhysicalEnergy" min="1" max="10" value="7" class="w-full cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-1">
+                            <label for="sliderEmotionalCap">Emotional &amp; Empathy Bandwidth (1 = Numb/Fried, 10 = Grounded):</label>
+                            <span id="valEmotionalCap">7 / 10</span>
+                        </div>
+                        <input type="range" id="sliderEmotionalCap" min="1" max="10" value="7" class="w-full cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-1">
+                            <label for="sliderSensoryDrain">Sensory &amp; Screen-Time Drain (1 = Calm, 10 = Overstimulated):</label>
+                            <span id="valSensoryDrain">3 / 10</span>
+                        </div>
+                        <input type="range" id="sliderSensoryDrain" min="1" max="10" value="3" class="w-full cursor-pointer">
+                    </div>
+
+                    <!-- Dynamic Micro-Recommendation Callout -->
+                    <div id="microActionCallout" class="p-3 border rounded-md text-xs space-y-1"></div>
+                </div>
+
+                <!-- Right: DBT PLEASE Acronym + Between-Session Reset -->
+                <div class="subpanel p-5 rounded-md space-y-4">
+                    <div>
+                        <h2 class="text-xl font-bold">DBT "PLEASE" Vulnerability Check</h2>
+                        <p class="muted text-xs">We teach clients PLEASE skills every week—have you tended to your own biological baseline today?</p>
+                    </div>
+
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md">
+                            <input type="checkbox" class="please-cb mt-1 mr-3" value="PL">
+                            <span><strong>PL — PhysicaL Illness &amp; Body Needs:</strong> Took prescribed meds/supplements, used the restroom (not holding it through 3 sessions!), and stretched sore muscles.</span>
+                        </label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md">
+                            <input type="checkbox" class="please-cb mt-1 mr-3" value="E">
+                            <span><strong>E — Balanced Eating &amp; Hydration:</strong> Ate actual protein/complex carbs today and drank water (not running purely on coffee/tea on an empty stomach).</span>
+                        </label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md">
+                            <input type="checkbox" class="please-cb mt-1 mr-3" value="A">
+                            <span><strong>A — Avoid Mood-Altering Overload:</strong> Mindful of caffeine jitteriness, doomscrolling between clients, or numbing out.</span>
+                        </label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md">
+                            <input type="checkbox" class="please-cb mt-1 mr-3" value="S">
+                            <span><strong>S — Sleep &amp; Restorative Rest:</strong> Got adequate sleep last night or honored a lower-energy pace today if sleep was disrupted.</span>
+                        </label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md">
+                            <input type="checkbox" class="please-cb mt-1 mr-3" value="Ex">
+                            <span><strong>E — Exercise / Somatic Discharge:</strong> Moved my body, shook out my hands/shoulders, or stood up between sessions to discharge held client tension.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5-Minute Between-Session Somatic Reset Menu -->
+            <div class="subpanel p-5 rounded-md">
+                <h3 class="text-lg font-bold mb-2">5-Minute Between-Session Somatic Reset Menu (Pick One Before Your Next Client)</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                    <label class="p-3 border rounded-md flex items-start cursor-pointer">
+                        <input type="checkbox" class="micro-reset-cb mt-0.5 mr-2" value="eye_break">
+                        <span><strong>20-20-20 Visual Reset:</strong> Look out a window at something 20+ feet away for 20 seconds to release screen convergence strain.</span>
+                    </label>
+                    <label class="p-3 border rounded-md flex items-start cursor-pointer">
+                        <input type="checkbox" class="micro-reset-cb mt-0.5 mr-2" value="somatic_shake">
+                        <span><strong>Somatic Shake-Off:</strong> Stand up, shake out hands/arms/shoulders for 30 seconds, and take 1 physiological sigh (double inhale, long slow exhale).</span>
+                    </label>
+                    <label class="p-3 border rounded-md flex items-start cursor-pointer">
+                        <input type="checkbox" class="micro-reset-cb mt-0.5 mr-2" value="sensory_shift">
+                        <span><strong>Sensory Contrast:</strong> Splash cold water on wrists/face, step onto the porch for fresh air, or dim overhead lights for 3 minutes.</span>
+                    </label>
+                    <label class="p-3 border rounded-md flex items-start cursor-pointer">
+                        <input type="checkbox" class="micro-reset-cb mt-0.5 mr-2" value="two_sentence_note">
+                        <span><strong>Brain-Dump 2 Sentences:</strong> Jot down 2 bullet keywords for the session that just ended so your working memory isn't carrying it into the next hour.</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             TAB 2: DAILY SCHEDULE, CLIENT ORDER & WORK-TO-HOME TRANSITION
+             ========================================================= -->
+        <section id="sc-tab-daily" class="sc-tab-section hidden space-y-6">
+            <div class="subpanel p-5 rounded-md space-y-4">
+                <div>
+                    <h2 class="text-xl font-bold">Weekly Schedule Architecture, Energy Curve &amp; Client-Order Audit</h2>
+                    <p class="muted text-xs">
+                        Burnout often comes less from <em>how many</em> clients you see than from <strong>what order</strong> you see them in, like three high-acuity sessions back-to-back at 4:00 PM. Map your workdays below to check your pacing.
+                    </p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="sc-table w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Day of Week</th>
+                                <th class="p-2">Work Status</th>
+                                <th class="p-2">Total Clients</th>
+                                <th class="p-2">High-Acuity / Heavy Sessions</th>
+                                <th class="p-2">Max Back-to-Back (No Break)</th>
+                                <th class="p-2">Your Peak Energy Window</th>
+                                <th class="p-2">Where Are High-Need Clients Placed?</th>
+                                <th class="p-2">Pacing Verdict</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scheduleAuditTableBody"></tbody>
+                    </table>
+                </div>
+
+                <details class="collapsible help">
+                    <summary><span>Scheduling rules of thumb</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <ul class="list-disc ml-5 space-y-1">
+                        <li><strong>Match Acuity to Your Chronotype:</strong> Place high-acuity, complex trauma, or new 90791 intakes in your personal peak energy window—never in your final slot of the day if you experience afternoon energy dips.</li>
+                        <li><strong>The "Rule of 3" Buffer:</strong> Avoid scheduling more than 3 clinical hours in a row without at least a 30-minute movement/meal/admin buffer.</li>
+                        <li><strong>Soft-Landing Final Hour:</strong> Whenever possible, make your last session of the day a lower-acuity, resource-building, or familiar ongoing client so your nervous system isn't spiked right at 5:00 PM.</li>
+                    </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- End-of-Workday Transition Ritual (Closing the Clinical Container) -->
+            <div class="subpanel p-5 rounded-md space-y-4">
+                <div>
+                    <h2 class="text-xl font-bold">End-of-Day Transition Ritual (Closing the Clinical Container)</h2>
+                    <p class="muted text-xs">
+                        Especially if you work from home or in solo private practice, your brain needs a concrete sensory cue that <strong>"Therapist Mode is OFF"</strong> and <strong>"Human Mode is ON."</strong> Check off your transition steps today:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <label class="flex items-start p-3 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="transition-cb mt-1 mr-3" value="notes_parked">
+                        <span><strong>1. Close or Park Open Loops:</strong> Finish today's notes OR write a 3-bullet "Tomorrow Parking Lot" list so unfinished tasks aren't rattling around in your head tonight.</span>
+                    </label>
+                    <label class="flex items-start p-3 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="transition-cb mt-1 mr-3" value="tabs_closed">
+                        <span><strong>2. Shut Down EHR &amp; Work Tabs:</strong> Close Headway, Google Voice, work email, and lock the computer/office door.</span>
+                    </label>
+                    <label class="flex items-start p-3 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="transition-cb mt-1 mr-3" value="workspace_reset">
+                        <span><strong>3. Physical Space Reset:</strong> Clear your therapy mug/water glass, turn off the therapy lamp/ring light, or physically leave the room.</span>
+                    </label>
+                    <label class="flex items-start p-3 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="transition-cb mt-1 mr-3" value="sensory_change">
+                        <span><strong>4. Sensory / Clothing Change ("Mister Rogers Rule"):</strong> Change out of your "session clothes/cardigan," wash your hands/face, or take a quick shower.</span>
+                    </label>
+                    <label class="flex items-start p-3 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="transition-cb mt-1 mr-3" value="fake_commute">
+                        <span><strong>5. 10-Minute "Fake Commute" / Decompression:</strong> Walk the dog, listen to music/fiction podcast, play a game, or sit in silence for 10 minutes before jumping into household chores or caregiving.</span>
+                    </label>
+                    <label class="flex items-start p-3 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="transition-cb mt-1 mr-3" value="release_mantra">
+                        <span><strong>6. Symbolic Container Release:</strong> Remind yourself: <em>"I did good work in the room today. My clients' lives belong to them tonight, and my evening belongs to me."</em></span>
+                    </label>
+                </div>
+
+                <div>
+                    <label for="customTransitionRitual" class="block text-xs font-semibold mb-1">My Personal After-Work Transition Ritual / Boundary Note:</label>
+                    <input type="text" id="customTransitionRitual" placeholder="e.g., Put work phone on Do Not Disturb at 5:15 PM, light a cedar candle, play RPGs..." class="w-full p-2 border rounded-md text-sm">
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             TAB 3: CASELOAD ACUITY WEIGHT & BOUNDARY CHECK
+             ========================================================= -->
+        <section id="sc-tab-caseload" class="sc-tab-section hidden space-y-6">
+            <div class="subpanel p-5 rounded-md space-y-4">
+                <div>
+                    <h2 class="text-xl font-bold">Weighted Caseload Acuity Calculator</h2>
+                    <p class="muted text-xs">
+                        A caseload of 18 clients is not always "18 units of energy." A client in acute crisis, complex dissociation, or high-conflict family dynamics requires 2x–3x the emotional and administrative bandwidth of a stable maintenance client.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+                    <div>
+                        <label for="caseloadIdealSessions" class="block text-xs font-semibold mb-1">Your Ideal Weekly Session Cap:</label>
+                        <input type="number" id="caseloadIdealSessions" min="1" max="50" value="20" class="w-full p-2 border rounded-md text-sm">
+                        <span class="muted text-xs">Standard private practice full-time is 18–24/wk</span>
+                    </div>
+                    <div>
+                        <label for="caseloadTier1" class="block text-xs font-semibold mb-1">🔴 Tier 1: High Acuity / Crisis (3x Weight):</label>
+                        <input type="number" id="caseloadTier1" min="0" max="50" value="2" class="w-full p-2 border rounded-md text-sm">
+                        <span class="muted text-xs">Active SI/safety plans, severe dissociation, high coordination</span>
+                    </div>
+                    <div>
+                        <label for="caseloadTier2" class="block text-xs font-semibold mb-1">🟡 Tier 2: Active Processing (1.5x Weight):</label>
+                        <input type="number" id="caseloadTier2" min="0" max="50" value="10" class="w-full p-2 border rounded-md text-sm">
+                        <span class="muted text-xs">Deep trauma/grief work, weekly processing</span>
+                    </div>
+                    <div>
+                        <label for="caseloadTier3" class="block text-xs font-semibold mb-1">🟢 Tier 3: Stable / Maintenance (1x Weight):</label>
+                        <input type="number" id="caseloadTier3" min="0" max="50" value="8" class="w-full p-2 border rounded-md text-sm">
+                        <span class="muted text-xs">Resourced, biweekly/monthly, skill integration</span>
+                    </div>
+                    <div>
+                        <label for="caseloadIntakesMonth" class="block text-xs font-semibold mb-1">New 90791 Intakes This Month:</label>
+                        <input type="number" id="caseloadIntakesMonth" min="0" max="30" value="2" class="w-full p-2 border rounded-md text-sm">
+                        <span class="muted text-xs">New intakes take extra onboarding energy</span>
+                    </div>
+                </div>
+
+                <!-- Caseload Verdict & Progress Bar -->
+                <div id="caseloadAnalysisBox" class="p-4 border rounded-md space-y-2"></div>
+            </div>
+
+            <!-- Countertransference & Boundary Leak Check -->
+            <div class="subpanel p-5 rounded-md space-y-3">
+                <h3 class="text-lg font-bold">Subtle Boundary Leak &amp; "Working Harder Than the Client" Check</h3>
+                <p class="muted text-xs">Check any early warning signs you've noticed in yourself over the past 2 weeks:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                    <label class="flex items-start p-2 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="boundary-leak-cb mt-0.5 mr-2" value="running_over">
+                        <span>Letting sessions run past the 53–55 minute mark instead of holding the time boundary</span>
+                    </label>
+                    <label class="flex items-start p-2 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="boundary-leak-cb mt-0.5 mr-2" value="checking_after_hours">
+                        <span>Checking work email, Headway messages, or Google Voice in the evening or on weekends/Mondays off</span>
+                    </label>
+                    <label class="flex items-start p-2 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="boundary-leak-cb mt-0.5 mr-2" value="waiving_fees">
+                        <span>Feeling guilty enforcing my late cancellation policy or sliding my fee below what is financially sustainable</span>
+                    </label>
+                    <label class="flex items-start p-2 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="boundary-leak-cb mt-0.5 mr-2" value="dreading_slot">
+                        <span>Feeling a pit of dread before a specific session slot (signal to bring that case to peer consultation/supervision!)</span>
+                    </label>
+                    <label class="flex items-start p-2 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="boundary-leak-cb mt-0.5 mr-2" value="over_researching">
+                        <span>Spending unpaid hours researching resources because I feel solely responsible for "fixing" a client's life</span>
+                    </label>
+                    <label class="flex items-start p-2 border rounded-md cursor-pointer">
+                        <input type="checkbox" class="boundary-leak-cb mt-0.5 mr-2" value="compassion_numbness">
+                        <span>Feeling irritable, emotionally flat, or having zero social battery left for my own partner, friends, or hobbies</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             TAB 4: BIG-PICTURE TIMELINES (WEEKLY -> MONTHLY -> QUARTERLY -> YEARLY)
+             ========================================================= -->
+        <section id="sc-tab-macro" class="sc-tab-section hidden space-y-6">
+            <div class="subpanel p-5 rounded-md space-y-4">
+                <div class="flex flex-wrap justify-between items-center gap-3 border-b pb-3">
+                    <div>
+                        <h2 class="text-xl font-bold">Big-Picture Sustainability Checklists (By Timeline)</h2>
+                        <p class="muted text-xs">Switch between Weekly, Monthly, Quarterly, and Yearly care so you only see one horizon at a time.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="macro-horizon-btn btn btn-primary px-3 py-1.5 text-xs font-semibold rounded-md" data-horizon="weekly">
+                            Weekly Rhythm
+                        </button>
+                        <button type="button" class="macro-horizon-btn btn px-3 py-1.5 text-xs font-semibold rounded-md" data-horizon="monthly">
+                            Monthly Check-In
+                        </button>
+                        <button type="button" class="macro-horizon-btn btn px-3 py-1.5 text-xs font-semibold rounded-md" data-horizon="quarterly">
+                            Quarterly Reset
+                        </button>
+                        <button type="button" class="macro-horizon-btn btn px-3 py-1.5 text-xs font-semibold rounded-md" data-horizon="yearly">
+                            Yearly Medical &amp; Life Audit
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Checklist Container for Selected Horizon -->
+                <div id="macroChecklistContainer" class="space-y-2"></div>
+
+                <!-- Add Custom Item to Current Horizon -->
+                <div class="flex flex-wrap gap-2 pt-3 border-t">
+                    <input type="text" id="newMacroItemInput" placeholder="Add a custom self-care or medical/life item to this timeline..." class="flex-1 p-2 border rounded-md text-xs">
+                    <button type="button" id="addMacroItemBtn" class="btn px-4 py-2 text-xs font-semibold rounded-md">+ Add to Current Timeline</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             TAB 5: COMPASSION SATISFACTION, BURNOUT & VICARIOUS TRAUMA (PROQOL-INSPIRED)
+             ========================================================= -->
+        <section id="sc-tab-proqol" class="sc-tab-section hidden space-y-6">
+            <div class="subpanel p-5 rounded-md space-y-4">
+                <div>
+                    <h2 class="text-xl font-bold">Professional Quality of Life &amp; Burnout Pulse Check</h2>
+                    <p class="muted text-xs">
+                        Inspired by Stamm's (2010) Professional Quality of Life (ProQOL) model. Rate how frequently you have experienced each statement over the <strong>past 30 days</strong> (1 = Never, 5 = Very Often):
+                    </p>
+                </div>
+
+                <div id="proqolQuestionsContainer" class="space-y-3"></div>
+
+                <div id="proqolResultsBox" class="p-4 border rounded-md space-y-3 mt-4"></div>
+            </div>
+
+            <!-- Personal Reflection Journal Box -->
+            <div class="subpanel p-5 rounded-md space-y-2">
+                <label for="selfCareJournalNotes" class="block text-base font-bold">Clinician Self-Reflection &amp; Action Plan Notes:</label>
+                <p class="muted text-xs">What is 1 small adjustment you can make this week to protect your energy, schedule, or joy?</p>
+                <textarea id="selfCareJournalNotes" rows="3" class="w-full p-3 border rounded-md text-sm" placeholder="e.g., Move my 4pm Thursday high-acuity slot to 11am; schedule my annual dental cleaning; block off Friday afternoon for admin & rest..."></textarea>
+            </div>
+        </section>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="selfcaredashboard" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

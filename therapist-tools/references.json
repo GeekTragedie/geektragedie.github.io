@@ -1,0 +1,1934 @@
+{
+  "groups": [
+    {
+      "id": "clinical",
+      "label": "Clinical practice & ethics"
+    },
+    {
+      "id": "diagnosis",
+      "label": "Diagnosis & coding"
+    },
+    {
+      "id": "therapy",
+      "label": "Therapy approaches"
+    },
+    {
+      "id": "assessment",
+      "label": "Assessment & measurement"
+    },
+    {
+      "id": "crisis",
+      "label": "Crisis & safety planning"
+    },
+    {
+      "id": "wellbeing",
+      "label": "Clinician wellbeing"
+    },
+    {
+      "id": "laws",
+      "label": "Laws & regulations"
+    },
+    {
+      "id": "licensure",
+      "label": "Licensure (Washington)"
+    },
+    {
+      "id": "tax",
+      "label": "Tax & business"
+    },
+    {
+      "id": "practice",
+      "label": "Practice setup & credentialing"
+    }
+  ],
+  "references": [
+    {
+      "id": "apa-dsm-5-tr-2022",
+      "group": "diagnosis",
+      "html": "American Psychiatric Association. (2022). <em>Diagnostic and statistical manual of mental disorders</em> (5th ed., text rev.). https://doi.org/10.1176/appi.books.9780890425787",
+      "url": "https://doi.org/10.1176/appi.books.9780890425787",
+      "usedBy": [
+        "assessmentdatabase",
+        "caseloadataglance",
+        "hub",
+        "intakepacketgenerator",
+        "lettergenerator",
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "aca-code-of-ethics-2014",
+      "group": "clinical",
+      "html": "American Counseling Association. (2014). <em>2014 ACA code of ethics</em>. https://www.counseling.org/docs/default-source/default-document-library/ethics/2014-aca-code-of-ethics.pdf",
+      "url": "https://www.counseling.org/docs/default-source/default-document-library/ethics/2014-aca-code-of-ethics.pdf",
+      "usedBy": [
+        "caseloadataglance",
+        "hub",
+        "intakepacketgenerator",
+        "lettergenerator",
+        "notegenerator",
+        "referraldatabase",
+        "selfcaredashboard",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "nasw-code-of-ethics-2021",
+      "group": "clinical",
+      "html": "National Association of Social Workers. (2021). <em>Code of ethics of the National Association of Social Workers</em>. https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English",
+      "url": "https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English",
+      "usedBy": [
+        "caseloadataglance",
+        "hub",
+        "intakepacketgenerator",
+        "notegenerator",
+        "referraldatabase",
+        "selfcaredashboard",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "aamft-code-of-ethics-2026",
+      "group": "clinical",
+      "html": "American Association for Marriage and Family Therapy. (2026). <em>AAMFT code of ethics</em>. https://www.aamft.org/Legal_Ethics/Code_of_Ethics.aspx",
+      "url": "https://www.aamft.org/Legal_Ethics/Code_of_Ethics.aspx",
+      "usedBy": [
+        "caseloadataglance",
+        "hub",
+        "intakepacketgenerator",
+        "notegenerator",
+        "referraldatabase",
+        "selfcaredashboard",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "apa-ethics-code-2017",
+      "group": "clinical",
+      "html": "American Psychological Association. (2017). <em>Ethical principles of psychologists and code of conduct</em> (2002, amended effective June 1, 2010, and January 1, 2017). https://www.apa.org/ethics/code",
+      "url": "https://www.apa.org/ethics/code",
+      "usedBy": [
+        "hub",
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "apa-publication-manual-7",
+      "group": "clinical",
+      "html": "American Psychological Association. (2020). <em>Publication manual of the American Psychological Association</em> (7th ed.). https://doi.org/10.1037/0000165-000",
+      "url": "https://doi.org/10.1037/0000165-000",
+      "usedBy": [
+        "hub"
+      ]
+    },
+    {
+      "id": "brooks-2018-companion-animals",
+      "group": "clinical",
+      "html": "Brooks, H. L., Rushton, K., Lovell, K., Bee, P., Walker, L., Grant, L., &amp; Rogers, A. (2018). The power of support from companion animals for people living with mental health problems: A systematic review and narrative synthesis of the evidence. <em>BMC Psychiatry, 18</em>, Article 31. https://doi.org/10.1186/s12888-018-1613-2",
+      "url": "https://doi.org/10.1186/s12888-018-1613-2",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "hoy-gerlach-2022-esa-pilot",
+      "group": "clinical",
+      "html": "Hoy-Gerlach, J., Vincent, A., Scheuermann, B., &amp; Ojha, M. (2022). Exploring benefits of emotional support animals (ESAs): A longitudinal pilot study with adults with serious mental illness (SMI). <em>Human-Animal Interactions</em>, Article hai.2022.0016. https://doi.org/10.1079/hai.2022.0016",
+      "url": "https://doi.org/10.1079/hai.2022.0016",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "ferrell-crowley-2023-esa-partnerships",
+      "group": "clinical",
+      "html": "Ferrell, J., &amp; Crowley, S. L. (2023). Emotional support animal partnerships: Behavior, welfare, and clinical involvement. <em>Anthrozoös, 36</em>(3), 471–487. https://doi.org/10.1080/08927936.2023.2166711",
+      "url": "https://doi.org/10.1080/08927936.2023.2166711",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "fluckiger-2018-alliance",
+      "group": "clinical",
+      "html": "Flückiger, C., Del Re, A. C., Wampold, B. E., &amp; Horvath, A. O. (2018). The alliance in adult psychotherapy: A meta-analytic synthesis. <em>Psychotherapy, 55</em>(4), 316–340. https://doi.org/10.1037/pst0000172",
+      "url": "https://doi.org/10.1037/pst0000172",
+      "usedBy": [
+        "intakepacketgenerator"
+      ]
+    },
+    {
+      "id": "doran-1981-smart",
+      "group": "clinical",
+      "html": "Doran, G. T. (1981). There’s a S.M.A.R.T. way to write management’s goals and objectives. <em>Management Review, 70</em>(11), 35–36.",
+      "url": "",
+      "usedBy": [
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "bovendeerdt-2009-smart-gas",
+      "group": "clinical",
+      "html": "Bovend’Eerdt, T. J. H., Botell, R. E., &amp; Wade, D. T. (2009). Writing SMART rehabilitation goals and achieving goal attainment scaling: A practical guide. <em>Clinical Rehabilitation, 23</em>(4), 352–361. https://doi.org/10.1177/0269215508101741",
+      "url": "https://doi.org/10.1177/0269215508101741",
+      "usedBy": [
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "jongsma-2021-adult-treatment-planner",
+      "group": "clinical",
+      "html": "Jongsma, A. E., Jr., Peterson, L. M., &amp; Bruce, T. J. (2021). <em>The complete adult psychotherapy treatment planner</em> (6th ed.). Wiley.",
+      "url": "https://www.wiley.com/en-us/The+Complete+Adult+Psychotherapy+Treatment+Planner%3A+Includes+DSM+5+Updates%2C+6th+Edition-p-9781119629931",
+      "usedBy": [
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "tryon-2018-goal-consensus",
+      "group": "clinical",
+      "html": "Tryon, G. S., Birch, S. E., &amp; Verkuilen, J. (2018). Meta-analyses of the relation of goal consensus and collaboration to psychotherapy outcome. <em>Psychotherapy, 55</em>(4), 372–383. https://doi.org/10.1037/pst0000170",
+      "url": "https://doi.org/10.1037/pst0000170",
+      "usedBy": [
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "figley-2002-compassion-fatigue",
+      "group": "wellbeing",
+      "html": "Figley, C. R. (2002). Compassion fatigue: Psychotherapists’ chronic lack of self care. <em>Journal of Clinical Psychology, 58</em>(11), 1433–1441. https://doi.org/10.1002/jclp.10090",
+      "url": "https://doi.org/10.1002/jclp.10090",
+      "usedBy": [
+        "selfcaredashboard"
+      ]
+    },
+    {
+      "id": "figley-1995-compassion-fatigue-book",
+      "group": "wellbeing",
+      "html": "Figley, C. R. (Ed.). (1995). <em>Compassion fatigue: Coping with secondary traumatic stress disorder in those who treat the traumatized</em>. Brunner/Mazel.",
+      "url": "https://doi.org/10.4324/9780203777381",
+      "usedBy": [
+        "selfcaredashboard"
+      ]
+    },
+    {
+      "id": "linehan-2015-dbt-skills-manual",
+      "group": "wellbeing",
+      "html": "Linehan, M. M. (2015). <em>DBT skills training manual</em> (2nd ed.). Guilford Press.",
+      "url": "https://www.guilford.com/books/DBT-Skills-Training-Manual/Marsha-Linehan/9781462516995",
+      "usedBy": [
+        "notegenerator",
+        "selfcaredashboard",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "norcross-vandenbos-2018-leaving-it-at-the-office",
+      "group": "wellbeing",
+      "html": "Norcross, J. C., &amp; VandenBos, G. R. (2018). <em>Leaving it at the office: A guide to psychotherapist self-care</em> (2nd ed.). Guilford Press.",
+      "url": "https://www.guilford.com/books/Leaving-It-at-the-Office/Norcross-VandenBos/9781462534906",
+      "usedBy": [
+        "selfcaredashboard"
+      ]
+    },
+    {
+      "id": "posluns-gall-2020-self-care",
+      "group": "wellbeing",
+      "html": "Posluns, K., &amp; Gall, T. L. (2020). Dear mental health practitioners, take care of yourselves: A literature review on self-care. <em>International Journal for the Advancement of Counselling, 42</em>(1), 1–20. https://doi.org/10.1007/s10447-019-09382-w",
+      "url": "https://doi.org/10.1007/s10447-019-09382-w",
+      "usedBy": [
+        "selfcaredashboard"
+      ]
+    },
+    {
+      "id": "stamm-2010-proqol-manual",
+      "group": "wellbeing",
+      "html": "Stamm, B. H. (2010). <em>The concise ProQOL manual</em> (2nd ed.). ProQOL.org. https://proqol.org/proqol-manual",
+      "url": "https://proqol.org/proqol-manual",
+      "usedBy": [
+        "selfcaredashboard"
+      ]
+    },
+    {
+      "id": "skovholt-trotter-mathison-2016-resilient-practitioner",
+      "group": "wellbeing",
+      "html": "Skovholt, T. M., &amp; Trotter-Mathison, M. (2016). <em>The resilient practitioner: Burnout and compassion fatigue prevention and self-care strategies for the helping professions</em> (3rd ed.). Routledge. https://doi.org/10.4324/9781315737447",
+      "url": "https://doi.org/10.4324/9781315737447",
+      "usedBy": [
+        "selfcaredashboard"
+      ]
+    },
+    {
+      "id": "maslach-2001-job-burnout",
+      "group": "wellbeing",
+      "html": "Maslach, C., Schaufeli, W. B., &amp; Leiter, M. P. (2001). Job burnout. <em>Annual Review of Psychology, 52</em>, 397–422. https://doi.org/10.1146/annurev.psych.52.1.397",
+      "url": "https://doi.org/10.1146/annurev.psych.52.1.397",
+      "usedBy": [
+        "caseloadataglance",
+        "selfcaredashboard"
+      ]
+    },
+    {
+      "id": "stanley-brown-2012-safety-planning",
+      "group": "crisis",
+      "html": "Stanley, B., &amp; Brown, G. K. (2012). Safety planning intervention: A brief intervention to mitigate suicide risk. <em>Cognitive and Behavioral Practice, 19</em>(2), 256–264. https://doi.org/10.1016/j.cbpra.2011.01.001",
+      "url": "https://doi.org/10.1016/j.cbpra.2011.01.001",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "stanley-2018-spi-ed",
+      "group": "crisis",
+      "html": "Stanley, B., Brown, G. K., Brenner, L. A., Galfalvy, H. C., Currier, G. W., Knox, K. L., Chaudhury, S. R., Bush, A. L., &amp; Green, K. L. (2018). Comparison of the safety planning intervention with follow-up vs usual care of suicidal patients treated in the emergency department. <em>JAMA Psychiatry, 75</em>(9), 894–900. https://doi.org/10.1001/jamapsychiatry.2018.1776",
+      "url": "https://doi.org/10.1001/jamapsychiatry.2018.1776",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "bryan-2017-crisis-response-planning",
+      "group": "crisis",
+      "html": "Bryan, C. J., Mintz, J., Clemans, T. A., Leeson, B., Burch, T. S., Williams, S. R., Maney, E., &amp; Rudd, M. D. (2017). Effect of crisis response planning vs. contracts for safety on suicide risk in U.S. Army soldiers: A randomized clinical trial. <em>Journal of Affective Disorders, 212</em>, 64–72. https://doi.org/10.1016/j.jad.2017.01.028",
+      "url": "https://doi.org/10.1016/j.jad.2017.01.028",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "copeland-2002-wrap",
+      "group": "crisis",
+      "html": "Copeland, M. E. (2002). <em>Wellness Recovery Action Plan</em> (Rev. ed.). Peach Press.",
+      "url": "",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "cook-2012-wrap-rct",
+      "group": "crisis",
+      "html": "Cook, J. A., Copeland, M. E., Jonikas, J. A., Hamilton, M. M., Razzano, L. A., Grey, D. D., Floyd, C. B., Hudson, W. B., Macfarlane, R. T., Carter, T. M., &amp; Boyd, S. (2012). Results of a randomized controlled trial of mental illness self-management using Wellness Recovery Action Planning. <em>Schizophrenia Bulletin, 38</em>(4), 881–891. https://doi.org/10.1093/schbul/sbr012",
+      "url": "https://doi.org/10.1093/schbul/sbr012",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "asarnow-2015-safety-program",
+      "group": "crisis",
+      "html": "Asarnow, J. R., Berk, M., Hughes, J. L., &amp; Anderson, N. L. (2015). The SAFETY Program: A treatment-development trial of a cognitive-behavioral family treatment for adolescent suicide attempters. <em>Journal of Clinical Child &amp; Adolescent Psychology, 44</em>(1), 194–203. https://doi.org/10.1080/15374416.2014.940624",
+      "url": "https://doi.org/10.1080/15374416.2014.940624",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "kennard-2015-as-safe-as-possible",
+      "group": "crisis",
+      "html": "Kennard, B. D., Biernesser, C., Wolfe, K. L., Foxwell, A. A., Craddock Lee, S. J., Rial, K. V., Patel, S., Cheng, C., Goldstein, T., McMakin, D., Blastos, B., Douaihy, A., Zelazny, J., &amp; Brent, D. A. (2015). Developing a brief suicide prevention intervention and mobile phone application: A qualitative report. <em>Journal of Technology in Human Services, 33</em>(4), 345–357. https://doi.org/10.1080/15228835.2015.1106384",
+      "url": "https://doi.org/10.1080/15228835.2015.1106384",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "campbell-2003-femicide-risk",
+      "group": "crisis",
+      "html": "Campbell, J. C., Webster, D., Koziol-McLain, J., Block, C., Campbell, D., Curry, M. A., Gary, F., Glass, N., McFarlane, J., Sachs, C., Sharps, P., Ulrich, Y., Wilt, S. A., Manganello, J., Xu, X., Schollenberger, J., Frye, V., &amp; Laughon, K. (2003). Risk factors for femicide in abusive relationships: Results from a multisite case control study. <em>American Journal of Public Health, 93</em>(7), 1089–1097. https://doi.org/10.2105/AJPH.93.7.1089",
+      "url": "https://doi.org/10.2105/AJPH.93.7.1089",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "davies-lyon-2014-dv-advocacy",
+      "group": "crisis",
+      "html": "Davies, J., &amp; Lyon, E. (2014). <em>Domestic violence advocacy: Complex lives/difficult choices</em> (2nd ed.). SAGE Publications. https://doi.org/10.4135/9781483352916",
+      "url": "https://doi.org/10.4135/9781483352916",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "glass-2010-computerized-safety-aid",
+      "group": "crisis",
+      "html": "Glass, N., Eden, K. B., Bloom, T., &amp; Perrin, N. (2010). Computerized aid improves safety decision process for survivors of intimate partner violence. <em>Journal of Interpersonal Violence, 25</em>(11), 1947–1964. https://doi.org/10.1177/0886260509354508",
+      "url": "https://doi.org/10.1177/0886260509354508",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "raymaker-2020-autistic-burnout",
+      "group": "crisis",
+      "html": "Raymaker, D. M., Teo, A. R., Steckler, N. A., Lentz, B., Scharer, M., Delos Santos, A., Kapp, S. K., Hunter, M., Joyce, A., &amp; Nicolaidis, C. (2020). \"Having all of your internal resources exhausted beyond measure and being left with no clean-up crew\": Defining autistic burnout. <em>Autism in Adulthood, 2</em>(2), 132–143. https://doi.org/10.1089/aut.2019.0079",
+      "url": "https://doi.org/10.1089/aut.2019.0079",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "phung-2021-autistic-youth-burnout",
+      "group": "crisis",
+      "html": "Phung, J., Penner, M., Pirlot, C., &amp; Welch, C. (2021). What I wish you knew: Insights on burnout, inertia, meltdown, and shutdown from autistic youth. <em>Frontiers in Psychology, 12</em>, Article 741421. https://doi.org/10.3389/fpsyg.2021.741421",
+      "url": "https://doi.org/10.3389/fpsyg.2021.741421",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "kapp-2019-stimming",
+      "group": "crisis",
+      "html": "Kapp, S. K., Steward, R., Crane, L., Elliott, D., Elphick, C., Pellicano, E., &amp; Russell, G. (2019). 'People should be allowed to do what they like': Autistic adults' views and experiences of stimming. <em>Autism, 23</em>(7), 1782–1792. https://doi.org/10.1177/1362361319829628",
+      "url": "https://doi.org/10.1177/1362361319829628",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "marlatt-donovan-2005-relapse-prevention",
+      "group": "crisis",
+      "html": "Marlatt, G. A., &amp; Donovan, D. M. (Eds.). (2005). <em>Relapse prevention: Maintenance strategies in the treatment of addictive behaviors</em> (2nd ed.). Guilford Press.",
+      "url": "",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "hendershot-2011-relapse-prevention",
+      "group": "crisis",
+      "html": "Hendershot, C. S., Witkiewitz, K., George, W. H., &amp; Marlatt, G. A. (2011). Relapse prevention for addictive behaviors. <em>Substance Abuse Treatment, Prevention, and Policy, 6</em>, Article 17. https://doi.org/10.1186/1747-597X-6-17",
+      "url": "https://doi.org/10.1186/1747-597X-6-17",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "bowen-2011-mbrp",
+      "group": "crisis",
+      "html": "Bowen, S., Chawla, N., &amp; Marlatt, G. A. (2011). <em>Mindfulness-based relapse prevention for addictive behaviors: A clinician's guide</em>. Guilford Press.",
+      "url": "",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "kroenke-2001-phq-9",
+      "group": "assessment",
+      "html": "Kroenke, K., Spitzer, R. L., &amp; Williams, J. B. (2001). The PHQ-9: Validity of a brief depression severity measure. <em>Journal of General Internal Medicine, 16</em>(9), 606–613. https://doi.org/10.1046/j.1525-1497.2001.016009606.x",
+      "url": "https://doi.org/10.1046/j.1525-1497.2001.016009606.x",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "spitzer-2006-gad-7",
+      "group": "assessment",
+      "html": "Spitzer, R. L., Kroenke, K., Williams, J. B. W., &amp; Löwe, B. (2006). A brief measure for assessing generalized anxiety disorder: The GAD-7. <em>Archives of Internal Medicine, 166</em>(10), 1092–1097. https://doi.org/10.1001/archinte.166.10.1092",
+      "url": "https://doi.org/10.1001/archinte.166.10.1092",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "weathers-2013-pcl-5",
+      "group": "assessment",
+      "html": "Weathers, F. W., Litz, B. T., Keane, T. M., Palmieri, P. A., Marx, B. P., &amp; Schnurr, P. P. (2013). <em>The PTSD Checklist for DSM-5 (PCL-5)</em>. National Center for PTSD. https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp",
+      "url": "https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "cloitre-2018-itq",
+      "group": "assessment",
+      "html": "Cloitre, M., Shevlin, M., Brewin, C. R., Bisson, J. I., Roberts, N. P., Maercker, A., Karatzias, T., &amp; Hyland, P. (2018). The International Trauma Questionnaire: Development of a self-report measure of ICD-11 PTSD and complex PTSD. <em>Acta Psychiatrica Scandinavica, 138</em>(6), 536–546. https://doi.org/10.1111/acps.12956",
+      "url": "https://doi.org/10.1111/acps.12956",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "carlson-putnam-1993-des-ii",
+      "group": "assessment",
+      "html": "Carlson, E. B., &amp; Putnam, F. W. (1993). An update on the Dissociative Experiences Scale. <em>Dissociation: Progress in the Dissociative Disorders, 6</em>(1), 16–27.",
+      "url": "",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "felitti-1998-ace",
+      "group": "assessment",
+      "html": "Felitti, V. J., Anda, R. F., Nordenberg, D., Williamson, D. F., Spitz, A. M., Edwards, V., Koss, M. P., &amp; Marks, J. S. (1998). Relationship of childhood abuse and household dysfunction to many of the leading causes of death in adults: The Adverse Childhood Experiences (ACE) Study. <em>American Journal of Preventive Medicine, 14</em>(4), 245–258. https://doi.org/10.1016/S0749-3797(98)00017-8",
+      "url": "https://doi.org/10.1016/S0749-3797(98)00017-8",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "kessler-2005-asrs",
+      "group": "assessment",
+      "html": "Kessler, R. C., Adler, L., Ames, M., Demler, O., Faraone, S., Hiripi, E., Howes, M. J., Jin, R., Secnik, K., Spencer, T., Ustun, T. B., &amp; Walters, E. E. (2005). The World Health Organization Adult ADHD Self-Report Scale (ASRS): A short screening scale for use in the general population. <em>Psychological Medicine, 35</em>(2), 245–256. https://doi.org/10.1017/S0033291704002892",
+      "url": "https://doi.org/10.1017/S0033291704002892",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "baron-cohen-2001-aq",
+      "group": "assessment",
+      "html": "Baron-Cohen, S., Wheelwright, S., Skinner, R., Martin, J., &amp; Clubley, E. (2001). The Autism-Spectrum Quotient (AQ): Evidence from Asperger syndrome/high-functioning autism, males and females, scientists and mathematicians. <em>Journal of Autism and Developmental Disorders, 31</em>(1), 5–17. https://doi.org/10.1023/A:1005653411471",
+      "url": "https://doi.org/10.1023/A:1005653411471",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "hull-2019-cat-q",
+      "group": "assessment",
+      "html": "Hull, L., Mandy, W., Lai, M.-C., Baron-Cohen, S., Allison, C., Smith, P., &amp; Petrides, K. V. (2019). Development and validation of the Camouflaging Autistic Traits Questionnaire (CAT-Q). <em>Journal of Autism and Developmental Disorders, 49</em>(3), 819–833. https://doi.org/10.1007/s10803-018-3792-6",
+      "url": "https://doi.org/10.1007/s10803-018-3792-6",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "ritvo-2011-raads-r",
+      "group": "assessment",
+      "html": "Ritvo, R. A., Ritvo, E. R., Guthrie, D., Ritvo, M. J., Hufnagel, D. H., McMahon, W., Tonge, B., Mataix-Cols, D., Jassi, A., Attwood, T., &amp; Eloff, J. (2011). The Ritvo Autism Asperger Diagnostic Scale-Revised (RAADS-R): A scale to assist the diagnosis of autism spectrum disorder in adults: An international validation study. <em>Journal of Autism and Developmental Disorders, 41</em>(8), 1076–1089. https://doi.org/10.1007/s10803-010-1133-5",
+      "url": "https://doi.org/10.1007/s10803-010-1133-5",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "foa-2002-oci-r",
+      "group": "assessment",
+      "html": "Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., &amp; Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: Development and validation of a short version. <em>Psychological Assessment, 14</em>(4), 485–496. https://doi.org/10.1037/1040-3590.14.4.485",
+      "url": "https://doi.org/10.1037/1040-3590.14.4.485",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "hirschfeld-2000-mdq",
+      "group": "assessment",
+      "html": "Hirschfeld, R. M. A., Williams, J. B. W., Spitzer, R. L., Calabrese, J. R., Flynn, L., Keck, P. E., Jr., Lewis, L., McElroy, S. L., Post, R. M., Rapport, D. J., Russell, J. M., Sachs, G. S., &amp; Zajecka, J. (2000). Development and validation of a screening instrument for bipolar spectrum disorder: The Mood Disorder Questionnaire. <em>American Journal of Psychiatry, 157</em>(11), 1873–1875. https://doi.org/10.1176/appi.ajp.157.11.1873",
+      "url": "https://doi.org/10.1176/appi.ajp.157.11.1873",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "posner-2011-c-ssrs",
+      "group": "assessment",
+      "html": "Posner, K., Brown, G. K., Stanley, B., Brent, D. A., Yershova, K. V., Oquendo, M. A., Currier, G. W., Melvin, G. A., Greenhill, L., Shen, S., &amp; Mann, J. J. (2011). The Columbia–Suicide Severity Rating Scale: Initial validity and internal consistency findings from three multisite studies with adolescents and adults. <em>American Journal of Psychiatry, 168</em>(12), 1266–1277. https://doi.org/10.1176/appi.ajp.2011.10111704",
+      "url": "https://doi.org/10.1176/appi.ajp.2011.10111704",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "saunders-1993-audit",
+      "group": "assessment",
+      "html": "Saunders, J. B., Aasland, O. G., Babor, T. F., de la Fuente, J. R., &amp; Grant, M. (1993). Development of the Alcohol Use Disorders Identification Test (AUDIT): WHO Collaborative Project on Early Detection of Persons with Harmful Alcohol Consumption—II. <em>Addiction, 88</em>(6), 791–804. https://doi.org/10.1111/j.1360-0443.1993.tb02093.x",
+      "url": "https://doi.org/10.1111/j.1360-0443.1993.tb02093.x",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "fairburn-beglin-1994-ede-q",
+      "group": "assessment",
+      "html": "Fairburn, C. G., &amp; Beglin, S. J. (1994). Assessment of eating disorders: Interview or self-report questionnaire? <em>International Journal of Eating Disorders, 16</em>(4), 363–370. https://doi.org/10.1002/1098-108X(199412)16:4&lt;363::AID-EAT2260160405&gt;3.0.CO;2-#",
+      "url": "https://doi.org/10.1002/1098-108X(199412)16:4<363::AID-EAT2260160405>3.0.CO;2-#",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "chorpita-2000-rcads",
+      "group": "assessment",
+      "html": "Chorpita, B. F., Yim, L., Moffitt, C., Umemoto, L. A., &amp; Francis, S. E. (2000). Assessment of symptoms of DSM-IV anxiety and depression in children: A revised child anxiety and depression scale. <em>Behaviour Research and Therapy, 38</em>(8), 835–855. https://doi.org/10.1016/S0005-7967(99)00130-8",
+      "url": "https://doi.org/10.1016/S0005-7967(99)00130-8",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "ustun-2010-whodas-2",
+      "group": "assessment",
+      "html": "Üstün, T. B., Chatterji, S., Kostanjsek, N., Rehm, J., Kennedy, C., Epping-Jordan, J., Saxena, S., von Korff, M., &amp; Pull, C. (2010). Developing the World Health Organization Disability Assessment Schedule 2.0. <em>Bulletin of the World Health Organization, 88</em>(11), 815–823. https://doi.org/10.2471/BLT.09.067231",
+      "url": "https://doi.org/10.2471/BLT.09.067231",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "zickgraf-ellis-2018-nias",
+      "group": "assessment",
+      "html": "Zickgraf, H. F., &amp; Ellis, J. M. (2018). Initial validation of the Nine Item Avoidant/Restrictive Food Intake disorder screen (NIAS): A measure of three restrictive eating patterns. <em>Appetite, 123</em>, 32–42. https://doi.org/10.1016/j.appet.2017.11.111",
+      "url": "https://doi.org/10.1016/j.appet.2017.11.111",
+      "usedBy": [
+        "assessmentdatabase"
+      ]
+    },
+    {
+      "id": "fair-housing-act",
+      "group": "laws",
+      "html": "Fair Housing Act, 42 U.S.C. § 3601 et seq. (1968).",
+      "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title42/html/USCODE-2024-title42-chap45-subchapI-sec3601.htm",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "fha-regs-24-cfr-100",
+      "group": "laws",
+      "html": "Discriminatory conduct under the Fair Housing Act, 24 C.F.R. pt. 100 (2025).",
+      "url": "https://www.ecfr.gov/current/title-24/subtitle-B/chapter-I/subchapter-A/part-100",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "hud-fheo-2020-01",
+      "group": "laws",
+      "html": "U.S. Department of Housing and Urban Development, Office of Fair Housing and Equal Opportunity. (2020, January 28). <em>Assessing a person’s request to have an animal as a reasonable accommodation under the Fair Housing Act</em> (FHEO Notice FHEO-2020-01). https://web.archive.org/web/20251121211211/https://www.hud.gov/sites/dfiles/PA/documents/HUDAsstAnimalNC1-28-2020.pdf",
+      "url": "https://web.archive.org/web/20251121211211/https://www.hud.gov/sites/dfiles/PA/documents/HUDAsstAnimalNC1-28-2020.pdf",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "ada",
+      "group": "laws",
+      "html": "Americans with Disabilities Act of 1990, 42 U.S.C. § 12101 et seq. (1990).",
+      "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title42/html/USCODE-2024-title42-chap126-sec12101.htm",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "rehab-act-504",
+      "group": "laws",
+      "html": "Rehabilitation Act of 1973 § 504, 29 U.S.C. § 794 (1973).",
+      "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title29/html/USCODE-2024-title29-chap16-subchapV-sec794.htm",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "34-cfr-104",
+      "group": "laws",
+      "html": "Nondiscrimination on the basis of handicap in programs or activities receiving federal financial assistance, 34 C.F.R. pt. 104 (2026).",
+      "url": "https://www.ecfr.gov/current/title-34/subtitle-B/chapter-I/part-104",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "28-cfr-35",
+      "group": "laws",
+      "html": "Nondiscrimination on the basis of disability in state and local government services, 28 C.F.R. pt. 35 (2026).",
+      "url": "https://www.ecfr.gov/current/title-28/chapter-I/part-35",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "28-cfr-36",
+      "group": "laws",
+      "html": "Nondiscrimination on the basis of disability by public accommodations and in commercial facilities, 28 C.F.R. pt. 36 (2020).",
+      "url": "https://www.ecfr.gov/current/title-28/chapter-I/part-36",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "jan-mental-health-conditions",
+      "group": "laws",
+      "html": "Job Accommodation Network. (n.d.). <em>Mental health conditions</em>. https://askjan.org/disabilities/Mental-Health-Conditions.cfm",
+      "url": "https://askjan.org/disabilities/Mental-Health-Conditions.cfm",
+      "usedBy": [
+        "lettergenerator"
+      ]
+    },
+    {
+      "id": "hipaa-privacy-rule",
+      "group": "laws",
+      "html": "HIPAA Privacy Rule, 45 C.F.R. pts. 160 & 164 (2026).",
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C",
+      "usedBy": [
+        "hub",
+        "intakepacketgenerator",
+        "notegenerator",
+        "practiceinfosheet",
+        "practicestartingaid",
+        "referraldatabase",
+        "superbillgenerator"
+      ]
+    },
+    {
+      "id": "hipaa-npp-164-520",
+      "group": "laws",
+      "html": "Notice of privacy practices for protected health information, 45 C.F.R. § 164.520 (2024).",
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-E/section-164.520",
+      "usedBy": [
+        "intakepacketgenerator",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "hipaa-baa-164-504",
+      "group": "laws",
+      "html": "Uses and disclosures: Organizational requirements, 45 C.F.R. § 164.504 (2013).",
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-E/section-164.504",
+      "usedBy": [
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "no-surprises-act-gfe-statute",
+      "group": "laws",
+      "html": "No Surprises Act, 42 U.S.C. § 300gg-136 (2020).",
+      "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title42/html/USCODE-2024-title42-chap6A-subchapXXV-partE-sec300gg-136.htm",
+      "usedBy": [
+        "intakepacketgenerator",
+        "practicestartingaid",
+        "superbillgenerator"
+      ]
+    },
+    {
+      "id": "gfe-45-cfr-149-610",
+      "group": "laws",
+      "html": "Requirements for provision of good faith estimates of expected charges for uninsured (or self-pay) individuals, 45 C.F.R. § 149.610 (2021).",
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-B/part-149/subpart-G/section-149.610",
+      "usedBy": [
+        "intakepacketgenerator",
+        "practicestartingaid",
+        "superbillgenerator"
+      ]
+    },
+    {
+      "id": "cms-no-surprises",
+      "group": "laws",
+      "html": "Centers for Medicare &amp; Medicaid Services. (2026, September 10). <em>No surprise billing</em>. https://www.cms.gov/nosurprises",
+      "url": "https://www.cms.gov/nosurprises",
+      "usedBy": [
+        "intakepacketgenerator",
+        "superbillgenerator"
+      ]
+    },
+    {
+      "id": "rcw-70-02",
+      "group": "laws",
+      "html": "Rev. Code Wash. ch. 70.02 (2025). https://app.leg.wa.gov/rcw/default.aspx?cite=70.02",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=70.02",
+      "usedBy": [
+        "intakepacketgenerator"
+      ]
+    },
+    {
+      "id": "rcw-5-60-060",
+      "group": "laws",
+      "html": "Rev. Code Wash. § 5.60.060 (2026). https://app.leg.wa.gov/rcw/default.aspx?cite=5.60.060",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=5.60.060",
+      "usedBy": [
+        "intakepacketgenerator"
+      ]
+    },
+    {
+      "id": "rcw-26-44-030",
+      "group": "laws",
+      "html": "Rev. Code Wash. § 26.44.030 (2025). https://app.leg.wa.gov/rcw/default.aspx?cite=26.44.030",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=26.44.030",
+      "usedBy": [
+        "intakepacketgenerator"
+      ]
+    },
+    {
+      "id": "rcw-74-34-020",
+      "group": "laws",
+      "html": "Rev. Code Wash. § 74.34.020 (2025). https://app.leg.wa.gov/rcw/default.aspx?cite=74.34.020",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=74.34.020",
+      "usedBy": [
+        "intakepacketgenerator"
+      ]
+    },
+    {
+      "id": "rcw-74-34-035",
+      "group": "laws",
+      "html": "Rev. Code Wash. § 74.34.035 (2013). https://app.leg.wa.gov/rcw/default.aspx?cite=74.34.035",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=74.34.035",
+      "usedBy": [
+        "intakepacketgenerator"
+      ]
+    },
+    {
+      "id": "rcw-25-15",
+      "group": "laws",
+      "html": "Rev. Code Wash. ch. 25.15 (2024). https://app.leg.wa.gov/rcw/default.aspx?cite=25.15",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=25.15",
+      "usedBy": [
+        "businessdashboard",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "rcw-25-15-046",
+      "group": "laws",
+      "html": "Rev. Code Wash. § 25.15.046 (2022). https://app.leg.wa.gov/rcw/default.aspx?cite=25.15.046",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=25.15.046",
+      "usedBy": [
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "rcw-18-100",
+      "group": "laws",
+      "html": "Rev. Code Wash. ch. 18.100 (2024). https://app.leg.wa.gov/rcw/default.aspx?cite=18.100",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=18.100",
+      "usedBy": [
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "rcw-18-225",
+      "group": "licensure",
+      "html": "Rev. Code Wash. ch. 18.225 (2025). https://app.leg.wa.gov/rcw/default.aspx?cite=18.225",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=18.225",
+      "usedBy": [
+        "ceutracker",
+        "intakepacketgenerator",
+        "practicestartingaid",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "rcw-18-130-180",
+      "group": "licensure",
+      "html": "Rev. Code Wash. § 18.130.180 (2025). https://app.leg.wa.gov/rcw/default.aspx?cite=18.130.180",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=18.130.180",
+      "usedBy": [
+        "intakepacketgenerator"
+      ]
+    },
+    {
+      "id": "rcw-43-70-495",
+      "group": "licensure",
+      "html": "Rev. Code Wash. § 43.70.495 (2020). https://app.leg.wa.gov/rcw/default.aspx?cite=43.70.495",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=43.70.495",
+      "usedBy": [
+        "intakepacketgenerator",
+        "practicestartingaid",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "wac-246-809-710",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-710 (2017). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-710",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-710",
+      "usedBy": [
+        "intakepacketgenerator",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "wac-246-809-630",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-630 (2025). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-630",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-630",
+      "usedBy": [
+        "businessdashboard",
+        "ceutracker"
+      ]
+    },
+    {
+      "id": "wac-246-809-632",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-632 (2025). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-632",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-632",
+      "usedBy": [
+        "ceutracker"
+      ]
+    },
+    {
+      "id": "wac-246-809-615",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-615 (2021). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-615",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-615",
+      "usedBy": [
+        "ceutracker"
+      ]
+    },
+    {
+      "id": "wac-246-12-800-830",
+      "group": "licensure",
+      "html": "Wash. Admin. Code §§ 246-12-800 to 246-12-830 (2026). https://app.leg.wa.gov/wac/default.aspx?cite=246-12&full=true",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-12&full=true",
+      "usedBy": [
+        "ceutracker"
+      ]
+    },
+    {
+      "id": "wac-246-809-990",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-990 (2026). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-990",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-990",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "wac-246-809-020",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-020 (2025). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-020",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-020",
+      "usedBy": [
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "wac-246-809-130",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-130 (2025). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-130",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-130",
+      "usedBy": [
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "wac-246-809-134",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-134 (2017). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-134",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-134",
+      "usedBy": [
+        "practicestartingaid",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "wac-246-809-230",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-230 (2025). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-230",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-230",
+      "usedBy": [
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "wac-246-809-234",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-234 (2017). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-234",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-234",
+      "usedBy": [
+        "practicestartingaid",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "wac-246-809-330",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-330 (2025). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-330",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-330",
+      "usedBy": [
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "wac-246-809-334",
+      "group": "licensure",
+      "html": "Wash. Admin. Code § 246-809-334 (2017). https://app.leg.wa.gov/wac/default.aspx?cite=246-809-334",
+      "url": "https://app.leg.wa.gov/wac/default.aspx?cite=246-809-334",
+      "usedBy": [
+        "practicestartingaid",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "oar-833-080-0011",
+      "group": "licensure",
+      "html": "Or. Admin. R. 833-080-0011 (2026). https://secure.sos.state.or.us/oard/view.action?ruleNumber=833-080-0011",
+      "url": "https://secure.sos.state.or.us/oard/view.action?ruleNumber=833-080-0011",
+      "usedBy": [
+        "ceutracker"
+      ]
+    },
+    {
+      "id": "doh-mhc-licensing",
+      "group": "licensure",
+      "html": "Washington State Department of Health. (n.d.). <em>Mental health counselor licensing</em>. https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/mental-health-counselor",
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/mental-health-counselor",
+      "usedBy": [
+        "intakepacketgenerator",
+        "practicestartingaid",
+        "supervisionlog"
+      ]
+    },
+    {
+      "id": "doh-mft-licensing",
+      "group": "licensure",
+      "html": "Washington State Department of Health. (n.d.). <em>Marriage and family therapist licensing</em>. https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/marriage-and-family-therapist",
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/marriage-and-family-therapist",
+      "usedBy": [
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "doh-sw-licensing",
+      "group": "licensure",
+      "html": "Washington State Department of Health. (n.d.). <em>Social worker and social worker associate licensing</em>. https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/social-worker-and-social-worker-associate",
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/social-worker-and-social-worker-associate",
+      "usedBy": [
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "doh-mhc-ce",
+      "group": "licensure",
+      "html": "Washington State Department of Health. (n.d.). <em>Mental health counselor – continuing education</em>. https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/mental-health-counselor/continuing-education",
+      "url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/mental-health-counselor/continuing-education",
+      "usedBy": [
+        "ceutracker"
+      ]
+    },
+    {
+      "id": "doh-suicide-prevention-training",
+      "group": "licensure",
+      "html": "Washington State Department of Health. (n.d.). <em>Suicide prevention training for health professions</em>. https://doh.wa.gov/public-health-provider-resources/healthcare-professions-and-facilities/suicide-prevention",
+      "url": "https://doh.wa.gov/public-health-provider-resources/healthcare-professions-and-facilities/suicide-prevention",
+      "usedBy": [
+        "ceutracker"
+      ]
+    },
+    {
+      "id": "irs-pub-505",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026). <em>Tax withholding and estimated tax</em> (Publication 505). https://www.irs.gov/pub/irs-pdf/p505.pdf",
+      "url": "https://www.irs.gov/pub/irs-pdf/p505.pdf",
+      "usedBy": [
+        "businessdashboard",
+        "practiceinfosheet"
+      ]
+    },
+    {
+      "id": "irs-pub-334",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026). <em>Tax guide for small business (for individuals who use Schedule C)</em> (Publication 334). https://www.irs.gov/pub/irs-pdf/p334.pdf",
+      "url": "https://www.irs.gov/pub/irs-pdf/p334.pdf",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "irs-pub-463",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026). <em>Travel, gift, and car expenses</em> (Publication 463). https://www.irs.gov/pub/irs-pdf/p463.pdf",
+      "url": "https://www.irs.gov/pub/irs-pdf/p463.pdf",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "irs-pub-587",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026). <em>Business use of your home (including use by daycare providers)</em> (Publication 587). https://www.irs.gov/pub/irs-pdf/p587.pdf",
+      "url": "https://www.irs.gov/pub/irs-pdf/p587.pdf",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "irs-pub-583",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2024). <em>Starting a business and keeping records</em> (Publication 583, Rev. December 2024). https://www.irs.gov/pub/irs-pdf/p583.pdf",
+      "url": "https://www.irs.gov/pub/irs-pdf/p583.pdf",
+      "usedBy": [
+        "businessdashboard",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "irs-schedule-c-instructions",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026). <em>2025 instructions for Schedule C (Form 1040): Profit or loss from business</em>. https://www.irs.gov/pub/irs-pdf/i1040sc.pdf",
+      "url": "https://www.irs.gov/pub/irs-pdf/i1040sc.pdf",
+      "usedBy": [
+        "businessdashboard",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "irs-1099-misc-nec-instructions",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026). <em>Instructions for Forms 1099-MISC and 1099-NEC</em> (Rev. December 2026). https://www.irs.gov/pub/irs-pdf/i1099mec.pdf",
+      "url": "https://www.irs.gov/pub/irs-pdf/i1099mec.pdf",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "irs-standard-mileage-rates",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026, July 28). <em>Standard mileage rates</em>. https://www.irs.gov/tax-professionals/standard-mileage-rates",
+      "url": "https://www.irs.gov/tax-professionals/standard-mileage-rates",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "irs-ein",
+      "group": "tax",
+      "html": "Internal Revenue Service. (2026, October 16). <em>Get an employer identification number</em>. https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number",
+      "url": "https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number",
+      "usedBy": [
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "rcw-82-04-290",
+      "group": "tax",
+      "html": "Rev. Code Wash. § 82.04.290 (2025). https://app.leg.wa.gov/rcw/default.aspx?cite=82.04.290",
+      "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=82.04.290",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "dor-bo-tax",
+      "group": "tax",
+      "html": "Washington State Department of Revenue. (n.d.). <em>Business &amp; occupation tax</em>. https://dor.wa.gov/taxes-rates/business-occupation-tax",
+      "url": "https://dor.wa.gov/taxes-rates/business-occupation-tax",
+      "usedBy": [
+        "businessdashboard",
+        "practiceinfosheet"
+      ]
+    },
+    {
+      "id": "dor-bo-classifications",
+      "group": "tax",
+      "html": "Washington State Department of Revenue. (n.d.). <em>Business &amp; occupation tax classifications</em>. https://dor.wa.gov/taxes-rates/business-occupation-tax/business-occupation-tax-classifications",
+      "url": "https://dor.wa.gov/taxes-rates/business-occupation-tax/business-occupation-tax-classifications",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "dor-credits-small-business",
+      "group": "tax",
+      "html": "Washington State Department of Revenue. (n.d.). <em>Credits</em>. https://dor.wa.gov/find-taxes-rates/tax-incentives/credits#SBC",
+      "url": "https://dor.wa.gov/find-taxes-rates/tax-incentives/credits#SBC",
+      "usedBy": [
+        "businessdashboard"
+      ]
+    },
+    {
+      "id": "dor-business-license",
+      "group": "tax",
+      "html": "Washington State Department of Revenue. (n.d.). <em>Apply for a business license</em>. https://dor.wa.gov/open-business/apply-business-license",
+      "url": "https://dor.wa.gov/open-business/apply-business-license",
+      "usedBy": [
+        "businessdashboard",
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "dor-city-endorsements",
+      "group": "tax",
+      "html": "Washington State Department of Revenue. (n.d.). <em>City endorsements</em>. https://dor.wa.gov/manage-business/city-endorsements",
+      "url": "https://dor.wa.gov/manage-business/city-endorsements",
+      "usedBy": [
+        "businessdashboard",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "45-cfr-162",
+      "group": "practice",
+      "html": "Administrative requirements, 45 C.F.R. pt. 162 (2026).",
+      "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-162",
+      "usedBy": [
+        "practiceinfosheet",
+        "practicestartingaid",
+        "superbillgenerator"
+      ]
+    },
+    {
+      "id": "nppes",
+      "group": "practice",
+      "html": "Centers for Medicare &amp; Medicaid Services. (n.d.). <em>National Plan and Provider Enumeration System (NPPES)</em>. https://nppes.cms.hhs.gov/",
+      "url": "https://nppes.cms.hhs.gov/",
+      "usedBy": [
+        "businessdashboard",
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "nucc-taxonomy",
+      "group": "practice",
+      "html": "National Uniform Claim Committee. (2026). <em>Health care provider taxonomy code set</em> (Version 26.1) [Data set]. https://www.nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40",
+      "url": "https://www.nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40",
+      "usedBy": [
+        "hub",
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "nucc-1500-manual",
+      "group": "practice",
+      "html": "National Uniform Claim Committee. (2025). <em>1500 health insurance claim form reference instruction manual for form version 02/12</em> (Version 13.0). https://www.nucc.org/images/stories/PDF/1500_claim_form_instruction_manual_2025_07-v13.pdf",
+      "url": "https://www.nucc.org/images/stories/PDF/1500_claim_form_instruction_manual_2025_07-v13.pdf",
+      "usedBy": [
+        "superbillgenerator"
+      ]
+    },
+    {
+      "id": "cms-1500",
+      "group": "practice",
+      "html": "Centers for Medicare &amp; Medicaid Services. (2024, September 10). <em>Professional paper claim form (CMS-1500)</em>. https://www.cms.gov/medicare/coding-billing/electronic-billing/professional-paper-claim-form",
+      "url": "https://www.cms.gov/medicare/coding-billing/electronic-billing/professional-paper-claim-form",
+      "usedBy": [
+        "superbillgenerator"
+      ]
+    },
+    {
+      "id": "caqh-proview",
+      "group": "practice",
+      "html": "CAQH. (n.d.). <em>CAQH ProView</em>. https://proview.caqh.org/",
+      "url": "https://proview.caqh.org/",
+      "usedBy": [
+        "businessdashboard",
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "hca-enroll-provider",
+      "group": "practice",
+      "html": "Washington State Health Care Authority. (n.d.). <em>Enroll as a provider</em>. https://www.hca.wa.gov/billers-providers-partners/become-apple-health-provider/enroll-provider",
+      "url": "https://www.hca.wa.gov/billers-providers-partners/become-apple-health-provider/enroll-provider",
+      "usedBy": [
+        "businessdashboard",
+        "caseloadataglance",
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "wa-sos-corporations",
+      "group": "practice",
+      "html": "Washington Secretary of State. (n.d.). <em>Corporations &amp; charities</em>. https://www.sos.wa.gov/corporations-charities",
+      "url": "https://www.sos.wa.gov/corporations-charities",
+      "usedBy": [
+        "businessdashboard",
+        "practiceinfosheet",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "wa-sos-business-entities",
+      "group": "practice",
+      "html": "Washington Secretary of State. (n.d.). <em>Business entities</em>. https://www.sos.wa.gov/corporations-charities/business-entities",
+      "url": "https://www.sos.wa.gov/corporations-charities/business-entities",
+      "usedBy": [
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "wa-sos-ccfs",
+      "group": "practice",
+      "html": "Washington Secretary of State. (n.d.). <em>Corporations and Charities System (CCFS)</em>. https://ccfs.sos.wa.gov/",
+      "url": "https://ccfs.sos.wa.gov/",
+      "usedBy": [
+        "businessdashboard",
+        "practicestartingaid"
+      ]
+    },
+    {
+      "id": "icd-10-cm-fy2027",
+      "group": "diagnosis",
+      "html": "National Center for Health Statistics. (2026). <em>International classification of diseases, tenth revision, clinical modification (ICD-10-CM)</em> (FY 2027 release, October 1, 2026) [Data set]. Centers for Disease Control and Prevention. https://www.cdc.gov/nchs/icd/icd-10-cm/files.html",
+      "url": "https://www.cdc.gov/nchs/icd/icd-10-cm/files.html",
+      "usedBy": [
+        "assessmentdatabase",
+        "caseloadataglance",
+        "hub",
+        "intakepacketgenerator",
+        "lettergenerator",
+        "notegenerator",
+        "superbillgenerator",
+        "supervisionlog",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "988-lifeline",
+      "group": "crisis",
+      "html": "988 Suicide &amp; Crisis Lifeline. (n.d.). <em>988 Lifeline</em>. Vibrant Emotional Health. https://988lifeline.org/",
+      "url": "https://988lifeline.org/",
+      "usedBy": [
+        "crisisplangenerator",
+        "hub",
+        "intakepacketgenerator",
+        "practiceinfosheet"
+      ]
+    },
+    {
+      "id": "samhsa-988",
+      "group": "crisis",
+      "html": "Substance Abuse and Mental Health Services Administration. (2025, September 26). <em>988 Suicide &amp; Crisis Lifeline</em>. https://www.samhsa.gov/mental-health/988",
+      "url": "https://www.samhsa.gov/mental-health/988",
+      "usedBy": [
+        "crisisplangenerator",
+        "hub"
+      ]
+    },
+    {
+      "id": "samhsa-national-helpline",
+      "group": "crisis",
+      "html": "Substance Abuse and Mental Health Services Administration. (2023, June 9). <em>National helpline for mental health, drug, alcohol issues</em>. https://www.samhsa.gov/find-help/helplines/national-helpline",
+      "url": "https://www.samhsa.gov/find-help/helplines/national-helpline",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "national-dv-hotline",
+      "group": "crisis",
+      "html": "National Domestic Violence Hotline. (n.d.). <em>Domestic violence support</em>. https://www.thehotline.org/",
+      "url": "https://www.thehotline.org/",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "crisis-text-line",
+      "group": "crisis",
+      "html": "Crisis Text Line. (n.d.). <em>Text HOME to 741741: Free, 24/7 mental health support</em>. https://www.crisistextline.org/",
+      "url": "https://www.crisistextline.org/",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "trevor-project",
+      "group": "crisis",
+      "html": "The Trevor Project. (n.d.). <em>Get help</em>. https://www.thetrevorproject.org/get-help/",
+      "url": "https://www.thetrevorproject.org/get-help/",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "blackline",
+      "group": "crisis",
+      "html": "BlackLine. (n.d.). <em>Call BlackLine: Crisis call line</em>. https://www.callblackline.com/",
+      "url": "https://www.callblackline.com/",
+      "usedBy": [
+        "crisisplangenerator"
+      ]
+    },
+    {
+      "id": "hayes-2012-act",
+      "group": "therapy",
+      "html": "Hayes, S. C., Strosahl, K. D., & Wilson, K. G. (2012). <em>Acceptance and commitment therapy: The process and practice of mindful change</em> (2nd ed.). Guilford Press.",
+      "url": "https://openlibrary.org/books/OL25156542M",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "carlson-2006-adlerian",
+      "group": "therapy",
+      "html": "Carlson, J., Watts, R. E., & Maniacci, M. (2006). <em>Adlerian therapy: Theory and practice</em>. American Psychological Association. https://doi.org/10.1037/11363-000",
+      "url": "https://doi.org/10.1037/11363-000",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "rubin-2016-art-therapy",
+      "group": "therapy",
+      "html": "Rubin, J. A. (Ed.). (2016). <em>Approaches to art therapy: Theory and technique</em> (3rd ed.). Routledge. https://doi.org/10.4324/9781315716015",
+      "url": "https://doi.org/10.4324/9781315716015",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "bowlby-1988-secure-base",
+      "group": "therapy",
+      "html": "Bowlby, J. (1988). <em>A secure base: Clinical applications of attachment theory</em>. Routledge.",
+      "url": "https://openlibrary.org/books/OL95336M",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "schwartz-2016-biofeedback",
+      "group": "therapy",
+      "html": "Schwartz, M. S., & Andrasik, F. (Eds.). (2016). <em>Biofeedback: A practitioner's guide</em> (4th ed.). Guilford Press.",
+      "url": "https://openlibrary.org/isbn/9781462522545",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "grand-2013-brainspotting",
+      "group": "therapy",
+      "html": "Grand, D. (2013). <em>Brainspotting: The revolutionary new therapy for rapid and effective change</em>. Sounds True.",
+      "url": "https://openlibrary.org/books/OL51091737M",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "beck-2021-cbt",
+      "group": "therapy",
+      "html": "Beck, J. S. (2021). <em>Cognitive behavior therapy: Basics and beyond</em> (3rd ed.). Guilford Press.",
+      "url": "https://openlibrary.org/books/OL29494312M",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "resick-2024-cpt",
+      "group": "therapy",
+      "html": "Resick, P. A., Monson, C. M., & Chard, K. M. (2024). <em>Cognitive processing therapy for PTSD: A comprehensive therapist manual</em> (2nd ed.). Guilford Press.",
+      "url": "https://lccn.loc.gov/2023057420",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "gilbert-2010-cft",
+      "group": "therapy",
+      "html": "Gilbert, P. (2010). <em>Compassion focused therapy: Distinctive features</em>. Routledge. https://doi.org/10.4324/9780203851197",
+      "url": "https://doi.org/10.4324/9780203851197",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "malchiodi-2005-expressive-therapies",
+      "group": "therapy",
+      "html": "Malchiodi, C. A. (Ed.). (2005). <em>Expressive therapies</em>. Guilford Press.",
+      "url": "https://lccn.loc.gov/2004019048",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "linehan-1993-dbt",
+      "group": "therapy",
+      "html": "Linehan, M. M. (1993). <em>Cognitive-behavioral treatment of borderline personality disorder</em>. Guilford Press.",
+      "url": "https://lccn.loc.gov/93020483",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "johnson-emunah-2021-drama-therapy",
+      "group": "therapy",
+      "html": "Johnson, D. R., & Emunah, R. (Eds.). (2021). <em>Current approaches in drama therapy</em> (3rd ed.). Charles C Thomas.",
+      "url": "https://lccn.loc.gov/2020035119",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "moreno-1946-psychodrama",
+      "group": "therapy",
+      "html": "Moreno, J. L. (1946). <em>Psychodrama</em> (Vol. 1). Beacon House.",
+      "url": "https://openlibrary.org/books/OL194115M",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "buzzell-2009-ecotherapy",
+      "group": "therapy",
+      "html": "Buzzell, L., & Chalquist, C. (Eds.). (2009). <em>Ecotherapy: Healing with nature in mind</em>. Sierra Club Books.",
+      "url": "https://lccn.loc.gov/2009001427",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "johnson-2019-eft",
+      "group": "therapy",
+      "html": "Johnson, S. M. (2019). <em>The practice of emotionally focused couple therapy: Creating connection</em> (3rd ed.). Routledge. https://doi.org/10.4324/9781351168366",
+      "url": "https://doi.org/10.4324/9781351168366",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "shapiro-2018-emdr",
+      "group": "therapy",
+      "html": "Shapiro, F. (2018). <em>Eye movement desensitization and reprocessing (EMDR) therapy: Basic principles, protocols, and procedures</em> (3rd ed.). Guilford Press.",
+      "url": "https://openlibrary.org/isbn/9781462532766",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "yalom-1980-existential",
+      "group": "therapy",
+      "html": "Yalom, I. D. (1980). <em>Existential psychotherapy</em>. Basic Books.",
+      "url": "https://lccn.loc.gov/80050553",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "foa-2012-erp",
+      "group": "therapy",
+      "html": "Foa, E. B., Yadin, E., & Lichner, T. K. (2012). <em>Exposure and response (ritual) prevention for obsessive-compulsive disorder: Therapist guide</em> (2nd ed.). Oxford University Press. https://doi.org/10.1093/med:psych/9780195335286.001.0001",
+      "url": "https://doi.org/10.1093/med:psych/9780195335286.001.0001",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "kerr-bowen-1988-family-evaluation",
+      "group": "therapy",
+      "html": "Kerr, M. E., & Bowen, M. (1988). <em>Family evaluation: An approach based on Bowen theory</em>. W. W. Norton.",
+      "url": "https://lccn.loc.gov/88001671",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "brown-2018-feminist",
+      "group": "therapy",
+      "html": "Brown, L. S. (2018). <em>Feminist therapy</em> (2nd ed.). American Psychological Association. https://doi.org/10.1037/0000092-000",
+      "url": "https://doi.org/10.1037/0000092-000",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "perls-1951-gestalt",
+      "group": "therapy",
+      "html": "Perls, F. S., Hefferline, R. F., & Goodman, P. (1951). <em>Gestalt therapy: Excitement and growth in the human personality</em>. Julian Press.",
+      "url": "https://lccn.loc.gov/51014876",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "schneider-2015-humanistic",
+      "group": "therapy",
+      "html": "Schneider, K. J., Pierson, J. F., & Bugental, J. F. T. (Eds.). (2015). <em>The handbook of humanistic psychology: Theory, research, and practice</em> (2nd ed.). SAGE. https://doi.org/10.4135/9781483387864",
+      "url": "https://doi.org/10.4135/9781483387864",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "norcross-goldfried-2019-integration",
+      "group": "therapy",
+      "html": "Norcross, J. C., & Goldfried, M. R. (Eds.). (2019). <em>Handbook of psychotherapy integration</em> (3rd ed.). Oxford University Press. https://doi.org/10.1093/med-psych/9780190690465.001.0001",
+      "url": "https://doi.org/10.1093/med-psych/9780190690465.001.0001",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "weissman-2018-ipt",
+      "group": "therapy",
+      "html": "Weissman, M. M., Markowitz, J. C., & Klerman, G. L. (2018). <em>The guide to interpersonal psychotherapy</em> (Updated and expanded ed.). Oxford University Press. https://doi.org/10.1093/med-psych/9780190662592.001.0001",
+      "url": "https://doi.org/10.1093/med-psych/9780190662592.001.0001",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "segal-2013-mbct",
+      "group": "therapy",
+      "html": "Segal, Z. V., Williams, J. M. G., & Teasdale, J. D. (2013). <em>Mindfulness-based cognitive therapy for depression</em> (2nd ed.). Guilford Press.",
+      "url": "https://lccn.loc.gov/2012018928",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "miller-rollnick-2023-mi",
+      "group": "therapy",
+      "html": "Miller, W. R., & Rollnick, S. (2023). <em>Motivational interviewing: Helping people change and grow</em> (4th ed.). Guilford Press.",
+      "url": "https://lccn.loc.gov/2023018723",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "henggeler-2009-mst",
+      "group": "therapy",
+      "html": "Henggeler, S. W., Schoenwald, S. K., Borduin, C. M., Rowland, M. D., & Cunningham, P. B. (2009). <em>Multisystemic therapy for antisocial behavior in children and adolescents</em> (2nd ed.). Guilford Press.",
+      "url": "https://lccn.loc.gov/2008050425",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "white-epston-1990-narrative",
+      "group": "therapy",
+      "html": "White, M., & Epston, D. (1990). <em>Narrative means to therapeutic ends</em>. W. W. Norton.",
+      "url": "https://lccn.loc.gov/89048776",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "demos-2019-neurofeedback",
+      "group": "therapy",
+      "html": "Demos, J. N. (2019). <em>Getting started with EEG neurofeedback</em> (2nd ed.). W. W. Norton.",
+      "url": "https://openlibrary.org/books/OL29796667M",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "mcneil-2010-pcit",
+      "group": "therapy",
+      "html": "McNeil, C. B., & Hembree-Kigin, T. L. (2010). <em>Parent-child interaction therapy</em> (2nd ed.). Springer. https://doi.org/10.1007/978-0-387-88639-8",
+      "url": "https://doi.org/10.1007/978-0-387-88639-8",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "rogers-1951-client-centered",
+      "group": "therapy",
+      "html": "Rogers, C. R. (1951). <em>Client-centered therapy: Its current practice, implications, and theory</em>. Houghton Mifflin.",
+      "url": "https://openlibrary.org/isbn/0395053226",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "landreth-2023-play-therapy",
+      "group": "therapy",
+      "html": "Landreth, G. L. (2023). <em>Play therapy: The art of the relationship</em> (4th ed.). Routledge. https://doi.org/10.4324/9781003255796",
+      "url": "https://doi.org/10.4324/9781003255796",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "seligman-2000-positive-psychology",
+      "group": "therapy",
+      "html": "Seligman, M. E. P., & Csikszentmihalyi, M. (2000). Positive psychology: An introduction. <em>American Psychologist, 55</em>(1), 5–14. https://doi.org/10.1037/0003-066X.55.1.5",
+      "url": "https://doi.org/10.1037/0003-066X.55.1.5",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "mcwilliams-2004-psychoanalytic",
+      "group": "therapy",
+      "html": "McWilliams, N. (2004). <em>Psychoanalytic psychotherapy: A practitioner's guide</em>. Guilford Press.",
+      "url": "https://lccn.loc.gov/2003025342",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "gabbard-2017-psychodynamic",
+      "group": "therapy",
+      "html": "Gabbard, G. O. (2017). <em>Long-term psychodynamic psychotherapy: A basic text</em> (3rd ed.). American Psychiatric Association Publishing. https://doi.org/10.1176/appi.books.9781615371471",
+      "url": "https://doi.org/10.1176/appi.books.9781615371471",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "ellis-2019-rebt",
+      "group": "therapy",
+      "html": "Ellis, A., & Joffe Ellis, D. (2019). <em>Rational emotive behavior therapy</em> (2nd ed.). American Psychological Association. https://doi.org/10.1037/0000134-000",
+      "url": "https://doi.org/10.1037/0000134-000",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "glasser-1965-reality",
+      "group": "therapy",
+      "html": "Glasser, W. (1965). <em>Reality therapy: A new approach to psychiatry</em>. Harper & Row.",
+      "url": "https://lccn.loc.gov/65014672",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "jordan-2018-relational-cultural",
+      "group": "therapy",
+      "html": "Jordan, J. V. (2018). <em>Relational–cultural therapy</em> (2nd ed.). American Psychological Association. https://doi.org/10.1037/0000063-000",
+      "url": "https://doi.org/10.1037/0000063-000",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "kalff-2003-sandplay",
+      "group": "therapy",
+      "html": "Kalff, D. M. (2003). <em>Sandplay: A psychotherapeutic approach to the psyche</em>. Temenos Press.",
+      "url": "https://lccn.loc.gov/2003104965",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "young-2003-schema",
+      "group": "therapy",
+      "html": "Young, J. E., Klosko, J. S., & Weishaar, M. E. (2003). <em>Schema therapy: A practitioner's guide</em>. Guilford Press.",
+      "url": "https://lccn.loc.gov/2002153858",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "deshazer-1985-sfbt",
+      "group": "therapy",
+      "html": "de Shazer, S. (1985). <em>Keys to solution in brief therapy</em>. W. W. Norton.",
+      "url": "https://lccn.loc.gov/84022781",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "levine-2010-somatic-experiencing",
+      "group": "therapy",
+      "html": "Levine, P. A. (2010). <em>In an unspoken voice: How the body releases trauma and restores goodness</em>. North Atlantic Books.",
+      "url": "https://lccn.loc.gov/2010023653",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "smith-2006-strength-based",
+      "group": "therapy",
+      "html": "Smith, E. J. (2006). The strength-based counseling model. <em>The Counseling Psychologist, 34</em>(1), 13–79. https://doi.org/10.1177/0011000005277018",
+      "url": "https://doi.org/10.1177/0011000005277018",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "cohen-2017-tf-cbt",
+      "group": "therapy",
+      "html": "Cohen, J. A., Mannarino, A. P., & Deblinger, E. (2017). <em>Treating trauma and traumatic grief in children and adolescents</em> (2nd ed.). Guilford Press.",
+      "url": "https://lccn.loc.gov/2016041045",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "csat-2014-tip57",
+      "group": "therapy",
+      "html": "Center for Substance Abuse Treatment. (2014). <em>Trauma-informed care in behavioral health services</em> (Treatment Improvement Protocol [TIP] Series, No. 57; HHS Publication No. [SMA] 14-4816). Substance Abuse and Mental Health Services Administration. https://www.ncbi.nlm.nih.gov/books/NBK207201/",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK207201/",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "friedman-hartelius-2013-transpersonal",
+      "group": "therapy",
+      "html": "Friedman, H. L., & Hartelius, G. (Eds.). (2013). <em>The Wiley-Blackwell handbook of transpersonal psychology</em>. Wiley-Blackwell. https://doi.org/10.1002/9781118591277",
+      "url": "https://doi.org/10.1002/9781118591277",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "gass-2020-adventure-therapy",
+      "group": "therapy",
+      "html": "Gass, M. A., Gillis, H. L., & Russell, K. C. (2020). <em>Adventure therapy: Theory, research, and practice</em> (2nd ed.). Routledge. https://doi.org/10.4324/9781003016618",
+      "url": "https://doi.org/10.4324/9781003016618",
+      "usedBy": [
+        "notegenerator",
+        "superbillgenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "weed-1968-soap",
+      "group": "clinical",
+      "html": "Weed, L. L. (1968). Medical records that guide and teach. <em>New England Journal of Medicine, 278</em>(11), 593–600. https://doi.org/10.1056/NEJM196803142781105",
+      "url": "https://doi.org/10.1056/NEJM196803142781105",
+      "usedBy": [
+        "notegenerator"
+      ]
+    },
+    {
+      "id": "cameron-2002-soap-case-notes",
+      "group": "clinical",
+      "html": "Cameron, S., & Turtle-Song, I. (2002). Learning to write case notes using the SOAP format. <em>Journal of Counseling & Development, 80</em>(3), 286–292. https://doi.org/10.1002/j.1556-6678.2002.tb00193.x",
+      "url": "https://doi.org/10.1002/j.1556-6678.2002.tb00193.x",
+      "usedBy": [
+        "notegenerator"
+      ]
+    },
+    {
+      "id": "wiger-2021-documentation-primer",
+      "group": "clinical",
+      "html": "Wiger, D. E. (2021). <em>The psychotherapy documentation primer</em> (4th ed.). Wiley.",
+      "url": "https://www.wiley.com/en-us/The+Psychotherapy+Documentation+Primer%2C+4th+Edition-p-9781119709848",
+      "usedBy": [
+        "notegenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "baird-mollen-2023-internship-handbook",
+      "group": "clinical",
+      "html": "Baird, B. N., & Mollen, D. (2023). <em>The internship, practicum, and field placement handbook: A guide for the helping professions</em> (9th ed.). Routledge. https://doi.org/10.4324/9781003325697",
+      "url": "https://doi.org/10.4324/9781003325697",
+      "usedBy": [
+        "notegenerator",
+        "treatmentplanbuilder"
+      ]
+    },
+    {
+      "id": "kettenbach-2009-patient-notes",
+      "group": "clinical",
+      "html": "Kettenbach, G. (2009). <em>Writing patient/client notes: Ensuring accuracy in documentation</em> (4th ed.). F. A. Davis.",
+      "url": "https://lccn.loc.gov/2008030774",
+      "usedBy": [
+        "notegenerator"
+      ]
+    },
+    {
+      "id": "voss-das-2024-mse",
+      "group": "clinical",
+      "html": "Voss, R. M., & Das, J. M. (2024). Mental status examination. In <em>StatPearls</em>. StatPearls Publishing. https://www.ncbi.nlm.nih.gov/books/NBK546682/",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK546682/",
+      "usedBy": [
+        "notegenerator"
+      ]
+    },
+    {
+      "id": "trzepacz-baker-1993-mse",
+      "group": "clinical",
+      "html": "Trzepacz, P. T., & Baker, R. W. (1993). <em>The psychiatric mental status examination</em>. Oxford University Press.",
+      "url": "https://lccn.loc.gov/92048947",
+      "usedBy": [
+        "notegenerator"
+      ]
+    },
+    {
+      "id": "zimmerman-2022-interview-guide",
+      "group": "clinical",
+      "html": "Zimmerman, M. (2022). <em>Interview guide for evaluating DSM-5-TR psychiatric disorders and the mental status examination</em>. Psych Products Press.",
+      "url": "https://openlibrary.org/isbn/9780963382122",
+      "usedBy": [
+        "notegenerator"
+      ]
+    }
+  ]
+}

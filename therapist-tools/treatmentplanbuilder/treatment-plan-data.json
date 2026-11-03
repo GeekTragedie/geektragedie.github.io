@@ -1,0 +1,464 @@
+{
+  "frameworks": [
+    {
+      "id": "medical-necessity",
+      "name": "Medical Necessity / Insurance-Compliant (SMART + Wiley Style)",
+      "description": "Structured around symptom reduction, measurable behavioral baselines, and evidence-based interventions required by commercial insurance and Medicaid audits."
+    },
+    {
+      "id": "person-centered",
+      "name": "Collaborative / Person-Centered & Strengths-Based",
+      "description": "Writes goals in collaborative, client-owned language honoring personal values, autonomy, and lived experience alongside measurable steps."
+    },
+    {
+      "id": "neuro-affirming",
+      "name": "Neurodivergent-Affirming (Sensory, Burnout & Accommodation Focused)",
+      "description": "Replaces compliance/masking goals with nervous system regulation, sensory accommodations, unmasking safety, and executive functioning scaffolds."
+    },
+    {
+      "id": "trauma-phased",
+      "name": "Trauma-Informed Phase-Oriented (Safety -> Processing -> Integration)",
+      "description": "Structures goals across Herman's 3-phase trauma recovery model: Phase 1 Stabilization/Resourcing, Phase 2 Trauma Processing (EMDR/IFS/Drama Therapy), and Phase 3 Reconnection."
+    },
+    {
+      "id": "sfbt",
+      "name": "Solution-Focused Brief Therapy (SFBT / Goal-Directed)",
+      "description": "Focuses on future-oriented preferred outcomes, scaling questions, and amplifying existing client exceptions and strengths."
+    },
+    {
+      "id": "family-youth",
+      "name": "Youth / Adolescent & Family Systems Plan",
+      "description": "Integrates individual youth coping skills with caregiver co-regulation, communication repair, and school/home support accommodations."
+    }
+  ],
+  "fallbackDiagnoses": {
+    "ICD": [
+      {
+        "code": "F41.1",
+        "name": "F41.1 - Generalized Anxiety Disorder",
+        "category": "anxiety"
+      },
+      {
+        "code": "F41.0",
+        "name": "F41.0 - Panic Disorder",
+        "category": "anxiety"
+      },
+      {
+        "code": "F40.10",
+        "name": "F40.10 - Social Anxiety Disorder",
+        "category": "anxiety"
+      },
+      {
+        "code": "F33.1",
+        "name": "F33.1 - Major Depressive Disorder, Recurrent, Moderate",
+        "category": "depression"
+      },
+      {
+        "code": "F32.1",
+        "name": "F32.1 - Major Depressive Disorder, Single Episode, Moderate",
+        "category": "depression"
+      },
+      {
+        "code": "F34.1",
+        "name": "F34.1 - Persistent Depressive Disorder (Dysthymia)",
+        "category": "depression"
+      },
+      {
+        "code": "F43.10",
+        "name": "F43.10 - Post-Traumatic Stress Disorder (PTSD)",
+        "category": "trauma"
+      },
+      {
+        "code": "F43.23",
+        "name": "F43.23 - Adjustment Disorder with Mixed Anxiety and Depressed Mood",
+        "category": "adjustment"
+      },
+      {
+        "code": "F43.22",
+        "name": "F43.22 - Adjustment Disorder with Anxiety",
+        "category": "adjustment"
+      },
+      {
+        "code": "F43.81",
+        "name": "F43.81 - Prolonged Grief Disorder",
+        "category": "adjustment"
+      },
+      {
+        "code": "F90.2",
+        "name": "F90.2 - Attention-Deficit/Hyperactivity Disorder (ADHD), Combined Presentation",
+        "category": "adhd"
+      },
+      {
+        "code": "F90.0",
+        "name": "F90.0 - Attention-Deficit/Hyperactivity Disorder (ADHD), Predominantly Inattentive",
+        "category": "adhd"
+      },
+      {
+        "code": "F84.0",
+        "name": "F84.0 - Autism Spectrum Disorder",
+        "category": "autism"
+      },
+      {
+        "code": "F42.2",
+        "name": "F42.2 - Obsessive-Compulsive Disorder (OCD)",
+        "category": "ocd"
+      },
+      {
+        "code": "F60.3",
+        "name": "F60.3 - Borderline Personality Disorder",
+        "category": "emotion_regulation"
+      },
+      {
+        "code": "F31.81",
+        "name": "F31.81 - Bipolar II Disorder",
+        "category": "emotion_regulation"
+      },
+      {
+        "code": "F50.819",
+        "name": "F50.819 - Binge-Eating Disorder, unspecified severity",
+        "category": "eating"
+      },
+      {
+        "code": "F50.82",
+        "name": "F50.82 - Avoidant/Restrictive Food Intake Disorder (ARFID)",
+        "category": "eating"
+      },
+      {
+        "code": "F10.20",
+        "name": "F10.20 - Alcohol Use Disorder, Moderate/Severe",
+        "category": "substance"
+      },
+      {
+        "code": "F12.20",
+        "name": "F12.20 - Cannabis Use Disorder, Moderate/Severe",
+        "category": "substance"
+      }
+    ],
+    "DSM": [
+      {
+        "code": "300.02 (F41.1)",
+        "name": "Generalized Anxiety Disorder (F41.1)",
+        "category": "anxiety"
+      },
+      {
+        "code": "300.01 (F41.0)",
+        "name": "Panic Disorder (F41.0)",
+        "category": "anxiety"
+      },
+      {
+        "code": "300.23 (F40.10)",
+        "name": "Social Anxiety Disorder (F40.10)",
+        "category": "anxiety"
+      },
+      {
+        "code": "296.32 (F33.1)",
+        "name": "Major Depressive Disorder, Recurrent, Moderate (F33.1)",
+        "category": "depression"
+      },
+      {
+        "code": "296.22 (F32.1)",
+        "name": "Major Depressive Disorder, Single Episode, Moderate (F32.1)",
+        "category": "depression"
+      },
+      {
+        "code": "300.4 (F34.1)",
+        "name": "Persistent Depressive Disorder (F34.1)",
+        "category": "depression"
+      },
+      {
+        "code": "309.81 (F43.10)",
+        "name": "Posttraumatic Stress Disorder (F43.10)",
+        "category": "trauma"
+      },
+      {
+        "code": "309.28 (F43.23)",
+        "name": "Adjustment Disorder with Mixed Anxiety and Depressed Mood (F43.23)",
+        "category": "adjustment"
+      },
+      {
+        "code": "F43.81",
+        "name": "Prolonged Grief Disorder (F43.81)",
+        "category": "adjustment"
+      },
+      {
+        "code": "314.01 (F90.2)",
+        "name": "Attention-Deficit/Hyperactivity Disorder, Combined Presentation (F90.2)",
+        "category": "adhd"
+      },
+      {
+        "code": "314.00 (F90.0)",
+        "name": "Attention-Deficit/Hyperactivity Disorder, Predominantly Inattentive (F90.0)",
+        "category": "adhd"
+      },
+      {
+        "code": "299.00 (F84.0)",
+        "name": "Autism Spectrum Disorder (F84.0)",
+        "category": "autism"
+      },
+      {
+        "code": "300.3 (F42.2)",
+        "name": "Obsessive-Compulsive Disorder (F42.2)",
+        "category": "ocd"
+      },
+      {
+        "code": "301.83 (F60.3)",
+        "name": "Borderline Personality Disorder (F60.3)",
+        "category": "emotion_regulation"
+      },
+      {
+        "code": "296.89 (F31.81)",
+        "name": "Bipolar II Disorder (F31.81)",
+        "category": "emotion_regulation"
+      },
+      {
+        "code": "307.51 (F50.819)",
+        "name": "Binge-Eating Disorder (F50.819)",
+        "category": "eating"
+      },
+      {
+        "code": "307.59 (F50.82)",
+        "name": "Avoidant/Restrictive Food Intake Disorder / ARFID (F50.82)",
+        "category": "eating"
+      },
+      {
+        "code": "303.90 (F10.20)",
+        "name": "Alcohol Use Disorder (F10.20)",
+        "category": "substance"
+      },
+      {
+        "code": "304.30 (F12.20)",
+        "name": "Cannabis Use Disorder (F12.20)",
+        "category": "substance"
+      }
+    ]
+  },
+  "fallbackTheories": [
+    "Person-Centered / Rogerian Therapy",
+    "Cognitive Behavioral Therapy (CBT)",
+    "Acceptance and Commitment Therapy (ACT)",
+    "Dialectical Behavior Therapy (DBT)",
+    "Drama Therapy / Expressive Arts Therapy",
+    "Internal Family Systems (IFS / Parts Work)",
+    "Eye Movement Desensitization and Reprocessing (EMDR)",
+    "Somatic Experiencing / Polyvagal-Informed Therapy",
+    "Narrative Therapy",
+    "Solution-Focused Brief Therapy (SFBT)",
+    "Exposure and Response Prevention (ERP)",
+    "Motivational Interviewing (MI)",
+    "Neurodivergent-Affirming / Accommodation-Focused Therapy"
+  ],
+  "interventionsLibrary": [
+    "Clinician will provide psychoeducation on nervous system regulation, polyvagal states, and window of tolerance.",
+    "Clinician will guide somatic and sensory grounding exercises (e.g., 5-4-3-2-1, paced breathing, TIPP skills) in session.",
+    "Clinician will utilize Cognitive Behavioral Therapy (CBT) / ACT defusion techniques to help client examine and unhook from distressing thoughts.",
+    "Clinician will facilitate Drama Therapy / expressive role-play and projective techniques to explore internal roles and interpersonal boundaries.",
+    "Clinician will utilize Internal Family Systems (IFS) parts-mapping to foster self-compassion toward protective and vulnerable parts.",
+    "Clinician will conduct phase-appropriate trauma processing (EMDR / somatic resourcing) while monitoring dissociation and safety.",
+    "Clinician will collaborate with client to design neuro-affirming sensory accommodations, pacing strategies, and energy-accounting ('spoon') plans.",
+    "Clinician will use Motivational Interviewing (MI) and harm-reduction planning to explore ambivalence and reinforce recovery behaviors.",
+    "Clinician will facilitate Exposure and Response Prevention (ERP) hierarchy building and values-aligned response prevention.",
+    "Clinician will model and rehearse assertive boundary-setting and interpersonal effectiveness skills (DEAR MAN / GIVE / FAST)."
+  ],
+  "diagnosisRecommendations": {
+    "anxiety": {
+      "label": "Anxiety, Panic & Worry (GAD / Panic / Social Anxiety)",
+      "templates": [
+        {
+          "domain": "Anxiety & Somatic Regulation",
+          "broadGoal": "Reduce the frequency and intensity of somatic anxiety and uncontrollable worry while expanding daily window of tolerance.",
+          "smartObjectives": [
+            "Within 90 days, client will identify 3 personal somatic/cognitive early warning signs of escalating anxiety and utilize 1 grounding or breathwork skill at least 4 times per week when anxiety exceeds 6/10.",
+            "Within 90 days, client will practice cognitive defusion or worry-time containment strategies at least 3 times per week to reduce nightly rumination from 7 nights/week to 3 or fewer nights/week."
+          ],
+          "interventions": [
+            "Clinician will provide psychoeducation on nervous system regulation, polyvagal states, and window of tolerance.",
+            "Clinician will guide somatic and sensory grounding exercises (e.g., 5-4-3-2-1, paced breathing, TIPP skills) in session.",
+            "Clinician will utilize Cognitive Behavioral Therapy (CBT) / ACT defusion techniques to help client examine and unhook from distressing thoughts."
+          ]
+        },
+        {
+          "domain": "Avoidance Reduction & Values-Aligned Action",
+          "broadGoal": "Decrease anxiety-driven avoidance and increase engagement in meaningful social, occupational, or personal activities.",
+          "smartObjectives": [
+            "Within 90 days, client will collaboratively build a graded approach hierarchy and complete at least 1 values-aligned social or daily-living step per week despite mild-to-moderate anticipatory anxiety."
+          ],
+          "interventions": [
+            "Clinician will utilize Cognitive Behavioral Therapy (CBT) / ACT defusion techniques to help client examine and unhook from distressing thoughts.",
+            "Clinician will facilitate Drama Therapy / expressive role-play and projective techniques to explore internal roles and interpersonal boundaries."
+          ]
+        }
+      ]
+    },
+    "depression": {
+      "label": "Depression, Low Mood & Burnout (MDD / PDD)",
+      "templates": [
+        {
+          "domain": "Mood Stabilization & Paced Behavioral Activation",
+          "broadGoal": "Alleviate depressive symptoms, anhedonia, and isolation by re-establishing sustainable, values-aligned daily routines and self-care.",
+          "smartObjectives": [
+            "Within 90 days, client will engage in at least 3 low-barrier pleasurable, restorative, or values-aligned activities per week to increase weekly mood rating from 3/10 to 5/10 or higher.",
+            "Within 90 days, client will identify and reframe 2 recurring self-critical or hopeless beliefs per week using compassionate parts work or cognitive restructuring."
+          ],
+          "interventions": [
+            "Clinician will collaborate with client to design neuro-affirming sensory accommodations, pacing strategies, and energy-accounting ('spoon') plans.",
+            "Clinician will utilize Internal Family Systems (IFS) parts-mapping to foster self-compassion toward protective and vulnerable parts."
+          ]
+        }
+      ]
+    },
+    "trauma": {
+      "label": "Trauma, PTSD & Complex Trauma (C-PTSD)",
+      "templates": [
+        {
+          "domain": "Phase 1 Trauma Stabilization, Safety & Resourcing",
+          "broadGoal": "Establish internal and external safety, reduce trauma-related hyperarousal/dissociation, and strengthen present-moment grounding.",
+          "smartObjectives": [
+            "Within 90 days, when experiencing trauma triggers, flashbacks, or dissociation, client will utilize a personalized sensory grounding or containment resource within 10 minutes in at least 4 out of 5 episodes.",
+            "Within 90 days, client will identify 3 trauma triggers and practice setting 1 protective interpersonal or environmental boundary per week to increase felt sense of safety."
+          ],
+          "interventions": [
+            "Clinician will provide psychoeducation on nervous system regulation, polyvagal states, and window of tolerance.",
+            "Clinician will conduct phase-appropriate trauma processing (EMDR / somatic resourcing) while monitoring dissociation and safety.",
+            "Clinician will facilitate Drama Therapy / expressive role-play and projective techniques to explore internal roles and interpersonal boundaries."
+          ]
+        },
+        {
+          "domain": "Phase 2 Trauma Processing & Narrative Integration",
+          "broadGoal": "Process distressing traumatic memories and decrease trauma-related shame, nightmares, and self-blame.",
+          "smartObjectives": [
+            "Within 90 days, client will participate in structured trauma processing (e.g., EMDR, IFS, Drama Therapy, or Narrative Therapy) across 6–8 sessions, reducing Subjective Units of Distress (SUDs) on target memories from 8+/10 to 3/10 or lower."
+          ],
+          "interventions": [
+            "Clinician will conduct phase-appropriate trauma processing (EMDR / somatic resourcing) while monitoring dissociation and safety.",
+            "Clinician will utilize Internal Family Systems (IFS) parts-mapping to foster self-compassion toward protective and vulnerable parts."
+          ]
+        }
+      ]
+    },
+    "adhd": {
+      "label": "ADHD & Executive Functioning",
+      "templates": [
+        {
+          "domain": "Executive Functioning Scaffolds & Shame Reduction",
+          "broadGoal": "Build sustainable, neuro-affirming executive functioning systems for task initiation, time blindness, and emotional regulation while reducing internalized shame.",
+          "smartObjectives": [
+            "Within 90 days, client will test and implement 2 external executive functioning accommodations (e.g., body doubling, visual timers, dopamine menus, or chunking) at least 4 days per week.",
+            "Within 90 days, client will recognize Rejection Sensitive Dysphoria (RSD) or overwhelm spikes and apply 1 self-compassion or somatic reset skill at least 2 times per week."
+          ],
+          "interventions": [
+            "Clinician will collaborate with client to design neuro-affirming sensory accommodations, pacing strategies, and energy-accounting ('spoon') plans.",
+            "Clinician will utilize Internal Family Systems (IFS) parts-mapping to foster self-compassion toward protective and vulnerable parts."
+          ]
+        }
+      ]
+    },
+    "autism": {
+      "label": "Autism, Sensory Regulation & Autistic Burnout Recovery",
+      "templates": [
+        {
+          "domain": "Sensory Regulation, Unmasking Safety & Burnout Recovery",
+          "broadGoal": "Prevent and recover from autistic burnout by honoring sensory profiles, reducing chronic masking demands, and advocating for environmental accommodations.",
+          "smartObjectives": [
+            "Within 90 days, client will complete a personalized sensory profile and implement 3 daily sensory or pacing accommodations (e.g., noise-canceling tools, scheduled sensory rest, safe stimming) at least 5 days per week.",
+            "Within 90 days, client will communicate 1 boundary, pacing need, or accommodation request per week in home, work, or social settings without self-criticism."
+          ],
+          "interventions": [
+            "Clinician will collaborate with client to design neuro-affirming sensory accommodations, pacing strategies, and energy-accounting ('spoon') plans.",
+            "Clinician will model and rehearse assertive boundary-setting and interpersonal effectiveness skills (DEAR MAN / GIVE / FAST)."
+          ]
+        }
+      ]
+    },
+    "ocd": {
+      "label": "Obsessive-Compulsive Disorder (OCD)",
+      "templates": [
+        {
+          "domain": "Obsessional Distress Tolerance & Response Prevention",
+          "broadGoal": "Increase tolerance for uncertainty and intrusive thoughts while reducing time spent engaging in physical or mental compulsions.",
+          "smartObjectives": [
+            "Within 90 days, client will practice delaying or resisting ritualistic/reassurance-seeking compulsions using Exposure and Response Prevention (ERP) or ACT defusion at least 4 times per week.",
+            "Within 90 days, client will reduce daily time spent on compulsive checking, rumination, or reassurance-seeking by at least 30% from baseline."
+          ],
+          "interventions": [
+            "Clinician will facilitate Exposure and Response Prevention (ERP) hierarchy building and values-aligned response prevention.",
+            "Clinician will utilize Cognitive Behavioral Therapy (CBT) / ACT defusion techniques to help client examine and unhook from distressing thoughts."
+          ]
+        }
+      ]
+    },
+    "emotion_regulation": {
+      "label": "Emotional Regulation, Interpersonal Effectiveness & Distress Tolerance",
+      "templates": [
+        {
+          "domain": "Distress Tolerance & Emotional Regulation",
+          "broadGoal": "Strengthen emotional regulation capacity, reduce impulsive or self-harm urges during interpersonal distress, and build stable relationship boundaries.",
+          "smartObjectives": [
+            "Within 90 days, client will utilize DBT distress tolerance or somatic grounding skills during 100% of urges to self-harm or engage in crisis behaviors, maintaining 0 self-harm incidents.",
+            "Within 90 days, client will use interpersonal effectiveness skills (e.g., DEAR MAN or Wise Mind check-ins) at least once per week during relational conflict."
+          ],
+          "interventions": [
+            "Clinician will guide somatic and sensory grounding exercises (e.g., 5-4-3-2-1, paced breathing, TIPP skills) in session.",
+            "Clinician will model and rehearse assertive boundary-setting and interpersonal effectiveness skills (DEAR MAN / GIVE / FAST)."
+          ]
+        }
+      ]
+    },
+    "adjustment": {
+      "label": "Adjustment Disorders, Life Transitions & Grief",
+      "templates": [
+        {
+          "domain": "Coping with Life Transitions, Loss & Stressors",
+          "broadGoal": "Process grief or major life transitions, restore emotional equilibrium, and build adaptive coping and support networks.",
+          "smartObjectives": [
+            "Within 90 days, client will identify and utilize 2 healthy emotional expression or meaning-making outlets per week (e.g., journaling, expressive arts, support connection) to process transition/grief.",
+            "Within 90 days, client will report improved daily functioning in sleep, work, or relationships from severe/moderate impairment to mild impairment."
+          ],
+          "interventions": [
+            "Clinician will facilitate Drama Therapy / expressive role-play and projective techniques to explore internal roles and interpersonal boundaries.",
+            "Clinician will provide psychoeducation on nervous system regulation, polyvagal states, and window of tolerance."
+          ]
+        }
+      ]
+    },
+    "substance": {
+      "label": "Substance Use, Harm Reduction & Relapse Prevention",
+      "templates": [
+        {
+          "domain": "Craving Management, Harm Reduction & Recovery Support",
+          "broadGoal": "Reduce substance-related harm, manage high-risk triggers and cravings, and build sustainable sober or harm-reduction supports.",
+          "smartObjectives": [
+            "Within 90 days, client will identify 3 high-risk triggers (HALT states, social cues) and apply urge-surfing or a 15-minute delay strategy during at least 80% of craving episodes.",
+            "Within 90 days, client will engage in 1 recovery-supportive or values-aligned community activity per week."
+          ],
+          "interventions": [
+            "Clinician will use Motivational Interviewing (MI) and harm-reduction planning to explore ambivalence and reinforce recovery behaviors.",
+            "Clinician will guide somatic and sensory grounding exercises (e.g., 5-4-3-2-1, paced breathing, TIPP skills) in session."
+          ]
+        }
+      ]
+    },
+    "eating": {
+      "label": "Disordered Eating, Body Image & ARFID / HAES",
+      "templates": [
+        {
+          "domain": "Nourishment Safety, Interoceptive Awareness & Body Neutrality",
+          "broadGoal": "Establish consistent, shame-free nourishment routines, reduce disordered eating behaviors, and foster body neutrality.",
+          "smartObjectives": [
+            "Within 90 days, client will utilize sensory accommodations or grounding skills before/after meals at least 4 days per week to support consistent nourishment.",
+            "Within 90 days, client will identify and unhook from 2 body-shaming or rigid food rules per week using ACT/IFS parts work."
+          ],
+          "interventions": [
+            "Clinician will utilize Internal Family Systems (IFS) parts-mapping to foster self-compassion toward protective and vulnerable parts.",
+            "Clinician will collaborate with client to design neuro-affirming sensory accommodations, pacing strategies, and energy-accounting ('spoon') plans."
+          ]
+        }
+      ]
+    }
+  },
+  "citations": [
+    "Bovend’Eerdt, T. J. H., Botell, R. E., &amp; Wade, D. T. (2009). Writing SMART rehabilitation goals and achieving goal attainment scaling: A practical guide. <em>Clinical Rehabilitation, 23</em>(4), 352–361. https://doi.org/10.1177/0269215508101741",
+    "Jongsma, A. E., Jr., Peterson, L. M., &amp; Bruce, T. J. (2021). <em>The complete adult psychotherapy treatment planner</em> (6th ed.). Wiley.",
+    "Tryon, G. S., Birch, S. E., &amp; Verkuilen, J. (2018). Meta-analyses of the relation of goal consensus and collaboration to psychotherapy outcome. <em>Psychotherapy, 55</em>(4), 372–383. https://doi.org/10.1037/pst0000170",
+    "American Psychiatric Association. (2022). <em>Diagnostic and statistical manual of mental disorders</em> (5th ed., text rev.; DSM-5-TR). American Psychiatric Publishing."
+  ]
+}

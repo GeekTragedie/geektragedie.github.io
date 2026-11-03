@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Referral Database</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Referral Database page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html" aria-current="page">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Referral Database</h1>
+        <p class="muted text-center text-sm mb-6">
+            Keep a list of the providers and resources you trust. Check off the ones that fit a client or inquiry, and it writes a referral email and a client handout for you. Save the list as a <code>.json</code> file to reload later.
+        </p>
+
+        <!-- Master Database Top Controls: Import .json, Export .json, Clear, Cache Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import Master .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export Master .json</button>
+                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Database</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache Master List in Browser (Auto-save locally)
+                </label>
+            </div>
+        </div>
+
+        <!-- Section 1: Add / Edit Provider in Your Ongoing Referral List -->
+        <section class="mb-8" aria-labelledby="add-referral-heading">
+            <div class="flex flex-wrap justify-between items-center mb-3">
+                <h2 id="add-referral-heading" class="text-xl font-bold">1. Log a Provider into Your Ongoing Referral List</h2>
+                <button type="button" id="toggleFormCollapseBtn" class="btn-link text-sm font-semibold">Hide / Show Provider Entry Form</button>
+            </div>
+
+            <form id="referralForm" class="subpanel p-5 rounded-md space-y-4">
+                <input type="hidden" id="editingReferralId" value="">
+
+                <!-- Row 1: Name, Pronouns, Practice Name, Role -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <div>
+                        <label for="refName" class="block text-xs font-semibold mb-1">Provider or Program Name: *</label>
+                        <input type="text" id="refName" required placeholder="e.g., Alex Rivera, LMHC" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refPronouns" class="block text-xs font-semibold mb-1">Pronouns &amp; Languages:</label>
+                        <input type="text" id="refPronouns" placeholder="e.g., they/them | English, Spanish" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refPractice" class="block text-xs font-semibold mb-1">Practice / Clinic / Agency Name:</label>
+                        <input type="text" id="refPractice" placeholder="e.g., Emerald City Counseling PLLC" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refRole" class="block text-xs font-semibold mb-1">Provider Role / Resource Type: *</label>
+                        <select id="refRole" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Psychotherapist / Counselor">Psychotherapist / Counselor</option>
+                            <option value="Psychiatrist / ARNP (Medication Management)">Psychiatrist / ARNP (Med Management)</option>
+                            <option value="Psychological / Neuropsych Testing (Autism/ADHD)">Psychological / Neuropsych Testing</option>
+                            <option value="Couples / Marriage & Family Therapist">Couples / Family Therapist</option>
+                            <option value="Group Therapy / Support Group">Group Therapy / Support Group</option>
+                            <option value="Dietitian / Nutritionist (ED / HAES)">Dietitian / Nutritionist (ED / HAES)</option>
+                            <option value="Higher Level of Care (IOP / PHP / Residential)">Higher Level of Care (IOP / PHP / Res)</option>
+                            <option value="Primary Care / Naturopath / Bodywork">Primary Care / Naturopath / Somatic</option>
+                            <option value="Clinical Supervisor / Consultant">Clinical Supervisor / Consultant</option>
+                            <option value="Community / Legal / Housing / Mutual Aid">Community / Legal / Mutual Aid</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Row 2: Contact Info, Website, Location -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <div>
+                        <label for="refPhone" class="block text-xs font-semibold mb-1">Phone / Intake Line:</label>
+                        <input type="text" id="refPhone" placeholder="e.g., (206) 555-0144" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refEmail" class="block text-xs font-semibold mb-1">Email Address:</label>
+                        <input type="text" id="refEmail" placeholder="e.g., intake@example.com" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refWebsite" class="block text-xs font-semibold mb-1">Website / Psychology Today Link:</label>
+                        <input type="text" id="refWebsite" placeholder="e.g., https://..." class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refLocation" class="block text-xs font-semibold mb-1">City, Neighborhood &amp; State(s):</label>
+                        <input type="text" id="refLocation" placeholder="e.g., Seattle, WA" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+
+                <!-- Row 3: Modality, Availability, Fees, Last Verified -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <div>
+                        <label for="refModality" class="block text-xs font-semibold mb-1">Session Modality:</label>
+                        <select id="refModality" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Both In-Person & Telehealth">Both In-Person &amp; Telehealth</option>
+                            <option value="Telehealth Only">Telehealth Only</option>
+                            <option value="In-Person Only">In-Person Only</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="refAvailability" class="block text-xs font-semibold mb-1">Current Availability Status:</label>
+                        <select id="refAvailability" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Accepting New Clients">🟢 Accepting New Clients</option>
+                            <option value="Waitlist Only">🟡 Waitlist Only</option>
+                            <option value="Full / Not Accepting">🔴 Full / Not Accepting</option>
+                            <option value="Unknown / Call to Verify">⚪ Unknown / Call to Verify</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="refFeeRange" class="block text-xs font-semibold mb-1">Private Pay Fee &amp; Sliding Scale Info:</label>
+                        <input type="text" id="refFeeRange" placeholder="e.g., $160/session; Open Path ($40-$70)" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refLastVerified" class="block text-xs font-semibold mb-1">Date Availability Last Verified:</label>
+                        <input type="date" id="refLastVerified" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+
+                <!-- Row 4: Psychology Today-Style Multi-Select Tags -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 border-t">
+                    <div>
+                        <label for="refInsurancesSelect" class="block text-xs font-semibold mb-1">Insurances &amp; Pay Options (Select or Type):</label>
+                        <select id="refInsurancesSelect" class="w-full" multiple="multiple"></select>
+                    </div>
+                    <div>
+                        <label for="refSpecialtiesSelect" class="block text-xs font-semibold mb-1">Specialties &amp; Modalities (Select or Type):</label>
+                        <select id="refSpecialtiesSelect" class="w-full" multiple="multiple"></select>
+                    </div>
+                    <div>
+                        <label for="refPopulationsSelect" class="block text-xs font-semibold mb-1">Age Groups &amp; Affirming Identities:</label>
+                        <select id="refPopulationsSelect" class="w-full" multiple="multiple"></select>
+                    </div>
+                </div>
+
+                <!-- Row 5: Client Summary vs. Private Clinician Notes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 border-t">
+                    <div>
+                        <label for="refPublicBio" class="block text-xs font-semibold mb-1">
+                            Client-Facing Note / Specialty Summary (Optional — Can be included on Client PDF):
+                        </label>
+                        <textarea id="refPublicBio" rows="2" placeholder="e.g., Warm, neuro-affirming trauma therapist specializing in EMDR and Drama Therapy..." class="w-full p-2 border rounded-md text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label for="refPrivateNotes" class="block text-xs font-semibold mb-1">
+                            🔒 Private Clinician-Only Notes (NEVER Included in Client Emails or Client Exports):
+                        </label>
+                        <textarea id="refPrivateNotes" rows="2" placeholder="e.g., Met in consultation group; direct cell for warm handoffs; great with complex dissociation..." class="w-full p-2 border rounded-md text-sm"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <button type="submit" id="saveReferralBtn" class="btn btn-primary px-6 py-2 font-semibold rounded-md">Add Provider to Ongoing List</button>
+                    <button type="button" id="cancelReferralEditBtn" class="btn px-4 py-2 font-semibold rounded-md hidden">Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section 2: Search, Filter & Pick Providers for a Client -->
+        <section class="subpanel p-4 rounded-md mb-6 space-y-4" aria-labelledby="search-heading">
+            <div class="flex flex-wrap justify-between items-center gap-2">
+                <div>
+                    <h2 id="search-heading" class="text-xl font-bold">2. Search &amp; Pick Providers for This Client</h2>
+                    <p class="muted text-xs">Check the box next to any provider below to add them directly into the Client Referral Email at the bottom of the page.</p>
+                </div>
+                <span id="referralCountBadge" class="text-xs font-semibold">0 Providers Shown</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+                <div class="md:col-span-2">
+                    <label for="searchKeyword" class="block text-xs font-semibold mb-1">Search Name, Specialty, Insurance, City, or Notes:</label>
+                    <input type="text" id="searchKeyword" placeholder="Type e.g., EMDR, Premera, ADHD, Seattle, ARNP..." class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="filterRole" class="block text-xs font-semibold mb-1">Provider Role:</label>
+                    <select id="filterRole" class="w-full p-2 border rounded-md text-sm">
+                        <option value="ALL">All Roles &amp; Types</option>
+                        <option value="Psychotherapist / Counselor">Psychotherapist / Counselor</option>
+                        <option value="Psychiatrist / ARNP (Medication Management)">Psychiatrist / ARNP (Meds)</option>
+                        <option value="Psychological / Neuropsych Testing (Autism/ADHD)">Testing / Assessment</option>
+                        <option value="Couples / Marriage & Family Therapist">Couples / Family</option>
+                        <option value="Group Therapy / Support Group">Group Therapy</option>
+                        <option value="Dietitian / Nutritionist (ED / HAES)">Dietitian / ED</option>
+                        <option value="Higher Level of Care (IOP / PHP / Residential)">Higher Level of Care (IOP/PHP)</option>
+                        <option value="Primary Care / Naturopath / Bodywork">Primary Care / Somatic</option>
+                        <option value="Clinical Supervisor / Consultant">Supervisor / Consultant</option>
+                        <option value="Community / Legal / Housing / Mutual Aid">Community / Mutual Aid</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filterModality" class="block text-xs font-semibold mb-1">Modality:</label>
+                    <select id="filterModality" class="w-full p-2 border rounded-md text-sm">
+                        <option value="ALL">Any Modality</option>
+                        <option value="In-Person">Offers In-Person</option>
+                        <option value="Telehealth">Offers Telehealth</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filterAvailability" class="block text-xs font-semibold mb-1">Availability:</label>
+                    <select id="filterAvailability" class="w-full p-2 border rounded-md text-sm">
+                        <option value="ALL">All Availability</option>
+                        <option value="Accepting New Clients">🟢 Accepting New Clients</option>
+                        <option value="Waitlist Only">🟡 Waitlist Only</option>
+                        <option value="Full / Not Accepting">🔴 Full / Not Accepting</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-between items-center gap-3 pt-3 border-t text-xs">
+                <div class="flex items-center gap-3">
+                    <span class="font-bold">Providers Picked for Client Email: <span id="selectedCartCount">0</span></span>
+                    <button type="button" id="selectAllFilteredBtn" class="btn-link">Select All Shown</button>
+                    <button type="button" id="clearCartSelectionBtn" class="btn-link">Clear Picked Providers</button>
+                </div>
+                <div>
+                    <button type="button" id="jumpToEmailBtn" class="btn btn-primary px-4 py-1.5 text-xs font-semibold rounded-md">
+                        &darr; Jump to Client Referral Email &amp; Client Export
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Provider Cards List -->
+        <section class="mb-8" aria-label="Referral Directory List">
+            <div id="referralCardsContainer" class="space-y-4"></div>
+        </section>
+
+        <hr class="my-8">
+
+        <!-- Section 4: Client Referral Out Email Generator & Client-Specific Export -->
+        <section id="client-email-section" class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="email-gen-heading">
+            <div>
+                <h2 id="email-gen-heading" class="text-2xl font-bold">3. Client Referral Out Email &amp; Client-Specific Export</h2>
+                <p class="muted text-xs">
+                    Automatically builds your referral email using the providers you checked above. Customize the reason or directory links below, then click <strong>Copy Email to Clipboard</strong> or export a packet for this specific client.
+                </p>
+            </div>
+
+            <!-- Email Customization Controls -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="clientInquiryName" class="block text-xs font-semibold mb-1">Client / Inquiry Name or Greeting (Optional):</label>
+                    <input type="text" id="clientInquiryName" placeholder="e.g., Hi Alex, (or leave blank)" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="emailSubjectLine" class="block text-xs font-semibold mb-1">Email Subject Line:</label>
+                    <input type="text" id="emailSubjectLine" value="Re: Therapy Inquiry" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="clinicianSignOff" class="block text-xs font-semibold mb-1">Your Sign-Off (Optional):</label>
+                    <input type="text" id="clinicianSignOff" placeholder="e.g., Warmly, Jane Doe, LMHC" class="w-full p-2 border rounded-md text-sm">
+                </div>
+            </div>
+
+            <!-- Option A (Full Practice) vs Option B (Outside Scope) Selector -->
+            <div class="border-t pt-3 space-y-2">
+                <p class="text-sm font-semibold">Select Referral Reason Paragraph:</p>
+                <div class="flex flex-col space-y-2 text-sm">
+                    <label class="inline-flex items-start cursor-pointer">
+                        <input type="radio" name="referralReasonOption" value="optionA" checked class="mt-1 mr-2">
+                        <span><strong>Option A — Full Practice:</strong> "I am currently at full capacity and unable to take on new clients at this time."</span>
+                    </label>
+                    <label class="inline-flex items-start cursor-pointer">
+                        <input type="radio" name="referralReasonOption" value="optionB" class="mt-1 mr-2">
+                        <span><strong>Option B — Scope Fit:</strong> "While your goals are deeply important, my practice currently focuses primarily on <em id="scopePreviewText">supporting neurodivergence</em>, so I want to make sure you get connected with someone who specializes directly in what you're looking for."</span>
+                    </label>
+                    <label class="inline-flex items-start cursor-pointer">
+                        <input type="radio" name="referralReasonOption" value="bothAB" class="mt-1 mr-2">
+                        <span><strong>Both Option A &amp; B Combined:</strong> Includes both capacity and specialty scope fit sentences.</span>
+                    </label>
+                    <label class="inline-flex items-start cursor-pointer">
+                        <input type="radio" name="referralReasonOption" value="currentClient" class="mt-1 mr-2">
+                        <span><strong>Current Client / Additional Resources:</strong> Omits the inquiry decline and goes straight to the recommended referrals list.</span>
+                    </label>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <div>
+                        <label for="customScopeFocus" class="block text-xs font-semibold mb-1">Your Practice Focus Phrase (Used in Option B):</label>
+                        <input type="text" id="customScopeFocus" value="supporting neurodivergence" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="extraDirectoryBullet" class="block text-xs font-semibold mb-1">Extra Directory / Network Bullet (Included at bottom of referral bullets):</label>
+                        <input type="text" id="extraDirectoryBullet" value="Washington Therapy Network / Psychology Today Directory (https://www.psychologytoday.com)" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+
+                <div class="pt-1">
+                    <label class="inline-flex items-center text-xs cursor-pointer">
+                        <input type="checkbox" id="includeDetailedBulletInfo" class="mr-2">
+                        <span>Include provider's phone, email, insurances, and specialties on each bullet line (uncheck for concise <code>- Name / Practice / Link</code> bullets)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Rendered Email Box (Editable before copying/exporting!) -->
+            <div id="generatedEmailContainer" class="p-4 border rounded-md">
+                <div class="flex flex-wrap justify-between items-center mb-2">
+                    <h3 class="text-lg font-bold">Rendered Referral Email (Ready to Copy):</h3>
+                    <span class="muted text-xs">You can also type or tweak text directly inside the box below before copying!</span>
+                </div>
+                <textarea id="generatedEmailText" rows="14" class="w-full p-3 border rounded-md font-mono text-sm whitespace-pre-wrap"></textarea>
+            </div>
+
+            <!-- Client-Specific Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 pt-2">
+                <button type="button" id="copyEmailButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
+                    Copy Email to Clipboard
+                </button>
+                <button type="button" id="printClientPacketButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
+                    Print / Save PDF for This Client
+                </button>
+                <button type="button" id="exportClientTxtButton" class="btn px-5 py-3 font-semibold rounded-md">
+                    Export Client Email &amp; List (.txt)
+                </button>
+                <button type="button" id="exportClientJsonButton" class="btn px-5 py-3 font-semibold rounded-md">
+                    Export This Client's Referrals (.json)
+                </button>
+            </div>
+        </section>
+
+        <!-- Master Database Bottom Action Buttons -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-8 pt-6 border-t">
+            <button type="button" id="printFullDirectoryBtn" class="btn px-6 py-3 font-semibold rounded-md">Print Full Clinician Directory (Includes Private Notes)</button>
+            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">Export Master List (.csv)</button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Master Database (.json)</button>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="referraldatabase" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

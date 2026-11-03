@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: CEU Tracker</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body aria-label="CEU Tracker page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html" aria-current="page">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">CEU Tracker</h1>
+        <p class="muted text-center text-sm mb-6">
+            Log your continuing education and see what’s left before renewal, including the longer health equity and suicide prevention cycles. Nothing is sent to a server. The page clears on refresh unless you export a <code>.json</code> file or turn on browser saving below.
+        </p>
+
+        <!-- Top Controls: Import, Export, Reset, and Local Cache Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
+                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Session</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache in Browser (Auto-save locally on this device)
+                </label>
+            </div>
+        </div>
+
+        <!-- Section 1: Clinician Profile, State/License & Cycle Anchor Dates -->
+        <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="profile-heading">
+            <h2 id="profile-heading" class="text-xl font-bold mb-4">1. License &amp; Multi-Cycle Setup</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="clinicianName" class="block text-sm font-semibold mb-1">Clinician Name:</label>
+                    <input type="text" id="clinicianName" placeholder="e.g., Jane Doe, LMHC" class="w-full p-2 border rounded-md">
+                </div>
+                <div>
+                    <label for="licenseNumber" class="block text-sm font-semibold mb-1">License Number:</label>
+                    <input type="text" id="licenseNumber" placeholder="e.g., LH00000000" class="w-full p-2 border rounded-md">
+                </div>
+                <div>
+                    <label for="stateSelect" class="block text-sm font-semibold mb-1">State / Jurisdiction:</label>
+                    <select id="stateSelect" class="w-full p-2 border rounded-md"></select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label for="licenseTypeSelect" class="block text-sm font-semibold mb-1">License Credential:</label>
+                    <select id="licenseTypeSelect" class="w-full p-2 border rounded-md"></select>
+                </div>
+                <div>
+                    <label for="renewalDueDate" class="block text-sm font-semibold mb-1">Current Cycle Renewal Due Date:</label>
+                    <input type="date" id="renewalDueDate" class="w-full p-2 border rounded-md">
+                    <p class="muted text-xs mt-1">Automatically calculates your active primary cycle window.</p>
+                </div>
+            </div>
+
+            <!-- Dynamic Multi-Cycle Anchor Dates (4-Year Health Equity, 6-Year Suicide, etc.) -->
+            <div id="multiCycleDatesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t hidden"></div>
+        </section>
+
+        <!-- Section 2: Progress Dashboard -->
+        <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="dashboard-heading">
+            <div class="flex flex-wrap justify-between items-center mb-4">
+                <h2 id="dashboard-heading" class="text-xl font-bold">2. Requirement Progress &amp; Multi-Year Windows</h2>
+                <div class="text-sm font-semibold">
+                    Total Cycle Spend: <span id="totalCostDisplay">$0.00</span>
+                </div>
+            </div>
+            <div id="progressBarsContainer" class="space-y-4"></div>
+        </section>
+
+        <hr class="my-6">
+
+        <!-- Section 3: Add / Edit Course Form -->
+        <section class="mb-6" aria-labelledby="course-form-heading">
+            <h2 id="course-form-heading" class="text-xl font-bold mb-4">3. Log a Continuing Education Course</h2>
+            <form id="ceuCourseForm" class="space-y-4 subpanel p-4 rounded-md">
+                <input type="hidden" id="editingCourseId" value="">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="courseTitle" class="block text-sm font-semibold mb-1">Course Title: *</label>
+                        <input type="text" id="courseTitle" required placeholder="e.g., Clinical Ethics in Telehealth" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="coursePresenter" class="block text-sm font-semibold mb-1">Provider / Presenter: *</label>
+                        <input type="text" id="coursePresenter" required placeholder="e.g., PESI / Dr. John Smith" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="courseDate" class="block text-sm font-semibold mb-1">Completion Date: *</label>
+                        <input type="date" id="courseDate" required class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="courseHours" class="block text-sm font-semibold mb-1">Clock Hours: *</label>
+                        <input type="number" id="courseHours" required step="0.25" min="0.25" placeholder="e.g., 3.0" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="courseApprovalBody" class="block text-sm font-semibold mb-1">Approval Body:</label>
+                        <input type="text" id="courseApprovalBody" placeholder="e.g., NBCC, APA, WA DOH" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="courseFormat" class="block text-sm font-semibold mb-1">Format:</label>
+                        <select id="courseFormat" class="w-full p-2 border rounded-md">
+                            <option value="Live / Synchronous">Live / Synchronous</option>
+                            <option value="Self-Paced / Asynchronous">Self-Paced / Asynchronous</option>
+                            <option value="In-Person Workshop">In-Person Workshop</option>
+                            <option value="Professional Supervision / Consultation">Supervision / Consultation</option>
+                            <option value="Authorship / Presentation">Authorship / Presentation</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="courseCost" class="block text-sm font-semibold mb-1">Cost ($ USD):</label>
+                        <input type="number" id="courseCost" step="0.01" min="0" placeholder="0.00" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold mb-1">Specific Mandates Satisfied:</label>
+                        <div id="mandateCheckboxesContainer" class="flex flex-wrap gap-3 pt-1"></div>
+                        <p id="crossoverWarning" class="muted text-xs mt-2">
+                            <strong>Note on Dual-Counting:</strong> Clock hours count <em>once</em> toward your total required cycle hours regardless of how many mandate boxes are checked. Verify your state rules (e.g., WAC 246-809-630) before counting a single training toward multiple statutory mandates.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Certificate Storage Options: Link/Reference AND/OR Embedded File -->
+                <div class="border-t pt-4">
+                    <p class="text-sm font-semibold mb-2">Certificate Documentation (Choose Link, Embedded File, or Both):</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="certLink" class="block text-xs font-semibold mb-1">Local File Name or Cloud Drive Link:</label>
+                            <input type="text" id="certLink" placeholder="e.g., 2026-05_Ethics_Cert.pdf or https://drive.google.com/..." class="w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label for="certFileInput" class="block text-xs font-semibold mb-1">Embed Certificate in JSON &amp; Print Packet (Image or PDF):</label>
+                            <input type="file" id="certFileInput" accept="image/*,application/pdf" class="w-full p-1 border rounded-md text-sm">
+                            <div id="certAttachmentStatus" class="text-xs mt-1 hidden">
+                                <span id="certFileNameBadge" class="font-semibold"></span>
+                                <button type="button" id="removeCertAttachmentBtn" class="btn-link text-xs ml-2">Remove Embedded File</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="courseNotes" class="block text-sm font-semibold mb-1">Clinical Notes / Key Takeaways:</label>
+                    <textarea id="courseNotes" rows="2" placeholder="Optional reflection, certificate ID#, or audit notes..." class="w-full p-2 border rounded-md"></textarea>
+                </div>
+
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <button type="submit" id="saveCourseBtn" class="btn btn-primary px-6 py-2 font-semibold rounded-md">Add Course to Log</button>
+                    <button type="button" id="cancelEditBtn" class="btn px-4 py-2 font-semibold rounded-md hidden">Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section 4: Logged Courses Table -->
+        <section class="mb-6" aria-labelledby="course-log-heading">
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+                <h2 id="course-log-heading" class="text-xl font-bold">4. Completed CEU Log</h2>
+                <div class="flex items-center gap-2">
+                    <label for="filterCycleSelect" class="text-sm font-semibold">Show:</label>
+                    <select id="filterCycleSelect" class="p-2 border rounded-md text-sm">
+                        <option value="all">All Logged Courses (Full History)</option>
+                        <option value="current">Current Primary Renewal Window Only</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive subpanel rounded-md p-2">
+                <table class="ceu-table w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b text-sm">
+                            <th class="p-2">Date</th>
+                            <th class="p-2">Course &amp; Presenter</th>
+                            <th class="p-2">Hours</th>
+                            <th class="p-2">Mandates / Categories</th>
+                            <th class="p-2">Approval &amp; Format</th>
+                            <th class="p-2">Cost</th>
+                            <th class="p-2">Certificate</th>
+                            <th class="p-2 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="courseLogTableBody">
+                        <tr>
+                            <td colspan="8" class="p-4 text-center muted">No courses logged yet. Add a course above or import a saved <code>.json</code> file.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bottom Action Buttons -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
+            <button type="button" id="printAuditPacketBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Print / Save PDF Audit Packet</button>
+            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">Export Spreadsheet (.csv)</button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Backup (.json)</button>
+        </div>
+
+        <!-- Regulatory Sources & Citations -->
+        <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
+            <h3 class="text-xl font-semibold mb-4 text-center">Rules for this license</h3>
+            <div id="sourcesList" class="text-sm space-y-2 text-center"></div>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="ceutracker" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

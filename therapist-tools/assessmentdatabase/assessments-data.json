@@ -1,0 +1,410 @@
+{
+  "assessments": [
+    {
+      "id": "phq-9",
+      "acronym": "PHQ-9",
+      "fullName": "Patient Health Questionnaire-9",
+      "category": "Depression & Mood",
+      "ageGroup": "Adults (18+) & Adolescents (PHQ-A for 11–17)",
+      "itemsTime": "9 items (2–3 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F32.x Major Depressive Disorder",
+        "F33.x Recurrent MDD",
+        "F34.1 Persistent Depressive Disorder"
+      ],
+      "symptoms": [
+        "Depressed mood",
+        "Anhedonia",
+        "Sleep disturbance",
+        "Fatigue / Low energy",
+        "Appetite changes",
+        "Guilt / Worthlessness",
+        "Concentration difficulty",
+        "Psychomotor changes",
+        "Suicidal ideation (Item 9)"
+      ],
+      "scoringCutoffs": "Each item rated 0 (Not at all) to 3 (Nearly every day); Total range 0–27.\nSeverity Cutoffs: 0–4 = Minimal/None | 5–9 = Mild | 10–14 = Moderate (clinical threshold) | 15–19 = Moderately Severe | 20–27 = Severe. Always check Item 9 for suicide/self-harm risk.",
+      "pdfPath": "pdfs/PHQ-9.pdf",
+      "citation": "Kroenke, K., Spitzer, R. L., &amp; Williams, J. B. (2001). The PHQ-9: Validity of a brief depression severity measure. <em>Journal of General Internal Medicine, 16</em>(9), 606–613. https://doi.org/10.1046/j.1525-1497.2001.016009606.x"
+    },
+    {
+      "id": "gad-7",
+      "acronym": "GAD-7",
+      "fullName": "Generalized Anxiety Disorder 7-Item Scale",
+      "category": "Anxiety, Panic & Worry",
+      "ageGroup": "Adults (18+) & Adolescents (12+)",
+      "itemsTime": "7 items (2 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F41.1 Generalized Anxiety Disorder",
+        "F41.0 Panic Disorder",
+        "F40.10 Social Anxiety Disorder"
+      ],
+      "symptoms": [
+        "Uncontrollable worry",
+        "Nervousness / Feeling on edge",
+        "Restlessness",
+        "Difficulty relaxing",
+        "Irritability",
+        "Fear something awful might happen",
+        "Somatic tension"
+      ],
+      "scoringCutoffs": "Each item rated 0 (Not at all) to 3 (Nearly every day); Total range 0–21.\nSeverity Cutoffs: 0–4 = Minimal | 5–9 = Mild | 10–14 = Moderate (clinical cutoff >=10) | 15–21 = Severe anxiety.",
+      "pdfPath": "pdfs/GAD-7.pdf",
+      "citation": "Spitzer, R. L., Kroenke, K., Williams, J. B. W., &amp; Löwe, B. (2006). A brief measure for assessing generalized anxiety disorder: The GAD-7. <em>Archives of Internal Medicine, 166</em>(10), 1092–1097. https://doi.org/10.1001/archinte.166.10.1092"
+    },
+    {
+      "id": "pcl-5",
+      "acronym": "PCL-5",
+      "fullName": "PTSD Checklist for DSM-5",
+      "category": "Trauma, PTSD & Dissociation",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "20 items (5–10 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F43.10 Post-Traumatic Stress Disorder (PTSD)",
+        "F43.2x Trauma/Stressor-Related Disorders"
+      ],
+      "symptoms": [
+        "Intrusive memories / Flashbacks",
+        "Nightmares",
+        "Trauma avoidance",
+        "Negative alterations in mood/cognition",
+        "Hypervigilance",
+        "Exaggerated startle",
+        "Emotional numbing",
+        "Irritability / Recklessness"
+      ],
+      "scoringCutoffs": "20 items rated 0 (Not at all) to 4 (Extremely); Total range 0–80.\nClinical Cutoff: A total score of 31–33 or higher suggests probable PTSD. DSM-5 cluster scoring: at least 1 Cluster B item (1–5), 1 Cluster C item (6–7), 2 Cluster D items (8–14), and 2 Cluster E items (15–20) rated >=2 ('Moderately').",
+      "pdfPath": "pdfs/PCL-5.pdf",
+      "citation": "Weathers, F. W., Litz, B. T., Keane, T. M., Palmieri, P. A., Marx, B. P., &amp; Schnurr, P. P. (2013). <em>The PTSD Checklist for DSM-5 (PCL-5)</em>. National Center for PTSD. https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp"
+    },
+    {
+      "id": "itq",
+      "acronym": "ITQ",
+      "fullName": "International Trauma Questionnaire (PTSD & Complex PTSD)",
+      "category": "Trauma, PTSD & Dissociation",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "18 items (5 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F43.10 PTSD",
+        "ICD-11 6B41 Complex PTSD (C-PTSD)"
+      ],
+      "symptoms": [
+        "Re-experiencing",
+        "Avoidance",
+        "Sense of current threat",
+        "Affective dysregulation",
+        "Negative self-concept / Shame",
+        "Disturbances in relationships"
+      ],
+      "scoringCutoffs": "PTSD symptoms are Items 1–6 (with functional impairment Items 7–9), and Disturbances in Self-Organization (DSO: Affect Dysregulation, Negative Self-Concept, Relational Disturbance) are Items 10–15 (with functional impairment Items 16–18), all rated 0–4. A symptom cluster is endorsed when at least one item is >=2 ('Moderately'), and diagnosis also requires functional impairment.",
+      "pdfPath": "pdfs/ITQ.pdf",
+      "citation": "Cloitre, M., Shevlin, M., Brewin, C. R., Bisson, J. I., Roberts, N. P., Maercker, A., Karatzias, T., &amp; Hyland, P. (2018). The International Trauma Questionnaire: Development of a self-report measure of ICD-11 PTSD and complex PTSD. <em>Acta Psychiatrica Scandinavica, 138</em>(6), 536–546. https://doi.org/10.1111/acps.12956"
+    },
+    {
+      "id": "des-ii",
+      "acronym": "DES-II",
+      "fullName": "Dissociative Experiences Scale - II",
+      "category": "Trauma, PTSD & Dissociation",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "28 items (10 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F44.81 Dissociative Identity Disorder",
+        "F48.1 Depersonalization/Derealization",
+        "F43.10 PTSD with Dissociative Symptoms"
+      ],
+      "symptoms": [
+        "Dissociation",
+        "Depersonalization",
+        "Derealization",
+        "Dissociative amnesia / Time loss",
+        "Absorption / Imaginative involvement"
+      ],
+      "scoringCutoffs": "28 items rated 0% to 100% (in 10% increments). Total score is the average across all 28 items (sum divided by 28; range 0–100).\nCutoffs: Mean score >=30 indicates high dissociation warranting structured clinical assessment for PTSD or a Dissociative Disorder.",
+      "pdfPath": "pdfs/DES-II.pdf",
+      "citation": "Carlson, E. B., &amp; Putnam, F. W. (1993). An update on the Dissociative Experiences Scale. <em>Dissociation: Progress in the Dissociative Disorders, 6</em>(1), 16–27."
+    },
+    {
+      "id": "ace-q",
+      "acronym": "ACE",
+      "fullName": "Adverse Childhood Experiences Questionnaire",
+      "category": "Trauma, PTSD & Dissociation",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "10 items (3 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "Developmental Trauma",
+        "F43.10 PTSD",
+        "Z62.81x Personal History of Abuse in Childhood"
+      ],
+      "symptoms": [
+        "Developmental trauma history",
+        "Childhood abuse / neglect",
+        "Household dysfunction"
+      ],
+      "scoringCutoffs": "10 Yes/No items covering experiences before age 18 (Range 0–10). Scores >=4 are associated with significantly elevated risk for chronic health and trauma-related conditions; always pair with a Protective/Resilience Questionnaire (e.g., BCEs).",
+      "pdfPath": "pdfs/ACE-Questionnaire.pdf",
+      "citation": "Felitti, V. J., Anda, R. F., Nordenberg, D., Williamson, D. F., Spitz, A. M., Edwards, V., Koss, M. P., &amp; Marks, J. S. (1998). Relationship of childhood abuse and household dysfunction to many of the leading causes of death in adults: The Adverse Childhood Experiences (ACE) Study. <em>American Journal of Preventive Medicine, 14</em>(4), 245–258. https://doi.org/10.1016/S0749-3797(98)00017-8"
+    },
+    {
+      "id": "asrs-v1-1",
+      "acronym": "ASRS-v1.1",
+      "fullName": "Adult ADHD Self-Report Scale (WHO)",
+      "category": "ADHD & Executive Functioning",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "18 items (Part A = 6 screener items; 5 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F90.2 ADHD Combined",
+        "F90.0 ADHD Predominantly Inattentive",
+        "F90.1 ADHD Predominantly Hyperactive-Impulsive"
+      ],
+      "symptoms": [
+        "Inattention",
+        "Executive dysfunction",
+        "Task initiation difficulty",
+        "Time blindness / Forgetfulness",
+        "Restlessness / Fidgeting",
+        "Impulsivity / Interrupting"
+      ],
+      "scoringCutoffs": "Part A (Items 1–6) is the core screener: 4 or more marks in the shaded boxes (Sometimes/Often/Very Often for Items 1–3; Often/Very Often for Items 4–6) is highly consistent with Adult ADHD and warrants comprehensive diagnostic evaluation. Part B (Items 7–18) provides additional symptom context.",
+      "pdfPath": "pdfs/ASRS-v1.1.pdf",
+      "citation": "Kessler, R. C., Adler, L., Ames, M., Demler, O., Faraone, S., Hiripi, E., Howes, M. J., Jin, R., Secnik, K., Spencer, T., Ustun, T. B., &amp; Walters, E. E. (2005). The World Health Organization Adult ADHD Self-Report Scale (ASRS): A short screening scale for use in the general population. <em>Psychological Medicine, 35</em>(2), 245–256. https://doi.org/10.1017/S0033291704002892"
+    },
+    {
+      "id": "aq-10-50",
+      "acronym": "AQ / AQ-10",
+      "fullName": "Autism Spectrum Quotient (50-Item & 10-Item Brief)",
+      "category": "Autism, Sensory & Camouflaging",
+      "ageGroup": "Adults & Adolescents (16+)",
+      "itemsTime": "50 items (10 mins) or AQ-10 (2 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F84.0 Autism Spectrum Disorder"
+      ],
+      "symptoms": [
+        "Autistic traits",
+        "Sensory processing differences",
+        "Monotropism / Deep focus",
+        "Social communication differences",
+        "Preference for routine"
+      ],
+      "scoringCutoffs": "AQ-50 Range: 0–50 (Clinical threshold >=26 in clinical referrals; >=32 in general population). AQ-10 Range: 0–10 (Cutoff >=6 indicates referral for comprehensive autism evaluation).",
+      "pdfPath": "pdfs/AQ-50.pdf",
+      "citation": "Baron-Cohen, S., Wheelwright, S., Skinner, R., Martin, J., &amp; Clubley, E. (2001). The Autism-Spectrum Quotient (AQ): Evidence from Asperger syndrome/high-functioning autism, males and females, scientists and mathematicians. <em>Journal of Autism and Developmental Disorders, 31</em>(1), 5–17. https://doi.org/10.1023/A:1005653411471"
+    },
+    {
+      "id": "cat-q",
+      "acronym": "CAT-Q",
+      "fullName": "Camouflaging Autistic Traits Questionnaire",
+      "category": "Autism, Sensory & Camouflaging",
+      "ageGroup": "Adults & Adolescents (16+)",
+      "itemsTime": "25 items (5–8 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F84.0 Autism Spectrum Disorder",
+        "Autistic Burnout / High-Masking Presentation"
+      ],
+      "symptoms": [
+        "Social masking",
+        "Camouflaging",
+        "Social compensation",
+        "Assimilation",
+        "Autistic burnout risk"
+      ],
+      "scoringCutoffs": "25 items rated 1 (Strongly Disagree) to 7 (Strongly Agree); Total range 25–175 across 3 subscales: Compensation, Masking, and Assimilation.\nNo validated clinical cutoff: Hull et al. (2019) did not set one. Higher totals reflect more social camouflaging/masking, and >=100 is sometimes used informally as a guide (especially valuable for late-identified women, AFAB, and gender-diverse adults).",
+      "pdfPath": "pdfs/CAT-Q.pdf",
+      "citation": "Hull, L., Mandy, W., Lai, M.-C., Baron-Cohen, S., Allison, C., Smith, P., &amp; Petrides, K. V. (2019). Development and validation of the Camouflaging Autistic Traits Questionnaire (CAT-Q). <em>Journal of Autism and Developmental Disorders, 49</em>(3), 819–833. https://doi.org/10.1007/s10803-018-3792-6"
+    },
+    {
+      "id": "raads-r",
+      "acronym": "RAADS-R",
+      "fullName": "Ritvo Autism Asperger Diagnostic Scale-Revised",
+      "category": "Autism, Sensory & Camouflaging",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "80 items (15–20 mins)",
+      "respondent": "Clinician-Administered / Guided Self-Report",
+      "diagnoses": [
+        "F84.0 Autism Spectrum Disorder"
+      ],
+      "symptoms": [
+        "Sensory-motor differences",
+        "Circumscribed special interests",
+        "Language / Pragmatics",
+        "Social relatedness across lifespan"
+      ],
+      "scoringCutoffs": "80 items across 4 domains (Social Relatedness, Circumscribed Interests, Language, Sensory-Motor); Total range 0–240. Threshold score >=65 supports autistic neurotype when interpreted alongside developmental history.",
+      "pdfPath": "pdfs/RAADS-R.pdf",
+      "citation": "Ritvo, R. A., Ritvo, E. R., Guthrie, D., Ritvo, M. J., Hufnagel, D. H., McMahon, W., Tonge, B., Mataix-Cols, D., Jassi, A., Attwood, T., &amp; Eloff, J. (2011). The Ritvo Autism Asperger Diagnostic Scale-Revised (RAADS-R): A scale to assist the diagnosis of autism spectrum disorder in adults: An international validation study. <em>Journal of Autism and Developmental Disorders, 41</em>(8), 1076–1089. https://doi.org/10.1007/s10803-010-1133-5"
+    },
+    {
+      "id": "oci-r",
+      "acronym": "OCI-R / Y-BOCS",
+      "fullName": "Obsessive-Compulsive Inventory-Revised (and Y-BOCS)",
+      "category": "OCD & Repetitive Thoughts/Behaviors",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "18 items (OCI-R: 5 mins) | 10 items (Y-BOCS: 15 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F42.2 Obsessive-Compulsive Disorder (OCD)"
+      ],
+      "symptoms": [
+        "Intrusive obsessions",
+        "Checking compulsions",
+        "Washing / Contamination",
+        "Ordering / Symmetry",
+        "Mental neutralizing",
+        "Hoarding"
+      ],
+      "scoringCutoffs": "OCI-R: 18 items rated 0–4 (Total 0–72); Clinical cutoff >=21 indicates likely OCD.\nY-BOCS Severity Scale (10 items rated 0–4; Total 0–40): 0–7 = Subclinical | 8–15 = Mild | 16–23 = Moderate | 24–31 = Severe | 32–40 = Extreme.",
+      "pdfPath": "pdfs/OCI-R.pdf",
+      "citation": "Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., &amp; Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: Development and validation of a short version. <em>Psychological Assessment, 14</em>(4), 485–496. https://doi.org/10.1037/1040-3590.14.4.485"
+    },
+    {
+      "id": "mdq",
+      "acronym": "MDQ",
+      "fullName": "Mood Disorder Questionnaire",
+      "category": "Bipolar & Mood Spectrum",
+      "ageGroup": "Adults & Adolescents",
+      "itemsTime": "15 items (5 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F31.x Bipolar I Disorder",
+        "F31.81 Bipolar II Disorder",
+        "F34.0 Cyclothymic Disorder"
+      ],
+      "symptoms": [
+        "Hypomania / Mania",
+        "Decreased need for sleep",
+        "Pressured speech / Racing thoughts",
+        "Goal-directed hyperactivity",
+        "Impulsivity / Spending"
+      ],
+      "scoringCutoffs": "Positive screen requires ALL THREE criteria: (1) 7 or more 'Yes' responses on the 13 symptom items in Question 1, (2) 'Yes' on Question 2 (several symptoms occurred during the same period), AND (3) 'Moderate' or 'Serious' problem on Question 3.",
+      "pdfPath": "pdfs/MDQ.pdf",
+      "citation": "Hirschfeld, R. M. A., Williams, J. B. W., Spitzer, R. L., Calabrese, J. R., Flynn, L., Keck, P. E., Jr., Lewis, L., McElroy, S. L., Post, R. M., Rapport, D. J., Russell, J. M., Sachs, G. S., &amp; Zajecka, J. (2000). Development and validation of a screening instrument for bipolar spectrum disorder: The Mood Disorder Questionnaire. <em>American Journal of Psychiatry, 157</em>(11), 1873–1875. https://doi.org/10.1176/appi.ajp.157.11.1873"
+    },
+    {
+      "id": "c-ssrs",
+      "acronym": "C-SSRS",
+      "fullName": "Columbia-Suicide Severity Rating Scale (Screener)",
+      "category": "Suicide & Safety Risk",
+      "ageGroup": "All Ages (Adults, Teens, Children)",
+      "itemsTime": "6 screener items (2–5 mins)",
+      "respondent": "Clinician-Administered",
+      "diagnoses": [
+        "Suicidal Ideation & Behavior Risk Assessment",
+        "Cross-Diagnostic Safety Triage"
+      ],
+      "symptoms": [
+        "Passive wish to be dead",
+        "Active suicidal thoughts",
+        "Suicidal method / intent / plan",
+        "Preparatory behavior / Past attempts"
+      ],
+      "scoringCutoffs": "Items 1–2 = Low/Moderate risk (depending on frequency) | Item 3 (Thoughts of method without specific plan/intent) = Moderate Risk | Items 4 or 5 in the past month (Intent, or Intent with Plan) or Item 6 in the past 3 months (Suicidal Behavior) = High / Acute Risk requiring immediate safety planning.",
+      "pdfPath": "pdfs/C-SSRS.pdf",
+      "citation": "Posner, K., Brown, G. K., Stanley, B., Brent, D. A., Yershova, K. V., Oquendo, M. A., Currier, G. W., Melvin, G. A., Greenhill, L., Shen, S., &amp; Mann, J. J. (2011). The Columbia–Suicide Severity Rating Scale: Initial validity and internal consistency findings from three multisite studies with adolescents and adults. <em>American Journal of Psychiatry, 168</em>(12), 1266–1277. https://doi.org/10.1176/appi.ajp.2011.10111704"
+    },
+    {
+      "id": "audit-dast",
+      "acronym": "AUDIT / DAST-10",
+      "fullName": "Alcohol Use Disorders Identification Test & Drug Abuse Screening Test",
+      "category": "Substance Use & Behavioral",
+      "ageGroup": "Adults & Adolescents",
+      "itemsTime": "10 items each (3–5 mins)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F10.x Alcohol Use Disorder",
+        "F11–F19 Substance Use Disorders"
+      ],
+      "symptoms": [
+        "Hazardous alcohol consumption",
+        "Substance dependence symptoms",
+        "Harm-reduction baseline",
+        "Withdrawal / Blackouts"
+      ],
+      "scoringCutoffs": "AUDIT (0–40, WHO zones): 0–7 = Low risk | 8–15 = Hazardous use | 16–19 = Harmful use | 20–40 = Possible alcohol dependence.\nDAST-10 (0–10): 0 = None | 1–2 = Low | 3–5 = Moderate | 6–8 = Substantial | 9–10 = Severe.",
+      "pdfPath": "pdfs/AUDIT-DAST10.pdf",
+      "citation": "Saunders, J. B., Aasland, O. G., Babor, T. F., de la Fuente, J. R., &amp; Grant, M. (1993). Development of the Alcohol Use Disorders Identification Test (AUDIT): WHO Collaborative Project on Early Detection of Persons with Harmful Alcohol Consumption—II. <em>Addiction, 88</em>(6), 791–804. https://doi.org/10.1111/j.1360-0443.1993.tb02093.x"
+    },
+    {
+      "id": "ede-q-scoff",
+      "acronym": "EDE-Q / NIAS",
+      "fullName": "Eating Disorder Examination Questionnaire & Nine Item ARFID Screen",
+      "category": "Eating, Feeding & Body Image",
+      "ageGroup": "Adults & Adolescents",
+      "itemsTime": "28 items (EDE-Q) / 9 items (NIAS for ARFID)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "F50.81x Binge-Eating Disorder",
+        "F50.01x / F50.02x Anorexia Nervosa",
+        "F50.2x Bulimia Nervosa",
+        "F50.82 ARFID"
+      ],
+      "symptoms": [
+        "Dietary restraint",
+        "Eating/Shape/Weight concern",
+        "Sensory food aversion (ARFID)",
+        "Lack of interoceptive appetite",
+        "Fear of aversive consequences (choking/GI)"
+      ],
+      "scoringCutoffs": "EDE-Q (0–6 scale across 4 subscales): Global score >=2.3–2.8 indicates clinically significant disordered eating.\nNIAS (9 items rated 0–5 across Picky/Sensory, Appetite, and Fear subscales): Subscale cutoffs >=10 (Picky), >=9 (Appetite), >=10 (Fear) indicate positive ARFID screen.",
+      "pdfPath": "pdfs/EDE-Q-NIAS.pdf",
+      "citation": "Fairburn, C. G., &amp; Beglin, S. J. (1994). Assessment of eating disorders: Interview or self-report questionnaire? <em>International Journal of Eating Disorders, 16</em>(4), 363–370. https://doi.org/10.1002/1098-108X(199412)16:4&lt;363::AID-EAT2260160405&gt;3.0.CO;2-#"
+    },
+    {
+      "id": "rcads-vanderbilt",
+      "acronym": "RCADS-25 / Vanderbilt",
+      "fullName": "Revised Child Anxiety and Depression Scale & NICHQ Vanderbilt Assessment",
+      "category": "Youth, Pediatric & Caregiver",
+      "ageGroup": "Children & Adolescents (Ages 6–18; Youth & Caregiver Forms)",
+      "itemsTime": "25–47 items (10 mins)",
+      "respondent": "Self-Report & Informant Versions",
+      "diagnoses": [
+        "Pediatric Anxiety & Depression",
+        "F90.x Youth ADHD",
+        "ODD / Conduct Screen"
+      ],
+      "symptoms": [
+        "Separation anxiety",
+        "School phobia",
+        "Youth depression",
+        "Pediatric inattention / hyperactivity",
+        "Emotional dysregulation"
+      ],
+      "scoringCutoffs": "RCADS converts raw scores to age/grade T-scores: T-score >=65 = Borderline clinical | T-score >=70 = Clinical threshold.\nNICHQ Vanderbilt: Requires >=6 of 9 Inattentive or Hyperactive items scored 2 ('Often') or 3 ('Very Often') plus performance impairment score of 4 or 5.",
+      "pdfPath": "pdfs/RCADS-Vanderbilt.pdf",
+      "citation": "Chorpita, B. F., Yim, L., Moffitt, C., Umemoto, L. A., &amp; Francis, S. E. (2000). Assessment of symptoms of DSM-IV anxiety and depression in children: A revised child anxiety and depression scale. <em>Behaviour Research and Therapy, 38</em>(8), 835–855. https://doi.org/10.1016/S0005-7967(99)00130-8"
+    },
+    {
+      "id": "whodas-dsm5-cc",
+      "acronym": "WHODAS 2.0 / DSM-5 Level 1",
+      "fullName": "WHO Disability Assessment Schedule 2.0 & DSM-5-TR Cross-Cutting Symptom Measure",
+      "category": "Cross-Cutting, Functioning & QoL",
+      "ageGroup": "Adults (18+)",
+      "itemsTime": "12 items (WHODAS) / 23 items (DSM-5 Level 1)",
+      "respondent": "Self-Report",
+      "diagnoses": [
+        "Cross-Diagnostic Medical Necessity & Functional Impairment",
+        "Intake Multi-Domain Screen"
+      ],
+      "symptoms": [
+        "Cognition",
+        "Mobility",
+        "Self-care",
+        "Getting along with people",
+        "Life activities / Work / School",
+        "Community participation",
+        "13 psychiatric domains (DSM-5 Level 1)"
+      ],
+      "scoringCutoffs": "WHODAS 2.0 (12-Item): Items rated 1 (None) to 5 (Extreme/Cannot do) over past 30 days; documents functional disability for insurance medical necessity.\nDSM-5-TR Level 1: Any item rated >=2 ('Mild' or greater; >=1 for suicide/psychosis/substance items) prompts deeper Level 2 assessment.",
+      "pdfPath": "pdfs/WHODAS-DSM5-Level1.pdf",
+      "citation": "Üstün, T. B., Chatterji, S., Kostanjsek, N., Rehm, J., Kennedy, C., Epping-Jordan, J., Saxena, S., von Korff, M., &amp; Pull, C. (2010). Developing the World Health Organization Disability Assessment Schedule 2.0. <em>Bulletin of the World Health Organization, 88</em>(11), 815–823. https://doi.org/10.2471/BLT.09.067231"
+    }
+  ]
+}

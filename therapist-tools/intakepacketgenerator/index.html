@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Intake Packet Generator</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body aria-label="Intake Packet Generator page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html" aria-current="page">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Intake Packet Generator</h1>
+        <p class="muted text-center text-sm mb-6">
+            Build your client intake packet once (first-time therapy guide, disclosure statement, informed consent, practice policies, HIPAA notice, and intake questions), then save it as a <code>.json</code> file to reload and update later. It also writes 90791 intake notes.
+        </p>
+        <p class="subpanel text-sm p-3 rounded-md mb-6">
+            <strong>Please note:</strong> These templates are a starting point, not legal advice. Check that your disclosure statement and informed consent meet your licensing board’s current rules (in Washington, WAC 246-809-710) and your malpractice carrier’s requirements.
+        </p>
+
+        <!-- Top Controls: Import .json, Export .json, Load Pre-Written Templates, Cache Practice Defaults -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md" title="Upload an Intake Packet .json OR your Practice Info Sheet .json!">
+                    Import .json (Packet or Practice Info)
+                </button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">
+                    Save / Export Packet .json
+                </button>
+                <button type="button" id="resetDefaultTemplatesBtn" class="btn px-4 py-2 font-semibold rounded-md">
+                    Restore Default Clinical Boilerplate
+                </button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer" title="Caches only your non-PHI Practice Packet templates locally; never caches client intake notes.">
+                    Cache Practice Packet Templates in Browser
+                </label>
+            </div>
+        </div>
+
+        <!-- Mode Switcher Tabs -->
+        <div class="subpanel p-3 rounded-md mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-sm font-bold">Select Workspace Mode:</span>
+                <div class="flex flex-wrap gap-2" role="tablist">
+                    <button type="button" class="mode-tab-btn btn btn-primary px-4 py-2 text-sm font-semibold rounded-md" data-mode="packet">
+                        1. Client Intake Packet Builder (Disclosure, Consent, HIPAA &amp; Questions)
+                    </button>
+                    <button type="button" class="mode-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-mode="intakenote">
+                        2. Clinician's 90791 Intake Note &amp; First-Session Checklist (Session-Only)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================
+             MODE 1: CLIENT INTAKE PACKET BUILDER
+             ========================================================= -->
+        <div id="mode-packet" class="workspace-mode space-y-6">
+
+            <!-- Step 1: Practice & Clinician Header Info (Auto-fills into packet text) -->
+            <section class="subpanel p-5 rounded-md space-y-4" aria-labelledby="practice-vars-heading">
+                <div class="flex flex-wrap justify-between items-center border-b pb-2">
+                    <div>
+                        <h2 id="practice-vars-heading" class="text-xl font-bold">1. Practice &amp; Clinician Details (Upload Once, Reuse Anytime)</h2>
+                        <p class="muted text-xs">Fill these in once (or import your Practice Info Sheet <code>.json</code>) and click <strong>Apply Details to Boilerplate Below</strong> to auto-personalize your packet.</p>
+                    </div>
+                    <button type="button" id="applyVarsToTextBtn" class="btn btn-primary px-4 py-1.5 text-xs font-semibold rounded-md">
+                        Apply Details to Boilerplate Below
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <div>
+                        <label for="pktPracticeName" class="block text-xs font-semibold mb-1">Practice / Business Name:</label>
+                        <input type="text" id="pktPracticeName" placeholder="e.g., Example Counseling PLLC" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktClinicianName" class="block text-xs font-semibold mb-1">Clinician Name &amp; Credentials:</label>
+                        <input type="text" id="pktClinicianName" placeholder="e.g., Jane Doe, LMHC" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktLicenseNumber" class="block text-xs font-semibold mb-1">State &amp; License Number(s):</label>
+                        <input type="text" id="pktLicenseNumber" placeholder="e.g., WA LH00000000" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktNpiNumber" class="block text-xs font-semibold mb-1">NPI Number:</label>
+                        <input type="text" id="pktNpiNumber" placeholder="e.g., 1234567890" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktPhone" class="block text-xs font-semibold mb-1">Practice Phone:</label>
+                        <input type="text" id="pktPhone" placeholder="e.g., 555-555-0100" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktEmail" class="block text-xs font-semibold mb-1">Practice Email:</label>
+                        <input type="text" id="pktEmail" placeholder="e.g., clinician@example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktWebsite" class="block text-xs font-semibold mb-1">Practice Website:</label>
+                        <input type="text" id="pktWebsite" placeholder="e.g., example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktAddress" class="block text-xs font-semibold mb-1">Office / Mailing Address:</label>
+                        <input type="text" id="pktAddress" placeholder="Street, City, State, ZIP" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktIntakeFee" class="block text-xs font-semibold mb-1">Intake Session Fee (90791):</label>
+                        <input type="text" id="pktIntakeFee" placeholder="e.g., $200 (55 mins)" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktStandardFee" class="block text-xs font-semibold mb-1">Ongoing Session Fee (90837):</label>
+                        <input type="text" id="pktStandardFee" placeholder="e.g., $165 (53+ mins)" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktCancelWindow" class="block text-xs font-semibold mb-1">Cancellation Window &amp; Late Fee:</label>
+                        <input type="text" id="pktCancelWindow" placeholder="e.g., 24 hours notice; $100 late fee" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="pktEducationApproach" class="block text-xs font-semibold mb-1">Degrees, Training &amp; Clinical Approach:</label>
+                        <input type="text" id="pktEducationApproach" placeholder="e.g., MA in Counseling & Drama Therapy; Person-Centered, Neuro-Affirming" class="pkt-var w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Toggle Which Packet Sections to Include in PDF -->
+            <section class="subpanel p-5 rounded-md space-y-3" aria-labelledby="sections-toggle-heading">
+                <h2 id="sections-toggle-heading" class="text-xl font-bold">2. Choose Which Sections to Include in Your Printed PDF Packet</h2>
+                <p class="muted text-xs">Uncheck any section you don't need right now. Checked sections will appear in your live preview and PDF printout.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="welcome" checked>
+                        <span><strong>Part 1:</strong> Welcome &amp; "What to Expect in Your First Therapy Session" (New-to-Therapy Guide)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="disclosure" checked>
+                        <span><strong>Part 2:</strong> Professional Disclosure Statement (WA DOH WAC 246-809-710 / State Compliant)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="consent" checked>
+                        <span><strong>Part 3:</strong> Informed Consent for Psychotherapy &amp; Limits of Confidentiality</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="policies" checked>
+                        <span><strong>Part 4:</strong> Practice Policies (Fees, Cancellations, Communication, Social Media, AI Consent)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="telehealth" checked>
+                        <span><strong>Part 5:</strong> Telehealth Informed Consent &amp; Emergency Safety Protocol</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="hipaa" checked>
+                        <span><strong>Part 6:</strong> HIPAA Notice of Privacy Practices &amp; Good Faith Estimate (No Surprises Act)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="questionnaire" checked>
+                        <span><strong>Part 7:</strong> Client Background &amp; Intake Questionnaire (No Clinical Assessments/Scales)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="pkt-section-cb mr-2" value="signatures" checked>
+                        <span><strong>Part 8:</strong> Informed Consent Acknowledgment &amp; Client/Clinician Signatures</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Step 3: Editable Packet Sections -->
+            <section class="space-y-4" aria-label="Editable Packet Sections">
+                <!-- Part 1: Welcome & First-Time Therapy Guide -->
+                <details id="editor-welcome" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 1: Welcome &amp; "What to Expect in Your First Therapy Session" (For First-Time Therapy Clients)</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p class="muted text-xs mb-2">Demystifies the intake process, explains how the first session differs from ongoing therapy, and reassures clients that they are in control of their pace.</p>
+                    <textarea id="textWelcome" aria-label="Part 1: Welcome &amp; &quot;What to Expect in Your First Therapy Session&quot; (For First-Time Therapy Clients)" rows="9" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+
+                <!-- Part 2: Professional Disclosure Statement -->
+                <details id="editor-disclosure" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 2: Professional Disclosure Statement &amp; Client Rights (WAC 246-809-710)</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p class="muted text-xs mb-2">Includes clinician qualifications, therapeutic orientation, client right to refuse treatment or choose a practitioner, and mandatory state DOH complaint contact info.</p>
+                    <textarea id="textDisclosure" aria-label="Part 2: Professional Disclosure Statement &amp; Client Rights (WAC 246-809-710)" rows="9" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+
+                <!-- Part 3: Informed Consent & Confidentiality -->
+                <details id="editor-consent" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 3: Informed Consent for Psychotherapy &amp; Limits of Confidentiality</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p class="muted text-xs mb-2">Covers the risks and benefits of therapy, mandatory reporting exceptions (imminent harm, child/vulnerable adult abuse, court orders), and minor/family policies.</p>
+                    <textarea id="textConsent" aria-label="Part 3: Informed Consent for Psychotherapy &amp; Limits of Confidentiality" rows="9" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+
+                <!-- Part 4: Practice Policies -->
+                <details id="editor-policies" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 4: Practice Policies, Fees, Cancellations, Communication &amp; AI Note-Taker Consent</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p class="muted text-xs mb-2">Outlines session lengths, fees, insurance/superbills, cancellation policy, 24-hour response window, emergency 988/911 boundaries, and optional AI ambient note-taking consent.</p>
+                    <textarea id="textPolicies" aria-label="Part 4: Practice Policies, Fees, Cancellations, Communication &amp; AI Note-Taker Consent" rows="10" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+
+                <!-- Part 5: Telehealth Informed Consent -->
+                <details id="editor-telehealth" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 5: Telehealth Informed Consent &amp; Safety Protocol</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p class="muted text-xs mb-2">Covers physical location verification (must be physically located in clinician's licensed state at session time), privacy, tech failure backup plan, and local emergency contacts.</p>
+                    <textarea id="textTelehealth" aria-label="Part 5: Telehealth Informed Consent &amp; Safety Protocol" rows="7" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+
+                <!-- Part 6: HIPAA Notice & Good Faith Estimate -->
+                <details id="editor-hipaa" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 6: HIPAA Notice of Privacy Practices Summary &amp; Good Faith Estimate (No Surprises Act)</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p class="muted text-xs mb-2">Summarizes client rights over Protected Health Information (PHI) under HIPAA and their right to a Good Faith Estimate of medical/mental health charges.</p>
+                    <textarea id="textHipaa" aria-label="Part 6: HIPAA Notice of Privacy Practices Summary &amp; Good Faith Estimate (No Surprises Act)" rows="8" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+
+                <!-- Part 7: Client Intake Questionnaire (Prompts) -->
+                <details id="editor-questionnaire" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 7: Client Intake &amp; Background Questions (Open-Ended Prompts — No Diagnostic Scales)</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p class="muted text-xs mb-2">Customize the open-ended reflection questions that print with write-in lines for the client (demographics, goals, strengths, sensory/communication needs, and history).</p>
+                    <textarea id="textQuestionnaire" aria-label="Part 7: Client Intake &amp; Background Questions (Open-Ended Prompts — No Diagnostic Scales)" rows="10" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+
+                <!-- Part 8: Signatures & Attestation -->
+                <details id="editor-signatures" class="pkt-editor-block collapsible help">
+                    <summary><span>Part 8: Acknowledgment, Consent &amp; Signature Block Text</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <textarea id="textSignatures" aria-label="Part 8: Acknowledgment, Consent &amp; Signature Block Text" rows="5" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
+                    </div>
+                </details>
+            </section>
+
+            <!-- Packet Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 pt-6 border-t">
+                <button type="button" id="previewPacketBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
+                    Preview Full Intake Packet
+                </button>
+                <button type="button" id="printPacketPdfBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
+                    Print / Save PDF Intake Packet
+                </button>
+                <button type="button" id="exportPacketTxtBtn" class="btn px-6 py-3 font-semibold rounded-md">
+                    Export Packet (.txt)
+                </button>
+                <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">
+                    Save / Export Packet (.json)
+                </button>
+            </div>
+
+            <!-- Live Rendered Packet Preview -->
+            <div id="packetPreviewContainer" class="subpanel hidden p-6 rounded-md mt-6">
+                <div id="packetPreviewHtml"></div>
+            </div>
+        </div>
+
+        <!-- =========================================================
+             MODE 2: CLINICIAN'S FIRST-SESSION 90791 INTAKE NOTE
+             ========================================================= -->
+        <div id="mode-intakenote" class="workspace-mode hidden space-y-6">
+            <div class="subpanel p-5 rounded-md space-y-4">
+                <div class="flex flex-wrap justify-between items-center border-b pb-2">
+                    <div>
+                        <h2 class="text-2xl font-bold">Clinician's First-Session Intake Note Generator (CPT 90791)</h2>
+                        <p class="muted text-xs">
+                            <strong>Strictly Session-Only Privacy:</strong> Client intake note fields are never cached in the browser and wipe completely on refresh.
+                        </p>
+                    </div>
+                    <button type="reset" form="intakeNoteForm" class="btn px-4 py-1.5 text-xs font-semibold rounded-md">Clear Intake Note</button>
+                </div>
+
+                <form id="intakeNoteForm" class="space-y-4">
+                    <!-- Session Metadata -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                        <div>
+                            <label for="inDate" class="block text-xs font-semibold mb-1">Intake Date:</label>
+                            <input type="date" id="inDate" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="inDuration" class="block text-xs font-semibold mb-1">Session Length &amp; CPT Code:</label>
+                            <input type="text" id="inDuration" value="55 minutes (CPT 90791)" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="inModality" class="block text-xs font-semibold mb-1">Session Location / Modality:</label>
+                            <select id="inModality" class="w-full p-2 border rounded-md text-sm">
+                                <option value="via HIPAA-compliant telehealth (client at home in licensed state)">Telehealth (Client at Home)</option>
+                                <option value="in person at the clinician's office">In-Person Office</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="inParticipants" class="block text-xs font-semibold mb-1">Participants Present:</label>
+                            <input type="text" id="inParticipants" value="Client only (individual intake)" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                    </div>
+
+                    <!-- First-Session Ethical & Orientation Checklist -->
+                    <div class="border-t pt-3">
+                        <p class="text-sm font-bold mb-2">First-Session Orientation &amp; Informed Consent Checklist (Included in Note Intro):</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="in-checklist-cb mr-2" value="Reviewed signed Informed Consent, Disclosure Statement, and HIPAA Notice of Privacy Practices" checked>
+                                <span>Reviewed signed Informed Consent, Disclosure &amp; HIPAA Notice</span>
+                            </label>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="in-checklist-cb mr-2" value="Discussed limits of confidentiality (imminent self/other harm, child/vulnerable adult abuse)" checked>
+                                <span>Discussed mandatory reporting &amp; limits of confidentiality</span>
+                            </label>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="in-checklist-cb mr-2" value="Verified client physical location and emergency contact for telehealth safety" checked>
+                                <span>Verified physical address &amp; emergency contact on file</span>
+                            </label>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="in-checklist-cb mr-2" value="Oriented client to what to expect in therapy, session structure, and collaborative pacing" checked>
+                                <span>Oriented client to therapy process &amp; collaborative pacing</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Biopsychosocial Assessment Fields -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t">
+                        <div>
+                            <label for="inPresenting" class="block text-sm font-semibold mb-1">1. Presenting Problem &amp; Chief Complaint (Client's Words):</label>
+                            <textarea id="inPresenting" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Why the client is seeking therapy now, onset, duration, and impact on daily functioning..."></textarea>
+                        </div>
+                        <div>
+                            <label for="inPsychHistory" class="block text-sm font-semibold mb-1">2. Prior Therapy &amp; Psychiatric / Medication History:</label>
+                            <textarea id="inPsychHistory" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Past counseling experiences (what helped/didn't help), prior diagnoses, current medications & prescriber..."></textarea>
+                        </div>
+                        <div>
+                            <label for="inMedicalSub" class="block text-sm font-semibold mb-1">3. Medical, Sleep, Sensory &amp; Substance Use History:</label>
+                            <textarea id="inMedicalSub" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Relevant medical conditions, chronic pain, sleep/appetite, sensory considerations, alcohol/substance use..."></textarea>
+                        </div>
+                        <div>
+                            <label for="inPsychosocial" class="block text-sm font-semibold mb-1">4. Psychosocial, Family, Cultural &amp; Trauma Context:</label>
+                            <textarea id="inPsychosocial" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Living situation, relationships, work/school, cultural/identity factors, trauma history..."></textarea>
+                        </div>
+                        <div>
+                            <label for="inStrengths" class="block text-sm font-semibold mb-1">5. Client Strengths, Values, Special Interests &amp; Supports:</label>
+                            <textarea id="inStrengths" rows="2" class="w-full p-2 border rounded-md text-sm" placeholder="Internal resilience, coping skills, community/family support, pets, creative outlets..."></textarea>
+                        </div>
+                        <div>
+                            <label for="inRiskSafety" class="block text-sm font-semibold mb-1">6. Suicide, Self-Harm &amp; Safety Risk Assessment:</label>
+                            <textarea id="inRiskSafety" rows="2" class="w-full p-2 border rounded-md text-sm">Client denied current suicidal ideation, intent, or plan, and denied homicidal ideation. Protective factors identified.</textarea>
+                        </div>
+                        <div>
+                            <label for="inMse" class="block text-sm font-semibold mb-1">7. Mental Status Exam (MSE) Observations:</label>
+                            <textarea id="inMse" rows="2" class="w-full p-2 border rounded-md text-sm">Alert and oriented x4; dressed appropriately; cooperative attitude; speech normal rate/rhythm; mood and affect congruent with content; thought process logical and goal-directed; insight and judgment intact.</textarea>
+                        </div>
+                        <div>
+                            <label for="inDiagnosisPlan" class="block text-sm font-semibold mb-1">8. Initial Diagnostic Impression, Medical Necessity &amp; Plan:</label>
+                            <textarea id="inDiagnosisPlan" rows="2" class="w-full p-2 border rounded-md text-sm" placeholder="Provisional ICD-10/DSM-5-TR code(s), client's initial therapy goals, recommended frequency (e.g., weekly 90837)..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3 pt-4 border-t">
+                        <button type="submit" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate 90791 Intake Note</button>
+                        <button type="button" id="copyIntakeNoteBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Copy Intake Note</button>
+                        <button type="button" id="printIntakeNoteBtn" class="btn px-6 py-3 font-semibold rounded-md">Print Intake Note</button>
+                        <button type="button" id="exportIntakeNoteTxtBtn" class="btn px-6 py-3 font-semibold rounded-md">Export Note (.txt)</button>
+                    </div>
+                </form>
+
+                <div id="generatedIntakeNoteContainer" class="subpanel hidden p-4 rounded-md mt-4 border">
+                    <h3 class="text-lg font-bold mb-2">Generated 90791 Intake Evaluation Note:</h3>
+                    <p id="generatedIntakeNoteText" class="whitespace-pre-wrap text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="intakepacketgenerator" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

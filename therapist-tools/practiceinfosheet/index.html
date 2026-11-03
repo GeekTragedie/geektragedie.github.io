@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Practice Info Sheet</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body aria-label="Practice Info Sheet page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html" aria-current="page">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Practice Info Sheet</h1>
+        <p class="muted text-center text-sm mb-6">
+            Your NPI, EIN, taxonomy codes, licenses, voicemail scripts, and tech stack in one printable place. The page clears on refresh unless you export a <code>.json</code> file or turn on browser saving.
+        </p>
+
+        <!-- Top Controls: Import, Export, Reset, and Local Cache Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
+                <button type="button" id="loadSampleBtn" class="btn px-4 py-2 font-semibold rounded-md">Load Blank Voicemail Templates</button>
+                <button type="button" id="clearFormButton" class="btn px-4 py-2 font-semibold rounded-md">Clear Sheet</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache in Browser (Auto-save locally on this device)
+                </label>
+            </div>
+        </div>
+
+        <!-- View Switcher Tabs -->
+        <div class="subpanel p-3 rounded-md mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-sm font-bold">Select View Mode (Filters Screen &amp; Print Output):</span>
+                <div class="flex flex-wrap gap-2" role="tablist" aria-label="Practice Info View Switcher">
+                    <button type="button" class="view-tab-btn btn btn-primary px-4 py-2 text-sm font-semibold rounded-md" data-view="full">
+                        Full Practice View (All)
+                    </button>
+                    <button type="button" class="view-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-view="therapist">
+                        1. Therapist View
+                    </button>
+                    <button type="button" class="view-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-view="business">
+                        2. Business View
+                    </button>
+                    <button type="button" class="view-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-view="tech">
+                        3. Tech Stack View
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <form id="practiceInfoForm" class="space-y-8">
+
+            <!-- ==========================================
+                 1. THERAPIST VIEW (TOP IN FULL PRACTICE VIEW)
+                 ========================================== -->
+            <section id="section-therapist" class="view-section subpanel p-5 rounded-md space-y-6" aria-labelledby="therapist-view-heading">
+                <div class="border-b pb-2">
+                    <h2 id="therapist-view-heading" class="text-2xl font-bold">1. Therapist &amp; Clinical Credentialing View</h2>
+                    <p class="muted text-xs">Quick-reference numbers for insurance credentialing, superbills, Medicaid/ProviderOne, CAQH, and clinical operations.</p>
+                </div>
+
+                <!-- Clinician & NPI Numbers -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="clinicianFullName" class="block text-sm font-semibold mb-1">Clinician Name &amp; Credentials:</label>
+                        <input type="text" id="clinicianFullName" placeholder="e.g., Jane Doe, LMHC, RDT" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="npiType1" class="block text-sm font-semibold mb-1">NPI Number — Type 1 (Individual):</label>
+                        <input type="text" id="npiType1" placeholder="10-digit Individual NPI" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="npiType2" class="block text-sm font-semibold mb-1">NPI Number — Type 2 (Group / PLLC):</label>
+                        <input type="text" id="npiType2" placeholder="10-digit Org NPI (if applicable)" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+
+                <!-- Taxonomy Codes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="taxonomyPreset" class="block text-sm font-semibold mb-1">Common HIPAA Taxonomy Code Quick-Fill:</label>
+                        <select id="taxonomyPreset" class="w-full p-2 border rounded-md">
+                            <option value="">-- Select to Auto-Fill Primary Taxonomy --</option>
+                            <option value="101YM0800X - Mental Health Counselor (LMHC / LPC)">101YM0800X — Mental Health Counselor (LMHC / LPC)</option>
+                            <option value="101YP2500X - Professional Counselor">101YP2500X — Professional Counselor</option>
+                            <option value="1041C0700X - Clinical Social Worker (LICSW / LCSW)">1041C0700X — Clinical Social Worker (LICSW / LCSW)</option>
+                            <option value="106H00000X - Marriage & Family Therapist (LMFT)">106H00000X — Marriage &amp; Family Therapist (LMFT)</option>
+                            <option value="103TC0700X - Clinical Psychologist (PhD / PsyD)">103TC0700X — Clinical Psychologist</option>
+                            <option value="101YA0400X - Addiction (Substance Use Disorder) Counselor">101YA0400X — Addiction / SUD Counselor</option>
+                            <option value="225600000X - Dance / Drama / Creative Arts Therapist">225600000X — Creative Arts / Movement Therapist</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="primaryTaxonomy" class="block text-sm font-semibold mb-1">Primary &amp; Secondary Taxonomy Codes:</label>
+                        <input type="text" id="primaryTaxonomy" placeholder="e.g., 101YM0800X (Mental Health Counselor)" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+
+                <!-- Dynamic Licenses Table (Active, Associate/Prior, Out-of-State, Specialty) -->
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            <h3 class="text-base font-bold">State Licenses &amp; Specialty Credentials</h3>
+                            <p class="muted text-xs">Include active licenses, prior associate numbers (e.g., MC/LMHCA often needed for work history), and national certifications (NCC, RDT, EMDR).</p>
+                        </div>
+                        <button type="button" id="addLicenseRowBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add License / Credential</button>
+                    </div>
+                    <div id="licensesContainer" class="space-y-2"></div>
+                </div>
+
+                <!-- Credentialing Portals: CAQH & Medicaid / ProviderOne -->
+                <div class="border-t pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-3 border rounded-md">
+                        <h3 class="text-sm font-bold mb-2">CAQH ProView</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                                <label for="caqhId" class="block text-xs font-semibold mb-1">CAQH Provider ID:</label>
+                                <input type="text" id="caqhId" placeholder="e.g., 12345678" class="w-full p-2 border rounded-md text-sm">
+                            </div>
+                            <div>
+                                <label for="caqhAttestDate" class="block text-xs font-semibold mb-1">Last Re-Attestation (Every 120d):</label>
+                                <input type="date" id="caqhAttestDate" class="w-full p-2 border rounded-md text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border rounded-md">
+                        <h3 class="text-sm font-bold mb-2">Medicaid / State Provider ID (e.g., WA ProviderOne)</h3>
+                        <div class="space-y-2">
+                            <input type="text" id="providerOneId" placeholder="ProviderOne / Medicaid ID (e.g., 1234567-01)" class="w-full p-2 border rounded-md text-sm">
+                            <input type="text" id="providerOneNotes" placeholder="Reset instructions (e.g., Email provideronesecurity@hcs.wa.gov with Name, NPI & ProviderOne #)" class="w-full p-2 border rounded-md text-xs">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Liability / Malpractice Insurance -->
+                <div class="border-t pt-4">
+                    <h3 class="text-base font-bold mb-2">Professional Liability (Malpractice) Insurance</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label for="malpracticeCarrier" class="block text-xs font-semibold mb-1">Insurance Carrier:</label>
+                            <input type="text" id="malpracticeCarrier" placeholder="e.g., HPSO, CPH, Preferra" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="malpracticePolicyNum" class="block text-xs font-semibold mb-1">Policy Number:</label>
+                            <input type="text" id="malpracticePolicyNum" placeholder="Policy #" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="malpracticeCoverage" class="block text-xs font-semibold mb-1">Coverage Limits (Per Incident / Aggregate):</label>
+                            <input type="text" id="malpracticeCoverage" placeholder="e.g., $1,000,000 / $3,000,000" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="malpracticeRenewal" class="block text-xs font-semibold mb-1">Policy Expiration / Renewal Date:</label>
+                            <input type="date" id="malpracticeRenewal" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard & Out-of-Office (OOO) Voicemail Scripts -->
+                <div class="border-t pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="standardVoicemail" class="block text-sm font-semibold mb-1">Standard Clinical Voicemail Script:</label>
+                        <textarea id="standardVoicemail" rows="6" class="w-full p-2 border rounded-md text-sm" placeholder="Your standard HIPAA-compliant voicemail greeting with 988/911 crisis instructions and business hours..."></textarea>
+                    </div>
+                    <div>
+                        <label for="oooVoicemail" class="block text-sm font-semibold mb-1">Out-of-Office (OOO) Vacation Voicemail Script:</label>
+                        <textarea id="oooVoicemail" rows="6" class="w-full p-2 border rounded-md text-sm" placeholder="Your vacation/OOO greeting with dates away, crisis instructions, and return week..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 2. BUSINESS VIEW (SECOND IN FULL PRACTICE VIEW)
+                 ========================================== -->
+            <section id="section-business" class="view-section subpanel p-5 rounded-md space-y-6" aria-labelledby="business-view-heading">
+                <div class="border-b pb-2">
+                    <h2 id="business-view-heading" class="text-2xl font-bold">2. Business Entity, Tax &amp; Contact View</h2>
+                    <p class="muted text-xs">Essential legal entity numbers, W-9 / tax identifiers, addresses, and financial administration details for practice owners.</p>
+                </div>
+
+                <!-- Legal Name, DBA, Entity Type -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="legalBusinessName" class="block text-sm font-semibold mb-1">Legal Business Name (PLLC / LLC):</label>
+                        <input type="text" id="legalBusinessName" placeholder="e.g., Jane Doe Counseling PLLC" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="tradeDbaName" class="block text-sm font-semibold mb-1">Trade Name / DBA(s):</label>
+                        <input type="text" id="tradeDbaName" placeholder="e.g., Example Wellness" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="entityStructure" class="block text-sm font-semibold mb-1">Entity &amp; Tax Classification:</label>
+                        <input type="text" id="entityStructure" placeholder="e.g., Single-Member PLLC / S-Corp / Sole Prop" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+
+                <!-- Business Phone, Email, Website, Address -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="businessPhone" class="block text-sm font-semibold mb-1">Practice Phone &amp; Fax:</label>
+                        <input type="text" id="businessPhone" placeholder="e.g., (206) 555-0199" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="businessEmail" class="block text-sm font-semibold mb-1">Practice Email Address:</label>
+                        <input type="text" id="businessEmail" placeholder="e.g., clinician@example.com" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="businessWebsite" class="block text-sm font-semibold mb-1">Practice Website(s):</label>
+                        <input type="text" id="businessWebsite" placeholder="e.g., example.com" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="businessAddress" class="block text-sm font-semibold mb-1">Business &amp; Mailing Address (Used on W-9 / Claims):</label>
+                        <textarea id="businessAddress" rows="2" class="w-full p-2 border rounded-md text-sm" placeholder="Street Address, City, State, ZIP"></textarea>
+                    </div>
+                    <div>
+                        <label for="registeredAgentInfo" class="block text-sm font-semibold mb-1">Registered Agent &amp; SOS Annual Report Due Month:</label>
+                        <textarea id="registeredAgentInfo" rows="2" class="w-full p-2 border rounded-md text-sm" placeholder="Registered Agent Name/Address & Secretary of State renewal month..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Tax & Registration Numbers (EIN, UBI, City License, NAICS) -->
+                <div class="border-t pt-4">
+                    <h3 class="text-base font-bold mb-2">Tax &amp; Government Identifiers</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label for="einNumber" class="block text-xs font-semibold mb-1">Federal EIN (IRS Tax ID):</label>
+                            <input type="text" id="einNumber" placeholder="XX-XXXXXXX" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="ubiNumber" class="block text-xs font-semibold mb-1">State UBI / DOR Tax Number:</label>
+                            <input type="text" id="ubiNumber" placeholder="e.g., 604 000 000 (WA UBI)" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="cityLicenseNumber" class="block text-xs font-semibold mb-1">City Business License #:</label>
+                            <input type="text" id="cityLicenseNumber" placeholder="City endorsement / account #" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="naicsCode" class="block text-xs font-semibold mb-1">NAICS Code (Mental Health):</label>
+                            <input type="text" id="naicsCode" value="621330 (Offices of Mental Health Practitioners)" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial, Banking & Tax Filing Cadence -->
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            <h3 class="text-base font-bold">Financial, Banking, Accounting &amp; Tax Cadence</h3>
+                            <p class="muted text-xs">Track your business bank, bookkeeping software (e.g., QBO), quarterly B&amp;O / IRS tax schedules, and business consultants.</p>
+                        </div>
+                        <button type="button" id="addFinanceRowBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Financial / Tax Item</button>
+                    </div>
+                    <div id="financeAdminContainer" class="space-y-2"></div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 3. TECH STACK VIEW (BOTTOM IN FULL PRACTICE VIEW)
+                 ========================================== -->
+            <section id="section-tech" class="view-section subpanel p-5 rounded-md space-y-6" aria-labelledby="tech-view-heading">
+                <div class="border-b pb-2">
+                    <h2 id="tech-view-heading" class="text-2xl font-bold">3. Tech &amp; Admin Stack Directory</h2>
+                    <p class="muted text-xs">Placed at the bottom so it never overwhelms daily clinical paperwork. Tracks domains, DNS, EHR, HIPAA BAAs, and recovery notes.</p>
+                </div>
+
+                <!-- Domains, DNS & Web Hosting -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            <h3 class="text-base font-bold">Domain &amp; Web Architecture</h3>
+                            <p class="muted text-xs">Where your domains are registered/billed, where DNS is managed (e.g., Cloudflare), and your hosting/deployment pipeline.</p>
+                        </div>
+                        <button type="button" id="addDomainRowBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Domain / Web Service</button>
+                    </div>
+                    <div id="domainsContainer" class="space-y-2"></div>
+                </div>
+
+                <!-- Clinical & Practice Operations Software (with HIPAA BAA Checkbox) -->
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            <h3 class="text-base font-bold">Clinical &amp; Practice Operations Software (with HIPAA BAA Tracker)</h3>
+                            <p class="muted text-xs">EHR/billing platforms (e.g., Headway, SimplePractice), telehealth, phone/SMS (Google Voice), email/storage (Google Workspace), and directories.</p>
+                        </div>
+                        <button type="button" id="addTechToolRowBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Software / Platform</button>
+                    </div>
+                    <div id="clinicalTechContainer" class="space-y-2"></div>
+                </div>
+
+                <!-- Recovery Codes & Emergency Tech Access Notes -->
+                <div class="border-t pt-4">
+                    <label for="recoveryAndSecurityNotes" class="block text-sm font-semibold mb-1">2FA Backup / Recovery Keys &amp; Emergency Access Notes:</label>
+                    <p class="muted text-xs mb-2">
+                        <em>Security Tip:</em> If printing this sheet or saving unencrypted backups, consider writing where your recovery codes are stored (e.g., "Bitwarden Vault") or only include non-PHI platform recovery keys.
+                    </p>
+                    <textarea id="recoveryAndSecurityNotes" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="e.g., EHR 2FA Recovery Code, Password Manager location, Home Server / GitHub deployment pipeline notes..."></textarea>
+                </div>
+            </section>
+
+            <!-- Preview Container -->
+            <div id="generatedSheetContainer" class="subpanel hidden p-6 rounded-md mb-6">
+                <div id="generatedSheetHtml"></div>
+            </div>
+        </form>
+
+        <!-- Bottom Action Buttons -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
+            <button type="submit" form="practiceInfoForm" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Clean Preview</button>
+            <button type="button" id="printSheetButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Print / Save PDF (Current View)</button>
+            <button type="button" id="copySheetButton" class="btn px-6 py-3 font-semibold rounded-md">Copy Text (Current View)</button>
+            <button type="button" id="exportTxtButton" class="btn px-6 py-3 font-semibold rounded-md">Export as .txt</button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export as .json</button>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="practiceinfosheet" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

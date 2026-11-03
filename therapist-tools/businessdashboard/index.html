@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Business Dashboard</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body aria-label="Business Dashboard page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html" aria-current="page">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Business Dashboard</h1>
+        <p class="muted text-center text-sm mb-6">
+            Track income and Schedule C expenses, plan quarterly federal and WA B&amp;O taxes, check off monthly bank reconciliations, and keep your city, county, and state licenses current. Nothing leaves your browser unless you export a <code>.json</code> file.
+        </p>
+        <p class="subpanel text-sm p-3 rounded-md mb-6">
+            <strong>Please note:</strong> This isn’t legal, tax, or CPA advice. Tax rules vary by federal, state, county, and city, so check with a CPA, bookkeeper, or attorney about your own practice.
+        </p>
+
+        <!-- Top Action Bar -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
+                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Dashboard</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache in Browser (Auto-save locally on this device)
+                </label>
+            </div>
+        </div>
+
+        <!-- Practice & Tax Year Settings Bar -->
+        <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="settings-heading">
+            <h2 id="settings-heading" class="text-lg font-bold mb-3">Practice &amp; Tax Rate Configuration</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+                <div>
+                    <label for="practiceName" class="block text-xs font-semibold mb-1">Practice Name:</label>
+                    <input type="text" id="practiceName" placeholder="e.g., Jane Doe Counseling PLLC" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="taxYear" class="block text-xs font-semibold mb-1">Tax Year:</label>
+                    <input type="number" id="taxYear" value="2026" step="1" min="2020" max="2040" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="fedTaxRate" class="block text-xs font-semibold mb-1">Est. Federal Tax % (on Net Profit):</label>
+                    <input type="number" id="fedTaxRate" value="25" step="0.5" min="0" max="60" class="w-full p-2 border rounded-md text-sm" title="Recommended 22%–30% of Net Profit to cover SE Tax (15.3%) + Federal Income Tax">
+                </div>
+                <div>
+                    <label for="stateGrossTaxRate" class="block text-xs font-semibold mb-1">State Gross Tax / B&amp;O % (on Gross):</label>
+                    <input type="number" id="stateGrossTaxRate" value="1.5" step="0.05" min="0" max="20" class="w-full p-2 border rounded-md text-sm" title="WA Service &amp; Other Activities B&amp;O tax is 1.5% on gross income (before expenses) under $1 million. Since 2026 the rate is 1.75% from $1M to $5M and 2.1% above $5M (RCW 82.04.290).">
+                </div>
+                <div>
+                    <label for="annualRevenueGoal" class="block text-xs font-semibold mb-1">Annual Gross Revenue Goal ($):</label>
+                    <input type="number" id="annualRevenueGoal" value="100000" step="1000" min="0" class="w-full p-2 border rounded-md text-sm">
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive KPI Cards (Always Visible!) -->
+        <section class="mb-6" aria-label="Year-to-Date Financial Snapshot">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-3">
+                <div class="kpi-card subpanel p-4 rounded-md border">
+                    <div class="muted text-xs font-semibold">YTD Gross Income</div>
+                    <div id="kpiGrossIncome" class="text-2xl font-bold mt-1">$0.00</div>
+                    <div id="kpiGoalProgress" class="muted text-xs mt-1">0% of Annual Goal</div>
+                </div>
+                <div class="kpi-card subpanel p-4 rounded-md border">
+                    <div class="muted text-xs font-semibold">YTD Deductible Expenses</div>
+                    <div id="kpiTotalExpenses" class="text-2xl font-bold mt-1">$0.00</div>
+                    <div id="kpiExpenseRatio" class="muted text-xs mt-1">Overhead Ratio: 0%</div>
+                </div>
+                <div class="kpi-card subpanel p-4 rounded-md border">
+                    <div class="muted text-xs font-semibold">YTD Net Profit (IRS Taxable)</div>
+                    <div id="kpiNetProfit" class="text-2xl font-bold mt-1">$0.00</div>
+                    <div id="kpiProfitMargin" class="muted text-xs mt-1">Profit Margin: 0%</div>
+                </div>
+                <div class="kpi-card subpanel p-4 rounded-md border">
+                    <div class="muted text-xs font-semibold">Total Est. Tax Set-Aside</div>
+                    <div id="kpiTotalTaxReserve" class="text-2xl font-bold mt-1">$0.00</div>
+                    <div id="kpiTaxBreakdown" class="muted text-xs mt-1">Fed: $0 | State B&amp;O: $0</div>
+                </div>
+                <div class="kpi-card subpanel p-4 rounded-md border">
+                    <div class="muted text-xs font-semibold">Safe Owner's Draw (Take-Home)</div>
+                    <div id="kpiSafeOwnersDraw" class="text-2xl font-bold mt-1">$0.00</div>
+                    <div class="muted text-xs mt-1">Net Profit minus Tax Reserve</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Navigation Tabs -->
+        <div class="subpanel p-3 rounded-md mb-6">
+            <div class="flex flex-wrap gap-2" role="tablist" aria-label="Business Dashboard Views">
+                <button type="button" class="dash-tab-btn btn btn-primary px-4 py-2 text-sm font-semibold rounded-md" data-tab="overview">
+                    1. Yearly Shape &amp; Cash-Basis P&amp;L
+                </button>
+                <button type="button" class="dash-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-tab="ledger">
+                    2. Income &amp; Expense Ledger
+                </button>
+                <button type="button" class="dash-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-tab="taxes">
+                    3. Quarterly Tax Planner (IRS &amp; B&amp;O)
+                </button>
+                <button type="button" class="dash-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-tab="reconcile">
+                    4. Monthly Reconciliation Tracker
+                </button>
+                <button type="button" class="dash-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-tab="compliance">
+                    5. Licenses (State vs. County vs. City)
+                </button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 1: YEARLY SHAPE, MONTHLY P&L & SCHEDULE C
+             ========================================== -->
+        <section id="tab-overview" class="dash-tab-section space-y-6">
+            <div class="subpanel p-5 rounded-md">
+                <h2 class="text-xl font-bold mb-1">How the Year is Shaping Up (Month-by-Month Cash-Basis P&amp;L)</h2>
+                <p class="muted text-xs mb-4">Visualizes your monthly gross revenue, overhead expenses, net profit, and recommended tax transfers across all 12 months.</p>
+                <div class="table-responsive">
+                    <table class="dash-table w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Month</th>
+                                <th class="p-2">Gross Income</th>
+                                <th class="p-2">Expenses</th>
+                                <th class="p-2">Net Profit</th>
+                                <th class="p-2">Est. Tax Set-Aside</th>
+                                <th class="p-2">Safe Owner's Draw</th>
+                                <th class="p-2">Reconciled?</th>
+                            </tr>
+                        </thead>
+                        <tbody id="monthlyPnlTableBody"></tbody>
+                        <tfoot id="monthlyPnlTableFoot" class="border-t font-bold"></tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="subpanel p-5 rounded-md">
+                    <h3 class="text-lg font-bold mb-2">Income by Payout Source</h3>
+                    <p class="muted text-xs mb-3">See where your practice revenue is coming from (Insurance/EHR vs. Private Pay vs. Medicaid vs. Supervision).</p>
+                    <div id="incomeBySourceContainer" class="space-y-2 text-sm"></div>
+                </div>
+                <div class="subpanel p-5 rounded-md">
+                    <h3 class="text-lg font-bold mb-2">Expenses by IRS Schedule C Category</h3>
+                    <p class="muted text-xs mb-3">Ready to copy directly into QuickBooks or hand to your CPA at year-end.</p>
+                    <div id="expensesByCategoryContainer" class="space-y-2 text-sm"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 2: INCOME & EXPENSE LEDGER
+             ========================================== -->
+        <section id="tab-ledger" class="dash-tab-section hidden space-y-6">
+            <div class="subpanel p-5 rounded-md">
+                <h2 class="text-xl font-bold mb-2">Log Practice Income or Expense</h2>
+                <p class="muted text-xs mb-4">
+                    <em>Tip:</em> You can log individual transactions OR enter a single monthly/bi-weekly summary payout from Headway, SimplePractice, IvyPay, or your bank statement.
+                </p>
+                <form id="transactionForm" class="space-y-4">
+                    <input type="hidden" id="editingTxId" value="">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+                        <div>
+                            <label for="txDate" class="block text-xs font-semibold mb-1">Date Paid / Received: *</label>
+                            <input type="date" id="txDate" required class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="txType" class="block text-xs font-semibold mb-1">Transaction Type: *</label>
+                            <select id="txType" class="w-full p-2 border rounded-md text-sm font-semibold">
+                                <option value="income">Gross Income / Payout</option>
+                                <option value="expense">Business Expense (Deductible)</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="txCategory" class="block text-xs font-semibold mb-1">Category (Income Source or IRS Schedule C Line): *</label>
+                            <select id="txCategory" class="w-full p-2 border rounded-md text-sm"></select>
+                        </div>
+                        <div>
+                            <label for="txAmount" class="block text-xs font-semibold mb-1">Amount ($ USD): *</label>
+                            <input type="number" id="txAmount" required step="0.01" min="0.01" placeholder="0.00" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
+                        <div>
+                            <label for="txVendor" class="block text-xs font-semibold mb-1">Payer / Vendor / Payee Name:</label>
+                            <input type="text" id="txVendor" placeholder="e.g., Headway, ProviderOne, PESI, Cloudflare" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="txNotes" class="block text-xs font-semibold mb-1">Memo / Receipt Reference:</label>
+                            <input type="text" id="txNotes" placeholder="Optional note (No client PHI!)" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div class="pt-4">
+                            <label class="inline-flex items-center text-xs cursor-pointer" title="If you pay an unincorporated contractor/supervisor/biller $2,000+ per year (2026 payments; it was $600 through 2025) via check/ACH/Zelle, you must issue them a 1099-NEC.">
+                                <input type="checkbox" id="tx1099Flag" class="mr-2">
+                                <span><strong>Track Vendor for 1099-NEC</strong> (Contractor/Biller/Supervisor)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 pt-2">
+                        <button type="submit" id="saveTxBtn" class="btn btn-primary px-6 py-2 font-semibold rounded-md">Add Transaction</button>
+                        <button type="button" id="cancelTxEditBtn" class="btn px-4 py-2 font-semibold rounded-md hidden">Cancel Edit</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Filterable Ledger Table -->
+            <div class="subpanel p-5 rounded-md">
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-3">
+                    <h3 class="text-lg font-bold">Transaction History</h3>
+                    <div class="flex flex-wrap gap-2 items-center text-xs">
+                        <label for="filterTxType" class="font-semibold">Type:</label>
+                        <select id="filterTxType" class="p-2 border rounded-md">
+                            <option value="all">All Transactions</option>
+                            <option value="income">Income Only</option>
+                            <option value="expense">Expenses Only</option>
+                            <option value="1099">1099-NEC Contractors Only</option>
+                        </select>
+                        <label for="filterTxMonth" class="font-semibold ml-2">Month:</label>
+                        <select id="filterTxMonth" class="p-2 border rounded-md">
+                            <option value="all">All 12 Months</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="dash-table w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Date</th>
+                                <th class="p-2">Type</th>
+                                <th class="p-2">Category</th>
+                                <th class="p-2">Vendor / Source</th>
+                                <th class="p-2">Memo</th>
+                                <th class="p-2">Amount</th>
+                                <th class="p-2 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ledgerTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 3: QUARTERLY TAX PLANNER (IRS & STATE B&O)
+             ========================================== -->
+        <section id="tab-taxes" class="dash-tab-section hidden space-y-6">
+            <div class="subpanel p-5 rounded-md">
+                <h2 class="text-xl font-bold mb-2">Quarterly Estimated Tax Planner (Federal Net vs. State Gross B&amp;O)</h2>
+                <details class="collapsible help">
+                    <summary><span>How federal and WA taxes differ</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                    <p>
+                    1) The <strong>IRS</strong> taxes your <em>Net Profit</em> (Gross Income minus Deductible Expenses) for Self-Employment Tax (15.3%) + Federal Income Tax.
+                    2) If you practice in <strong>Washington State (My DOR)</strong>, the state B&amp;O tax applies to your <em>Gross Income</em> (before expenses), and WA has a Small Business B&amp;O Tax Credit that automatically reduces or zeroes out B&amp;O taxes in lower-revenue quarters.
+                    </p>
+                    </div>
+                </details>
+
+                <div class="table-responsive">
+                    <table class="dash-table w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Quarter &amp; Months</th>
+                                <th class="p-2">Filing Deadlines</th>
+                                <th class="p-2">Gross Income</th>
+                                <th class="p-2">Expenses</th>
+                                <th class="p-2">Net Profit</th>
+                                <th class="p-2">Est. IRS Federal Payment</th>
+                                <th class="p-2">Est. State B&amp;O (Gross)</th>
+                                <th class="p-2">Filing Status &amp; Conf #</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quarterlyTaxTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Year-End Non-Cash Write-Off Estimator (Home Office & Mileage) -->
+            <div class="subpanel p-5 rounded-md">
+                <h3 class="text-lg font-bold mb-2">Bonus Year-End Write-Offs Not in Your Bank Feed (Mileage &amp; Home Office)</h3>
+                <p class="muted text-xs mb-4">
+                    Many therapists forget to log their home telehealth office or business mileage because those don't show up as a separate charge on the business credit card. Track them here for your CPA!
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="businessMiles" class="block text-xs font-semibold mb-1">YTD Business Miles Driven (Bank, Post Office, CEUs, Office):</label>
+                        <input type="number" id="businessMiles" step="1" min="0" value="0" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="homeOfficeSqFt" class="block text-xs font-semibold mb-1">Dedicated Home Office Square Footage (Simplified = $5/sq ft up to 300 sq ft):</label>
+                        <input type="number" id="homeOfficeSqFt" step="1" min="0" max="300" value="0" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div class="flex items-center">
+                        <div class="p-3 border rounded-md w-full text-sm">
+                            <strong>Additional Non-Cash Deductions:</strong> <span id="extraDeductionsDisplay">$0.00</span>
+                            <span class="block muted text-xs">Estimated using the 2026 IRS rate of $0.725/mile (it rises to $0.76 for July–December miles) + $5/sq ft simplified home office.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 4: MONTHLY RECONCILIATION TRACKER
+             ========================================== -->
+        <section id="tab-reconcile" class="dash-tab-section hidden space-y-6">
+            <div class="subpanel p-5 rounded-md">
+                <h2 class="text-xl font-bold mb-2">12-Month Bank &amp; Bookkeeping Reconciliation Checklist</h2>
+                <p class="muted text-xs mb-4">
+                    <strong>What is "Monthly Reconciliation"?</strong> Once a month (usually between the 1st and 5th), open your Business Bank Statement (e.g., your credit union) and your accounting ledger (e.g., QuickBooks Online or this dashboard) and verify that every single dollar in and out matches your statement penny-for-penny.
+                </p>
+
+                <div class="table-responsive">
+                    <table class="dash-table w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Month</th>
+                                <th class="p-2">1. Bank &amp; CC Statements Matched</th>
+                                <th class="p-2">2. Receipts Saved to Folder</th>
+                                <th class="p-2">3. Tax Reserve &amp; Owner Draw Moved</th>
+                                <th class="p-2">Ending Bank Balance ($)</th>
+                                <th class="p-2">Date Reconciled &amp; Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reconcileTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 5: BUSINESS LICENSURE & COMPLIANCE (STATE VS COUNTY VS CITY)
+             ========================================== -->
+        <section id="tab-compliance" class="dash-tab-section hidden space-y-6">
+            <!-- Plain-English Guide: State vs. County vs. City -->
+            <div class="subpanel p-5 rounded-md space-y-3">
+                <h2 class="text-xl font-bold">Understanding Business Licenses: Federal vs. State vs. County vs. City</h2>
+                <p class="muted text-xs">
+                    Clinicians are thoroughly trained on their <em>Clinical DOH License</em>, but private practice also requires <em>Business &amp; Municipal Licenses</em> depending on where you physically sit when providing therapy (including your home address for telehealth!).
+                </p>
+                <details class="collapsible help">
+                    <summary><span>Federal, state, city, and county licenses explained</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                    <div class="p-3 border rounded-md">
+                        <strong class="block text-sm mb-1">1. Federal (IRS &amp; CMS)</strong>
+                        <ul class="list-disc ml-4 space-y-1">
+                            <li><strong>EIN (Tax ID):</strong> Free from IRS.gov; never expires.</li>
+                            <li><strong>NPI Type 1 &amp; Type 2:</strong> Free from NPPES; Type 1 is you, Type 2 is your PLLC/Group.</li>
+                            <li><strong>1099-NEC Filings:</strong> Due Jan 31 if you paid any contractor/biller/supervisor $2,000+ in 2026 ($600+ for 2025 payments).</li>
+                        </ul>
+                    </div>
+                    <div class="p-3 border rounded-md">
+                        <strong class="block text-sm mb-1">2. State Level (SOS, DOR &amp; DOH)</strong>
+                        <ul class="list-disc ml-4 space-y-1">
+                            <li><strong>Secretary of State (PLLC/LLC):</strong> Requires an <em>Annual Report</em> every year in your formation month.</li>
+                            <li><strong>State Dept. of Revenue (e.g., WA My DOR / UBI):</strong> State master business license, DBA/Trade Names, and B&amp;O tax filings.</li>
+                            <li><strong>Clinical License (DOH):</strong> Your LMHC/LICSW/LMFT renewal.</li>
+                        </ul>
+                    </div>
+                    <div class="p-3 border rounded-md">
+                        <strong class="block text-sm mb-1">3. City Level (Incorporated Limits)</strong>
+                        <ul class="list-disc ml-4 space-y-1">
+                            <li><strong>City Business License:</strong> If your office OR home telehealth desk is inside incorporated city limits (e.g., Seattle, Tacoma, Bellevue), you almost always need an annual <em>City Business License endorsement</em>.</li>
+                            <li><strong>Home Occupation Permit:</strong> Often bundled with your city license for home-based telehealth.</li>
+                        </ul>
+                    </div>
+                    <div class="p-3 border rounded-md">
+                        <strong class="block text-sm mb-1">4. County Level (Unincorporated &amp; Assessor)</strong>
+                        <ul class="list-disc ml-4 space-y-1">
+                            <li><strong>Unincorporated Area License:</strong> If your address is in <em>unincorporated</em> county territory (outside city limits), the County governs your local business license instead of a city.</li>
+                            <li><strong>County Assessor Property Tax:</strong> Counties track business equipment/furniture over certain thresholds.</li>
+                            <li><strong>County Clerk DBA:</strong> In some states (outside WA), DBAs are filed at the County Clerk.</li>
+                        </ul>
+                    </div>
+                </div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Interactive Compliance & Renewal Checklist -->
+            <div class="subpanel p-5 rounded-md">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+                    <div>
+                        <h3 class="text-lg font-bold">Your Business Licensure &amp; Annual Compliance Tracker</h3>
+                        <p class="muted text-xs">Track every jurisdiction level, renewal deadline, fee, and status in one place.</p>
+                    </div>
+                    <button type="button" id="addComplianceItemBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Custom License / Requirement</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="dash-table w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Done</th>
+                                <th class="p-2">Jurisdiction Level</th>
+                                <th class="p-2">Requirement / License Name</th>
+                                <th class="p-2">Agency / Portal</th>
+                                <th class="p-2">Frequency</th>
+                                <th class="p-2">Next Due Date</th>
+                                <th class="p-2">Fee ($)</th>
+                                <th class="p-2">Account # / Notes</th>
+                                <th class="p-2 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complianceTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Action Bar -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-8 pt-6 border-t">
+            <button type="button" id="printAnnualReportBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Print / Save PDF Executive Year-End Tax Packet</button>
+            <button type="button" id="exportCsvLedgerBtn" class="btn px-6 py-3 font-semibold rounded-md">Export Ledger (.csv)</button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Full Backup (.json)</button>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="businessdashboard" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

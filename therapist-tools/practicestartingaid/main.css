@@ -1,0 +1,44 @@
+/* Practice Starting Aid page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+.launch-progress-track {
+    height: 14px;
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+.launch-progress-fill {
+    height: 100%;
+    background-color: var(--success);
+    transition: width 0.35s ease;
+}
+
+.task-card {
+    background-color: rgba(128, 128, 128, 0.04);
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.task-done-card {
+    border-color: rgba(22, 163, 74, 0.45);
+    opacity: 0.85;
+}
+
+.task-guide-box {
+    background-color: rgba(128, 128, 128, 0.08);
+    border-left: 3px solid var(--accent);
+}
+
+.status-done {
+    color: var(--success);
+}
+
+.status-inwork {
+    color: var(--warning);
+}
+
+.status-skipped {
+    opacity: 0.6;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}

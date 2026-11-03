@@ -1,0 +1,126 @@
+{
+  "templates": [
+    {
+      "id": "stanley-brown",
+      "name": "Stanley-Brown Suicide Safety Plan (SPI)",
+      "description": "Evidence-based 6-step collaborative safety plan for managing suicidal crises and restricting access to lethal means.",
+      "citations": [
+        "Stanley, B., &amp; Brown, G. K. (2012). Safety planning intervention: A brief intervention to mitigate suicide risk. <em>Cognitive and Behavioral Practice, 19</em>(2), 256–264. https://doi.org/10.1016/j.cbpra.2011.01.001",
+        "Stanley, B., Brown, G. K., Brenner, L. A., Galfalvy, H. C., Currier, G. W., Knox, K. L., Chaudhury, S. R., Bush, A. L., &amp; Green, K. L. (2018). Comparison of the safety planning intervention with follow-up vs usual care of suicidal patients treated in the emergency department. <em>JAMA Psychiatry, 75</em>(9), 894–900. https://doi.org/10.1001/jamapsychiatry.2018.1776",
+        "Bryan, C. J., Mintz, J., Clemans, T. A., Leeson, B., Burch, T. S., Williams, S. R., Maney, E., &amp; Rudd, M. D. (2017). Effect of crisis response planning vs. contracts for safety on suicide risk in U.S. Army soldiers: A randomized clinical trial. <em>Journal of Affective Disorders, 212</em>, 64–72. https://doi.org/10.1016/j.jad.2017.01.028"
+      ]
+    },
+    {
+      "id": "wrap",
+      "name": "WRAP-Inspired Wellness & Crisis Recovery Plan",
+      "description": "Self-directed wellness maintenance, early warning sign recognition, when things are breaking down, and crisis care preferences.",
+      "citations": [
+        "Copeland, M. E. (2002). <em>Wellness Recovery Action Plan</em> (Rev. ed.). Peach Press.",
+        "Cook, J. A., Copeland, M. E., Jonikas, J. A., Hamilton, M. M., Razzano, L. A., Grey, D. D., Floyd, C. B., Hudson, W. B., Macfarlane, R. T., Carter, T. M., &amp; Boyd, S. (2012). Results of a randomized controlled trial of mental illness self-management using Wellness Recovery Action Planning. <em>Schizophrenia Bulletin, 38</em>(4), 881–891. https://doi.org/10.1093/schbul/sbr012"
+      ]
+    },
+    {
+      "id": "youth-caregiver",
+      "name": "Youth / Adolescent & Caregiver Collaborative Safety Plan",
+      "description": "Family-centered crisis plan combining youth coping strategies, low-pressure communication signals, and caregiver home safety steps.",
+      "citations": [
+        "Asarnow, J. R., Berk, M., Hughes, J. L., &amp; Anderson, N. L. (2015). The SAFETY Program: A treatment-development trial of a cognitive-behavioral family treatment for adolescent suicide attempters. <em>Journal of Clinical Child &amp; Adolescent Psychology, 44</em>(1), 194–203. https://doi.org/10.1080/15374416.2014.940624",
+        "Kennard, B. D., Biernesser, C., Wolfe, K. L., Foxwell, A. A., Craddock Lee, S. J., Rial, K. V., Patel, S., Cheng, C., Goldstein, T., McMakin, D., Blastos, B., Douaihy, A., Zelazny, J., &amp; Brent, D. A. (2015). Developing a brief suicide prevention intervention and mobile phone application: A qualitative report. <em>Journal of Technology in Human Services, 33</em>(4), 345–357. https://doi.org/10.1080/15228835.2015.1106384"
+      ]
+    },
+    {
+      "id": "dv-safety",
+      "name": "Intimate Partner / Domestic Violence Personalized Safety Plan",
+      "description": "Trauma-informed situational safety planning including safe rooms, code words, emergency go-bag preparation, and digital privacy.",
+      "citations": [
+        "Campbell, J. C., Webster, D., Koziol-McLain, J., Block, C., Campbell, D., Curry, M. A., Gary, F., Glass, N., McFarlane, J., Sachs, C., Sharps, P., Ulrich, Y., Wilt, S. A., Manganello, J., Xu, X., Schollenberger, J., Frye, V., &amp; Laughon, K. (2003). Risk factors for femicide in abusive relationships: Results from a multisite case control study. <em>American Journal of Public Health, 93</em>(7), 1089–1097. https://doi.org/10.2105/AJPH.93.7.1089",
+        "Davies, J., &amp; Lyon, E. (2014). <em>Domestic violence advocacy: Complex lives/difficult choices</em> (2nd ed.). SAGE Publications. https://doi.org/10.4135/9781483352916",
+        "Glass, N., Eden, K. B., Bloom, T., &amp; Perrin, N. (2010). Computerized aid improves safety decision process for survivors of intimate partner violence. <em>Journal of Interpersonal Violence, 25</em>(11), 1947–1964. https://doi.org/10.1177/0886260509354508"
+      ]
+    },
+    {
+      "id": "neurodivergent",
+      "name": "Neurodivergent Sensory Overload, Meltdown & Shutdown Plan",
+      "description": "Neuro-affirming regulation and communication access plan for sensory overload, autistic meltdowns/shutdowns, and situational mutism.",
+      "citations": [
+        "Raymaker, D. M., Teo, A. R., Steckler, N. A., Lentz, B., Scharer, M., Delos Santos, A., Kapp, S. K., Hunter, M., Joyce, A., &amp; Nicolaidis, C. (2020). \"Having all of your internal resources exhausted beyond measure and being left with no clean-up crew\": Defining autistic burnout. <em>Autism in Adulthood, 2</em>(2), 132–143. https://doi.org/10.1089/aut.2019.0079",
+        "Phung, J., Penner, M., Pirlot, C., &amp; Welch, C. (2021). What I wish you knew: Insights on burnout, inertia, meltdown, and shutdown from autistic youth. <em>Frontiers in Psychology, 12</em>, Article 741421. https://doi.org/10.3389/fpsyg.2021.741421",
+        "Kapp, S. K., Steward, R., Crane, L., Elliott, D., Elphick, C., Pellicano, E., &amp; Russell, G. (2019). 'People should be allowed to do what they like': Autistic adults' views and experiences of stimming. <em>Autism, 23</em>(7), 1782–1792. https://doi.org/10.1177/1362361319829628"
+      ]
+    },
+    {
+      "id": "relapse-prevention",
+      "name": "Substance Use & Behavioral Relapse Prevention Crisis Plan",
+      "description": "Cognitive-behavioral relapse prevention plan addressing high-risk triggers, craving urge surfing, and harm-reduction steps.",
+      "citations": [
+        "Marlatt, G. A., &amp; Donovan, D. M. (Eds.). (2005). <em>Relapse prevention: Maintenance strategies in the treatment of addictive behaviors</em> (2nd ed.). Guilford Press.",
+        "Hendershot, C. S., Witkiewitz, K., George, W. H., &amp; Marlatt, G. A. (2011). Relapse prevention for addictive behaviors. <em>Substance Abuse Treatment, Prevention, and Policy, 6</em>, Article 17. https://doi.org/10.1186/1747-597X-6-17",
+        "Bowen, S., Chawla, N., &amp; Marlatt, G. A. (2011). <em>Mindfulness-based relapse prevention for addictive behaviors: A clinician's guide</em>. Guilford Press."
+      ]
+    }
+  ],
+  "warningSigns": [
+    "Feeling hopeless, trapped, or like a burden to others",
+    "Withdrawing from friends, family, and texts/calls",
+    "Sleeping too much or severe insomnia / racing thoughts at night",
+    "Intense agitation, restlessness, or pacing",
+    "Sudden numbness, dissociation, or feeling disconnected from my body",
+    "Sensory sensitivity increasing (lights, sounds, textures feeling unbearable)",
+    "Skipping meals, hydration, or prescribed medications",
+    "Increased urges to self-harm or use substances to numb out",
+    "Intrusive thoughts of death, disappearing, or giving away belongings",
+    "Physical tension: tight chest, shallow breathing, clenched jaw, nausea",
+    "Stop engaging in hobbies, hygiene, or daily routines",
+    "Ruminating on past trauma, shame, or conflict"
+  ],
+  "copingStrategies": [
+    "TIPP Skill: Cold water on face / holding an ice cube for 30 seconds",
+    "5-4-3-2-1 Sensory Grounding (5 things I see, 4 feel, 3 hear, 2 smell, 1 taste)",
+    "Paced Breathing (Inhale for 4 seconds, exhale slowly for 6–8 seconds)",
+    "Progressive Muscle Relaxation (tensing and releasing muscle groups)",
+    "Wrap up in a weighted blanket or heavy hoodie in a dim, quiet room",
+    "Put on noise-canceling headphones or a comfort playlist/audiobook",
+    "Take a warm shower or bath to reset physical temperature",
+    "Spend time with my pet (petting, brushing, or walking them)",
+    "Step outside for 5 minutes of fresh air and look at the sky/trees",
+    "Drink a full glass of cold water or make a warm cup of herbal tea",
+    "Engage in intense brief movement (jumping jacks, brisk walk, stretching)",
+    "Write down racing thoughts on paper or use a worry journal",
+    "Watch a familiar comfort show or play a cozy video game for distraction",
+    "Use safe sensory stims (rocking, fidget tools, textured fabric, aromatherapy)"
+  ],
+  "defaultHotlines": [
+    {
+      "name": "988 Suicide & Crisis Lifeline (24/7 Free & Confidential)",
+      "contact": "Call or Text 988 (Chat at 988lifeline.org)"
+    },
+    {
+      "name": "Crisis Text Line (24/7 Text Support)",
+      "contact": "Text HOME to 741741"
+    },
+    {
+      "name": "The Trevor Project (LGBTQ+ Youth Under 25)",
+      "contact": "Call 1-866-488-7386 or Text START to 678-678"
+    },
+    {
+      "name": "Trans Lifeline (Peer Support Run by & for Trans People)",
+      "contact": "Call 1-877-565-8860"
+    },
+    {
+      "name": "Veterans Crisis Line",
+      "contact": "Dial 988 then Press 1, or Text 838255"
+    },
+    {
+      "name": "National Domestic Violence Hotline",
+      "contact": "Call 1-800-799-SAFE (7233) or Text START to 88788"
+    },
+    {
+      "name": "SAMHSA National Helpline (Substance Use & Mental Health)",
+      "contact": "Call 1-800-662-HELP (4357)"
+    },
+    {
+      "name": "BlackLine (BIPOC Peer Crisis & Counseling Support)",
+      "contact": "Call or Text 1-800-604-5841"
+    }
+  ]
+}

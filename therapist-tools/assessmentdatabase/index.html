@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Assessment Database</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Assessment Database page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html" aria-current="page">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Assessment Database</h1>
+        <p class="muted text-center text-sm mb-6">
+            Evidence-based screening tools and outcome measures, sorted by diagnosis, symptoms, and age group. Open printable PDFs, check scoring cutoffs, and copy APA citations for your notes.
+        </p>
+        <p class="subpanel text-sm p-3 rounded-md mb-6">
+            <strong>Please note:</strong> Screening measures don’t make a diagnosis on their own. Interpret scores alongside a full clinical interview.
+        </p>
+
+        <!-- Top Controls: Import .json, Export .json, Add Custom Assessment Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import Custom Library (.json)</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn px-4 py-2 font-semibold rounded-md">Export Library (.json)</button>
+                <button type="button" id="toggleCustomFormBtn" class="btn btn-primary px-4 py-2 font-semibold rounded-md">
+                    + Add / Edit Custom Assessment
+                </button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache Custom Additions in Browser
+                </label>
+            </div>
+        </div>
+
+        <!-- Collapsible Form: Add / Edit an Assessment in the Database -->
+        <section id="customAssessmentSection" class="mb-8 hidden" aria-labelledby="add-assessment-heading">
+            <form id="customAssessmentForm" class="subpanel p-5 rounded-md space-y-4 border">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h2 id="add-assessment-heading" class="text-xl font-bold">Add or Update an Assessment in Your Library</h2>
+                    <button type="button" id="closeCustomFormBtn" class="btn-link text-xs">Close Form</button>
+                </div>
+                <input type="hidden" id="editingAssessmentId" value="">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <div>
+                        <label for="asAcronym" class="block text-xs font-semibold mb-1">Acronym / Short Name: *</label>
+                        <input type="text" id="asAcronym" required placeholder="e.g., PHQ-9, PCL-5, CAT-Q" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="asFullName" class="block text-xs font-semibold mb-1">Full Assessment Title: *</label>
+                        <input type="text" id="asFullName" required placeholder="e.g., Patient Health Questionnaire-9" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="asCategory" class="block text-xs font-semibold mb-1">Primary Diagnostic Category: *</label>
+                        <select id="asCategory" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Depression & Mood">Depression &amp; Mood</option>
+                            <option value="Anxiety, Panic & Worry">Anxiety, Panic &amp; Worry</option>
+                            <option value="Trauma, PTSD & Dissociation">Trauma, PTSD &amp; Dissociation</option>
+                            <option value="ADHD & Executive Functioning">ADHD &amp; Executive Functioning</option>
+                            <option value="Autism, Sensory & Camouflaging">Autism, Sensory &amp; Camouflaging</option>
+                            <option value="OCD & Repetitive Thoughts/Behaviors">OCD &amp; Repetitive Behaviors</option>
+                            <option value="Bipolar & Mood Spectrum">Bipolar &amp; Mood Spectrum</option>
+                            <option value="Suicide & Safety Risk">Suicide &amp; Safety Risk</option>
+                            <option value="Substance Use & Behavioral">Substance Use &amp; Behavioral</option>
+                            <option value="Eating, Feeding & Body Image">Eating, Feeding &amp; Body Image</option>
+                            <option value="Youth, Pediatric & Caregiver">Youth, Pediatric &amp; Caregiver</option>
+                            <option value="Cross-Cutting, Functioning & QoL">Cross-Cutting &amp; Functioning</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <div>
+                        <label for="asAgeGroup" class="block text-xs font-semibold mb-1">Population / Age Group:</label>
+                        <input type="text" id="asAgeGroup" placeholder="e.g., Adults (18+) & Adolescents (12+)" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="asItemsTime" class="block text-xs font-semibold mb-1">Item Count &amp; Admin Time:</label>
+                        <input type="text" id="asItemsTime" placeholder="e.g., 9 items (2–5 mins)" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="asRespondent" class="block text-xs font-semibold mb-1">Respondent Type:</label>
+                        <select id="asRespondent" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Self-Report">Client Self-Report</option>
+                            <option value="Clinician-Administered">Clinician-Administered</option>
+                            <option value="Parent / Caregiver / Teacher Report">Parent / Caregiver / Teacher</option>
+                            <option value="Self-Report & Informant Versions">Both Self &amp; Informant</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="asPdfPath" class="block text-xs font-semibold mb-1">Your Hosted PDF Path / Link:</label>
+                        <input type="text" id="asPdfPath" placeholder="e.g., pdfs/PHQ-9.pdf or https://..." class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label for="asDiagnosesCodes" class="block text-xs font-semibold mb-1">Associated ICD-10 / DSM-5-TR Diagnoses (Comma-separated):</label>
+                        <input type="text" id="asDiagnosesCodes" placeholder="e.g., F32.1 MDD, F33.1 Recurrent MDD, F34.1 Dysthymia" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="asSymptomsTags" class="block text-xs font-semibold mb-1">Symptoms &amp; Clinical Constructs Measured (Comma-separated):</label>
+                        <input type="text" id="asSymptomsTags" placeholder="e.g., Low mood, Anhedonia, Sleep disturbance, Fatigue, Suicidal ideation" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label for="asScoringCutoffs" class="block text-xs font-semibold mb-1">Scoring Summary, Cutoffs &amp; Clinical Interpretation:</label>
+                        <textarea id="asScoringCutoffs" rows="3" placeholder="e.g., Total score 0–27. Cutoffs: 5 = Mild, 10 = Moderate (clinical threshold), 15 = Moderately Severe, 20 = Severe..." class="w-full p-2 border rounded-md text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label for="asApaCitation" class="block text-xs font-semibold mb-1">APA 7th Edition Citation (Use &lt;em&gt; for journal/book italics): *</label>
+                        <textarea id="asApaCitation" required rows="3" placeholder="e.g., Kroenke, K., Spitzer, R. L., & Williams, J. B. (2001). The PHQ-9: Validity of a brief depression severity measure. <em>Journal of General Internal Medicine</em>, 16(9), 606–613. https://doi.org/..." class="w-full p-2 border rounded-md text-sm"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button type="submit" id="saveCustomAssessmentBtn" class="btn btn-primary px-6 py-2 font-semibold rounded-md">Save Assessment to Database</button>
+                    <button type="button" id="cancelCustomEditBtn" class="btn px-4 py-2 font-semibold rounded-md hidden">Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section 1: Search & Filter by Diagnosis, Symptom, Age Group, or Respondent -->
+        <section class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="filter-heading">
+            <div class="flex flex-wrap justify-between items-center gap-2">
+                <div>
+                    <h2 id="filter-heading" class="text-xl font-bold">1. Filter Assessments by Diagnosis, Symptom &amp; Population</h2>
+                    <p class="muted text-xs">Check the box on any assessment card below to add it to your Client Assessment Packet &amp; Citation List.</p>
+                </div>
+                <span id="assessmentCountBadge" class="text-xs font-bold">0 Assessments Shown</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <div>
+                    <label for="filterCategorySelect" class="block text-xs font-semibold mb-1">Diagnostic Category:</label>
+                    <select id="filterCategorySelect" class="w-full p-2 border rounded-md text-sm">
+                        <option value="ALL">All Diagnostic Categories</option>
+                        <option value="Depression & Mood">Depression &amp; Mood</option>
+                        <option value="Anxiety, Panic & Worry">Anxiety, Panic &amp; Worry</option>
+                        <option value="Trauma, PTSD & Dissociation">Trauma, PTSD &amp; Dissociation</option>
+                        <option value="ADHD & Executive Functioning">ADHD &amp; Executive Functioning</option>
+                        <option value="Autism, Sensory & Camouflaging">Autism, Sensory &amp; Camouflaging</option>
+                        <option value="OCD & Repetitive Thoughts/Behaviors">OCD &amp; Repetitive Behaviors</option>
+                        <option value="Bipolar & Mood Spectrum">Bipolar &amp; Mood Spectrum</option>
+                        <option value="Suicide & Safety Risk">Suicide &amp; Safety Risk</option>
+                        <option value="Substance Use & Behavioral">Substance Use &amp; Behavioral</option>
+                        <option value="Eating, Feeding & Body Image">Eating, Feeding &amp; Body Image</option>
+                        <option value="Youth, Pediatric & Caregiver">Youth, Pediatric &amp; Caregiver</option>
+                        <option value="Cross-Cutting, Functioning & QoL">Cross-Cutting &amp; Functioning</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="filterSymptomsSelect" class="block text-xs font-semibold mb-1">Filter by Symptom(s) / Construct:</label>
+                    <select id="filterSymptomsSelect" class="w-full" multiple="multiple"></select>
+                </div>
+
+                <div>
+                    <label for="filterPopulationSelect" class="block text-xs font-semibold mb-1">Age Group / Respondent:</label>
+                    <select id="filterPopulationSelect" class="w-full p-2 border rounded-md text-sm">
+                        <option value="ALL">All Ages &amp; Respondents</option>
+                        <option value="Adult">Adults (18+)</option>
+                        <option value="Adolescent">Adolescents / Teens</option>
+                        <option value="Child">Children / Pediatric</option>
+                        <option value="Caregiver">Parent / Caregiver Report</option>
+                        <option value="Clinician">Clinician-Administered</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="searchAssessmentInput" class="block text-xs font-semibold mb-1">Search Acronym, Diagnosis Code, or Keyword:</label>
+                    <input type="text" id="searchAssessmentInput" placeholder="e.g., PCL-5, F43.10, masking, dissociation..." class="w-full p-2 border rounded-md text-sm">
+                </div>
+            </div>
+
+            <!-- Selected Assessment Packet Action Bar -->
+            <div class="flex flex-wrap justify-between items-center gap-3 pt-3 border-t text-xs">
+                <div class="flex items-center gap-3">
+                    <span class="font-bold">Selected for Packet / Note: <span id="selectedAssessmentsCount">0</span></span>
+                    <button type="button" id="selectAllShownBtn" class="btn-link">Select All Shown</button>
+                    <button type="button" id="clearSelectedBtn" class="btn-link">Clear Selection</button>
+                    <button type="button" id="resetFiltersBtn" class="btn-link">Reset All Filters</button>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button type="button" id="copySelectedCitationsBtn" class="btn btn-primary px-4 py-1.5 text-xs font-semibold rounded-md">
+                        Copy APA Citations (Selected / Shown)
+                    </button>
+                    <button type="button" id="printScoringGuideBtn" class="btn px-4 py-1.5 text-xs font-semibold rounded-md">
+                        Print Clinician Scoring &amp; Citation Sheet
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Assessment Cards Grid -->
+        <section class="mb-8" aria-label="Clinical Assessments Directory">
+            <div id="assessmentCardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+        </section>
+
+        <!-- Bottom Action Bar -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-8 pt-6 border-t">
+            <button type="button" id="printFullGuideBottomBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
+                Print Selected Scoring &amp; Reference Sheet (PDF)
+            </button>
+            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">
+                Export Assessment Index (.csv)
+            </button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">
+                Export Assessment Database (.json)
+            </button>
+        </div>
+
+        <!-- Live APA citations for the assessments currently shown or selected -->
+        <details id="sourcesContainer" class="collapsible mt-8">
+            <summary>
+                <span>Sources for the assessments shown</span>
+                <span id="citationScopeLabel" class="ref-count">Showing citations for all displayed assessments</span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div id="sourcesList" class="collapsible-body reference-list"></div>
+        </details>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="assessmentdatabase" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

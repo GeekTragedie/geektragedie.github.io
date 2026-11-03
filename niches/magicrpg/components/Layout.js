@@ -44,9 +44,25 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
               <li className="dropdown">
                   <a href="../../therapist-tools/index.html" className="dropbtn">Therapist Tools ▾</a>
                   <div className="dropdown-content">
-                      <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                      <span className="dropdown-label">Day-to-Day</span>
                       <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                      <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                      <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                      <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                      <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                      <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                      <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                      <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                      <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                      <span className="dropdown-label">Finance & Business</span>
                       <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                      <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                      <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                      <span className="dropdown-label">Licensure</span>
+                      <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                      <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                      <span className="dropdown-label">Starting a Practice</span>
+                      <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
                   </div>
               </li>
           </ul>

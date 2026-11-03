@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Crisis Plan Generator</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Crisis Plan Generator page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html" aria-current="page">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Crisis Plan Generator</h1>
+        <p class="muted text-center text-sm mb-6">
+            Build a safety plan together with a client, using templates like the Stanley-Brown Safety Plan and WRAP. Nothing is saved on this site or in your browser, and refreshing clears every field. Use <strong>Export as .json</strong> to keep a copy.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
+            <button type="button" id="importJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import .json</button>
+            <input type="file" id="importJsonFile" accept=".json" class="hidden">
+            <button type="reset" form="crisisForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
+        </div>
+
+        <form id="crisisForm" class="space-y-6">
+            <!-- Plan Template Selection & Metadata -->
+            <div class="subpanel p-4 rounded-md space-y-4">
+                <div>
+                    <label for="planTemplateSelect" class="block text-lg font-semibold mb-2">Select Crisis / Safety Plan Type:</label>
+                    <select id="planTemplateSelect" class="w-full p-2 border rounded-md"></select>
+                    <p id="planTemplateDescription" class="muted text-sm mt-1"></p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="clientName" class="block text-sm font-semibold mb-1">Client Name / Initials:</label>
+                        <input type="text" id="clientName" placeholder="e.g., Alex M." class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="planDate" class="block text-sm font-semibold mb-1">Date Created / Reviewed:</label>
+                        <input type="date" id="planDate" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="clinicianName" class="block text-sm font-semibold mb-1">Clinician Name / Credentials:</label>
+                        <input type="text" id="clinicianName" placeholder="e.g., Jane Doe, LMHC" class="w-full p-2 border rounded-md">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shared Quick-Pick Section: Warning Signs & Coping Strategies -->
+            <div id="shared-coping-section" class="subpanel p-4 rounded-md space-y-4">
+                <h2 class="text-xl font-bold">Core Warning Signs &amp; Coping Strategies</h2>
+                <p class="muted text-xs">Search and select from clinical presets below, or type your own custom phrase and press Enter to add it.</p>
+
+                <div>
+                    <label for="warningSignsSelect" class="block text-base font-semibold mb-1">Warning Signs / Triggers (Select or Type Custom):</label>
+                    <select id="warningSignsSelect" class="w-full" multiple="multiple"></select>
+                    <textarea id="warningSignsCustom" rows="2" class="w-full p-2 border rounded-md mt-2" placeholder="Additional personalized warning signs, thoughts, images, mood, or behaviors..."></textarea>
+                </div>
+
+                <div>
+                    <label for="copingStrategiesSelect" class="block text-base font-semibold mb-1">Internal Coping &amp; Grounding Strategies (Select or Type Custom):</label>
+                    <select id="copingStrategiesSelect" class="w-full" multiple="multiple"></select>
+                    <textarea id="copingStrategiesCustom" rows="2" class="w-full p-2 border rounded-md mt-2" placeholder="Additional solo coping activities or personalized self-soothing steps..."></textarea>
+                </div>
+            </div>
+
+            <hr class="my-6">
+
+            <!-- Template-Specific Fields Container -->
+            <div id="template-specific-fields-container">
+
+                <!-- 1. Stanley-Brown Suicide Safety Plan -->
+                <div id="stanley-brown-fields" class="plan-template-section space-y-4 subpanel p-4 rounded-md">
+                    <h2 class="text-xl font-bold">Stanley-Brown Suicide Safety Plan Steps</h2>
+                    <div>
+                        <label for="sb-social-distraction" class="block text-base font-semibold mb-1">Step 3: People &amp; Social Settings That Provide Distraction (Without Discussing Crisis):</label>
+                        <textarea id="sb-social-distraction" rows="3" class="w-full p-3 border rounded-md" placeholder="e.g., Coffee shop on Main St., walking at the park, gaming online with friends..."></textarea>
+                    </div>
+                    <div>
+                        <label for="sb-environment-safety" class="block text-base font-semibold mb-1">Step 6: Making the Environment Safe (Lethal Means Restriction):</label>
+                        <textarea id="sb-environment-safety" rows="3" class="w-full p-3 border rounded-md" placeholder="Specific steps to lock up, remove, or transfer access to medications, firearms, sharps, or other lethal means..."></textarea>
+                    </div>
+                    <div>
+                        <label for="sb-reasons-for-living" class="block text-base font-semibold mb-1">Reasons for Living / What Matters Most to Me:</label>
+                        <textarea id="sb-reasons-for-living" rows="2" class="w-full p-3 border rounded-md" placeholder="Pets, family, future goals, values, people who care about me..."></textarea>
+                    </div>
+                </div>
+
+                <!-- 2. WRAP-Inspired Wellness & Crisis Plan -->
+                <div id="wrap-fields" class="hidden plan-template-section space-y-4 subpanel p-4 rounded-md">
+                    <h2 class="text-xl font-bold">WRAP-Inspired Wellness &amp; Crisis Plan</h2>
+                    <div>
+                        <label for="wrap-baseline" class="block text-base font-semibold mb-1">1. What I'm Like When I'm Feeling Well &amp; Daily Maintenance List:</label>
+                        <textarea id="wrap-baseline" rows="3" class="w-full p-3 border rounded-md" placeholder="Daily habits that keep me grounded (sleep schedule, meds, hydration, movement, boundaries)..."></textarea>
+                    </div>
+                    <div>
+                        <label for="wrap-breaking-down" class="block text-base font-semibold mb-1">2. When Things Are Breaking Down (Signs &amp; Immediate Action Steps):</label>
+                        <textarea id="wrap-breaking-down" rows="3" class="w-full p-3 border rounded-md" placeholder="Signs that distress is escalating and non-negotiable actions I must take right away..."></textarea>
+                    </div>
+                    <div>
+                        <label for="wrap-crisis-care" class="block text-base font-semibold mb-1">3. In a Crisis: What Supporters Should Do (and NOT Do):</label>
+                        <textarea id="wrap-crisis-care" rows="3" class="w-full p-3 border rounded-md" placeholder="Helpful actions from supporters, medication/treatment preferences, and actions to avoid..."></textarea>
+                    </div>
+                    <div>
+                        <label for="wrap-post-crisis" class="block text-base font-semibold mb-1">4. Post-Crisis Recovery &amp; Transition Plan:</label>
+                        <textarea id="wrap-post-crisis" rows="2" class="w-full p-3 border rounded-md" placeholder="How I know I am out of crisis, easing back into responsibilities, and debriefing steps..."></textarea>
+                    </div>
+                </div>
+
+                <!-- 3. Youth / Adolescent & Caregiver Safety Plan -->
+                <div id="youth-caregiver-fields" class="hidden plan-template-section space-y-4 subpanel p-4 rounded-md">
+                    <h2 class="text-xl font-bold">Youth / Adolescent &amp; Caregiver Safety Plan</h2>
+                    <div>
+                        <label for="youth-trusted-adults" class="block text-base font-semibold mb-1">Trusted Adults at Home, School, or Community I Can Talk To:</label>
+                        <textarea id="youth-trusted-adults" rows="2" class="w-full p-3 border rounded-md" placeholder="School counselor, favorite teacher, coach, aunt/uncle, parent/guardian..."></textarea>
+                    </div>
+                    <div>
+                        <label for="youth-communication-signal" class="block text-base font-semibold mb-1">Low-Pressure Signal / Code Word to Let Caregivers Know I Need Support:</label>
+                        <input type="text" id="youth-communication-signal" class="w-full p-2 border rounded-md" placeholder="e.g., Texting a 🔴 emoji, saying 'I need a brain break', placing a magnet on my door...">
+                    </div>
+                    <div>
+                        <label for="youth-caregiver-steps" class="block text-base font-semibold mb-1">Caregiver Action Steps (How Parents/Guardians Will Support &amp; Validate):</label>
+                        <textarea id="youth-caregiver-steps" rows="3" class="w-full p-3 border rounded-md" placeholder="Stay calm, listen without lecturing, offer quiet company, check in every X minutes..."></textarea>
+                    </div>
+                    <div>
+                        <label for="youth-home-safety" class="block text-base font-semibold mb-1">Home Safety &amp; Lethal Means Restriction Plan (Caregiver Responsibility):</label>
+                        <textarea id="youth-home-safety" rows="2" class="w-full p-3 border rounded-md" placeholder="Locking all OTC/prescription medications in a lockbox, securing sharps, firearms, and car keys..."></textarea>
+                    </div>
+                </div>
+
+                <!-- 4. Domestic Violence / Intimate Partner Safety Plan -->
+                <div id="dv-safety-fields" class="hidden plan-template-section space-y-4 subpanel p-4 rounded-md">
+                    <h2 class="text-xl font-bold">Intimate Partner / Domestic Violence Personalized Safety Plan</h2>
+                    <div>
+                        <label for="dv-safe-areas" class="block text-base font-semibold mb-1">Safety During an Incident at Home (Safe Rooms with Exits &amp; No Weapons):</label>
+                        <textarea id="dv-safe-areas" rows="2" class="w-full p-3 border rounded-md" placeholder="Rooms with exterior doors/windows; avoiding kitchen, bathroom, garage, or rooms without exits..."></textarea>
+                    </div>
+                    <div>
+                        <label for="dv-code-word" class="block text-base font-semibold mb-1">Code Word / Signal with Trusted Friends, Family, or Neighbors:</label>
+                        <input type="text" id="dv-code-word" class="w-full p-2 border rounded-md" placeholder="e.g., Asking 'Did I leave my blue umbrella at your house?' means call 911 or come pick me up.">
+                    </div>
+                    <div>
+                        <label for="dv-gobag-checklist" class="block text-base font-semibold mb-1">Emergency Go-Bag &amp; Essential Documents (Where Kept / Who Holds Copies):</label>
+                        <textarea id="dv-gobag-checklist" rows="3" class="w-full p-3 border rounded-md" placeholder="IDs, birth certificates, passports, spare keys, cash, medications, burner phone, pet supplies, kept at..."></textarea>
+                    </div>
+                    <div>
+                        <label for="dv-tech-privacy" class="block text-base font-semibold mb-1">Digital, Phone &amp; Location Privacy Precautions:</label>
+                        <textarea id="dv-tech-privacy" rows="2" class="w-full p-3 border rounded-md" placeholder="Checking location-sharing/AirTags, using incognito browser, changing cloud passwords, safe device access..."></textarea>
+                    </div>
+                </div>
+
+                <!-- 5. Neurodivergent Meltdown / Sensory Overload Crisis Plan -->
+                <div id="neurodivergent-fields" class="hidden plan-template-section space-y-4 subpanel p-4 rounded-md">
+                    <h2 class="text-xl font-bold">Neurodivergent Sensory Overload, Meltdown &amp; Shutdown Plan</h2>
+                    <div>
+                        <label for="nd-sensory-environment" class="block text-base font-semibold mb-1">Sensory De-Escalation Adjustments Needed Immediately:</label>
+                        <textarea id="nd-sensory-environment" rows="3" class="w-full p-3 border rounded-md" placeholder="Dim lights, noise-canceling headphones, weighted blanket, cool temperature, zero eye contact demanded..."></textarea>
+                    </div>
+                    <div>
+                        <label for="nd-communication-access" class="block text-base font-semibold mb-1">Communication Preferences During Overload / Situational Mutism:</label>
+                        <textarea id="nd-communication-access" rows="2" class="w-full p-3 border rounded-md" placeholder="Do not require spoken answers; use text messaging, AAC app, thumbs up/down, or written cards..."></textarea>
+                    </div>
+                    <div>
+                        <label for="nd-what-helps" class="block text-base font-semibold mb-1">What Helps Me Regulate (Safe Stims, Special Interests, Co-Regulation):</label>
+                        <textarea id="nd-what-helps" rows="2" class="w-full p-3 border rounded-md" placeholder="Rocking, pacing, fidgets, parallel quiet presence, cold water, familiar comfort show..."></textarea>
+                    </div>
+                    <div>
+                        <label for="nd-what-worsens" class="block text-base font-semibold mb-1">What Makes Overload Worse (Please Avoid):</label>
+                        <textarea id="nd-what-worsens" rows="2" class="w-full p-3 border rounded-md" placeholder="Unexpected touch, rapid-fire questions, loud voices, blocking exits, demanding eye contact..."></textarea>
+                    </div>
+                </div>
+
+                <!-- 6. Relapse Prevention / Substance Use Crisis Plan -->
+                <div id="relapse-prevention-fields" class="hidden plan-template-section space-y-4 subpanel p-4 rounded-md">
+                    <h2 class="text-xl font-bold">Substance Use &amp; Behavioral Relapse Prevention Plan</h2>
+                    <div>
+                        <label for="rp-high-risk" class="block text-base font-semibold mb-1">High-Risk People, Places, Times, and Emotional States (HALT):</label>
+                        <textarea id="rp-high-risk" rows="3" class="w-full p-3 border rounded-md" placeholder="Paydays, late evenings, isolation, Hungry/Angry/Lonely/Tired states, specific contacts or routes..."></textarea>
+                    </div>
+                    <div>
+                        <label for="rp-craving-surf" class="block text-base font-semibold mb-1">Urge Surfing &amp; 15-Minute Delay Plan:</label>
+                        <textarea id="rp-craving-surf" rows="3" class="w-full p-3 border rounded-md" placeholder="Set a 15-minute timer, play the tape through, change physical location, call sponsor/peer..."></textarea>
+                    </div>
+                    <div>
+                        <label for="rp-harm-reduction" class="block text-base font-semibold mb-1">If a Slip/Lapse Occurs (Harm Reduction &amp; Immediate Reset Steps):</label>
+                        <textarea id="rp-harm-reduction" rows="3" class="w-full p-3 border rounded-md" placeholder="Never use alone, carry Narcan/naloxone, stop the spiral, contact support within 24 hours without shame..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggleable & Removable Support Network Section -->
+            <div class="subpanel p-4 rounded-md space-y-6">
+                <h2 class="text-xl font-bold">Support Network &amp; Emergency Contacts</h2>
+                <p class="muted text-xs">Uncheck or click <strong>Remove</strong> on any line that does not apply to this client's plan.</p>
+
+                <!-- 1. Personal Support Contacts -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-base font-semibold">1. Personal Support Contacts (Friends, Family, Peers, Sponsors)</h3>
+                        <button type="button" id="addPersonalContactBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Personal Contact</button>
+                    </div>
+                    <div id="personalContactsList" class="space-y-2"></div>
+                </div>
+
+                <!-- 2. Professional & Local Clinical Contacts -->
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-base font-semibold">2. Clinicians, Prescribers &amp; Local Urgent Care / ER</h3>
+                        <button type="button" id="addProfessionalContactBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Professional / Facility</button>
+                    </div>
+                    <div id="professionalContactsList" class="space-y-2"></div>
+                </div>
+
+                <!-- 3. Pre-Filled National 24/7 Crisis Hotlines (Toggleable / Removable) -->
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-base font-semibold">3. National 24/7 Crisis Lines (Uncheck or Remove Any Line)</h3>
+                        <button type="button" id="addHotlineBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Custom Hotline</button>
+                    </div>
+                    <div id="hotlinesList" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <!-- Print / PDF Layout Selector -->
+            <div class="subpanel p-4 rounded-md">
+                <p class="text-base font-semibold mb-2">Print / PDF Output Layout:</p>
+                <div class="flex flex-wrap gap-6">
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="radio" name="printLayoutStyle" value="clinical" checked>
+                        <span class="ml-2 text-sm"><strong>Standard Full-Page Clinical Sheet</strong> (Detailed documentation layout with signature lines)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="radio" name="printLayoutStyle" value="compact">
+                        <span class="ml-2 text-sm"><strong>Compact 1-Page / Fridge-Ready Quick Reference</strong> (2-column grid with bold emergency header)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Generated Plan Preview Container -->
+            <div id="generatedPlanContainer" class="subpanel hidden p-6 rounded-md mb-6">
+                <div id="generatedPlanHtml"></div>
+            </div>
+        </form>
+
+        <!-- Action Buttons -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
+            <button type="submit" form="crisisForm" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Plan Preview</button>
+            <button type="button" id="copyPlanButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Copy Text</button>
+            <button type="button" id="printPlanButton" class="btn px-6 py-3 font-semibold rounded-md">Print / Save PDF</button>
+            <button type="button" id="exportTxtButton" class="btn px-6 py-3 font-semibold rounded-md">Export Plan (.txt)</button>
+            <button type="button" id="exportJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export as .json</button>
+        </div>
+
+        <!-- APA 7th Citations -->
+        <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
+            <h3 class="text-xl font-semibold mb-4 text-center">Sources for this template</h3>
+            <div id="sourcesList" class="text-sm space-y-3 max-w-3xl mx-auto"></div>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="crisisplangenerator" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Practice Starting Aid</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body aria-label="Practice Starting Aid page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html" aria-current="page">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Practice Starting Aid</h1>
+        <p class="muted text-center text-sm mb-6">
+            A step-by-step checklist for starting a private practice, in the order things need to happen: your PLLC, EIN, NPI, state and city licenses, banking, malpractice insurance, picking an EHR, setting fees, and marketing.
+        </p>
+        <p class="subpanel text-sm p-3 rounded-md mb-6">
+            <strong>Please note:</strong> Fees, laws, and tax rules change and vary by state and city. This isn’t legal or tax advice, so check current instructions with the IRS, your Secretary of State, Department of Revenue, and Department of Health.
+        </p>
+
+        <!-- Top Controls: Import .json, Export .json, Print Roadmap, Cache Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export Progress (.json)</button>
+                <button type="button" id="printLaunchPlanBtn" class="btn px-4 py-2 font-semibold rounded-md">Print / Save PDF Launch Plan</button>
+                <button type="button" id="resetDefaultRoadmapBtn" class="btn px-4 py-2 font-semibold rounded-md">Reset Checklist</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache Progress in Browser (Auto-save locally)
+                </label>
+            </div>
+        </div>
+
+        <!-- Overall Launch Progress & Startup Cost Dashboard -->
+        <section class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="progress-heading">
+            <div class="flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <h2 id="progress-heading" class="text-xl font-bold">Your Private Practice Launch Progress</h2>
+                    <p class="muted text-xs">Filter by phase or task status below. Mark tasks as <strong>To Do</strong>, <strong>In Work</strong>, <strong>Done</strong>, or <strong>Skip / N/A</strong>.</p>
+                </div>
+                <div class="flex flex-wrap gap-4 text-sm">
+                    <div class="p-2.5 border rounded-md text-center">
+                        <span class="block muted text-xs">Tasks Completed</span>
+                        <strong id="statTasksDone">0 / 0 (0%)</strong>
+                    </div>
+                    <div class="p-2.5 border rounded-md text-center">
+                        <span class="block muted text-xs">Tasks "In Work"</span>
+                        <strong id="statTasksInWork">0 Active</strong>
+                    </div>
+                    <div class="p-2.5 border rounded-md text-center">
+                        <span class="block muted text-xs">Est. Startup Spend</span>
+                        <strong id="statStartupCost">$0.00</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Progress Bar -->
+            <div class="launch-progress-track w-full rounded-md overflow-hidden">
+                <div id="overallProgressBar" class="launch-progress-fill" style="width: 0%;"></div>
+            </div>
+
+            <!-- Filter Bar & Add Custom Step -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-2 border-t">
+                <div>
+                    <label for="filterPhaseSelect" class="block text-xs font-semibold mb-1">Jump to / Filter Phase:</label>
+                    <select id="filterPhaseSelect" class="w-full p-2 border rounded-md text-xs"></select>
+                </div>
+                <div>
+                    <label for="filterStatusSelect" class="block text-xs font-semibold mb-1">Filter by Status:</label>
+                    <select id="filterStatusSelect" class="w-full p-2 border rounded-md text-xs">
+                        <option value="ALL">All Tasks (Excluding Skipped)</option>
+                        <option value="TODO">To Do Only</option>
+                        <option value="IN_WORK">In Work Only</option>
+                        <option value="DONE">Done Only</option>
+                        <option value="SKIPPED">Skipped / N/A Only</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="searchTasksInput" class="block text-xs font-semibold mb-1">Search Steps &amp; Insider Tips:</label>
+                    <input type="text" id="searchTasksInput" placeholder="e.g., EIN, PLLC, NPI, BECU, CPH, sublet..." class="w-full p-2 border rounded-md text-xs">
+                </div>
+                <div class="flex items-end">
+                    <button type="button" id="openAddTaskModalBtn" class="btn btn-primary w-full py-2 text-xs font-semibold rounded-md">
+                        + Add Custom Launch Step
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collapsible Add Custom Step Form -->
+            <form id="addCustomTaskForm" class="p-4 border rounded-md space-y-3 hidden">
+                <h3 class="text-sm font-bold">Add a Custom Step to Your Launch Checklist</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <div>
+                        <label for="newTaskPhase" class="block text-xs font-semibold mb-1">Phase:</label>
+                        <select id="newTaskPhase" class="w-full p-2 border rounded-md text-xs"></select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="newTaskTitle" class="block text-xs font-semibold mb-1">Task Name: *</label>
+                        <input type="text" id="newTaskTitle" required placeholder="e.g., Order business cards or set up psychology library" class="w-full p-2 border rounded-md text-xs">
+                    </div>
+                    <div>
+                        <label for="newTaskCost" class="block text-xs font-semibold mb-1">Est. Cost ($):</label>
+                        <input type="number" id="newTaskCost" step="0.01" min="0" value="0" class="w-full p-2 border rounded-md text-xs">
+                    </div>
+                </div>
+                <div>
+                    <label for="newTaskGuide" class="block text-xs font-semibold mb-1">Instructions / URL / Next Steps:</label>
+                    <textarea id="newTaskGuide" rows="2" placeholder="Helpful instructions or links..." class="w-full p-2 border rounded-md text-xs"></textarea>
+                </div>
+                <div class="flex gap-2">
+                    <button type="submit" class="btn btn-primary px-4 py-1.5 text-xs font-semibold rounded-md">Add Step</button>
+                    <button type="button" id="cancelAddTaskBtn" class="btn px-4 py-1.5 text-xs font-semibold rounded-md">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Golden Rule Sequencing Callout -->
+        <details class="collapsible help mb-6">
+            <summary><span>The order to file things in, so you don’t get stuck on government forms</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+            <p>
+                <strong>Step 1:</strong> DOH Clinical License (LMHC / LMHCA) &rarr;
+                <strong>Step 2:</strong> Registered Agent + Secretary of State PLLC Formation ($180–$200) &rarr;
+                <strong>Step 3:</strong> IRS EIN Tax ID (free; check IRS.gov for the online tool’s hours, and <em>do this before your State DOR Business License</em>) &rarr;
+                <strong>Step 4:</strong> NPI Number (Free at NPPES) &rarr;
+                <strong>Step 5:</strong> WA DOR Business License + Trade Name ($5) + City Endorsement &rarr;
+                <strong>Step 6:</strong> Business Bank Account (bring EIN + PLLC Certificate + Operating Agreement) &amp; Malpractice Insurance.
+            </p>
+            </div>
+        </details>
+
+        <!-- Dynamic 8-Phase Checklist Container -->
+        <section id="phasesChecklistContainer" class="space-y-6 mb-8" aria-label="Chronological Launch Checklist"></section>
+
+        <hr class="my-8">
+
+        <!-- Interactive Bonus Helper Tools (Rate Calculator, EHR Picker & Sublet Outreach Script) -->
+        <section class="space-y-6 mb-8" aria-labelledby="helpers-heading">
+            <h2 id="helpers-heading" class="text-2xl font-bold text-center">Interactive Launch Helpers (Fees, EHR Picker &amp; Office Sublet Script)</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Helper 1: Session Fee & Sliding Scale Menu Builder (From PDF Page 3) -->
+                <div class="subpanel p-5 rounded-md border space-y-3">
+                    <h3 class="text-lg font-bold">1. Session Rate &amp; Sliding Scale Menu Builder</h3>
+                    <p class="muted text-xs">
+                        Modeled on real private practice rate structures: enter your base 53–60 min individual fee to calculate proportional extended-session, couples, and sliding scale tiers, or customize each box.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                        <div>
+                            <label for="rateIndiv60" class="block font-semibold mb-1">Adult Indiv (53–60m):</label>
+                            <input type="number" id="rateIndiv60" value="150" step="5" class="w-full p-2 border rounded-md text-sm font-bold">
+                        </div>
+                        <div>
+                            <label for="rateIndiv75" class="block font-semibold mb-1">Extended (75 min):</label>
+                            <input type="number" id="rateIndiv75" value="185" step="5" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="rateIndiv90" class="block font-semibold mb-1">Extended (90 min):</label>
+                            <input type="number" id="rateIndiv90" value="225" step="5" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="rateCouples" class="block font-semibold mb-1">Couples / Family:</label>
+                            <input type="number" id="rateCouples" value="180" step="5" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="rateChild" class="block font-semibold mb-1">Child / Youth Indiv:</label>
+                            <input type="number" id="rateChild" value="165" step="5" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="rateSliding" class="block font-semibold mb-1">Sliding Scale Tiers:</label>
+                            <input type="text" id="rateSliding" value="$85 – $110 (3 slots)" class="w-full p-2 border rounded-md text-sm">
+                        </div>
+                    </div>
+                    <div class="pt-2 flex justify-between items-center text-xs">
+                        <button type="button" id="autoCalcRatesBtn" class="btn px-3 py-1.5 font-semibold rounded-md">
+                            Auto-Calculate Proportional Tiers from 60-Min Rate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Helper 2: Office Space Sublet Outreach Template (From PDF Page 2) -->
+                <div class="subpanel p-5 rounded-md border space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">2. Office Space Sublet Cold-Outreach Email</h3>
+                        <button type="button" id="copySubletScriptBtn" class="btn btn-primary px-3 py-1 text-xs font-semibold rounded-md">
+                            Copy Sublet Email
+                        </button>
+                    </div>
+                    <p class="muted text-xs">
+                        Looking to sublet an office 1–3 days a week? Customize this proven outreach message for Craigslist, local Therapist Facebook groups, or wellness buildings:
+                    </p>
+                    <textarea id="subletEmailScript" rows="6" class="w-full p-2.5 border rounded-md text-xs font-mono">Hello!
+
+I'm a mental health counselor / psychotherapist looking to sublet [Days, e.g., Wednesdays & Thursdays] starting in [Month].
+
+My practice serves [Your Target Population, e.g., neurodivergent adults, trauma survivors, or highly sensitive people] with [Your Modalities, e.g., person-centered, attachment-based, drama therapy, or somatic methods].
+
+I'm highly responsible, tidy, and amicable. Do you have office availability that fits mine?
+
+Thank you,
+[Your Name, Credentials, Phone]</textarea>
+                </div>
+            </div>
+
+            <!-- Helper 3: EHR & Billing Platform Comparison Cheat-Sheet -->
+            <div class="subpanel p-5 rounded-md border space-y-3">
+                <h3 class="text-lg font-bold">3. Picking Your EHR &amp; Billing Platform (No-Nonsense Comparison for New Clinicians)</h3>
+                <div class="table-responsive">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="p-2">Platform Type</th>
+                                <th class="p-2">Examples</th>
+                                <th class="p-2">Monthly Cost</th>
+                                <th class="p-2">Best For...</th>
+                                <th class="p-2">Watch Out For...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-2 font-bold">All-in-One Standalone EHR</td>
+                                <td class="p-2">SimplePractice, TherapyNotes, Sessions Health, Jane</td>
+                                <td class="p-2">~$39 to $99+/mo</td>
+                                <td class="p-2">Full control over your own client portal, custom intake forms, telehealth, and direct insurance/superbill billing. (Sessions Health is a favorite budget-friendly option).</td>
+                                <td class="p-2">Subscription tiers can climb quickly if you add integrated telehealth, Wiley treatment planners, or e-prescribing.</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-2 font-bold">Insurance Aggregator + Free EHR</td>
+                                <td class="p-2">Headway, Alma, SonderMind</td>
+                                <td class="p-2">Free (Headway) or ~$125/mo (Alma)</td>
+                                <td class="p-2">Fast credentialing (30–45 days) under their group tax ID, guaranteed biweekly payouts, built-in client portal, scheduling, and free EHR charting.</td>
+                                <td class="p-2">You are credentialed under *their* group contract (not your own independent contract); always export backups of your clinical notes and keep your own Google Workspace / local records!</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 font-bold">DIY Minimalist / Local-First</td>
+                                <td class="p-2">Google Workspace (with signed BAA) + IvyPay/Stripe + GeekTragedie Toolkit</td>
+                                <td class="p-2">~$7 to $14/mo</td>
+                                <td class="p-2">Cash-pay / sliding-scale / associate practices wanting near-zero overhead and 100% local ownership of their `.json` notes, treatment plans, and superbills.</td>
+                                <td class="p-2">Requires discipline to organize your encrypted local/Drive folders and manually track scheduling and reminders.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Action Bar -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-8 pt-6 border-t">
+            <button type="button" id="printLaunchPlanBottomBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
+                Print / Save PDF Launch Checklist
+            </button>
+            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">
+                Export Checklist (.csv)
+            </button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">
+                Save / Export Progress (.json)
+            </button>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="practicestartingaid" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

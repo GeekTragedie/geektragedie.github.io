@@ -55,36 +55,6 @@
         align-self: flex-start;
     }
 
-    details.collapsible {
-        background-color: var(--bg-panel);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        margin-top: 15px;
-        overflow: hidden;
-    }
-    details.collapsible summary {
-        padding: 16px 20px;
-        cursor: pointer;
-        font-weight: 600;
-        color: var(--text-heading);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        user-select: none;
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-    details.collapsible summary:hover {
-        background-color: var(--bg-panel-hover);
-    }
-    details.collapsible[open] summary {
-        border-bottom: 1px solid var(--border-color);
-    }
-    .collapsible-body {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
     .future-tool {
         border-left: 3px solid var(--border-color);
         padding-left: 14px;
@@ -135,11 +105,27 @@
             </div>
         </li>
         <li class="dropdown">
-            <a href="../therapist-tools/index.html" aria-current="page" class="dropbtn active">Therapist Tools &#9662;</a>
+            <a href="../therapist-tools/index.html" class="dropbtn active" aria-current="page">Therapist Tools &#9662;</a>
             <div class="dropdown-content">
-                <a href="../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <span class="dropdown-label">Day-to-Day</span>
                 <a href="../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
             </div>
         </li>
     </ul>
@@ -155,7 +141,7 @@
     <section class="category-section" id="day-to-day-operations">
         <h2 class="section-title">Day-to-Day</h2>
         <p class="section-desc">The everyday paperwork: letters, notes, and client support.</p>
-        
+
         <div class="card-grid">
             <a href="./lettergenerator/index.html" class="card">
                 <div>
@@ -174,44 +160,70 @@
                 </div>
                 <div class="card-action">Open Note Generator &rarr;</div>
             </a>
-        </div>
 
-        <details class="collapsible">
-            <summary>
-                <span>Coming soon (7)</span>
-                <span>▾</span>
-            </summary>
-            <div class="collapsible-body">
-                <div class="future-tool">
-                    <h4>Referral Database</h4>
-                    <p>Keep track of the providers you trust to refer clients to.</p>
+            <a href="./intakepacketgenerator/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Intake Packet Generator</h3>
+                    <p>Build a full intake packet (disclosure statement, informed consent, HIPAA notice, and your practice policies) and write 90791 intake notes.</p>
                 </div>
-                <div class="future-tool">
-                    <h4>Self-Care Dashboard</h4>
-                    <p>Check in on yourself: your caseload, your energy, and your work-life balance.</p>
-                </div>
-                <div class="future-tool">
-                    <h4>Intake Note + Packet Generator</h4>
-                    <p>Build a full intake packet: informed consent, HIPAA notice, and your practice policies.</p>
-                </div>
-                <div class="future-tool">
-                    <h4>Diagnosis Pie Chart</h4>
-                    <p>See what your caseload looks like at a glance.</p>
-                </div>
-                <div class="future-tool">
-                    <h4>Treatment Plan Builder</h4>
+                <div class="card-action">Open Intake Packet Generator &rarr;</div>
+            </a>
+
+            <a href="./treatmentplanbuilder/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Treatment Plan Builder</h3>
                     <p>Write treatment plan goals and interventions, with help making them SMART.</p>
                 </div>
-                <div class="future-tool">
-                    <h4>Assessment Database</h4>
-                    <p>Evidence-based assessments, sorted by diagnosis and symptoms.</p>
+                <div class="card-action">Open Treatment Plan Builder &rarr;</div>
+            </a>
+
+            <a href="./crisisplangenerator/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Crisis Plan Generator</h3>
+                    <p>Safety plans you can fill out together with a client and save, from the Stanley-Brown Safety Plan to a one-page version for the fridge.</p>
                 </div>
-                <div class="future-tool">
-                    <h4>Crisis Plan Generator</h4>
-                    <p>Safety plans you can fill out together with a client and save.</p>
+                <div class="card-action">Open Crisis Plan Generator &rarr;</div>
+            </a>
+
+            <a href="./assessmentdatabase/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Assessment Database</h3>
+                    <p>Evidence-based assessments, sorted by diagnosis and symptoms, with scoring notes and citations.</p>
                 </div>
-            </div>
-        </details>
+                <div class="card-action">Open Assessment Database &rarr;</div>
+            </a>
+
+            <a href="./referraldatabase/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Referral Database</h3>
+                    <p>Keep track of the providers you trust, then write a referral email for a client in a few clicks.</p>
+                </div>
+                <div class="card-action">Open Referral Database &rarr;</div>
+            </a>
+
+            <a href="./caseloadataglance/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Caseload at a Glance</h3>
+                    <p>See what your caseload looks like at a glance, and whether a new intake is a good fit.</p>
+                </div>
+                <div class="card-action">Open Caseload at a Glance &rarr;</div>
+            </a>
+
+            <a href="./selfcaredashboard/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Self-Care Dashboard</h3>
+                    <p>Check in on yourself: your caseload, your energy, and your work-life balance.</p>
+                </div>
+                <div class="card-action">Open Self-Care Dashboard &rarr;</div>
+            </a>
+        </div>
     </section>
 
     <!-- Finance and Business -->
@@ -223,52 +235,56 @@
             <a href="./superbillgenerator/index.html" class="card">
                 <div>
                     <span class="tag">Active Tool</span>
-                    <h3>Insurance Superbill Generator</h3>
+                    <h3>Superbill Generator</h3>
                     <p>Make print-ready superbills so clients can get reimbursed out of network. It does the math for you, and you can save and reload client info.</p>
                 </div>
                 <div class="card-action">Open Superbill Generator &rarr;</div>
             </a>
-        </div>
 
-        <details class="collapsible">
-            <summary>
-                <span>Coming soon (2)</span>
-                <span>▾</span>
-            </summary>
-            <div class="collapsible-body">
-                <div class="future-tool">
-                    <h4>Business Tracking Tool & Financial Dashboard</h4>
+            <a href="./businessdashboard/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Business Dashboard</h3>
                     <p>Track income and expenses, plan for quarterly taxes, and see how the year is shaping up.</p>
                 </div>
-                <div class="future-tool">
-                    <h4>Practice Info Sheet</h4>
+                <div class="card-action">Open Business Dashboard &rarr;</div>
+            </a>
+
+            <a href="./practiceinfosheet/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Practice Info Sheet</h3>
                     <p>Your NPI, EIN, taxonomy, and license numbers in one printable place.</p>
                 </div>
-            </div>
-        </details>
+                <div class="card-action">Open Practice Info Sheet &rarr;</div>
+            </a>
+        </div>
     </section>
 
     <!-- Licensure -->
     <section class="category-section" id="licensure">
-        <h2 class="section-title">Licensure & Continuing Education</h2>
+        <h2 class="section-title">Licensure &amp; Continuing Education</h2>
         <p class="section-desc">Keeping your license happy: CEs and supervision hours.</p>
 
-        <details class="collapsible">
-            <summary>
-                <span>Coming soon (2)</span>
-                <span>▾</span>
-            </summary>
-            <div class="collapsible-body">
-                <div class="future-tool">
-                    <h4>CE Tracker</h4>
-                    <p>Log your CE hours and see what you still need before renewal (Ethics, Suicide Prevention, Diversity, and so on).</p>
+        <div class="card-grid">
+            <a href="./ceutracker/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>CEU Tracker</h3>
+                    <p>Log your CE hours and see what you still need before renewal (Ethics, Suicide Prevention, Health Equity, and so on).</p>
                 </div>
-                <div class="future-tool">
-                    <h4>Supervision Log (Associate & Supervisor)</h4>
+                <div class="card-action">Open CEU Tracker &rarr;</div>
+            </a>
+
+            <a href="./supervisionlog/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Supervision Log</h3>
                     <p>Log and total supervision hours, whether you’re the supervisor or the associate.</p>
                 </div>
-            </div>
-        </details>
+                <div class="card-action">Open Supervision Log &rarr;</div>
+            </a>
+        </div>
     </section>
 
     <!-- Starting Practice -->
@@ -276,16 +292,23 @@
         <h2 class="section-title">Starting a Practice</h2>
         <p class="section-desc">Everything I wish I’d known when I went out on my own.</p>
 
-        <details class="collapsible">
-            <summary>
-                <span>Coming soon (2)</span>
-                <span>▾</span>
-            </summary>
-            <div class="collapsible-body">
-                <div class="future-tool">
-                    <h4>Private Practice Starting Aid</h4>
+        <div class="card-grid">
+            <a href="./practicestartingaid/index.html" class="card">
+                <div>
+                    <span class="tag">Active Tool</span>
+                    <h3>Practice Starting Aid</h3>
                     <p>A step-by-step checklist: forming your business, getting your NPI and EIN, banking, liability insurance, and picking an EHR.</p>
                 </div>
+                <div class="card-action">Open Practice Starting Aid &rarr;</div>
+            </a>
+        </div>
+
+        <details class="collapsible">
+            <summary>
+                <span>Coming soon (1)</span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body">
                 <div class="future-tool">
                     <h4>Resources for Business Formation</h4>
                     <p>Helpful links: state business sites, the SBA, SCORE mentors, and healthcare legal guidance.</p>
@@ -302,7 +325,7 @@
         <details class="collapsible">
             <summary>
                 <span>Coming soon (2)</span>
-                <span>▾</span>
+                <span class="chevron" aria-hidden="true">▾</span>
             </summary>
             <div class="collapsible-body">
                 <div class="future-tool">
@@ -316,6 +339,16 @@
             </div>
         </details>
     </section>
+
+    <!-- Shared sources behind the toolkit, filled in by references.js -->
+    <details class="collapsible references" data-tool="hub" data-src="references.json">
+        <summary>
+            <span>References (APA 7th ed.)</span>
+            <span class="ref-count"></span>
+            <span class="chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="collapsible-body"></div>
+    </details>
 </div>
 
 <footer class="site-footer">
@@ -341,7 +374,7 @@
     </div>
 </footer>
 
-
+<script src="references.js"></script>
 </body>
 </html>
 

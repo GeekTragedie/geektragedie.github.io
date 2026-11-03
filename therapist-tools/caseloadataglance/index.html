@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Caseload at a Glance</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Caseload at a Glance page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html" aria-current="page">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Caseload at a Glance</h1>
+        <p class="muted text-center text-sm mb-6">
+            See your de-identified caseload by diagnosis, phase of therapy, time in therapy, age, and any custom traits you add, so you can decide whether a new intake is a good fit. Turn off any fields you don’t use.
+        </p>
+
+        <!-- Top Controls: Import .json, Export .json, Print PDF, Clear, Cache Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
+                <button type="button" id="loadSampleCaseloadBtn" class="btn px-4 py-2 font-semibold rounded-md">Load Sample Caseload</button>
+                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Caseload</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache De-Identified Data in Browser
+                </label>
+            </div>
+        </div>
+
+        <!-- Section 1: Customize Which Fields You Want to Track (Remove Unused Fields!) -->
+        <section class="subpanel p-4 rounded-md mb-6 space-y-3" aria-labelledby="fields-config-heading">
+            <div class="flex flex-wrap justify-between items-center gap-2">
+                <div>
+                    <h2 id="fields-config-heading" class="text-lg font-bold">1. Choose What Data Is Helpful for You to Track</h2>
+                    <p class="muted text-xs">Uncheck any field that isn't useful to you—it will immediately hide from the form, table, and chart options. You can also add your own custom tracking fields!</p>
+                </div>
+                <button type="button" id="addCustomFieldBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Custom Tracking Field</button>
+            </div>
+
+            <div id="fieldTogglesContainer" class="flex flex-wrap gap-4 pt-1 text-xs"></div>
+            <div id="customFieldsManagerContainer" class="space-y-2 pt-2 border-t hidden"></div>
+        </section>
+
+        <!-- Section 2: Interactive Pie Chart & Intake Fit Advisor -->
+        <section class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="chart-heading">
+            <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-3">
+                <div>
+                    <h2 id="chart-heading" class="text-2xl font-bold">2. Caseload Pie Chart &amp; Distribution Breakdown</h2>
+                    <p class="muted text-xs">Switch the dropdown on the right to slice your caseload by Diagnosis, Phase of Therapy, Time in Therapy, Age, Gender, or Custom Fields.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <label for="chartDimensionSelect" class="text-sm font-bold">Slice Pie Chart By:</label>
+                    <select id="chartDimensionSelect" class="p-2 border rounded-md text-sm font-semibold"></select>
+                </div>
+            </div>
+
+            <!-- Pie Chart + Legend & Percentage Table Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pt-2">
+                <!-- Left: SVG Pie / Donut Chart -->
+                <div class="flex flex-col items-center justify-center">
+                    <div id="svgPieChartContainer" class="pie-chart-wrapper"></div>
+                    <p id="chartTotalCaption" class="muted text-xs mt-2 font-semibold"></p>
+                </div>
+
+                <!-- Right: Legend, Counts, Percentages & Intake Fit Insights -->
+                <div class="space-y-4">
+                    <div class="table-responsive border rounded-md p-2">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="p-2">Category / Slice</th>
+                                    <th class="p-2">Clients</th>
+                                    <th class="p-2">% of Caseload</th>
+                                </tr>
+                            </thead>
+                            <tbody id="chartLegendTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Dynamic Intake Decision & Caseload Balance Insights -->
+                    <div id="intakeAdvisorBox" class="p-3 border rounded-md text-xs space-y-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-6">
+
+        <!-- Section 3: Add / Edit De-Identified Client Entry -->
+        <section class="mb-6" aria-labelledby="client-form-heading">
+            <h2 id="client-form-heading" class="text-xl font-bold mb-3">3. Add or Update a De-Identified Client in Your Caseload</h2>
+            <form id="caseloadClientForm" class="subpanel p-5 rounded-md space-y-4">
+                <input type="hidden" id="editingClientId" value="">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <!-- Always Visible: De-Identified Code/Initials -->
+                    <div>
+                        <label for="clCode" class="block text-xs font-semibold mb-1">Client Code / Initials (No PHI): *</label>
+                        <input type="text" id="clCode" required placeholder="e.g., Client #01 or A.M." class="w-full p-2 border rounded-md text-sm">
+                    </div>
+
+                    <!-- Toggleable: Diagnosis Classification & Primary/Secondary Diagnoses -->
+                    <div class="field-wrap-diagnosis md:col-span-2">
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="clDiagnosesSelect" class="text-xs font-semibold">Diagnosis(es) (Search or Type Custom):</label>
+                            <div class="flex gap-2 text-xs">
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="dxSystem" value="ICD" checked class="mr-1">ICD-10</label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="dxSystem" value="DSM" class="mr-1">DSM-5-TR</label>
+                            </div>
+                        </div>
+                        <select id="clDiagnosesSelect" class="w-full" multiple="multiple"></select>
+                    </div>
+
+                    <!-- Toggleable: Broad Diagnostic Category -->
+                    <div class="field-wrap-dxCategory">
+                        <label for="clDxCategory" class="block text-xs font-semibold mb-1">Primary Diagnostic Family:</label>
+                        <select id="clDxCategory" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Trauma & Stressor-Related (PTSD / Adjustment)">Trauma &amp; Stressor (PTSD / Adj)</option>
+                            <option value="Anxiety & OCD Spectrum">Anxiety &amp; OCD Spectrum</option>
+                            <option value="Depressive & Mood Disorders">Depressive &amp; Mood Disorders</option>
+                            <option value="Neurodevelopmental (ADHD / Autism)">Neurodevelopmental (ADHD / Autism)</option>
+                            <option value="Personality & Complex Relational">Personality &amp; Relational</option>
+                            <option value="Disordered Eating / Feeding (ARFID / BED)">Disordered Eating / Feeding</option>
+                            <option value="Substance Use & Addictive Behaviors">Substance Use &amp; Addictive</option>
+                            <option value="Other / V-Code / Z-Code">Other / V-Code / Z-Code</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <!-- Toggleable: Phase of Therapy -->
+                    <div class="field-wrap-phase">
+                        <label for="clPhase" class="block text-xs font-semibold mb-1">Phase of Therapy:</label>
+                        <select id="clPhase" class="w-full p-2 border rounded-md text-sm">
+                            <option value="1. Intake & Assessment">1. Intake &amp; Assessment</option>
+                            <option value="2. Stabilization & Resourcing">2. Stabilization &amp; Resourcing</option>
+                            <option value="3. Active Core / Trauma Processing">3. Active Core / Trauma Processing</option>
+                            <option value="4. Integration & Maintenance">4. Integration &amp; Maintenance</option>
+                            <option value="5. Termination / Graduation Prep">5. Termination / Graduation Prep</option>
+                        </select>
+                    </div>
+
+                    <!-- Toggleable: Time in Therapy -->
+                    <div class="field-wrap-timeInTherapy">
+                        <label for="clTimeInTherapy" class="block text-xs font-semibold mb-1">Time in Therapy:</label>
+                        <select id="clTimeInTherapy" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Under 3 Months">Under 3 Months</option>
+                            <option value="3 to 6 Months">3 to 6 Months</option>
+                            <option value="6 to 12 Months">6 to 12 Months</option>
+                            <option value="1 to 2 Years">1 to 2 Years</option>
+                            <option value="2+ Years">2+ Years</option>
+                        </select>
+                    </div>
+
+                    <!-- Toggleable: Age Bracket -->
+                    <div class="field-wrap-ageGroup">
+                        <label for="clAgeGroup" class="block text-xs font-semibold mb-1">Age Group / Exact Age:</label>
+                        <input type="text" id="clAgeGroup" list="ageGroupPresets" placeholder="Select or type (e.g., 25–34 or 29)" class="w-full p-2 border rounded-md text-sm">
+                        <datalist id="ageGroupPresets">
+                            <option value="Child (Under 12)"></option>
+                            <option value="Adolescent (13–17)"></option>
+                            <option value="Young Adult (18–24)"></option>
+                            <option value="Adult (25–34)"></option>
+                            <option value="Adult (35–49)"></option>
+                            <option value="Adult (50–64)"></option>
+                            <option value="Older Adult (65+)"></option>
+                        </datalist>
+                    </div>
+
+                    <!-- Toggleable: Gender Identity -->
+                    <div class="field-wrap-gender">
+                        <label for="clGender" class="block text-xs font-semibold mb-1">Gender Identity:</label>
+                        <input type="text" id="clGender" list="genderPresets" placeholder="Select or type..." class="w-full p-2 border rounded-md text-sm">
+                        <datalist id="genderPresets">
+                            <option value="Woman (Cis or Trans)"></option>
+                            <option value="Man (Cis or Trans)"></option>
+                            <option value="Non-Binary / Genderqueer"></option>
+                            <option value="Transgender / Gender Expansive"></option>
+                            <option value="Questioning / Unspecified"></option>
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <!-- Toggleable: Session Frequency -->
+                    <div class="field-wrap-frequency">
+                        <label for="clFrequency" class="block text-xs font-semibold mb-1">Session Frequency:</label>
+                        <select id="clFrequency" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Weekly">Weekly</option>
+                            <option value="Biweekly (Every 2 Weeks)">Biweekly (Every 2 Weeks)</option>
+                            <option value="Monthly / Check-In">Monthly / Check-In</option>
+                            <option value="2x Per Week">2x Per Week</option>
+                            <option value="As Needed / PRN">As Needed / PRN</option>
+                        </select>
+                    </div>
+
+                    <!-- Toggleable: Acuity Level -->
+                    <div class="field-wrap-acuity">
+                        <label for="clAcuity" class="block text-xs font-semibold mb-1">Clinical Acuity Level:</label>
+                        <select id="clAcuity" class="w-full p-2 border rounded-md text-sm">
+                            <option value="Low / Stable Maintenance">🟢 Low / Stable Maintenance</option>
+                            <option value="Moderate / Active Work" selected>🟡 Moderate / Active Work</option>
+                            <option value="High / Complex / Crisis Risk">🔴 High / Complex / Crisis Risk</option>
+                        </select>
+                    </div>
+
+                    <!-- Toggleable: Pay / Insurance Type -->
+                    <div class="field-wrap-payType">
+                        <label for="clPayType" class="block text-xs font-semibold mb-1">Payment / Insurance Type:</label>
+                        <input type="text" id="clPayType" list="payTypePresets" placeholder="e.g., Commercial Insurance, Private Pay..." class="w-full p-2 border rounded-md text-sm">
+                        <datalist id="payTypePresets">
+                            <option value="Commercial Insurance (Headway/Direct)"></option>
+                            <option value="Medicaid / ProviderOne"></option>
+                            <option value="Private Pay (Full Fee)"></option>
+                            <option value="Sliding Scale / Open Path"></option>
+                        </datalist>
+                    </div>
+
+                    <!-- Toggleable: Brief Notes -->
+                    <div class="field-wrap-notes">
+                        <label for="clNotes" class="block text-xs font-semibold mb-1">De-Identified Notes:</label>
+                        <input type="text" id="clNotes" placeholder="Optional clinical theme..." class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+
+                <!-- Dynamic Custom Fields Inputs Row -->
+                <div id="customClientInputsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-2 border-t hidden"></div>
+
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <button type="submit" id="saveClientBtn" class="btn btn-primary px-6 py-2 font-semibold rounded-md">Add Client to Caseload</button>
+                    <button type="button" id="cancelClientEditBtn" class="btn px-4 py-2 font-semibold rounded-md hidden">Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section 4: Caseload Roster Table -->
+        <section class="mb-6" aria-labelledby="roster-heading">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+                <h2 id="roster-heading" class="text-xl font-bold">4. Active De-Identified Caseload Table (<span id="totalClientsCount">0</span> Clients)</h2>
+                <input type="text" id="tableSearchInput" placeholder="Filter table by any keyword..." class="p-2 border rounded-md text-xs w-64">
+            </div>
+
+            <div class="table-responsive subpanel rounded-md p-2">
+                <table class="caseload-table w-full text-left border-collapse text-xs">
+                    <thead id="caseloadTableHead"></thead>
+                    <tbody id="caseloadTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bottom Action Bar -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-8 pt-6 border-t">
+            <button type="button" id="printCaseloadReportBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
+                Print / Save PDF Caseload Report
+            </button>
+            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">
+                Export Caseload (.csv)
+            </button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">
+                Export Backup (.json)
+            </button>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="caseloadataglance" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

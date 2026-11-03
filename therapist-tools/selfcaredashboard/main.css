@@ -1,0 +1,80 @@
+/* Self-Care Dashboard page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+.sc-progress-track {
+    height: 12px;
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+.sc-progress-fill {
+    height: 100%;
+    transition: width 0.35s ease;
+}
+
+.fill-green {
+    background-color: var(--success);
+}
+
+.fill-amber {
+    background-color: var(--warning);
+}
+
+.fill-red {
+    background-color: var(--danger);
+}
+
+.text-green {
+    color: var(--success);
+}
+
+.text-amber {
+    color: var(--warning);
+}
+
+.text-red {
+    color: var(--danger);
+}
+
+.sc-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge-green {
+    background-color: rgba(22, 163, 74, 0.16);
+    color: var(--success);
+}
+
+.badge-amber {
+    background-color: rgba(234, 179, 8, 0.2);
+    color: var(--warning);
+}
+
+.badge-red {
+    background-color: rgba(220, 38, 38, 0.16);
+    color: var(--danger);
+}
+
+.badge-neutral {
+    background-color: rgba(128, 128, 128, 0.16);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.sc-table th,
+.sc-table td {
+    vertical-align: middle;
+}
+
+.apa-citation {
+    padding-left: 2em;
+    text-indent: -2em;
+    text-align: left;
+    line-height: 1.6;
+}

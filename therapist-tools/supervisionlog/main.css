@@ -1,0 +1,39 @@
+/* Supervision Log page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+.progress-track {
+    height: 10px;
+    background-color: rgba(128, 128, 128, 0.25);
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.35s ease;
+}
+
+.fill-active {
+    background-color: var(--accent);
+}
+
+.fill-complete {
+    background-color: var(--success);
+}
+
+.tag-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    margin: 2px 2px 2px 0;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    background-color: rgba(128, 128, 128, 0.18);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.sup-table th,
+.sup-table td {
+    vertical-align: top;
+}

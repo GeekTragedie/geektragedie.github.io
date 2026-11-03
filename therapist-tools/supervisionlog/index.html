@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Tools: Supervision Log</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+    <link rel="stylesheet" href="../toolkit.css">
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body aria-label="Supervision Log page">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../resources/index.html">Resources</a></li>
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html" aria-current="page">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container">
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Supervision Log</h1>
+        <p class="muted text-center text-sm mb-6">
+            Log and total supervision hours, direct client hours (in person and telehealth), indirect hours, and any custom categories your license needs, whether you’re an intern, an associate, or a supervisor.
+        </p>
+
+        <!-- Top Controls: Import, Export, Clear, Cache Toggle -->
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
+            <div class="flex flex-wrap gap-3">
+                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
+                <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
+                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Log</button>
+            </div>
+            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
+                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
+                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
+                    Cache in Browser (Auto-save locally on this device)
+                </label>
+            </div>
+        </div>
+
+        <!-- Role Switcher Tabs -->
+        <div class="subpanel p-3 rounded-md mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-sm font-bold">1. Select Your Role Preset (Or Customize Targets Below):</span>
+                <div class="flex flex-wrap gap-2" role="tablist">
+                    <button type="button" class="role-tab-btn btn btn-primary px-4 py-2 text-sm font-semibold rounded-md" data-role="associate">
+                        Post-Grad Associate (LMHCA targets; adjust for LMFTA / LSWAIC)
+                    </button>
+                    <button type="button" class="role-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-role="intern">
+                        Graduate Practicum / Intern
+                    </button>
+                    <button type="button" class="role-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-role="supervisor">
+                        Approved Clinical Supervisor
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Clinician, Supervisor/Supervisee & Timeline Info -->
+        <section class="subpanel p-4 rounded-md mb-6 space-y-4" aria-labelledby="setup-heading">
+            <h2 id="setup-heading" class="text-xl font-bold">2. Clinician Profile, Timeline &amp; Documentation Compliance</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label for="userName" class="block text-xs font-semibold mb-1">Your Name &amp; Credentials:</label>
+                    <input type="text" id="userName" placeholder="e.g., Jane Doe, LMHCA" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="userLicenseNum" class="block text-xs font-semibold mb-1">Your License / Credential #:</label>
+                    <input type="text" id="userLicenseNum" placeholder="e.g., MC00000000" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="primaryPartnerName" class="block text-xs font-semibold mb-1">Primary Supervisor / Supervisee Name:</label>
+                    <input type="text" id="primaryPartnerName" placeholder="e.g., Dr. Sam Smith, LMHC" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="primaryPartnerCreds" class="block text-xs font-semibold mb-1">Supervisor Credentials &amp; License #:</label>
+                    <input type="text" id="primaryPartnerCreds" placeholder="e.g., LH00000000 (Approved Supervisor)" class="w-full p-2 border rounded-md text-sm">
+                </div>
+            </div>
+
+            <!-- Start Date, End Date, and Auto-Calculated Days / Months (From Excel Template) -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-2 border-t">
+                <div>
+                    <label for="logStartDate" class="block text-xs font-semibold mb-1">Experience Start Date:</label>
+                    <input type="date" id="logStartDate" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="logEndDate" class="block text-xs font-semibold mb-1">End Date (Defaults to Today):</label>
+                    <input type="date" id="logEndDate" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div class="md:col-span-2 flex items-center">
+                    <div class="p-2 border rounded-md w-full text-sm">
+                        <strong>Time Elapsed:</strong> <span id="elapsedTimeDisplay">0 days (0.0 months)</span>
+                        <span class="block muted text-xs">Automatically calculated from Start Date to End Date.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supervisor / Supervisee Required Documentation Compliance Checklist -->
+            <div class="border-t pt-4">
+                <h3 class="text-sm font-bold mb-2">Supervisor / Supervisee Relationship Documentation Checklist</h3>
+                <p class="muted text-xs mb-3">
+                    Check off that you have received, signed, and filed the required ethical and statutory documentation to enter into this supervision relationship (prints on your official verification report).
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="doc-compliance-cb" value="contract_signed">
+                        <span class="ml-2"><strong>Signed Supervision Contract / Agreement</strong> on file</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="doc-compliance-cb" value="state_agreement">
+                        <span class="ml-2"><strong>State / DOH Supervisory Agreement Form</strong> completed (e.g., WAC 246-809-234)</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="doc-compliance-cb" value="supervisor_qual_verified">
+                        <span class="ml-2"><strong>Supervisor Qualifications &amp; Approved Status</strong> verified</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="doc-compliance-cb" value="disclosure_received">
+                        <span class="ml-2"><strong>Supervisor Disclosure Statement &amp; Evaluation Plan</strong> reviewed</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="doc-compliance-cb" value="crisis_coverage_plan">
+                        <span class="ml-2"><strong>Clinical Emergency / Back-Up Coverage Protocol</strong> established</span>
+                    </label>
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="doc-compliance-cb" value="liability_verified">
+                        <span class="ml-2"><strong>Professional Liability / Malpractice Coverage</strong> verified</span>
+                    </label>
+                </div>
+                <div class="mt-2">
+                    <input type="text" id="complianceAgreementDateNote" placeholder="Optional: Date contract signed, University/Agency name, or regulatory notes..." class="w-full p-2 border rounded-md text-xs">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Customizable Hour Targets & Custom Hour Buckets -->
+        <section class="subpanel p-4 rounded-md mb-6 space-y-4" aria-labelledby="targets-heading">
+            <div class="flex flex-wrap justify-between items-center gap-2">
+                <div>
+                    <h2 id="targets-heading" class="text-xl font-bold">3. Hour Targets &amp; Custom Hour Categories</h2>
+                    <p class="muted text-xs">Adjust standard targets or add custom hour types (e.g., Severe Mental Health / LIMHP, Group Hours, Drama Therapy, Assessment).</p>
+                </div>
+                <button type="button" id="addCustomCategoryBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Custom Hour Type</button>
+            </div>
+
+            <!-- Standard Targets Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div>
+                    <label for="targetTotalWorked" class="block text-xs font-semibold mb-1">Total Hours Needed:</label>
+                    <input type="number" id="targetTotalWorked" step="1" min="0" value="3000" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="targetDirectTotal" class="block text-xs font-semibold mb-1">Direct Client Hours Needed:</label>
+                    <input type="number" id="targetDirectTotal" step="1" min="0" value="1200" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="targetSupTotal" class="block text-xs font-semibold mb-1">Total Supervision Needed:</label>
+                    <input type="number" id="targetSupTotal" step="1" min="0" value="100" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="targetSupIndiv" class="block text-xs font-semibold mb-1">1-on-1 Indiv. Sup Needed:</label>
+                    <input type="number" id="targetSupIndiv" step="1" min="0" value="50" class="w-full p-2 border rounded-md text-sm">
+                </div>
+                <div>
+                    <label for="priorCreditHours" class="block text-xs font-semibold mb-1">Prior / Grad Hours Credited:</label>
+                    <input type="number" id="priorCreditHours" step="0.5" min="0" value="0" class="w-full p-2 border rounded-md text-sm" title="e.g., Graduate practicum hours credited toward total">
+                </div>
+            </div>
+
+            <!-- Dynamic Custom Hour Categories Container -->
+            <div id="customCategoriesSetupContainer" class="space-y-2 pt-2 border-t"></div>
+        </section>
+
+        <!-- Section 3: Live Progress Bars & Totals Across All Sheets/Sites -->
+        <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="dashboard-heading">
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+                <h2 id="dashboard-heading" class="text-xl font-bold">4. Progress Dashboard &amp; Totals Across Sites</h2>
+                <div class="flex items-center gap-2">
+                    <label for="filterPartnerSiteSelect" class="text-xs font-semibold">Filter View &amp; Print By Site / Person:</label>
+                    <select id="filterPartnerSiteSelect" class="p-2 border rounded-md text-xs">
+                        <option value="ALL">All Jobs / Sites / Supervisors Combined</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Summary Metric Cards -->
+            <div id="summaryMetricCards" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4"></div>
+
+            <!-- Progress Bars -->
+            <div id="progressBarsContainer" class="space-y-3"></div>
+        </section>
+
+        <hr class="my-6">
+
+        <!-- Section 4: Log Entry Form (Weekly or Per-Session) -->
+        <section class="mb-6" aria-labelledby="entry-form-heading">
+            <h2 id="entry-form-heading" class="text-xl font-bold mb-2">5. Log Weekly or Session Hours</h2>
+            <p class="muted text-xs mb-4">Enter a weekly rollup (like a Monday-start spreadsheet row) or log individual supervision sessions. Leave unused hour boxes blank or 0.</p>
+
+            <form id="supervisionEntryForm" class="subpanel p-4 rounded-md space-y-4">
+                <input type="hidden" id="editingEntryId" value="">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="entryDate" class="block text-xs font-semibold mb-1">Date / Week Starting (Monday): *</label>
+                        <input type="date" id="entryDate" required class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="entryJobSite" class="block text-xs font-semibold mb-1">Job / Clinical Site / Practice:</label>
+                        <input type="text" id="entryJobSite" placeholder="e.g., Community Mental Health / Private Practice" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="entryPartnerName" class="block text-xs font-semibold mb-1">Supervisor / Supervisee Name:</label>
+                        <input type="text" id="entryPartnerName" placeholder="Defaults to Primary Supervisor/Supervisee above" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+
+                <!-- Supervision Hours Row -->
+                <div class="border-t pt-3">
+                    <h3 class="text-sm font-bold mb-2">Supervision Hours</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div>
+                            <label for="supIndivInPerson" class="block text-xs font-semibold mb-1">Individual Sup (In-Person):</label>
+                            <input type="number" id="supIndivInPerson" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="supIndivTelehealth" class="block text-xs font-semibold mb-1">Individual Sup (Telehealth):</label>
+                            <input type="number" id="supIndivTelehealth" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="supGroupInPerson" class="block text-xs font-semibold mb-1">Group Sup (In-Person):</label>
+                            <input type="number" id="supGroupInPerson" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="supGroupTelehealth" class="block text-xs font-semibold mb-1">Group Sup (Telehealth):</label>
+                            <input type="number" id="supGroupTelehealth" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direct Client Session Hours & Indirect Hours (From Excel Columns) -->
+                <div id="clinicalHoursInputBlock" class="border-t pt-3">
+                    <h3 class="text-sm font-bold mb-2">Direct Client Sessions &amp; Indirect Hours</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div>
+                            <label for="dirIndivInPerson" class="block text-xs font-semibold mb-1">Individual Client (In-Person):</label>
+                            <input type="number" id="dirIndivInPerson" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="dirIndivTelehealth" class="block text-xs font-semibold mb-1">Individual Client (Telehealth):</label>
+                            <input type="number" id="dirIndivTelehealth" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="dirGroupInPerson" class="block text-xs font-semibold mb-1">Group Client (In-Person):</label>
+                            <input type="number" id="dirGroupInPerson" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="dirGroupTelehealth" class="block text-xs font-semibold mb-1">Group Client (Telehealth):</label>
+                            <input type="number" id="dirGroupTelehealth" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="dirFamilyInPerson" class="block text-xs font-semibold mb-1">Family / Couples (In-Person):</label>
+                            <input type="number" id="dirFamilyInPerson" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="dirFamilyTelehealth" class="block text-xs font-semibold mb-1">Family / Couples (Telehealth):</label>
+                            <input type="number" id="dirFamilyTelehealth" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="dirOther" class="block text-xs font-semibold mb-1">Other Direct Client Hours:</label>
+                            <input type="number" id="dirOther" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                        <div>
+                            <label for="indirectHours" class="block text-xs font-semibold mb-1">Indirect / Admin Hours:</label>
+                            <input type="number" id="indirectHours" step="0.25" min="0" placeholder="0" class="hour-input w-full p-2 border rounded-md text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Custom Hour Inputs (e.g., SMH LIMHP, Specialty Group) -->
+                <div id="customHourInputsBlock" class="border-t pt-3 hidden">
+                    <h3 class="text-sm font-bold mb-2">Custom / Specialty Hour Categories</h3>
+                    <div id="customHourFieldsGrid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+                </div>
+
+                <!-- Supervision Topics & Notes -->
+                <div class="border-t pt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="supTopicsSelect" class="block text-xs font-semibold mb-1">Supervision Themes &amp; Competencies Discussed:</label>
+                        <select id="supTopicsSelect" class="w-full" multiple="multiple"></select>
+                    </div>
+                    <div>
+                        <label for="entryNotes" class="block text-xs font-semibold mb-1">De-Identified Notes / Consultations (No PHI):</label>
+                        <textarea id="entryNotes" rows="2" placeholder="Case conceptualization themes, ethical consultations, gatekeeping/evaluations..." class="w-full p-2 border rounded-md text-sm"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-between items-center pt-2 border-t">
+                    <div class="text-sm">
+                        <strong>Row Total Worked:</strong> <span id="liveRowTotalWorked">0.00</span> hrs &nbsp;|&nbsp;
+                        <strong>Row Direct:</strong> <span id="liveRowDirect">0.00</span> hrs &nbsp;|&nbsp;
+                        <strong>Row Supervision:</strong> <span id="liveRowSup">0.00</span> hrs
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="submit" id="saveEntryBtn" class="btn btn-primary px-6 py-2 font-semibold rounded-md">Add Entry to Log</button>
+                        <button type="button" id="cancelEntryEditBtn" class="btn px-4 py-2 font-semibold rounded-md hidden">Cancel Edit</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section 5: Logged Entries Table -->
+        <section class="mb-6" aria-labelledby="log-table-heading">
+            <h2 id="log-table-heading" class="text-xl font-bold mb-3">6. Chronological Supervision &amp; Hours Log</h2>
+            <div class="table-responsive subpanel rounded-md p-2">
+                <table class="sup-table w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b text-xs">
+                            <th class="p-2">Date</th>
+                            <th class="p-2">Job / Site &amp; Supervisor</th>
+                            <th class="p-2">Supervision (Indiv / Grp)</th>
+                            <th class="p-2">Direct Client Breakdown</th>
+                            <th class="p-2">Indirect</th>
+                            <th class="p-2">Total Worked</th>
+                            <th class="p-2">Custom Categories</th>
+                            <th class="p-2">Themes &amp; Notes</th>
+                            <th class="p-2 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody"></tbody>
+                    <tfoot id="logTableFoot" class="border-t font-bold text-xs"></tfoot>
+                </table>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
+            <button type="button" id="printVerificationBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Print / Save Official PDF Verification Report</button>
+            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">Export Spreadsheet (.csv)</button>
+            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Backup (.json)</button>
+        </div>
+
+        <!-- Full reference list, filled in by ../references.js from references.json -->
+        <details class="collapsible references" data-tool="supervisionlog" data-src="../references.json">
+            <summary>
+                <span>References (APA 7th ed.)</span>
+                <span class="ref-count"></span>
+                <span class="chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="collapsible-body"></div>
+        </details>
+
+        <div class="text-center mt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn-link">
+                &uarr; Back to Top
+            </button>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="index.js"></script>
+    <script src="../references.js"></script>
+</body>
+</html>

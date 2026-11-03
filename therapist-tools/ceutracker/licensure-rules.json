@@ -1,0 +1,237 @@
+{
+  "states": {
+    "WA": {
+      "name": "Washington",
+      "licenses": {
+        "LMHC": {
+          "name": "LMHC - Licensed Mental Health Counselor",
+          "primaryCycleYears": 2,
+          "totalRequiredHours": 32,
+          "requirements": [
+            {
+              "id": "ethics",
+              "name": "Professional Ethics & Law",
+              "hours": 6,
+              "cycleYears": 2,
+              "description": "6 hours of professional ethics and law required every 2-year renewal cycle."
+            },
+            {
+              "id": "boundaries",
+              "name": "Professional Roles & Boundaries",
+              "hours": 2,
+              "cycleYears": 2,
+              "description": "Minimum 2 hours of Professional Roles & Boundaries every 2 years, taken separately from the 6 ethics and law hours (WAC 246-809-630)."
+            },
+            {
+              "id": "health_equity",
+              "name": "Health Equity Continuing Education",
+              "hours": 2,
+              "cycleYears": 4,
+              "anchorLabel": "Last Health Equity Training Date (4-Yr Cycle)",
+              "description": "Minimum 2 hours required at least once every 4 years (WAC 246-12-820 and 246-809-630)."
+            },
+            {
+              "id": "suicide",
+              "name": "Suicide Assessment, Treatment & Management",
+              "hours": 6,
+              "cycleYears": 6,
+              "anchorLabel": "Last Suicide Training Date (6-Yr Cycle)",
+              "description": "Minimum 6 hours from the WA DOH Model List required at least once every 6 years."
+            }
+          ],
+          "citations": [
+            "WAC 246-809-630: Continuing education requirements for Licensed Counselor (LMHC, LMFT, LICSW) — 32 hours every 2 years, including 6 hours in professional ethics and law plus at least 2 separate hours in professional roles and boundaries (amended by WSR 25-11-019, effective October 1, 2025).",
+            "WAC 246-809-615: Suicide assessment, treatment, and management training — 6 hours every 6 years.",
+            "WAC 246-12-800 to 246-12-830: Health equity continuing education — 2 hours every 4 years."
+          ]
+        },
+        "LMHCA": {
+          "name": "LMHCA - Licensed Mental Health Counselor Associate",
+          "primaryCycleYears": 1,
+          "totalRequiredHours": 16,
+          "requirements": [
+            {
+              "id": "ethics",
+              "name": "Professional Ethics & Law",
+              "hours": 6,
+              "cycleYears": 2,
+              "anchorLabel": "Last Ethics Training Window Start (2-Yr Cycle)",
+              "description": "6 hours of ethics & law required every 2 years, attested at the 2nd, 4th, and 6th renewals."
+            },
+            {
+              "id": "boundaries",
+              "name": "Professional Roles & Boundaries",
+              "hours": 2,
+              "cycleYears": 2,
+              "description": "Minimum 2 hours of Professional Roles & Boundaries, taken separately from the ethics hours (WAC 246-809-632)."
+            },
+            {
+              "id": "health_equity",
+              "name": "Health Equity Continuing Education",
+              "hours": 2,
+              "cycleYears": 4,
+              "anchorLabel": "Last Health Equity Training Date (4-Yr Cycle)",
+              "description": "2 hours required every 4 years."
+            },
+            {
+              "id": "suicide",
+              "name": "Suicide Assessment, Treatment & Management",
+              "hours": 6,
+              "cycleYears": 6,
+              "anchorLabel": "Last Suicide Training Date (6-Yr Cycle)",
+              "description": "6 hours required every 6 years after initial licensure."
+            }
+          ],
+          "citations": [
+            "WAC 246-809-632: Associate continuing education — 16 hours every year, including 6 hours of ethics and law every 2 years and at least 2 separate hours in professional roles and boundaries (effective October 1, 2025)."
+          ]
+        },
+        "LICSW": {
+          "name": "LICSW - Licensed Independent Clinical Social Worker",
+          "primaryCycleYears": 2,
+          "totalRequiredHours": 32,
+          "requirements": [
+            {
+              "id": "ethics",
+              "name": "Professional Ethics & Law",
+              "hours": 6,
+              "cycleYears": 2,
+              "description": "6 hours required every 2 years."
+            },
+            {
+              "id": "boundaries",
+              "name": "Professional Roles & Boundaries",
+              "hours": 2,
+              "cycleYears": 2,
+              "description": "Minimum 2 hours required every 2 years."
+            },
+            {
+              "id": "health_equity",
+              "name": "Health Equity Continuing Education",
+              "hours": 2,
+              "cycleYears": 4,
+              "anchorLabel": "Last Health Equity Training Date (4-Yr Cycle)",
+              "description": "Minimum 2 hours required every 4 years."
+            },
+            {
+              "id": "suicide",
+              "name": "Suicide Assessment, Treatment & Management",
+              "hours": 6,
+              "cycleYears": 6,
+              "anchorLabel": "Last Suicide Training Date (6-Yr Cycle)",
+              "description": "Minimum 6 hours required every 6 years."
+            }
+          ],
+          "citations": [
+            "WAC 246-809-630: Continuing education requirements for LICSW, LMFT, and LMHC in Washington State."
+          ]
+        },
+        "LMFT": {
+          "name": "LMFT - Licensed Marriage and Family Therapist",
+          "primaryCycleYears": 2,
+          "totalRequiredHours": 32,
+          "requirements": [
+            {
+              "id": "ethics",
+              "name": "Professional Ethics & Law",
+              "hours": 6,
+              "cycleYears": 2,
+              "description": "6 hours required every 2 years."
+            },
+            {
+              "id": "boundaries",
+              "name": "Professional Roles & Boundaries",
+              "hours": 2,
+              "cycleYears": 2,
+              "description": "Minimum 2 hours required every 2 years."
+            },
+            {
+              "id": "health_equity",
+              "name": "Health Equity Continuing Education",
+              "hours": 2,
+              "cycleYears": 4,
+              "anchorLabel": "Last Health Equity Training Date (4-Yr Cycle)",
+              "description": "Minimum 2 hours required every 4 years."
+            },
+            {
+              "id": "suicide",
+              "name": "Suicide Assessment, Treatment & Management",
+              "hours": 6,
+              "cycleYears": 6,
+              "anchorLabel": "Last Suicide Training Date (6-Yr Cycle)",
+              "description": "Minimum 6 hours required every 6 years."
+            }
+          ],
+          "citations": [
+            "WAC 246-809-630: Continuing education requirements for LICSW, LMFT, and LMHC in Washington State."
+          ]
+        }
+      }
+    },
+    "OR": {
+      "name": "Oregon",
+      "licenses": {
+        "LPC": {
+          "name": "LPC - Licensed Professional Counselor",
+          "primaryCycleYears": 2,
+          "totalRequiredHours": 40,
+          "requirements": [
+            {
+              "id": "ethics",
+              "name": "Professional Ethics",
+              "hours": 6,
+              "cycleYears": 2,
+              "description": "6 clock hours of ethics every 2-year renewal period."
+            },
+            {
+              "id": "cultural",
+              "name": "Cultural Competency",
+              "hours": 4,
+              "cycleYears": 2,
+              "description": "4 clock hours of cultural competency every 2-year renewal period."
+            },
+            {
+              "id": "suicide",
+              "name": "Suicide Risk Assessment, Treatment & Management",
+              "hours": 2,
+              "cycleYears": 2,
+              "description": "2 clock hours of suicide risk assessment every 2-year renewal period."
+            }
+          ],
+          "citations": [
+            "OAR 833-080-0011: Oregon Board of Licensed Professional Counselors and Therapists Continuing Education Requirements."
+          ]
+        }
+      }
+    },
+    "CUSTOM": {
+      "name": "Other State / Custom Rules",
+      "licenses": {
+        "GENERIC": {
+          "name": "Standard 2-Year License (40 Hours)",
+          "primaryCycleYears": 2,
+          "totalRequiredHours": 40,
+          "requirements": [
+            {
+              "id": "ethics",
+              "name": "Ethics & Law",
+              "hours": 6,
+              "cycleYears": 2,
+              "description": "Standard Ethics requirement."
+            },
+            {
+              "id": "cultural",
+              "name": "Cultural Competency / Diversity",
+              "hours": 4,
+              "cycleYears": 2,
+              "description": "Cultural Competency / Health Equity."
+            }
+          ],
+          "citations": [
+            "Custom / General State Licensure Tracking Mode. Always verify specific renewal requirements with your state licensing board."
+          ]
+        }
+      }
+    }
+  }
+}

@@ -127,9 +127,25 @@
         <li class="dropdown">
             <a href="../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
             <div class="dropdown-content">
-                <a href="../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <span class="dropdown-label">Day-to-Day</span>
                 <a href="../therapist-tools/notegenerator/index.html">Note Generator</a>
+                <a href="../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                <a href="../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../therapist-tools/referraldatabase/index.html">Referral Database</a>
+                <a href="../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
             </div>
         </li>
     </ul>
@@ -153,6 +169,17 @@
     <!-- General audience -->
     <div class="panel notes-panel" role="tabpanel" id="general" aria-labelledby="tab-general">
         <h2>For Everyone</h2>
+
+        <section class="release">
+            <h3>November 3, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> The <strong>Therapist Toolkit</strong> grew from 3 tools to 15. New this week: the Intake Packet Generator, Treatment Plan Builder, Crisis Plan Generator, Assessment Database, Referral Database, Caseload at a Glance, Self-Care Dashboard, Business Dashboard, Practice Info Sheet, CEU Tracker, Supervision Log, and Practice Starting Aid.</li>
+                <li><span class="change-type">Changed</span> The <strong>Therapist Tools</strong> menu at the top of every page now lists every tool, grouped the same way as the Therapist Tools page. On short screens, the menu scrolls.</li>
+                <li><span class="change-type">Changed</span> The Therapist Tools page now has a card for each tool instead of a “Coming soon” list.</li>
+                <li><span class="change-type">Added</span> Every therapist tool now lists its sources in APA format in a <strong>References</strong> section at the bottom of the page. It starts closed, so it stays out of the way until you want it.</li>
+                <li><span class="change-type">Changed</span> The therapist tools are calmer to look at: long explanations now open with a click, and decorative emoji were removed from buttons and headings.</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>November 2, 2026</h3>
@@ -206,7 +233,8 @@
             <h3>Known Issues</h3>
             <ul>
                 <li>Printing and saving as PDF can look a little different from browser to browser.</li>
-                <li>The Note Generator doesn’t save on its own, so use <strong>Save JSON</strong> before closing the page.</li>
+                <li>The Note Generator, Crisis Plan Generator, and Treatment Plan Builder don’t save on their own, so save a <strong>.json</strong> file before closing the page.</li>
+                <li>The Assessment Database’s printable PDFs are still being added, so some download links won’t work yet.</li>
             </ul>
             <h3>Accessibility</h3>
             <ul>
@@ -218,6 +246,7 @@
             <ul>
                 <li>No accounts and no tracking.</li>
                 <li>The tools work inside your browser, and what you type isn’t sent to or saved by this site. Files only download when you click a save button.</li>
+                <li>Some of the new therapist tools can remember your entries on your own device if you turn on browser saving. It’s off unless you turn it on.</li>
             </ul>
             <h3>Coming Soon</h3>
             <p class="muted">Planned updates will be listed here.</p>
@@ -336,6 +365,28 @@
         <h2>For Therapists</h2>
 
         <section class="release">
+            <h3>November 3, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> <strong>Intake Packet Generator.</strong> Build a reusable client intake packet (first-time therapy guide, WA disclosure statement, informed consent, practice policies, telehealth consent, HIPAA notice and Good Faith Estimate, and intake questions), and write 90791 intake evaluation notes. It can pull your practice details from a Practice Info Sheet <code>.json</code> file.</li>
+                <li><span class="change-type">Added</span> <strong>Treatment Plan Builder.</strong> SMART treatment plans with an ICD-10 / DSM-5-TR toggle, goal and intervention suggestions matched to the diagnosis, up to 5 active goals with 5 objectives each, a SMART helper, and a record of achieved and archived goals. Session-only.</li>
+                <li><span class="change-type">Added</span> <strong>Crisis Plan Generator.</strong> Collaborative safety plans with six templates (Stanley-Brown Safety Planning Intervention, WRAP, Youth/Caregiver, DV/IPV, Neurodivergent Meltdown &amp; Sensory Overload, and Relapse Prevention), editable contacts and national hotlines, APA citations, and a clinical layout or a one-page “fridge” layout for printing. Session-only.</li>
+                <li><span class="change-type">Added</span> <strong>Assessment Database.</strong> Evidence-based screening tools and outcome measures, sorted by diagnosis, symptoms, and age group, with scoring notes and APA citations. You can add your own assessments.</li>
+                <li><span class="change-type">Added</span> <strong>Referral Database.</strong> A list of the providers you trust, with specialty tags and availability. Private notes stay out of anything you share with a client, and it writes a referral email for you.</li>
+                <li><span class="change-type">Added</span> <strong>Caseload at a Glance.</strong> A de-identified view of your caseload by diagnosis, phase of therapy, time in therapy, age, and other fields you choose, with an intake fit check for new referrals.</li>
+                <li><span class="change-type">Added</span> <strong>Self-Care Dashboard.</strong> A check-in for clinicians: energy and DBT PLEASE skills right now, client order and end-of-day transitions, caseload weight and boundaries, recurring checklists, and a ProQOL-inspired burnout and vicarious trauma check.</li>
+                <li><span class="change-type">Added</span> <strong>Business Dashboard.</strong> A cash-basis P&amp;L, an income and Schedule C expense ledger, a quarterly tax planner (federal estimates plus WA B&amp;O), a monthly bank reconciliation checklist, and a business license tracker.</li>
+                <li><span class="change-type">Added</span> <strong>Practice Info Sheet.</strong> Your NPI, EIN, UBI, taxonomy codes, CAQH, ProviderOne, malpractice insurance, voicemail scripts, and tech/BAA list on one printable sheet, with Full, Therapist, Business, and Tech views.</li>
+                <li><span class="change-type">Added</span> <strong>CEU Tracker.</strong> Tracks the 2-year renewal cycle plus the 4-year health equity and 6-year suicide prevention cycles for WA licenses, with custom states. Clock hours aren’t double-counted when one course covers several requirements, and you can attach certificates.</li>
+                <li><span class="change-type">Added</span> <strong>Supervision Log.</strong> For interns, associates, and approved supervisors. Tracks in-person and telehealth hours (individual, group, and family), indirect hours, custom hour categories, time elapsed, and a supervision documentation checklist.</li>
+                <li><span class="change-type">Added</span> <strong>Practice Starting Aid.</strong> An 8-phase checklist for opening a private practice in Washington: DOH license, PLLC, EIN, NPI, DOR/UBI and city licenses, malpractice insurance, banking, choosing an EHR, a rate calculator, and an office sublet outreach script.</li>
+                <li><span class="change-type">Changed</span> The Therapist Tools menu now lists all 15 tools, grouped by Day-to-Day, Finance &amp; Business, Licensure, and Starting a Practice.</li>
+                <li><span class="change-type">Added</span> <strong>APA 7 reference lists</strong> on every tool and the Therapist Tools page, 189 sources in all, grouped by topic (therapy approaches, diagnosis &amp; coding, laws &amp; regulations, WA licensure, tax, and more). This includes a source for 46 of the 47 therapy styles in the Note Generator. Each entry was checked against a publisher, DOI record, or official source, and anything that couldn’t be confirmed was left out.</li>
+                <li><span class="change-type">Fixed</span> Citations in the Letter, Note, Treatment Plan, Crisis Plan, and Assessment tools: removed two sources that couldn’t be found in any catalog, corrected the Hoy-Gerlach (2022), Baird &amp; Mollen, and Zimmerman entries, added DOIs and missing dates, and switched diagnosis-code citations to ICD-10-CM (FY 2027).</li>
+                <li><span class="change-type">Changed</span> The Intake Packet Generator’s eight editable sections, plus longer tips in the Self-Care Dashboard, Business Dashboard, and Practice Starting Aid, now open with a click, so the pages are shorter and easier to scan.</li>
+            </ul>
+        </section>
+
+        <section class="release">
             <h3>November 2, 2026</h3>
             <ul>
                 <li>No changes to the therapist tools or the Resource Index in this update. The changes were to the Haunted Locations Wiki.</li>
@@ -384,6 +435,8 @@
             <ul>
                 <li>The therapist tools need an internet connection because they load helper libraries from public CDNs.</li>
                 <li>Print and PDF output can vary by browser, so review documents before sending them.</li>
+                <li>Assessment Database PDFs are still being uploaded, so some download links won’t work yet.</li>
+                <li>State rules, fees, and tax rates in the CEU Tracker, Business Dashboard, and Practice Starting Aid change over time. Check them against your board, the Department of Revenue, and the IRS.</li>
             </ul>
             <h3>Accessibility</h3>
             <ul>
@@ -394,6 +447,8 @@
             <ul>
                 <li>The tools run entirely in your browser. What you enter isn’t sent to or stored by this site, and the site has no analytics.</li>
                 <li><strong>This site is not a HIPAA-covered service.</strong> Use initials or de-identified details, and store finished documents in your own secure, compliant system.</li>
+                <li>The Crisis Plan Generator and Treatment Plan Builder are session-only. They never save to your browser, and refreshing the page clears them.</li>
+                <li>Ten of the new tools have an optional <strong>browser saving</strong> switch that keeps your entries on your own device. It’s off by default, and turning it off clears what was saved. Leave it off on shared computers, and keep client details de-identified.</li>
             </ul>
             <h3>Coming Soon</h3>
             <p class="muted">Planned updates will be listed here.</p>
@@ -403,6 +458,20 @@
     <!-- Tech audience -->
     <div class="panel notes-panel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
         <h2>For the Tech-Savvy</h2>
+
+        <section class="release">
+            <h3>November 3, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> Twelve tool folders under <code>therapist-tools/</code>: <code>assessmentdatabase</code>, <code>businessdashboard</code>, <code>caseloadataglance</code>, <code>ceutracker</code>, <code>crisisplangenerator</code>, <code>intakepacketgenerator</code>, <code>practiceinfosheet</code>, <code>practicestartingaid</code>, <code>referraldatabase</code>, <code>selfcaredashboard</code>, <code>supervisionlog</code>, and <code>treatmentplanbuilder</code>. Each one follows the generator layout (<code>index.html</code>, <code>index.js</code>, <code>main.css</code>) on jQuery 3.6.0, with Select2 4.1.0-rc.0 on six of them. Seed data loads with <code>$.getJSON</code>, and the Caseload and Treatment Plan tools reuse <code>../notegenerator/diagnoses.json</code> and <code>therapy_styles.json</code> with built-in fallbacks.</li>
+                <li><span class="change-type">Added</span> <code>therapist-tools/assessmentdatabase/pdfs/</code> (kept with a <code>.gitkeep</code>). The <code>pdfPath</code> values in <code>assessments-data.json</code> are relative to the tool folder.</li>
+                <li><span class="change-type">Added</span> More Tailwind-style utilities in <code>therapist-tools/toolkit.css</code>: <code>sm:</code>/<code>md:</code>/<code>lg:</code> grid columns (640/768/1024px), <code>md:col-span-2</code>, and gap, space, padding, margin, width, and text helpers. There’s still no Tailwind CDN.</li>
+                <li><span class="change-type">Added</span> A <code>--warning</code> theme variable in <code>assets/site.css</code>. Tool styles now use <code>--success</code>, <code>--danger</code>, <code>--warning</code>, and <code>--accent</code> instead of hardcoded Tailwind hex values, so status colors keep their contrast in both themes. The Caseload pie chart’s stroke and donut hole use <code>style="…var(--bg-main, #fff)"</code>, because <code>var()</code> doesn’t resolve in SVG presentation attributes and the print window has no theme variables.</li>
+                <li><span class="change-type">Changed</span> Rewrote the Therapist Tools <code>.dropdown</code> on every static page and in both Next.js layouts (the <code>my-budget</code> and <code>magicrpg</code> exports were rebuilt and re-synced from <code>out/</code>). It now has 15 links in four groups headed by non-link <code>.dropdown-label</code> spans, and <code>.dropdown-content</code> gets <code>max-height: calc(100vh - 70px)</code> with <code>overflow-y: auto</code>. The last menu in <code>.nav-links</code> is now anchored <code>right: 0</code> so it doesn’t run off the right edge of the screen.</li>
+                <li><span class="change-type">Added</span> Opt-in <code>localStorage</code> caching in ten tools, keyed <code>geektragedie_*_cache_v1</code> with a separate <code>*_cache_enabled</code> flag. Turning it off removes both keys. The Crisis Plan and Treatment Plan tools never touch <code>localStorage</code>.</li>
+                <li><span class="change-type">Added</span> <code>therapist-tools/references.json</code> (189 APA 7 entries with <code>group</code> and <code>usedBy</code> tags) and <code>references.js</code>, a small dependency-free IIFE that fetches the file and fills each page’s <code>&lt;details class="collapsible references" data-tool="…"&gt;</code> with sorted, grouped, nested <code>&lt;details&gt;</code>. The per-selection lists (Note, Letter, Crisis Plan, Treatment Plan, Assessment, CEU) are unchanged apart from their headings.</li>
+                <li><span class="change-type">Changed</span> Moved the hub’s inline <code>details.collapsible</code> styles into <code>assets/site.css</code>, and added <code>.help</code> and <code>.ref-group</code> variants, a rotating <code>.chevron</code>, and an APA hanging indent (<code>.reference-list p</code>).</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>November 2, 2026</h3>
@@ -475,6 +544,7 @@
             <h3>Privacy &amp; Data</h3>
             <ul>
                 <li>Static hosting on GitHub Pages, no analytics, and no backend.</li>
+                <li><code>localStorage</code> holds the theme preference, the Magic RPG sheet, and, only when a user turns on browser saving, that tool’s data.</li>
                 <li>Third-party requests go to jsDelivr (<code>marked</code>, Select2) and code.jquery.com.</li>
                 <li>GitHub may log standard request metadata.</li>
                 <li>Image metadata is stripped before photos are published.</li>

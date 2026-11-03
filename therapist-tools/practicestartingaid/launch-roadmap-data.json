@@ -1,0 +1,285 @@
+{
+  "phases": [
+    {
+      "id": "phase1",
+      "title": "Phase 1: Clinical Licensure, Supervision & Legal Entity (PLLC)",
+      "subtitle": "Establish your legal and clinical foundation before applying for federal or state tax IDs.",
+      "tasks": [
+        {
+          "id": "p1_doh",
+          "title": "1.1 Obtain or Verify Active DOH Clinical License (LMHC / LMHCA / LICSW / LMFT)",
+          "status": "TODO",
+          "cost": 0,
+          "url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/mental-health-counselor",
+          "guide": "Ensure your credential is active with the Department of Health (or keep your application tracking number handy). Note: You do NOT need to wait for your DOH license number to apply for your IRS EIN, but you DO need an active license to see clients and form a PLLC.",
+          "notes": ""
+        },
+        {
+          "id": "p1_supervision",
+          "title": "1.2 (Associates Only) Secure Approved Clinical Supervisor & Sign Supervision Agreement",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "If you are an Associate (e.g., LMHCA), confirm that your clinical supervisor meets WAC 246-809-234 requirements, agree on your supervision start date, and sign your formal Supervisory Agreement before seeing clients.",
+          "notes": ""
+        },
+        {
+          "id": "p1_reg_agent",
+          "title": "1.3 Decide on a Registered Agent & Business Mailing Address (Privacy Step!)",
+          "status": "TODO",
+          "cost": 60,
+          "url": "",
+          "guide": "PRIVACY WARNING: Anything you put on your Secretary of State PLLC formation form becomes permanent public record scraped by Google. If you work from home and don't want your home street address public, hire a Washington Commercial Registered Agent (~$50–$125/yr) or set up a virtual business mailbox BEFORE filing your PLLC.",
+          "notes": ""
+        },
+        {
+          "id": "p1_pllc",
+          "title": "1.4 File Certificate of Formation for a PLLC with the Secretary of State",
+          "status": "TODO",
+          "cost": 200,
+          "url": "https://ccfs.sos.wa.gov/",
+          "guide": "Licensed healthcare/mental health providers in WA form a Professional Limited Liability Company (PLLC) rather than a standard LLC. File online via WA Secretary of State CCFS ($180 filing fee + $20 online processing = $200). Include your Initial Report at the same time so you don't pay an extra $10 later. Save your approved Certificate of Formation & Unified Business Identifier (UBI) number!",
+          "notes": ""
+        },
+        {
+          "id": "p1_operating_agreement",
+          "title": "1.5 Draft & Sign Your PLLC Operating Agreement (Internal Document)",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "You do NOT need to pay LegalZoom hundreds of dollars for this! Use a clean single-member PLLC Operating Agreement template from a colleague or free registered-agent template, sub in your name and PLLC name, and sign it. You don't mail this to the state, but credit unions/banks often ask to see it when you open a business bank account.",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "phase2",
+      "title": "Phase 2: Federal Tax ID (EIN) & National Provider Identifier (NPI)",
+      "subtitle": "Both of these federal numbers are 100% FREE. Never pay a third-party website to get your EIN or NPI!",
+      "tasks": [
+        {
+          "id": "p2_ein",
+          "title": "2.1 Obtain Your Free Federal EIN (Employer Identification Number) from IRS.gov",
+          "status": "TODO",
+          "cost": 0,
+          "url": "https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online",
+          "guide": "CRITICAL SEQUENCE: Do this AFTER forming your PLLC, and BEFORE applying for your WA State DOR Business License! \n• Hours: The IRS online tool is only open Monday–Friday 6:00 AM – 1:00 AM (next day), Saturday 6:00 AM – 9:00 PM, and Sunday 6:00 PM – midnight Eastern Time.\n• Entity Choice Tip: Choose 'Limited Liability Company (LLC)' on the IRS form even though you formed a PLLC (the IRS categorizes PLLCs under LLC).\n• Excise Tax Question: 'Does your business have to file Form 720 quarterly excise tax?' -> Answer NO.\n• Download and save your CP 575 EIN Confirmation Letter immediately—it generates your EIN on the spot!",
+          "notes": ""
+        },
+        {
+          "id": "p2_fed_name_myth",
+          "title": "2.2 Skip 'Federal Business Name Registration' (Not Needed unless Trademarking)",
+          "status": "DONE",
+          "cost": 0,
+          "url": "",
+          "guide": "Insider Tip: New business owners often wonder if they need to register their business name at the federal level. Aside from getting your IRS EIN (which records your legal name and trade name), business names and DBAs are registered at the STATE level—not federal (unless you are applying for a national USPTO trademark).",
+          "notes": ""
+        },
+        {
+          "id": "p2_npi1",
+          "title": "2.3 Apply for Individual NPI Number (Type 1) via NPPES",
+          "status": "TODO",
+          "cost": 0,
+          "url": "https://nppes.cms.hhs.gov/",
+          "guide": "Your Type 1 NPI is your permanent 10-digit personal clinician identifier. Use Taxonomy Code 101YM0800X for Mental Health Counselor (LMHC/LMHCA), 1041C0700X for Clinical Social Worker, or 106H00000X for MFT.\n• Need Help? Call NPI Toll-Free: 1-800-465-3203 (TTY: 1-800-692-2326) or email customerservice@npienumerator.com.",
+          "notes": ""
+        },
+        {
+          "id": "p2_npi2",
+          "title": "2.4 Apply for Group / Organization NPI Number (Type 2) for Your PLLC",
+          "status": "TODO",
+          "cost": 0,
+          "url": "https://nppes.cms.hhs.gov/",
+          "guide": "Once you have a PLLC and an EIN, apply for a separate Type 2 (Organization) NPI under your PLLC's name and EIN. Insurance companies often ask for both your Individual (Rendering) Type 1 NPI and your PLLC (Billing) Type 2 NPI.",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "phase3",
+      "title": "Phase 3: State (DOR / UBI), Trade Name (DBA) & City Business Licenses",
+      "subtitle": "Connect your PLLC and EIN with your state Department of Revenue and local city/county.",
+      "tasks": [
+        {
+          "id": "p3_wa_dor",
+          "title": "3.1 Apply for State Business License & Register Trade Name(s) with WA DOR",
+          "status": "TODO",
+          "cost": 55,
+          "url": "https://dor.wa.gov/",
+          "guide": "Log into My DOR (dor.wa.gov) using your SecureAccess Washington (SAW) account. You will need your EIN# and UBI#.\n• Trade Name / DBA: Register any Trade Name (DBA) you plan to use publicly on the same application ($5 per trade name).\n• Processing Time: Usually takes 7–10 business days to receive your official State Business License in the mail.",
+          "notes": ""
+        },
+        {
+          "id": "p3_city_license",
+          "title": "3.2 Obtain City Business License / Home Occupation Endorsement (e.g., Seattle, Tacoma)",
+          "status": "TODO",
+          "cost": 50,
+          "url": "https://dor.wa.gov/manage-business/city-endorsements",
+          "guide": "If your physical office OR your home telehealth desk is inside incorporated city limits (such as Seattle, Bellevue, Tacoma), you need a City Business License endorsement. Most WA cities let you add this right inside My DOR; Seattle is filed via FileLocal (filelocal-wa.gov). Expect approval in 1–3 weeks and add the license # to your Practice Info Sheet!",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "phase4",
+      "title": "Phase 4: Malpractice Insurance, Business Banking & Financial Setup",
+      "subtitle": "Never commingle personal and business funds—keep your PLLC liability shield intact.",
+      "tasks": [
+        {
+          "id": "p4_malpractice",
+          "title": "4.1 Purchase Professional Liability (Malpractice) Insurance ($1M / $3M Coverage)",
+          "status": "TODO",
+          "cost": 350,
+          "url": "https://www.cphins.com/business-entities/",
+          "guide": "Compare quotes from CPH & Associates, HPSO, or Preferra. Make sure your policy covers at least $1,000,000 per incident / $3,000,000 aggregate, includes Telehealth coverage, and lists your PLLC business entity (most carriers add your single-member PLLC at no extra cost). Save the PDF Declarations Page for credentialing!",
+          "notes": ""
+        },
+        {
+          "id": "p4_bank",
+          "title": "4.2 Open Dedicated Business Checking & Tax Savings Accounts (e.g., a local credit union)",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "Local credit unions (like many local credit unions) offer free business checking with no minimum balance fees. Bring:\n1) Your IRS EIN Confirmation Letter\n2) WA Secretary of State PLLC Certificate of Formation\n3) WA State Business License (with any Trade Names listed)\n4) Your signed PLLC Operating Agreement & Driver's License.\nPro Tip: Open a second sub-savings account labeled 'Taxes' so you can transfer ~25–30% of net profit every month!",
+          "notes": ""
+        },
+        {
+          "id": "p4_budget_qbo",
+          "title": "4.3 Create Your Practice Budget & Set Up Bookkeeping (Business Dashboard or QBO)",
+          "status": "TODO",
+          "cost": 0,
+          "url": "../businessdashboard/index.html",
+          "guide": "Set up a monthly startup budget, link your business bank feed to QuickBooks Online (or track cash-basis income and Schedule C expenses for free in our Toolkit's Business & Financial Dashboard!), and calendar your 1st-of-the-month bank reconciliation habit.",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "phase5",
+      "title": "Phase 5: EHR, HIPAA-Compliant Tech Stack & Clinical Intake Paperwork",
+      "subtitle": "Sign HIPAA Business Associate Agreements (BAAs) before storing or transmitting any client PHI.",
+      "tasks": [
+        {
+          "id": "p5_google_voice",
+          "title": "5.1 Set Up Domain, HIPAA Email (Google Workspace + BAA), Business Phone & Voicemail",
+          "status": "TODO",
+          "cost": 18,
+          "url": "../practiceinfosheet/index.html",
+          "guide": "1) Purchase your practice domain (e.g., via Cloudflare Registrar).\n2) Set up Google Workspace and electronically sign the HIPAA Business Associate Agreement (BAA) in Admin -> Account Settings -> Legal & Compliance BEFORE using Gmail, Drive, or Google Voice for clients.\n3) Record your standard & OOO clinical voicemail scripts (use the templates in our Practice Info Sheet!).",
+          "notes": ""
+        },
+        {
+          "id": "p5_ehr",
+          "title": "5.2 Choose & Configure Your EHR, Telehealth, and Client Payment Processor",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "Choose your clinical operations hub (see comparison table below: e.g., Headway for free EHR + insurance billing, Sessions Health or SimplePractice for standalone EHR, or IvyPay/Stripe for HSA/FSA & credit card processing).",
+          "notes": ""
+        },
+        {
+          "id": "p5_paperwork",
+          "title": "5.3 Finalize Intake Packet: Disclosure Statement, Informed Consent, HIPAA, Practice Policies & Website Privacy/Terms",
+          "status": "TODO",
+          "cost": 0,
+          "url": "../intakepacketgenerator/index.html",
+          "guide": "Every client needs: (1) WA DOH Professional Disclosure Statement (WAC 246-809-710), (2) Informed Consent for Psychotherapy & Telehealth, (3) Practice Policies (fees, 24hr cancellation, 988 emergency boundaries, AI consent), (4) HIPAA Notice of Privacy Practices & Good Faith Estimate, and (5) Intake Questionnaire. Use our Intake Packet Generator to build and export these right now! Also add a Website Privacy Policy & Terms & Conditions to your public site.",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "phase6",
+      "title": "Phase 6: Setting Rates, SCORE Mentorship & Insurance Credentialing",
+      "subtitle": "Set sustainable fees and set up CAQH / insurance billing if accepting insurance.",
+      "tasks": [
+        {
+          "id": "p6_rates",
+          "title": "6.1 Set Your Session Rates (60/75/90-Min, Couples/Child) & Sliding Scale Policy",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "Use the Rate Calculator below to establish your standard 53–60 min fee (CPT 90837), 75/90-min extended fees, couples/family fee, and a clearly capped number of sliding-scale or Open Path Collective slots so your practice stays financially healthy.",
+          "notes": ""
+        },
+        {
+          "id": "p6_score",
+          "title": "6.2 Schedule a Free 1-on-1 Session with a SCORE Small Business Mentor",
+          "status": "TODO",
+          "cost": 0,
+          "url": "https://www.score.org/",
+          "guide": "SCORE (score.org) is a non-profit partner of the SBA that pairs new business owners with experienced business, finance, and marketing mentors for 100% free 1-on-1 coaching and local workshops!",
+          "notes": ""
+        },
+        {
+          "id": "p6_caqh_panels",
+          "title": "6.3 Complete CAQH ProView Profile & Insurance / Medicaid (ProviderOne) Credentialing",
+          "status": "TODO",
+          "cost": 0,
+          "url": "https://proview.caqh.org/",
+          "guide": "If taking commercial insurance (directly or via Headway/Alma) or WA Apple Health Medicaid (ProviderOne), create your CAQH ProView profile, upload your W-9, Malpractice Declarations Page, DOH License, and Resume (with MM/YYYY work history), and set a 120-day calendar reminder to re-attest!",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "phase7",
+      "title": "Phase 7: Office Space Subletting or Telehealth Home-Office Ergonomics",
+      "subtitle": "Set up a grounding, private physical or virtual clinical environment.",
+      "tasks": [
+        {
+          "id": "p7_office_search",
+          "title": "7.1 Search & Tour Office Sublets (Craigslist, Local Therapist FB Groups, Wellness Buildings)",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "If offering in-person sessions, subletting 1–3 days/week (e.g., Wednesdays & Thursdays) is the most affordable way to start. Check Craigslist ('office/commercial'), post in local Therapist Facebook groups, and reach out to neighborhood wellness/chiropractic/counseling buildings using the Sublet Outreach Email template below!",
+          "notes": ""
+        },
+        {
+          "id": "p7_office_questions",
+          "title": "7.2 Vet Office Space Logistics (Soundproofing, Waiting Room, ADA Access, Wi-Fi & Lease Terms)",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "When touring sublets, check: (1) Wall soundproofing & white noise machines outside doors, (2) Restroom & ADA accessibility, (3) Restock/cleaning responsibilities, (4) After-hours building lock/safety for evening clients, and (5) Sublease cancellation notice period.",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "phase8",
+      "title": "Phase 8: Website, Directories, SEO & Marketing Launch",
+      "subtitle": "Let clients and referring colleagues know your doors are open!",
+      "tasks": [
+        {
+          "id": "p8_directories",
+          "title": "8.1 Publish Psychology Today, GoodTherapy & Niche Directory Profiles",
+          "status": "TODO",
+          "cost": 30,
+          "url": "https://www.psychologytoday.com/",
+          "guide": "Write your directory bio speaking directly to your ideal client's lived experience (rather than listing 40 clinical acronyms). Upload a warm, approachable photo and a 15-second intro video, and select your core insurances and specialties.",
+          "notes": ""
+        },
+        {
+          "id": "p8_website_seo",
+          "title": "8.2 Launch Practice Website & Apply Local SEO Basics",
+          "status": "TODO",
+          "cost": 0,
+          "url": "",
+          "guide": "Ensure every page title and H1 includes your specialty + city/state (e.g., 'Neurodivergent-Affirming Therapy & Drama Therapy in Seattle, WA'), set up a clear 'Contact / Request Consult' button, and take a free SCORE Marketing / SEO workshop.",
+          "notes": ""
+        },
+        {
+          "id": "p8_networking",
+          "title": "8.3 Announce Opening to Colleagues, Therapist FB Groups, Social Media & Referral Network",
+          "status": "TODO",
+          "cost": 0,
+          "url": "../referraldatabase/index.html",
+          "guide": "Share your opening announcement in local therapist Facebook/listserv groups, email former supervisors and grad school peers, set up your professional IG/FB page if desired, and log your new connections into our Referral Database tool!",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

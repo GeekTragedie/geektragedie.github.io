@@ -1,0 +1,32 @@
+/* Intake Packet Generator page styles.
+   Theme, form controls and Select2 styling live in ../../assets/site.css and ../toolkit.css */
+
+.packet-document .packet-doc-header {
+    text-align: center;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.packet-document .packet-doc-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.packet-document .packet-section {
+    margin-bottom: 1.5rem;
+}
+
+.packet-document .packet-section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.packet-document .packet-body-text {
+    white-space: pre-wrap;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}

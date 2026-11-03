@@ -9,7 +9,7 @@
 
 ## Overview
 
-**GeekTragedie's Wonderland** is a free, static GitHub Pages website (~23 HTML pages) built by a private-practice clinician with a background spanning theatre, psychology, mental health counseling, drama therapy, and AIH training.
+**GeekTragedie's Wonderland** is a free, static GitHub Pages website (~35 HTML pages) built by a private-practice clinician with a background spanning theatre, psychology, mental health counseling, drama therapy, and AIH training.
 
 There are **no user accounts, no analytics, no tracking scripts, and no backend servers**. Every interactive generator and tool runs locally inside the user's browser.
 
@@ -26,6 +26,19 @@ There are **no user accounts, no analytics, no tracking scripts, and no backend 
      - **Letter Generator (`/therapist-tools/lettergenerator/`)**: Emotional Support Animal (ESA), academic accommodation, and referral letters with an ICD/DSM diagnosis-to-accommodation suggestion builder and citations (Fair Housing Act, HUD Notice FHEO-2020-01, peer-reviewed research).
      - **Note Generator (`/therapist-tools/notegenerator/`)**: Progress notes in DAP, SOAP, BIRP, GIRP, PIRP, or standard formats, featuring an ICD/DSM picker, **47 therapy styles**, and structured Mental Status Exam (MSE) prompts.
      - **Superbill Generator (`/therapist-tools/superbillgenerator/`)**: Print-ready out-of-network reimbursement superbills with NPI/license fields, ICD-10 codes, and auto-calculated multi-line service totals.
+     - **Intake Packet Generator (`/therapist-tools/intakepacketgenerator/`)**: Reusable client intake packet builder (WA disclosure statement, informed consent, policies, telehealth, HIPAA/GFE, intake questions) plus a session-only 90791 intake note; can import a Practice Info Sheet `.json`.
+     - **Treatment Plan Builder (`/therapist-tools/treatmentplanbuilder/`)**: Session-only SMART treatment plans with an ICD-10 / DSM-5-TR toggle and diagnosis-matched goals, reusing the Note Generator's `diagnoses.json` and `therapy_styles.json`.
+     - **Crisis Plan Generator (`/therapist-tools/crisisplangenerator/`)**: Session-only collaborative safety plans with six templates (Stanley-Brown SPI, WRAP, Youth/Caregiver, DV/IPV, Neurodivergent Meltdown, Relapse Prevention) and Clinical or 1-page print layouts.
+     - **Assessment Database (`/therapist-tools/assessmentdatabase/`)**: Screening tools and outcome measures by diagnosis, symptom, and age, with scoring notes, APA citations, and printable PDFs from `pdfs/`.
+     - **Referral Database (`/therapist-tools/referraldatabase/`)**: Trusted-provider directory with tags, availability, private notes excluded from client exports, and a referral email generator.
+     - **Caseload at a Glance (`/therapist-tools/caseloadataglance/`)**: De-identified caseload visualizer with an SVG pie chart, toggleable fields, and an intake fit advisor.
+     - **Self-Care Dashboard (`/therapist-tools/selfcaredashboard/`)**: Clinician check-ins (somatic battery and DBT PLEASE, pacing, caseload acuity, recurring checklists, ProQOL-inspired burnout check).
+     - **Business Dashboard (`/therapist-tools/businessdashboard/`)**: Cash-basis P&L, Schedule C ledger, quarterly federal + WA B&O tax planner, bank reconciliation checklist, and license tracker.
+     - **Practice Info Sheet (`/therapist-tools/practiceinfosheet/`)**: Printable master sheet for NPI, EIN, UBI, taxonomy, CAQH, ProviderOne, malpractice, voicemail scripts, and the tech/BAA stack.
+     - **CEU Tracker (`/therapist-tools/ceutracker/`)**: Multi-cycle CE tracking (2-year renewal, 4-year health equity, 6-year suicide prevention) for WA licenses and custom states, with certificate attachments.
+     - **Supervision Log (`/therapist-tools/supervisionlog/`)**: Supervision and licensure hours for interns, associates, and supervisors, with custom hour categories and a documentation checklist.
+     - **Practice Starting Aid (`/therapist-tools/practicestartingaid/`)**: An 8-phase checklist for opening a WA private practice, from DOH licensure and PLLC formation to EHR choice and fee setting.
+   - Every tool ends with a collapsed APA 7 **References** list, rendered by `therapist-tools/references.js` from the shared `therapist-tools/references.json` (entries tagged by group and by the tools that use them).
 
 3. **Author's Library (`/authors-library/`)**
    - **Progress Notes on Confinement (`/pnoc/`)**: First-person field reflections from visits to historic prisons, confinement sites, and memorials (e.g., Alcatraz, Cárcel de la Corona in Madrid, US Holocaust Memorial Museum).
@@ -79,7 +92,7 @@ npm run build           # writes the static site to out/
 ## Privacy, Security & Clinical Scope of Use
 
 - **Zero-Backend Data Flow**: Nothing typed into any generator is transmitted over the network or stored on a server. State lives in DOM form fields and is persisted only when the user clicks Save/Export to download a local file.
-- **Minimal `localStorage`**: The site stores only the dark/light theme preference, plus the Magic RPG character sheet so it survives a page reload. Both stay on the user's device.
+- **Minimal `localStorage`**: The site stores the dark/light theme preference and the Magic RPG character sheet. Ten of the therapist tools also offer an opt-in **browser saving** switch (off by default) that keeps that tool's data in `localStorage`; turning it off clears it. The Crisis Plan Generator and Treatment Plan Builder never use `localStorage`. Everything stays on the user's device.
 - **EXIF/GPS Stripping**: Repository photos are stripped of metadata before commit via `magick -strip`.
 - **Not a HIPAA-Covered Service**: While the tools run entirely client-side, this site is not a HIPAA-covered service. Clinicians should use client initials or de-identified details, review all generated outputs using their own clinical judgment, and store finalized documents in their own HIPAA-compliant EHR/storage systems.
 - **Clinical Disclaimer**: This site is for educational and self-advocacy purposes only and does not constitute therapy, medical advice, or a clinician-client relationship. **If you or someone you know is in crisis in the U.S., call or text 988 (available 24/7 in English and Spanish), or call 911 in an immediate emergency.**
