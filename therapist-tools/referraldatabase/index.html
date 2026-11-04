@@ -70,28 +70,73 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#add-referral-heading">Add a provider</a></li>
+                        <li><a href="#search-heading">Find &amp; pick providers</a></li>
+                        <li><a href="#email-gen-heading">Referral email</a></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save list .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printFullDirectoryBtn" class="btn btn-sm sidebar-btn">Print full directory</button>
+                    <button type="button" id="exportCsvButton" class="btn btn-sm sidebar-btn">Export .csv</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="For this client">
+                    <span class="sidebar-label">For this client</span>
+                    <button type="button" id="copyEmailButton" class="btn btn-sm sidebar-btn">Copy email</button>
+                    <button type="button" id="printClientPacketButton" class="btn btn-sm sidebar-btn">Print client handout</button>
+                    <button type="button" id="exportClientTxtButton" class="btn btn-sm sidebar-btn">Export email .txt</button>
+                    <button type="button" id="exportClientJsonButton" class="btn btn-sm sidebar-btn">Export client .json</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="clearAllButton" class="btn btn-sm sidebar-btn btn-danger">Wipe database</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Referral Database</h1>
         <p class="muted text-center text-sm mb-6">
             Keep a list of the providers and resources you trust. Check off the ones that fit a client or inquiry, and it writes a referral email and a client handout for you. Save the list as a <code>.json</code> file to reload later.
         </p>
 
-        <!-- Master Database Top Controls: Import .json, Export .json, Clear, Cache Toggle -->
-        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
-            <div class="flex flex-wrap gap-3">
-                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import Master .json</button>
-                <input type="file" id="importJsonFile" accept=".json" class="hidden">
-                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export Master .json</button>
-                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Database</button>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Add each provider you trust under <strong>Add a provider</strong>, with specialties, insurance, availability, and private notes.</li>
+                    <li>When a client needs a referral, search and check the providers who fit.</li>
+                    <li>Choose Option A or B for the email, then copy it or print a handout from <strong>For this client</strong> in the tool menu.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                <p><strong>Tip:</strong> Private notes never appear in client emails or handouts. The full directory printout does include them, so keep it private.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
             </div>
-            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
-                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
-                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
-                    Cache Master List in Browser (Auto-save locally)
-                </label>
-            </div>
-        </div>
+        </details>
 
         <!-- Section 1: Add / Edit Provider in Your Ongoing Referral List -->
         <section class="mb-8" aria-labelledby="add-referral-heading">
@@ -278,11 +323,6 @@
                     <button type="button" id="selectAllFilteredBtn" class="btn-link">Select All Shown</button>
                     <button type="button" id="clearCartSelectionBtn" class="btn-link">Clear Picked Providers</button>
                 </div>
-                <div>
-                    <button type="button" id="jumpToEmailBtn" class="btn btn-primary px-4 py-1.5 text-xs font-semibold rounded-md">
-                        &darr; Jump to Client Referral Email &amp; Client Export
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -368,32 +408,10 @@
                 <textarea id="generatedEmailText" rows="14" class="w-full p-3 border rounded-md font-mono text-sm whitespace-pre-wrap"></textarea>
             </div>
 
-            <!-- Client-Specific Action Buttons -->
-            <div class="flex flex-wrap justify-center gap-3 pt-2">
-                <button type="button" id="copyEmailButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
-                    Copy Email to Clipboard
-                </button>
-                <button type="button" id="printClientPacketButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
-                    Print / Save PDF for This Client
-                </button>
-                <button type="button" id="exportClientTxtButton" class="btn px-5 py-3 font-semibold rounded-md">
-                    Export Client Email &amp; List (.txt)
-                </button>
-                <button type="button" id="exportClientJsonButton" class="btn px-5 py-3 font-semibold rounded-md">
-                    Export This Client's Referrals (.json)
-                </button>
-            </div>
         </section>
 
-        <!-- Master Database Bottom Action Buttons -->
-        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-8 pt-6 border-t">
-            <button type="button" id="printFullDirectoryBtn" class="btn px-6 py-3 font-semibold rounded-md">Print Full Clinician Directory (Includes Private Notes)</button>
-            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">Export Master List (.csv)</button>
-            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Master Database (.json)</button>
-        </div>
-
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="referraldatabase" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="referraldatabase" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -407,6 +425,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -437,5 +456,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

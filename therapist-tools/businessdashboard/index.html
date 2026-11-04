@@ -69,7 +69,49 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#settings-heading">Practice &amp; tax rates</a></li>
+                        <li><button type="button" data-click='.dash-tab-btn[data-tab="overview"]'>Yearly shape &amp; P&amp;L</button></li>
+                        <li><button type="button" data-click='.dash-tab-btn[data-tab="ledger"]'>Income &amp; expense ledger</button></li>
+                        <li><button type="button" data-click='.dash-tab-btn[data-tab="taxes"]'>Quarterly tax planner</button></li>
+                        <li><button type="button" data-click='.dash-tab-btn[data-tab="reconcile"]'>Monthly reconciliation</button></li>
+                        <li><button type="button" data-click='.dash-tab-btn[data-tab="compliance"]'>Licenses</button></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printAnnualReportBtn" class="btn btn-sm sidebar-btn">Print year-end tax packet</button>
+                    <button type="button" id="exportCsvLedgerBtn" class="btn btn-sm sidebar-btn">Export ledger (.csv)</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="clearAllButton" class="btn btn-sm sidebar-btn btn-danger">Wipe dashboard</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Business Dashboard</h1>
         <p class="muted text-center text-sm mb-6">
@@ -79,21 +121,20 @@
             <strong>Please note:</strong> This isn’t legal, tax, or CPA advice. Tax rules vary by federal, state, county, and city, so check with a CPA, bookkeeper, or attorney about your own practice.
         </p>
 
-        <!-- Top Action Bar -->
-        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
-            <div class="flex flex-wrap gap-3">
-                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
-                <input type="file" id="importJsonFile" accept=".json" class="hidden">
-                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
-                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Dashboard</button>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Set your practice name, tax year, and tax rates under <strong>Practice &amp; tax rates</strong>.</li>
+                    <li>Log each payout and expense in the <strong>Income &amp; expense ledger</strong>. Flag contractors who need a 1099-NEC.</li>
+                    <li>Check the <strong>Quarterly tax planner</strong> before each IRS and WA DOR due date.</li>
+                    <li>Check off each month under <strong>Monthly reconciliation</strong> once your bank statement matches.</li>
+                    <li>Track renewals under <strong>Licenses</strong>, and print the year-end packet for your CPA.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
             </div>
-            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
-                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
-                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
-                    Cache in Browser (Auto-save locally on this device)
-                </label>
-            </div>
-        </div>
+        </details>
 
         <!-- Practice & Tax Year Settings Bar -->
         <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="settings-heading">
@@ -490,15 +531,8 @@
             </div>
         </section>
 
-        <!-- Bottom Action Bar -->
-        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-8 pt-6 border-t">
-            <button type="button" id="printAnnualReportBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Print / Save PDF Executive Year-End Tax Packet</button>
-            <button type="button" id="exportCsvLedgerBtn" class="btn px-6 py-3 font-semibold rounded-md">Export Ledger (.csv)</button>
-            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Full Backup (.json)</button>
-        </div>
-
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="businessdashboard" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="businessdashboard" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -512,6 +546,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -541,5 +576,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

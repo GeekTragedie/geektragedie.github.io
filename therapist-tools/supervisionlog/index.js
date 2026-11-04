@@ -100,7 +100,7 @@ $(document).ready(function() {
 
         appState.customCategories.forEach(cat => {
             const row = $(`
-                <div class="custom-cat-row flex flex-wrap md:flex-nowrap items-center gap-2 p-2 border rounded-md" data-id="${cat.id}">
+                <div class="custom-cat-row flex flex-wrap items-center gap-2 p-2 border rounded-md" data-id="${cat.id}">
                     <input type="text" class="custom-cat-name flex-1 p-2 border rounded-md text-xs font-semibold" placeholder="Category Name (e.g., SMH / LIMHP, Specialty Group)" value="${escapeAttr(cat.name)}">
                     <div class="flex items-center gap-1">
                         <label class="text-xs whitespace-nowrap">Target Hrs:</label>

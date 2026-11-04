@@ -68,15 +68,57 @@
         </li>
     </ul>
 </nav>
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButton" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printLetterButton" class="btn btn-sm sidebar-btn hidden">Print letter</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="reset" form="letterGeneratorForm" class="btn btn-sm sidebar-btn btn-danger">Clear form</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-6">Client Therapy Letter Generator</h1>
 
-        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
-            <button type="button" id="importJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import .json</button>
-            <input type="file" id="importJsonFile" accept=".json" class="hidden">
-            <button type="reset" form="letterGeneratorForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
-        </div>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Choose the letter type: emotional support animal, academic accommodation, or referral.</li>
+                    <li>Fill in the client and clinician details and pick diagnoses. Suggested accommodations appear based on diagnosis.</li>
+                    <li>Generate the letter and review every line before you sign it.</li>
+                    <li>Print it from the tool menu (the button appears once a letter is generated).</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
+            </div>
+        </details>
 
         <form id="letterGeneratorForm" class="space-y-4">
             <div class="mb-4">
@@ -229,8 +271,6 @@
 
             <div class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
                 <button type="button" id="generateLetterButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Letter</button>
-                <button type="button" id="printLetterButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md hidden">Print Letter</button>
-                <button type="button" id="exportJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export .json</button>
             </div>
         </form>
         
@@ -241,7 +281,7 @@
         </div>
         
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="lettergenerator" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="lettergenerator" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -255,6 +295,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -285,5 +326,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

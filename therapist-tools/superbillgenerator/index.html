@@ -69,15 +69,58 @@
         </li>
     </ul>
 </nav>
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importSuperbillJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importSuperbillJsonFile" class="hidden" accept=".json">
+                    <button type="button" id="exportSuperbillJsonButton" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printSuperbill" class="btn btn-sm sidebar-btn">Print superbill</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="reset" form="superbillForm" class="btn btn-sm sidebar-btn btn-danger">Clear form</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-6">Insurance Superbill Generator</h1>
 
-        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
-            <button type="button" id="importSuperbillJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import Data (.json)</button>
-            <input type="file" id="importSuperbillJsonFile" class="hidden" accept=".json">
-            <button type="reset" form="superbillForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
-        </div>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Fill in the provider, client, and insurance details.</li>
+                    <li>Add each service with its date, CPT code, diagnosis codes, and fee. Totals add up for you.</li>
+                    <li>Generate the superbill, check it, then print it for your client.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time.</p>
+                <p><strong>Tip:</strong> Save a .json file so next month’s superbill only needs new dates.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
+            </div>
+        </details>
+
         
         <form id="superbillForm" class="space-y-4">
             
@@ -142,15 +185,13 @@
 
             <div class="flex flex-wrap justify-center items-center gap-4 mt-8 pt-6 border-t">
                 <button type="submit" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Superbill</button>
-                <button type="button" id="printSuperbill" class="btn px-6 py-3 font-semibold rounded-md">Print Superbill</button>
-                <button type="button" id="exportSuperbillJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export Data (.json)</button>
             </div>
         </form>
 
         <div id="superbillOutput" class="subpanel superbill-output mt-8 p-6 rounded-md hidden"></div>
 
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="superbillgenerator" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="superbillgenerator" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -165,6 +206,7 @@
             </button>
         </div>
         
+    </div>
     </div>
 </main>
 
@@ -195,5 +237,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

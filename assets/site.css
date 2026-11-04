@@ -425,6 +425,10 @@ details.collapsible.help .collapsible-body {
     color: var(--text-muted);
     gap: 8px;
 }
+details.collapsible.how-to ol {
+    margin: 0;
+    padding-left: 1.4em;
+}
 /* Reference lists: groups nest inside the outer section */
 details.collapsible.references {
     margin-top: 2rem;

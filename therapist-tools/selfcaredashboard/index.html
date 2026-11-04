@@ -69,29 +69,65 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><button type="button" data-click='.sc-tab-btn[data-tab="micro"]'>Right now</button></li>
+                        <li><button type="button" data-click='.sc-tab-btn[data-tab="daily"]'>Daily energy &amp; pacing</button></li>
+                        <li><button type="button" data-click='.sc-tab-btn[data-tab="caseload"]'>Caseload &amp; boundaries</button></li>
+                        <li><button type="button" data-click='.sc-tab-btn[data-tab="macro"]'>Checklists</button></li>
+                        <li><button type="button" data-click='.sc-tab-btn[data-tab="proqol"]'>Burnout check</button></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printReflectionBtn" class="btn btn-sm sidebar-btn">Print snapshot</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="clearAllButton" class="btn btn-sm sidebar-btn btn-danger">Reset check-in</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Self-Care Dashboard</h1>
         <p class="muted text-center text-sm mb-6">
             Working solo means no one else is watching your battery. Check in on your body right now, look at your client order and end-of-day transition, weigh your caseload, and keep up with the bigger picture, one view at a time.
         </p>
 
-        <!-- Top Controls: Import .json, Export .json, Print Summary, Cache Toggle -->
-        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
-            <div class="flex flex-wrap gap-3">
-                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
-                <input type="file" id="importJsonFile" accept=".json" class="hidden">
-                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
-                <button type="button" id="printReflectionBtn" class="btn px-4 py-2 font-semibold rounded-md">Print / Save PDF Snapshot</button>
-                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Reset Check-In</button>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Pick a check-in in the tool menu: right now, daily pacing, caseload, checklists, or burnout.</li>
+                    <li>Answer honestly. The summary cards at the top update as you go.</li>
+                    <li>Print a snapshot if you’d like to bring it to consultation or your own therapy.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
             </div>
-            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
-                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
-                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
-                    Cache in Browser (Auto-save locally on this device)
-                </label>
-            </div>
-        </div>
+        </details>
 
         <!-- Live Clinician Battery & Sustainability Snapshot Bar -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6" aria-label="Clinician Battery Snapshot">
@@ -462,7 +498,7 @@
         </section>
 
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="selfcaredashboard" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="selfcaredashboard" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -476,6 +512,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -505,5 +542,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

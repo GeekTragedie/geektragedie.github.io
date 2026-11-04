@@ -70,18 +70,64 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#core-warning-heading">Warning signs &amp; coping</a></li>
+                        <li><a href="#support-network-heading">Contacts &amp; hotlines</a></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButton" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printPlanButton" class="btn btn-sm sidebar-btn">Print / save PDF</button>
+                    <button type="button" id="copyPlanButton" class="btn btn-sm sidebar-btn">Copy text</button>
+                    <button type="button" id="exportTxtButton" class="btn btn-sm sidebar-btn">Export .txt</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="reset" form="crisisForm" class="btn btn-sm sidebar-btn btn-danger">Clear form</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Crisis Plan Generator</h1>
         <p class="muted text-center text-sm mb-6">
             Build a safety plan together with a client, using templates like the Stanley-Brown Safety Plan and WRAP. Nothing is saved on this site or in your browser, and refreshing clears every field. Use <strong>Export as .json</strong> to keep a copy.
         </p>
 
-        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
-            <button type="button" id="importJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import .json</button>
-            <input type="file" id="importJsonFile" accept=".json" class="hidden">
-            <button type="reset" form="crisisForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
-        </div>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Pick a template with your client: Stanley-Brown, WRAP, Youth/Caregiver, DV/IPV, Neurodivergent, or Relapse Prevention.</li>
+                    <li>Fill in the fields together, in the client’s own words when you can.</li>
+                    <li>Turn contacts and hotlines on or off, and add the people your client trusts.</li>
+                    <li>Generate the preview, then print the clinical layout or the one-page fridge layout.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> <strong>Session-only:</strong> nothing is saved in your browser, and refreshing the page clears every field. Use <strong>Save .json</strong> if you want to keep a copy, and store it somewhere secure.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
+            </div>
+        </details>
 
         <form id="crisisForm" class="space-y-6">
             <!-- Plan Template Selection & Metadata -->
@@ -110,7 +156,7 @@
 
             <!-- Shared Quick-Pick Section: Warning Signs & Coping Strategies -->
             <div id="shared-coping-section" class="subpanel p-4 rounded-md space-y-4">
-                <h2 class="text-xl font-bold">Core Warning Signs &amp; Coping Strategies</h2>
+                <h2 id="core-warning-heading" class="text-xl font-bold">Core Warning Signs &amp; Coping Strategies</h2>
                 <p class="muted text-xs">Search and select from clinical presets below, or type your own custom phrase and press Enter to add it.</p>
 
                 <div>
@@ -252,7 +298,7 @@
 
             <!-- Toggleable & Removable Support Network Section -->
             <div class="subpanel p-4 rounded-md space-y-6">
-                <h2 class="text-xl font-bold">Support Network &amp; Emergency Contacts</h2>
+                <h2 id="support-network-heading" class="text-xl font-bold">Support Network &amp; Emergency Contacts</h2>
                 <p class="muted text-xs">Uncheck or click <strong>Remove</strong> on any line that does not apply to this client's plan.</p>
 
                 <!-- 1. Personal Support Contacts -->
@@ -307,10 +353,6 @@
         <!-- Action Buttons -->
         <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
             <button type="submit" form="crisisForm" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Plan Preview</button>
-            <button type="button" id="copyPlanButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Copy Text</button>
-            <button type="button" id="printPlanButton" class="btn px-6 py-3 font-semibold rounded-md">Print / Save PDF</button>
-            <button type="button" id="exportTxtButton" class="btn px-6 py-3 font-semibold rounded-md">Export Plan (.txt)</button>
-            <button type="button" id="exportJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export as .json</button>
         </div>
 
         <!-- APA 7th Citations -->
@@ -320,7 +362,7 @@
         </div>
 
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="crisisplangenerator" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="crisisplangenerator" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -334,6 +376,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -364,5 +407,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

@@ -178,6 +178,8 @@
                 <li><span class="change-type">Changed</span> The Therapist Tools page now has a card for each tool instead of a “Coming soon” list.</li>
                 <li><span class="change-type">Added</span> Every therapist tool now lists its sources in APA format in a <strong>References</strong> section at the bottom of the page. It starts closed, so it stays out of the way until you want it.</li>
                 <li><span class="change-type">Changed</span> The therapist tools are calmer to look at: long explanations now open with a click, and decorative emoji were removed from buttons and headings.</li>
+                <li><span class="change-type">Added</span> Every therapist tool now has a <strong>tool menu</strong> beside the form with import, save, print, and clear in one place, plus links to each part of the page. On phones it opens from the top of the page.</li>
+                <li><span class="change-type">Added</span> A <strong>How to use this tool</strong> guide at the top of every therapist tool, with short steps and how saving works.</li>
             </ul>
         </section>
 
@@ -383,6 +385,8 @@
                 <li><span class="change-type">Added</span> <strong>APA 7 reference lists</strong> on every tool and the Therapist Tools page, 189 sources in all, grouped by topic (therapy approaches, diagnosis &amp; coding, laws &amp; regulations, WA licensure, tax, and more). This includes a source for 46 of the 47 therapy styles in the Note Generator. Each entry was checked against a publisher, DOI record, or official source, and anything that couldn’t be confirmed was left out.</li>
                 <li><span class="change-type">Fixed</span> Citations in the Letter, Note, Treatment Plan, Crisis Plan, and Assessment tools: removed two sources that couldn’t be found in any catalog, corrected the Hoy-Gerlach (2022), Baird &amp; Mollen, and Zimmerman entries, added DOIs and missing dates, and switched diagnosis-code citations to ICD-10-CM (FY 2027).</li>
                 <li><span class="change-type">Changed</span> The Intake Packet Generator’s eight editable sections, plus longer tips in the Self-Care Dashboard, Business Dashboard, and Practice Starting Aid, now open with a click, so the pages are shorter and easier to scan.</li>
+                <li><span class="change-type">Added</span> A sticky <strong>tool menu</strong> on all 15 tools. Import, save, print, export, and clear buttons moved there from the top and bottom of each page (duplicates removed), with clear and wipe set apart under <strong>Start over</strong> so they’re harder to hit by accident. <strong>On this page</strong> links jump to each section or switch tabs, and the browser-saving switch now lives in the same spot on every tool.</li>
+                <li><span class="change-type">Added</span> <strong>How to use this tool</strong> on every tool: 3–5 steps, how that tool saves (or doesn’t), and a reminder to use initials or client codes. It opens in place, so session-only tools like the Crisis Plan Generator don’t lose your work.</li>
             </ul>
         </section>
 
@@ -470,6 +474,8 @@
                 <li><span class="change-type">Added</span> Opt-in <code>localStorage</code> caching in ten tools, keyed <code>geektragedie_*_cache_v1</code> with a separate <code>*_cache_enabled</code> flag. Turning it off removes both keys. The Crisis Plan and Treatment Plan tools never touch <code>localStorage</code>.</li>
                 <li><span class="change-type">Added</span> <code>therapist-tools/references.json</code> (189 APA 7 entries with <code>group</code> and <code>usedBy</code> tags) and <code>references.js</code>, a small dependency-free IIFE that fetches the file and fills each page’s <code>&lt;details class="collapsible references" data-tool="…"&gt;</code> with sorted, grouped, nested <code>&lt;details&gt;</code>. The per-selection lists (Note, Letter, Crisis Plan, Treatment Plan, Assessment, CEU) are unchanged apart from their headings.</li>
                 <li><span class="change-type">Changed</span> Moved the hub’s inline <code>details.collapsible</code> styles into <code>assets/site.css</code>, and added <code>.help</code> and <code>.ref-group</code> variants, a rotating <code>.chevron</code>, and an APA hanging indent (<code>.reference-list p</code>).</li>
+                <li><span class="change-type">Added</span> <code>.tool-layout</code> grid (230px sidebar + <code>minmax(0,1fr)</code>) and <code>.tool-sidebar</code> styles in <code>toolkit.css</code>. The sidebar is sticky on wide screens and becomes a <code>&lt;details class="tool-menu"&gt;</code> above the form at 900px and below. Moved buttons keep their ids, so the existing jQuery handlers didn’t change. Hidden in print.</li>
+                <li><span class="change-type">Added</span> <code>therapist-tools/toolkit.js</code>: opens the tool menu on wide screens via <code>matchMedia</code>, handles <code>[data-open]</code> (How to use) and <code>[data-click]</code> (tab switching from the sidebar), and opens any closed <code>&lt;details&gt;</code> a jump link points into. Added <code>scroll-margin-top</code> for jump targets and fixed phone overflow from long <code>&lt;select&gt;</code> options and non-wrapping filter rows.</li>
             </ul>
         </section>
 

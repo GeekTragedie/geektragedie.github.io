@@ -39,6 +39,7 @@ There are **no user accounts, no analytics, no tracking scripts, and no backend 
      - **Supervision Log (`/therapist-tools/supervisionlog/`)**: Supervision and licensure hours for interns, associates, and supervisors, with custom hour categories and a documentation checklist.
      - **Practice Starting Aid (`/therapist-tools/practicestartingaid/`)**: An 8-phase checklist for opening a WA private practice, from DOH licensure and PLLC formation to EHR choice and fee setting.
    - Every tool ends with a collapsed APA 7 **References** list, rendered by `therapist-tools/references.js` from the shared `therapist-tools/references.json` (entries tagged by group and by the tools that use them).
+   - Every tool has a sticky **tool menu** sidebar (import/save, print/share, start over, and jump links, from `therapist-tools/toolkit.css` + `toolkit.js`) and a click-to-open **How to use this tool** guide.
 
 3. **Author's Library (`/authors-library/`)**
    - **Progress Notes on Confinement (`/pnoc/`)**: First-person field reflections from visits to historic prisons, confinement sites, and memorials (e.g., Alcatraz, Cárcel de la Corona in Madrid, US Holocaust Memorial Museum).

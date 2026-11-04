@@ -69,7 +69,55 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><button type="button" data-click='.mode-tab-btn[data-mode="packet"]'>Intake packet builder</button></li>
+                        <li><a href="#practice-vars-heading">Practice details</a></li>
+                        <li><a href="#sections-toggle-heading">Sections to include</a></li>
+                        <li><button type="button" data-click='.mode-tab-btn[data-mode="intakenote"]'>90791 intake note</button></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn" title="Upload an Intake Packet .json OR your Practice Info Sheet .json!">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save packet .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printPacketPdfBtn" class="btn btn-sm sidebar-btn">Print packet / PDF</button>
+                    <button type="button" id="exportPacketTxtBtn" class="btn btn-sm sidebar-btn">Export packet .txt</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Intake note (90791)">
+                    <span class="sidebar-label">Intake note (90791)</span>
+                    <button type="button" id="copyIntakeNoteBtn" class="btn btn-sm sidebar-btn">Copy note</button>
+                    <button type="button" id="printIntakeNoteBtn" class="btn btn-sm sidebar-btn">Print note</button>
+                    <button type="button" id="exportIntakeNoteTxtBtn" class="btn btn-sm sidebar-btn">Export note .txt</button>
+                    <button type="reset" form="intakeNoteForm" class="btn btn-sm sidebar-btn">Clear note</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="resetDefaultTemplatesBtn" class="btn btn-sm sidebar-btn btn-danger">Restore default wording</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Intake Packet Generator</h1>
         <p class="muted text-center text-sm mb-6">
@@ -79,27 +127,20 @@
             <strong>Please note:</strong> These templates are a starting point, not legal advice. Check that your disclosure statement and informed consent meet your licensing board’s current rules (in Washington, WAC 246-809-710) and your malpractice carrier’s requirements.
         </p>
 
-        <!-- Top Controls: Import .json, Export .json, Load Pre-Written Templates, Cache Practice Defaults -->
-        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
-            <div class="flex flex-wrap gap-3">
-                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md" title="Upload an Intake Packet .json OR your Practice Info Sheet .json!">
-                    Import .json (Packet or Practice Info)
-                </button>
-                <input type="file" id="importJsonFile" accept=".json" class="hidden">
-                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">
-                    Save / Export Packet .json
-                </button>
-                <button type="button" id="resetDefaultTemplatesBtn" class="btn px-4 py-2 font-semibold rounded-md">
-                    Restore Default Clinical Boilerplate
-                </button>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Fill in your practice details once (or import your Practice Info Sheet .json), then click <strong>Apply Details to Boilerplate Below</strong>.</li>
+                    <li>Choose which sections to include in the packet.</li>
+                    <li>Open any section to edit its wording.</li>
+                    <li>Preview the packet, then print it or save it as a PDF from the tool menu.</li>
+                    <li>For a new client’s first session, switch to <strong>90791 intake note</strong> to write a session-only intake evaluation.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
             </div>
-            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
-                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
-                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer" title="Caches only your non-PHI Practice Packet templates locally; never caches client intake notes.">
-                    Cache Practice Packet Templates in Browser
-                </label>
-            </div>
-        </div>
+        </details>
 
         <!-- Mode Switcher Tabs -->
         <div class="subpanel p-3 rounded-md mb-6">
@@ -305,15 +346,6 @@
                 <button type="button" id="previewPacketBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
                     Preview Full Intake Packet
                 </button>
-                <button type="button" id="printPacketPdfBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
-                    Print / Save PDF Intake Packet
-                </button>
-                <button type="button" id="exportPacketTxtBtn" class="btn px-6 py-3 font-semibold rounded-md">
-                    Export Packet (.txt)
-                </button>
-                <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">
-                    Save / Export Packet (.json)
-                </button>
             </div>
 
             <!-- Live Rendered Packet Preview -->
@@ -334,7 +366,6 @@
                             <strong>Strictly Session-Only Privacy:</strong> Client intake note fields are never cached in the browser and wipe completely on refresh.
                         </p>
                     </div>
-                    <button type="reset" form="intakeNoteForm" class="btn px-4 py-1.5 text-xs font-semibold rounded-md">Clear Intake Note</button>
                 </div>
 
                 <form id="intakeNoteForm" class="space-y-4">
@@ -422,9 +453,6 @@
 
                     <div class="flex flex-wrap justify-center gap-3 pt-4 border-t">
                         <button type="submit" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate 90791 Intake Note</button>
-                        <button type="button" id="copyIntakeNoteBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Copy Intake Note</button>
-                        <button type="button" id="printIntakeNoteBtn" class="btn px-6 py-3 font-semibold rounded-md">Print Intake Note</button>
-                        <button type="button" id="exportIntakeNoteTxtBtn" class="btn px-6 py-3 font-semibold rounded-md">Export Note (.txt)</button>
                     </div>
                 </form>
 
@@ -436,7 +464,7 @@
         </div>
 
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="intakepacketgenerator" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="intakepacketgenerator" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -450,6 +478,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -479,5 +508,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

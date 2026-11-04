@@ -69,28 +69,66 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#profile-heading">License setup</a></li>
+                        <li><a href="#dashboard-heading">Progress</a></li>
+                        <li><a href="#course-form-heading">Log a course</a></li>
+                        <li><a href="#course-log-heading">Course log</a></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printAuditPacketBtn" class="btn btn-sm sidebar-btn">Print audit packet</button>
+                    <button type="button" id="exportCsvButton" class="btn btn-sm sidebar-btn">Export .csv</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="clearAllButton" class="btn btn-sm sidebar-btn btn-danger">Wipe session</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">CEU Tracker</h1>
         <p class="muted text-center text-sm mb-6">
-            Log your continuing education and see what’s left before renewal, including the longer health equity and suicide prevention cycles. Nothing is sent to a server. The page clears on refresh unless you export a <code>.json</code> file or turn on browser saving below.
+            Log your continuing education and see what’s left before renewal, including the longer health equity and suicide prevention cycles. Nothing is sent to a server. The page clears on refresh unless you export a <code>.json</code> file or turn on browser saving in the tool menu.
         </p>
 
-        <!-- Top Controls: Import, Export, Reset, and Local Cache Toggle -->
-        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
-            <div class="flex flex-wrap gap-3">
-                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
-                <input type="file" id="importJsonFile" accept=".json" class="hidden">
-                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
-                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Session</button>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Pick your state and license, then enter your renewal date and the dates of your last health equity and suicide trainings.</li>
+                    <li>Log each course with its hours, and check every requirement it counts toward. Hours only count once toward your total.</li>
+                    <li>Watch <strong>Progress</strong> to see what’s left this cycle and in the longer cycles.</li>
+                    <li>Attach certificates (a link or an embedded file) so your audit packet is ready if you’re selected.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
             </div>
-            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
-                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
-                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
-                    Cache in Browser (Auto-save locally on this device)
-                </label>
-            </div>
-        </div>
+        </details>
 
         <!-- Section 1: Clinician Profile, State/License & Cycle Anchor Dates -->
         <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="profile-heading">
@@ -230,7 +268,7 @@
         <section class="mb-6" aria-labelledby="course-log-heading">
             <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
                 <h2 id="course-log-heading" class="text-xl font-bold">4. Completed CEU Log</h2>
-                <div class="flex items-center gap-2">
+                <div class="flex flex-wrap items-center gap-2">
                     <label for="filterCycleSelect" class="text-sm font-semibold">Show:</label>
                     <select id="filterCycleSelect" class="p-2 border rounded-md text-sm">
                         <option value="all">All Logged Courses (Full History)</option>
@@ -262,13 +300,6 @@
             </div>
         </section>
 
-        <!-- Bottom Action Buttons -->
-        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
-            <button type="button" id="printAuditPacketBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Print / Save PDF Audit Packet</button>
-            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">Export Spreadsheet (.csv)</button>
-            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Backup (.json)</button>
-        </div>
-
         <!-- Regulatory Sources & Citations -->
         <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
             <h3 class="text-xl font-semibold mb-4 text-center">Rules for this license</h3>
@@ -276,7 +307,7 @@
         </div>
 
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="ceutracker" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="ceutracker" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -290,6 +321,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -319,5 +351,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

@@ -70,28 +70,67 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#setup-heading">Profile &amp; documentation</a></li>
+                        <li><a href="#targets-heading">Hour targets</a></li>
+                        <li><a href="#dashboard-heading">Progress</a></li>
+                        <li><a href="#entry-form-heading">Log hours</a></li>
+                        <li><a href="#log-table-heading">Hours log</a></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="printVerificationBtn" class="btn btn-sm sidebar-btn">Print verification report</button>
+                    <button type="button" id="exportCsvButton" class="btn btn-sm sidebar-btn">Export .csv</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="clearAllButton" class="btn btn-sm sidebar-btn btn-danger">Wipe log</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Supervision Log</h1>
         <p class="muted text-center text-sm mb-6">
             Log and total supervision hours, direct client hours (in person and telehealth), indirect hours, and any custom categories your license needs, whether you’re an intern, an associate, or a supervisor.
         </p>
 
-        <!-- Top Controls: Import, Export, Clear, Cache Toggle -->
-        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">
-            <div class="flex flex-wrap gap-3">
-                <button type="button" id="importJsonButton" class="btn px-4 py-2 font-semibold rounded-md">Import .json</button>
-                <input type="file" id="importJsonFile" accept=".json" class="hidden">
-                <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Save / Export .json</button>
-                <button type="button" id="clearAllButton" class="btn px-4 py-2 font-semibold rounded-md">Wipe Log</button>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Choose your role: associate, intern, or supervisor. The hour targets fill in, and you can edit them for your license.</li>
+                    <li>Fill in your profile, supervisor, and start date, and check off documentation as you complete it.</li>
+                    <li>Log hours by week or by session under <strong>Log hours</strong>.</li>
+                    <li>Watch <strong>Progress</strong>, then print the verification report for your board.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
             </div>
-            <div class="flex items-center gap-2 subpanel px-4 py-2 rounded-md">
-                <input type="checkbox" id="localCacheToggle" class="cursor-pointer">
-                <label for="localCacheToggle" class="text-sm font-semibold cursor-pointer">
-                    Cache in Browser (Auto-save locally on this device)
-                </label>
-            </div>
-        </div>
+        </details>
 
         <!-- Role Switcher Tabs -->
         <div class="subpanel p-3 rounded-md mb-6">
@@ -232,7 +271,7 @@
         <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="dashboard-heading">
             <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
                 <h2 id="dashboard-heading" class="text-xl font-bold">4. Progress Dashboard &amp; Totals Across Sites</h2>
-                <div class="flex items-center gap-2">
+                <div class="flex flex-wrap items-center gap-2">
                     <label for="filterPartnerSiteSelect" class="text-xs font-semibold">Filter View &amp; Print By Site / Person:</label>
                     <select id="filterPartnerSiteSelect" class="p-2 border rounded-md text-xs">
                         <option value="ALL">All Jobs / Sites / Supervisors Combined</option>
@@ -390,15 +429,8 @@
             </div>
         </section>
 
-        <!-- Action Buttons -->
-        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
-            <button type="button" id="printVerificationBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Print / Save Official PDF Verification Report</button>
-            <button type="button" id="exportCsvButton" class="btn px-6 py-3 font-semibold rounded-md">Export Spreadsheet (.csv)</button>
-            <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export Backup (.json)</button>
-        </div>
-
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="supervisionlog" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="supervisionlog" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -412,6 +444,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -442,5 +475,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

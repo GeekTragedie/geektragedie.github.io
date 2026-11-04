@@ -278,4 +278,141 @@
 .whitespace-nowrap { white-space: nowrap; }
 .whitespace-pre-wrap { white-space: pre-wrap; }
 .list-disc { list-style-type: disc; }
+.list-decimal { list-style-type: decimal; }
 .cursor-pointer { cursor: pointer; }
+
+/* --- Tool sidebar ---
+   Every tool page puts its file, print, and reset actions in a sticky
+   sidebar beside the form:
+   <main class="container tool-container has-sidebar">
+     <div class="tool-layout">
+       <aside class="tool-sidebar"><details class="tool-menu" open>…</details></aside>
+       <div class="panel tool-panel">…</div>
+     </div>
+   </main>
+   On narrow screens it stacks above the form as a click-to-open "Tool menu"
+   (toolkit.js opens it on wide screens and closes it on narrow ones). */
+.tool-container.has-sidebar {
+    max-width: 1180px;
+}
+.tool-layout {
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+.tool-sidebar {
+    position: sticky;
+    top: 78px;
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+}
+.tool-menu > summary {
+    display: none;
+    list-style: none;
+}
+.tool-menu > summary::-webkit-details-marker {
+    display: none;
+}
+.tool-menu-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 16px 14px;
+}
+.sidebar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.sidebar-label {
+    color: var(--accent);
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.sidebar-btn {
+    width: 100%;
+    text-align: left;
+}
+.sidebar-toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.sidebar-toc a,
+.sidebar-toc button {
+    display: block;
+    width: 100%;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    background: none;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.9em;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+.sidebar-toc a:hover,
+.sidebar-toc button:hover {
+    color: var(--text-heading);
+    background-color: var(--bg-panel-hover);
+}
+.sidebar-check {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    line-height: 1.4;
+    cursor: pointer;
+}
+.sidebar-check input {
+    margin-top: 2px;
+    accent-color: var(--accent);
+}
+@media (max-width: 900px) {
+    .tool-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .tool-sidebar {
+        position: static;
+        max-height: none;
+    }
+    .tool-menu > summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 14px;
+        font-weight: 600;
+        color: var(--text-heading);
+        cursor: pointer;
+    }
+    .tool-menu[open] > summary .chevron {
+        transform: rotate(180deg);
+    }
+    .tool-menu-body {
+        padding-top: 0;
+    }
+}
+@media print {
+    .tool-sidebar {
+        display: none !important;
+    }
+}
+/* Keep sidebar jump targets clear of the sticky top nav */
+.tool-panel :is(h2, h3, section, details, [id]) {
+    scroll-margin-top: 84px;
+}
+/* Long dropdown options shouldn't push the page wider than a phone screen */
+.tool-panel select {
+    max-width: 100%;
+    min-width: 0;
+}

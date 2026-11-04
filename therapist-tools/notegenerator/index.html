@@ -69,15 +69,61 @@
         </li>
     </ul>
 </nav>
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButton" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="copyNoteButton" class="btn btn-sm sidebar-btn">Copy note</button>
+                    <button type="button" id="printNoteButton" class="btn btn-sm sidebar-btn">Print note</button>
+                    <button type="button" id="exportNoteButton" class="btn btn-sm sidebar-btn">Export note .txt</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="reset" form="noteForm" class="btn btn-sm sidebar-btn btn-danger">Clear form</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-6">Counseling Session Notes Generator</h1>
+
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Pick a note template: DAP, SOAP, BIRP, GIRP, PIRP, narrative, MSE, or a standard progress note.</li>
+                    <li>Fill in the session details, diagnoses, and the therapy approaches you used.</li>
+                    <li>Generate the note, read it over, and edit anything that doesn’t fit the session.</li>
+                    <li>Copy it into your EHR, or print or export it from the tool menu.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
+            </div>
+        </details>
+
         
-        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
-            <button type="button" id="importJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import .json</button>
-            <input type="file" id="importJsonFile" accept=".json" class="hidden">
-            <button type="reset" form="noteForm" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
-        </div>
         
         <form id="noteForm" class="space-y-4">
             
@@ -174,10 +220,6 @@
         
         <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
             <button type="submit" form="noteForm" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Note</button>
-            <button type="button" id="copyNoteButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Copy Note</button>
-            <button type="button" id="printNoteButton" class="btn px-6 py-3 font-semibold rounded-md">Print Note</button>
-            <button type="button" id="exportNoteButton" class="btn px-6 py-3 font-semibold rounded-md">Export Note (.txt)</button>
-            <button type="button" id="exportJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Export as .json</button>
         </div>
 
         <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
@@ -186,7 +228,7 @@
         </div>
         
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="notegenerator" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="notegenerator" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -200,6 +242,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -230,5 +273,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>

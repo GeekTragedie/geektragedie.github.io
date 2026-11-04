@@ -70,20 +70,68 @@
     </ul>
 </nav>
 
-<main class="container tool-container">
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">On this page</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#plan-setup-heading">Plan setup</a></li>
+                        <li><a href="#dx-heading">Diagnoses &amp; approaches</a></li>
+                        <li><a href="#active-goals-heading">Active goals</a></li>
+                        <li><a href="#archived-goals-heading">Achieved goals</a></li>
+                        <li><a href="#discharge-heading">Discharge criteria</a></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json" class="hidden">
+                    <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" id="copyPlanTextBtn" class="btn btn-sm sidebar-btn">Copy for EHR</button>
+                    <button type="button" id="printPlanPdfBtn" class="btn btn-sm sidebar-btn">Print / save PDF</button>
+                    <button type="button" id="exportTxtBtn" class="btn btn-sm sidebar-btn">Export .txt</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="clearAllButton" class="btn btn-sm sidebar-btn btn-danger">Clear form</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Treatment Plan Builder</h1>
         <p class="muted text-center text-sm mb-6">
             Write treatment plans with goals matched to the diagnosis, a SMART objective helper, interventions, and a record of achieved and archived goals (up to 5 active goals with 5 objectives each). Nothing is saved in your browser, so export a <code>.json</code> file before you close the page.
         </p>
 
-        <!-- Top Controls: Import .json, Export .json, Clear Form -->
-        <div class="flex flex-wrap justify-center gap-4 mb-6 border-b pb-6">
-            <button type="button" id="importJsonButton" class="btn px-6 py-3 font-semibold rounded-md">Import .json</button>
-            <input type="file" id="importJsonFile" accept=".json" class="hidden">
-            <button type="button" id="exportJsonButtonTop" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Export as .json</button>
-            <button type="button" id="clearAllButton" class="btn px-6 py-3 font-semibold rounded-md">Clear Form</button>
-        </div>
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Choose the plan type, then pick diagnoses using ICD-10 or DSM-5-TR.</li>
+                    <li>Insert suggested goals or write your own, up to 5 goals with 5 objectives each.</li>
+                    <li>Use <strong>Help Make It SMART</strong> to tighten each objective.</li>
+                    <li>As your client makes progress, move finished goals to <strong>Achieved goals</strong> and fill in the discharge criteria.</li>
+                    <li>Copy the plan into your EHR, or print or export it from the tool menu.</li>
+                </ol>
+                <p><strong>Saving your work:</strong> <strong>Session-only:</strong> nothing is saved in your browser, and refreshing the page clears every field. Use <strong>Save .json</strong> if you want to keep a copy, and store it somewhere secure. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
+                <p>Import, save, print, and clear are in the tool menu.</p>
+            </div>
+        </details>
 
         <form id="treatmentPlanForm" class="space-y-6">
 
@@ -249,10 +297,6 @@
             <!-- Action Buttons -->
             <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 pt-6 border-t">
                 <button type="submit" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Treatment Plan Preview</button>
-                <button type="button" id="copyPlanTextBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Copy for EHR (.txt)</button>
-                <button type="button" id="printPlanPdfBtn" class="btn px-6 py-3 font-semibold rounded-md">Print / Save PDF Treatment Plan</button>
-                <button type="button" id="exportTxtBtn" class="btn px-6 py-3 font-semibold rounded-md">Export Plan (.txt)</button>
-                <button type="button" id="exportJsonButtonBottom" class="btn px-6 py-3 font-semibold rounded-md">Export as .json</button>
             </div>
 
             <!-- Generated Plan Preview -->
@@ -268,7 +312,7 @@
         </div>
 
         <!-- Full reference list, filled in by ../references.js from references.json -->
-        <details class="collapsible references" data-tool="treatmentplanbuilder" data-src="../references.json">
+        <details id="references" class="collapsible references" data-tool="treatmentplanbuilder" data-src="../references.json">
             <summary>
                 <span>References (APA 7th ed.)</span>
                 <span class="ref-count"></span>
@@ -282,6 +326,7 @@
                 &uarr; Back to Top
             </button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -312,5 +357,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../toolkit.js"></script>
 </body>
 </html>
