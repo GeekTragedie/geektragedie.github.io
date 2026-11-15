@@ -5,18 +5,18 @@ $(document).ready(function() {
     const DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     const PROQOL_QUESTIONS = [
-        // Compassion Satisfaction (CS)
-        { id: 'cs1', domain: 'cs', text: 'I get satisfaction and meaning from being able to support and help my clients.' },
-        { id: 'cs2', domain: 'cs', text: 'I feel invigorated or proud after working with clients using my clinical skills and creativity.' },
-        { id: 'cs3', domain: 'cs', text: 'I feel aligned with my values and the type of clinician I am becoming.' },
+        // Meaning in my work (cs)
+        { id: 'cs1', domain: 'cs', text: 'Helping clients still feels meaningful to me.' },
+        { id: 'cs2', domain: 'cs', text: 'I end a lot of sessions feeling good about the work we did.' },
+        { id: 'cs3', domain: 'cs', text: 'My work fits the kind of clinician I want to be.' },
         // Burnout / Exhaustion (BO)
-        { id: 'bo1', domain: 'bo', text: 'I feel worn out, depleted, or overwhelmed by the size or administrative load of my caseload.' },
-        { id: 'bo2', domain: 'bo', text: 'I feel trapped, bogged down, or like I have nothing left to give at the end of my workday.' },
-        { id: 'bo3', domain: 'bo', text: 'I struggle to disconnect from work responsibilities during my off-hours or weekends.' },
+        { id: 'bo1', domain: 'bo', text: 'The size of my caseload or the paperwork feels like too much.' },
+        { id: 'bo2', domain: 'bo', text: 'By the end of the workday, I have little left for anything else.' },
+        { id: 'bo3', domain: 'bo', text: 'It’s hard to switch off from work on evenings and days off.' },
         // Secondary Traumatic Stress / Vicarious Trauma (STS)
-        { id: 'sts1', domain: 'sts', text: 'I find myself preoccupied with or carrying the emotional weight of my clients’ trauma outside of session.' },
-        { id: 'sts2', domain: 'sts', text: 'I feel jumpy, on edge, or experience intrusive imagery/thoughts related to stories clients have shared.' },
-        { id: 'sts3', domain: 'sts', text: 'I find myself avoiding certain topics, emotions, or activities because they remind me of frightening clinical material.' }
+        { id: 'sts1', domain: 'sts', text: 'Clients’ stories stay with me after sessions end.' },
+        { id: 'sts2', domain: 'sts', text: 'Images or thoughts from clients’ stories show up when I don’t want them.' },
+        { id: 'sts3', domain: 'sts', text: 'I steer away from certain topics, places, or feelings because they bring clinical material to mind.' }
     ];
 
     const TABS = [
@@ -548,12 +548,12 @@ $(document).ready(function() {
         $('#proqolResultsBox').html(`
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-center text-xs">
                 <div class="p-3 border rounded-md proqol-score" data-level="${csKey}">
-                    <div class="muted font-semibold">Compassion Satisfaction</div>
+                    <div class="muted font-semibold">Meaning in My Work</div>
                     <div class="text-lg font-bold mt-1">${csScore} / 15 — ${csLevel}</div>
                     <div class="muted mt-1">Joy &amp; fulfillment from clinical work</div>
                 </div>
                 <div class="p-3 border rounded-md">
-                    <div class="muted font-semibold">Burnout / Exhaustion Load</div>
+                    <div class="muted font-semibold">Burnout and Exhaustion</div>
                     <div class="text-lg font-bold mt-1">${boScore} / 15 — ${boLevel}</div>
                     <div class="muted mt-1">Workload, pacing &amp; system fatigue</div>
                 </div>
@@ -565,7 +565,7 @@ $(document).ready(function() {
             </div>
             <div class="proqol-recs text-xs space-y-1">
                 <div class="font-bold text-sm">What might help</div>
-                <p><strong>Compassion satisfaction:</strong> ${escapeHtml(RECS.cs[csKey])}</p>
+                <p><strong>Meaning in my work:</strong> ${escapeHtml(RECS.cs[csKey])}</p>
                 <p><strong>Burnout:</strong> ${escapeHtml(RECS.bo[boKey])}</p>
                 <p><strong>Secondary traumatic stress:</strong> ${escapeHtml(RECS.sts[stsKey])}</p>
             </div>
@@ -598,7 +598,7 @@ $(document).ready(function() {
         const leaksCount = (c.boundaryLeaks || []).length;
         $('#statCaseloadAdvice').text(leaksCount === 0 ? 'No boundary leaks checked' : `⚠️ ${leaksCount} boundary leak${leaksCount === 1 ? '' : 's'} noted`);
 
-        // Card 4: Macro & ProQOL
+        // Card 4: Macro & burnout check
         let totalMacroDone = 0;
         let totalMacroAll = 0;
         Object.values(appState.macro || {}).forEach(arr => {

@@ -144,3 +144,12 @@
 @media (max-width: 760px) {
     .as-browser-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+.license-box {
+    border-left: 3px solid var(--accent);
+    padding: 0.4rem 0.6rem;
+    background-color: var(--bg-panel-hover);
+    border-radius: 0.25rem;
+}
+.license-status { font-weight: 700; }
+.license-proprietary { color: var(--danger); }

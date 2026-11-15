@@ -58,8 +58,43 @@ $(document).ready(function() {
     const shortLabel = (v) => SHORT_LABELS[v] || (/^13 psychiatric domains/.test(v) ? '13 symptom domains' : v);
 
     // --- 1. Load Assessments from JSON & Local Cache ---
+    // Built-in assessments come from assessments-data.json. Saved files and the browser cache only
+    // store what differs (your own entries, edits, and removed built-ins), so the list isn't duplicated.
+    let builtIns = [];
+    const strip = (a) => { const { license, ...rest } = a; return JSON.stringify(rest); };
+    function applyLicenses(list) {
+        const byId = Object.fromEntries(builtIns.map(b => [b.id, b]));
+        return list.map(a => {
+            const b = byId[a.id];
+            if (!b || !b.license) return a;
+            const out = { ...a, license: b.license };
+            if (!b.license.canHost) delete out.pdfPath;
+            return out;
+        });
+    }
+    function serialize() {
+        const byId = Object.fromEntries(builtIns.map(b => [b.id, b]));
+        const ids = new Set(assessmentsList.map(a => a.id));
+        return {
+            version: 2,
+            includeBuiltIns: true,
+            removedBuiltIns: builtIns.filter(b => !ids.has(b.id)).map(b => b.id),
+            assessments: assessmentsList.filter(a => !byId[a.id] || strip(a) !== strip(byId[a.id])).map(a => { const { license, ...rest } = a; return rest; })
+        };
+    }
+    function deserialize(parsed) {
+        if (!parsed || !Array.isArray(parsed.assessments)) return null;
+        if (!parsed.includeBuiltIns) return applyLicenses(parsed.assessments);
+        const removed = new Set(parsed.removedBuiltIns || []);
+        const changed = Object.fromEntries(parsed.assessments.map(a => [a.id, a]));
+        const list = builtIns.filter(b => !removed.has(b.id)).map(b => changed[b.id] || b);
+        parsed.assessments.forEach(a => { if (!builtIns.some(b => b.id === a.id)) list.push(a); });
+        return applyLicenses(list);
+    }
+
     $.getJSON('assessments-data.json', function(data) {
-        assessmentsList = (data && Array.isArray(data.assessments)) ? data.assessments : [];
+        builtIns = (data && Array.isArray(data.assessments)) ? data.assessments : [];
+        assessmentsList = builtIns.slice();
         checkLocalCacheOnLoad();
         renderAll();
     });
@@ -107,6 +142,7 @@ $(document).ready(function() {
     // PDFs that aren't in the pdfs/ folder yet go to the "Future Feature Attraction" page.
     // Links you add yourself (https://…) are used as-is; set "pdfAvailable": true once a file is in pdfs/.
     function pdfHref(a) {
+        if (a.license && !a.license.canHost) return '';
         if (!a.pdfPath) return '';
         if (/^https?:\/\//i.test(a.pdfPath) || a.pdfAvailable) return a.pdfPath;
         return `../../coming-soon/index.html?feature=${encodeURIComponent(`${a.acronym} PDF`)}&from=${encodeURIComponent('../therapist-tools/assessmentdatabase/index.html')}`;
@@ -114,6 +150,7 @@ $(document).ready(function() {
 
     // --- 3. Render Cards & APA Citations ---
     function renderAll() {
+        assessmentsList = applyLicenses(assessmentsList);
         const filtered = getFilteredAssessments();
         renderFilters();
         $('#assessmentCountBadge').text(`${filtered.length} of ${assessmentsList.length} assessments shown`);
@@ -135,9 +172,13 @@ $(document).ready(function() {
                 const symBadges = (a.symptoms || []).map(s => `<span class="as-tag tag-sym">${escapeHtml(s)}</span>`).join(' ');
 
                 const href = pdfHref(a);
-                const pdfBtnHtml = href
+                const lic = a.license;
+                const sourceBtn = lic && lic.officialUrl ? `<a href="${escapeAttr(lic.officialUrl)}" target="_blank" rel="noopener" class="btn ${href ? '' : 'btn-primary'} px-3 py-1.5 text-xs font-semibold rounded-md inline-block">Get it from the source</a>` : '';
+                const pdfBtnHtml = `<span class="flex flex-wrap gap-2">${href
                     ? `<a href="${escapeAttr(href)}" target="_blank" rel="noopener" class="btn btn-primary px-3 py-1.5 text-xs font-semibold rounded-md inline-block">Open / Print PDF (${escapeHtml(a.acronym)})</a>`
-                    : `<span class="muted text-xs">No PDF linked yet</span>`;
+                    : (sourceBtn ? '' : '<span class="muted text-xs">No PDF linked yet</span>')}${sourceBtn}</span>`;
+                const STATUS = { 'public-domain': 'Public domain', 'free-to-reproduce': 'Free to copy and share (with conditions)', 'link-only': 'Free to use; get it from the source', proprietary: 'Paid or permission required' };
+                const licenseHtml = lic ? `<div class="license-box text-xs"><strong>Copyright:</strong> ${escapeHtml(lic.holder)} · <span class="license-status license-${escapeAttr(lic.status)}">${escapeHtml(STATUS[lic.status] || lic.status)}</span><br>${escapeHtml(lic.note)}</div>` : '';
 
                 grid.append(`
                     <div class="subpanel p-5 rounded-md border assessment-card flex flex-col justify-between ${isSelected ? 'selected-card' : ''}">
@@ -173,6 +214,8 @@ $(document).ready(function() {
 
                             <!-- Scoring & Cutoffs Box -->
                             <div class="p-2.5 border rounded-md scoring-box text-xs whitespace-pre-wrap"><strong>Clinical Scoring &amp; Cutoffs:</strong>\n${escapeHtml(a.scoringCutoffs || 'See instrument manual.')}</div>
+
+                            ${licenseHtml}
 
                             <!-- Individual APA Citation -->
                             <div class="text-xs muted pt-1">
@@ -461,10 +504,8 @@ $(document).ready(function() {
             const raw = localStorage.getItem(STORAGE_KEY);
             if (raw) {
                 try {
-                    const parsed = JSON.parse(raw);
-                    if (Array.isArray(parsed.assessments)) {
-                        assessmentsList = parsed.assessments;
-                    }
+                    const list = deserialize(JSON.parse(raw));
+                    if (list) assessmentsList = list;
                 } catch (e) {
                     console.error('Error loading cached assessment database:', e);
                 }
@@ -484,7 +525,7 @@ $(document).ready(function() {
 
     function saveToLocalCacheIfEnabled() {
         if ($('#localCacheToggle').is(':checked')) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ assessments: assessmentsList }));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(serialize()));
         }
     }
 
@@ -501,7 +542,7 @@ $(document).ready(function() {
     }
 
     $('#exportJsonButtonTop, #exportJsonButtonBottom').on('click', function() {
-        downloadFile(JSON.stringify({ assessments: assessmentsList }, null, 2), 'clinical_assessments_database.json', 'application/json;charset=utf-8');
+        downloadFile(JSON.stringify(serialize(), null, 2), 'clinical_assessments_database.json', 'application/json;charset=utf-8');
     });
 
     $('#importJsonButton').on('click', () => $('#importJsonFile').click());
@@ -512,12 +553,11 @@ $(document).ready(function() {
         const reader = new FileReader();
         reader.onload = function(evt) {
             try {
-                const parsed = JSON.parse(evt.target.result);
-                if (Array.isArray(parsed.assessments)) {
-                    assessmentsList = parsed.assessments;
-                    populateSymptomFilterOptions();
-                    renderAll();
-                }
+                const list = deserialize(JSON.parse(evt.target.result));
+                if (!list) throw new Error('No assessments');
+                assessmentsList = list;
+                populateSymptomFilterOptions();
+                renderAll();
             } catch (err) {
                 alert('Invalid JSON file. Please upload a valid Assessment Database .json file.');
             }

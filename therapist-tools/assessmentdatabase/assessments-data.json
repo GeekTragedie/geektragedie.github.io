@@ -26,7 +26,15 @@
       ],
       "scoringCutoffs": "Each item rated 0 (Not at all) to 3 (Nearly every day); Total range 0–27.\nSeverity Cutoffs: 0–4 = Minimal/None | 5–9 = Mild | 10–14 = Moderate (clinical threshold) | 15–19 = Moderately Severe | 20–27 = Severe. Always check Item 9 for suicide/self-harm risk.",
       "pdfPath": "pdfs/PHQ-9.pdf",
-      "citation": "Kroenke, K., Spitzer, R. L., &amp; Williams, J. B. (2001). The PHQ-9: Validity of a brief depression severity measure. <em>Journal of General Internal Medicine, 16</em>(9), 606–613. https://doi.org/10.1046/j.1525-1497.2001.016009606.x"
+      "citation": "Kroenke, K., Spitzer, R. L., &amp; Williams, J. B. (2001). The PHQ-9: Validity of a brief depression severity measure. <em>Journal of General Internal Medicine, 16</em>(9), 606–613. https://doi.org/10.1046/j.1525-1497.2001.016009606.x",
+      "license": {
+        "holder": "Pfizer Inc.",
+        "status": "free-to-reproduce",
+        "canHost": true,
+        "officialUrl": "https://www.phqscreeners.com/select-screener",
+        "note": "No permission is needed to copy, share, or translate it. Keep the copyright line on the form.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "gad-7",
@@ -52,7 +60,15 @@
       ],
       "scoringCutoffs": "Each item rated 0 (Not at all) to 3 (Nearly every day); Total range 0–21.\nSeverity Cutoffs: 0–4 = Minimal | 5–9 = Mild | 10–14 = Moderate (clinical cutoff >=10) | 15–21 = Severe anxiety.",
       "pdfPath": "pdfs/GAD-7.pdf",
-      "citation": "Spitzer, R. L., Kroenke, K., Williams, J. B. W., &amp; Löwe, B. (2006). A brief measure for assessing generalized anxiety disorder: The GAD-7. <em>Archives of Internal Medicine, 166</em>(10), 1092–1097. https://doi.org/10.1001/archinte.166.10.1092"
+      "citation": "Spitzer, R. L., Kroenke, K., Williams, J. B. W., &amp; Löwe, B. (2006). A brief measure for assessing generalized anxiety disorder: The GAD-7. <em>Archives of Internal Medicine, 166</em>(10), 1092–1097. https://doi.org/10.1001/archinte.166.10.1092",
+      "license": {
+        "holder": "Pfizer Inc.",
+        "status": "free-to-reproduce",
+        "canHost": true,
+        "officialUrl": "https://www.phqscreeners.com/select-screener",
+        "note": "No permission is needed to copy, share, or translate it. Keep the copyright line on the form.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "pcl-5",
@@ -78,7 +94,15 @@
       ],
       "scoringCutoffs": "20 items rated 0 (Not at all) to 4 (Extremely); Total range 0–80.\nClinical Cutoff: A total score of 31–33 or higher suggests probable PTSD. DSM-5 cluster scoring: at least 1 Cluster B item (1–5), 1 Cluster C item (6–7), 2 Cluster D items (8–14), and 2 Cluster E items (15–20) rated >=2 ('Moderately').",
       "pdfPath": "pdfs/PCL-5.pdf",
-      "citation": "Weathers, F. W., Litz, B. T., Keane, T. M., Palmieri, P. A., Marx, B. P., &amp; Schnurr, P. P. (2013). <em>The PTSD Checklist for DSM-5 (PCL-5)</em>. National Center for PTSD. https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp"
+      "citation": "Weathers, F. W., Litz, B. T., Keane, T. M., Palmieri, P. A., Marx, B. P., &amp; Schnurr, P. P. (2013). <em>The PTSD Checklist for DSM-5 (PCL-5)</em>. National Center for PTSD. https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp",
+      "license": {
+        "holder": "U.S. Department of Veterans Affairs, National Center for PTSD",
+        "status": "public-domain",
+        "canHost": true,
+        "officialUrl": "https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp",
+        "note": "Public domain. Meant for qualified health professionals; share the VA’s unchanged form.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "itq",
@@ -102,7 +126,15 @@
       ],
       "scoringCutoffs": "PTSD symptoms are Items 1–6 (with functional impairment Items 7–9), and Disturbances in Self-Organization (DSO: Affect Dysregulation, Negative Self-Concept, Relational Disturbance) are Items 10–15 (with functional impairment Items 16–18), all rated 0–4. A symptom cluster is endorsed when at least one item is >=2 ('Moderately'), and diagnosis also requires functional impairment.",
       "pdfPath": "pdfs/ITQ.pdf",
-      "citation": "Cloitre, M., Shevlin, M., Brewin, C. R., Bisson, J. I., Roberts, N. P., Maercker, A., Karatzias, T., &amp; Hyland, P. (2018). The International Trauma Questionnaire: Development of a self-report measure of ICD-11 PTSD and complex PTSD. <em>Acta Psychiatrica Scandinavica, 138</em>(6), 536–546. https://doi.org/10.1111/acps.12956"
+      "citation": "Cloitre, M., Shevlin, M., Brewin, C. R., Bisson, J. I., Roberts, N. P., Maercker, A., Karatzias, T., &amp; Hyland, P. (2018). The International Trauma Questionnaire: Development of a self-report measure of ICD-11 PTSD and complex PTSD. <em>Acta Psychiatrica Scandinavica, 138</em>(6), 536–546. https://doi.org/10.1111/acps.12956",
+      "license": {
+        "holder": "International Trauma Consortium (Cloitre, Hyland, Shevlin, and colleagues)",
+        "status": "public-domain",
+        "canHost": true,
+        "officialUrl": "https://www.traumameasuresglobal.com/ptsd",
+        "note": "The authors say it’s freely available in the public domain. Use the final 12-item version and its scoring algorithm.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "des-ii",
@@ -125,8 +157,15 @@
         "Absorption / Imaginative involvement"
       ],
       "scoringCutoffs": "28 items rated 0% to 100% (in 10% increments). Total score is the average across all 28 items (sum divided by 28; range 0–100).\nCutoffs: Mean score >=30 indicates high dissociation warranting structured clinical assessment for PTSD or a Dissociative Disorder.",
-      "pdfPath": "pdfs/DES-II.pdf",
-      "citation": "Carlson, E. B., &amp; Putnam, F. W. (1993). An update on the Dissociative Experiences Scale. <em>Dissociation: Progress in the Dissociative Disorders, 6</em>(1), 16–27."
+      "citation": "Carlson, E. B., &amp; Putnam, F. W. (1993). An update on the Dissociative Experiences Scale. <em>Dissociation: Progress in the Dissociative Disorders, 6</em>(1), 16–27.",
+      "license": {
+        "holder": "Eve Carlson and Frank Putnam",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://scholarsbank.uoregon.edu/handle/1794/1539",
+        "note": "Clinicians and researchers may copy it for their own use, but the terms don’t cover a website hosting it for others.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "ace-q",
@@ -148,7 +187,15 @@
       ],
       "scoringCutoffs": "10 Yes/No items covering experiences before age 18 (Range 0–10). Scores >=4 are associated with significantly elevated risk for chronic health and trauma-related conditions; always pair with a Protective/Resilience Questionnaire (e.g., BCEs).",
       "pdfPath": "pdfs/ACE-Questionnaire.pdf",
-      "citation": "Felitti, V. J., Anda, R. F., Nordenberg, D., Williamson, D. F., Spitz, A. M., Edwards, V., Koss, M. P., &amp; Marks, J. S. (1998). Relationship of childhood abuse and household dysfunction to many of the leading causes of death in adults: The Adverse Childhood Experiences (ACE) Study. <em>American Journal of Preventive Medicine, 14</em>(4), 245–258. https://doi.org/10.1016/S0749-3797(98)00017-8"
+      "citation": "Felitti, V. J., Anda, R. F., Nordenberg, D., Williamson, D. F., Spitz, A. M., Edwards, V., Koss, M. P., &amp; Marks, J. S. (1998). Relationship of childhood abuse and household dysfunction to many of the leading causes of death in adults: The Adverse Childhood Experiences (ACE) Study. <em>American Journal of Preventive Medicine, 14</em>(4), 245–258. https://doi.org/10.1016/S0749-3797(98)00017-8",
+      "license": {
+        "holder": "CDC and Kaiser Permanente",
+        "status": "public-domain",
+        "canHost": true,
+        "officialUrl": "https://www.cdc.gov/aces/",
+        "note": "The CDC says the ACE Study questionnaires aren’t copyrighted. Use a copy made from the CDC wording, not someone else’s formatted handout.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "asrs-v1-1",
@@ -172,8 +219,15 @@
         "Impulsivity / Interrupting"
       ],
       "scoringCutoffs": "Part A (Items 1–6) is the core screener: 4 or more marks in the shaded boxes (Sometimes/Often/Very Often for Items 1–3; Often/Very Often for Items 4–6) is highly consistent with Adult ADHD and warrants comprehensive diagnostic evaluation. Part B (Items 7–18) provides additional symptom context.",
-      "pdfPath": "pdfs/ASRS-v1.1.pdf",
-      "citation": "Kessler, R. C., Adler, L., Ames, M., Demler, O., Faraone, S., Hiripi, E., Howes, M. J., Jin, R., Secnik, K., Spencer, T., Ustun, T. B., &amp; Walters, E. E. (2005). The World Health Organization Adult ADHD Self-Report Scale (ASRS): A short screening scale for use in the general population. <em>Psychological Medicine, 35</em>(2), 245–256. https://doi.org/10.1017/S0033291704002892"
+      "citation": "Kessler, R. C., Adler, L., Ames, M., Demler, O., Faraone, S., Hiripi, E., Howes, M. J., Jin, R., Secnik, K., Spencer, T., Ustun, T. B., &amp; Walters, E. E. (2005). The World Health Organization Adult ADHD Self-Report Scale (ASRS): A short screening scale for use in the general population. <em>Psychological Medicine, 35</em>(2), 245–256. https://doi.org/10.1017/S0033291704002892",
+      "license": {
+        "holder": "World Health Organization (distributed by Harvard Medical School)",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://www.hcp.med.harvard.edu/ncs/asrs.php",
+        "note": "Free for clinicians from the official site. Its terms couldn’t be confirmed on November 14, 2026, so it’s linked, not hosted.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "aq",
@@ -194,8 +248,15 @@
         "Preference for routine"
       ],
       "scoringCutoffs": "Range 0–50. Scores of 32 or higher suggest clinically significant autistic traits; a threshold of 26 is often used in clinical referral samples.",
-      "pdfPath": "pdfs/AQ.pdf",
-      "citation": "Baron-Cohen, S., Wheelwright, S., Skinner, R., Martin, J., &amp; Clubley, E. (2001). The Autism-Spectrum Quotient (AQ): Evidence from Asperger syndrome/high-functioning autism, males and females, scientists and mathematicians. <em>Journal of Autism and Developmental Disorders, 31</em>(1), 5–17. https://doi.org/10.1023/A:1005653411471"
+      "citation": "Baron-Cohen, S., Wheelwright, S., Skinner, R., Martin, J., &amp; Clubley, E. (2001). The Autism-Spectrum Quotient (AQ): Evidence from Asperger syndrome/high-functioning autism, males and females, scientists and mathematicians. <em>Journal of Autism and Developmental Disorders, 31</em>(1), 5–17. https://doi.org/10.1023/A:1005653411471",
+      "license": {
+        "holder": "Autism Research Centre, University of Cambridge",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://www.autismresearchcentre.com/tests/autism-spectrum-quotient-aq-adult/",
+        "note": "Free for research and clinical use with credit to the ARC; no changes. The terms cover downloading it yourself, not rehosting.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "aq-10",
@@ -216,8 +277,15 @@
         "Preference for routine"
       ],
       "scoringCutoffs": "Range 0–10. A score of 6 or higher suggests referral for a comprehensive autism evaluation.",
-      "pdfPath": "pdfs/AQ-10.pdf",
-      "citation": "Allison, C., Auyeung, B., &amp; Baron-Cohen, S. (2012). Toward brief “red flags” for autism screening: The Short Autism Spectrum Quotient and the Short Quantitative Checklist in 1,000 cases and 3,000 controls. <em>Journal of the American Academy of Child &amp; Adolescent Psychiatry, 51</em>(2), 202–212.e7. https://doi.org/10.1016/j.jaac.2011.11.003"
+      "citation": "Allison, C., Auyeung, B., &amp; Baron-Cohen, S. (2012). Toward brief “red flags” for autism screening: The Short Autism Spectrum Quotient and the Short Quantitative Checklist in 1,000 cases and 3,000 controls. <em>Journal of the American Academy of Child &amp; Adolescent Psychiatry, 51</em>(2), 202–212.e7. https://doi.org/10.1016/j.jaac.2011.11.003",
+      "license": {
+        "holder": "Autism Research Centre, University of Cambridge",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://www.autismresearchcentre.com/tests/",
+        "note": "Free for research and clinical use with credit to the ARC; no changes. The terms cover downloading it yourself, not rehosting.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "cat-q",
@@ -239,8 +307,15 @@
         "Autistic burnout risk"
       ],
       "scoringCutoffs": "25 items rated 1 (Strongly Disagree) to 7 (Strongly Agree); Total range 25–175 across 3 subscales: Compensation, Masking, and Assimilation.\nNo validated clinical cutoff: Hull et al. (2019) did not set one. Higher totals reflect more social camouflaging/masking, and >=100 is sometimes used informally as a guide (especially valuable for late-identified women, AFAB, and gender-diverse adults).",
-      "pdfPath": "pdfs/CAT-Q.pdf",
-      "citation": "Hull, L., Mandy, W., Lai, M.-C., Baron-Cohen, S., Allison, C., Smith, P., &amp; Petrides, K. V. (2019). Development and validation of the Camouflaging Autistic Traits Questionnaire (CAT-Q). <em>Journal of Autism and Developmental Disorders, 49</em>(3), 819–833. https://doi.org/10.1007/s10803-018-3792-6"
+      "citation": "Hull, L., Mandy, W., Lai, M.-C., Baron-Cohen, S., Allison, C., Smith, P., &amp; Petrides, K. V. (2019). Development and validation of the Camouflaging Autistic Traits Questionnaire (CAT-Q). <em>Journal of Autism and Developmental Disorders, 49</em>(3), 819–833. https://doi.org/10.1007/s10803-018-3792-6",
+      "license": {
+        "holder": "Laura Hull, William Mandy, and colleagues",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://doi.org/10.1007/s10803-018-3792-6",
+        "note": "The items are in the open-access article’s supplement, but no reuse terms for the form itself were found.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "raads-r",
@@ -261,7 +336,15 @@
       ],
       "scoringCutoffs": "80 items across 4 domains (Social Relatedness, Circumscribed Interests, Language, Sensory-Motor); Total range 0–240. Threshold score >=65 supports autistic neurotype when interpreted alongside developmental history.",
       "pdfPath": "pdfs/RAADS-R.pdf",
-      "citation": "Ritvo, R. A., Ritvo, E. R., Guthrie, D., Ritvo, M. J., Hufnagel, D. H., McMahon, W., Tonge, B., Mataix-Cols, D., Jassi, A., Attwood, T., &amp; Eloff, J. (2011). The Ritvo Autism Asperger Diagnostic Scale-Revised (RAADS-R): A scale to assist the diagnosis of autism spectrum disorder in adults: An international validation study. <em>Journal of Autism and Developmental Disorders, 41</em>(8), 1076–1089. https://doi.org/10.1007/s10803-010-1133-5"
+      "citation": "Ritvo, R. A., Ritvo, E. R., Guthrie, D., Ritvo, M. J., Hufnagel, D. H., McMahon, W., Tonge, B., Mataix-Cols, D., Jassi, A., Attwood, T., &amp; Eloff, J. (2011). The Ritvo Autism Asperger Diagnostic Scale-Revised (RAADS-R): A scale to assist the diagnosis of autism spectrum disorder in adults: An international validation study. <em>Journal of Autism and Developmental Disorders, 41</em>(8), 1076–1089. https://doi.org/10.1007/s10803-010-1133-5",
+      "license": {
+        "holder": "Riva Ariella Ritvo and colleagues",
+        "status": "free-to-reproduce",
+        "canHost": true,
+        "officialUrl": "https://doi.org/10.1007/s10803-010-1133-5",
+        "note": "Published in full in an open-access article under a Creative Commons non-commercial license: non-commercial use only, unchanged, with credit to the authors.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "oci-r",
@@ -283,8 +366,15 @@
         "Hoarding"
       ],
       "scoringCutoffs": "18 items rated 0–4 (total 0–72). A total of 21 or higher suggests likely OCD.",
-      "pdfPath": "pdfs/OCI-R.pdf",
-      "citation": "Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., &amp; Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: Development and validation of a short version. <em>Psychological Assessment, 14</em>(4), 485–496. https://doi.org/10.1037/1040-3590.14.4.485"
+      "citation": "Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., &amp; Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: Development and validation of a short version. <em>Psychological Assessment, 14</em>(4), 485–496. https://doi.org/10.1037/1040-3590.14.4.485",
+      "license": {
+        "holder": "Edna Foa and colleagues",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://doi.org/10.1037/1040-3590.14.4.485",
+        "note": "No official reuse terms were found, so it’s linked, not hosted.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "y-bocs",
@@ -306,8 +396,15 @@
         "Hoarding"
       ],
       "scoringCutoffs": "10 severity items rated 0–4 (total 0–40): 0–7 subclinical, 8–15 mild, 16–23 moderate, 24–31 severe, 32–40 extreme. A children’s version (CY-BOCS) is available.",
-      "pdfPath": "pdfs/Y-BOCS.pdf",
-      "citation": "Goodman, W. K., Price, L. H., Rasmussen, S. A., Mazure, C., Fleischmann, R. L., Hill, C. L., Heninger, G. R., &amp; Charney, D. S. (1989). The Yale-Brown Obsessive Compulsive Scale: I. Development, use, and reliability. <em>Archives of General Psychiatry, 46</em>(11), 1006–1011. https://doi.org/10.1001/archpsyc.1989.01810110048007"
+      "citation": "Goodman, W. K., Price, L. H., Rasmussen, S. A., Mazure, C., Fleischmann, R. L., Hill, C. L., Heninger, G. R., &amp; Charney, D. S. (1989). The Yale-Brown Obsessive Compulsive Scale: I. Development, use, and reliability. <em>Archives of General Psychiatry, 46</em>(11), 1006–1011. https://doi.org/10.1001/archpsyc.1989.01810110048007",
+      "license": {
+        "holder": "Wayne Goodman and colleagues",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://eprovide.mapi-trust.org/instruments/yale-brown-obsessive-compulsive-scale",
+        "note": "Licensing appears to go through Mapi Research Trust; terms couldn’t be confirmed, so it’s linked, not hosted.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "mdq",
@@ -330,8 +427,15 @@
         "Impulsivity / Spending"
       ],
       "scoringCutoffs": "Positive screen requires ALL THREE criteria: (1) 7 or more 'Yes' responses on the 13 symptom items in Question 1, (2) 'Yes' on Question 2 (several symptoms occurred during the same period), AND (3) 'Moderate' or 'Serious' problem on Question 3.",
-      "pdfPath": "pdfs/MDQ.pdf",
-      "citation": "Hirschfeld, R. M. A., Williams, J. B. W., Spitzer, R. L., Calabrese, J. R., Flynn, L., Keck, P. E., Jr., Lewis, L., McElroy, S. L., Post, R. M., Rapport, D. J., Russell, J. M., Sachs, G. S., &amp; Zajecka, J. (2000). Development and validation of a screening instrument for bipolar spectrum disorder: The Mood Disorder Questionnaire. <em>American Journal of Psychiatry, 157</em>(11), 1873–1875. https://doi.org/10.1176/appi.ajp.157.11.1873"
+      "citation": "Hirschfeld, R. M. A., Williams, J. B. W., Spitzer, R. L., Calabrese, J. R., Flynn, L., Keck, P. E., Jr., Lewis, L., McElroy, S. L., Post, R. M., Rapport, D. J., Russell, J. M., Sachs, G. S., &amp; Zajecka, J. (2000). Development and validation of a screening instrument for bipolar spectrum disorder: The Mood Disorder Questionnaire. <em>American Journal of Psychiatry, 157</em>(11), 1873–1875. https://doi.org/10.1176/appi.ajp.157.11.1873",
+      "license": {
+        "holder": "Robert Hirschfeld and colleagues",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://doi.org/10.1176/appi.ajp.157.11.1873",
+        "note": "No official reuse terms were found, so it’s linked, not hosted.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "c-ssrs",
@@ -352,8 +456,15 @@
         "Preparatory behavior / Past attempts"
       ],
       "scoringCutoffs": "Items 1–2 = Low/Moderate risk (depending on frequency) | Item 3 (Thoughts of method without specific plan/intent) = Moderate Risk | Items 4 or 5 in the past month (Intent, or Intent with Plan) or Item 6 in the past 3 months (Suicidal Behavior) = High / Acute Risk requiring immediate safety planning.",
-      "pdfPath": "pdfs/C-SSRS.pdf",
-      "citation": "Posner, K., Brown, G. K., Stanley, B., Brent, D. A., Yershova, K. V., Oquendo, M. A., Currier, G. W., Melvin, G. A., Greenhill, L., Shen, S., &amp; Mann, J. J. (2011). The Columbia–Suicide Severity Rating Scale: Initial validity and internal consistency findings from three multisite studies with adolescents and adults. <em>American Journal of Psychiatry, 168</em>(12), 1266–1277. https://doi.org/10.1176/appi.ajp.2011.10111704"
+      "citation": "Posner, K., Brown, G. K., Stanley, B., Brent, D. A., Yershova, K. V., Oquendo, M. A., Currier, G. W., Melvin, G. A., Greenhill, L., Shen, S., &amp; Mann, J. J. (2011). The Columbia–Suicide Severity Rating Scale: Initial validity and internal consistency findings from three multisite studies with adolescents and adults. <em>American Journal of Psychiatry, 168</em>(12), 1266–1277. https://doi.org/10.1176/appi.ajp.2011.10111704",
+      "license": {
+        "holder": "The Columbia Lighthouse Project (Columbia University)",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://cssrs.columbia.edu/the-columbia-scale-c-ssrs/cssrs-for-communities-and-healthcare/",
+        "note": "Free to use in community and healthcare settings without special permission; get it from the Columbia Lighthouse Project. Free training is offered.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "audit",
@@ -374,7 +485,15 @@
       ],
       "scoringCutoffs": "Total 0–40 (WHO risk zones): 0–7 low risk, 8–15 hazardous use, 16–19 harmful use, 20–40 possible alcohol dependence.",
       "pdfPath": "pdfs/AUDIT.pdf",
-      "citation": "Saunders, J. B., Aasland, O. G., Babor, T. F., de la Fuente, J. R., &amp; Grant, M. (1993). Development of the Alcohol Use Disorders Identification Test (AUDIT): WHO Collaborative Project on Early Detection of Persons with Harmful Alcohol Consumption—II. <em>Addiction, 88</em>(6), 791–804. https://doi.org/10.1111/j.1360-0443.1993.tb02093.x"
+      "citation": "Saunders, J. B., Aasland, O. G., Babor, T. F., de la Fuente, J. R., &amp; Grant, M. (1993). Development of the Alcohol Use Disorders Identification Test (AUDIT): WHO Collaborative Project on Early Detection of Persons with Harmful Alcohol Consumption—II. <em>Addiction, 88</em>(6), 791–804. https://doi.org/10.1111/j.1360-0443.1993.tb02093.x",
+      "license": {
+        "holder": "World Health Organization",
+        "status": "free-to-reproduce",
+        "canHost": true,
+        "officialUrl": "https://www.who.int/publications/i/item/WHO-MSD-MSB-01.6a",
+        "note": "May be freely reproduced and translated, but not sold or used commercially. Keep the WHO copyright and citation.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "dast-10",
@@ -393,8 +512,15 @@
         "Harm-reduction baseline"
       ],
       "scoringCutoffs": "Total 0–10: 0 none, 1–2 low, 3–5 moderate, 6–8 substantial, 9–10 severe. Covers drug use other than alcohol and tobacco.",
-      "pdfPath": "pdfs/DAST-10.pdf",
-      "citation": "Skinner, H. A. (1982). The Drug Abuse Screening Test. <em>Addictive Behaviors, 7</em>(4), 363–371. https://doi.org/10.1016/0306-4603(82)90005-3"
+      "citation": "Skinner, H. A. (1982). The Drug Abuse Screening Test. <em>Addictive Behaviors, 7</em>(4), 363–371. https://doi.org/10.1016/0306-4603(82)90005-3",
+      "license": {
+        "holder": "Harvey A. Skinner (Centre for Addiction and Mental Health)",
+        "status": "proprietary",
+        "canHost": false,
+        "officialUrl": "https://nida.nih.gov/nidamed-medical-health-professionals/screening-tools-resources/chart-screening-tools",
+        "note": "NIDA lists it as a tool with fees; contact Dr. Skinner for permission to use it.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "ede-q",
@@ -417,8 +543,15 @@
         "Binge eating and compensatory behaviors"
       ],
       "scoringCutoffs": "Items rated 0–6 across four subscales (restraint, eating concern, shape concern, weight concern). A global score of about 2.3–2.8 or higher suggests clinically significant disordered eating in community samples.",
-      "pdfPath": "pdfs/EDE-Q.pdf",
-      "citation": "Fairburn, C. G., &amp; Beglin, S. J. (1994). Assessment of eating disorders: Interview or self-report questionnaire? <em>International Journal of Eating Disorders, 16</em>(4), 363–370. https://doi.org/10.1002/1098-108X(199412)16:4&lt;363::AID-EAT2260160405&gt;3.0.CO;2-#"
+      "citation": "Fairburn, C. G., &amp; Beglin, S. J. (1994). Assessment of eating disorders: Interview or self-report questionnaire? <em>International Journal of Eating Disorders, 16</em>(4), 363–370. https://doi.org/10.1002/1098-108X(199412)16:4&lt;363::AID-EAT2260160405&gt;3.0.CO;2-#",
+      "license": {
+        "holder": "Christopher Fairburn, CREDO, University of Oxford",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://www.credo-oxford.com/7.2.html",
+        "note": "Copyrighted. Free for non-commercial research use; get it from CREDO.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "nias",
@@ -437,8 +570,15 @@
         "Fear of aversive consequences (choking/GI)"
       ],
       "scoringCutoffs": "9 items rated 0–5 across three subscales. Proposed screening cutoffs: picky eating 10 or higher, appetite 9 or higher, fear 10 or higher.",
-      "pdfPath": "pdfs/NIAS.pdf",
-      "citation": "Zickgraf, H. F., &amp; Ellis, J. M. (2018). Initial validation of the Nine Item Avoidant/Restrictive Food Intake disorder screen (NIAS): A measure of three restrictive eating patterns. <em>Appetite, 123</em>, 32–42. https://doi.org/10.1016/j.appet.2017.11.111"
+      "citation": "Zickgraf, H. F., &amp; Ellis, J. M. (2018). Initial validation of the Nine Item Avoidant/Restrictive Food Intake disorder screen (NIAS): A measure of three restrictive eating patterns. <em>Appetite, 123</em>, 32–42. https://doi.org/10.1016/j.appet.2017.11.111",
+      "license": {
+        "holder": "Hana Zickgraf and Jordan Ellis",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://doi.org/10.1016/j.appet.2017.11.111",
+        "note": "No official reuse terms were found, so it’s linked, not hosted.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "rcads-25",
@@ -458,8 +598,15 @@
         "Generalized worry"
       ],
       "scoringCutoffs": "Items rated 0–3. Raw scores convert to grade- and gender-normed T-scores: 65 or higher is borderline clinical, and 70 or higher is the clinical threshold.",
-      "pdfPath": "pdfs/RCADS-25.pdf",
-      "citation": "Ebesutani, C., Reise, S. P., Chorpita, B. F., Ale, C., Regan, J., Young, J., Higa-McMillan, C., &amp; Weisz, J. R. (2012). The Revised Child Anxiety and Depression Scale-Short Version: Scale reduction via exploratory bifactor modeling of the broad anxiety factor. <em>Psychological Assessment, 24</em>(4), 833–845. https://doi.org/10.1037/a0027283"
+      "citation": "Ebesutani, C., Reise, S. P., Chorpita, B. F., Ale, C., Regan, J., Young, J., Higa-McMillan, C., &amp; Weisz, J. R. (2012). The Revised Child Anxiety and Depression Scale-Short Version: Scale reduction via exploratory bifactor modeling of the broad anxiety factor. <em>Psychological Assessment, 24</em>(4), 833–845. https://doi.org/10.1037/a0027283",
+      "license": {
+        "holder": "Bruce F. Chorpita and Susan H. Spence",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://rcads.ucla.edu/",
+        "note": "Free under a limited license from the authors, who don’t allow posting it on public websites. Get the current version from rcads.ucla.edu.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "vanderbilt",
@@ -481,8 +628,15 @@
         "School performance impairment"
       ],
       "scoringCutoffs": "A positive screen needs 6 or more of 9 inattentive or hyperactive items scored 2 (“often”) or 3 (“very often”), plus a performance impairment score of 4 or 5 on at least one item.",
-      "pdfPath": "pdfs/Vanderbilt.pdf",
-      "citation": "Wolraich, M. L., Lambert, W., Doffing, M. A., Bickman, L., Simmons, T., &amp; Worley, K. (2003). Psychometric properties of the Vanderbilt ADHD Diagnostic Parent Rating Scale in a referred population. <em>Journal of Pediatric Psychology, 28</em>(8), 559–568. https://doi.org/10.1093/jpepsy/jsg046"
+      "citation": "Wolraich, M. L., Lambert, W., Doffing, M. A., Bickman, L., Simmons, T., &amp; Worley, K. (2003). Psychometric properties of the Vanderbilt ADHD Diagnostic Parent Rating Scale in a referred population. <em>Journal of Pediatric Psychology, 28</em>(8), 559–568. https://doi.org/10.1093/jpepsy/jsg046",
+      "license": {
+        "holder": "American Academy of Pediatrics and NICHQ",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://www.nichq.org/resource/nichq-vanderbilt-assessment-scales",
+        "note": "The first edition is a free download from NICHQ; the third edition is sold by the AAP. No permission to rehost is given.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "whodas-2",
@@ -504,8 +658,15 @@
         "Community participation"
       ],
       "scoringCutoffs": "Items rated 1 (none) to 5 (extreme or cannot do) for the past 30 days. Documents functional disability across six domains, which supports medical necessity.",
-      "pdfPath": "pdfs/WHODAS-2.pdf",
-      "citation": "Üstün, T. B., Chatterji, S., Kostanjsek, N., Rehm, J., Kennedy, C., Epping-Jordan, J., Saxena, S., von Korff, M., &amp; Pull, C. (2010). Developing the World Health Organization Disability Assessment Schedule 2.0. <em>Bulletin of the World Health Organization, 88</em>(11), 815–823. https://doi.org/10.2471/BLT.09.067231"
+      "citation": "Üstün, T. B., Chatterji, S., Kostanjsek, N., Rehm, J., Kennedy, C., Epping-Jordan, J., Saxena, S., von Korff, M., &amp; Pull, C. (2010). Developing the World Health Organization Disability Assessment Schedule 2.0. <em>Bulletin of the World Health Organization, 88</em>(11), 815–823. https://doi.org/10.2471/BLT.09.067231",
+      "license": {
+        "holder": "World Health Organization",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health/who-disability-assessment-schedule",
+        "note": "Clinicians may copy it for their own patients; other uses, including websites, need WHO’s written permission.",
+        "checked": "2026-11-14"
+      }
     },
     {
       "id": "dsm5-level1",
@@ -522,8 +683,15 @@
         "13 psychiatric domains (depression, anger, mania, anxiety, somatic, suicidal ideation, psychosis, sleep, memory, repetitive thoughts, dissociation, personality functioning, substance use)"
       ],
       "scoringCutoffs": "Items rated 0–4 for the past two weeks. A rating of 2 (“mild”) or higher on most items, or 1 (“slight”) or higher on suicidal ideation, psychosis, and substance use items, prompts a Level 2 assessment of that domain.",
-      "pdfPath": "pdfs/DSM5-Level1.pdf",
-      "citation": "Narrow, W. E., Clarke, D. E., Kuramoto, S. J., Kraemer, H. C., Kupfer, D. J., Greiner, L., &amp; Regier, D. A. (2013). DSM-5 field trials in the United States and Canada, Part III: Development and reliability testing of a cross-cutting symptom assessment for DSM-5. <em>American Journal of Psychiatry, 170</em>(1), 71–82. https://doi.org/10.1176/appi.ajp.2012.12071000"
+      "citation": "Narrow, W. E., Clarke, D. E., Kuramoto, S. J., Kraemer, H. C., Kupfer, D. J., Greiner, L., &amp; Regier, D. A. (2013). DSM-5 field trials in the United States and Canada, Part III: Development and reliability testing of a cross-cutting symptom assessment for DSM-5. <em>American Journal of Psychiatry, 170</em>(1), 71–82. https://doi.org/10.1176/appi.ajp.2012.12071000",
+      "license": {
+        "holder": "American Psychiatric Association",
+        "status": "link-only",
+        "canHost": false,
+        "officialUrl": "https://www.psychiatry.org/psychiatrists/practice/dsm/educational-resources/assessment-measures",
+        "note": "Clinicians may copy it for their own patients, unchanged; other uses need APA permission.",
+        "checked": "2026-11-14"
+      }
     }
   ]
 }

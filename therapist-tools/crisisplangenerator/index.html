@@ -16,8 +16,6 @@
 <nav class="top-nav" aria-label="Main Navigation">
     <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
     <ul class="nav-links">
-        <li><a href="../../index.html">Home</a></li>
-        <li><a href="../../resources/index.html">Resources</a></li>
         <li class="dropdown">
             <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
             <div class="dropdown-content">
@@ -42,6 +40,8 @@
                 <a href="../../adulting/my-budget/index.html">My Budget</a>
                 <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
                 <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../adulting/healthcare/index.html">Healthcare</a>
+                <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
             </div>
         </li>
         <li class="dropdown">
@@ -136,7 +136,7 @@
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Safety / Crisis Plan Builder</h1>
         <p class="muted text-center text-sm mb-6">
-            Build a safety plan together with a client, using templates like the Stanley-Brown Safety Plan and WRAP. Nothing is saved on this site or in your browser, and refreshing clears every field. Use <strong>Export as .json</strong> to keep a copy.
+            Build a safety plan together with a client, using research-based templates like a suicide safety plan and a wellness and recovery plan. Nothing is saved on this site or in your browser, and refreshing clears every field. Use <strong>Export as .json</strong> to keep a copy.
         </p>
 
 
@@ -201,9 +201,10 @@
             <!-- Template-Specific Fields Container -->
             <div id="template-specific-fields-container">
 
-                <!-- 1. Stanley-Brown Suicide Safety Plan -->
+                <!-- 1. Suicide Safety Plan (based on safety planning research) -->
                 <div id="stanley-brown-fields" class="plan-template-section space-y-4 subpanel p-4 rounded-md">
-                    <h2 class="text-xl font-bold">Stanley-Brown Suicide Safety Plan Steps</h2>
+                    <h2 class="text-xl font-bold">Suicide Safety Plan Steps</h2>
+                    <p class="muted text-xs">Based on published safety planning research (Stanley &amp; Brown, 2012). This isn’t the Stanley-Brown Safety Plan Form and isn’t affiliated with or endorsed by its authors. The official form is at <a href="https://suicidesafetyplan.com/forms/" target="_blank" rel="noopener">suicidesafetyplan.com</a>.</p>
                     <div>
                         <label for="sb-social-distraction" class="block text-base font-semibold mb-1">People and places that help take my mind off things</label>
                         <textarea id="sb-social-distraction" rows="3" class="w-full p-3 border rounded-md" placeholder="e.g., Coffee shop on Main St., walking at the park, gaming online with friends..."></textarea>
@@ -222,9 +223,10 @@
                     </div>
                 </div>
 
-                <!-- 2. WRAP-Inspired Wellness & Crisis Plan -->
+                <!-- 2. Wellness & Crisis Recovery Plan -->
                 <div id="wrap-fields" class="hidden plan-template-section space-y-4 subpanel p-4 rounded-md">
-                    <h2 class="text-xl font-bold">WRAP-Inspired Wellness &amp; Crisis Plan</h2>
+                    <h2 class="text-xl font-bold">Wellness &amp; Crisis Recovery Plan</h2>
+                    <p class="muted text-xs">Inspired by the Wellness Recovery Action Plan (WRAP®) developed by Mary Ellen Copeland. WRAP® is a registered trademark of Wellness Recovery Action Plan, Inc.; this template isn’t affiliated with or endorsed by them. Learn about WRAP® at <a href="https://www.wellnessrecoveryactionplan.com/" target="_blank" rel="noopener">wellnessrecoveryactionplan.com</a>.</p>
                     <div>
                         <label for="wrap-baseline" class="block text-base font-semibold mb-1">What I’m like when I’m well, and my daily maintenance list</label>
                         <textarea id="wrap-baseline" rows="3" class="w-full p-3 border rounded-md" placeholder="Daily habits that keep me grounded (sleep schedule, meds, hydration, movement, boundaries)..."></textarea>
