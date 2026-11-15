@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
                     <a href="../../therapist-tools/index.html" className="dropbtn">Therapist Tools ▾</a>
                     <div className="dropdown-content">
                         <span className="dropdown-label">Day-to-Day</span>
-                        <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
+                        <a href="../../therapist-tools/notegenerator/index.html">Session Note Generator</a>
                         <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
                         <a href="../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
                         <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>

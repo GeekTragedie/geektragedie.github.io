@@ -24,7 +24,7 @@ There are **no user accounts, no analytics, no tracking scripts, and no backend 
 2. **Therapist Tools (`/therapist-tools/`)**
    - Browser-only clinical paperwork and practice operations generators with local `.json` import/export:
      - **Letter Generator (`/therapist-tools/lettergenerator/`)**: Emotional Support Animal (ESA), academic accommodation, and referral letters with an ICD/DSM diagnosis-to-accommodation suggestion builder and citations (Fair Housing Act, HUD Notice FHEO-2020-01, peer-reviewed research).
-     - **Note Generator (`/therapist-tools/notegenerator/`)**: Progress notes in DAP, SOAP, BIRP, GIRP, PIRP, or standard formats, featuring an ICD/DSM picker, **47 therapy styles**, and structured Mental Status Exam (MSE) prompts.
+     - **Session Note Generator (`/therapist-tools/notegenerator/`)**: Live-preview progress notes and 90791 intakes in standard, DAP, SOAP, BIRP, GIRP, PIRP, narrative, or MSE formats, with an ICD-10-CM/DSM-5-TR picker, **47 therapy styles** with skill lists, risk and safety, an optional MSE, CPT codes, telehealth details, and a superbill handoff.
      - **Superbill Generator (`/therapist-tools/superbillgenerator/`)**: Print-ready out-of-network reimbursement superbills with NPI/license fields, ICD-10 codes, and auto-calculated multi-line service totals.
      - **Intake Packet Generator (`/therapist-tools/intakepacketgenerator/`)**: Reusable client intake packet builder (WA disclosure statement, informed consent, policies, telehealth, HIPAA/GFE, intake questions) plus a session-only 90791 intake note; can import a Practice Info Sheet `.json`.
      - **Treatment Plan Builder (`/therapist-tools/treatmentplanbuilder/`)**: Session-only SMART treatment plans with an ICD-10 / DSM-5-TR toggle and diagnosis-matched goals, reading the shared `therapist-tools/shared/diagnoses.json` and `therapy_styles.json`.
@@ -105,7 +105,7 @@ npm run build           # writes the static site to out/
 
 Tracked publicly on [`/patch-notes/`](https://geektragedie.com/patch-notes/):
 
-- **No Autosave in Generators**: The Note Generator doesn't save on its own, so use Save JSON before closing the page.
+- **No Autosave in Generators**: The Session Note Generator doesn't save on its own, so use Save JSON before closing the page.
 - **Browser Print Variations**: Print/PDF output can look a little different from browser to browser.
 - **CDN Dependency**: The therapist tools need an internet connection because `marked`, `select2`, and jQuery load from public CDNs, and those CDN dependencies aren't pinned or SRI-hashed yet.
 - **Hand-Maintained Footers**: The footer is duplicated by hand across pages rather than templated, and the Next.js exports have to be rebuilt by hand after footer edits.

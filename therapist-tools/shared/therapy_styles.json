@@ -1,49 +1,424 @@
 [
-    {"name": "Acceptance and Commitment Therapy (ACT)"},
-    {"name": "Adlerian Therapy"},
-    {"name": "Art Therapy"},
-    {"name": "Attachment-Based Therapy"},
-    {"name": "Biofeedback"},
-    {"name": "Brainspotting"},
-    {"name": "Cognitive Behavioral Therapy (CBT)"},
-    {"name": "Cognitive Processing Therapy (CPT)"},
-    {"name": "Compassion-Focused Therapy (CFT)"},
-    {"name": "Creative Arts Therapy"},
-    {"name": "Dialectical Behavior Therapy (DBT)"},
-    {"name": "Drama Therapy"},
-    {"name": "Ecotherapy"},
-    {"name": "Emotionally Focused Therapy (EFT)"},
-    {"name": "Eye Movement Desensitization and Reprocessing (EMDR)"},
-    {"name": "Existential Therapy"},
-    {"name": "Exposure and Response Prevention (ERP)"},
-    {"name": "Family Systems Therapy"},
-    {"name": "Feminist Therapy"},
-    {"name": "Geek Therapy"},
-    {"name": "Gestalt Therapy"},
-    {"name": "Humanistic Therapy"},
-    {"name": "Integrative Therapy"},
-    {"name": "Interpersonal Therapy (IPT)"},
-    {"name": "Mindfulness-Based Cognitive Therapy (MBCT)"},
-    {"name": "Motivational Interviewing (MI)"},
-    {"name": "Multisystemic Therapy (MST)"},
-    {"name": "Narrative Therapy"},
-    {"name": "Neurofeedback"},
-    {"name": "Parent-Child Interaction Therapy (PCIT)"},
-    {"name": "Person-Centered Therapy"},
-    {"name": "Play Therapy"},
-    {"name": "Positive Psychology"},
-    {"name": "Psychoanalysis"},
-    {"name": "Psychodynamic Therapy"},
-    {"name": "Rational Emotive Behavior Therapy (REBT)"},
-    {"name": "Reality Therapy"},
-    {"name": "Relational Therapy"},
-    {"name": "Sandplay Therapy"},
-    {"name": "Schema Therapy"},
-    {"name": "Solution-Focused Brief Therapy (SFBT)"},
-    {"name": "Somatic Experiencing (SE)"},
-    {"name": "Strength-Based Therapy"},
-    {"name": "Trauma-Focused Cognitive Behavioral Therapy (TF-CBT)"},
-    {"name": "Trauma-Informed Therapy"},
-    {"name": "Transpersonal Therapy"},
-    {"name": "Wilderness Therapy"}
+  {
+    "name": "Acceptance and Commitment Therapy (ACT)",
+    "skills": [
+      "cognitive defusion",
+      "acceptance and willingness",
+      "present-moment awareness",
+      "values clarification",
+      "committed action planning",
+      "self-as-context perspective taking"
+    ]
+  },
+  {
+    "name": "Adlerian Therapy",
+    "skills": [
+      "exploring lifestyle and private logic",
+      "early recollections",
+      "encouragement",
+      "acting “as if”",
+      "building social interest"
+    ]
+  },
+  {
+    "name": "Art Therapy",
+    "skills": [
+      "expressive art-making to process emotions",
+      "visual journaling",
+      "symbol and metaphor exploration",
+      "art-based grounding"
+    ]
+  },
+  {
+    "name": "Attachment-Based Therapy",
+    "skills": [
+      "identifying attachment patterns",
+      "emotional attunement",
+      "repair after rupture",
+      "secure-base building"
+    ]
+  },
+  {
+    "name": "Biofeedback",
+    "skills": [
+      "heart rate variability breathing",
+      "muscle tension awareness",
+      "physiological self-regulation practice"
+    ]
+  },
+  {
+    "name": "Brainspotting",
+    "skills": [
+      "locating a brainspot",
+      "focused mindfulness on body activation",
+      "resourcing"
+    ]
+  },
+  {
+    "name": "Cognitive Behavioral Therapy (CBT)",
+    "skills": [
+      "identifying automatic thoughts",
+      "cognitive restructuring",
+      "thought records",
+      "behavioral activation",
+      "graded exposure",
+      "problem-solving"
+    ]
+  },
+  {
+    "name": "Cognitive Processing Therapy (CPT)",
+    "skills": [
+      "writing an impact statement",
+      "identifying stuck points",
+      "Socratic questioning",
+      "challenging beliefs worksheets",
+      "trauma themes (safety, trust, power, esteem, intimacy)"
+    ]
+  },
+  {
+    "name": "Compassion-Focused Therapy (CFT)",
+    "skills": [
+      "compassionate self-talk",
+      "soothing rhythm breathing",
+      "compassionate imagery",
+      "three-system (threat, drive, soothe) awareness"
+    ]
+  },
+  {
+    "name": "Creative Arts Therapy",
+    "skills": [
+      "expressive arts processing",
+      "creative self-expression",
+      "embodied creative grounding"
+    ]
+  },
+  {
+    "name": "Dialectical Behavior Therapy (DBT)",
+    "skills": [
+      "mindfulness (wise mind, observe, describe)",
+      "distress tolerance (TIPP, STOP, radical acceptance)",
+      "emotion regulation (check the facts, opposite action, PLEASE)",
+      "interpersonal effectiveness (DEAR MAN, GIVE, FAST)",
+      "chain analysis"
+    ]
+  },
+  {
+    "name": "Drama Therapy",
+    "skills": [
+      "role play",
+      "role reversal",
+      "embodiment and enactment",
+      "rehearsing new responses"
+    ]
+  },
+  {
+    "name": "Ecotherapy",
+    "skills": [
+      "nature-based grounding",
+      "mindful outdoor walking",
+      "sensory connection with nature"
+    ]
+  },
+  {
+    "name": "Emotionally Focused Therapy (EFT)",
+    "skills": [
+      "identifying the negative interaction cycle",
+      "accessing primary emotions",
+      "softening and reaching for connection",
+      "restructuring attachment bonds"
+    ]
+  },
+  {
+    "name": "Eye Movement Desensitization and Reprocessing (EMDR)",
+    "skills": [
+      "resource installation (calm or safe place)",
+      "target identification",
+      "bilateral stimulation processing",
+      "container exercise",
+      "body scan"
+    ]
+  },
+  {
+    "name": "Existential Therapy",
+    "skills": [
+      "exploring meaning and purpose",
+      "responsibility and choice",
+      "facing uncertainty and mortality",
+      "authentic living"
+    ]
+  },
+  {
+    "name": "Exposure and Response Prevention (ERP)",
+    "skills": [
+      "building an exposure hierarchy",
+      "in-session exposure",
+      "response prevention",
+      "tolerating uncertainty",
+      "between-session exposure practice"
+    ]
+  },
+  {
+    "name": "Family Systems Therapy",
+    "skills": [
+      "genogram mapping",
+      "identifying family roles and patterns",
+      "differentiation of self",
+      "communication practice"
+    ]
+  },
+  {
+    "name": "Feminist Therapy",
+    "skills": [
+      "power analysis",
+      "gender-role analysis",
+      "empowerment and self-advocacy",
+      "reframing within social context"
+    ]
+  },
+  {
+    "name": "Geek Therapy",
+    "skills": [
+      "exploring identity through games and media",
+      "character and story metaphors",
+      "social skills practice through shared interests",
+      "tabletop role-play rehearsal"
+    ]
+  },
+  {
+    "name": "Gestalt Therapy",
+    "skills": [
+      "empty chair work",
+      "present-moment awareness",
+      "exploring polarities",
+      "body awareness"
+    ]
+  },
+  {
+    "name": "Humanistic Therapy",
+    "skills": [
+      "reflective listening",
+      "self-exploration",
+      "congruence and self-acceptance"
+    ]
+  },
+  {
+    "name": "Integrative Therapy",
+    "skills": [
+      "tailored skills from multiple approaches",
+      "integrating cognitive, emotional, and somatic work"
+    ]
+  },
+  {
+    "name": "Interpersonal Therapy (IPT)",
+    "skills": [
+      "interpersonal inventory",
+      "role transition work",
+      "grief processing",
+      "communication analysis",
+      "role-playing difficult conversations"
+    ]
+  },
+  {
+    "name": "Mindfulness-Based Cognitive Therapy (MBCT)",
+    "skills": [
+      "body scan",
+      "three-minute breathing space",
+      "decentering from thoughts",
+      "relapse prevention planning"
+    ]
+  },
+  {
+    "name": "Motivational Interviewing (MI)",
+    "skills": [
+      "exploring ambivalence",
+      "eliciting change talk",
+      "decisional balance",
+      "values exploration",
+      "change planning"
+    ]
+  },
+  {
+    "name": "Multisystemic Therapy (MST)",
+    "skills": [
+      "caregiver skill building",
+      "school and community coordination",
+      "monitoring and supervision planning"
+    ]
+  },
+  {
+    "name": "Narrative Therapy",
+    "skills": [
+      "externalizing the problem",
+      "identifying unique outcomes",
+      "re-authoring the story",
+      "mapping the problem’s influence"
+    ]
+  },
+  {
+    "name": "Neurofeedback",
+    "skills": [
+      "neurofeedback training session",
+      "self-regulation practice"
+    ]
+  },
+  {
+    "name": "Parent-Child Interaction Therapy (PCIT)",
+    "skills": [
+      "PRIDE skills (praise, reflect, imitate, describe, enjoy)",
+      "effective commands",
+      "consistent follow-through",
+      "coached caregiver practice"
+    ]
+  },
+  {
+    "name": "Person-Centered Therapy",
+    "skills": [
+      "reflective listening",
+      "unconditional positive regard",
+      "client-led exploration",
+      "self-acceptance"
+    ]
+  },
+  {
+    "name": "Play Therapy",
+    "skills": [
+      "child-centered play",
+      "symbolic play processing",
+      "emotion identification through play",
+      "limit setting"
+    ]
+  },
+  {
+    "name": "Positive Psychology",
+    "skills": [
+      "identifying character strengths",
+      "gratitude practice",
+      "savoring",
+      "best-possible-self exercise"
+    ]
+  },
+  {
+    "name": "Psychoanalysis",
+    "skills": [
+      "free association",
+      "exploring transference",
+      "interpreting defenses"
+    ]
+  },
+  {
+    "name": "Psychodynamic Therapy",
+    "skills": [
+      "exploring relational patterns",
+      "insight into past experiences",
+      "examining defenses",
+      "working through"
+    ]
+  },
+  {
+    "name": "Rational Emotive Behavior Therapy (REBT)",
+    "skills": [
+      "ABC model",
+      "disputing irrational beliefs",
+      "unconditional self-acceptance",
+      "shame-attacking exercises"
+    ]
+  },
+  {
+    "name": "Reality Therapy",
+    "skills": [
+      "WDEP (wants, doing, evaluation, planning)",
+      "choice theory",
+      "action planning"
+    ]
+  },
+  {
+    "name": "Relational Therapy",
+    "skills": [
+      "exploring relational patterns in the therapy relationship",
+      "rupture and repair",
+      "mutuality and connection"
+    ]
+  },
+  {
+    "name": "Sandplay Therapy",
+    "skills": [
+      "sand tray world-building",
+      "symbolic processing"
+    ]
+  },
+  {
+    "name": "Schema Therapy",
+    "skills": [
+      "identifying early maladaptive schemas",
+      "mode work",
+      "imagery rescripting",
+      "limited reparenting",
+      "chair work"
+    ]
+  },
+  {
+    "name": "Solution-Focused Brief Therapy (SFBT)",
+    "skills": [
+      "the miracle question",
+      "scaling questions",
+      "identifying exceptions",
+      "goal setting",
+      "coping questions"
+    ]
+  },
+  {
+    "name": "Somatic Experiencing (SE)",
+    "skills": [
+      "tracking body sensations",
+      "titration",
+      "pendulation",
+      "resourcing and grounding"
+    ]
+  },
+  {
+    "name": "Strength-Based Therapy",
+    "skills": [
+      "identifying strengths",
+      "building on past successes",
+      "resilience mapping"
+    ]
+  },
+  {
+    "name": "Trauma-Focused Cognitive Behavioral Therapy (TF-CBT)",
+    "skills": [
+      "psychoeducation",
+      "relaxation skills",
+      "affect identification and modulation",
+      "cognitive coping",
+      "trauma narrative",
+      "in vivo mastery",
+      "conjoint caregiver sessions",
+      "enhancing safety"
+    ]
+  },
+  {
+    "name": "Trauma-Informed Therapy",
+    "skills": [
+      "grounding (5-4-3-2-1)",
+      "window of tolerance psychoeducation",
+      "safety and stabilization planning",
+      "choice and collaboration in pacing"
+    ]
+  },
+  {
+    "name": "Transpersonal Therapy",
+    "skills": [
+      "meditation",
+      "exploring spiritual meaning",
+      "guided imagery"
+    ]
+  },
+  {
+    "name": "Wilderness Therapy",
+    "skills": [
+      "experiential outdoor challenges",
+      "group processing",
+      "nature-based reflection"
+    ]
+  }
 ]

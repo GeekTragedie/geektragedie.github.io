@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Counseling Session Notes Generator</title>
+    <title>Therapist Tools: Session Note Generator</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -48,7 +48,7 @@
             <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
             <div class="dropdown-content">
                 <span class="dropdown-label">Day-to-Day</span>
-                <a href="../../therapist-tools/notegenerator/index.html" aria-current="page">Note Generator</a>
+                <a href="../../therapist-tools/notegenerator/index.html" aria-current="page">Session Note Generator</a>
                 <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
                 <a href="../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
@@ -81,11 +81,12 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Pick a note template: DAP, SOAP, BIRP, GIRP, PIRP, narrative, MSE, or a standard progress note.</li>
-                            <li>Fill in the session details, diagnoses, and the therapy approaches you used.</li>
-                            <li>Generate the note, read it over, and edit anything that doesn’t fit the session.</li>
-                            <li>Copy it into your EHR, or print or export it from the tool menu.</li>
+                            <li>Pick a note format: a standard progress note, a 90791 intake, DAP, SOAP, BIRP, GIRP, PIRP, narrative, or MSE.</li>
+                            <li>Fill in the session: date, time, length, who was there, location, and an optional CPT code. For telehealth, record where the client was and that they were in a private place.</li>
+                            <li>Pick diagnoses and approaches, then choose the specific skills you worked on. Add risk and safety, and an optional Mental Status Exam.</li>
+                            <li>Read the preview, then copy it into your EHR, print it, or use <strong>Create superbill</strong> to send the session to the Superbill Generator.</li>
                         </ol>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
                         <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
                         <p>Import, save, print, and clear are further down this menu.</p>
                         <h3 class="why-heading">Why this matters</h3>
@@ -113,6 +114,7 @@
                     <button type="button" id="copyNoteButton" class="btn btn-sm sidebar-btn">Copy note</button>
                     <button type="button" id="printNoteButton" class="btn btn-sm sidebar-btn">Print note</button>
                     <button type="button" id="exportNoteButton" class="btn btn-sm sidebar-btn">Export note .txt</button>
+                    <button type="button" id="exportSuperbillButton" class="btn btn-sm sidebar-btn">Create superbill (.json)</button>
                 </div>
 
                 <div class="sidebar-group" role="group" aria-label="Start over">
@@ -124,113 +126,262 @@
         </aside>
 
     <div class="panel tool-panel">
-        <h1 class="text-4xl font-bold text-center mb-6">Counseling Session Notes Generator</h1>
-
-
-        
-        
-        <form id="noteForm" class="space-y-4">
-            
-            <div class="mb-4">
-                <label for="noteTemplateSelect" class="block text-lg font-semibold mb-2">Note Template:</label>
-                <select id="noteTemplateSelect" class="w-full p-2 border rounded-md">
-                    </select>
+        <h1 class="text-4xl font-bold text-center mb-2">Session Note Generator</h1>
+        <p class="muted text-center text-sm mb-6">Fill in the session, and your note writes itself in the preview below. Use initials or a client code, not a full name. Nothing is saved or sent anywhere; use <strong>Save .json</strong> in the tool menu to keep a copy.</p>
+        <form id="noteForm" class="space-y-4" novalidate>
+            <div class="subpanel p-4 rounded-md">
+                <label for="noteTemplateSelect" class="block text-lg font-semibold mb-2">Note format</label>
+                <select id="noteTemplateSelect" class="w-full p-2 border rounded-md"></select>
             </div>
 
-            <div id="common-fields" class="space-y-4">
-                <div class="mb-4">
-                    <p class="text-lg font-semibold mb-2">Session location:</p>
-                    <div class="flex flex-wrap gap-4">
-                        <label class="inline-flex items-center"><input type="checkbox" name="location" value="in person"><span class="ml-2">In-person</span></label>
-                        <label class="inline-flex items-center"><input type="checkbox" name="location" value="via telehealth"><span class="ml-2">Via Telehealth</span></label>
+            <fieldset class="subpanel p-4 rounded-md space-y-3">
+                <legend class="text-lg font-semibold">Session</legend>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="sessionDate" class="block font-semibold mb-1">Date</label>
+                        <input type="date" id="sessionDate" class="w-full p-2 border rounded-md">
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1" id="sessionTimeLabel">Start time</span>
+                        <div class="time-picker" role="group" aria-labelledby="sessionTimeLabel">
+                            <select id="sessionHour" aria-label="Hour" class="p-2 border rounded-md"></select>
+                            <span aria-hidden="true">:</span>
+                            <select id="sessionMinute" aria-label="Minute" class="p-2 border rounded-md"></select>
+                            <select id="sessionAmPm" aria-label="AM or PM" class="p-2 border rounded-md"><option>AM</option><option>PM</option></select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="sessionLength" class="block font-semibold mb-1">Length (minutes)</label>
+                        <input type="number" id="sessionLength" min="1" max="600" step="1" class="w-full p-2 border rounded-md" placeholder="e.g., 53">
                     </div>
                 </div>
-                <div class="mb-4">
-                    <p class="text-lg font-semibold mb-2">Diagnosis Classification:</p>
-                    <div class="flex flex-wrap gap-4">
-                        <label class="inline-flex items-center"><input type="radio" name="diagnosisClassification" value="ICD"><span class="ml-2">ICD</span></label>
-                        <label class="inline-flex items-center"><input type="radio" name="diagnosisClassification" value="DSM"><span class="ml-2">DSM</span></label>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <span class="block font-semibold mb-1">Session type</span>
+                        <div class="check-list">
+                            <label><input type="radio" name="sessionType" value="individual" checked> Individual</label>
+                            <label><input type="radio" name="sessionType" value="couple"> Couple</label>
+                            <label><input type="radio" name="sessionType" value="family"> Family</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="presentInput" class="block font-semibold mb-1">Who was present</label>
+                        <input type="text" id="presentInput" class="w-full p-2 border rounded-md" placeholder="e.g., Client and partner">
+                        <div class="example-chips" data-example-target="#presentInput" data-example-mode="list">
+                            <button type="button" class="example-chip">Client</button>
+                            <button type="button" class="example-chip">Partner</button>
+                            <button type="button" class="example-chip">Parent or guardian</button>
+                            <button type="button" class="example-chip">Family members</button>
+                            <button type="button" class="example-chip">Interpreter</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="cptCode" class="block font-semibold mb-1">CPT code <span class="muted text-sm">(optional)</span></label>
+                        <select id="cptCode" class="w-full p-2 border rounded-md">
+                            <option value="">None</option>
+                            <option value="90791">90791 Psychiatric diagnostic evaluation</option>
+                            <option value="90832">90832 Psychotherapy, 30 min (16–37)</option>
+                            <option value="90834">90834 Psychotherapy, 45 min (38–52)</option>
+                            <option value="90837">90837 Psychotherapy, 60 min (53+)</option>
+                            <option value="90846">90846 Family psychotherapy without client</option>
+                            <option value="90847">90847 Family/couple psychotherapy with client</option>
+                            <option value="90853">90853 Group psychotherapy</option>
+                            <option value="90839">90839 Crisis psychotherapy, first 60 min</option>
+                        </select>
+                        <div class="check-list mt-2" id="cptAddOns">
+                            <label><input type="checkbox" value="90785"> + 90785 Interactive complexity</label>
+                            <label><input type="checkbox" value="90840"> + 90840 Crisis, each extra 30 min</label>
+                        </div>
+                        <p id="cptHint" class="field-hint muted text-sm"></p>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <label for="diagnosisSelect" class="block text-lg font-semibold mb-2">Client's diagnosis:</label>
-                    <select id="diagnosisSelect" class="w-full" multiple="multiple" disabled></select>
-                    <p id="diagnosisSelectPlaceholder" class="muted text-sm mt-1">Please select a classification first.</p>
+                <div>
+                    <span class="block font-semibold mb-1">Location</span>
+                    <div class="flex flex-wrap gap-x-4 items-center">
+                        <label><input type="radio" name="location" value="in person" checked> In person</label>
+                        <label><input type="radio" name="location" value="telehealth"> Telehealth</label>
+                        <label><input type="radio" name="location" value="other"> Other:</label>
+                        <input type="text" id="locationOther" class="p-2 border rounded-md flex-1" placeholder="e.g., at the client’s school" aria-label="Other location">
+                    </div>
+                    <div id="telehealthBlock" class="hidden mt-3 space-y-2 telehealth-box">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="clientLocation" class="block font-semibold mb-1">Client’s location during the session <span class="danger-text">*</span></label>
+                                <input type="text" id="clientLocation" class="w-full p-2 border rounded-md" placeholder="e.g., home in Washington">
+                            </div>
+                            <div>
+                                <span class="block font-semibold mb-1">Connection</span>
+                                <div class="flex flex-wrap gap-x-4">
+                                    <label><input type="radio" name="telehealthMode" value="video" checked> Video and audio</label>
+                                    <label><input type="radio" name="telehealthMode" value="audio"> Audio only</label>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="toggle-line"><input type="checkbox" id="privacyConfirmed"> Client confirmed they were in a private location for the session</label>
+                        <p class="field-hint muted text-sm">Telehealth claims usually need modifier <strong>95</strong> (video) or <strong>93</strong> (audio only) and place of service <strong>10</strong> (client’s home) or <strong>02</strong> (elsewhere). Check each payer’s rules.</p>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="theorySelect" class="block text-lg font-semibold mb-2">Clinical theory used:</label>
-                    <select id="theorySelect" class="w-full" multiple="multiple"></select>
+                <div>
+                    <label for="clinicianInitials" class="block font-semibold mb-1">Your initials</label>
+                    <input type="text" id="clinicianInitials" class="w-full p-2 border rounded-md md:w-44" placeholder="e.g., JR">
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div><label for="sessionDate" class="block text-lg font-semibold mb-2">Session Date:</label><input type="date" id="sessionDate" class="w-full p-2 rounded-md"></div>
-                    <div><label for="sessionTime" class="block text-lg font-semibold mb-2">Session Time:</label><input type="time" id="sessionTime" class="w-full p-2 rounded-md"></div>
-                    <div><label for="sessionLength" class="block text-lg font-semibold mb-2">Session Length:</label><input type="text" id="sessionLength" placeholder="e.g., 50 minutes" class="w-full p-2 rounded-md"></div>
-                    <div><label for="clinicianInitials" class="block text-lg font-semibold mb-2">Clinician's Initials:</label><input type="text" id="clinicianInitials" placeholder="e.g., ABC" class="w-full p-2 rounded-md"></div>
-                </div>
-            </div>
-            
-            <hr class="my-6">
+            </fieldset>
 
-            <div id="template-specific-fields-container">
-                <div id="generic-note-fields" class="note-template-section"><div class="mb-6"><label for="summary" class="block text-lg font-semibold mb-2">Session Summary:</label><textarea id="summary" rows="5" class="w-full p-3 rounded-md" placeholder="The client discussed..."></textarea></div></div>
+            <fieldset class="subpanel p-4 rounded-md space-y-3">
+                <legend class="text-lg font-semibold">Diagnosis and approach</legend>
+                <div class="flex flex-wrap items-center gap-x-4">
+                    <span class="font-semibold">Show diagnosis names as:</span>
+                    <label><input type="radio" name="diagnosisClassification" value="DSM" checked> DSM-5-TR</label>
+                    <label><input type="radio" name="diagnosisClassification" value="ICD"> ICD-10-CM</label>
+                    <span class="muted text-sm">Both use ICD-10-CM codes.</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start aligned-pickers">
+                    <div>
+                        <label for="diagnosisSelect" class="block font-semibold mb-1">Diagnosis</label>
+                        <select id="diagnosisSelect" class="w-full" multiple></select>
+                    </div>
+                    <div>
+                        <label for="theorySelect" class="block font-semibold mb-1">Approach used</label>
+                        <select id="theorySelect" class="w-full" multiple></select>
+                    </div>
+                </div>
+                <div id="skillsBlock" class="hidden">
+                    <label for="skillsSelect" class="block font-semibold mb-1">Skills worked on <span class="muted text-sm">(from the approaches you picked; type to add your own)</span></label>
+                    <select id="skillsSelect" class="w-full" multiple></select>
+                </div>
+            </fieldset>
+
+            <fieldset id="template-specific-fields-container" class="subpanel p-4 rounded-md space-y-4">
+                <legend class="text-lg font-semibold" id="templateLegend">Note</legend>
+                <div id="generic-note-fields" class="note-template-section"><label for="summary" class="block font-semibold mb-1">Session summary</label><textarea id="summary" rows="5" class="w-full p-3 border rounded-md" placeholder="The client discussed..."></textarea></div>
+                <div id="intake-note-fields" class="hidden note-template-section space-y-4">
+                    <div>
+                        <span class="block font-semibold mb-1">Orientation and consent completed</span>
+                        <div class="check-list" id="intakeChecklist">
+                            <label><input type="checkbox" value="reviewed the signed informed consent, disclosure statement, and HIPAA Notice of Privacy Practices"> Reviewed informed consent, disclosure statement, and HIPAA notice</label>
+                            <label><input type="checkbox" value="discussed the limits of confidentiality"> Discussed the limits of confidentiality</label>
+                            <label><input type="checkbox" value="verified the client’s location and emergency contact for telehealth"> Verified location and emergency contact (telehealth)</label>
+                            <label><input type="checkbox" value="oriented the client to session structure and collaborative pacing"> Oriented the client to therapy and pacing</label>
+                        </div>
+                    </div>
+                    <div><label for="inPresenting" class="block font-semibold mb-1">Presenting problem (in the client’s words)</label><textarea id="inPresenting" rows="3" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="inPsychHistory" class="block font-semibold mb-1">Prior therapy, psychiatric, and medication history</label><textarea id="inPsychHistory" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="inMedicalSub" class="block font-semibold mb-1">Medical, sleep, sensory, and substance use history</label><textarea id="inMedicalSub" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="inPsychosocial" class="block font-semibold mb-1">Psychosocial, family, cultural, and trauma context</label><textarea id="inPsychosocial" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="inStrengths" class="block font-semibold mb-1">Strengths, values, interests, and supports</label><textarea id="inStrengths" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
+                    <div><label for="inDiagnosisPlan" class="block font-semibold mb-1">Diagnostic impression, medical necessity, and initial plan</label><textarea id="inDiagnosisPlan" rows="3" class="w-full p-3 border rounded-md"></textarea></div>
+                </div>
                 <div id="dap-note-fields" class="hidden note-template-section space-y-4">
-                    <div><label for="dap-data" class="block text-lg font-semibold mb-2">Data:</label><textarea id="dap-data" rows="4" class="w-full p-3 border rounded-md" placeholder="Subjective and objective data..."></textarea></div>
-                    <div><label for="dap-assessment" class="block text-lg font-semibold mb-2">Assessment:</label><textarea id="dap-assessment" rows="4" class="w-full p-3 border rounded-md" placeholder="Clinician's assessment..."></textarea></div>
-                    <div><label for="dap-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="dap-plan" rows="4" class="w-full p-3 border rounded-md" placeholder="Treatment plan for next session..."></textarea></div>
+                    <div><label for="dap-data" class="block font-semibold mb-1">Data</label><textarea id="dap-data" rows="4" class="w-full p-3 border rounded-md" placeholder="What the client reported and what you observed..."></textarea></div>
+                    <div><label for="dap-assessment" class="block font-semibold mb-1">Assessment</label><textarea id="dap-assessment" rows="4" class="w-full p-3 border rounded-md" placeholder="Your clinical assessment..."></textarea></div>
+                    <div><label for="dap-plan" class="block font-semibold mb-1">Plan</label><textarea id="dap-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Next steps..."></textarea></div>
                 </div>
                 <div id="soap-note-fields" class="hidden note-template-section space-y-4">
-                    <div><label for="soap-subjective" class="block text-lg font-semibold mb-2">Subjective:</label><textarea id="soap-subjective" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's subjective report..."></textarea></div>
-                    <div><label for="soap-objective" class="block text-lg font-semibold mb-2">Objective:</label><textarea id="soap-objective" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's objective observations..."></textarea></div>
-                    <div><label for="soap-assessment" class="block text-lg font-semibold mb-2">Assessment:</label><textarea id="soap-assessment" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's assessment..."></textarea></div>
-                    <div><label for="soap-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="soap-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Treatment plan..."></textarea></div>
+                    <div><label for="soap-subjective" class="block font-semibold mb-1">Subjective</label><textarea id="soap-subjective" rows="3" class="w-full p-3 border rounded-md" placeholder="The client’s report..."></textarea></div>
+                    <div><label for="soap-objective" class="block font-semibold mb-1">Objective</label><textarea id="soap-objective" rows="3" class="w-full p-3 border rounded-md" placeholder="What you observed..."></textarea></div>
+                    <div><label for="soap-assessment" class="block font-semibold mb-1">Assessment</label><textarea id="soap-assessment" rows="3" class="w-full p-3 border rounded-md" placeholder="Your clinical assessment..."></textarea></div>
+                    <div><label for="soap-plan" class="block font-semibold mb-1">Plan</label><textarea id="soap-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Next steps..."></textarea></div>
                 </div>
                 <div id="birp-note-fields" class="hidden note-template-section space-y-4">
-                    <div><label for="birp-behavior" class="block text-lg font-semibold mb-2">Behavior:</label><textarea id="birp-behavior" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's presenting behavior..."></textarea></div>
-                    <div><label for="birp-intervention" class="block text-lg font-semibold mb-2">Intervention:</label><textarea id="birp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's interventions..."></textarea></div>
-                    <div><label for="birp-response" class="block text-lg font-semibold mb-2">Response:</label><textarea id="birp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's response to interventions..."></textarea></div>
-                    <div><label for="birp-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="birp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Plan for future sessions..."></textarea></div>
+                    <div><label for="birp-behavior" class="block font-semibold mb-1">Behavior</label><textarea id="birp-behavior" rows="3" class="w-full p-3 border rounded-md" placeholder="How the client presented..."></textarea></div>
+                    <div><label for="birp-intervention" class="block font-semibold mb-1">Intervention</label><textarea id="birp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="What you did..."></textarea></div>
+                    <div><label for="birp-response" class="block font-semibold mb-1">Response</label><textarea id="birp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="How the client responded..."></textarea></div>
+                    <div><label for="birp-plan" class="block font-semibold mb-1">Plan</label><textarea id="birp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Next steps..."></textarea></div>
                 </div>
                 <div id="girp-note-fields" class="hidden note-template-section space-y-4">
-                    <div><label for="girp-goals" class="block text-lg font-semibold mb-2">Goals:</label><textarea id="girp-goals" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's stated goals..."></textarea></div>
-                    <div><label for="girp-intervention" class="block text-lg font-semibold mb-2">Intervention:</label><textarea id="girp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="Methods used to address goals..."></textarea></div>
-                    <div><label for="girp-response" class="block text-lg font-semibold mb-2">Response:</label><textarea id="girp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's response..."></textarea></div>
-                    <div><label for="girp-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="girp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Next steps..."></textarea></div>
+                    <div><label for="girp-goals" class="block font-semibold mb-1">Goals</label><textarea id="girp-goals" rows="3" class="w-full p-3 border rounded-md" placeholder="Treatment goals addressed..."></textarea></div>
+                    <div><label for="girp-intervention" class="block font-semibold mb-1">Intervention</label><textarea id="girp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="What you did..."></textarea></div>
+                    <div><label for="girp-response" class="block font-semibold mb-1">Response</label><textarea id="girp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="How the client responded..."></textarea></div>
+                    <div><label for="girp-plan" class="block font-semibold mb-1">Plan</label><textarea id="girp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Next steps..."></textarea></div>
                 </div>
                 <div id="pirp-note-fields" class="hidden note-template-section space-y-4">
-                    <div><label for="pirp-problem" class="block text-lg font-semibold mb-2">Problem:</label><textarea id="pirp-problem" rows="3" class="w-full p-3 border rounded-md" placeholder="Presenting problem..."></textarea></div>
-                    <div><label for="pirp-intervention" class="block text-lg font-semibold mb-2">Intervention:</label><textarea id="pirp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="Clinician's intervention..."></textarea></div>
-                    <div><label for="pirp-response" class="block text-lg font-semibold mb-2">Response:</label><textarea id="pirp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="Client's response..."></textarea></div>
-                    <div><label for="pirp-plan" class="block text-lg font-semibold mb-2">Plan:</label><textarea id="pirp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Future plan..."></textarea></div>
+                    <div><label for="pirp-problem" class="block font-semibold mb-1">Problem</label><textarea id="pirp-problem" rows="3" class="w-full p-3 border rounded-md" placeholder="The presenting problem..."></textarea></div>
+                    <div><label for="pirp-intervention" class="block font-semibold mb-1">Intervention</label><textarea id="pirp-intervention" rows="3" class="w-full p-3 border rounded-md" placeholder="What you did..."></textarea></div>
+                    <div><label for="pirp-response" class="block font-semibold mb-1">Response</label><textarea id="pirp-response" rows="3" class="w-full p-3 border rounded-md" placeholder="How the client responded..."></textarea></div>
+                    <div><label for="pirp-plan" class="block font-semibold mb-1">Plan</label><textarea id="pirp-plan" rows="3" class="w-full p-3 border rounded-md" placeholder="Next steps..."></textarea></div>
                 </div>
-                <div id="narrative-note-fields" class="hidden note-template-section"><label for="narrative-summary" class="block text-lg font-semibold mb-2">Session Narrative:</label><textarea id="narrative-summary" rows="10" class="w-full p-3 border rounded-md" placeholder="Describe the session from beginning to end..."></textarea></div>
-                <div id="mse-note-fields" class="hidden note-template-section space-y-4">
-                    <div><label for="mse-appearance" class="block text-lg font-semibold mb-2">Appearance:</label><textarea id="mse-appearance" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-behavior" class="block text-lg font-semibold mb-2">Behavior/Psychomotor Activity:</label><textarea id="mse-behavior" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-attitude" class="block text-lg font-semibold mb-2">Attitude toward Examiner:</label><textarea id="mse-attitude" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-affect" class="block text-lg font-semibold mb-2">Affect and Mood:</label><textarea id="mse-affect" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-speech" class="block text-lg font-semibold mb-2">Speech and Thought:</label><textarea id="mse-speech" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-perceptual" class="block text-lg font-semibold mb-2">Perceptual Disturbances:</label><textarea id="mse-perceptual" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-orientation" class="block text-lg font-semibold mb-2">Orientation and Consciousness:</label><textarea id="mse-orientation" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-memory" class="block text-lg font-semibold mb-2">Memory and Intelligence:</label><textarea id="mse-memory" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                    <div><label for="mse-reliability" class="block text-lg font-semibold mb-2">Reliability, Judgment, and Insight:</label><textarea id="mse-reliability" rows="2" class="w-full p-3 border rounded-md"></textarea></div>
-                </div>
-            </div>
+                <div id="narrative-note-fields" class="hidden note-template-section"><label for="narrative-summary" class="block font-semibold mb-1">Session narrative</label><textarea id="narrative-summary" rows="8" class="w-full p-3 border rounded-md" placeholder="Describe the session from beginning to end..."></textarea></div>
+                <div id="mse-note-fields" class="hidden note-template-section"><p class="muted text-sm">The Mental Status Exam below is the note. Add anything else in the MSE comments.</p></div>
+            </fieldset>
 
-            <div id="generatedNoteContainer" class="subpanel hidden p-4 rounded-md mb-6">
-                <h3 class="text-xl font-semibold mb-2">Generated Note:</h3>
-                <p id="generatedNote" class="whitespace-pre-wrap"></p>
-            </div>
+            <fieldset class="subpanel p-4 rounded-md space-y-3" id="riskFields">
+                <legend class="text-lg font-semibold">Risk and safety</legend>
+                <label class="toggle-line"><input type="checkbox" id="includeRisk" checked> Include a risk and safety assessment <span class="muted text-sm">(only the answers you choose go into the note)</span></label>
+                <div id="riskBody" class="space-y-3">
+                    <div class="risk-grid">
+                        <label for="riskSI">Suicidal ideation</label>
+                        <select id="riskSI" class="p-2 border rounded-md">
+                            <option value="">Choose…</option>
+                            <option value="denied">Denied ideation, intent, and plan</option>
+                            <option value="passive">Passive ideation, no intent or plan</option>
+                            <option value="active">Active ideation</option>
+                            <option value="not">Not assessed</option>
+                        </select>
+                        <label for="riskHI">Homicidal ideation</label>
+                        <select id="riskHI" class="p-2 border rounded-md">
+                            <option value="">Choose…</option>
+                            <option value="denied">Denied</option>
+                            <option value="endorsed">Endorsed</option>
+                            <option value="not">Not assessed</option>
+                        </select>
+                        <label for="riskSH">Self-harm</label>
+                        <select id="riskSH" class="p-2 border rounded-md">
+                            <option value="">Choose…</option>
+                            <option value="denied">Denied current self-harm</option>
+                            <option value="recent">Recent self-harm</option>
+                            <option value="history">History only, none current</option>
+                            <option value="not">Not assessed</option>
+                        </select>
+                        <label for="riskMeans">Access to lethal means</label>
+                        <select id="riskMeans" class="p-2 border rounded-md">
+                            <option value="">Choose…</option>
+                            <option value="denied">Denied access</option>
+                            <option value="reported">Reported access; means counseling provided</option>
+                            <option value="not">Not assessed</option>
+                        </select>
+                        <label for="riskLevel">Overall risk</label>
+                        <select id="riskLevel" class="p-2 border rounded-md">
+                            <option value="">Choose…</option>
+                            <option value="low">Low</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="high">High</option>
+                            <option value="not">Not rated</option>
+                        </select>
+                        <label for="riskPlan">Safety plan</label>
+                        <select id="riskPlan" class="p-2 border rounded-md">
+                            <option value="">Choose…</option>
+                            <option value="na">Not needed at this time</option>
+                            <option value="reviewed">Reviewed</option>
+                            <option value="updated">Updated</option>
+                            <option value="created">Created</option>
+                        </select>
+                    </div>
+                    <p class="field-hint muted text-sm">Need a safety plan? Open the <a href="../crisisplangenerator/index.html" class="accent-text" target="_blank" rel="noopener">Safety / Crisis Plan Builder</a>.</p>
+                    <div><label for="riskDetails" class="block font-semibold mb-1">Risk details and protective factors <span class="muted text-sm">(optional)</span></label><textarea id="riskDetails" rows="2" class="w-full p-3 border rounded-md" placeholder="e.g., Protective factors: strong family support, future-oriented goals."></textarea></div>
+                </div>
+            </fieldset>
+
+            <fieldset class="subpanel p-4 rounded-md space-y-3" id="mseFields">
+                <legend class="text-lg font-semibold">Mental Status Exam</legend>
+                <div class="flex flex-wrap items-center gap-3">
+                    <label class="toggle-line" id="includeMseLabel"><input type="checkbox" id="includeMse"> Include a Mental Status Exam</label>
+                    <button type="button" id="mseWnlButton" class="btn btn-sm">Fill with “within normal limits”</button>
+                </div>
+                <div id="mseBody" class="space-y-2 hidden"></div>
+            </fieldset>
+
+            <section id="generatedNoteContainer" class="subpanel p-4 rounded-md" aria-labelledby="notePreviewHeading">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                    <h2 id="notePreviewHeading" class="text-xl font-semibold">Note preview</h2>
+                    <span class="muted text-sm">Updates as you type.</span>
+                </div>
+                <div id="generatedNote" class="note-preview" aria-live="polite"></div>
+            </section>
         </form>
-        
-        <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
-            <button type="submit" form="noteForm" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Note</button>
-        </div>
-
         <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
-            <h3 class="text-xl font-semibold mb-4 text-center">Sources for this template</h3>
-            <div id="sourcesList" class="text-sm space-y-2 text-center"></div>
+            <h3 class="text-xl font-semibold mb-4">Sources for this note format</h3>
+            <div id="sourcesList" class="text-sm"></div>
         </div>
-        
         <!-- Full reference list, filled in by ../references.js from references.json -->
         <details id="references" class="collapsible references" data-tool="notegenerator" data-src="../references.json">
             <summary>
