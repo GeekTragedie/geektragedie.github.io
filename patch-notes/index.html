@@ -55,6 +55,30 @@
         color: var(--text-muted);
         margin-left: 6px;
     }
+    .button-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 6px 0 18px;
+        font-size: 0.95em;
+    }
+    .button-table th,
+    .button-table td {
+        border: 1px solid var(--border-color);
+        padding: 7px 10px;
+        text-align: left;
+        vertical-align: top;
+    }
+    .button-table th {
+        background-color: var(--bg-subpanel);
+        color: var(--text-heading);
+    }
+    .button-table td:first-child {
+        font-weight: 600;
+        color: var(--text-heading);
+    }
+    .table-scroll {
+        overflow-x: auto;
+    }
     .notes-panel h4 {
         margin: 16px 0 6px;
         color: var(--text-heading);
@@ -165,6 +189,7 @@
         <button class="tab-btn" type="button" role="tab" id="tab-niches" aria-controls="niches">Niches</button>
         <button class="tab-btn" type="button" role="tab" id="tab-therapists" aria-controls="therapists">Therapists</button>
         <button class="tab-btn" type="button" role="tab" id="tab-tech" aria-controls="tech">Tech</button>
+        <button class="tab-btn" type="button" role="tab" id="tab-buttons" aria-controls="buttons">Where'd my button go?!</button>
     </div>
 
     <!-- General audience -->
@@ -179,6 +204,7 @@
                 <li><span class="change-type">Added</span> <strong>Autism</strong>, <strong>ADHD</strong>, and <strong>CPTSD</strong> toggles (diagnosed or self-identified) change the suggestions throughout the binder, and small tags show why each one is there. Retreats can run 2, 3, 5, or 7 days. You choose your own morning cue, sanctuary space, contact plan, nature spot, movement, food rescue plan, and main sensory focus.</li>
                 <li><span class="change-type">Added</span> <strong>Build printable binder</strong> lets you pick the pages you want and <strong>Download PDF</strong> in one click, either blank to fill in by hand or filled in with your entries. If you’d rather use your browser’s print window, there’s also an <strong>Open print view</strong> button.</li>
                 <li><span class="change-type">Changed</span> The <strong>Adulting</strong> menu at the top of every page now lists the ND Self-Retreat Builder, and the Adulting page has a card for it.</li>
+                <li><span class="change-type">Added</span> A <strong>Where’d my button go?!</strong> tab on this page. If a button moved, was renamed, or was removed on any page, it’s listed there with where it used to be and where it is now.</li>
             </ul>
         </section>
 
@@ -271,6 +297,13 @@
     <!-- Niches audience -->
     <div class="panel notes-panel" role="tabpanel" id="niches" aria-labelledby="tab-niches">
         <h2>For Niche Explorers</h2>
+
+        <section class="release">
+            <h3>November 14, 2026</h3>
+            <ul>
+                <li>No changes to the niche projects in this update. The Niches menu at the top of every page is unchanged.</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>November 2, 2026</h3>
@@ -380,6 +413,15 @@
         <h2>For Therapists</h2>
 
         <section class="release">
+            <h3>November 14, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> <strong>ND Self-Retreat Builder</strong> (in Adulting, next door to the therapist tools). A low-demand, zero-decision self-retreat planner for neurodivergent clients or clinicians, built on three daily anchors, with prep-week checklists, a daily body-weather tracker, a sensory lab, and journal prompts. <strong>Autism</strong>, <strong>ADHD</strong>, and <strong>CPTSD</strong> toggles shift the suggestions, and small tags show why each one is there. It can be a helpful handout for clients planning a rest week.</li>
+                <li><span class="change-type">Added</span> <strong>Download PDF</strong> builds the whole binder (blank or filled in) as a ready-to-print file, with no print dialog.</li>
+                <li><span class="change-type">Added</span> A new <strong>Where’d my button go?!</strong> tab on this page lists every button that has moved, been renamed, or been removed, page by page.</li>
+            </ul>
+        </section>
+
+        <section class="release">
             <h3>November 3, 2026</h3>
             <ul>
                 <li><span class="change-type">Added</span> <strong>Intake Packet Generator.</strong> Build a reusable client intake packet (first-time therapy guide, WA disclosure statement, informed consent, practice policies, telehealth consent, HIPAA notice and Good Faith Estimate, and intake questions), and write 90791 intake evaluation notes. It can pull your practice details from a Practice Info Sheet <code>.json</code> file.</li>
@@ -483,6 +525,7 @@
                 <li><span class="change-type">Added</span> Template strings use <code>**bold**</code>, <code>_italic_</code>, and <code>{token}</code> placeholders filled from Retreat Setup. Markup is applied to the template before substitution, and token values are HTML-escaped, so typed text never becomes markup.</li>
                 <li><span class="change-type">Added</span> State is saved under <code>localStorage</code> key <code>nd_self_retreat_builder_v2</code> as <code>{ version: 2, mode, activeTab, activeDay, profiles: { creator, custom } }</code>, and it's on by default. A <code>nd_self_retreat_builder_save_enabled = 'false'</code> flag turns it off and removes the stored data. On first load, the original binder’s <code>nd_self_retreat_binder_v1</code> data migrates into the creator profile: days, prep checks (the closet IDs map to <code>prep_sanct_1–4</code>), and bookmark inputs (which move into practice rows). The <code>.json</code> import accepts both v2 exports and v1 backups.</li>
                 <li><span class="change-type">Added</span> <strong>Download PDF</strong> uses <code>html2pdf.js</code> 0.10.1 from cdnjs, which bundles jsPDF and html2canvas. It's loaded lazily on first click with an SRI <code>integrity</code> hash and <code>crossorigin="anonymous"</code>. Each binder section is rendered offscreen inside its own <code>.pdf-root</code> wrapper (the print CSS is scoped to it automatically) and added to a single Letter-size jsPDF one section at a time, which keeps every canvas under browser size limits. <code>pagebreak.avoid</code> keeps rows, checkboxes, and boxes from splitting across pages. Pages are JPEG images (scale 1.6), so a 30-page binder is about 4–6 MB and its text isn't selectable. <strong>Open print view</strong> keeps the original <code>window.open</code> + <code>print()</code> path.</li>
+                <li><span class="change-type">Added</span> A fifth <code>#buttons</code> tabpanel (<code>tab-buttons</code>) on <code>patch-notes/</code> with per-page <code>.button-table</code> tables. The Nov 3 rows were generated by diffing every tool’s button markup before and after <code>5926e10</code> and matching each control by id, then label. The tab script needed no changes. Also added <code>coming-soon/index.html</code>, a reusable “Future Feature Attraction” page that reads <code>?feature=</code> and <code>?from=</code> and sets them with <code>textContent</code>.</li>
                 <li><span class="change-type">Changed</span> Added the new link to the Adulting <code>.dropdown</code> on every static page, both Next.js layouts, and the exported <code>my-budget</code> and <code>magicrpg</code> HTML, RSC payload, and page chunk. The exports were patched in place, not rebuilt.</li>
             </ul>
         </section>
@@ -581,6 +624,52 @@
             </ul>
             <h3>Coming Soon</h3>
             <p class="muted">Planned updates will be listed here. For the full history, see the <a href="https://github.com/GeekTragedie/geektragedie.github.io" class="accent-text" target="_blank" rel="noopener noreferrer">GitHub repo</a>.</p>
+        </section>
+    </div>
+    <!-- Button moves -->
+    <div class="panel notes-panel" role="tabpanel" id="buttons" aria-labelledby="tab-buttons">
+        <h2>Where’d My Button Go?!</h2>
+        <p class="muted">Every button that moved, was renamed, or was removed, page by page. Newest changes are first. Tool names are shown as they were on that date.</p>
+
+        <section class="release">
+            <h3>November 14, 2026</h3>
+            <h4><a href="../adulting/nd-self-retreat/index.html" class="accent-text">ND Self-Retreat Builder</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Download PDF</td><td>New</td><td>Tool menu → Print &amp; share → Build printable binder… (main button in the dialog)</td></tr><tr><td>Open print view</td><td>The only button in the Build printable binder dialog</td><td>Still in the dialog, as the second option next to Download PDF</td></tr></tbody></table></div>
+        </section>
+
+        <section class="release">
+            <h3>November 3, 2026</h3>
+            <p>Every therapist tool got a <strong>tool menu</strong> beside the form. On phones and narrow windows it’s the <strong>Tool menu</strong> bar at the top of the page; tap it to open. Buttons that used to sit at the top or bottom of each page moved there, and duplicate buttons were removed. The <strong>Save in this browser</strong> switch moved to <strong>Your file</strong> on every tool that has one.</p>
+            <h4><a href="../therapist-tools/notegenerator/index.html" class="accent-text">Counseling Session Notes Generator</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Export as .json”, bottom of the page</td><td>Tool menu → Your file</td></tr><tr><td>Copy note</td><td>“Copy Note”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Print note</td><td>“Print Note”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export note .txt</td><td>“Export Note (.txt)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Clear form</td><td>“Clear Form”, top of the page</td><td>Tool menu → Start over</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/lettergenerator/index.html" class="accent-text">Client Therapy Letter Generator</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Export .json”, bottom of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print letter</td><td>“Print Letter”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Clear form</td><td>“Clear Form”, top of the page</td><td>Tool menu → Start over</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/intakepacketgenerator/index.html" class="accent-text">Intake Packet Generator</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>“Import .json (Packet or Practice Info)”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save packet .json</td><td>“Save / Export Packet .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print packet / PDF</td><td>“Print / Save PDF Intake Packet”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export packet .txt</td><td>“Export Packet (.txt)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Copy note</td><td>“Copy Intake Note”, bottom of the page</td><td>Tool menu → Intake note (90791)</td></tr><tr><td>Print note</td><td>“Print Intake Note”, bottom of the page</td><td>Tool menu → Intake note (90791)</td></tr><tr><td>Export note .txt</td><td>“Export Note (.txt)”, bottom of the page</td><td>Tool menu → Intake note (90791)</td></tr><tr><td>Clear note</td><td>New</td><td>Tool menu → Intake note (90791)</td></tr><tr><td>Restore default wording</td><td>“Restore Default Clinical Boilerplate”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Save / Export Packet (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/treatmentplanbuilder/index.html" class="accent-text">Treatment Plan Builder</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Export as .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Copy for EHR</td><td>“Copy for EHR (.txt)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Print / save PDF</td><td>“Print / Save PDF Treatment Plan”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .txt</td><td>“Export Plan (.txt)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Clear form</td><td>“Clear Form”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Export as .json</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/crisisplangenerator/index.html" class="accent-text">Crisis Plan Generator</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Export as .json”, bottom of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print / save PDF</td><td>“Print / Save PDF”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Copy text</td><td>“Copy Text”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .txt</td><td>“Export Plan (.txt)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Clear form</td><td>“Clear Form”, top of the page</td><td>Tool menu → Start over</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/assessmentdatabase/index.html" class="accent-text">Assessment Database</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import library (.json)</td><td>“Import Custom Library (.json)”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save library (.json)</td><td>“Export Library (.json)”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print scoring &amp; citation sheet</td><td>“Print Clinician Scoring &amp; Citation Sheet”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Copy APA citations</td><td>“Copy APA Citations (Selected / Shown)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export index (.csv)</td><td>“Export Assessment Index (.csv)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Print Selected Scoring &amp; Reference Sheet (PDF)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr><tr><td>Export Assessment Database (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/referraldatabase/index.html" class="accent-text">Referral Database</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>“Import Master .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save list .json</td><td>“Save / Export Master .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print full directory</td><td>“Print Full Clinician Directory (Includes Private Notes)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .csv</td><td>“Export Master List (.csv)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Copy email</td><td>“Copy Email to Clipboard”, bottom of the page</td><td>Tool menu → For this client</td></tr><tr><td>Print client handout</td><td>“Print / Save PDF for This Client”, bottom of the page</td><td>Tool menu → For this client</td></tr><tr><td>Export email .txt</td><td>“Export Client Email &amp; List (.txt)”, bottom of the page</td><td>Tool menu → For this client</td></tr><tr><td>Export client .json</td><td>“Export This Client&#x27;s Referrals (.json)”, bottom of the page</td><td>Tool menu → For this client</td></tr><tr><td>Wipe database</td><td>“Wipe Database”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>↓ Jump to Client Referral Email &amp; Client Export</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr><tr><td>Export Master Database (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/caseloadataglance/index.html" class="accent-text">Caseload at a Glance</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Save / Export .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Load a sample caseload</td><td>“Load Sample Caseload”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print caseload report</td><td>“Print / Save PDF Caseload Report”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .csv</td><td>“Export Caseload (.csv)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Wipe caseload</td><td>“Wipe Caseload”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Export Backup (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/selfcaredashboard/index.html" class="accent-text">Self-Care Dashboard</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Save / Export .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print snapshot</td><td>“Print / Save PDF Snapshot”, top of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Reset check-in</td><td>“Reset Check-In”, top of the page</td><td>Tool menu → Start over</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/superbillgenerator/index.html" class="accent-text">Insurance Superbill Generator</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>“Import Data (.json)”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Export Data (.json)”, bottom of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print superbill</td><td>“Print Superbill”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Clear form</td><td>“Clear Form”, top of the page</td><td>Tool menu → Start over</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/businessdashboard/index.html" class="accent-text">Business Dashboard</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Save / Export .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print year-end tax packet</td><td>“Print / Save PDF Executive Year-End Tax Packet”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export ledger (.csv)</td><td>“Export Ledger (.csv)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Wipe dashboard</td><td>“Wipe Dashboard”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Export Full Backup (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/practiceinfosheet/index.html" class="accent-text">Practice Info Sheet</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Save / Export .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print this view</td><td>“Print / Save PDF (Current View)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Copy this view</td><td>“Copy Text (Current View)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .txt</td><td>“Export as .txt”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Clear sheet</td><td>“Clear Sheet”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Export as .json</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/ceutracker/index.html" class="accent-text">CEU Tracker</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Save / Export .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print audit packet</td><td>“Print / Save PDF Audit Packet”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .csv</td><td>“Export Spreadsheet (.csv)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Wipe session</td><td>“Wipe Session”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Export Backup (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/supervisionlog/index.html" class="accent-text">Supervision Log</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save .json</td><td>“Save / Export .json”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print verification report</td><td>“Print / Save Official PDF Verification Report”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .csv</td><td>“Export Spreadsheet (.csv)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Wipe log</td><td>“Wipe Log”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Export Backup (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
+            <h4><a href="../therapist-tools/practicestartingaid/index.html" class="accent-text">Practice Starting Aid</a></h4>
+            <div class="table-scroll"><table class="button-table"><thead><tr><th>Button</th><th>Used to be</th><th>Now</th></tr></thead><tbody><tr><td>Import .json</td><td>Top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Save progress .json</td><td>“Save / Export Progress (.json)”, top of the page</td><td>Tool menu → Your file</td></tr><tr><td>Print checklist / PDF</td><td>“Print / Save PDF Launch Plan”, top of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Export .csv</td><td>“Export Checklist (.csv)”, bottom of the page</td><td>Tool menu → Print &amp; share</td></tr><tr><td>Reset checklist</td><td>“Reset Checklist”, top of the page</td><td>Tool menu → Start over</td></tr><tr><td>Print / Save PDF Launch Checklist</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr><tr><td>Save / Export Progress (.json)</td><td>Duplicate button on the page</td><td>Removed (the tool menu has it)</td></tr></tbody></table></div>
         </section>
     </div>
 </div>
