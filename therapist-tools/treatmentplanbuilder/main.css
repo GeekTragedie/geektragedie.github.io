@@ -57,7 +57,7 @@
 
 .tp-document .tp-meta-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
     gap: 0.4rem 1rem;
     margin-bottom: 1rem;
     padding-bottom: 0.75rem;
@@ -144,3 +144,15 @@
 .int-approach { background-color: var(--badge-bg); color: var(--badge-color); }
 .int-diagnosis { background-color: rgba(74, 222, 128, 0.15); color: var(--success); }
 .int-saved { background-color: rgba(251, 191, 36, 0.18); color: var(--warning); }
+
+/* Long blanks (____) and signature lines wrap on phones instead of pushing the page sideways */
+.tp-document .tp-meta-grid > div,
+.tp-document .tp-signatures > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.tp-document .tp-signatures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+}
