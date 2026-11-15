@@ -1,0 +1,226 @@
+{
+  "enabledFields": [
+    "diagnosis",
+    "dxCategory",
+    "phase",
+    "timeInTherapy",
+    "ageGroup",
+    "gender",
+    "frequency",
+    "acuity",
+    "payType"
+  ],
+  "customFields": [],
+  "selectedChartDimension": "dxCategory",
+  "dxCountMode": "primary",
+  "sessionMinutes": 53,
+  "hiddenColumns": [],
+  "clients": [
+    {
+      "id": "s1",
+      "code": "Client #01",
+      "diagnoses": [
+        "F43.10 - Post-traumatic stress disorder, unspecified"
+      ],
+      "dxFamilies": [
+        "Trauma- & Stressor-Related Disorders"
+      ],
+      "dxCategory": "Trauma- & Stressor-Related Disorders",
+      "phase": "Active Core / Trauma Processing",
+      "timeInTherapy": "6 to 12 Months",
+      "ageGroup": "Adult (25–34)",
+      "gender": "Non-Binary / Genderqueer",
+      "frequency": "Weekly",
+      "acuity": "Moderate / Active Work",
+      "payType": "Commercial Insurance",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s2",
+      "code": "Client #02",
+      "diagnoses": [
+        "F90.2 - Attention-deficit hyperactivity disorder, combined type",
+        "F41.1 - Generalized anxiety disorder"
+      ],
+      "dxFamilies": [
+        "Neurodevelopmental Disorders",
+        "Anxiety Disorders"
+      ],
+      "dxCategory": "Neurodevelopmental Disorders",
+      "phase": "Stabilization & Resourcing",
+      "timeInTherapy": "3 to 6 Months",
+      "ageGroup": "Young Adult (18–24)",
+      "gender": "Woman (Cis or Trans)",
+      "frequency": "Weekly",
+      "acuity": "Moderate / Active Work",
+      "payType": "Commercial Insurance",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s3",
+      "code": "Client #03",
+      "diagnoses": [
+        "F84.0 - Autistic disorder"
+      ],
+      "dxFamilies": [
+        "Neurodevelopmental Disorders"
+      ],
+      "dxCategory": "Neurodevelopmental Disorders",
+      "phase": "Integration & Maintenance",
+      "timeInTherapy": "1 to 2 Years",
+      "ageGroup": "Adult (25–34)",
+      "gender": "Transgender / Gender Expansive",
+      "frequency": "Biweekly (Every 2 Weeks)",
+      "acuity": "Low / Stable Maintenance",
+      "payType": "Medicaid",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s4",
+      "code": "Client #04",
+      "diagnoses": [
+        "F43.10 - Post-traumatic stress disorder, unspecified",
+        "F33.1 - Major depressive disorder, recurrent, moderate"
+      ],
+      "dxFamilies": [
+        "Trauma- & Stressor-Related Disorders",
+        "Depressive Disorders"
+      ],
+      "dxCategory": "Trauma- & Stressor-Related Disorders",
+      "phase": "Stabilization & Resourcing",
+      "timeInTherapy": "Under 3 Months",
+      "ageGroup": "Adult (35–49)",
+      "gender": "Woman (Cis or Trans)",
+      "frequency": "2x Per Week",
+      "acuity": "High / Complex / Crisis Risk",
+      "payType": "Commercial Insurance",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s5",
+      "code": "Client #05",
+      "diagnoses": [
+        "F41.1 - Generalized anxiety disorder"
+      ],
+      "dxFamilies": [
+        "Anxiety Disorders"
+      ],
+      "dxCategory": "Anxiety Disorders",
+      "phase": "Termination / Graduation Prep",
+      "timeInTherapy": "1 to 2 Years",
+      "ageGroup": "Adult (25–34)",
+      "gender": "Man (Cis or Trans)",
+      "frequency": "Monthly / Check-In",
+      "acuity": "Low / Stable Maintenance",
+      "payType": "Private Pay (Full Fee)",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s6",
+      "code": "Client #06",
+      "diagnoses": [
+        "F90.0 - Attention-deficit hyperactivity disorder, predominantly inattentive type"
+      ],
+      "dxFamilies": [
+        "Neurodevelopmental Disorders"
+      ],
+      "dxCategory": "Neurodevelopmental Disorders",
+      "phase": "Active Core / Trauma Processing",
+      "timeInTherapy": "6 to 12 Months",
+      "ageGroup": "Adolescent (13–17)",
+      "gender": "Non-Binary / Genderqueer",
+      "frequency": "Weekly",
+      "acuity": "Moderate / Active Work",
+      "payType": "Medicaid",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s7",
+      "code": "Client #07",
+      "diagnoses": [
+        "F43.23 - Adjustment disorder with mixed anxiety and depressed mood"
+      ],
+      "dxFamilies": [
+        "Trauma- & Stressor-Related Disorders"
+      ],
+      "dxCategory": "Trauma- & Stressor-Related Disorders",
+      "phase": "Intake & Assessment",
+      "timeInTherapy": "Under 3 Months",
+      "ageGroup": "Young Adult (18–24)",
+      "gender": "Woman (Cis or Trans)",
+      "frequency": "Weekly",
+      "acuity": "Moderate / Active Work",
+      "payType": "Commercial Insurance",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s8",
+      "code": "Client #08",
+      "diagnoses": [
+        "F42.2 - Mixed obsessional thoughts and acts"
+      ],
+      "dxFamilies": [
+        "Obsessive-Compulsive & Related Disorders"
+      ],
+      "dxCategory": "Obsessive-Compulsive & Related Disorders",
+      "phase": "Active Core / Trauma Processing",
+      "timeInTherapy": "3 to 6 Months",
+      "ageGroup": "Adult (35–49)",
+      "gender": "Man (Cis or Trans)",
+      "frequency": "Weekly",
+      "acuity": "High / Complex / Crisis Risk",
+      "payType": "Commercial Insurance",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s9",
+      "code": "Client #09",
+      "diagnoses": [
+        "F50.82 - Avoidant/restrictive food intake disorder",
+        "F84.0 - Autistic disorder"
+      ],
+      "dxFamilies": [
+        "Feeding & Eating Disorders",
+        "Neurodevelopmental Disorders"
+      ],
+      "dxCategory": "Feeding & Eating Disorders",
+      "phase": "Intake & Assessment",
+      "timeInTherapy": "Under 3 Months",
+      "ageGroup": "Adult (25–34)",
+      "gender": "Woman (Cis or Trans)",
+      "frequency": "Weekly",
+      "acuity": "Moderate / Active Work",
+      "payType": "Sliding Scale",
+      "notes": "",
+      "customValues": {}
+    },
+    {
+      "id": "s10",
+      "code": "Client #10",
+      "diagnoses": [
+        "F33.0 - Major depressive disorder, recurrent, mild"
+      ],
+      "dxFamilies": [
+        "Depressive Disorders"
+      ],
+      "dxCategory": "Depressive Disorders",
+      "phase": "Integration & Maintenance",
+      "timeInTherapy": "2+ Years",
+      "ageGroup": "Older Adult (65+)",
+      "gender": "Man (Cis or Trans)",
+      "frequency": "As Needed / PRN",
+      "acuity": "Low / Stable Maintenance",
+      "payType": "Private Pay (Full Fee)",
+      "notes": "",
+      "customValues": {}
+    }
+  ]
+}

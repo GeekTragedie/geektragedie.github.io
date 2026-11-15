@@ -10,8 +10,8 @@ $(document).ready(function() {
     ];
 
     const STANDARD_FIELDS = [
-        { key: 'diagnosis', label: 'Specific Diagnosis Code(s)', defaultEnabled: true },
-        { key: 'dxCategory', label: 'Diagnostic Family / Category', defaultEnabled: true },
+        { key: 'diagnosis', label: 'Diagnoses', defaultEnabled: true },
+        { key: 'dxCategory', label: 'Diagnosis Family', defaultEnabled: true },
         { key: 'phase', label: 'Phase of Therapy', defaultEnabled: true },
         { key: 'timeInTherapy', label: 'Time in Therapy', defaultEnabled: true },
         { key: 'ageGroup', label: 'Age / Age Group', defaultEnabled: true },
@@ -22,13 +22,89 @@ $(document).ready(function() {
         { key: 'notes', label: 'Brief Notes', defaultEnabled: false }
     ];
 
-    let allDiagnosesData = { ICD: [], DSM: [] };
+    let allDiagnosesData = { ICD: [], DSM: [], byCode: {}, families: [] };
+
+    // Sessions per week for each frequency (PRN isn't predictable, so it counts as 0)
+    const FREQUENCY_PER_WEEK = {
+        'Weekly': 1,
+        '2x Per Week': 2,
+        'Biweekly (Every 2 Weeks)': 0.5,
+        'Monthly / Check-In': 0.25,
+        'As Needed / PRN': 0
+    };
+    // Older saves used these family labels; map them to DSM-5-TR chapters
+    const OLD_FAMILY_MAP = {
+        'Trauma & Stressor-Related (PTSD / Adjustment)': 'Trauma- & Stressor-Related Disorders',
+        'Anxiety & OCD Spectrum': 'Anxiety Disorders',
+        'Depressive & Mood Disorders': 'Depressive Disorders',
+        'Neurodevelopmental (ADHD / Autism)': 'Neurodevelopmental Disorders',
+        'Personality & Complex Relational': 'Personality Disorders',
+        'Disordered Eating / Feeding (ARFID / BED)': 'Feeding & Eating Disorders',
+        'Substance Use & Addictive Behaviors': 'Substance-Related & Addictive Disorders',
+        'Other / V-Code / Z-Code': 'Other Conditions That May Be a Focus of Clinical Attention'
+    };
+    const MULTI_DIMENSIONS = ['diagnosis', 'dxCategory'];
+    const columnFilters = {};
+
+    function codeOf(label) {
+        const m = String(label || '').match(/^\s*([A-TV-Z]\d{2}(?:\.[0-9A-Z]{1,4})?)\b/i);
+        return m ? m[1].toUpperCase() : '';
+    }
+    function familiesFromDiagnoses(dxs) {
+        const out = [];
+        (dxs || []).forEach(d => {
+            const entry = allDiagnosesData.byCode[codeOf(d)];
+            if (entry && entry.family && !out.includes(entry.family)) out.push(entry.family);
+        });
+        return out;
+    }
+    function stripNumber(v) {
+        return String(v || '').replace(/^\d+\.\s*/, '');
+    }
+    function normalizeClient(c) {
+        const out = { ...c, customValues: c.customValues || {} };
+        out.diagnoses = Array.isArray(out.diagnoses) ? out.diagnoses : [];
+        if (!Array.isArray(out.dxFamilies)) {
+            const fromCodes = familiesFromDiagnoses(out.diagnoses);
+            const old = out.dxCategory ? (OLD_FAMILY_MAP[out.dxCategory] || out.dxCategory) : '';
+            out.dxFamilies = fromCodes.length ? fromCodes : (old ? [old] : []);
+        }
+        out.dxCategory = out.dxFamilies[0] || '';
+        out.phase = stripNumber(out.phase);
+        return out;
+    }
+    function normalizeState() {
+        appState.clients = (appState.clients || []).map(normalizeClient);
+        if (!Array.isArray(appState.hiddenColumns)) appState.hiddenColumns = [];
+        if (!['primary', 'all'].includes(appState.dxCountMode)) appState.dxCountMode = 'primary';
+        appState.sessionMinutes = Number(appState.sessionMinutes) || 60;
+    }
+    function primaryOnly() {
+        return appState.dxCountMode !== 'all';
+    }
+    // Largest-remainder rounding: one decimal place, always adds up to exactly 100.0
+    function roundPercents(counts, total) {
+        if (!total) return counts.map(() => 0);
+        const raw = counts.map(c => (c / total) * 1000);
+        const floors = raw.map(Math.floor);
+        let left = 1000 - floors.reduce((a, b) => a + b, 0);
+        raw.map((r, i) => ({ i, rem: r - floors[i] }))
+            .sort((a, b) => b.rem - a.rem || a.i - b.i)
+            .forEach(({ i }) => { if (left > 0) { floors[i] += 1; left -= 1; } });
+        return floors.map(f => f / 10);
+    }
+    function fmtNumber(n) {
+        return Number.isInteger(n) ? String(n) : n.toFixed(2).replace(/0$/, '');
+    }
     let currentDxSystem = 'ICD';
 
     let appState = {
         enabledFields: STANDARD_FIELDS.filter(f => f.defaultEnabled).map(f => f.key),
         customFields: [], // e.g., [{ id: 'cf_1', name: 'Neurodivergent Status' }]
         selectedChartDimension: 'dxCategory',
+        dxCountMode: 'primary',
+        sessionMinutes: 60,
+        hiddenColumns: [],
         clients: []
     };
 
@@ -41,12 +117,30 @@ $(document).ready(function() {
         width: '100%'
     });
 
+    $('#clDxFamilies').select2({
+        placeholder: 'Fills in from diagnoses',
+        allowClear: true,
+        multiple: true,
+        tags: true,
+        width: '100%'
+    });
+    let familyTouched = false;
+    function populateFamilyOptions(selected = []) {
+        const el = $('#clDxFamilies');
+        el.empty();
+        const all = [...(allDiagnosesData.families || [])];
+        selected.forEach(f => { if (!all.includes(f)) all.push(f); });
+        all.forEach(f => el.append(new Option(f, f)));
+        el.val(selected).trigger('change.select2');
+    }
+
     // Shared diagnosis list (therapist-tools/shared/diagnoses.json)
     TTShared.loadDiagnoses()
         .then(function(sharedDx) { allDiagnosesData = sharedDx; })
         .catch(function() { TTShared.showLoadError('#clDiagnosesSelect', 'diagnosis list'); })
         .finally(function() {
             populateDiagnosisDropdown(currentDxSystem);
+            populateFamilyOptions();
             checkLocalCacheOnLoad();
         });
 
@@ -75,23 +169,16 @@ $(document).ready(function() {
         populateDiagnosisDropdown(currentDxSystem, currentSelected);
     });
 
-    // Auto-suggest Diagnostic Family when a specific diagnosis is picked
+    // Diagnosis family follows the diagnoses (DSM-5-TR chapter from the shared list) until you change it yourself
     $('#clDiagnosesSelect').on('change', function() {
-        const vals = ($(this).val() || []).join(' ').toLowerCase();
-        if (!vals) return;
-        if (/f43|309\.|ptsd|trauma|adjustment|grief/.test(vals)) {
-            $('#clDxCategory').val('Trauma & Stressor-Related (PTSD / Adjustment)');
-        } else if (/f90|f84|314\.|299\.|adhd|autis|neuro/.test(vals)) {
-            $('#clDxCategory').val('Neurodevelopmental (ADHD / Autism)');
-        } else if (/f41|f40|f42|300\.0|300\.2|300\.3|anxiety|panic|ocd|obsess/.test(vals)) {
-            $('#clDxCategory').val('Anxiety & OCD Spectrum');
-        } else if (/f32|f33|f34|296\.|depress|dysthym|mood/.test(vals)) {
-            $('#clDxCategory').val('Depressive & Mood Disorders');
-        } else if (/f60|301\.|borderline|personality/.test(vals)) {
-            $('#clDxCategory').val('Personality & Complex Relational');
-        } else if (/f50|307\.|eating|arfid|binge/.test(vals)) {
-            $('#clDxCategory').val('Disordered Eating / Feeding (ARFID / BED)');
-        }
+        if (familyTouched) return;
+        const fams = familiesFromDiagnoses($(this).val() || []);
+        populateFamilyOptions(fams);
+        $('#familyAutoHint').text(fams.length ? 'Filled in from the diagnoses. Change it if you like.' : '');
+    });
+    $('#clDxFamilies').on('select2:select select2:unselect select2:clear', function() {
+        familyTouched = true;
+        $('#familyAutoHint').text('You changed this, so it won’t update from the diagnoses until you clear the form.');
     });
 
     // --- 1. Field Toggles & Custom Fields Management ---
@@ -204,56 +291,76 @@ $(document).ready(function() {
     });
 
     // --- 2. SVG Pie Chart & Intake Fit Advisor ---
-    function computeDimensionCounts(dimensionKey) {
+    function valuesFor(client, dimensionKey, primary) {
+        let vals;
+        if (dimensionKey === 'diagnosis') vals = client.diagnoses || [];
+        else if (dimensionKey === 'dxCategory') vals = client.dxFamilies || [];
+        else if (dimensionKey.startsWith('cf_')) vals = [(client.customValues && client.customValues[dimensionKey]) || ''];
+        else vals = [client[dimensionKey] || ''];
+        vals = vals.filter(v => String(v).trim());
+        if (!vals.length) return ['Unspecified'];
+        return primary ? [vals[0]] : vals;
+    }
+
+    // For diagnoses and families, "primary only" counts each client once (% of clients);
+    // "all" counts every diagnosis or family (% of diagnoses). Every other field is one per client.
+    function computeDimensionCounts(dimensionKey, primaryOverride) {
+        const multi = MULTI_DIMENSIONS.includes(dimensionKey);
+        const primary = multi ? (primaryOverride === undefined ? primaryOnly() : primaryOverride) : true;
         const counts = {};
         let total = 0;
-
         appState.clients.forEach(client => {
-            if (dimensionKey === 'diagnosis') {
-                const dxs = Array.isArray(client.diagnoses) && client.diagnoses.length > 0
-                    ? client.diagnoses
-                    : ['Unspecified'];
-                dxs.forEach(d => {
-                    counts[d] = (counts[d] || 0) + 1;
-                    total++;
-                });
-            } else if (dimensionKey.startsWith('cf_')) {
-                const val = (client.customValues && client.customValues[dimensionKey]) || 'Unspecified';
-                counts[val] = (counts[val] || 0) + 1;
+            valuesFor(client, dimensionKey, primary).forEach(v => {
+                counts[v] = (counts[v] || 0) + 1;
                 total++;
-            } else {
-                const val = client[dimensionKey] || 'Unspecified';
-                counts[val] = (counts[val] || 0) + 1;
-                total++;
-            }
+            });
         });
-
         const sorted = Object.entries(counts)
-            .map(([label, count]) => ({
-                label,
-                count,
-                pct: total > 0 ? ((count / total) * 100) : 0
-            }))
-            .sort((a, b) => b.count - a.count);
+            .map(([label, count]) => ({ label, count }))
+            .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+        const pcts = roundPercents(sorted.map(i => i.count), total);
+        sorted.forEach((item, i) => { item.pct = pcts[i]; });
+        const unit = multi && !primary ? (dimensionKey === 'diagnosis' ? 'diagnoses' : 'family mentions') : 'clients';
+        return { items: sorted, total, unit, multi };
+    }
 
-        return { items: sorted, total };
+    function weeklyLoad() {
+        let sessions = 0, prn = 0, unknown = 0;
+        appState.clients.forEach(c => {
+            const f = FREQUENCY_PER_WEEK[c.frequency];
+            if (f === undefined) unknown++;
+            else { sessions += f; if (f === 0) prn++; }
+        });
+        const hours = sessions * (appState.sessionMinutes || 60) / 60;
+        return { headcount: appState.clients.length, sessions, hours, prn, unknown };
+    }
+    function renderStats() {
+        const w = weeklyLoad();
+        $('#statHeadcount').text(w.headcount);
+        $('#statSessions').text(fmtNumber(Math.round(w.sessions * 100) / 100));
+        $('#statHours').text(fmtNumber(Math.round(w.hours * 100) / 100));
+        $('#sessionMinutesInput').val(appState.sessionMinutes);
+        const notes = ['Weekly = 1, twice a week = 2, biweekly = 0.5, monthly = 0.25 sessions per week.'];
+        if (w.prn) notes.push(`${w.prn} as-needed (PRN) client${w.prn === 1 ? ' is' : 's are'} counted as 0.`);
+        if (w.unknown) notes.push(`${w.unknown} client${w.unknown === 1 ? ' has' : 's have'} no frequency and ${w.unknown === 1 ? 'isn’t' : 'aren’t'} counted.`);
+        $('#statHoursNote').text(notes.join(' '));
+        return w;
     }
 
     function buildSvgPieChart(items, total) {
         if (total === 0 || items.length === 0) {
             return `
                 <div class="empty-pie-placeholder flex items-center justify-center text-center muted text-xs p-6">
-                    Add clients below or click "Load Sample Caseload" to see your chart.
+                    Add clients below, or use Load sample in How to use this tool.
                 </div>
             `;
         }
 
-        // If 1 single slice is 100%, draw a full circle
+        // One slice is a full circle, drawn the same way as the other pies (no donut hole)
         if (items.length === 1) {
             return `
-                <svg viewBox="-1.1 -1.1 2.2 2.2" width="250" height="250" aria-label="Caseload Pie Chart">
-                    <circle cx="0" cy="0" r="1" fill="${PIE_COLORS[0]}" />
-                    <circle cx="0" cy="0" r="0.45" style="fill: var(--bg-main, #ffffff)" />
+                <svg viewBox="-1.05 -1.05 2.1 2.1" width="250" height="250" role="img" aria-label="Caseload pie chart">
+                    <circle cx="0" cy="0" r="1" fill="${PIE_COLORS[0]}"><title>${escapeHtml(items[0].label)}: ${items[0].count} (100%)</title></circle>
                 </svg>
             `;
         }
@@ -277,7 +384,7 @@ $(document).ready(function() {
         }).join('');
 
         return `
-            <svg viewBox="-1.05 -1.05 2.1 2.1" width="250" height="250" aria-label="Caseload Pie Chart">
+            <svg viewBox="-1.05 -1.05 2.1 2.1" width="250" height="250" role="img" aria-label="Caseload pie chart">
                 ${paths}
             </svg>
         `;
@@ -285,11 +392,20 @@ $(document).ready(function() {
 
     function renderPieChartAndLegend() {
         const dimKey = appState.selectedChartDimension || 'dxCategory';
-        const { items, total } = computeDimensionCounts(dimKey);
+        const { items, total, unit, multi } = computeDimensionCounts(dimKey);
+        renderStats();
 
+        $('#dxCountModeWrap').toggleClass('hidden', !multi);
+        $(`input[name="dxCountMode"][value="${primaryOnly() ? 'primary' : 'all'}"]`).prop('checked', true);
         $('#svgPieChartContainer').html(buildSvgPieChart(items, total));
-        const dimLabel = $('#chartDimensionSelect option:selected').text() || 'Selected Dimension';
-        $('#chartTotalCaption').text(`Slicing by: ${dimLabel} (${appState.clients.length} Total Clients | ${total} Data Points)`);
+        const dimLabel = $('#chartDimensionSelect option:selected').text() || 'this field';
+        const countLabel = unit === 'clients' ? 'Clients' : (unit === 'diagnoses' ? 'Diagnoses' : 'Mentions');
+        $('#legendCountHeading').text(countLabel);
+        $('#legendPctHeading').text(`% of ${unit}`);
+        const n = appState.clients.length;
+        $('#chartTotalCaption').text(unit === 'clients'
+            ? `${dimLabel}: ${n} client${n === 1 ? '' : 's'}${multi ? ', primary only' : ''}`
+            : `${dimLabel}: ${total} ${unit} across ${n} client${n === 1 ? '' : 's'}`);
 
         const legendBody = $('#chartLegendTableBody');
         legendBody.empty();
@@ -315,6 +431,20 @@ $(document).ready(function() {
         renderIntakeAdvisor(items, total);
     }
 
+    $(document).on('change', 'input[name="dxCountMode"]', function() {
+        appState.dxCountMode = this.value;
+        renderPieChartAndLegend();
+        saveToLocalCacheIfEnabled();
+    });
+    $('#sessionMinutesInput').on('input change', function() {
+        const v = Number(this.value);
+        if (v > 0) {
+            appState.sessionMinutes = v;
+            renderStats();
+            saveToLocalCacheIfEnabled();
+        }
+    });
+
     function renderIntakeAdvisor(items, total) {
         const box = $('#intakeAdvisorBox');
         if (appState.clients.length === 0) {
@@ -326,12 +456,14 @@ $(document).ready(function() {
         const phaseStats = computeDimensionCounts('phase');
         const acuityStats = computeDimensionCounts('acuity');
 
-        const activeProcessingCount = (phaseStats.items.find(i => i.label.includes('Active Core') || i.label.includes('Intake'))?.count) || 0;
-        const highAcuityCount = (acuityStats.items.find(i => i.label.includes('High'))?.count) || 0;
+        // Add up every matching slice (the old .find() only counted the first one)
+        const sumWhere = (stats, test) => stats.items.filter(i => test(i.label)).reduce((n, i) => n + i.count, 0);
+        const activeProcessingCount = sumWhere(phaseStats, l => l.includes('Active Core') || l.includes('Intake'));
+        const highAcuityCount = sumWhere(acuityStats, l => l.includes('High'));
 
         const insights = [];
         if (topSlice && topSlice.pct >= 50) {
-            insights.push(`<strong>Primary Concentration (${topSlice.pct.toFixed(0)}%):</strong> Over half of this view is <em>${escapeHtml(topSlice.label)}</em>. When screening new inquiries, ask yourself whether you want more of this presentation or if a different diagnostic/clinical presentation would feel refreshing.`);
+            insights.push(`<strong>Primary Concentration (${topSlice.pct.toFixed(0)}%):</strong> At least half of this view is <em>${escapeHtml(topSlice.label)}</em>. When screening new inquiries, ask yourself whether you want more of this presentation or if a different diagnostic/clinical presentation would feel refreshing.`);
         } else if (topSlice) {
             insights.push(`<strong>Balanced Distribution:</strong> Your largest slice is <em>${escapeHtml(topSlice.label)}</em> at ${topSlice.pct.toFixed(0)}%, showing a healthy variety across your caseload.`);
         }
@@ -342,7 +474,7 @@ $(document).ready(function() {
             insights.push(`<strong>🟢 Acuity Headroom:</strong> You have ${highAcuityCount} high-acuity clients logged, leaving sustainable emotional bandwidth if a complex intake inquiry arrives.`);
         }
 
-        const graduationCount = (phaseStats.items.find(i => i.label.includes('Termination') || i.label.includes('Maintenance'))?.count) || 0;
+        const graduationCount = sumWhere(phaseStats, l => l.includes('Termination') || l.includes('Maintenance'));
         insights.push(`<strong>Pipeline Flow:</strong> ${graduationCount} client(s) are currently in Maintenance or Graduation Prep (likely to open up biweekly/full slots soon), while ${activeProcessingCount} are in Intensive Intake/Core Processing.`);
 
         box.html(`
@@ -352,6 +484,23 @@ $(document).ready(function() {
     }
 
     // --- 3. Render Caseload Table ---
+    function tableColumns() {
+        const cols = [{ key: 'code', label: 'Client Code', get: c => [c.code] }];
+        STANDARD_FIELDS.forEach(f => {
+            if (!appState.enabledFields.includes(f.key)) return;
+            if (f.key === 'diagnosis') cols.push({ key: f.key, label: f.label, get: c => c.diagnoses || [], tags: true });
+            else if (f.key === 'dxCategory') cols.push({ key: f.key, label: f.label, get: c => c.dxFamilies || [], tags: true });
+            else cols.push({ key: f.key, label: f.label, get: c => [c[f.key] || ''] });
+        });
+        (appState.customFields || []).forEach(cf => cols.push({ key: cf.id, label: cf.name, get: c => [(c.customValues && c.customValues[cf.id]) || ''] }));
+        return cols;
+    }
+
+    function renderColumnPicker(cols) {
+        const body = $('#columnPickerBody');
+        body.html(cols.map(col => `<label><input type="checkbox" class="column-toggle-cb" value="${escapeAttr(col.key)}" ${appState.hiddenColumns.includes(col.key) ? '' : 'checked'}> ${escapeHtml(col.label)}</label>`).join(''));
+    }
+
     function renderCaseloadTable() {
         $('#totalClientsCount').text(appState.clients.length);
         const thead = $('#caseloadTableHead');
@@ -359,60 +508,69 @@ $(document).ready(function() {
         thead.empty();
         tbody.empty();
 
-        // Build Dynamic Headers based on Enabled Fields
-        let headerHtml = `<tr class="border-b"><th class="p-2">Client Code</th>`;
-        STANDARD_FIELDS.forEach(f => {
-            if (appState.enabledFields.includes(f.key)) {
-                headerHtml += `<th class="p-2">${escapeHtml(f.label)}</th>`;
-            }
-        });
-        (appState.customFields || []).forEach(cf => {
-            headerHtml += `<th class="p-2">${escapeHtml(cf.name)}</th>`;
-        });
-        headerHtml += `<th class="p-2 text-right">Actions</th></tr>`;
+        const allCols = tableColumns();
+        renderColumnPicker(allCols);
+        const cols = allCols.filter(col => !appState.hiddenColumns.includes(col.key));
+        Object.keys(columnFilters).forEach(k => { if (!cols.some(c => c.key === k)) delete columnFilters[k]; });
+
+        let headerHtml = '<tr class="border-b">' + cols.map(col => `<th class="p-2">${escapeHtml(col.label)}</th>`).join('') + '<th class="p-2 text-right">Actions</th></tr>';
+        headerHtml += '<tr class="filter-row">' + cols.map(col => {
+            const vals = [...new Set(appState.clients.flatMap(c => col.get(c)).filter(v => String(v).trim()))].sort((a, b) => String(a).localeCompare(String(b)));
+            if (col.key === 'code') return '<th class="p-1"></th>';
+            const cur = columnFilters[col.key] || '';
+            const opts = vals.map(v => `<option value="${escapeAttr(v)}" ${v === cur ? 'selected' : ''}>${escapeHtml(v)}</option>`).join('');
+            return `<th class="p-1"><select class="column-filter p-1 border rounded-md text-xs w-full" data-col="${escapeAttr(col.key)}" aria-label="Filter ${escapeAttr(col.label)}"><option value="">All</option>${opts}</select></th>`;
+        }).join('') + '<th class="p-1"></th></tr>';
         thead.html(headerHtml);
 
         const kw = ($('#tableSearchInput').val() || '').toLowerCase().trim();
         const filtered = appState.clients.filter(c => {
-            if (!kw) return true;
-            const hay = JSON.stringify(c).toLowerCase();
-            return hay.includes(kw);
+            if (kw && !JSON.stringify(c).toLowerCase().includes(kw)) return false;
+            return cols.every(col => !columnFilters[col.key] || col.get(c).includes(columnFilters[col.key]));
         });
+        $('#shownClientsNote').text(filtered.length !== appState.clients.length ? `, ${filtered.length} shown` : '');
 
-        const totalCols = 2 + appState.enabledFields.length + (appState.customFields || []).length;
-
+        const totalCols = cols.length + 1;
         if (filtered.length === 0) {
-            tbody.append(`<tr><td colspan="${totalCols}" class="p-4 text-center muted">No clients in table. Add a client above or load the sample caseload.</td></tr>`);
+            tbody.append(`<tr><td colspan="${totalCols}" class="p-4 text-center muted">${appState.clients.length ? 'No clients match these filters.' : 'No clients yet. Add a client above, or use Load sample in How to use this tool.'}</td></tr>`);
             return;
         }
 
         filtered.forEach(c => {
-            let rowHtml = `<tr class="border-b"><td class="p-2 font-bold whitespace-nowrap">${escapeHtml(c.code)}</td>`;
-
-            STANDARD_FIELDS.forEach(f => {
-                if (!appState.enabledFields.includes(f.key)) return;
-                if (f.key === 'diagnosis') {
-                    const badges = (c.diagnoses || []).map(d => `<span class="dx-tag">${escapeHtml(d)}</span>`).join(' ');
-                    rowHtml += `<td class="p-2">${badges || '—'}</td>`;
-                } else {
-                    rowHtml += `<td class="p-2">${escapeHtml(c[f.key] || '—')}</td>`;
-                }
+            let rowHtml = '<tr class="border-b">';
+            cols.forEach(col => {
+                const vals = col.get(c).filter(v => String(v).trim());
+                if (col.key === 'code') rowHtml += `<td class="p-2 font-bold whitespace-nowrap">${escapeHtml(c.code)}</td>`;
+                else if (col.tags) rowHtml += `<td class="p-2">${vals.map(v => `<span class="dx-tag">${escapeHtml(v)}</span>`).join(' ') || '—'}</td>`;
+                else rowHtml += `<td class="p-2">${escapeHtml(vals[0] || '—')}</td>`;
             });
-
-            (appState.customFields || []).forEach(cf => {
-                const v = (c.customValues && c.customValues[cf.id]) || '—';
-                rowHtml += `<td class="p-2">${escapeHtml(v)}</td>`;
-            });
-
             rowHtml += `
                 <td class="p-2 text-right whitespace-nowrap">
-                    <button type="button" class="btn-link text-xs edit-client-btn mr-2" data-id="${c.id}">Edit</button>
-                    <button type="button" class="btn-link text-xs delete-client-btn" data-id="${c.id}">Remove</button>
+                    <button type="button" class="btn-link text-xs edit-client-btn mr-2" data-id="${escapeAttr(c.id)}">Edit</button>
+                    <button type="button" class="btn-link text-xs delete-client-btn" data-id="${escapeAttr(c.id)}">Remove</button>
                 </td>
             </tr>`;
             tbody.append(rowHtml);
         });
     }
+
+    $(document).on('change', '.column-toggle-cb', function() {
+        const key = this.value;
+        appState.hiddenColumns = appState.hiddenColumns.filter(k => k !== key);
+        if (!this.checked) appState.hiddenColumns.push(key);
+        renderCaseloadTable();
+        saveToLocalCacheIfEnabled();
+    });
+    $(document).on('change', '.column-filter', function() {
+        const key = $(this).data('col');
+        if (this.value) columnFilters[key] = this.value; else delete columnFilters[key];
+        renderCaseloadTable();
+    });
+    $('#clearColumnFiltersBtn').on('click', function() {
+        Object.keys(columnFilters).forEach(k => delete columnFilters[k]);
+        $('#tableSearchInput').val('');
+        renderCaseloadTable();
+    });
 
     function renderAll() {
         renderFieldConfiguration();
@@ -436,7 +594,7 @@ $(document).ready(function() {
             id: editingId || 'cl_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
             code: $('#clCode').val().trim(),
             diagnoses: $('#clDiagnosesSelect').val() || [],
-            dxCategory: $('#clDxCategory').val(),
+            dxFamilies: $('#clDxFamilies').val() || [],
             phase: $('#clPhase').val(),
             timeInTherapy: $('#clTimeInTherapy').val(),
             ageGroup: $('#clAgeGroup').val().trim() || 'Adult (25–34)',
@@ -447,6 +605,7 @@ $(document).ready(function() {
             notes: $('#clNotes').val().trim(),
             customValues: customValues
         };
+        clientObj.dxCategory = clientObj.dxFamilies[0] || '';
 
         if (editingId) {
             const idx = appState.clients.findIndex(c => c.id === editingId);
@@ -462,7 +621,10 @@ $(document).ready(function() {
     function resetClientForm() {
         document.getElementById('caseloadClientForm').reset();
         $('#editingClientId').val('');
+        familyTouched = false;
         $('#clDiagnosesSelect').val(null).trigger('change');
+        populateFamilyOptions();
+        $('#familyAutoHint').text('');
         $('.custom-client-field-input').val('');
         $('#saveClientBtn').text('Add Client to Caseload');
         $('#cancelClientEditBtn').addClass('hidden');
@@ -479,8 +641,10 @@ $(document).ready(function() {
 
         $('#editingClientId').val(c.id);
         $('#clCode').val(c.code);
+        familyTouched = true;
         populateDiagnosisDropdown(currentDxSystem, c.diagnoses || []);
-        $('#clDxCategory').val(c.dxCategory);
+        populateFamilyOptions(c.dxFamilies || []);
+        $('#familyAutoHint').text('');
         $('#clPhase').val(c.phase);
         $('#clTimeInTherapy').val(c.timeInTherapy);
         $('#clAgeGroup').val(c.ageGroup);
@@ -509,22 +673,6 @@ $(document).ready(function() {
 
     $('#tableSearchInput').on('input', renderCaseloadTable);
 
-    // Load Sample Caseload Button (Helpful for testing the pie chart right away!)
-    $('#loadSampleCaseloadBtn').on('click', function() {
-        if (appState.clients.length > 0 && !confirm('Replace current list with a 10-client sample caseload to test the chart?')) return;
-        appState.clients = [
-            { id: 's1', code: 'Client #01', diagnoses: ['F43.10 - Post-Traumatic Stress Disorder (PTSD)'], dxCategory: 'Trauma & Stressor-Related (PTSD / Adjustment)', phase: '3. Active Core / Trauma Processing', timeInTherapy: '6 to 12 Months', ageGroup: 'Adult (25–34)', gender: 'Non-Binary / Genderqueer', frequency: 'Weekly', acuity: 'Moderate / Active Work', payType: 'Commercial Insurance (Headway/Direct)', notes: '' },
-            { id: 's2', code: 'Client #02', diagnoses: ['F90.2 - ADHD, Combined Presentation', 'F41.1 - Generalized Anxiety Disorder'], dxCategory: 'Neurodevelopmental (ADHD / Autism)', phase: '2. Stabilization & Resourcing', timeInTherapy: '3 to 6 Months', ageGroup: 'Young Adult (18–24)', gender: 'Woman (Cis or Trans)', frequency: 'Weekly', acuity: 'Moderate / Active Work', payType: 'Commercial Insurance (Headway/Direct)', notes: '' },
-            { id: 's3', code: 'Client #03', diagnoses: ['F84.0 - Autism Spectrum Disorder'], dxCategory: 'Neurodevelopmental (ADHD / Autism)', phase: '4. Integration & Maintenance', timeInTherapy: '1 to 2 Years', ageGroup: 'Adult (25–34)', gender: 'Transgender / Gender Expansive', frequency: 'Biweekly (Every 2 Weeks)', acuity: 'Low / Stable Maintenance', payType: 'Medicaid / ProviderOne', notes: '' },
-            { id: 's4', code: 'Client #04', diagnoses: ['F43.10 - Post-Traumatic Stress Disorder (PTSD)', 'F33.1 - Major Depressive Disorder, Recurrent, Moderate'], dxCategory: 'Trauma & Stressor-Related (PTSD / Adjustment)', phase: '2. Stabilization & Resourcing', timeInTherapy: 'Under 3 Months', ageGroup: 'Adult (35–49)', gender: 'Woman (Cis or Trans)', frequency: 'Weekly', acuity: 'High / Complex / Crisis Risk', payType: 'Commercial Insurance (Headway/Direct)', notes: '' },
-            { id: 's5', code: 'Client #05', diagnoses: ['F41.1 - Generalized Anxiety Disorder'], dxCategory: 'Anxiety & OCD Spectrum', phase: '5. Termination / Graduation Prep', timeInTherapy: '1 to 2 Years', ageGroup: 'Adult (25–34)', gender: 'Man (Cis or Trans)', frequency: 'Monthly / Check-In', acuity: 'Low / Stable Maintenance', payType: 'Private Pay (Full Fee)', notes: '' },
-            { id: 's6', code: 'Client #06', diagnoses: ['F90.0 - ADHD, Predominantly Inattentive'], dxCategory: 'Neurodevelopmental (ADHD / Autism)', phase: '3. Active Core / Trauma Processing', timeInTherapy: '6 to 12 Months', ageGroup: 'Adolescent (13–17)', gender: 'Non-Binary / Genderqueer', frequency: 'Weekly', acuity: 'Moderate / Active Work', payType: 'Medicaid / ProviderOne', notes: '' },
-            { id: 's7', code: 'Client #07', diagnoses: ['F43.23 - Adjustment Disorder with Mixed Anxiety & Depressed Mood'], dxCategory: 'Trauma & Stressor-Related (PTSD / Adjustment)', phase: '1. Intake & Assessment', timeInTherapy: 'Under 3 Months', ageGroup: 'Young Adult (18–24)', gender: 'Woman (Cis or Trans)', frequency: 'Weekly', acuity: 'Moderate / Active Work', payType: 'Commercial Insurance (Headway/Direct)', notes: '' },
-            { id: 's8', code: 'Client #08', diagnoses: ['F42.2 - Obsessive-Compulsive Disorder (OCD)'], dxCategory: 'Anxiety & OCD Spectrum', phase: '3. Active Core / Trauma Processing', timeInTherapy: '3 to 6 Months', ageGroup: 'Adult (35–49)', gender: 'Man (Cis or Trans)', frequency: 'Weekly', acuity: 'Moderate / Active Work', payType: 'Commercial Insurance (Headway/Direct)', notes: '' }
-        ];
-        renderAll();
-    });
-
     // --- 5. Local Cache & JSON / CSV / Print Exports ---
     function checkLocalCacheOnLoad() {
         const isEnabled = localStorage.getItem(CACHE_ENABLED_KEY) === 'true';
@@ -535,6 +683,7 @@ $(document).ready(function() {
                 try {
                     const parsed = JSON.parse(raw);
                     Object.assign(appState, parsed);
+                    normalizeState();
                 } catch (e) {
                     console.error('Error loading cached caseload visualizer:', e);
                 }
@@ -580,7 +729,7 @@ $(document).ready(function() {
     }
 
     $('#exportJsonButtonTop, #exportJsonButtonBottom').on('click', function() {
-        downloadFile(JSON.stringify(appState, null, 2), `caseload_demographics_${new Date().toISOString().split('T')[0]}.json`, 'application/json;charset=utf-8');
+        downloadFile(JSON.stringify(appState, null, 2), `caseload_demographics_${localDateISO()}.json`, 'application/json;charset=utf-8');
     });
 
     $('#importJsonButton').on('click', () => $('#importJsonFile').click());
@@ -592,7 +741,10 @@ $(document).ready(function() {
         reader.onload = function(evt) {
             try {
                 const parsed = JSON.parse(evt.target.result);
+                if (!parsed || !Array.isArray(parsed.clients)) throw new Error('No clients list');
                 Object.assign(appState, parsed);
+                normalizeState();
+                resetClientForm();
                 renderAll();
             } catch (err) {
                 alert('Invalid JSON file. Please upload a valid Caseload at a Glance .json backup.');
@@ -604,7 +756,7 @@ $(document).ready(function() {
 
     $('#exportCsvButton').on('click', function() {
         if (appState.clients.length === 0) {
-            alert('No clients logged yet to export.');
+            alert('Add at least one client before exporting.');
             return;
         }
         const activeStdFields = STANDARD_FIELDS.filter(f => appState.enabledFields.includes(f.key));
@@ -617,6 +769,7 @@ $(document).ready(function() {
         const rows = appState.clients.map(c => {
             const stdVals = activeStdFields.map(f => {
                 if (f.key === 'diagnosis') return (c.diagnoses || []).join('; ');
+                if (f.key === 'dxCategory') return (c.dxFamilies || []).join('; ');
                 return c[f.key] || '';
             });
             const cfVals = (appState.customFields || []).map(cf => (c.customValues && c.customValues[cf.id]) || '');
@@ -632,9 +785,10 @@ $(document).ready(function() {
 
     $('#printCaseloadReportBtn').on('click', function() {
         const dimKey = appState.selectedChartDimension || 'dxCategory';
-        const { items, total } = computeDimensionCounts(dimKey);
+        const { items, total, unit } = computeDimensionCounts(dimKey);
         const svgMarkup = buildSvgPieChart(items, total);
         const dimLabel = $('#chartDimensionSelect option:selected').text();
+        const w = weeklyLoad();
 
         const legendRows = items.map((slice, idx) => `
             <tr>
@@ -666,16 +820,16 @@ $(document).ready(function() {
                 <div class="header-bar">
                     <div>
                         <h1>Caseload at a Glance</h1>
-                        <div>Sliced By: <strong>${escapeHtml(dimLabel)}</strong> (${appState.clients.length} Active Clients)</div>
+                        <div>Sliced by <strong>${escapeHtml(dimLabel)}</strong> (${appState.clients.length} clients; ${fmtNumber(Math.round(w.sessions * 100) / 100)} sessions and about ${fmtNumber(Math.round(w.hours * 100) / 100)} hours per week at ${appState.sessionMinutes} minutes)</div>
                     </div>
-                    <div><strong>Date:</strong> ${new Date().toISOString().split('T')[0]}</div>
+                    <div><strong>Date:</strong> ${localDateISO()}</div>
                 </div>
 
                 <div class="chart-grid">
                     <div style="text-align:center;">${svgMarkup}</div>
                     <div>
                         <table>
-                            <thead><tr><th>Category / Slice</th><th>Count</th><th>Percentage</th></tr></thead>
+                            <thead><tr><th>Slice</th><th>Count</th><th>% of ${escapeHtml(unit)}</th></tr></thead>
                             <tbody>${legendRows}</tbody>
                         </table>
                     </div>
@@ -692,6 +846,11 @@ $(document).ready(function() {
             printWindow.close();
         }, 250);
     });
+
+    function localDateISO() {
+        const d = new Date();
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
 
     function escapeHtml(str) {
         if (!str) return '';

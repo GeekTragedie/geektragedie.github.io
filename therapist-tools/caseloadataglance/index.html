@@ -82,13 +82,14 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Uncheck any fields you don’t track under <strong>Fields to track</strong>, or add your own.</li>
-                            <li>Add each client under <strong>Add a client</strong>. Use initials or a client code.</li>
-                            <li>Use <strong>Slice pie chart by</strong> to see your caseload by diagnosis, phase, age, and more.</li>
-                            <li>Read the intake fit insights before saying yes to a new referral.</li>
+                            <li>Uncheck any fields you don’t track under <strong>Choose what to track</strong>, or add your own.</li>
+                            <li>Add each client under <strong>Add or update a client</strong>. Use initials or a client code. The diagnosis family fills in from the diagnoses you pick, and you can change it.</li>
+                            <li>Use <strong>Slice the chart by</strong> to see your caseload by diagnosis family, phase, age, and more. For diagnoses, choose whether to count each client’s primary diagnosis or all of them.</li>
+                            <li>Check your headcount and estimated weekly hours, then read the intake fit insights before saying yes to a new referral.</li>
+                            <li>In the caseload table, use <strong>Columns</strong> to hide columns and the filter row to narrow the list.</li>
                         </ol>
                         <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                        <p><strong>Tip:</strong> Try <strong>Load a sample caseload</strong> in the tool menu to see how it works.</p>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the page with ten made-up clients so you can see how it works.</span></p>
                         <p>Import, save, print, and clear are further down this menu.</p>
                         <h3 class="why-heading">Why this matters</h3>
                         <p>Looking at your caseload as a whole helps you spot acuity build-up, competence gaps, and clinical drift before they turn into burnout. Balancing heavier clients across your week supports both client care and your own sustainability.</p>
@@ -106,9 +107,9 @@
                 <nav class="sidebar-group" aria-label="On this page">
                     <span class="sidebar-label">On this page</span>
                     <ul class="sidebar-toc">
-                        <li><a href="#fields-config-heading">Fields to track</a></li>
+                        <li><a href="#fields-config-heading">What to track</a></li>
                         <li><a href="#chart-heading">Chart &amp; insights</a></li>
-                        <li><a href="#client-form-heading">Add a client</a></li>
+                        <li><a href="#client-form-heading">Add or update a client</a></li>
                         <li><a href="#roster-heading">Caseload table</a></li>
                     </ul>
                 </nav>
@@ -118,7 +119,6 @@
                     <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn">Import .json</button>
                     <input type="file" id="importJsonFile" accept=".json" class="hidden">
                     <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save .json</button>
-                    <button type="button" id="loadSampleCaseloadBtn" class="btn btn-sm sidebar-btn">Load a sample caseload</button>
                     <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
                 </div>
 
@@ -147,10 +147,10 @@
         <section class="subpanel p-4 rounded-md mb-6 space-y-3" aria-labelledby="fields-config-heading">
             <div class="flex flex-wrap justify-between items-center gap-2">
                 <div>
-                    <h2 id="fields-config-heading" class="text-lg font-bold">1. Choose What Data Is Helpful for You to Track</h2>
-                    <p class="muted text-xs">Uncheck any field that isn't useful to you—it will immediately hide from the form, table, and chart options. You can also add your own custom tracking fields!</p>
+                    <h2 id="fields-config-heading" class="text-xl font-bold">Choose What to Track</h2>
+                    <p class="muted text-xs">Uncheck any field you don’t use, and it disappears from the form, the table, and the chart options. You can also add your own fields.</p>
                 </div>
-                <button type="button" id="addCustomFieldBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add Custom Tracking Field</button>
+                <button type="button" id="addCustomFieldBtn" class="btn px-3 py-1 text-xs font-semibold rounded-md">+ Add a custom field</button>
             </div>
 
             <div id="fieldTogglesContainer" class="flex flex-wrap gap-4 pt-1 text-xs"></div>
@@ -161,13 +161,28 @@
         <section class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="chart-heading">
             <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-3">
                 <div>
-                    <h2 id="chart-heading" class="text-2xl font-bold">2. Caseload Pie Chart &amp; Distribution Breakdown</h2>
-                    <p class="muted text-xs">Switch the dropdown on the right to slice your caseload by Diagnosis, Phase of Therapy, Time in Therapy, Age, Gender, or Custom Fields.</p>
+                    <h2 id="chart-heading" class="text-xl font-bold">Caseload Chart and Breakdown</h2>
+                    <p class="muted text-xs">Slice your caseload by diagnosis family, diagnosis, phase, time in therapy, age, gender, or your own fields.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
-                    <label for="chartDimensionSelect" class="text-sm font-bold">Slice Pie Chart By:</label>
+                    <label for="chartDimensionSelect" class="text-sm font-bold">Slice the chart by</label>
                     <select id="chartDimensionSelect" class="p-2 border rounded-md text-sm font-semibold"></select>
+                    <span id="dxCountModeWrap" class="dx-count-mode text-xs" role="radiogroup" aria-label="Which diagnoses to count">
+                        <label><input type="radio" name="dxCountMode" value="primary" checked> Primary only</label>
+                        <label><input type="radio" name="dxCountMode" value="all"> All diagnoses</label>
+                    </span>
                 </div>
+            </div>
+
+            <div class="caseload-stats" aria-live="polite">
+                <div class="stat"><span class="stat-value" id="statHeadcount">0</span><span class="stat-label">Clients (headcount)</span></div>
+                <div class="stat"><span class="stat-value" id="statSessions">0</span><span class="stat-label">Sessions per week</span></div>
+                <div class="stat"><span class="stat-value" id="statHours">0</span><span class="stat-label">Estimated weekly hours</span></div>
+                <div class="stat stat-input">
+                    <label for="sessionMinutesInput" class="stat-label">Session length (minutes)</label>
+                    <input type="number" id="sessionMinutesInput" min="15" max="180" step="5" value="60" class="p-2 border rounded-md text-sm">
+                </div>
+                <p id="statHoursNote" class="muted text-xs stat-note"></p>
             </div>
 
             <!-- Pie Chart + Legend & Percentage Table Grid -->
@@ -184,9 +199,9 @@
                         <table class="w-full text-left border-collapse text-xs">
                             <thead>
                                 <tr class="border-b">
-                                    <th class="p-2">Category / Slice</th>
-                                    <th class="p-2">Clients</th>
-                                    <th class="p-2">% of Caseload</th>
+                                    <th class="p-2">Slice</th>
+                                    <th class="p-2" id="legendCountHeading">Clients</th>
+                                    <th class="p-2" id="legendPctHeading">% of clients</th>
                                 </tr>
                             </thead>
                             <tbody id="chartLegendTableBody"></tbody>
@@ -203,23 +218,23 @@
 
         <!-- Section 3: Add / Edit De-Identified Client Entry -->
         <section class="mb-6" aria-labelledby="client-form-heading">
-            <h2 id="client-form-heading" class="text-xl font-bold mb-3">3. Add or Update a De-Identified Client in Your Caseload</h2>
+            <h2 id="client-form-heading" class="text-xl font-bold mb-3">Add or Update a Client</h2>
             <form id="caseloadClientForm" class="subpanel p-5 rounded-md space-y-4">
                 <input type="hidden" id="editingClientId" value="">
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                     <!-- Always Visible: De-Identified Code/Initials -->
                     <div>
-                        <label for="clCode" class="block text-xs font-semibold mb-1">Client Code / Initials (No PHI): *</label>
+                        <label for="clCode" class="block text-xs font-semibold mb-1">Client code or initials (no names) *</label>
                         <input type="text" id="clCode" required placeholder="e.g., Client #01 or A.M." class="w-full p-2 border rounded-md text-sm">
                     </div>
 
                     <!-- Toggleable: Diagnosis Classification & Primary/Secondary Diagnoses -->
                     <div class="field-wrap-diagnosis md:col-span-2">
                         <div class="flex justify-between items-center mb-1">
-                            <label for="clDiagnosesSelect" class="text-xs font-semibold">Diagnosis(es) (Search or Type Custom):</label>
+                            <label for="clDiagnosesSelect" class="text-xs font-semibold">Diagnoses <span class="muted font-normal">(first one is primary; search or type your own)</span></label>
                             <div class="flex gap-2 text-xs">
-                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="dxSystem" value="ICD" checked class="mr-1">ICD-10</label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="dxSystem" value="ICD" checked class="mr-1">ICD-10-CM</label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="dxSystem" value="DSM" class="mr-1">DSM-5-TR</label>
                             </div>
                         </div>
@@ -228,17 +243,9 @@
 
                     <!-- Toggleable: Broad Diagnostic Category -->
                     <div class="field-wrap-dxCategory">
-                        <label for="clDxCategory" class="block text-xs font-semibold mb-1">Primary Diagnostic Family:</label>
-                        <select id="clDxCategory" class="w-full p-2 border rounded-md text-sm">
-                            <option value="Trauma & Stressor-Related (PTSD / Adjustment)">Trauma &amp; Stressor (PTSD / Adj)</option>
-                            <option value="Anxiety & OCD Spectrum">Anxiety &amp; OCD Spectrum</option>
-                            <option value="Depressive & Mood Disorders">Depressive &amp; Mood Disorders</option>
-                            <option value="Neurodevelopmental (ADHD / Autism)">Neurodevelopmental (ADHD / Autism)</option>
-                            <option value="Personality & Complex Relational">Personality &amp; Relational</option>
-                            <option value="Disordered Eating / Feeding (ARFID / BED)">Disordered Eating / Feeding</option>
-                            <option value="Substance Use & Addictive Behaviors">Substance Use &amp; Addictive</option>
-                            <option value="Other / V-Code / Z-Code">Other / V-Code / Z-Code</option>
-                        </select>
+                        <label for="clDxFamilies" class="block text-xs font-semibold mb-1">Diagnosis family <span class="muted font-normal">(fills in from diagnoses)</span></label>
+                        <select id="clDxFamilies" class="w-full" multiple="multiple"></select>
+                        <p id="familyAutoHint" class="muted text-xs mt-1"></p>
                     </div>
                 </div>
 
@@ -247,11 +254,11 @@
                     <div class="field-wrap-phase">
                         <label for="clPhase" class="block text-xs font-semibold mb-1">Phase of Therapy:</label>
                         <select id="clPhase" class="w-full p-2 border rounded-md text-sm">
-                            <option value="1. Intake & Assessment">1. Intake &amp; Assessment</option>
-                            <option value="2. Stabilization & Resourcing">2. Stabilization &amp; Resourcing</option>
-                            <option value="3. Active Core / Trauma Processing">3. Active Core / Trauma Processing</option>
-                            <option value="4. Integration & Maintenance">4. Integration &amp; Maintenance</option>
-                            <option value="5. Termination / Graduation Prep">5. Termination / Graduation Prep</option>
+                            <option value="Intake & Assessment">Intake &amp; Assessment</option>
+                            <option value="Stabilization & Resourcing">Stabilization &amp; Resourcing</option>
+                            <option value="Active Core / Trauma Processing">Active Core / Trauma Processing</option>
+                            <option value="Integration & Maintenance">Integration &amp; Maintenance</option>
+                            <option value="Termination / Graduation Prep">Termination / Graduation Prep</option>
                         </select>
                     </div>
 
@@ -351,8 +358,15 @@
         <!-- Section 4: Caseload Roster Table -->
         <section class="mb-6" aria-labelledby="roster-heading">
             <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
-                <h2 id="roster-heading" class="text-xl font-bold">4. Active De-Identified Caseload Table (<span id="totalClientsCount">0</span> Clients)</h2>
-                <input type="text" id="tableSearchInput" placeholder="Filter table by any keyword..." class="p-2 border rounded-md text-xs w-64">
+                <h2 id="roster-heading" class="text-xl font-bold">Caseload Table <span class="muted text-sm font-normal">(<span id="totalClientsCount">0</span> clients<span id="shownClientsNote"></span>)</span></h2>
+                <div class="flex flex-wrap items-center gap-2">
+                    <input type="search" id="tableSearchInput" placeholder="Search the table" aria-label="Search the table" class="p-2 border rounded-md text-xs w-56">
+                    <details class="column-picker" id="columnPicker">
+                        <summary class="btn btn-sm">Columns</summary>
+                        <div class="column-picker-body" id="columnPickerBody"></div>
+                    </details>
+                    <button type="button" id="clearColumnFiltersBtn" class="btn-link text-xs">Clear filters</button>
+                </div>
             </div>
 
             <div class="table-responsive subpanel rounded-md p-2">
