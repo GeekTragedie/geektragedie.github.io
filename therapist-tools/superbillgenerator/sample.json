@@ -1,0 +1,75 @@
+{
+  "version": 2,
+  "practice": {
+    "name": "Example Counseling, PLLC",
+    "ein": "12-3456789",
+    "address": "100 Example Street, Suite 200",
+    "cityStateZip": "Springfield, WA 98000",
+    "phone": "(555) 010-0100",
+    "email": "billing@example.com"
+  },
+  "provider": {
+    "name": "Jordan Rivera, MA, LMHC",
+    "npi": "1234567893",
+    "taxonomy": "101YP2500X",
+    "licenseState": "WA",
+    "licenseType": "Licensed Mental Health Counselor (LMHC)",
+    "license": "LH00000000",
+    "supervisor": null
+  },
+  "client": {
+    "name": "Sam Example",
+    "dob": "1990-04-12",
+    "address": "200 Sample Avenue",
+    "cityStateZip": "Springfield, WA 98000",
+    "phone": "(555) 010-0199",
+    "insurer": "Example Health Plan",
+    "insuranceId": "XYZ123456789",
+    "mrn": "C-0042"
+  },
+  "diagnoses": [
+    {
+      "code": "F43.10",
+      "name": ""
+    },
+    {
+      "code": "F41.1",
+      "name": ""
+    }
+  ],
+  "services": [
+    {
+      "date": "2026-10-20",
+      "placeOfService": "11",
+      "modifier": "",
+      "cptCode": "90791",
+      "cptDescription": "",
+      "dxPointer": "AB",
+      "units": 1,
+      "feePerSession": 200,
+      "amountPaid": 200
+    },
+    {
+      "date": "2026-10-27",
+      "placeOfService": "10",
+      "modifier": "95",
+      "cptCode": "90837",
+      "cptDescription": "",
+      "dxPointer": "AB",
+      "units": 1,
+      "feePerSession": 175,
+      "amountPaid": 175
+    },
+    {
+      "date": "2026-11-03",
+      "placeOfService": "10",
+      "modifier": "95",
+      "cptCode": "90837",
+      "cptDescription": "",
+      "dxPointer": "A",
+      "units": 1,
+      "feePerSession": 175,
+      "amountPaid": 100
+    }
+  ]
+}

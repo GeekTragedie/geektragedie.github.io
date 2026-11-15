@@ -17,6 +17,88 @@
     margin-bottom: 1.5rem;
 }
 
+/* Compact form layout */
+.sb-heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 0.75rem;
+}
+.sb-grid,
+.sb-service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem 1rem;
+    align-items: start;
+}
+.sb-span-2 {
+    grid-column: span 2;
+}
+@media (max-width: 520px) {
+    .sb-span-2 { grid-column: auto; }
+}
+.form-section label,
+.sb-service label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+.form-section input[type="text"],
+.form-section input[type="tel"],
+.form-section input[type="email"],
+.form-section input[type="date"],
+.form-section input[type="number"],
+.form-section select:not(.select2-hidden-accessible) {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    font-weight: 400;
+}
+.sb-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0.35rem 0 0;
+}
+#npiHint:not(:empty) {
+    color: var(--warning);
+}
+.sb-subblock {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border-color);
+}
+.sb-service {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.85rem 1rem;
+}
+.sb-service-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.sb-service-note:empty {
+    display: none;
+}
+
+/* Superbill output */
+.sb-out-header { text-align: center; }
+.sb-out-header p { margin: 0 0 0.2rem; }
+.sb-out-practice { font-weight: 700; font-size: 1.35em; }
+.sb-out-title { text-align: center; font-weight: 700; font-size: 1.2em; letter-spacing: 0.08em; text-transform: uppercase; margin: 1rem 0 0.1rem; }
+.sb-out-date { text-align: center; }
+.sb-out-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.sb-out-totals { margin-top: 1rem; text-align: right; }
+.sb-out-totals p { margin: 0.15rem 0; }
+.sb-out-sign { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+
 /* Specific styles for superbill output */
 .superbill-output {
     background-color: var(--bg-subpanel);
@@ -24,7 +106,7 @@
     border-radius: 0.5rem;
     padding: 2rem;
     margin-top: 2rem;
-    overflow-x: auto; /* For table scroll on smaller screens */
+    overflow-x: auto; /* Wide service tables can scroll inside the preview on phones */
     color: var(--text-main);
 }
 
@@ -95,6 +177,13 @@
     }
 
     /* Hide specific UI elements that should not appear on the printed superbill */
+    .site-header,
+    .top-nav,
+    .site-footer,
+    #references,
+    #preview-heading,
+    #preview-heading + p,
+    .tool-panel > p.muted,
     .tool-panel > h1, /* Main page title */
     .tool-panel > div.flex, /* Import / clear buttons */
     #superbillForm, /* The entire input form */
@@ -160,4 +249,10 @@
         padding-top: 0.8rem;
         color: #555;
     }
+}
+.form-section .sb-service-title {
+    color: var(--text-heading);
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
