@@ -1,0 +1,160 @@
+{
+  "referrals": [
+    {
+      "id": "ref_s1",
+      "name": "Riley Example, LMHC",
+      "pronouns": "they/them",
+      "languages": "English, Spanish",
+      "practice": "Example Counseling Collective",
+      "role": "Psychotherapist / Counselor",
+      "phone": "(555) 010-0101",
+      "email": "riley@example.com",
+      "websites": [
+        "https://example.com/riley",
+        "https://example.org/profile/riley"
+      ],
+      "location": "Springfield (WA, OR)",
+      "modality": "Both In-Person & Telehealth",
+      "availability": "Accepting New Clients",
+      "feeRange": "$160/session; sliding scale $90–$140",
+      "lastVerified": "2026-11-01",
+      "insurances": [
+        "Aetna",
+        "Premera Blue Cross",
+        "Out-of-Network (Provides Superbill)"
+      ],
+      "specialties": [
+        "Complex Trauma / C-PTSD",
+        "EMDR"
+      ],
+      "populations": [
+        "Neurodivergent-Affirming (Autism / ADHD / AuDHD)",
+        "LGBTQIA+ & Queer-Affirming",
+        "Adults"
+      ],
+      "publicBio": "Trauma-focused therapist offering EMDR for adults, with a neurodivergent-affirming approach.",
+      "privateNotes": "Met at a consult group. Responds to email within two days.",
+      "website": "https://example.com/riley"
+    },
+    {
+      "id": "ref_s2",
+      "name": "Dr. Morgan Sample, PsyD",
+      "pronouns": "she/her",
+      "languages": "English",
+      "practice": "Sample Psychological Testing",
+      "role": "Psychological / Neuropsych Testing (Autism/ADHD)",
+      "phone": "(555) 010-0102",
+      "email": "intake@example.net",
+      "websites": [
+        "https://example.net"
+      ],
+      "location": "Shelbyville (WA)",
+      "modality": "In-Person Only",
+      "availability": "Waitlist Only",
+      "feeRange": "$2,400 full evaluation",
+      "lastVerified": "2026-10-15",
+      "insurances": [
+        "Regence BlueShield"
+      ],
+      "specialties": [],
+      "populations": [
+        "Children (Under 12)",
+        "Teens & Adolescents (13–17)",
+        "Adults"
+      ],
+      "publicBio": "Autism and ADHD evaluations for children, teens, and adults.",
+      "privateNotes": "Waitlist was about four months in October.",
+      "website": "https://example.net"
+    },
+    {
+      "id": "ref_s3",
+      "name": "Jordan Placeholder, ARNP",
+      "pronouns": "he/him",
+      "languages": "English, ASL",
+      "practice": "Placeholder Psychiatry",
+      "role": "Psychiatrist / ARNP (Medication Management)",
+      "phone": "(555) 010-0103",
+      "email": "",
+      "websites": [
+        "https://example.com/jordan"
+      ],
+      "location": "Telehealth (WA)",
+      "modality": "Telehealth Only",
+      "availability": "Accepting New Clients",
+      "feeRange": "Insurance only",
+      "lastVerified": "2026-11-08",
+      "insurances": [
+        "UnitedHealthcare / Optum",
+        "Cigna / Evernorth"
+      ],
+      "specialties": [],
+      "populations": [
+        "Young Adults / College (18–25)",
+        "Adults",
+        "Older Adults / Seniors (65+)"
+      ],
+      "publicBio": "Medication management by telehealth for adults.",
+      "privateNotes": "",
+      "website": "https://example.com/jordan"
+    },
+    {
+      "id": "ref_s4",
+      "name": "Sam & Alex Demo, LMFT",
+      "pronouns": "",
+      "languages": "English, Vietnamese",
+      "practice": "Demo Family Therapy",
+      "role": "Couples / Marriage & Family Therapist",
+      "phone": "(555) 010-0104",
+      "email": "hello@example.org",
+      "websites": [],
+      "location": "Springfield (WA)",
+      "modality": "Both In-Person & Telehealth",
+      "availability": "Full / Not Accepting",
+      "feeRange": "$180/session",
+      "lastVerified": "2026-09-30",
+      "insurances": [
+        "Out-of-Network (Provides Superbill)"
+      ],
+      "specialties": [],
+      "populations": [
+        "Couples & Partnerships",
+        "Families & Co-Parents",
+        "Polyamorous / ENM / Kink-Affirming"
+      ],
+      "publicBio": "Couples and family therapy, including co-parenting support.",
+      "privateNotes": "Ask again in January.",
+      "website": ""
+    },
+    {
+      "id": "ref_s5",
+      "name": "Example Intensive Outpatient Program",
+      "pronouns": "",
+      "languages": "English, Spanish",
+      "practice": "Example Health",
+      "role": "Higher Level of Care (IOP / PHP / Residential)",
+      "phone": "(555) 010-0105",
+      "email": "admissions@example.com",
+      "websites": [
+        "https://example.com/iop"
+      ],
+      "location": "Capital City (WA)",
+      "modality": "In-Person Only",
+      "availability": "Unknown / Call to Verify",
+      "feeRange": "Varies by plan",
+      "lastVerified": "",
+      "insurances": [
+        "Aetna",
+        "Premera Blue Cross",
+        "Regence BlueShield"
+      ],
+      "specialties": [],
+      "populations": [
+        "Teens & Adolescents (13–17)",
+        "Adults"
+      ],
+      "publicBio": "Three-hour group program, four days a week, for teens and adults who need more support than weekly therapy.",
+      "privateNotes": "",
+      "website": "https://example.com/iop"
+    }
+  ]
+}

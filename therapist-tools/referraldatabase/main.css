@@ -61,3 +61,15 @@
     background-color: rgba(128, 128, 128, 0.1);
     border-left: 3px solid currentColor;
 }
+
+.sample-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.05rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    opacity: 0.8;
+    vertical-align: middle;
+}
+.extra-website-row { align-items: center; }

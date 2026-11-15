@@ -67,6 +67,40 @@ $(document).ready(function() {
     let appState = {
         referrals: []
     };
+    let statesData = { list: [], states: {} };
+    const SEEN_KEY = 'geektragedie_referral_db_seen';
+    const NATIONAL_DIRECTORIES = [
+        { id: 'pt', name: 'Psychology Today therapist directory', url: 'https://www.psychologytoday.com/us/therapists', on: true },
+        { id: 'openpath', name: 'Open Path Collective (lower-cost therapy)', url: 'https://openpathcollective.org', on: false },
+        { id: 'findtreatment', name: 'FindTreatment.gov (SAMHSA)', url: 'https://findtreatment.gov', on: false },
+        { id: '211', name: '211 (local community services)', url: 'https://www.211.org', on: false }
+    ];
+    const SAMPLE_PROVIDER = {
+        id: 'ref_sample', sample: true, name: 'Sample Provider (delete me)', pronouns: 'they/them', languages: 'English, Spanish',
+        practice: 'Example Counseling', role: 'Psychotherapist / Counselor', phone: '(555) 010-0123', email: 'intake@example.com',
+        website: 'https://example.com', websites: ['https://example.com'], location: 'Springfield', modality: 'Both In-Person & Telehealth',
+        availability: 'Accepting New Clients', feeRange: '$150/session; sliding scale', lastVerified: '', insurances: ['Aetna', 'Out-of-Network (Provides Superbill)'],
+        specialties: ['EMDR'], populations: ['Adults'], publicBio: 'This is a made-up example so you can see how the list works. Delete it once you add your own providers.',
+        privateNotes: 'Private notes never appear in client emails or handouts.'
+    };
+
+    // Older entries kept pronouns and languages in one box ("they/them | English") and one website.
+    function normalizeReferral(r) {
+        const out = { ...r };
+        if (out.languages === undefined) {
+            const parts = String(out.pronouns || '').split('|');
+            out.pronouns = parts[0].trim();
+            out.languages = parts.slice(1).join('|').trim();
+        }
+        if (!Array.isArray(out.websites)) out.websites = out.website ? [out.website] : [];
+        out.websites = out.websites.map(w => String(w).trim()).filter(Boolean);
+        out.website = out.websites[0] || '';
+        return out;
+    }
+    const toUrl = (w) => (/^https?:\/\//i.test(w) ? w : `https://${w}`);
+    function linkLabel(w, i) {
+        try { return new URL(toUrl(w)).hostname.replace(/^www\./, ''); } catch (e) { return `Link ${i + 1}`; }
+    }
 
     // Tracks which provider IDs the clinician checked for the current client email
     let selectedHandoutIds = new Set();
@@ -89,15 +123,12 @@ $(document).ready(function() {
     initSelect2Dropdown('#refSpecialtiesSelect', PRESET_SPECIALTIES, 'Select clinical specialties/modalities...');
     initSelect2Dropdown('#refPopulationsSelect', PRESET_POPULATIONS, 'Select populations & affirming identities...');
 
-    $('#refLastVerified').val(new Date().toISOString().split('T')[0]);
+    $('#refLastVerified').val(localDateISO());
 
     $('#toggleFormCollapseBtn').on('click', function() {
         $('#referralForm').toggleClass('hidden');
     });
 
-    $('#jumpToEmailBtn').on('click', function() {
-        $('html, body').animate({ scrollTop: $('#client-email-section').offset().top - 20 }, 400);
-    });
 
     // --- 2. Filter & Search Ongoing Referral List ---
     function getFilteredReferrals() {
@@ -105,16 +136,20 @@ $(document).ready(function() {
         const roleFilter = $('#filterRole').val();
         const modFilter = $('#filterModality').val();
         const availFilter = $('#filterAvailability').val();
+        const insFilter = $('#filterInsurance').val() || 'ALL';
+        const ageFilter = $('#filterAge').val() || 'ALL';
 
         return appState.referrals.filter(r => {
             if (roleFilter !== 'ALL' && r.role !== roleFilter) return false;
             if (modFilter === 'In-Person' && !String(r.modality).includes('In-Person')) return false;
             if (modFilter === 'Telehealth' && !String(r.modality).includes('Telehealth')) return false;
             if (availFilter !== 'ALL' && r.availability !== availFilter) return false;
+            if (insFilter !== 'ALL' && !(r.insurances || []).includes(insFilter)) return false;
+            if (ageFilter !== 'ALL' && !(r.populations || []).some(pop => pop.toLowerCase().includes(ageFilter))) return false;
 
             if (kw) {
                 const haystack = [
-                    r.name, r.pronouns, r.practice, r.role, r.location, r.phone, r.email,
+                    r.name, r.pronouns, r.languages, r.practice, r.role, r.location, r.phone, r.email, ...(r.websites || []),
                     r.feeRange, r.publicBio, r.privateNotes,
                     ...(r.insurances || []),
                     ...(r.specialties || []),
@@ -132,6 +167,7 @@ $(document).ready(function() {
 
     // --- 3. Render Directory Cards & Live Referral Email ---
     function renderAll() {
+        populateInsuranceFilter();
         const filtered = getFilteredReferrals();
         $('#referralCountBadge').text(`${filtered.length} of ${appState.referrals.length} Providers Shown`);
         $('#selectedCartCount').text(selectedHandoutIds.size);
@@ -142,7 +178,7 @@ $(document).ready(function() {
         if (filtered.length === 0) {
             container.append(`
                 <div class="subpanel p-6 rounded-md text-center muted">
-                    No providers in your list match the current filter. Log a provider above or click <strong>Import Master .json</strong> to load your saved list.
+                    No providers match these filters. Add a provider above, or use <strong>Import .json</strong> in the tool menu to load your saved list.
                 </div>
             `);
         } else {
@@ -156,11 +192,7 @@ $(document).ready(function() {
                 const specTags = (ref.specialties || []).map(s => `<span class="ref-tag tag-spec">${escapeHtml(s)}</span>`).join(' ');
                 const popTags = (ref.populations || []).map(p => `<span class="ref-tag tag-pop">${escapeHtml(p)}</span>`).join(' ');
 
-                let websiteHtml = '';
-                if (ref.website) {
-                    const url = /^https?:\/\//i.test(ref.website) ? ref.website : 'https://' + ref.website;
-                    websiteHtml = `<a href="${escapeAttr(url)}" target="_blank" rel="noopener" class="btn-link text-xs">Website / Profile</a>`;
-                }
+                const websiteHtml = (ref.websites || []).map((w, i) => `<a href="${escapeAttr(toUrl(w))}" target="_blank" rel="noopener" class="btn-link text-xs">${escapeHtml(linkLabel(w, i))}</a>`).join(' · ');
 
                 container.append(`
                     <div class="subpanel p-4 rounded-md border referral-card ${isSelected ? 'selected-for-handout' : ''}">
@@ -171,6 +203,8 @@ $(document).ready(function() {
                                     <span class="text-lg font-bold">${escapeHtml(ref.name)}</span>
                                 </label>
                                 ${ref.pronouns ? `<span class="muted text-xs">(${escapeHtml(ref.pronouns)})</span>` : ''}
+                                ${ref.sample ? '<span class="sample-badge">Sample</span>' : ''}
+                                ${ref.languages ? `<div class="text-xs muted">Languages: ${escapeHtml(ref.languages)}</div>` : ''}
                                 <div class="text-xs font-semibold mt-1">
                                     ${escapeHtml(ref.role)}
                                     ${ref.practice ? ` &bull; <span class="muted">${escapeHtml(ref.practice)}</span>` : ''}
@@ -246,7 +280,7 @@ $(document).ready(function() {
         if (ref.practice) primaryParts.push(ref.practice);
 
         const contactOrLink = [];
-        if (ref.website) contactOrLink.push(ref.website);
+        (ref.websites || []).forEach(w => contactOrLink.push(w));
         if (ref.phone) contactOrLink.push(ref.phone);
         if (ref.email) contactOrLink.push(ref.email);
 
@@ -259,6 +293,7 @@ $(document).ready(function() {
         if (includeDetails) {
             const subDetails = [];
             if (ref.modality) subDetails.push(ref.modality);
+            if (ref.languages) subDetails.push(`Languages: ${ref.languages}`);
             if (ref.location) subDetails.push(ref.location);
             if (ref.insurances && ref.insurances.length > 0) subDetails.push(`Insurance/Pay: ${ref.insurances.join(', ')}`);
             if (ref.specialties && ref.specialties.length > 0) subDetails.push(`Specialties: ${ref.specialties.join(', ')}`);
@@ -270,16 +305,48 @@ $(document).ready(function() {
         return bullet;
     }
 
+    const DISCLAIMER_TEXT = 'Please note: I can’t guarantee that any provider listed here has openings, takes your insurance, or will be the right fit. Please contact them directly to confirm. If you are in crisis, call or text 988 (the Suicide and Crisis Lifeline), and in an emergency call 911.';
+    function directoryList() {
+        const code = $('#refState').val();
+        const st = (statesData.states || {})[code];
+        const stateDirs = (st && st.directories ? st.directories : []).map((d, i) => ({ id: `state_${code}_${i}`, name: d.name, url: d.url, on: true }));
+        return [...NATIONAL_DIRECTORIES, ...stateDirs];
+    }
+    function renderDirectoryChecks() {
+        const box = $('#directoryChecks');
+        const checked = new Set(box.find('input:checked').map(function() { return this.value; }).get());
+        const first = !box.children().length;
+        box.empty();
+        directoryList().forEach(d => {
+            const on = first || !box.data('init') ? d.on : (checked.has(d.id) || (d.id.startsWith('state_') && !box.data(`seen_${d.id}`) && d.on));
+            box.data(`seen_${d.id}`, true);
+            box.append(`<label><input type="checkbox" class="directory-cb" value="${escapeAttr(d.id)}" ${on ? 'checked' : ''}> ${escapeHtml(d.name)}</label>`);
+        });
+        box.data('init', true);
+    }
+    function selectedDirectories() {
+        const ids = $('.directory-cb:checked').map(function() { return this.value; }).get();
+        return directoryList().filter(d => ids.includes(d.id));
+    }
+    function populateInsuranceFilter() {
+        const select = $('#filterInsurance');
+        const cur = select.val() || 'ALL';
+        const all = new Set(PRESET_INSURANCES);
+        appState.referrals.forEach(r => (r.insurances || []).forEach(i => all.add(i)));
+        select.empty().append(new Option('Any insurance or payment', 'ALL'));
+        [...all].sort((a, b) => a.localeCompare(b)).forEach(i => select.append(new Option(i, i)));
+        select.val(all.has(cur) ? cur : 'ALL');
+    }
+
     function renderClientReferralEmail() {
         const subject = $('#emailSubjectLine').val().trim() || 'Re: Therapy Inquiry';
         const greeting = $('#clientInquiryName').val().trim();
-        const reasonOption = $('input[name="referralReasonOption"]:checked').val();
+        const currentClient = $('#currentClientMode').is(':checked');
+        const reasons = $('.reason-cb:checked').map(function() { return this.value; }).get();
         const scopeFocus = $('#customScopeFocus').val().trim() || 'supporting neurodivergence';
         const extraDirectory = $('#extraDirectoryBullet').val().trim();
         const signOff = $('#clinicianSignOff').val().trim();
         const includeDetails = $('#includeDetailedBulletInfo').is(':checked');
-
-        $('#scopePreviewText').text(scopeFocus);
 
         const picked = getPickedProviders();
         const lines = [];
@@ -292,22 +359,24 @@ $(document).ready(function() {
             lines.push('');
         }
 
-        if (reasonOption !== 'currentClient') {
+        if (!currentClient) {
             lines.push('Thank you for reaching out and sharing a bit about your mental health journey so far.');
             lines.push('');
         }
 
-        const optionAText = 'I am currently at full capacity and unable to take on new clients at this time.';
-        const optionBText = `While your goals are deeply important, my practice currently focuses primarily on ${scopeFocus}, so I want to make sure you get connected with someone who specializes directly in what you're looking for.`;
-
-        if (reasonOption === 'optionA') {
-            lines.push(optionAText);
+        const REASON_CLAUSES = {
+            capacity: 'I’m at full capacity and not taking new clients',
+            insurance: 'my practice isn’t a match for your insurance or budget',
+            scheduling: 'my openings don’t match the times you need',
+            modality: 'I don’t offer the session format you’re looking for',
+            levelOfCare: 'it sounds like you may benefit from a different level of care than I can provide, such as more frequent or more intensive support',
+            diagnosis: `my practice focuses on ${scopeFocus}, not the specialty you’re looking for`
+        };
+        if (!currentClient && reasons.length === 1 && reasons[0] === 'capacity') {
+            lines.push('I am currently at full capacity and unable to take on new clients at this time.');
             lines.push('');
-        } else if (reasonOption === 'optionB') {
-            lines.push(optionBText);
-            lines.push('');
-        } else if (reasonOption === 'bothAB') {
-            lines.push(`${optionAText} ${optionBText}`);
+        } else if (!currentClient && reasons.length) {
+            lines.push(`Unfortunately, I’m not the best fit for your care right now because ${TTShared.listJoin(reasons.map(r => REASON_CLAUSES[r]))}. I want you to work with someone who can give you what you need.`);
             lines.push('');
         }
 
@@ -322,6 +391,7 @@ $(document).ready(function() {
             lines.push('- [Check the box next to any provider in your Referral List above to insert them here]');
         }
 
+        selectedDirectories().forEach(d => lines.push(`- ${d.name}: ${d.url}`));
         if (extraDirectory) {
             lines.push(`- ${extraDirectory}`);
         }
@@ -334,12 +404,32 @@ $(document).ready(function() {
             lines.push(signOff);
         }
 
+        if ($('#includeDisclaimer').is(':checked')) {
+            lines.push('');
+            lines.push(DISCLAIMER_TEXT);
+        }
+
         $('#generatedEmailText').val(lines.join('\n'));
     }
 
     // Live Email Listeners
     $('#clientInquiryName, #emailSubjectLine, #clinicianSignOff, #customScopeFocus, #extraDirectoryBullet').on('input change', renderClientReferralEmail);
-    $('input[name="referralReasonOption"], #includeDetailedBulletInfo').on('change', renderClientReferralEmail);
+    $(document).on('change', '.reason-cb, #currentClientMode, #includeDetailedBulletInfo, #includeDisclaimer, .directory-cb', renderClientReferralEmail);
+    $('#refState').on('change', function() { renderDirectoryChecks(); renderClientReferralEmail(); });
+    $('#filterInsurance, #filterAge').on('change', renderAll);
+    TTShared.loadStates().then(states => {
+        statesData = states;
+        const st = $('#refState').empty().append(new Option('Choose…', ''));
+        (statesData.list || []).forEach(([code, name]) => st.append(new Option(name, code)));
+        if (window.TTPractice) window.TTPractice.fill();
+        renderDirectoryChecks();
+        renderClientReferralEmail();
+    }).catch(() => renderDirectoryChecks());
+    $('#addWebsiteBtn').on('click', function() { addWebsiteInput(''); });
+    $(document).on('click', '.remove-website-btn', function() { $(this).closest('.extra-website-row').remove(); });
+    function addWebsiteInput(value) {
+        $('#refExtraWebsites').append(`<div class="extra-website-row flex gap-2"><input type="text" class="ref-extra-website w-full p-2 border rounded-md text-sm" placeholder="Another link" value="${escapeAttr(value)}"><button type="button" class="btn-link text-xs remove-website-btn" aria-label="Remove link">Remove</button></div>`);
+    }
 
     // --- 5. Add / Edit / Delete Referral Handlers ---
     $('#referralForm').on('submit', function(e) {
@@ -350,11 +440,12 @@ $(document).ready(function() {
             id: editingId || 'ref_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
             name: $('#refName').val().trim(),
             pronouns: $('#refPronouns').val().trim(),
+            languages: $('#refLanguages').val().trim(),
             practice: $('#refPractice').val().trim(),
             role: $('#refRole').val(),
             phone: $('#refPhone').val().trim(),
             email: $('#refEmail').val().trim(),
-            website: $('#refWebsite').val().trim(),
+            websites: [$('#refWebsite').val().trim(), ...$('.ref-extra-website').map(function() { return this.value.trim(); }).get()].filter(Boolean),
             location: $('#refLocation').val().trim(),
             modality: $('#refModality').val(),
             availability: $('#refAvailability').val(),
@@ -367,6 +458,7 @@ $(document).ready(function() {
             privateNotes: $('#refPrivateNotes').val().trim()
         };
 
+        refObj.website = refObj.websites[0] || '';
         if (editingId) {
             const idx = appState.referrals.findIndex(r => r.id === editingId);
             if (idx > -1) appState.referrals[idx] = refObj;
@@ -381,7 +473,8 @@ $(document).ready(function() {
     function resetReferralForm() {
         document.getElementById('referralForm').reset();
         $('#editingReferralId').val('');
-        $('#refLastVerified').val(new Date().toISOString().split('T')[0]);
+        $('#refLastVerified').val(localDateISO());
+        $('#refExtraWebsites').empty();
         $('#refInsurancesSelect').val(null).trigger('change');
         $('#refSpecialtiesSelect').val(null).trigger('change');
         $('#refPopulationsSelect').val(null).trigger('change');
@@ -411,11 +504,14 @@ $(document).ready(function() {
         $('#editingReferralId').val(ref.id);
         $('#refName').val(ref.name);
         $('#refPronouns').val(ref.pronouns);
+        $('#refLanguages').val(ref.languages || '');
         $('#refPractice').val(ref.practice);
         $('#refRole').val(ref.role);
         $('#refPhone').val(ref.phone);
         $('#refEmail').val(ref.email);
-        $('#refWebsite').val(ref.website);
+        $('#refWebsite').val((ref.websites || [])[0] || '');
+        $('#refExtraWebsites').empty();
+        (ref.websites || []).slice(1).forEach(w => addWebsiteInput(w));
         $('#refLocation').val(ref.location);
         $('#refModality').val(ref.modality);
         $('#refAvailability').val(ref.availability);
@@ -489,26 +585,6 @@ $(document).ready(function() {
         downloadFile(emailContent, `referral_email_${slug}.txt`, 'text/plain;charset=utf-8');
     });
 
-    // Export Client-Specific .json (Sanitized — No Private Clinician Notes!)
-    $('#exportClientJsonButton').on('click', function() {
-        const picked = getPickedProviders().map(r => {
-            const copy = { ...r };
-            delete copy.privateNotes; // Strip private clinician notes for client-specific export
-            return copy;
-        });
-
-        const clientPacket = {
-            exportedDate: new Date().toISOString().split('T')[0],
-            clientGreeting: $('#clientInquiryName').val().trim(),
-            subjectLine: $('#emailSubjectLine').val().trim(),
-            renderedEmail: $('#generatedEmailText').val(),
-            recommendedProviders: picked
-        };
-
-        const slug = getClientSlug();
-        downloadFile(JSON.stringify(clientPacket, null, 2), `client_referrals_${slug}.json`, 'application/json;charset=utf-8');
-    });
-
     // Print / Save PDF for This Specific Client
     $('#printClientPacketButton').on('click', function() {
         const picked = getPickedProviders();
@@ -531,7 +607,7 @@ $(document).ready(function() {
             <div class="print-card">
                 <div class="print-card-header">
                     <div>
-                        <strong>${escapeHtml(r.name)}</strong> ${r.pronouns ? `(${escapeHtml(r.pronouns)})` : ''}
+                        <strong>${escapeHtml(r.name)}</strong> ${r.pronouns ? `(${escapeHtml(r.pronouns)})` : ''}${r.languages ? ` &middot; Languages: ${escapeHtml(r.languages)}` : ''}
                         ${r.practice ? ` — <em>${escapeHtml(r.practice)}</em>` : ''}
                     </div>
                     <div>${escapeHtml(r.role)}</div>
@@ -539,7 +615,7 @@ $(document).ready(function() {
                 <div class="print-meta">
                     ${r.phone ? `<strong>Phone:</strong> ${escapeHtml(r.phone)} &nbsp;|&nbsp; ` : ''}
                     ${r.email ? `<strong>Email:</strong> ${escapeHtml(r.email)} &nbsp;|&nbsp; ` : ''}
-                    ${r.website ? `<strong>Website:</strong> ${escapeHtml(r.website)}<br>` : '<br>'}
+                    ${(r.websites || []).length ? `<strong>Links:</strong> ${(r.websites || []).map(w => escapeHtml(w)).join(' | ')}<br>` : '<br>'}
                     <strong>Location:</strong> ${escapeHtml(r.location || '—')} &nbsp;|&nbsp;
                     <strong>Modality:</strong> ${escapeHtml(r.modality || '—')} &nbsp;|&nbsp;
                     <strong>Fees:</strong> ${escapeHtml(r.feeRange || 'Contact provider')}
@@ -575,6 +651,7 @@ $(document).ready(function() {
                     .print-card { border: 1px solid #333; border-radius: 4px; padding: 10px 12px; margin-bottom: 12px; break-inside: avoid; }
                     .print-card-header { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 6px; font-size: 11pt; }
                     .print-meta, .print-tags, .print-bio { margin-top: 4px; font-size: 9.5pt; }
+                    .print-disclaimer { margin-top: 14px; font-size: 9.5pt; border-top: 1px solid #999; padding-top: 6px; }
                     .print-private { margin-top: 6px; padding: 6px; background: #f3f4f6; border-left: 3px solid #000; font-size: 9pt; }
                 </style>
             </head>
@@ -582,6 +659,7 @@ $(document).ready(function() {
                 <h1>${title}</h1>
                 ${emailSectionHtml}
                 ${cardsHtml ? `<h2>Provider Details</h2>${cardsHtml}` : ''}
+                ${$('#includeDisclaimer').is(':checked') && cardsHtml && !emailSectionHtml ? `<p class="print-disclaimer">${escapeHtml(DISCLAIMER_TEXT)}</p>` : ''}
             </body>
             </html>
         `);
@@ -603,13 +681,17 @@ $(document).ready(function() {
                 try {
                     const parsed = JSON.parse(raw);
                     if (parsed && Array.isArray(parsed.referrals)) {
-                        appState.referrals = parsed.referrals;
+                        appState.referrals = parsed.referrals.map(normalizeReferral);
                     }
                 } catch (e) {
                     console.error('Failed to parse cached referral database:', e);
                 }
             }
         }
+        if (!appState.referrals.length && !localStorage.getItem(SEEN_KEY)) {
+            appState.referrals = [{ ...SAMPLE_PROVIDER }];
+        }
+        localStorage.setItem(SEEN_KEY, '1');
         renderAll();
     }
 
@@ -630,7 +712,7 @@ $(document).ready(function() {
     }
 
     $('#clearAllButton').on('click', function() {
-        if (!confirm('Wipe all providers from your Referral Database? Make sure you have exported your Master .json backup first.')) return;
+        if (!confirm('Delete every provider from your Personal Referral Database? Export a .json backup first if you want to keep them.')) return;
         appState.referrals = [];
         selectedHandoutIds.clear();
         localStorage.removeItem(STORAGE_KEY);
@@ -664,16 +746,16 @@ $(document).ready(function() {
             try {
                 const parsed = JSON.parse(evt.target.result);
                 if (Array.isArray(parsed.referrals)) {
-                    appState.referrals = parsed.referrals;
+                    appState.referrals = parsed.referrals.map(normalizeReferral);
                 } else if (Array.isArray(parsed.recommendedProviders)) {
-                    appState.referrals = parsed.recommendedProviders;
+                    appState.referrals = parsed.recommendedProviders.map(normalizeReferral);
                 } else if (Array.isArray(parsed)) {
-                    appState.referrals = parsed;
+                    appState.referrals = parsed.map(normalizeReferral);
                 }
                 selectedHandoutIds.clear();
                 renderAll();
             } catch (err) {
-                alert('Invalid JSON file. Please select a valid Referral Database .json backup.');
+                alert('Invalid JSON file. Please choose a Personal Referral Database .json backup.');
             }
         };
         reader.readAsText(file);
@@ -686,14 +768,14 @@ $(document).ready(function() {
             return;
         }
         const headers = [
-            'Name', 'Pronouns/Languages', 'Practice Name', 'Role', 'Availability', 'Last Verified',
-            'Phone', 'Email', 'Website', 'Location/States', 'Modality', 'Fee Range',
+            'Name', 'Pronouns', 'Languages', 'Practice Name', 'Role', 'Availability', 'Last Verified',
+            'Phone', 'Email', 'Websites', 'Location/States', 'Modality', 'Fee Range',
             'Insurances', 'Specialties/Modalities', 'Populations Served', 'Client Summary', 'Private Clinician Notes'
         ];
 
         const rows = appState.referrals.map(r => [
-            r.name || '', r.pronouns || '', r.practice || '', r.role || '', r.availability || '', r.lastVerified || '',
-            r.phone || '', r.email || '', r.website || '', r.location || '', r.modality || '', r.feeRange || '',
+            r.name || '', r.pronouns || '', r.languages || '', r.practice || '', r.role || '', r.availability || '', r.lastVerified || '',
+            r.phone || '', r.email || '', (r.websites || []).join(' | '), r.location || '', r.modality || '', r.feeRange || '',
             (r.insurances || []).join('; '),
             (r.specialties || []).join('; '),
             (r.populations || []).join('; '),
@@ -715,6 +797,12 @@ $(document).ready(function() {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
+    }
+
+    // Today's date in the user's time zone (toISOString would use UTC and can be a day off)
+    function localDateISO() {
+        const d = new Date();
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     }
 
     function escapeAttr(str) {

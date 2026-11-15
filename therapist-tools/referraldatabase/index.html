@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Referral Database</title>
+    <title>Therapist Tools: Personal Referral Database</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -55,7 +55,7 @@
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
                 <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
-                <a href="../../therapist-tools/referraldatabase/index.html" aria-current="page">Referral Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html" aria-current="page">Personal Referral Database</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
@@ -82,10 +82,11 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Add each provider you trust under <strong>Add a provider</strong>, with specialties, insurance, availability, and private notes.</li>
-                            <li>When a client needs a referral, search and check the providers who fit.</li>
-                            <li>Choose Option A or B for the email, then copy it or print a handout from <strong>For this client</strong> in the tool menu.</li>
+                            <li>Add the providers and programs you trust, with their pronouns, languages, links, insurance, specialties, and who they serve. Private notes never leave this page.</li>
+                            <li>When a client needs a referral, filter by role, modality, availability, insurance, or age, and check the providers who fit.</li>
+                            <li>Check every reason you’re referring out, pick your state’s directories, and copy the email or print a handout for the client.</li>
                         </ol>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the list with made-up providers so you can see how it works.</span></p>
                         <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
                         <p><strong>Tip:</strong> Private notes never appear in client emails or handouts. The full directory printout does include them, so keep it private.</p>
                         <p>Import, save, print, and clear are further down this menu.</p>
@@ -130,7 +131,6 @@
                     <button type="button" id="copyEmailButton" class="btn btn-sm sidebar-btn">Copy email</button>
                     <button type="button" id="printClientPacketButton" class="btn btn-sm sidebar-btn">Print client handout</button>
                     <button type="button" id="exportClientTxtButton" class="btn btn-sm sidebar-btn">Export email .txt</button>
-                    <button type="button" id="exportClientJsonButton" class="btn btn-sm sidebar-btn">Export client .json</button>
                 </div>
 
                 <div class="sidebar-group" role="group" aria-label="Start over">
@@ -142,7 +142,7 @@
         </aside>
 
     <div class="panel tool-panel">
-        <h1 class="text-4xl font-bold text-center mb-2">Referral Database</h1>
+        <h1 class="text-4xl font-bold text-center mb-2">Personal Referral Database</h1>
         <p class="muted text-center text-sm mb-6">
             Keep a list of the providers and resources you trust. Check off the ones that fit a client or inquiry, and it writes a referral email and a client handout for you. Save the list as a <code>.json</code> file to reload later.
         </p>
@@ -151,8 +151,8 @@
         <!-- Section 1: Add / Edit Provider in Your Ongoing Referral List -->
         <section class="mb-8" aria-labelledby="add-referral-heading">
             <div class="flex flex-wrap justify-between items-center mb-3">
-                <h2 id="add-referral-heading" class="text-xl font-bold">1. Log a Provider into Your Ongoing Referral List</h2>
-                <button type="button" id="toggleFormCollapseBtn" class="btn-link text-sm font-semibold">Hide / Show Provider Entry Form</button>
+                <h2 id="add-referral-heading" class="text-xl font-bold">Add a Provider to Your List</h2>
+                <button type="button" id="toggleFormCollapseBtn" class="btn-link text-sm font-semibold">Hide or show the form</button>
             </div>
 
             <form id="referralForm" class="subpanel p-5 rounded-md space-y-4">
@@ -165,8 +165,12 @@
                         <input type="text" id="refName" required placeholder="e.g., Alex Rivera, LMHC" class="w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
-                        <label for="refPronouns" class="block text-xs font-semibold mb-1">Pronouns &amp; Languages:</label>
-                        <input type="text" id="refPronouns" placeholder="e.g., they/them | English, Spanish" class="w-full p-2 border rounded-md text-sm">
+                        <label for="refPronouns" class="block text-xs font-semibold mb-1">Pronouns</label>
+                        <input type="text" id="refPronouns" placeholder="e.g., they/them" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                    <div>
+                        <label for="refLanguages" class="block text-xs font-semibold mb-1">Languages</label>
+                        <input type="text" id="refLanguages" placeholder="e.g., English, Spanish, ASL" class="w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="refPractice" class="block text-xs font-semibold mb-1">Practice / Clinic / Agency Name:</label>
@@ -200,8 +204,10 @@
                         <input type="text" id="refEmail" placeholder="e.g., intake@example.com" class="w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
-                        <label for="refWebsite" class="block text-xs font-semibold mb-1">Website / Psychology Today Link:</label>
+                        <label for="refWebsite" class="block text-xs font-semibold mb-1">Website or profile links</label>
                         <input type="text" id="refWebsite" placeholder="e.g., https://..." class="w-full p-2 border rounded-md text-sm">
+                        <div id="refExtraWebsites" class="space-y-1 mt-1"></div>
+                        <button type="button" id="addWebsiteBtn" class="btn-link text-xs mt-1">+ Add another link</button>
                     </div>
                     <div>
                         <label for="refLocation" class="block text-xs font-semibold mb-1">City, Neighborhood &amp; State(s):</label>
@@ -281,14 +287,14 @@
         <section class="subpanel p-4 rounded-md mb-6 space-y-4" aria-labelledby="search-heading">
             <div class="flex flex-wrap justify-between items-center gap-2">
                 <div>
-                    <h2 id="search-heading" class="text-xl font-bold">2. Search &amp; Pick Providers for This Client</h2>
+                    <h2 id="search-heading" class="text-xl font-bold">Find and Pick Providers for This Client</h2>
                     <p class="muted text-xs">Check the box next to any provider below to add them directly into the Client Referral Email at the bottom of the page.</p>
                 </div>
                 <span id="referralCountBadge" class="text-xs font-semibold">0 Providers Shown</span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
-                <div class="md:col-span-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="md:col-span-4">
                     <label for="searchKeyword" class="block text-xs font-semibold mb-1">Search Name, Specialty, Insurance, City, or Notes:</label>
                     <input type="text" id="searchKeyword" placeholder="Type e.g., EMDR, Premera, ADHD, Seattle, ARNP..." class="w-full p-2 border rounded-md text-sm">
                 </div>
@@ -325,6 +331,23 @@
                         <option value="Full / Not Accepting">🔴 Full / Not Accepting</option>
                     </select>
                 </div>
+                <div>
+                    <label for="filterInsurance" class="block text-xs font-semibold mb-1">Insurance or payment</label>
+                    <select id="filterInsurance" class="w-full p-2 border rounded-md text-sm"><option value="ALL">Any insurance or payment</option></select>
+                </div>
+                <div>
+                    <label for="filterAge" class="block text-xs font-semibold mb-1">Age group</label>
+                    <select id="filterAge" class="w-full p-2 border rounded-md text-sm">
+                        <option value="ALL">Any age</option>
+                        <option value="child">Children</option>
+                        <option value="teen">Teens</option>
+                        <option value="young">Young adults</option>
+                        <option value="adult">Adults</option>
+                        <option value="older">Older adults</option>
+                        <option value="couple">Couples</option>
+                        <option value="famil">Families</option>
+                    </select>
+                </div>
             </div>
 
             <div class="flex flex-wrap justify-between items-center gap-3 pt-3 border-t text-xs">
@@ -346,9 +369,9 @@
         <!-- Section 4: Client Referral Out Email Generator & Client-Specific Export -->
         <section id="client-email-section" class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="email-gen-heading">
             <div>
-                <h2 id="email-gen-heading" class="text-2xl font-bold">3. Client Referral Out Email &amp; Client-Specific Export</h2>
+                <h2 id="email-gen-heading" class="text-2xl font-bold">Referral Email for This Client</h2>
                 <p class="muted text-xs">
-                    Automatically builds your referral email using the providers you checked above. Customize the reason or directory links below, then click <strong>Copy Email to Clipboard</strong> or export a packet for this specific client.
+                    Builds your referral email from the providers you checked above as you go. Pick your reasons and directories below, then use <strong>Copy email</strong> or <strong>Print client handout</strong> in the tool menu.
                 </p>
             </div>
 
@@ -370,36 +393,37 @@
 
             <!-- Option A (Full Practice) vs Option B (Outside Scope) Selector -->
             <div class="border-t pt-3 space-y-2">
-                <p class="text-sm font-semibold">Select Referral Reason Paragraph:</p>
-                <div class="flex flex-col space-y-2 text-sm">
-                    <label class="inline-flex items-start cursor-pointer">
-                        <input type="radio" name="referralReasonOption" value="optionA" checked class="mt-1 mr-2">
-                        <span><strong>Option A — Full Practice:</strong> "I am currently at full capacity and unable to take on new clients at this time."</span>
-                    </label>
-                    <label class="inline-flex items-start cursor-pointer">
-                        <input type="radio" name="referralReasonOption" value="optionB" class="mt-1 mr-2">
-                        <span><strong>Option B — Scope Fit:</strong> "While your goals are deeply important, my practice currently focuses primarily on <em id="scopePreviewText">supporting neurodivergence</em>, so I want to make sure you get connected with someone who specializes directly in what you're looking for."</span>
-                    </label>
-                    <label class="inline-flex items-start cursor-pointer">
-                        <input type="radio" name="referralReasonOption" value="bothAB" class="mt-1 mr-2">
-                        <span><strong>Both Option A &amp; B Combined:</strong> Includes both capacity and specialty scope fit sentences.</span>
-                    </label>
-                    <label class="inline-flex items-start cursor-pointer">
-                        <input type="radio" name="referralReasonOption" value="currentClient" class="mt-1 mr-2">
-                        <span><strong>Current Client / Additional Resources:</strong> Omits the inquiry decline and goes straight to the recommended referrals list.</span>
-                    </label>
+                <p class="text-sm font-semibold">Why you’re referring out <span class="muted text-xs font-normal">(check all that apply)</span></p>
+                <div class="check-grid" id="reasonChecks">
+                    <label><input type="checkbox" class="reason-cb" value="capacity" checked> I’m at full capacity</label>
+                    <label><input type="checkbox" class="reason-cb" value="insurance"> Insurance or financial fit</label>
+                    <label><input type="checkbox" class="reason-cb" value="scheduling"> Scheduling doesn’t match</label>
+                    <label><input type="checkbox" class="reason-cb" value="modality"> Modality doesn’t match (in person / telehealth)</label>
+                    <label><input type="checkbox" class="reason-cb" value="levelOfCare"> Needs a different level of care</label>
+                    <label><input type="checkbox" class="reason-cb" value="diagnosis"> Diagnosis or specialty is outside my scope</label>
                 </div>
-
+                <label class="toggle-line text-sm"><input type="checkbox" id="currentClientMode"> This is a current client looking for extra resources (skip the “not a fit” part)</label>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                     <div>
-                        <label for="customScopeFocus" class="block text-xs font-semibold mb-1">Your Practice Focus Phrase (Used in Option B):</label>
+                        <label for="customScopeFocus" class="block text-xs font-semibold mb-1">Your practice focus (used for the scope reason)</label>
                         <input type="text" id="customScopeFocus" value="supporting neurodivergence" class="w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
-                        <label for="extraDirectoryBullet" class="block text-xs font-semibold mb-1">Extra Directory / Network Bullet (Included at bottom of referral bullets):</label>
-                        <input type="text" id="extraDirectoryBullet" value="Washington Therapy Network / Psychology Today Directory (https://www.psychologytoday.com)" class="w-full p-2 border rounded-md text-sm">
+                        <label for="extraDirectoryBullet" class="block text-xs font-semibold mb-1">Other directory or resource <span class="muted">(optional)</span></label>
+                        <input type="text" id="extraDirectoryBullet" value="" placeholder="e.g., Our local therapist network (https://...)" class="w-full p-2 border rounded-md text-sm">
                     </div>
                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <div>
+                        <label for="refState" class="block text-xs font-semibold mb-1">Your state <span class="muted">(adds state directories)</span></label>
+                        <select id="refState" data-practice="therapist.licenses.0.state" class="w-full p-2 border rounded-md text-sm"></select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <span class="block text-xs font-semibold mb-1">Directories to include</span>
+                        <div class="check-grid" id="directoryChecks"></div>
+                    </div>
+                </div>
+                <label class="toggle-line text-xs"><input type="checkbox" id="includeDisclaimer" checked> Add the no-guarantee and emergency note at the end</label>
 
                 <div class="pt-1">
                     <label class="inline-flex items-center text-xs cursor-pointer">
@@ -464,6 +488,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="../shared/diagnoses.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
     <script src="../practice-data.js"></script>

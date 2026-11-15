@@ -223,7 +223,8 @@
       "medicaid": null,
       "resources": [],
       "reporting": null,
-      "licensingLaw": null
+      "licensingLaw": null,
+      "directories": []
     },
     "WA": {
       "name": "Washington",
@@ -302,7 +303,17 @@
         "adult": "Adult Protective Services through the Washington State Department of Social and Health Services (DSHS)",
         "cite": "Wash. Rev. Code §§ 26.44.030, 74.34.020"
       },
-      "licensingLaw": "chapter 18.225 RCW"
+      "licensingLaw": "chapter 18.225 RCW",
+      "directories": [
+        {
+          "name": "Washington Recovery Help Line treatment finder",
+          "url": "https://www.warecoveryhelpline.org"
+        },
+        {
+          "name": "WA 211 community services",
+          "url": "https://wa211.org"
+        }
+      ]
     }
   }
 }

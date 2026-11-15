@@ -80,6 +80,28 @@
 .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
     line-height: 42px;
 }
+/* With no tags picked, the empty list and the search box used to wrap onto two lines, pushing the placeholder out of view */
+.select2-container--default .select2-selection--multiple .select2-selection__rendered:empty {
+    display: none;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered:empty + .select2-search--inline {
+    padding-left: 0.5rem;
+}
+.select2-container--default .select2-selection--multiple {
+    min-height: 42px;
+}
+.select2-container--default .select2-search--inline textarea.select2-search__field {
+    height: 28px !important;
+    line-height: 28px !important;
+    margin: 0 !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.select2-container--default .select2-selection--multiple .select2-search--inline {
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: 100%;
+}
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: var(--accent) !important;
     color: var(--accent-contrast) !important;

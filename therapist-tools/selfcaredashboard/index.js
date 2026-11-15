@@ -283,7 +283,7 @@ $(document).ready(function() {
             adviceText = `Even if your headcount looks modest on paper, your Tier 1 & Tier 2 acuity weight puts you at 100% capacity. Avoid squeezing in "just one more high-need intake" until an active client steps down to biweekly/maintenance.`;
         } else {
             statusTitle = `🔴 Acuity Overload (${loadPct}% of Emotional Bandwidth — ${rawHeadcount} Active Clients)`;
-            adviceText = `Your caseload is carrying heavy emotional weight (${c.tier1} high-acuity crisis clients). Strongly consider pausing new intakes (use your Referral Database "Option A: Full Practice" email!), stepping stable clients down to biweekly, and bringing Tier 1 cases to consultation.`;
+            adviceText = `Your caseload is carrying heavy emotional weight (${c.tier1} high-acuity crisis clients). Strongly consider pausing new intakes (use the “I’m at full capacity” reason in your Personal Referral Database email), stepping stable clients down to biweekly, and bringing Tier 1 cases to consultation.`;
         }
 
         const barWidth = Math.min(100, loadPct);
