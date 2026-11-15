@@ -82,12 +82,13 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Choose the plan type, then pick diagnoses using ICD-10 or DSM-5-TR.</li>
-                            <li>Insert suggested goals or write your own, up to 5 goals with 5 objectives each.</li>
-                            <li>Use <strong>Help Make It SMART</strong> to tighten each objective.</li>
-                            <li>As your client makes progress, move finished goals to <strong>Achieved goals</strong> and fill in the discharge criteria.</li>
-                            <li>Copy the plan into your EHR, or print or export it from the tool menu.</li>
+                            <li>Set up the plan: plan styles, review type, dates (use the 30/90/180/365-day buttons), frequency, modality, and the client’s strengths, protective factors, and resources.</li>
+                            <li>Pick diagnoses and approaches. To start from a session note, import its <code>.json</code> to fill these in.</li>
+                            <li>Add goals from the recommendations or write your own. Use the SMART helper on each objective, and check the interventions that fit; the ones that match your approach and diagnosis are listed first.</li>
+                            <li>Click an example to start the discharge criteria and participation statement, and watch the plan preview update.</li>
+                            <li>Print, copy, or save the plan from the tool menu.</li>
                         </ol>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
                         <p><strong>Saving your work:</strong> <strong>Session-only:</strong> nothing is saved in your browser, and refreshing the page clears every field. Use <strong>Save .json</strong> if you want to keep a copy, and store it somewhere secure. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
                         <p>Import, save, print, and clear are further down this menu.</p>
                         <h3 class="why-heading">Why this matters</h3>
@@ -139,7 +140,7 @@
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Treatment Plan Builder</h1>
         <p class="muted text-center text-sm mb-6">
-            Write treatment plans with goals matched to the diagnosis, a SMART objective helper, interventions, and a record of achieved and archived goals (up to 5 active goals with 5 objectives each). Nothing is saved in your browser, so export a <code>.json</code> file before you close the page.
+            Write treatment plans with goals matched to the diagnosis, a SMART objective helper, interventions that follow your approach, and a record of achieved and archived goals (up to 5 active goals with 5 objectives each). The plan preview updates as you work. Nothing is saved in your browser, so save a <code>.json</code> file before you close the page.
         </p>
 
 
@@ -147,14 +148,12 @@
 
             <!-- Section 1: Plan Type, Client Metadata & Review Cycle -->
             <section class="subpanel p-5 rounded-md space-y-4" aria-labelledby="plan-setup-heading">
-                <h2 id="plan-setup-heading" class="text-xl font-bold">1. Treatment Plan Type &amp; Clinical Setup</h2>
-
+                <h2 id="plan-setup-heading" class="text-xl font-bold">Plan Setup</h2>
+                <div>
+                    <span class="block text-sm font-semibold mb-1">Plan styles <span class="muted text-xs">(pick any; each adds its focus to the plan)</span></span>
+                    <div class="check-grid" id="planFrameworkChecks"></div>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="planFrameworkSelect" class="block text-sm font-semibold mb-1">Treatment Plan Style / Framework:</label>
-                        <select id="planFrameworkSelect" class="w-full p-2 border rounded-md text-sm"></select>
-                        <p id="planFrameworkDesc" class="muted text-xs mt-1"></p>
-                    </div>
                     <div>
                         <label for="planStatusSelect" class="block text-sm font-semibold mb-1">Plan Phase / Review Type:</label>
                         <select id="planStatusSelect" class="w-full p-2 border rounded-md text-sm">
@@ -168,40 +167,76 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
-                        <label for="clientName" class="block text-xs font-semibold mb-1">Client Name or Initials:</label>
+                        <label for="clientName" class="block text-xs font-semibold mb-1">Client name or initials</label>
                         <input type="text" id="clientName" placeholder="e.g., Alex M." class="w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
-                        <label for="planDate" class="block text-xs font-semibold mb-1">Plan Date:</label>
+                        <label for="planDate" class="block text-xs font-semibold mb-1">Plan date</label>
                         <input type="date" id="planDate" class="w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
-                        <label for="nextReviewDate" class="block text-xs font-semibold mb-1">Next Scheduled Review Date:</label>
-                        <input type="date" id="nextReviewDate" class="w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="sessionFrequency" class="block text-xs font-semibold mb-1">Recommended Frequency &amp; Modality:</label>
-                        <input type="text" id="sessionFrequency" value="Weekly 53–60 min individual sessions (CPT 90837)" class="w-full p-2 border rounded-md text-sm">
+                        <label for="clinicianNameCreds" class="block text-xs font-semibold mb-1">Clinician name and credentials</label>
+                        <input type="text" id="clinicianNameCreds" data-practice="therapist.clinicianFullName" placeholder="e.g., Jane Doe, LMHC" class="w-full p-2 border rounded-md text-sm">
                     </div>
                 </div>
-
+                <div>
+                    <label for="nextReviewDate" class="block text-xs font-semibold mb-1">Next review date</label>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <input type="date" id="nextReviewDate" class="p-2 border rounded-md text-sm">
+                        <span class="muted text-xs">From the plan date:</span>
+                        <button type="button" class="chip-tab review-preset" data-days="30">30 days</button>
+                        <button type="button" class="chip-tab review-preset" data-days="90">90 days</button>
+                        <button type="button" class="chip-tab review-preset" data-days="180">180 days</button>
+                        <button type="button" class="chip-tab review-preset" data-days="365">365 days</button>
+                    </div>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="clientStrengths" class="block text-xs font-semibold mb-1">Client Strengths, Protective Factors &amp; Resources:</label>
-                        <input type="text" id="clientStrengths" placeholder="e.g., High insight, strong creative expression, supportive partner, motivated for change..." class="w-full p-2 border rounded-md text-sm">
+                        <label for="sessionFrequencySelect" class="block text-xs font-semibold mb-1">Session frequency</label>
+                        <select id="sessionFrequencySelect" class="w-full p-2 border rounded-md text-sm">
+                            <option>Weekly</option>
+                            <option>Twice weekly</option>
+                            <option>Every other week</option>
+                            <option>Monthly</option>
+                            <option>As needed</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <input type="text" id="sessionFrequencyOther" class="w-full p-2 border rounded-md text-sm mt-2 hidden" placeholder="e.g., Weekly for 8 weeks, then every other week">
                     </div>
                     <div>
-                        <label for="clinicianNameCreds" class="block text-xs font-semibold mb-1">Clinician Name &amp; Credentials:</label>
-                        <input type="text" id="clinicianNameCreds" data-practice="therapist.clinicianFullName" placeholder="e.g., Jane Doe, LMHC" class="w-full p-2 border rounded-md text-sm">
+                        <label for="sessionModalitySelect" class="block text-xs font-semibold mb-1">Session modality</label>
+                        <select id="sessionModalitySelect" class="w-full p-2 border rounded-md text-sm">
+                            <option>Individual psychotherapy, 53+ minutes (CPT 90837)</option>
+                            <option>Individual psychotherapy, 38–52 minutes (CPT 90834)</option>
+                            <option>Individual psychotherapy, 16–37 minutes (CPT 90832)</option>
+                            <option>Family or couple psychotherapy with client (CPT 90847)</option>
+                            <option>Group psychotherapy (CPT 90853)</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <input type="text" id="sessionModalityOther" class="w-full p-2 border rounded-md text-sm mt-2 hidden" placeholder="e.g., Individual sessions via telehealth">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="clientStrengths" class="block text-xs font-semibold mb-1">Client strengths</label>
+                        <textarea id="clientStrengths" rows="2" placeholder="e.g., Insightful, creative, motivated for change" class="w-full p-2 border rounded-md text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label for="clientProtective" class="block text-xs font-semibold mb-1">Protective factors</label>
+                        <textarea id="clientProtective" rows="2" placeholder="e.g., Supportive partner, future-oriented goals, no access to firearms" class="w-full p-2 border rounded-md text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label for="clientResources" class="block text-xs font-semibold mb-1">Resources</label>
+                        <textarea id="clientResources" rows="2" placeholder="e.g., Stable housing, insurance, support group, primary care provider" class="w-full p-2 border rounded-md text-sm"></textarea>
                     </div>
                 </div>
             </section>
 
             <!-- Section 2: Diagnosis Selection (ICD / DSM Toggle) & Modalities -->
             <section class="subpanel p-5 rounded-md space-y-4" aria-labelledby="dx-heading">
-                <h2 id="dx-heading" class="text-xl font-bold">2. Diagnosis Selection (ICD / DSM) &amp; Clinical Modalities</h2>
+                <h2 id="dx-heading" class="text-xl font-bold">Diagnosis and Approach</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
                     <div>
@@ -257,7 +292,7 @@
                 <div class="flex flex-wrap justify-between items-center gap-3 subpanel p-4 rounded-md border">
                     <div>
                         <h2 id="active-goals-heading" class="text-2xl font-bold">
-                            3. Active Treatment Goals (<span id="activeGoalsCount">0</span> / 5)
+                            Active Treatment Goals (<span id="activeGoalsCount">0</span> / 5)
                         </h2>
                         <p class="muted text-xs">
                             Each Active Goal can hold up to <strong>5 Active SMART Objectives</strong>. When a client completes a goal or objective, click <strong>Mark Achieved / Archive</strong> to move it to the Achieved Log and free up an active slot!
@@ -277,7 +312,7 @@
                 <div class="flex flex-wrap justify-between items-center border-b pb-2">
                     <div>
                         <h2 id="archived-goals-heading" class="text-xl font-bold">
-                            4. Achieved &amp; Archived Goals / Objectives (<span id="archivedCountBadge">0</span>)
+                            Achieved and Archived Goals and Objectives (<span id="archivedCountBadge">0</span>)
                         </h2>
                         <p class="muted text-xs">Tracks longitudinal treatment progress across review periods without cluttering your 5 active goal slots.</p>
                     </div>
@@ -291,28 +326,35 @@
 
             <!-- Section 5: Discharge Criteria & Client Participation Agreement -->
             <section class="subpanel p-5 rounded-md space-y-4" aria-labelledby="discharge-heading">
-                <h2 id="discharge-heading" class="text-xl font-bold">5. Discharge / Step-Down Criteria &amp; Client Collaboration</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="dischargeCriteria" class="block text-xs font-semibold mb-1">Criteria for Discharge or Step-Down in Frequency:</label>
-                        <textarea id="dischargeCriteria" rows="2" class="w-full p-2 border rounded-md text-sm">Client will be ready for step-down in session frequency or graduation from therapy when active treatment goals are consistently met, baseline symptom distress remains manageable for 8+ consecutive weeks, and client demonstrates independent use of regulation and coping strategies.</textarea>
+                <h2 id="discharge-heading" class="text-xl font-bold">Discharge Criteria and Client Participation</h2>
+                <div>
+                    <label for="dischargeCriteria" class="block text-sm font-semibold mb-1">Criteria for discharge or stepping down in frequency</label>
+                    <textarea id="dischargeCriteria" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Click an example below to start, then make it fit this client."></textarea>
+                    <div class="example-chips" data-example-target="#dischargeCriteria">
+                        <button type="button" class="example-chip">The client will be ready to step down in frequency or finish therapy when active goals are consistently met, symptoms stay manageable for 8 or more consecutive weeks, and the client uses coping strategies independently.</button>
+                        <button type="button" class="example-chip">Discharge when the client’s symptoms are in the mild range on two consecutive measures and they have a relapse prevention plan.</button>
+                        <button type="button" class="example-chip">Step down to every other week once the client attends consistently and rates distress at 4/10 or lower for one month.</button>
                     </div>
-                    <div>
-                        <label for="clientParticipationNote" class="block text-xs font-semibold mb-1">Client Participation &amp; Agreement Statement:</label>
-                        <textarea id="clientParticipationNote" rows="2" class="w-full p-2 border rounded-md text-sm">This treatment plan was developed collaboratively with the client during session. The client expressed understanding of and agreement with the identified goals, objectives, and therapeutic interventions.</textarea>
+                </div>
+                <div>
+                    <label for="clientParticipationNote" class="block text-sm font-semibold mb-1">Client participation and agreement</label>
+                    <textarea id="clientParticipationNote" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Click an example below to start, then make it fit this client."></textarea>
+                    <div class="example-chips" data-example-target="#clientParticipationNote">
+                        <button type="button" class="example-chip">This plan was developed with the client during session. The client expressed understanding of and agreement with the goals, objectives, and interventions.</button>
+                        <button type="button" class="example-chip">The client helped write these goals in their own words and agreed to review progress at each review date.</button>
+                        <button type="button" class="example-chip">The client and their parent or guardian took part in developing this plan and agreed with it.</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Action Buttons -->
-            <div id="form-action-buttons" class="flex flex-wrap justify-center gap-4 pt-6 border-t">
-                <button type="submit" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Treatment Plan Preview</button>
-            </div>
-
-            <!-- Generated Plan Preview -->
-            <div id="generatedPlanContainer" class="subpanel hidden p-6 rounded-md mt-6 border">
-                <div id="generatedPlanHtml"></div>
-            </div>
+            <!-- Live plan preview -->
+            <section id="generatedPlanContainer" class="subpanel p-6 rounded-md mt-6 border" aria-labelledby="planPreviewHeading">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                    <h2 id="planPreviewHeading" class="text-xl font-bold">Plan preview</h2>
+                    <span class="muted text-xs">Updates as you work.</span>
+                </div>
+                <div id="generatedPlanHtml" class="plan-paper" aria-live="polite"></div>
+            </section>
         </form>
 
         <!-- Clinical & Academic Citations (APA 7th) -->

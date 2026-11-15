@@ -112,3 +112,35 @@
     gap: 1rem;
     font-size: 0.9rem;
 }
+/* Live plan preview looks like a printed page in both themes */
+.plan-paper {
+    padding: 22px 26px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    color: #111;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.plan-paper .tp-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+}
+.plan-paper h2,
+.plan-paper h3 {
+    color: #111 !important;
+}
+/* Where each suggested intervention comes from */
+.int-tag {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 6px;
+    border-radius: 99px;
+    font-size: 0.85em;
+    font-weight: 700;
+}
+.int-approach { background-color: var(--badge-bg); color: var(--badge-color); }
+.int-diagnosis { background-color: rgba(74, 222, 128, 0.15); color: var(--success); }
+.int-saved { background-color: rgba(251, 191, 36, 0.18); color: var(--warning); }

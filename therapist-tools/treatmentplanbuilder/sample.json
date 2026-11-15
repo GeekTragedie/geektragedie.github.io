@@ -1,0 +1,73 @@
+{
+  "frameworks": [
+    "medical-necessity",
+    "person-centered"
+  ],
+  "planStatus": "Initial Treatment Plan",
+  "clientName": "A.M. (sample)",
+  "planDate": "2026-11-10",
+  "nextReviewDate": "2027-02-08",
+  "sessionFrequencyChoice": "Weekly",
+  "sessionFrequencyOther": "",
+  "sessionModalityChoice": "Individual psychotherapy, 53+ minutes (CPT 90837)",
+  "sessionModalityOther": "",
+  "clientStrengths": "Insightful, creative, and motivated for change",
+  "clientProtective": "Supportive partner, future-oriented goals, no access to firearms",
+  "clientResources": "Stable housing, employer insurance, and a primary care provider",
+  "clinicianNameCreds": "Jordan Rivera, MA, LMHC",
+  "diagnosisClassification": "DSM",
+  "diagnosisCodes": [
+    "F41.1"
+  ],
+  "theories": [
+    "Cognitive Behavioral Therapy (CBT)",
+    "Acceptance and Commitment Therapy (ACT)"
+  ],
+  "medicalNecessityNote": "Daily worry and muscle tension disrupt sleep (4–5 hours per night) and concentration at work; the client has missed 3 workdays this month.",
+  "activeGoals": [
+    {
+      "id": "goal_sample_1",
+      "domain": "Anxiety & Somatic Regulation",
+      "broadGoal": "Reduce the frequency and intensity of somatic anxiety and uncontrollable worry while expanding daily window of tolerance.",
+      "targetDate": "2027-02-08",
+      "interventions": [
+        "Clinician will provide psychoeducation on nervous system regulation, polyvagal states, and window of tolerance.",
+        "Clinician will guide somatic and sensory grounding exercises (e.g., 5-4-3-2-1, paced breathing, TIPP skills) in session."
+      ],
+      "customInterventions": "",
+      "objectives": [
+        {
+          "id": "obj_sample_0",
+          "text": "Within 90 days, client will identify 3 personal somatic/cognitive early warning signs of escalating anxiety and utilize 1 grounding or breathwork skill at least 4 times per week when anxiety exceeds 6/10.",
+          "targetDate": "2027-02-08",
+          "progressStatus": "In Progress / Baseline",
+          "showSmartHelper": false,
+          "smartParts": {
+            "specificBehavior": "",
+            "measurableFreq": "at least 3 times per week",
+            "achievableSupport": "using skills practiced in session",
+            "relevantNeed": "to improve daily regulation and functioning",
+            "timeBound": "Within 90 days"
+          }
+        },
+        {
+          "id": "obj_sample_1",
+          "text": "Within 90 days, client will practice cognitive defusion or worry-time containment strategies at least 3 times per week to reduce nightly rumination from 7 nights/week to 3 or fewer nights/week.",
+          "targetDate": "2027-02-08",
+          "progressStatus": "In Progress / Baseline",
+          "showSmartHelper": false,
+          "smartParts": {
+            "specificBehavior": "",
+            "measurableFreq": "at least 3 times per week",
+            "achievableSupport": "using skills practiced in session",
+            "relevantNeed": "to improve daily regulation and functioning",
+            "timeBound": "Within 90 days"
+          }
+        }
+      ]
+    }
+  ],
+  "archivedItems": [],
+  "dischargeCriteria": "The client will be ready to step down in frequency or finish therapy when active goals are consistently met, symptoms stay manageable for 8 or more consecutive weeks, and the client uses coping strategies independently.",
+  "clientParticipationNote": "This plan was developed with the client during session. The client expressed understanding of and agreement with the goals, objectives, and interventions."
+}

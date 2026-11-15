@@ -5,6 +5,7 @@ $(document).ready(function() {
     let planConfig = {};
     let allDiagnosesData = { ICD: [], DSM: [] };
     let currentClassification = 'ICD';
+    let sharedStyles = [];
 
     // Core Application State (Strictly Session-Only)
     let appState = {
@@ -13,11 +14,15 @@ $(document).ready(function() {
     };
 
     // Set Default Dates (Today + 90-Day Review Date)
-    const todayStr = new Date().toISOString().split('T')[0];
+    const isoDate = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const todayStr = isoDate(new Date());
+    function addDays(iso, days) {
+        const d = iso ? new Date(`${iso}T00:00:00`) : new Date();
+        d.setDate(d.getDate() + days);
+        return isoDate(d);
+    }
     $('#planDate').val(todayStr);
-    const reviewDate = new Date();
-    reviewDate.setDate(reviewDate.getDate() + 90);
-    $('#nextReviewDate').val(reviewDate.toISOString().split('T')[0]);
+    $('#nextReviewDate').val(addDays(todayStr, 90));
 
     // Initialize Select2 Dropdowns
     $('#diagnosisSelect').select2({
@@ -40,13 +45,11 @@ $(document).ready(function() {
         planConfig = data || {};
         allDiagnosesData = { ICD: [], DSM: [] };
 
-        // Populate Plan Frameworks
-        const fwSelect = $('#planFrameworkSelect');
-        fwSelect.empty();
-        (planConfig.frameworks || []).forEach(fw => {
-            fwSelect.append(new Option(fw.name, fw.id));
+        // Plan styles stack: each checked style adds its focus to the plan
+        const fwBox = $('#planFrameworkChecks').empty();
+        (planConfig.frameworks || []).forEach((fw, i) => {
+            fwBox.append(`<label><input type="checkbox" class="plan-framework-cb" value="${escapeAttr(fw.id)}"${i === 0 ? ' checked' : ''}> <span><strong>${escapeHtml(fw.name)}</strong><br><span class="muted text-xs">${escapeHtml(fw.description)}</span></span></label>`);
         });
-        fwSelect.trigger('change');
 
         // Populate Diagnostic Recommendation Filter Dropdown
         const recFilter = $('#dxRecFilterSelect');
@@ -58,7 +61,7 @@ $(document).ready(function() {
 
         // Shared theory and diagnosis lists (therapist-tools/shared/)
         TTShared.loadTherapyStyles()
-            .then(function(sharedStyles) { populateTheories(sharedStyles.map(s => s.name)); })
+            .then(function(styles) { sharedStyles = styles; populateTheories(styles.map(s => s.name)); })
             .catch(function() { TTShared.showLoadError('#theorySelect', 'therapy styles'); });
         TTShared.loadDiagnoses()
             .then(function(sharedDx) { allDiagnosesData = sharedDx; })
@@ -96,11 +99,31 @@ $(document).ready(function() {
     }
 
     // --- 2. Framework & Diagnosis Change Handlers ---
-    $('#planFrameworkSelect').on('change', function() {
-        const fwId = $(this).val();
-        const fw = (planConfig.frameworks || []).find(f => f.id === fwId);
-        $('#planFrameworkDesc').text(fw ? fw.description : '');
+    function selectedFrameworks() {
+        const ids = $('.plan-framework-cb:checked').map(function() { return this.value; }).get();
+        return (planConfig.frameworks || []).filter(f => ids.includes(f.id));
+    }
+    function frequencyText() {
+        const v = $('#sessionFrequencySelect').val();
+        return v === 'Other' ? $('#sessionFrequencyOther').val().trim() : v;
+    }
+    function modalityText() {
+        const v = $('#sessionModalitySelect').val();
+        return v === 'Other' ? $('#sessionModalityOther').val().trim() : v;
+    }
+    $('#sessionFrequencySelect, #sessionModalitySelect').on('change', function() {
+        $('#sessionFrequencyOther').toggleClass('hidden', $('#sessionFrequencySelect').val() !== 'Other');
+        $('#sessionModalityOther').toggleClass('hidden', $('#sessionModalitySelect').val() !== 'Other');
     });
+    $(document).on('click', '.review-preset', function() {
+        $('#nextReviewDate').val(addDays($('#planDate').val() || todayStr, Number(this.dataset.days))).trigger('change');
+    });
+    $(document).on('click', '[data-example-target] .example-chip', function() {
+        const target = $($(this).parent().data('exampleTarget'));
+        const cur = target.val().trim();
+        target.val(cur ? `${cur} ${$(this).text()}` : $(this).text()).trigger('input');
+    });
+    $('#theorySelect').on('change', function() { renderActiveGoals(); });
 
     $('input[name="diagnosisClassification"]').on('change', function() {
         currentClassification = $(this).val();
@@ -109,6 +132,7 @@ $(document).ready(function() {
 
     $('#diagnosisSelect, #dxRecFilterSelect').on('change', function() {
         renderDiagnosisRecommendations();
+        renderActiveGoals();
     });
 
     // Maps any ICD/DSM code or text to one of our recommendation categories
@@ -279,6 +303,30 @@ $(document).ready(function() {
         };
     }
 
+    // Interventions that match the selected approaches (from their skill lists) come first,
+    // then interventions from the diagnosis-matched recommendations, then the general library.
+    function buildInterventionOptions() {
+        const out = [];
+        const add = (text, source) => { if (text && !out.some(o => o.text === text)) out.push({ text, source }); };
+        ($('#theorySelect').val() || []).forEach(name => {
+            const style = sharedStyles.find(st => st.name === name);
+            if (style && style.skills && style.skills.length) {
+                add(`Clinician will use ${name} interventions, including ${TTShared.listJoin(style.skills.slice(0, 3))}.`, 'approach');
+            } else {
+                add(`Clinician will use ${name} interventions tailored to the client’s goals.`, 'approach');
+            }
+        });
+        const hasDx = ($('#diagnosisSelect').val() || []).length > 0;
+        if (hasDx) {
+            inferCategoriesFromSelectedDiagnoses().forEach(cat => {
+                const catObj = (planConfig.diagnosisRecommendations || {})[cat];
+                (catObj && catObj.templates ? catObj.templates : []).forEach(tpl => (tpl.interventions || []).forEach(t => add(t, 'diagnosis')));
+            });
+        }
+        (planConfig.interventionsLibrary || []).forEach(t => add(t, 'library'));
+        return out;
+    }
+
     function renderActiveGoals() {
         $('#activeGoalsCount').text(appState.activeGoals.length);
         $('#addActiveGoalBtn').prop('disabled', appState.activeGoals.length >= MAX_ACTIVE_GOALS);
@@ -295,7 +343,7 @@ $(document).ready(function() {
             return;
         }
 
-        const interventionsPresetList = planConfig.interventionsLibrary || [];
+        const interventionOptions = buildInterventionOptions();
 
         appState.activeGoals.forEach((goal, gIdx) => {
             const objCount = (goal.objectives || []).length;
@@ -380,12 +428,14 @@ $(document).ready(function() {
             }).join('');
 
             // Build Interventions Checkboxes for this Goal
-            const interventionsHtml = interventionsPresetList.map(intText => {
-                const isChecked = (goal.interventions || []).includes(intText) ? 'checked' : '';
+            const saved = (goal.interventions || []).filter(t => !interventionOptions.some(o => o.text === t)).map(t => ({ text: t, source: 'saved' }));
+            const interventionsHtml = [...saved, ...interventionOptions].map(opt => {
+                const isChecked = (goal.interventions || []).includes(opt.text) ? 'checked' : '';
+                const tag = { approach: 'Your approach', diagnosis: 'Diagnosis', saved: 'In this plan' }[opt.source];
                 return `
                     <label class="inline-flex items-start text-xs cursor-pointer">
-                        <input type="checkbox" class="goal-intervention-cb mt-0.5 mr-2" value="${escapeAttr(intText)}" ${isChecked}>
-                        <span>${escapeHtml(intText)}</span>
+                        <input type="checkbox" class="goal-intervention-cb mt-0.5 mr-2" value="${escapeAttr(opt.text)}" ${isChecked}>
+                        <span>${tag ? `<span class="int-tag int-${opt.source}">${tag}</span> ` : ''}${escapeHtml(opt.text)}</span>
                     </label>
                 `;
             }).join('');
@@ -494,6 +544,7 @@ $(document).ready(function() {
         renderActiveGoals();
         renderArchivedItems();
         renderDiagnosisRecommendations();
+        updatePreview();
     }
 
     // --- 5. Delegated Event Handlers for Active Goals, SMART Helpers & Archive ---
@@ -718,14 +769,21 @@ $(document).ready(function() {
         });
 
         return {
-            framework: $('#planFrameworkSelect').val(),
-            frameworkName: $('#planFrameworkSelect option:selected').text(),
+            frameworks: selectedFrameworks().map(f => f.id),
+            frameworkNames: selectedFrameworks().map(f => f.name),
+            frameworkFocus: selectedFrameworks().map(f => ({ name: f.name, description: f.description })),
             planStatus: $('#planStatusSelect').val(),
             clientName: $('#clientName').val().trim(),
             planDate: $('#planDate').val(),
             nextReviewDate: $('#nextReviewDate').val(),
-            sessionFrequency: $('#sessionFrequency').val().trim(),
+            sessionFrequencyChoice: $('#sessionFrequencySelect').val(),
+            sessionFrequencyOther: $('#sessionFrequencyOther').val().trim(),
+            sessionModalityChoice: $('#sessionModalitySelect').val(),
+            sessionModalityOther: $('#sessionModalityOther').val().trim(),
+            sessionFrequency: [frequencyText(), modalityText()].filter(Boolean).join('; '),
             clientStrengths: $('#clientStrengths').val().trim(),
+            clientProtective: $('#clientProtective').val().trim(),
+            clientResources: $('#clientResources').val().trim(),
             clinicianNameCreds: $('#clinicianNameCreds').val().trim(),
             diagnosisClassification: currentClassification,
             diagnosisCodes: selectedDxCodes,
@@ -801,7 +859,7 @@ $(document).ready(function() {
             <div class="tp-document">
                 <div class="tp-header">
                     <h2>${escapeHtml(state.planStatus)}</h2>
-                    <div>${escapeHtml(state.frameworkName)}</div>
+                    <div>${escapeHtml((state.frameworkNames || []).join(' + '))}</div>
                 </div>
 
                 <div class="tp-meta-grid">
@@ -809,7 +867,8 @@ $(document).ready(function() {
                     <div><strong>Plan Date:</strong> ${escapeHtml(state.planDate || '—')}</div>
                     <div><strong>Next Review Date:</strong> ${escapeHtml(state.nextReviewDate || '—')}</div>
                     <div><strong>Clinician:</strong> ${escapeHtml(state.clinicianNameCreds || '________________________')}</div>
-                    <div><strong>Frequency / Modality:</strong> ${escapeHtml(state.sessionFrequency || '—')}</div>
+                    <div><strong>Frequency:</strong> ${escapeHtml(frequencyText() || '—')}</div>
+                    <div><strong>Modality:</strong> ${escapeHtml(modalityText() || '—')}</div>
                     <div><strong>Therapeutic Modalities:</strong> ${theoriesText}</div>
                 </div>
 
@@ -817,8 +876,15 @@ $(document).ready(function() {
                     <h3>Diagnostic Impressions (${escapeHtml(state.diagnosisClassification)}) &amp; Medical Necessity</h3>
                     <p><strong>Diagnosis(es):</strong><br>${dxText}</p>
                     ${state.medicalNecessityNote ? `<p><strong>Presenting Problem &amp; Functional Impact:</strong> ${escapeHtml(state.medicalNecessityNote)}</p>` : ''}
-                    ${state.clientStrengths ? `<p><strong>Client Strengths &amp; Protective Factors:</strong> ${escapeHtml(state.clientStrengths)}</p>` : ''}
+                    ${state.clientStrengths ? `<p><strong>Client Strengths:</strong> ${escapeHtml(state.clientStrengths)}</p>` : ''}
+                    ${state.clientProtective ? `<p><strong>Protective Factors:</strong> ${escapeHtml(state.clientProtective)}</p>` : ''}
+                    ${state.clientResources ? `<p><strong>Resources:</strong> ${escapeHtml(state.clientResources)}</p>` : ''}
                 </div>
+
+                ${(state.frameworkFocus || []).length ? `<div class="tp-section">
+                    <h3>Plan Approach</h3>
+                    ${state.frameworkFocus.map(f => `<p><strong>${escapeHtml(f.name)}:</strong> ${escapeHtml(f.description)}</p>`).join('')}
+                </div>` : ''}
 
                 <div class="tp-section">
                     <h3>Active Goals, SMART Objectives &amp; Clinical Interventions</h3>
@@ -829,8 +895,10 @@ $(document).ready(function() {
 
                 <div class="tp-section">
                     <h3>Discharge / Step-Down Criteria &amp; Collaboration</h3>
-                    <p><strong>Discharge Criteria:</strong> ${escapeHtml(state.dischargeCriteria)}</p>
-                    <p><strong>Client Agreement:</strong> ${escapeHtml(state.clientParticipationNote)}</p>
+                    <p><strong>Discharge Criteria:</strong></p>
+                    <p>${escapeHtml(state.dischargeCriteria || '—')}</p>
+                    <p><strong>Client Participation:</strong></p>
+                    <p>${escapeHtml(state.clientParticipationNote || '—')}</p>
                 </div>
 
                 <div class="tp-signatures">
@@ -851,6 +919,12 @@ $(document).ready(function() {
         lines.push(`Clinical Modalities: ${state.theories.join(', ') || 'Integrative'}`);
         if (state.medicalNecessityNote) lines.push(`Medical Necessity / Functional Impact: ${state.medicalNecessityNote}`);
         if (state.clientStrengths) lines.push(`Client Strengths: ${state.clientStrengths}`);
+        if (state.clientProtective) lines.push(`Protective Factors: ${state.clientProtective}`);
+        if (state.clientResources) lines.push(`Resources: ${state.clientResources}`);
+        if ((state.frameworkFocus || []).length) {
+            lines.push('\n--- PLAN APPROACH ---');
+            state.frameworkFocus.forEach(f => lines.push(`${f.name}: ${f.description}`));
+        }
         lines.push('');
 
         lines.push('--- ACTIVE TREATMENT GOALS & SMART OBJECTIVES ---');
@@ -881,13 +955,18 @@ $(document).ready(function() {
     }
 
     // --- 7. Submit, Print, Copy & Export / Import Handlers ---
-    $('#treatmentPlanForm').on('submit', function(e) {
-        e.preventDefault();
-        const state = collectFullPlanState();
-        $('#generatedPlanHtml').html(buildTreatmentPlanHtml(state));
-        $('#generatedPlanContainer').removeClass('hidden');
-        $('html, body').animate({ scrollTop: $('#generatedPlanContainer').offset().top - 20 }, 400);
-    });
+    let previewQueued = false;
+    function updatePreview() {
+        if (previewQueued) return;
+        previewQueued = true;
+        requestAnimationFrame(() => {
+            previewQueued = false;
+            $('#generatedPlanHtml').html(buildTreatmentPlanHtml(collectFullPlanState()));
+        });
+    }
+    $('#treatmentPlanForm').on('submit', function(e) { e.preventDefault(); });
+    $('#treatmentPlanForm').on('input change', updatePreview);
+    $(document).on('click', '#treatmentPlanForm button', () => setTimeout(updatePreview, 0));
 
     $('#copyPlanTextBtn').on('click', function() {
         const text = buildTreatmentPlanPlainText(collectFullPlanState());
@@ -971,19 +1050,52 @@ $(document).ready(function() {
         $(this).val('');
     });
 
+    // A Session Note Generator .json (Save .json or Create superbill) fills in diagnoses, approaches, and dates.
+    function applyImportedSessionNote(data) {
+        const system = data.diagnosisClassification === 'ICD' ? 'ICD' : 'DSM';
+        const codes = Array.isArray(data.diagnosis) ? data.diagnosis : (data.diagnoses || []).map(d => d.code);
+        currentClassification = system;
+        $(`input[name="diagnosisClassification"][value="${system}"]`).prop('checked', true);
+        populateDiagnosesDropdown(system, codes);
+        const theories = Array.isArray(data.theory) ? data.theory : [];
+        theories.forEach(t => {
+            if ($('#theorySelect').find(`option[value="${escapeAttr(t)}"]`).length === 0) $('#theorySelect').append(new Option(t, t));
+        });
+        $('#theorySelect').val(theories).trigger('change');
+        if (data.sessionDate || data.date) $('#planDate').val(data.sessionDate || data.date);
+        renderAll();
+        alert(`Filled in ${codes.length} diagnosis${codes.length === 1 ? '' : 'es'}${theories.length ? ` and ${theories.length} approach${theories.length === 1 ? '' : 'es'}` : ''} from the session note. Add the client’s name and goals next.`);
+    }
+
     function applyImportedPlan(data) {
         if (!data || typeof data !== 'object') return;
-        if (data.framework) $('#planFrameworkSelect').val(data.framework).trigger('change');
+        if (data.templateFields || data.kind === 'session-note-for-superbill') return applyImportedSessionNote(data);
+        const fwIds = Array.isArray(data.frameworks) ? data.frameworks : (data.framework ? [data.framework] : null);
+        if (fwIds) $('.plan-framework-cb').each(function() { this.checked = fwIds.includes(this.value); });
         if (data.planStatus) $('#planStatusSelect').val(data.planStatus);
         $('#clientName').val(data.clientName || '');
         $('#planDate').val(data.planDate || todayStr);
         $('#nextReviewDate').val(data.nextReviewDate || '');
-        $('#sessionFrequency').val(data.sessionFrequency || '');
+        if (data.sessionFrequencyChoice) {
+            $('#sessionFrequencySelect').val(data.sessionFrequencyChoice);
+            $('#sessionFrequencyOther').val(data.sessionFrequencyOther || '');
+            $('#sessionModalitySelect').val(data.sessionModalityChoice || $('#sessionModalitySelect option:first').val());
+            $('#sessionModalityOther').val(data.sessionModalityOther || '');
+        } else if (data.sessionFrequency) {
+            // Older plans had one combined "frequency & modality" box
+            $('#sessionFrequencySelect').val('Other');
+            $('#sessionFrequencyOther').val(data.sessionFrequency);
+            $('#sessionModalitySelect').val('Other');
+            $('#sessionModalityOther').val('');
+        }
+        $('#sessionFrequencySelect').trigger('change');
         $('#clientStrengths').val(data.clientStrengths || '');
+        $('#clientProtective').val(data.clientProtective || '');
+        $('#clientResources').val(data.clientResources || '');
         $('#clinicianNameCreds').val(data.clinicianNameCreds || '');
         $('#medicalNecessityNote').val(data.medicalNecessityNote || '');
-        if (data.dischargeCriteria) $('#dischargeCriteria').val(data.dischargeCriteria);
-        if (data.clientParticipationNote) $('#clientParticipationNote').val(data.clientParticipationNote);
+        $('#dischargeCriteria').val(data.dischargeCriteria || '');
+        $('#clientParticipationNote').val(data.clientParticipationNote || '');
 
         if (data.diagnosisClassification) {
             currentClassification = data.diagnosisClassification;
@@ -1008,7 +1120,6 @@ $(document).ready(function() {
         }
 
         renderAll();
-        $('#treatmentPlanForm').trigger('submit');
     }
 
     $('#clearAllButton').on('click', function() {
@@ -1019,8 +1130,10 @@ $(document).ready(function() {
         $('#theorySelect').val(null).trigger('change');
         appState.activeGoals = [];
         appState.archivedItems = [];
+        $('#nextReviewDate').val(addDays(todayStr, 90));
+        $('.plan-framework-cb').each(function(i) { this.checked = i === 0; });
+        $('#sessionFrequencySelect').trigger('change');
         addNewActiveGoal();
-        $('#generatedPlanContainer').addClass('hidden');
         renderAll();
     });
 
