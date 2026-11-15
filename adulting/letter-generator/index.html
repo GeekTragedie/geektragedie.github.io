@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../therapist-tools/toolkit.css">
+<link rel="stylesheet" href="../healthcare/client-tools.css">
+<link rel="stylesheet" href="letter-generator.css">
+<link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+<title>Adulting: Letter Generator</title>
+</head>
+<body aria-label="Letter Generator">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn active">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+                <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../adulting/assignments-organizer/index.html">Assignments Organizer</a>
+                <a href="../../adulting/letter-generator/index.html" aria-current="page">Letter Generator</a>
+                <a href="../../adulting/healthcare/index.html">Healthcare</a>
+                <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Session Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <a class="btn btn-sm sidebar-btn" href="../index.html">← Adulting</a>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">Letter</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#lg-type">Letter type</a></li>
+                        <li><a href="#lg-you">Your details</a></li>
+                        <li><a href="#lg-body">What to say</a></li>
+                        <li><a href="#ctOutputHeading">Preview</a></li>
+                    </ul>
+                </nav>
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="import">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json,application/json" class="hidden">
+                    <button type="button" class="btn btn-sm sidebar-btn btn-primary" data-action="export">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="saveLocalToggle"><span>Save in this browser (keeps your entries on this device; leave off on shared computers)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="copy">Copy letter</button>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="print">Print letter</button>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-lg-download>Download .txt</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" class="btn btn-sm sidebar-btn btn-danger" data-action="reset">Clear this page</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Letter Generator</h1>
+        <p class="ct-intro">Write a letter of recommendation or a resignation letter in your own name. Pick the kind of letter, fill in the details, and the letter takes shape in the preview as you type.</p>
+
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Choose a letter type, then what the letter is for.</li>
+                    <li>Fill in your details and the details of the person or job the letter is about. Anything still missing shows up in the preview in [brackets].</li>
+                    <li>For a recommendation, tap the strengths that fit and add a story or two. Specific examples are what make a recommendation believable.</li>
+                    <li>Read the whole preview, then copy it into your email or document, print it, or download it as a .txt file. Edit the wording there so it sounds like you.</li>
+                </ol>
+                <p>Not sure where to start? <strong>Load example</strong> fills in a made-up letter of the type you picked.</p>
+            </div>
+        </details>
+
+        <p class="ct-callout lg-privacy"><strong>Private by design:</strong> your letter is put together right here in your browser. Nothing you type is sent anywhere or stored by this site unless you turn on <strong>Save in this browser</strong> or save a file.</p>
+
+        <section class="ct-section" aria-labelledby="lg-type">
+            <h2 id="lg-type">Letter type</h2>
+            <div class="ct-grid">
+                <label class="ct-field">Letter type
+                    <select data-field="type">
+                        <option value="recommendation">Letter of Recommendation</option>
+                        <option value="resignation">Resignation Letter</option>
+                    </select>
+                </label>
+                <label class="ct-field" data-show="type=recommendation">Recommendation for
+                    <select data-field="rec.sub">
+                        <option value="teaching">Teaching or Professor Award</option>
+                        <option value="academic">Academic (school or graduate program)</option>
+                        <option value="employment">Employment / Job</option>
+                        <option value="scholarship">Scholarship</option>
+                        <option value="volunteer">Volunteer or Community Role</option>
+                        <option value="personal">Personal / Character</option>
+                    </select>
+                </label>
+                <label class="ct-field" data-show="type=resignation">Kind of resignation
+                    <select data-field="res.sub">
+                        <option value="standard">Standard (two weeks’ notice)</option>
+                        <option value="short">Short notice / immediate</option>
+                        <option value="retirement">Retirement</option>
+                        <option value="internal">Moving to a new role internally</option>
+                    </select>
+                </label>
+            </div>
+            <p class="lg-example-row"><button type="button" class="btn btn-sm" id="lgLoadExample">Load example</button> <span class="muted text-sm">Replaces what’s on the page with a made-up example of this letter.</span></p>
+        </section>
+
+        <!-- ===== Recommendation ===== -->
+        <div data-show="type=recommendation">
+            <section class="ct-section" aria-labelledby="lg-you">
+                <h2 id="lg-you">You (the writer)</h2>
+                <div class="ct-grid">
+                    <label class="ct-field">Your name<input type="text" data-field="rec.writerName" autocomplete="name" placeholder="e.g., Jordan Lee"></label>
+                    <label class="ct-field">Your title or role<input type="text" data-field="rec.writerTitle" placeholder="e.g., Program Manager"></label>
+                    <label class="ct-field">Organization <span class="muted">(optional)</span><input type="text" data-field="rec.writerOrg" placeholder="e.g., Main Street Library"></label>
+                    <label class="ct-field">Contact line <span class="muted">(optional)</span><input type="text" data-field="rec.writerContact" placeholder="e.g., jordan@example.com · (555) 555-0100"></label>
+                    <label class="ct-field">Date<input type="date" data-field="rec.date"></label>
+                </div>
+            </section>
+
+            <section class="ct-section" aria-labelledby="lg-recip">
+                <h2 id="lg-recip">Who it’s going to</h2>
+                <label class="lg-check"><input type="checkbox" data-field="rec.toWhom"><span>I don’t know who will read it (“To Whom It May Concern”)</span></label>
+                <div class="ct-grid" data-hide="rec.toWhom=true">
+                    <label class="ct-field">Recipient’s name<input type="text" data-field="rec.recipName" placeholder="e.g., Dr. Morgan Patel"></label>
+                    <label class="ct-field">Their title <span class="muted">(optional)</span><input type="text" data-field="rec.recipTitle" placeholder="e.g., Chair, Awards Committee"></label>
+                    <label class="ct-field">Their organization <span class="muted">(optional)</span><input type="text" data-field="rec.recipOrg" placeholder="e.g., Admissions Office"></label>
+                </div>
+            </section>
+
+            <section class="ct-section" aria-labelledby="lg-body">
+                <h2 id="lg-body">Who you’re recommending</h2>
+                <div class="ct-grid">
+                    <label class="ct-field">Their full name<input type="text" data-field="rec.personName" placeholder="e.g., Sam Rivera"></label>
+                    <label class="ct-field">Name for later mentions <span class="muted">(optional)</span><input type="text" data-field="rec.shortName" placeholder="e.g., Sam, or Dr. Rivera"></label>
+                    <label class="ct-field">Pronouns
+                        <select data-field="rec.pronouns">
+                            <option value="they">they/them</option>
+                            <option value="she">she/her</option>
+                            <option value="he">he/him</option>
+                            <option value="custom">Other (type them in)</option>
+                        </select>
+                    </label>
+                </div>
+                <fieldset class="lg-custom-pronouns" data-show="rec.pronouns=custom">
+                    <legend>Their pronouns</legend>
+                    <div class="ct-grid">
+                        <label class="ct-field">Subject (like “they”)<input type="text" data-field="rec.pr.subj" placeholder="e.g., xe"></label>
+                        <label class="ct-field">Object (like “them”)<input type="text" data-field="rec.pr.obj" placeholder="e.g., xem"></label>
+                        <label class="ct-field">Possessive (like “their”)<input type="text" data-field="rec.pr.poss" placeholder="e.g., xyr"></label>
+                    </div>
+                </fieldset>
+                <div class="ct-grid lg-gap">
+                    <label class="ct-field">How long you’ve known them <span class="muted">(optional)</span><input type="text" data-field="rec.duration" placeholder="e.g., three years"></label>
+                    <label class="ct-field"><span id="lgApplyLabel">What they’re applying for</span><input type="text" data-field="rec.applyingFor" id="lgApplyInput"></label>
+                    <label class="ct-field ct-wide">How you know them <span class="muted">(a sentence or two)</span><textarea data-field="rec.relationship" rows="2" placeholder="e.g., I supervised Sam at the Main Street Library, where Sam led our teen programs."></textarea></label>
+                </div>
+            </section>
+
+            <section class="ct-section" aria-labelledby="lg-strengths">
+                <h2 id="lg-strengths">Strengths and stories</h2>
+                <p class="ct-help">Tap the strengths that fit. Three or four is plenty.</p>
+                <div id="lgStrengths" class="lg-chips" role="group" aria-labelledby="lg-strengths"></div>
+                <div class="ct-grid lg-gap">
+                    <label class="ct-field ct-wide">Other strengths <span class="muted">(optional, separate with commas)</span><input type="text" data-field="rec.customStrengths" placeholder="e.g., a gift for explaining statistics"></label>
+                    <label class="ct-field ct-wide">An example story<textarea data-field="rec.story1" rows="4" placeholder="A specific moment that shows who they are: what happened, what they did, and what changed because of it."></textarea></label>
+                    <label class="ct-field ct-wide">A second story <span class="muted">(optional)</span><textarea data-field="rec.story2" rows="3"></textarea></label>
+                </div>
+            </section>
+
+            <section class="ct-section" aria-labelledby="lg-closing">
+                <h2 id="lg-closing">Closing</h2>
+                <div class="ct-grid">
+                    <label class="ct-field">Strength of recommendation
+                        <select data-field="rec.level">
+                            <option value="highest">Highest (without reservation)</option>
+                            <option value="strong">Strong</option>
+                            <option value="standard">Standard</option>
+                        </select>
+                    </label>
+                    <label class="ct-field">Sign-off
+                        <select data-field="rec.signoff">
+                            <option>Sincerely,</option>
+                            <option>Respectfully,</option>
+                            <option>With warm regards,</option>
+                            <option>Best regards,</option>
+                            <option>Best wishes,</option>
+                        </select>
+                    </label>
+                </div>
+                <label class="lg-check"><input type="checkbox" data-field="rec.offerContact"><span>Offer to be contacted for more information</span></label>
+            </section>
+        </div>
+
+        <!-- ===== Resignation ===== -->
+        <div data-show="type=resignation">
+            <section class="ct-section" aria-labelledby="lg-res-you">
+                <h2 id="lg-res-you">You and your job</h2>
+                <div class="ct-grid">
+                    <label class="ct-field">Your name<input type="text" data-field="res.name" autocomplete="name" placeholder="e.g., Jordan Lee"></label>
+                    <label class="ct-field">Date<input type="date" data-field="res.date"></label>
+                    <label class="ct-field">Manager’s name<input type="text" data-field="res.manager" placeholder="e.g., Alex Kim"></label>
+                    <label class="ct-field">Company<input type="text" data-field="res.company" placeholder="e.g., Northside Clinic"></label>
+                    <label class="ct-field">Your position<input type="text" data-field="res.position" placeholder="e.g., Front Desk Coordinator"></label>
+                    <label class="ct-field">Last day<input type="date" data-field="res.lastDay"></label>
+                    <label class="ct-field" data-show="res.sub=internal">New role<input type="text" data-field="res.newRole" placeholder="e.g., Billing Specialist"></label>
+                    <label class="ct-field" data-show="res.sub=internal">New team or department <span class="muted">(optional)</span><input type="text" data-field="res.newTeam" placeholder="e.g., the Finance team"></label>
+                </div>
+            </section>
+
+            <section class="ct-section" aria-labelledby="lg-res-body">
+                <h2 id="lg-res-body">What to say</h2>
+                <div class="ct-grid" data-hide="res.sub=internal">
+                    <label class="ct-field">Reason
+                        <select data-field="res.reason">
+                            <option value="">Don’t include a reason</option>
+                            <option value="newjob">A new opportunity</option>
+                            <option value="family">Personal or family reasons</option>
+                            <option value="health">Health</option>
+                            <option value="school">Going back to school</option>
+                            <option value="moving">Moving away</option>
+                            <option value="custom">Write my own</option>
+                        </select>
+                    </label>
+                    <label class="ct-field ct-wide" data-show="res.reason=custom">Your reason, in a sentence<input type="text" data-field="res.reasonText" placeholder="e.g., I’ve decided to start my own business."></label>
+                </div>
+                <p class="ct-help lg-gap">You never owe an employer a reason. A short, polite letter is completely professional.</p>
+                <span class="lg-subhead" id="lg-transition">Offer to help with the transition</span>
+                <div class="lg-chips" role="group" aria-labelledby="lg-transition">
+                    <label class="lg-chip"><input type="checkbox" data-list="res.transition" value="train"><span>Train my replacement</span></label>
+                    <label class="lg-chip"><input type="checkbox" data-list="res.transition" value="document"><span>Document my tasks</span></label>
+                    <label class="lg-chip"><input type="checkbox" data-list="res.transition" value="finish"><span>Finish current projects</span></label>
+                    <label class="lg-chip"><input type="checkbox" data-list="res.transition" value="questions"><span>Be available for questions</span></label>
+                </div>
+                <div class="ct-grid lg-gap">
+                    <label class="ct-field ct-wide">Thank-you line <span class="muted">(optional)</span><textarea data-field="res.gratitude" id="lgGratitude" rows="2"></textarea></label>
+                </div>
+                <div class="ct-chips" id="lgGratitudeIdeas" role="group" aria-label="Thank-you line ideas"></div>
+                <div class="ct-grid lg-gap" data-hide="res.sub=internal">
+                    <label class="ct-field ct-wide">Personal contact for after you leave <span class="muted">(optional)</span><input type="text" data-field="res.contact" placeholder="e.g., jordan.lee@example.com"></label>
+                </div>
+            </section>
+        </div>
+
+        <section aria-labelledby="ctOutputHeading">
+            <h2 id="ctOutputHeading" class="text-xl font-bold mb-2 ct-print-hide">Preview</h2>
+            <p class="muted text-sm mb-2 ct-print-hide">Updates as you type. Anything in [brackets] still needs filling in. Only the letter prints.</p>
+            <div id="ctOutput" class="ct-output lg-letter" aria-live="off"></div>
+            <div class="lg-actions ct-print-hide" role="group" aria-label="Use this letter">
+                <button type="button" class="btn btn-sm btn-primary" data-action="copy">Copy letter</button>
+                <button type="button" class="btn btn-sm" data-action="print">Print letter</button>
+                <button type="button" class="btn btn-sm" data-lg-download>Download .txt</button>
+            </div>
+        </section>
+
+    </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+
+<script src="../healthcare/client-tools.js"></script>
+<script src="letter-generator.js"></script>
+<script src="../../therapist-tools/toolkit.js"></script>
+</body>
+</html>

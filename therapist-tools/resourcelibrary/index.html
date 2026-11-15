@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Therapist Tools: Resource Library</title>
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+<link rel="stylesheet" href="../../adulting/healthcare/resources/style.css">
+</head>
+<body aria-label="Therapist resource library page" data-collection="therapists" data-resources-base="../../adulting/healthcare/resources/">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+                <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../adulting/assignments-organizer/index.html">Assignments Organizer</a>
+                <a href="../../adulting/letter-generator/index.html">Letter Generator</a>
+                <a href="../../adulting/healthcare/index.html">Healthcare</a>
+                <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn active">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Session Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="hero-panel">
+        <h1>Therapist Resource Library</h1>
+        <p>Theory cheat sheets, research, and clinical reading, plus the handouts I give clients. Use the filters to narrow by diagnosis, symptom, or therapy approach. Many items open right here: a full page, a PDF, or a short overview with a link to the original.</p>
+        <p class="resource-note">Looking for resources to share with clients? See <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a> under Adulting → Healthcare.</p>
+    </div>
+    
+    <div class="layout-wrapper">
+        <div class="sidebar">
+            <h2>Filter the Library</h2>
+            <div id="filter-container"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search resources, topics, descriptions...">
+                <select id="sort-by" class="sort-select">
+                    <option value="a-z">Sort: A-Z</option>
+                    <option value="z-a">Sort: Z-A</option>
+                </select>
+            </div>
+
+            <p id="resource-count" class="resource-count" aria-live="polite"></p>
+            <div id="active-filters-display" class="active-filters-bar"></div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('title')" style="width: 22%;">Resource &#x21D5;</th>
+                        <th onclick="sortTable('format')" style="width: 12%;">Format &#x21D5;</th>
+                        <th style="width: 32%; cursor: default;">Description</th>
+                        <th style="width: 16%; cursor: default;">Tags</th>
+                        <th onclick="sortTable('citation')" style="width: 18%;">Citation &#x21D5;</th>
+                    </tr>
+                </thead>
+                <tbody id="resource-list"></tbody>
+            </table>
+
+            <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#x2191; Back to Top</button>
+        </div>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="../../adulting/healthcare/resources/script.js"></script>
+</body>
+</html>

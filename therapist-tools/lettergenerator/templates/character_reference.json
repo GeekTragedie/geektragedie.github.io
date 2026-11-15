@@ -1,0 +1,18 @@
+{
+  "title": "Character Reference for Court",
+  "sections": [
+    { "type": "paragraph", "content": "[DATE_GENERATED]" },
+    { "type": "paragraph", "content": "[CHARACTER_SALUTATION]" },
+    { "type": "paragraph", "content": "I am writing on behalf of my [CHARACTER_RELATIONSHIP], [CLIENT_FULL_NAME], in connection with [CHARACTER_MATTER]. I am [A_LICENSE_TYPE] licensed in [LICENSE_STATE_PHRASE] (license no. [LICENSE_NUMBER]), and [CHARACTER_TREATMENT_DATES]." },
+    { "type": "paragraph", "content": "In my work with [CLIENT_FIRST_NAME], I have seen these qualities:", "when": "hasCharacterTraits" },
+    { "type": "list", "key": "CHARACTER_TRAIT_ITEMS", "when": "hasCharacterTraits" },
+    { "type": "paragraph", "content": "[CHARACTER_DETAILS]", "when": "hasCharacterDetails" },
+    { "type": "paragraph", "content": "[CHARACTER_IMPACT]", "when": "hasCharacterImpact" },
+    { "type": "paragraph", "content": "As a mental health professional, I respectfully ask the Court to consider alternatives to incarceration, such as [CHARACTER_ALTERNATIVES]. In my experience, guided support has helped [CLIENT_FIRST_NAME] make meaningful progress.", "when": "hasCharacterAlternatives" },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] has signed a release of information allowing me to share this letter with the Court." },
+    { "type": "paragraph", "content": "[VERIFICATION_CLAUSE]" },
+    { "type": "paragraph", "content": "Thank you for your time and consideration of [CLIENT_FIRST_NAME]’s circumstances." },
+    { "type": "paragraph", "content": "Respectfully," },
+    { "type": "signature" }
+  ]
+}

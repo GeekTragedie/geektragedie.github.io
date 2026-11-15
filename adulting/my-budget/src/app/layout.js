@@ -48,6 +48,8 @@ export default function RootLayout({ children }) {
                         <a href="../../adulting/my-budget/index.html" aria-current="page">My Budget</a>
                         <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
                         <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                        <a href="../../adulting/assignments-organizer/index.html">Assignments Organizer</a>
+                        <a href="../../adulting/letter-generator/index.html">Letter Generator</a>
                         <a href="../../adulting/healthcare/index.html">Healthcare</a>
                         <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
                     </div>
@@ -64,6 +66,7 @@ export default function RootLayout({ children }) {
                         <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
                         <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                         <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
+                        <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                         <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                         <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
                         <span className="dropdown-label">Finance & Business</span>

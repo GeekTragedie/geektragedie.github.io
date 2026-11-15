@@ -1,0 +1,210 @@
+/* Shared formatting for Author's Library pieces (loaded by every section).
+   Pieces are Markdown with a little raw HTML for the parts Markdown can't express:
+
+   Papers      <div class="paper apa"> … </div>  or  <div class="paper mla"> … </div>
+               Leave a blank line after the opening tag and before the closing tag so the
+               Markdown inside is still parsed.
+     APA title page   <div class="title-page"><p class="tp-title">Title</p><p>GeekTragedie</p>…</div>
+     MLA heading      <div class="mla-heading"><p>GeekTragedie</p><p>Professor …</p>…</div>
+     References       <div class="references"> … one paragraph per entry … </div>
+     Footnotes        <sup id="fnref1"><a href="#fn1">1</a></sup> and <ol class="footnotes">…</ol>
+   Poems / verse   <pre class="poem"> … </pre>  keeps every space, line break, and stanza gap
+                   <pre class="verse-quote"> … </pre>  for quoted lines of verse inside a paper
+   Plays           existing creative-writing rules, plus <p class="cast-list">, <p class="scene-heading">
+   Presentations   <section class="slide"><h2>Slide title</h2> … </section>
+   Content notes   <p class="content-note">…</p>
+*/
+
+/* ---------- Papers ---------- */
+.paper {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 1.04rem;
+    line-height: 1.95; /* close to double spacing on screen */
+    max-width: 46em;
+    margin: 0 auto;
+}
+.paper p {
+    text-indent: 0.5in;
+    margin: 0;
+}
+#content .paper h1, #content .paper h2, #content .paper h3, #content .paper h4, #content .paper h5, #content .paper h6 {
+    border: 0;
+    padding: 0;
+    color: var(--text-heading);
+    font-family: inherit;
+    line-height: 1.6;
+    margin: 1.2em 0 0.3em;
+}
+/* APA heading levels */
+.paper.apa h2 { font-size: 1.04rem; font-weight: 700; text-align: center; }               /* Level 1 */
+.paper.apa h3 { font-size: 1.04rem; font-weight: 700; text-align: left; }                 /* Level 2 */
+.paper.apa h4 { font-size: 1.04rem; font-weight: 700; font-style: italic; text-align: left; } /* Level 3 */
+.paper.apa h5 { font-size: 1.04rem; font-weight: 700; text-indent: 0.5in; }               /* Level 4 */
+.paper.apa h6 { font-size: 1.04rem; font-weight: 700; font-style: italic; text-indent: 0.5in; } /* Level 5 */
+/* MLA uses plain, centered or flush-left headings */
+.paper.mla h2 { font-size: 1.04rem; font-weight: 400; text-align: center; }
+.paper.mla h3 { font-size: 1.04rem; font-weight: 700; text-align: left; }
+.paper.mla h4 { font-size: 1.04rem; font-weight: 400; font-style: italic; text-align: left; }
+
+/* Paper title shown in the body (MLA) */
+.paper .paper-title { text-align: center; text-indent: 0; margin: 0.4em 0; }
+
+/* APA title page */
+.paper .title-page {
+    text-align: center;
+    margin: 1.5em 0 3em;
+    padding-bottom: 2em;
+    border-bottom: 1px dashed var(--border-color);
+}
+.paper .title-page p { text-indent: 0; }
+.paper .title-page .tp-title { font-weight: 700; margin-bottom: 1.2em; }
+.paper .running-head {
+    text-indent: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1em;
+}
+
+/* MLA first-page heading block */
+.paper .mla-heading { margin: 1em 0 0.6em; }
+.paper .mla-heading p { text-indent: 0; }
+
+/* Abstract (APA): no first-line indent */
+.paper .abstract p { text-indent: 0; }
+
+/* Block quotations: indented half an inch, no italics or color bar */
+#content .paper blockquote {
+    border: 0;
+    background: none;
+    font-style: normal;
+    color: var(--text-main);
+    margin: 0.4em 0 0.4em 0.5in;
+    padding: 0;
+    border-radius: 0;
+}
+.paper blockquote p { text-indent: 0; }
+
+/* Quoted verse inside a paper */
+.paper pre.verse-quote {
+    white-space: pre-wrap;
+    font: inherit;
+    margin: 0.4em 0 0.4em 0.5in;
+    padding: 0;
+    background: none;
+    border: 0;
+}
+
+/* References / Works Cited: hanging indent */
+.paper .references { margin-top: 1.5em; }
+.paper .references p {
+    text-indent: -0.5in;
+    padding-left: 0.5in;
+    overflow-wrap: anywhere;
+}
+.paper.apa .references h2 { font-weight: 700; }
+
+/* Lists inside papers keep normal spacing */
+.paper ul, .paper ol { margin: 0.3em 0 0.3em 0.5in; }
+.paper li { margin: 0.1em 0; }
+
+/* Footnotes */
+.paper sup a { text-decoration: none; }
+.paper ol.footnotes {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 2em;
+    padding-top: 0.8em;
+    border-top: 1px solid var(--border-color);
+}
+
+/* APA tables: horizontal rules only */
+#content .paper table {
+    border-collapse: collapse;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+    margin: 1em 0;
+    font-size: 0.95rem;
+}
+#content .paper th, #content .paper td {
+    border: 0;
+    border-bottom: 1px solid var(--border-color);
+    background: none;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: inherit;
+    padding: 4px 10px;
+    text-align: left;
+}
+#content .paper thead th { border-top: 2px solid var(--text-main); border-bottom: 1px solid var(--text-main); }
+#content .paper tbody tr:last-child td { border-bottom: 2px solid var(--text-main); }
+.paper .table-note { text-indent: 0; font-size: 0.9rem; }
+
+/* ---------- Poems ---------- */
+pre.poem {
+    white-space: pre-wrap;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 34em;
+    margin: 0 auto 1.6em;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: var(--text-main);
+    overflow-x: auto;
+}
+.poem-note { max-width: 34em; margin: 0 auto 1.6em; color: var(--text-muted); font-style: italic; }
+
+/* ---------- Plays ---------- */
+#content .cast-list { white-space: pre-wrap; margin: 0 0 1.5em; }
+#content .scene-heading { text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 2em 0 1em; }
+
+/* ---------- Presentations ---------- */
+#content .slide {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin: 0 0 18px;
+    background-color: var(--bg-subpanel);
+}
+#content .slide h2 { margin-top: 0; border: 0; font-size: 1.25rem; }
+#content .slide .slide-notes { color: var(--text-muted); font-size: 0.9rem; }
+
+/* ---------- Shared ---------- */
+#content .content-note {
+    border-left: 4px solid var(--danger, #ef4444);
+    background-color: var(--bg-subpanel);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    text-indent: 0;
+    font-style: normal;
+}
+#content .piece-note { color: var(--text-muted); font-size: 0.9rem; font-style: italic; text-indent: 0; }
+
+@media print {
+    .top-nav, .site-footer, #sidebar, .blog-meta-bar { display: none !important; }
+    body { background: #fff !important; color: #000; }
+    #content { color: #000; }
+    .paper { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 2; max-width: none; }
+    .paper .title-page { border: 0; min-height: 8in; }
+    pre.poem { font-size: 12pt; }
+}
+#content .paper tr, #content .paper tbody tr:nth-child(even) { background: none; }
+
+/* ---------- Small screens ---------- */
+/* Long URLs in references and slides wrap instead of pushing the page sideways */
+#content .paper a, #content .slide a, #content .references { overflow-wrap: anywhere; }
+#content .slide { overflow-x: auto; }
+#content .slide table { display: block; overflow-x: auto; max-width: 100%; }
+/* Nested lists step in by a smaller amount than the half-inch first level */
+.paper li > ul, .paper li > ol { margin-left: 1.2em; }
+@media (max-width: 600px) {
+    .paper p { text-indent: 1.5em; }
+    .paper ul, .paper ol { margin-left: 1.2em; padding-left: 1em; }
+    #content .paper blockquote, .paper pre.verse-quote { margin-left: 1.2em; }
+    .paper .references p { text-indent: -1.5em; padding-left: 1.5em; }
+}

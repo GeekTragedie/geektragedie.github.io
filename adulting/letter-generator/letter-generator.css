@@ -1,0 +1,79 @@
+/* Letter Generator (Adulting). Builds on ../healthcare/client-tools.css */
+
+[hidden] { display: none !important; }
+
+.lg-privacy { max-width: 46rem; margin: 0 auto 1.25rem; }
+.lg-example-row { margin: 0.9rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.lg-gap { margin-top: 0.75rem; }
+.lg-subhead { display: block; font-size: 0.85rem; font-weight: 600; margin-top: 0.75rem; }
+
+.lg-check {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    margin: 0.4rem 0 0.75rem;
+    cursor: pointer;
+}
+.lg-check input { margin-top: 0.2rem; flex-shrink: 0; }
+
+.lg-custom-pronouns {
+    border: 1px dashed var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.9rem 0.2rem;
+    margin: 0.75rem 0 0;
+    min-width: 0;
+}
+.lg-custom-pronouns legend { font-size: 0.85rem; font-weight: 600; padding: 0 0.3rem; }
+
+/* Toggle chips: real checkboxes, styled as pills */
+.lg-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.45rem; }
+.lg-chip { position: relative; cursor: pointer; }
+.lg-chip input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+}
+.lg-chip span {
+    display: inline-block;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    background: var(--bg-input, transparent);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.lg-chip span::before { content: '+ '; color: var(--text-muted); }
+.lg-chip input:checked + span {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+}
+.lg-chip input:checked + span::before { content: '✓ '; color: inherit; }
+.lg-chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lg-chip:hover span { border-color: var(--accent); }
+
+/* The letter */
+.lg-letter {
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+.lg-letter p { margin: 0 0 0.9em; }
+.lg-letter p:last-child { margin-bottom: 0; }
+.lg-missing {
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    border-radius: 0.25rem;
+    padding: 0 0.2em;
+}
+.lg-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+
+@media print {
+    .lg-privacy, .lg-actions { display: none !important; }
+    .lg-letter { font-size: 12pt; color: #000; }
+    .lg-missing { background: none; color: #000; padding: 0; }
+}

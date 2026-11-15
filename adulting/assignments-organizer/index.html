@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../therapist-tools/toolkit.css">
+<link rel="stylesheet" href="../healthcare/client-tools.css">
+<link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+<title>Adulting: Assignments Organizer</title>
+</head>
+<body aria-label="Assignments Organizer">
+<script src="../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../adulting/index.html" class="dropbtn active">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+                <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../adulting/assignments-organizer/index.html">Assignments Organizer</a>
+                <a href="../../adulting/letter-generator/index.html">Letter Generator</a>
+                <a href="../../adulting/healthcare/index.html">Healthcare</a>
+                <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../therapist-tools/notegenerator/index.html">Session Note Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
+                <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
+                <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <a class="btn btn-sm sidebar-btn" href="../index.html">← Adulting</a>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">Organizer</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#ao-term">Term</a></li>
+                        <li><a href="#ao-courses">Courses</a></li>
+                        <li><a href="#ao-weeks">Week by week</a></li>
+                        <li><a href="#ctOutputHeading">Printable plan</a></li>
+                    </ul>
+                </nav>
+                <div class="sidebar-group" role="group" aria-label="Spreadsheet">
+                    <span class="sidebar-label">Spreadsheet</span>
+                    <a class="btn btn-sm sidebar-btn" href="assignments-template.xlsx" download>Blank template (.xlsx)</a>
+                    <a class="btn btn-sm sidebar-btn" href="assignments-template.csv" download>Blank template (.csv)</a>
+                    <button type="button" class="btn btn-sm sidebar-btn" id="aoExportCsv">My plan as .csv</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="import">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json,application/json" class="hidden">
+                    <button type="button" class="btn btn-sm sidebar-btn btn-primary" data-action="export">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="saveLocalToggle"><span>Save in this browser (keeps your entries on this device; leave off on shared computers)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="print">Print</button>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="copy">Copy as text</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" class="btn btn-sm sidebar-btn btn-danger" data-action="reset">Clear this page</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Assignments Organizer</h1>
+        <p class="ct-intro">A week-by-week view of every class: readings, assignments, and due dates in one place, with colors for what’s done, skimmed, or still waiting. Fill it in here, or download a blank spreadsheet.</p>
+
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Name the term, pick the first day of week 1, and set how many weeks it runs.</li>
+                    <li>Add each course and when it meets.</li>
+                    <li>Fill in each week’s readings and assignments from the syllabus. Mark each one as done, skimmed, or not finished as you go.</li>
+                    <li>Print the plan, save a .json to keep working on it later, or download it as a spreadsheet.</li>
+                </ol>
+                <p><strong>Your privacy:</strong> nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a file.</p>
+            </div>
+        </details>
+
+        <section class="ct-section" aria-labelledby="ao-term">
+            <h2 id="ao-term">Term</h2>
+            <div class="ct-grid">
+                <label class="ct-field">Term name<input type="text" data-field="term.name" placeholder="e.g., Spring Quarter"></label>
+                <label class="ct-field">Week 1 starts<input type="date" data-field="term.start"></label>
+                <label class="ct-field">Number of weeks<input type="number" min="1" max="20" step="1" data-field="term.weeks"></label>
+            </div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="ao-courses">
+            <h2 id="ao-courses">Courses</h2>
+            <div data-rows="courses" data-row-fields="name,when" data-row-labels="Course,Meets" data-row-placeholders="e.g., Psychopathology|e.g., Tue 3:30–6:30 pm" data-add-label="+ Add a course"></div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="ao-weeks">
+            <h2 id="ao-weeks">Week by Week</h2>
+            <p class="ct-help">Colors: <span class="ao-status ao-done">Done</span> <span class="ao-status ao-skimmed">Skimmed</span> <span class="ao-status ao-notdone">Not finished</span></p>
+            <div id="aoGrid" class="ao-grid-wrap"></div>
+        </section>
+
+        <section aria-labelledby="ctOutputHeading">
+            <h2 id="ctOutputHeading" class="text-xl font-bold mb-2 ct-print-hide">Printable plan</h2>
+            <p class="muted text-sm mb-2 ct-print-hide">Updates as you type. This is what prints.</p>
+            <div id="ctOutput" class="ct-output"></div>
+        </section>
+
+    </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+
+<script src="../healthcare/client-tools.js"></script>
+<script src="index.js"></script>
+<script src="../../therapist-tools/toolkit.js"></script>
+</body>
+</html>

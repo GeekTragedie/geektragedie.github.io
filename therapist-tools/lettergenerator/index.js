@@ -183,6 +183,7 @@ $(function () {
         $('#gaCareOther').toggleClass('hidden', !$('#gaCareOtherCheck').is(':checked'));
         $('#roiInfoOther').toggleClass('hidden', !$('#roiInfoOtherCheck').is(':checked'));
         $('#roiPurposeOther').toggleClass('hidden', !$('#roiPurposeOtherCheck').is(':checked'));
+        $('#characterEndBlock').toggleClass('hidden', $('input[name="characterRelationship"]:checked').val() !== 'former');
         $('#gaDiagnosis').prop('disabled', !$('#gaIncludeDiagnosis').is(':checked'));
     }
 
@@ -264,6 +265,8 @@ $(function () {
         if (typeId === 'referral') buildReferral(d, flags, first, fullName, dob);
         if (typeId === 'gender') buildGender(d, flags);
         if (typeId === 'roi') buildRoi(d, flags, st);
+        if (typeId === 'housing') buildHousing(d, flags, since);
+        if (typeId === 'character') buildCharacter(d, flags, since);
 
         d.__signature = { clinicianName, abbr, licType, stateName: st.name, number: val('#licenseNumber'), exp, expired,
             npi: val('#clinicianNpi'), address: val('#clinicianAddress'), phone, email };
@@ -351,6 +354,43 @@ $(function () {
                 ? `Please note the following current safety considerations: ${listJoin(concerns.map(esc))}.${details ? ` ${multiline(details)}` : ''}`
                 : (details ? multiline(details) : '');
         }
+    }
+
+    function buildHousing(d, flags, since) {
+        const recipient = val('#housingRecipient');
+        d.HOUSING_SALUTATION = recipient ? `Dear ${esc(recipient)},` : 'To whom it may concern,';
+        d.HOUSING_SITUATION = esc($('#housingSituation').val() || 'housing');
+        d.HOUSING_START_DATE = esc(since) || missing('client since');
+        d.HOUSING_STRENGTH_ITEMS = checkedValues('#housingStrengthChecks').map(esc);
+        flags.hasHousingStrengths = d.HOUSING_STRENGTH_ITEMS.length > 0;
+        const extra = val('#housingDetails');
+        flags.hasHousingDetails = !!extra;
+        d.HOUSING_DETAILS = multiline(extra);
+    }
+
+    function buildCharacter(d, flags, since) {
+        const recipient = val('#characterRecipient');
+        d.CHARACTER_SALUTATION = recipient ? `Dear ${esc(recipient)},` : 'To the Honorable Judge and the Court,';
+        const former = $('input[name="characterRelationship"]:checked').val() === 'former';
+        d.CHARACTER_RELATIONSHIP = former ? 'former client' : 'client';
+        d.CHARACTER_MATTER = esc(val('#characterMatter')) || missing('the court matter');
+        const first = d.CLIENT_FIRST_NAME || missing('client’s first name');
+        const start = esc(since) || missing('client since');
+        const end = esc(monthYear(val('#characterEndDate')));
+        d.CHARACTER_TREATMENT_DATES = former
+            ? `I worked with ${first} in therapy from ${start} to ${end || missing('therapy ended')}`
+            : `I have been ${first}’s therapist since ${start}`;
+        d.CHARACTER_TRAIT_ITEMS = checkedValues('#characterTraitChecks').map(esc);
+        flags.hasCharacterTraits = d.CHARACTER_TRAIT_ITEMS.length > 0;
+        const details = val('#characterDetails');
+        flags.hasCharacterDetails = !!details;
+        d.CHARACTER_DETAILS = multiline(details);
+        const impact = val('#characterImpact');
+        flags.hasCharacterImpact = !!impact;
+        d.CHARACTER_IMPACT = multiline(impact);
+        const alts = checkedValues('#characterAlternativeChecks');
+        flags.hasCharacterAlternatives = alts.length > 0;
+        d.CHARACTER_ALTERNATIVES = listJoin(alts.map(esc), 'or');
     }
 
     function buildGender(d, flags) {
@@ -724,10 +764,11 @@ $(function () {
         'clinicianNpi', 'clinicianPhone', 'clinicianEmail', 'clinicianAddress', 'lifeActivityOther', 'institutionName',
         'treatmentLength', 'functionalImpact', 'referredToProvider', 'reasonForReferral', 'whatWorked', 'safetyDetails',
         'gaRecipient', 'gaCareOther', 'gaAssessmentBasis', 'gaDiagnosis', 'gaAdditional', 'roiDisclosingParty', 'roiRecipient',
-        'roiRecipientContact', 'roiInfoOther', 'roiPurposeOther', 'roiExpiration', 'roiExpirationEvent'];
-    const CHECK_GROUPS = ['lifeActivityChecks', 'referralGoalChecks', 'safetyConcernChecks', 'gaCareChecks', 'gaCriteriaChecks', 'roiInfoChecks', 'roiPurposeChecks'];
+        'roiRecipientContact', 'roiInfoOther', 'roiPurposeOther', 'roiExpiration', 'roiExpirationEvent',
+        'housingRecipient', 'housingSituation', 'housingDetails', 'characterRecipient', 'characterMatter', 'characterEndDate', 'characterDetails', 'characterImpact'];
+    const CHECK_GROUPS = ['lifeActivityChecks', 'referralGoalChecks', 'safetyConcernChecks', 'gaCareChecks', 'gaCriteriaChecks', 'roiInfoChecks', 'roiPurposeChecks', 'housingStrengthChecks', 'characterTraitChecks', 'characterAlternativeChecks'];
     const TOGGLES = ['includeDiagnosis', 'gaIncludeDiagnosis', 'roiPart2', 'roiRepresentative'];
-    const RADIOS = ['codingSystem', 'referralType', 'safetyStatus', 'roiDirection'];
+    const RADIOS = ['codingSystem', 'referralType', 'safetyStatus', 'roiDirection', 'characterRelationship'];
 
     function collectState() {
         const state = { version: 2, letterType: $('#letterTypeSelect').val(), licenseType: $('#licenseTypeSelect').val() };
