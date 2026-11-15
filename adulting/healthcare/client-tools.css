@@ -171,3 +171,13 @@ body {
     .ct-output th, .ct-output td { border-color: #000; color: #000; }
     .ct-print-hide { display: none !important; }
 }
+
+/* Links readable in both themes */
+.tool-panel a:not(.btn) { color: var(--accent); }
+/* The "← Healthcare" link matches the sidebar buttons */
+.tool-menu-body a.sidebar-btn {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    text-decoration: none;
+}

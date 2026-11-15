@@ -15,13 +15,9 @@ There are **no user accounts, no analytics, no tracking scripts, and no backend 
 
 ---
 
-## Site Architecture (Five Core Hubs)
+## Site Architecture (Four Core Hubs)
 
-1. **Mental Health Resources (`/resources/`)**
-   - A searchable, filterable index of **75 curated resources** (hotlines, PDF worksheets, videos, articles, apps, directories) loaded from `resources/data/resources.json`.
-   - Filterable by target audience (including 30 clinician-tagged entries), format, **15 diagnoses**, **73 symptoms**, and **27 therapy styles**, complete with formatted citations.
-
-2. **Therapist Tools (`/therapist-tools/`)**
+1. **Therapist Tools (`/therapist-tools/`)**
    - Browser-only clinical paperwork and practice operations generators with local `.json` import/export:
      - **Letter Generator (`/therapist-tools/lettergenerator/`)**: Emotional Support Animal (ESA), academic accommodation, and referral letters with an ICD/DSM diagnosis-to-accommodation suggestion builder and citations (Fair Housing Act, HUD Notice FHEO-2020-01, peer-reviewed research).
      - **Session Note Generator (`/therapist-tools/notegenerator/`)**: Live-preview progress notes and 90791 intakes in standard, DAP, SOAP, BIRP, GIRP, PIRP, narrative, or MSE formats, with an ICD-10-CM/DSM-5-TR picker, **47 therapy styles** with skill lists, risk and safety, an optional MSE, CPT codes, telehealth details, and a superbill handoff.
@@ -38,22 +34,26 @@ There are **no user accounts, no analytics, no tracking scripts, and no backend 
      - **CEU Tracker (`/therapist-tools/ceutracker/`)**: Multi-cycle CE tracking (2-year renewal, 4-year health equity, 6-year suicide prevention) for WA licenses and custom states, with certificate attachments.
      - **Supervision Log (`/therapist-tools/supervisionlog/`)**: Supervision and licensure hours for interns, associates, and supervisors, with custom hour categories and a documentation checklist.
      - **Practice Starting Aid (`/therapist-tools/practicestartingaid/`)**: An 8-phase checklist for opening a WA private practice, from DOH licensure and PLLC formation to EHR choice and fee setting.
-   - Shared data lives in `therapist-tools/shared/`: one ICD-10-CM diagnosis list with DSM-5-TR names (`diagnoses.json`), therapy styles, and state law data (`states.json`), loaded through `shared/diagnoses.js`. `therapist-tools/practice-data.js` lets any tool pre-fill from an uploaded Practice Info Sheet `.json`.
+   - Shared data lives in `therapist-tools/shared/`: one ICD-10-CM diagnosis list with DSM-5-TR names (`diagnoses.json`), therapy styles, state law data (`states.json`), national crisis lines (`crisis-lines.json`), and CPT codes (`cpt-codes.json`), loaded through `shared/diagnoses.js`. Tools that ship a built-in list (assessments, the practice roadmap) save only your changes, not a copy of the list. Assessment entries record each form's copyright holder, terms, and official source, and only forms whose owners allow sharing are hosted. `therapist-tools/practice-data.js` lets any tool pre-fill from an uploaded Practice Info Sheet `.json`.
    - Every tool ends with a collapsed APA 7 **References** list, rendered by `therapist-tools/references.js` from the shared `therapist-tools/references.json` (entries tagged by group and by the tools that use them).
    - Every tool has a sticky **tool menu** sidebar (import/save, print/share, start over, and jump links, from `therapist-tools/toolkit.css` + `toolkit.js`) and a click-to-open **How to use this tool** guide.
 
-3. **Author's Library (`/authors-library/`)**
+2. **Author's Library (`/authors-library/`)**
    - **Progress Notes on Confinement (`/pnoc/`)**: First-person field reflections from visits to historic prisons, confinement sites, and memorials (e.g., Alcatraz, Cárcel de la Corona in Madrid, US Holocaust Memorial Museum).
    - **Academic Writing, Creative Writing & Art**: Rendered dynamically from Markdown files via `marked.js` and hash routing.
 
-4. **Niches & Lore (`/niches/`)**
+3. **Niches & Lore (`/niches/`)**
    - **Haunted Locations Wiki (`/haunted-wiki/`)**: 57 locations, 7 paranormal creator profiles, and a live Markdown/Chicago-citation **Paranormal Investigation Note Generator** (`note-generator.html`).
    - **Incarceration Museum Wiki (`/incarceration-museum-wiki/`)**: 17 sites organized across 3 historical eras.
    - **Tabletop RPG Tools**: D&D 5e Potion Creation Index (`/potions-spreadsheet/`) and a static-exported Next.js 14 Magic RPG Character Creator (`/magicrpg/`).
 
-5. **Adulting (`/adulting/`)**
+4. **Adulting (`/adulting/`)**
    - **My Budget (`/my-budget/`)**: A Next.js 15 / React 19 static-exported household budget planner supporting multiple people, income sources, and local `.json` file save/load.
    - **Simple Neuro-Friendly Bank (`/banking-project/learning-java/`)**: Practice checking/savings UI backed by a Java domain model (`Bank`, `BankAccount`, `Customer`) and JUnit tests.
+   - **ND Self-Retreat Builder (`/nd-self-retreat/`)**: A low-demand retreat planner with a direct PDF download.
+   - **Healthcare (`/healthcare/`)**: The Mental Health Resources directory plus client tools.
+     - **Mental Health Resources (`/healthcare/resources/`)**: A searchable, filterable index of **72 curated resources** (hotlines, PDF worksheets, videos, articles, apps, directories) loaded from `adulting/healthcare/resources/data/resources.json`, filterable by audience (including 29 clinician-tagged entries), format, **15 diagnoses**, **73 symptoms**, and **27 therapy styles**, with formatted citations. The old `/resources/` address redirects here.
+     - **Client tools**: Self-Care Check-In (suggestions cited to NIMH, CDC, NHLBI, SAMHSA, NHS, WHO, and the National Autistic Society, in `self-care-check-in/self-care-data.json`), My Safety Plan, Therapy Appointment Prep, and the Insurance Reimbursement Helper (checks Superbill Generator files and estimates reimbursement). They share `adulting/healthcare/client-tools.js` and `client-tools.css`, and read crisis lines and states from `therapist-tools/shared/`.
 
 ---
 
