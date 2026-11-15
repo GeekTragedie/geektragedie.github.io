@@ -14,8 +14,6 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
       <nav className="top-nav" aria-label="Main Navigation">
           <a href="../../index.html" className="nav-brand">GeekTragedie&apos;s Wonderland</a>
           <ul className="nav-links">
-              <li><a href="../../index.html">Home</a></li>
-              <li><a href="../../resources/index.html">Resources</a></li>
               <li className="dropdown">
                   <a href="../../authors-library/index.html" className="dropbtn">Author&apos;s Library ▾</a>
                   <div className="dropdown-content">
@@ -40,6 +38,8 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
                       <a href="../../adulting/my-budget/index.html">My Budget</a>
                       <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
                       <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                      <a href="../../adulting/healthcare/index.html">Healthcare</a>
+                      <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
                   </div>
               </li>
               <li className="dropdown">
