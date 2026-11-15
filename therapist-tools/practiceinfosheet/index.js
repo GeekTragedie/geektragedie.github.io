@@ -664,6 +664,16 @@ $(document).ready(function() {
         downloadFile(text, `practice_info_${currentView}.txt`, 'text/plain;charset=utf-8');
     });
 
+    // Share this sheet with the other tools (therapist-tools/practice-data.js)
+    $('#usePracticeDataBtn').on('click', function() {
+        try {
+            window.TTPractice.set(collectFormState());
+            $('#usePracticeDataStatus').text('Saved. Your other tools will pre-fill from this sheet. Click again after you make changes.');
+        } catch (err) {
+            alert('Add at least your name or business details first.');
+        }
+    });
+
     $('#exportJsonButtonTop, #exportJsonButtonBottom').on('click', function() {
         const state = collectFormState();
         downloadFile(JSON.stringify(state, null, 2), 'practice_master_info.json', 'application/json;charset=utf-8');

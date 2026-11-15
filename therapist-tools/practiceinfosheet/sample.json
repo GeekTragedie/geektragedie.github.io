@@ -1,0 +1,71 @@
+{
+  "therapist": {
+    "clinicianFullName": "Jordan Rivera, MA, LMHC",
+    "npiType1": "1234567893",
+    "npiType2": "1234567885",
+    "primaryTaxonomy": "101YP2500X (Professional Counselor)",
+    "licenses": [
+      {
+        "type": "LMHC",
+        "number": "LH00000000",
+        "state": "WA",
+        "expiration": "2027-09-30"
+      }
+    ],
+    "caqhId": "00000000",
+    "caqhAttestDate": "2026-08-15",
+    "providerOneId": "000000000",
+    "providerOneNotes": "Sample only. Replace with your real ProviderOne details.",
+    "malpracticeCarrier": "Example Mutual Professional Liability",
+    "malpracticePolicyNum": "POL-0000-SAMPLE",
+    "malpracticeCoverage": "$1,000,000 per claim / $3,000,000 aggregate",
+    "malpracticeRenewal": "2027-03-01",
+    "standardVoicemail": "You’ve reached Jordan Rivera at Cedar Path Counseling. I return calls within one business day. If this is an emergency, call 911 or go to your nearest emergency room. For the Suicide and Crisis Lifeline, call or text 988.",
+    "oooVoicemail": "You’ve reached Jordan Rivera. I’m out of the office until Monday and will return your call then. If this is an emergency, call 911, or call or text 988 for the Suicide and Crisis Lifeline."
+  },
+  "business": {
+    "legalBusinessName": "Cedar Path Counseling, PLLC",
+    "tradeDbaName": "Cedar Path Counseling",
+    "entityStructure": "PLLC (single member)",
+    "businessPhone": "(555) 010-0199",
+    "businessEmail": "hello@cedarpath.example",
+    "businessWebsite": "https://cedarpath.example",
+    "businessAddress": "123 Example Way, Suite 4\nSpringfield, WA 98000",
+    "registeredAgentInfo": "Sample Registered Agents, LLC",
+    "einNumber": "00-0000000",
+    "ubiNumber": "000 000 000",
+    "cityLicenseNumber": "BL-00000",
+    "naicsCode": "621330",
+    "financeItems": [
+      {
+        "name": "Example Credit Union business checking",
+        "role": "Operating account",
+        "notes": "Sample only"
+      }
+    ]
+  },
+  "tech": {
+    "domains": [
+      {
+        "domain": "cedarpath.example",
+        "registrar": "Example Registrar",
+        "dns": "Example DNS"
+      }
+    ],
+    "techTools": [
+      {
+        "name": "Example EHR",
+        "purpose": "Notes, scheduling, and billing",
+        "baaSigned": true,
+        "notes": "BAA on file"
+      },
+      {
+        "name": "Example Telehealth",
+        "purpose": "Video sessions",
+        "baaSigned": true,
+        "notes": ""
+      }
+    ],
+    "recoveryAndSecurityNotes": "Password manager with two-factor on every account. Recovery codes stored offline."
+  }
+}

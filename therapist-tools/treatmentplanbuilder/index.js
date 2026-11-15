@@ -38,7 +38,7 @@ $(document).ready(function() {
     // --- 1. Load Treatment Plan Data & Shared Toolkit Diagnoses/Theories ---
     $.getJSON('treatment-plan-data.json', function(data) {
         planConfig = data || {};
-        allDiagnosesData = data.fallbackDiagnoses || { ICD: [], DSM: [] };
+        allDiagnosesData = { ICD: [], DSM: [] };
 
         // Populate Plan Frameworks
         const fwSelect = $('#planFrameworkSelect');
@@ -56,22 +56,14 @@ $(document).ready(function() {
             recFilter.append(new Option(obj.label, key));
         });
 
-        // Populate Fallback Theories first, then try loading shared ../notegenerator/therapy_styles.json
-        populateTheories(planConfig.fallbackTheories || []);
-        $.getJSON('../notegenerator/therapy_styles.json', function(sharedStyles) {
-            if (Array.isArray(sharedStyles) && sharedStyles.length > 0) {
-                populateTheories(sharedStyles.map(s => s.name));
-            }
-        }).always(function() {
-            // Try loading shared ../notegenerator/diagnoses.json if available
-            $.getJSON('../notegenerator/diagnoses.json', function(sharedDx) {
-                if (sharedDx && (sharedDx.ICD || sharedDx.DSM)) {
-                    allDiagnosesData = sharedDx;
-                }
-            }).always(function() {
-                populateDiagnosesDropdown(currentClassification);
-            });
-        });
+        // Shared theory and diagnosis lists (therapist-tools/shared/)
+        TTShared.loadTherapyStyles()
+            .then(function(sharedStyles) { populateTheories(sharedStyles.map(s => s.name)); })
+            .catch(function() { TTShared.showLoadError('#theorySelect', 'therapy styles'); });
+        TTShared.loadDiagnoses()
+            .then(function(sharedDx) { allDiagnosesData = sharedDx; })
+            .catch(function() { TTShared.showLoadError('#diagnosisSelect', 'diagnosis list'); })
+            .finally(function() { populateDiagnosesDropdown(currentClassification); });
 
         renderCitations(planConfig.citations || []);
 

@@ -26,6 +26,7 @@
     const cap = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
     const titleCase = (s) => (s ? s.replace(/(^|[\s/-])(\w)/g, (m, a, b) => a + b.toUpperCase()) : s);
     const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+    const oxfordJoin = (list) => (list.length <= 2 ? list.join(' and ') : `${list.slice(0, -1).join(', ')}, and ${list[list.length - 1]}`);
     const localDate = () => {
         const d = new Date();
         return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -431,7 +432,7 @@
         const gather = {
             title: 'Household Gather List',
             items: [
-                { id: 'gath_binder', t: ['Workbooks and self-help books', 'a yoga mat'].concat(moveGather.filter((x) => x !== 'Yoga mat')).join(', ') },
+                { id: 'gath_binder', t: oxfordJoin(['Workbooks and self-help books', 'a yoga mat'].concat(moveGather.filter((x) => x !== 'Yoga mat'))) },
                 { id: 'gath_closet', t: 'For your {sanctuary}: {g}', vars: { g: sanct.gather } },
                 { id: 'gath_bins', t: '"{doomBox}", a front-door mail bin, and 2–3 small runway trays' },
                 { id: 'gath_containers', t: 'Sturdy meal-prep containers' },

@@ -76,14 +76,29 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
-
-                <nav class="sidebar-group" aria-label="On this page">
-                    <span class="sidebar-label">On this page</span>
-                    <ul class="sidebar-toc">
-                        <li><a href="#references">References</a></li>
-                    </ul>
-                </nav>
+                <details id="how-to-use" class="collapsible help how-to sidebar-details">
+                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <ol class="list-decimal space-y-1">
+                            <li>Pick a note template: DAP, SOAP, BIRP, GIRP, PIRP, narrative, MSE, or a standard progress note.</li>
+                            <li>Fill in the session details, diagnoses, and the therapy approaches you used.</li>
+                            <li>Generate the note, read it over, and edit anything that doesn’t fit the session.</li>
+                            <li>Copy it into your EHR, or print or export it from the tool menu.</li>
+                        </ol>
+                        <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
+                        <p>Import, save, print, and clear are further down this menu.</p>
+                        <h3 class="why-heading">Why this matters</h3>
+                        <p>Clear, timely notes support continuity of care, document medical necessity, and protect both you and your client. Structured formats such as SOAP, DAP, and BIRP keep a note focused on what you observed, what you did, and how the client responded, which is what payers and auditors look for. Record only what care requires; HIPAA’s minimum necessary standard applies whenever a note is shared.</p>
+                    </div>
+                </details>
+                <details id="your-data" class="collapsible help sidebar-details">
+                    <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <p>Everything you enter stays in this browser tab. Nothing is sent to or stored by this site, and nothing is saved: refreshing the page clears every field.</p><p>Use <strong>Save .json</strong> to keep a copy, and store it somewhere secure.</p>
+                        <p><strong>Practice data</strong> you upload is kept on this device until you click <strong>Forget practice data</strong>.</p><p>Use initials or client codes instead of full names whenever you can, and don’t use a shared or public computer for client information.</p>
+                    </div>
+                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
                 <div class="sidebar-group" role="group" aria-label="Your file">
                     <span class="sidebar-label">Your file</span>
@@ -110,19 +125,6 @@
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-6">Counseling Session Notes Generator</h1>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Pick a note template: DAP, SOAP, BIRP, GIRP, PIRP, narrative, MSE, or a standard progress note.</li>
-                    <li>Fill in the session details, diagnoses, and the therapy approaches you used.</li>
-                    <li>Generate the note, read it over, and edit anything that doesn’t fit the session.</li>
-                    <li>Copy it into your EHR, or print or export it from the tool menu.</li>
-                </ol>
-                <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
-                <p>Import, save, print, and clear are in the tool menu.</p>
-            </div>
-        </details>
 
         
         
@@ -272,8 +274,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="../shared/diagnoses.js"></script>
     <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../practice-data.js"></script>
     <script src="../toolkit.js"></script>
 </body>
 </html>

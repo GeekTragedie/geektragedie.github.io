@@ -15,7 +15,9 @@ $(document).ready(function() {
     // --- Data Loading ---
     $.getJSON('letter-types.json', data => { letterTypesData = data.letterTypes; const select = $('#letterTypeSelect'); select.append('<option value=""></option>'); letterTypesData.forEach(lt => select.append(`<option value="${lt.id}">${lt.name}</option>`)); select.trigger('change'); }).fail(handleAjaxError('letter-types.json'));
     $.getJSON('license-types.json', data => { licenseTypes = data.licenseTypes; const select = $('#licenseTypeSelect'); select.append('<option value=""></option>'); licenseTypes.forEach(t => select.append(`<option value="${t}">${t}</option>`)); select.trigger('change'); }).fail(handleAjaxError('license-types.json'));
-    $.getJSON('diagnoses.json', data => { diagnoses = data; }).fail(handleAjaxError('diagnoses.json'));
+    TTShared.loadDiagnoses()
+        .then(data => { diagnoses = data; })
+        .catch(() => TTShared.showLoadError('#diagnosisSelect', 'diagnosis list'));
     $.getJSON('accommodations.json', data => { accommodationSuggestions = data; }).fail(handleAjaxError('accommodations.json'));
 
     // --- Event Handlers ---

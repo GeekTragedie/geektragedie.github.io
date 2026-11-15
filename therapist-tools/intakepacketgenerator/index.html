@@ -76,7 +76,30 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <details id="how-to-use" class="collapsible help how-to sidebar-details">
+                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <ol class="list-decimal space-y-1">
+                            <li>Fill in your practice details once (or import your Practice Info Sheet .json), then click <strong>Apply Details to Boilerplate Below</strong>.</li>
+                            <li>Choose which sections to include in the packet.</li>
+                            <li>Open any section to edit its wording.</li>
+                            <li>Preview the packet, then print it or save it as a PDF from the tool menu.</li>
+                            <li>For a new client’s first session, switch to <strong>90791 intake note</strong> to write a session-only intake evaluation.</li>
+                        </ol>
+                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                        <p>Import, save, print, and clear are further down this menu.</p>
+                        <h3 class="why-heading">Why this matters</h3>
+                        <p>Informed consent is an ongoing conversation, not a single signature. A clear packet explains confidentiality and its limits, fees, cancellations, telehealth, and record keeping, so clients can make an informed choice before treatment starts. Licensing boards and the ACA and APA ethics codes require most of these disclosures.</p>
+                    </div>
+                </details>
+                <details id="your-data" class="collapsible help sidebar-details">
+                    <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <p>Everything you enter stays in this browser on this device. Nothing is sent to or stored by this site.</p><p><strong>Save in this browser</strong> keeps your entries between visits. Turning it off erases them from this device. Use <strong>Save .json</strong> for a backup you control.</p>
+                        <p><strong>Practice data</strong> you upload is kept on this device until you click <strong>Forget practice data</strong>.</p><p>Use initials or client codes instead of full names whenever you can, and don’t use a shared or public computer for client information.</p>
+                    </div>
+                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
                 <nav class="sidebar-group" aria-label="On this page">
                     <span class="sidebar-label">On this page</span>
@@ -85,7 +108,6 @@
                         <li><a href="#practice-vars-heading">Practice details</a></li>
                         <li><a href="#sections-toggle-heading">Sections to include</a></li>
                         <li><button type="button" data-click='.mode-tab-btn[data-mode="intakenote"]'>90791 intake note</button></li>
-                        <li><a href="#references">References</a></li>
                     </ul>
                 </nav>
 
@@ -128,20 +150,6 @@
             <strong>Please note:</strong> These templates are a starting point, not legal advice. Check that your disclosure statement and informed consent meet your licensing board’s current rules (in Washington, WAC 246-809-710) and your malpractice carrier’s requirements.
         </p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Fill in your practice details once (or import your Practice Info Sheet .json), then click <strong>Apply Details to Boilerplate Below</strong>.</li>
-                    <li>Choose which sections to include in the packet.</li>
-                    <li>Open any section to edit its wording.</li>
-                    <li>Preview the packet, then print it or save it as a PDF from the tool menu.</li>
-                    <li>For a new client’s first session, switch to <strong>90791 intake note</strong> to write a session-only intake evaluation.</li>
-                </ol>
-                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                <p>Import, save, print, and clear are in the tool menu.</p>
-            </div>
-        </details>
 
         <!-- Mode Switcher Tabs -->
         <div class="subpanel p-3 rounded-md mb-6">
@@ -178,11 +186,11 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                     <div>
                         <label for="pktPracticeName" class="block text-xs font-semibold mb-1">Practice / Business Name:</label>
-                        <input type="text" id="pktPracticeName" placeholder="e.g., Example Counseling PLLC" class="pkt-var w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="pktPracticeName" data-practice="business.legalBusinessName" placeholder="e.g., Example Counseling PLLC" class="pkt-var w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="pktClinicianName" class="block text-xs font-semibold mb-1">Clinician Name &amp; Credentials:</label>
-                        <input type="text" id="pktClinicianName" placeholder="e.g., Jane Doe, LMHC" class="pkt-var w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="pktClinicianName" data-practice="therapist.clinicianFullName" placeholder="e.g., Jane Doe, LMHC" class="pkt-var w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="pktLicenseNumber" class="block text-xs font-semibold mb-1">State &amp; License Number(s):</label>
@@ -190,23 +198,23 @@
                     </div>
                     <div>
                         <label for="pktNpiNumber" class="block text-xs font-semibold mb-1">NPI Number:</label>
-                        <input type="text" id="pktNpiNumber" placeholder="e.g., 1234567890" class="pkt-var w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="pktNpiNumber" data-practice="therapist.npiType1" placeholder="e.g., 1234567890" class="pkt-var w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="pktPhone" class="block text-xs font-semibold mb-1">Practice Phone:</label>
-                        <input type="text" id="pktPhone" placeholder="e.g., 555-555-0100" class="pkt-var w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="pktPhone" data-practice="business.businessPhone" placeholder="e.g., 555-555-0100" class="pkt-var w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="pktEmail" class="block text-xs font-semibold mb-1">Practice Email:</label>
-                        <input type="text" id="pktEmail" placeholder="e.g., clinician@example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="pktEmail" data-practice="business.businessEmail" placeholder="e.g., clinician@example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="pktWebsite" class="block text-xs font-semibold mb-1">Practice Website:</label>
-                        <input type="text" id="pktWebsite" placeholder="e.g., example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="pktWebsite" data-practice="business.businessWebsite" placeholder="e.g., example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="pktAddress" class="block text-xs font-semibold mb-1">Office / Mailing Address:</label>
-                        <input type="text" id="pktAddress" placeholder="Street, City, State, ZIP" class="pkt-var w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="pktAddress" data-practice="business.businessAddress" data-practice-join=", " placeholder="Street, City, State, ZIP" class="pkt-var w-full p-2 border rounded-md text-sm">
                     </div>
                     <div>
                         <label for="pktIntakeFee" class="block text-xs font-semibold mb-1">Intake Session Fee (90791):</label>
@@ -509,6 +517,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../practice-data.js"></script>
     <script src="../toolkit.js"></script>
 </body>
 </html>

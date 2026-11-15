@@ -1,0 +1,91 @@
+{
+  "role": "associate",
+  "userName": "Jordan Rivera",
+  "userLicenseNum": "MC00000000 (sample)",
+  "primaryPartnerName": "Dr. Sam Okafor, LMHC, Approved Supervisor",
+  "primaryPartnerCreds": "LH00000001 (sample)",
+  "logStartDate": "2026-01-05",
+  "logEndDate": "2026-11-14",
+  "complianceDocs": [],
+  "complianceAgreementDateNote": "Supervision agreement signed January 5, 2026 (sample).",
+  "targets": {
+    "totalWorked": 3000,
+    "directTotal": 1200,
+    "supTotal": 100,
+    "supIndiv": 50,
+    "priorCreditHours": 0
+  },
+  "customCategories": [],
+  "entries": [
+    {
+      "id": "sup_sample_1",
+      "date": "2026-01-12",
+      "jobSite": "Cedar Path Counseling",
+      "partnerName": "Dr. Sam Okafor, LMHC, Approved Supervisor",
+      "supIndivInPerson": 1,
+      "supIndivTelehealth": 0,
+      "supGroupInPerson": 0,
+      "supGroupTelehealth": 0,
+      "dirIndivInPerson": 14,
+      "dirIndivTelehealth": 4,
+      "dirGroupInPerson": 0,
+      "dirGroupTelehealth": 0,
+      "dirFamilyInPerson": 0,
+      "dirFamilyTelehealth": 0,
+      "dirOther": 0,
+      "indirectHours": 6,
+      "customHours": {},
+      "topics": [
+        "Case Conceptualization",
+        "Ethics"
+      ],
+      "notes": "Sample entry"
+    },
+    {
+      "id": "sup_sample_2",
+      "date": "2026-01-19",
+      "jobSite": "Cedar Path Counseling",
+      "partnerName": "Dr. Sam Okafor, LMHC, Approved Supervisor",
+      "supIndivInPerson": 1,
+      "supIndivTelehealth": 0,
+      "supGroupInPerson": 1,
+      "supGroupTelehealth": 0,
+      "dirIndivInPerson": 15,
+      "dirIndivTelehealth": 5,
+      "dirGroupInPerson": 0,
+      "dirGroupTelehealth": 0,
+      "dirFamilyInPerson": 0,
+      "dirFamilyTelehealth": 0,
+      "dirOther": 0,
+      "indirectHours": 5,
+      "customHours": {},
+      "topics": [
+        "Risk Assessment"
+      ],
+      "notes": "Sample entry"
+    },
+    {
+      "id": "sup_sample_3",
+      "date": "2026-01-26",
+      "jobSite": "Cedar Path Counseling",
+      "partnerName": "Dr. Sam Okafor, LMHC, Approved Supervisor",
+      "supIndivInPerson": 1,
+      "supIndivTelehealth": 0,
+      "supGroupInPerson": 0,
+      "supGroupTelehealth": 0,
+      "dirIndivInPerson": 16,
+      "dirIndivTelehealth": 4,
+      "dirGroupInPerson": 0,
+      "dirGroupTelehealth": 0,
+      "dirFamilyInPerson": 0,
+      "dirFamilyTelehealth": 0,
+      "dirOther": 0,
+      "indirectHours": 6,
+      "customHours": {},
+      "topics": [
+        "Treatment Planning"
+      ],
+      "notes": "Sample entry"
+    }
+  ]
+}

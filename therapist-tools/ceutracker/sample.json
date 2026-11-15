@@ -1,0 +1,61 @@
+{
+  "clinicianName": "Jordan Rivera",
+  "licenseNumber": "LH00000000",
+  "state": "WA",
+  "licenseType": "LMHC",
+  "renewalDueDate": "2027-09-30",
+  "anchorDates": {
+    "health_equity": "2025-02-10",
+    "suicide": "2022-06-20"
+  },
+  "courses": [
+    {
+      "id": "ceu_sample_1",
+      "title": "Ethics and Law Refresher for Counselors",
+      "presenter": "Example Training Institute",
+      "date": "2026-01-15",
+      "hours": 6,
+      "approvalBody": "NBCC (sample)",
+      "format": "Live Online",
+      "cost": 120,
+      "mandates": [
+        "ethics"
+      ],
+      "certLink": "",
+      "certAttachment": null,
+      "notes": "Sample course"
+    },
+    {
+      "id": "ceu_sample_2",
+      "title": "Roles and Boundaries in Small Communities",
+      "presenter": "Example Training Institute",
+      "date": "2026-03-02",
+      "hours": 2,
+      "approvalBody": "NBCC (sample)",
+      "format": "Home Study",
+      "cost": 40,
+      "mandates": [
+        "boundaries"
+      ],
+      "certLink": "",
+      "certAttachment": null,
+      "notes": ""
+    },
+    {
+      "id": "ceu_sample_3",
+      "title": "Trauma-Informed Care with Neurodivergent Adults",
+      "presenter": "Sample Conference",
+      "date": "2026-05-21",
+      "hours": 12,
+      "approvalBody": "APA (sample)",
+      "format": "In-Person",
+      "cost": 395,
+      "mandates": [
+        "general"
+      ],
+      "certLink": "",
+      "certAttachment": null,
+      "notes": ""
+    }
+  ]
+}

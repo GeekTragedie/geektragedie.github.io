@@ -31,6 +31,19 @@
     text-decoration: none;
 }
 
+/* --- Field alignment: text is left-aligned and vertically centered in every
+   input and dropdown, so nothing looks centered or floats to the top. --- */
+.tool-panel :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select) {
+    text-align: left;
+    vertical-align: middle;
+}
+.tool-panel select {
+    line-height: 1.4;
+}
+.tool-panel textarea {
+    text-align: left;
+}
+
 /* --- Select2, themed with the site variables --- */
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple {
@@ -53,10 +66,16 @@
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
     color: var(--text-muted) !important;
 }
+.select2-container--default .select2-selection--multiple {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
     padding-left: 0.75rem !important;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+    text-align: left;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
     line-height: 42px;
@@ -91,7 +110,31 @@
     outline: none !important;
     font-family: inherit;
     height: 28px;
-    margin-top: 6px;
+    line-height: 28px;
+    margin: 6px 0 0 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: middle;
+    resize: none;
+    overflow: hidden;
+}
+/* The clear-all × is easy to miss by default; make it a clear, labeled target */
+.select2-container--default .select2-selection__clear {
+    margin-right: 6px !important;
+    padding: 0 8px !important;
+    border: 1px solid var(--danger) !important;
+    border-radius: 4px;
+    background: transparent !important;
+    color: var(--danger) !important;
+    font-size: 1.15rem !important;
+    font-weight: 700;
+    line-height: 1.4 !important;
+    cursor: pointer;
+}
+.select2-container--default .select2-selection__clear:hover,
+.select2-container--default .select2-selection__clear:focus-visible {
+    background: var(--danger) !important;
+    color: var(--accent-contrast) !important;
 }
 .select2-container--default .select2-search--dropdown .select2-search__field {
     color: var(--text-main) !important;
@@ -301,11 +344,12 @@
     gap: 24px;
     align-items: start;
 }
+/* The sidebar never scrolls on its own. It stays sticky while it fits the
+   window, and toolkit.js switches it to .is-static (scrolls with the page)
+   when it's taller than the window, for example when How to use is open. */
 .tool-sidebar {
     position: sticky;
     top: 78px;
-    max-height: calc(100vh - 96px);
-    overflow-y: auto;
     background-color: var(--bg-panel);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -378,6 +422,35 @@
     margin-top: 2px;
     accent-color: var(--accent);
 }
+.tool-sidebar.is-static {
+    position: static;
+}
+/* Small collapsibles inside the tool menu (How to use, Your data) */
+.tool-menu-body details.sidebar-details {
+    margin: 0;
+    font-size: 0.86em;
+}
+.tool-menu-body details.sidebar-details > summary {
+    padding: 8px 10px;
+}
+.tool-menu-body details.sidebar-details .collapsible-body {
+    padding: 4px 10px 10px;
+}
+.tool-menu-body details.sidebar-details .collapsible-body p {
+    margin: 0 0 8px;
+}
+.tool-menu-body details.sidebar-details ol {
+    padding-left: 18px;
+    margin: 0 0 8px;
+}
+.why-heading {
+    margin: 12px 0 4px;
+    color: var(--accent);
+    font-size: 0.95em;
+}
+.sample-row .btn {
+    margin-right: 4px;
+}
 @media (max-width: 900px) {
     .tool-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -415,4 +488,18 @@
 .tool-panel select {
     max-width: 100%;
     min-width: 0;
+}
+
+/* --- Citations: every source list is left-aligned with an APA hanging indent --- */
+#sourcesList p,
+.apa-citation,
+.citation-list p {
+    margin: 0 0 0.6em;
+    padding-left: 2em;
+    text-indent: -2em;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+.tool-menu-body details.sidebar-details .collapsible-body {
+    gap: 6px;
 }

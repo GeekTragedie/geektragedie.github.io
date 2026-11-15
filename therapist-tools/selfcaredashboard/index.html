@@ -76,7 +76,28 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <details id="how-to-use" class="collapsible help how-to sidebar-details">
+                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <ol class="list-decimal space-y-1">
+                            <li>Pick a check-in in the tool menu: right now, daily pacing, caseload, checklists, or burnout.</li>
+                            <li>Answer honestly. The summary cards at the top update as you go.</li>
+                            <li>Print a snapshot if you’d like to bring it to consultation or your own therapy.</li>
+                        </ol>
+                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                        <p>Import, save, print, and clear are further down this menu.</p>
+                        <h3 class="why-heading">Why this matters</h3>
+                        <p>Burnout and secondary traumatic stress are common in mental health work, and they affect the quality of care. Regular check-ins, like the ProQOL-inspired check here, and small consistent supports protect you more than occasional big resets. Caring for yourself is part of ethical practice under the ACA and APA codes.</p>
+                    </div>
+                </details>
+                <details id="your-data" class="collapsible help sidebar-details">
+                    <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <p>Everything you enter stays in this browser on this device. Nothing is sent to or stored by this site.</p><p><strong>Save in this browser</strong> keeps your entries between visits. Turning it off erases them from this device. Use <strong>Save .json</strong> for a backup you control.</p>
+                        <p><strong>Practice data</strong> you upload is kept on this device until you click <strong>Forget practice data</strong>.</p><p>Use initials or client codes instead of full names whenever you can, and don’t use a shared or public computer for client information.</p>
+                    </div>
+                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
                 <nav class="sidebar-group" aria-label="On this page">
                     <span class="sidebar-label">On this page</span>
@@ -86,7 +107,6 @@
                         <li><button type="button" data-click='.sc-tab-btn[data-tab="caseload"]'>Caseload &amp; boundaries</button></li>
                         <li><button type="button" data-click='.sc-tab-btn[data-tab="macro"]'>Checklists</button></li>
                         <li><button type="button" data-click='.sc-tab-btn[data-tab="proqol"]'>Burnout check</button></li>
-                        <li><a href="#references">References</a></li>
                     </ul>
                 </nav>
 
@@ -117,18 +137,6 @@
             Working solo means no one else is watching your battery. Check in on your body right now, look at your client order and end-of-day transition, weigh your caseload, and keep up with the bigger picture, one view at a time.
         </p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Pick a check-in in the tool menu: right now, daily pacing, caseload, checklists, or burnout.</li>
-                    <li>Answer honestly. The summary cards at the top update as you go.</li>
-                    <li>Print a snapshot if you’d like to bring it to consultation or your own therapy.</li>
-                </ol>
-                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                <p>Import, save, print, and clear are in the tool menu.</p>
-            </div>
-        </details>
 
         <!-- Live Clinician Battery & Sustainability Snapshot Bar -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6" aria-label="Clinician Battery Snapshot">
@@ -543,6 +551,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../practice-data.js"></script>
     <script src="../toolkit.js"></script>
 </body>
 </html>

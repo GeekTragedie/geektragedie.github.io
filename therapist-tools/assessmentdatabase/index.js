@@ -376,7 +376,7 @@ $(document).ready(function() {
                     .print-box-header { display: flex; justify-content: space-between; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-bottom: 4px; font-size: 10.5pt; }
                     .print-meta { margin-bottom: 4px; }
                     .print-scoring { white-space: pre-wrap; background: #f9fafb; padding: 6px; border-left: 3px solid #333; margin: 4px 0; }
-                    .print-citation { font-size: 8.5pt; margin-top: 4px; }
+                    .print-citation { font-size: 8.5pt; margin-top: 4px; padding-left: 2em; text-indent: -2em; text-align: left; }
                 </style>
             </head>
             <body>

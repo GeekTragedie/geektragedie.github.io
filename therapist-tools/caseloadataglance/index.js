@@ -22,36 +22,7 @@ $(document).ready(function() {
         { key: 'notes', label: 'Brief Notes', defaultEnabled: false }
     ];
 
-    const FALLBACK_DIAGNOSES = {
-        ICD: [
-            { code: 'F43.10', name: 'F43.10 - Post-Traumatic Stress Disorder (PTSD)' },
-            { code: 'F41.1', name: 'F41.1 - Generalized Anxiety Disorder' },
-            { code: 'F33.1', name: 'F33.1 - Major Depressive Disorder, Recurrent, Moderate' },
-            { code: 'F90.2', name: 'F90.2 - ADHD, Combined Presentation' },
-            { code: 'F90.0', name: 'F90.0 - ADHD, Predominantly Inattentive' },
-            { code: 'F84.0', name: 'F84.0 - Autism Spectrum Disorder' },
-            { code: 'F43.23', name: 'F43.23 - Adjustment Disorder with Mixed Anxiety & Depressed Mood' },
-            { code: 'F42.2', name: 'F42.2 - Obsessive-Compulsive Disorder (OCD)' },
-            { code: 'F40.10', name: 'F40.10 - Social Anxiety Disorder' },
-            { code: 'F60.3', name: 'F60.3 - Borderline Personality Disorder' },
-            { code: 'F34.1', name: 'F34.1 - Persistent Depressive Disorder (Dysthymia)' },
-            { code: 'F50.82', name: 'F50.82 - Avoidant/Restrictive Food Intake Disorder (ARFID)' }
-        ],
-        DSM: [
-            { code: '309.81 (F43.10)', name: 'Posttraumatic Stress Disorder (F43.10)' },
-            { code: '300.02 (F41.1)', name: 'Generalized Anxiety Disorder (F41.1)' },
-            { code: '296.32 (F33.1)', name: 'Major Depressive Disorder, Recurrent (F33.1)' },
-            { code: '314.01 (F90.2)', name: 'ADHD, Combined Presentation (F90.2)' },
-            { code: '314.00 (F90.0)', name: 'ADHD, Predominantly Inattentive (F90.0)' },
-            { code: '299.00 (F84.0)', name: 'Autism Spectrum Disorder (F84.0)' },
-            { code: '309.28 (F43.23)', name: 'Adjustment Disorder with Mixed Anxiety & Depressed Mood' },
-            { code: '300.3 (F42.2)', name: 'Obsessive-Compulsive Disorder (F42.2)' },
-            { code: '300.23 (F40.10)', name: 'Social Anxiety Disorder (F40.10)' },
-            { code: '301.83 (F60.3)', name: 'Borderline Personality Disorder (F60.3)' }
-        ]
-    };
-
-    let allDiagnosesData = FALLBACK_DIAGNOSES;
+    let allDiagnosesData = { ICD: [], DSM: [] };
     let currentDxSystem = 'ICD';
 
     let appState = {
@@ -70,15 +41,14 @@ $(document).ready(function() {
         width: '100%'
     });
 
-    // Try loading shared diagnoses from ../notegenerator/diagnoses.json
-    $.getJSON('../notegenerator/diagnoses.json', function(sharedDx) {
-        if (sharedDx && (sharedDx.ICD || sharedDx.DSM)) {
-            allDiagnosesData = sharedDx;
-        }
-    }).always(function() {
-        populateDiagnosisDropdown(currentDxSystem);
-        checkLocalCacheOnLoad();
-    });
+    // Shared diagnosis list (therapist-tools/shared/diagnoses.json)
+    TTShared.loadDiagnoses()
+        .then(function(sharedDx) { allDiagnosesData = sharedDx; })
+        .catch(function() { TTShared.showLoadError('#clDiagnosesSelect', 'diagnosis list'); })
+        .finally(function() {
+            populateDiagnosisDropdown(currentDxSystem);
+            checkLocalCacheOnLoad();
+        });
 
     function populateDiagnosisDropdown(system, selectedVals = []) {
         const el = $('#clDiagnosesSelect');

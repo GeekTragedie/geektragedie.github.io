@@ -77,7 +77,29 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <details id="how-to-use" class="collapsible help how-to sidebar-details">
+                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <ol class="list-decimal space-y-1">
+                            <li>Add each provider you trust under <strong>Add a provider</strong>, with specialties, insurance, availability, and private notes.</li>
+                            <li>When a client needs a referral, search and check the providers who fit.</li>
+                            <li>Choose Option A or B for the email, then copy it or print a handout from <strong>For this client</strong> in the tool menu.</li>
+                        </ol>
+                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                        <p><strong>Tip:</strong> Private notes never appear in client emails or handouts. The full directory printout does include them, so keep it private.</p>
+                        <p>Import, save, print, and clear are further down this menu.</p>
+                        <h3 class="why-heading">Why this matters</h3>
+                        <p>Good referrals depend on fit: scope, level of care, insurance, availability, and the identity factors that matter to your client. A verified list and more than one option help clients follow through and reduce gaps in care. The ACA and APA ethics codes ask us to refer when a client’s needs fall outside our competence.</p>
+                    </div>
+                </details>
+                <details id="your-data" class="collapsible help sidebar-details">
+                    <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <p>Everything you enter stays in this browser on this device. Nothing is sent to or stored by this site.</p><p><strong>Save in this browser</strong> keeps your entries between visits. Turning it off erases them from this device. Use <strong>Save .json</strong> for a backup you control.</p>
+                        <p><strong>Practice data</strong> you upload is kept on this device until you click <strong>Forget practice data</strong>.</p><p>Use initials or client codes instead of full names whenever you can, and don’t use a shared or public computer for client information.</p>
+                    </div>
+                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
                 <nav class="sidebar-group" aria-label="On this page">
                     <span class="sidebar-label">On this page</span>
@@ -85,7 +107,6 @@
                         <li><a href="#add-referral-heading">Add a provider</a></li>
                         <li><a href="#search-heading">Find &amp; pick providers</a></li>
                         <li><a href="#email-gen-heading">Referral email</a></li>
-                        <li><a href="#references">References</a></li>
                     </ul>
                 </nav>
 
@@ -125,19 +146,6 @@
             Keep a list of the providers and resources you trust. Check off the ones that fit a client or inquiry, and it writes a referral email and a client handout for you. Save the list as a <code>.json</code> file to reload later.
         </p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Add each provider you trust under <strong>Add a provider</strong>, with specialties, insurance, availability, and private notes.</li>
-                    <li>When a client needs a referral, search and check the providers who fit.</li>
-                    <li>Choose Option A or B for the email, then copy it or print a handout from <strong>For this client</strong> in the tool menu.</li>
-                </ol>
-                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                <p><strong>Tip:</strong> Private notes never appear in client emails or handouts. The full directory printout does include them, so keep it private.</p>
-                <p>Import, save, print, and clear are in the tool menu.</p>
-            </div>
-        </details>
 
         <!-- Section 1: Add / Edit Provider in Your Ongoing Referral List -->
         <section class="mb-8" aria-labelledby="add-referral-heading">
@@ -457,6 +465,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../practice-data.js"></script>
     <script src="../toolkit.js"></script>
 </body>
 </html>

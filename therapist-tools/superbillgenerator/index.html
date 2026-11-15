@@ -76,14 +76,29 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
-
-                <nav class="sidebar-group" aria-label="On this page">
-                    <span class="sidebar-label">On this page</span>
-                    <ul class="sidebar-toc">
-                        <li><a href="#references">References</a></li>
-                    </ul>
-                </nav>
+                <details id="how-to-use" class="collapsible help how-to sidebar-details">
+                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <ol class="list-decimal space-y-1">
+                            <li>Fill in the provider, client, and insurance details.</li>
+                            <li>Add each service with its date, CPT code, diagnosis codes, and fee. Totals add up for you.</li>
+                            <li>Generate the superbill, check it, then print it for your client.</li>
+                        </ol>
+                        <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time.</p>
+                        <p><strong>Tip:</strong> Save a .json file so next month’s superbill only needs new dates.</p>
+                        <p>Import, save, print, and clear are further down this menu.</p>
+                        <h3 class="why-heading">Why this matters</h3>
+                        <p>A superbill gives clients what they need to request out-of-network reimbursement: your NPI and tax ID, diagnosis codes, CPT codes, place of service, and fees. Complete, accurate codes mean fewer denied claims. Insurers require ICD-10-CM diagnosis codes.</p>
+                    </div>
+                </details>
+                <details id="your-data" class="collapsible help sidebar-details">
+                    <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <p>Everything you enter stays in this browser tab. Nothing is sent to or stored by this site, and nothing is saved: refreshing the page clears every field.</p><p>Use <strong>Save .json</strong> to keep a copy, and store it somewhere secure.</p>
+                        <p><strong>Practice data</strong> you upload is kept on this device until you click <strong>Forget practice data</strong>.</p><p>Use initials or client codes instead of full names whenever you can, and don’t use a shared or public computer for client information.</p>
+                    </div>
+                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
                 <div class="sidebar-group" role="group" aria-label="Your file">
                     <span class="sidebar-label">Your file</span>
@@ -108,19 +123,6 @@
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-6">Insurance Superbill Generator</h1>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Fill in the provider, client, and insurance details.</li>
-                    <li>Add each service with its date, CPT code, diagnosis codes, and fee. Totals add up for you.</li>
-                    <li>Generate the superbill, check it, then print it for your client.</li>
-                </ol>
-                <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time.</p>
-                <p><strong>Tip:</strong> Save a .json file so next month’s superbill only needs new dates.</p>
-                <p>Import, save, print, and clear are in the tool menu.</p>
-            </div>
-        </details>
 
         
         <form id="superbillForm" class="space-y-4">
@@ -128,24 +130,24 @@
             <section class="form-section">
                 <h3 class="text-xl font-semibold mb-4">Practice Information</h3>
                 <label for="superbillPracticeName" class="block text-lg font-semibold mb-2">Practice Name:</label>
-                <input type="text" id="superbillPracticeName" placeholder="[Your Practice Name]" class="w-full p-2 border rounded-md">
+                <input type="text" id="superbillPracticeName" data-practice="business.legalBusinessName" placeholder="[Your Practice Name]" class="w-full p-2 border rounded-md">
                 <label for="superbillPracticeAddress" class="block text-lg font-semibold mb-2 mt-2">Practice Address:</label>
                 <input type="text" id="superbillPracticeAddress" placeholder="[Street Address]" class="w-full p-2 border rounded-md">
                 <input type="text" id="superbillPracticeCityStateZip" placeholder="[City, State, Zip]" class="w-full p-2 mt-2 border rounded-md">
                 <label for="superbillPracticePhone" class="block text-lg font-semibold mb-2 mt-2">Practice Phone:</label>
-                <input type="tel" id="superbillPracticePhone" placeholder="[Your Phone Number]" class="w-full p-2 border rounded-md">
+                <input type="tel" id="superbillPracticePhone" data-practice="business.businessPhone" placeholder="[Your Phone Number]" class="w-full p-2 border rounded-md">
                 <label for="superbillPracticeEmail" class="block text-lg font-semibold mb-2 mt-2">Practice Email:</label>
-                <input type="email" id="superbillPracticeEmail" placeholder="[Your Email Address]" class="w-full p-2 border rounded-md">
+                <input type="email" id="superbillPracticeEmail" data-practice="business.businessEmail" placeholder="[Your Email Address]" class="w-full p-2 border rounded-md">
             </section>
 
             <section class="form-section">
                 <h3 class="text-xl font-semibold mb-4">Provider Information</h3>
                 <label for="superbillProviderName" class="block text-lg font-semibold mb-2">Provider Name:</label>
-                <input type="text" id="superbillProviderName" placeholder="[Your Full Name]" class="w-full p-2 border rounded-md mb-2">
+                <input type="text" id="superbillProviderName" data-practice="therapist.clinicianFullName" placeholder="[Your Full Name]" class="w-full p-2 border rounded-md mb-2">
                 <label for="superbillProviderLicense" class="block text-lg font-semibold mb-2 mt-2">Provider License Number:</label>
-                <input type="text" id="superbillProviderLicense" placeholder="[Your License Number]" class="w-full p-2 border rounded-md">
+                <input type="text" id="superbillProviderLicense" data-practice="therapist.licenses.0.number" placeholder="[Your License Number]" class="w-full p-2 border rounded-md">
                 <label for="superbillNpi" class="block text-lg font-semibold mb-2 mt-2" title="Your unique 10-digit identification number issued to health care providers.">National Provider Identifier (NPI):</label>
-                <input type="text" id="superbillNpi" pattern="\d{10}" title="NPI must be 10 digits" placeholder="[Your 10-digit NPI]" class="w-full p-2 border rounded-md">
+                <input type="text" id="superbillNpi" data-practice="therapist.npiType1" pattern="\d{10}" title="NPI must be 10 digits" placeholder="[Your 10-digit NPI]" class="w-full p-2 border rounded-md">
             </section>
 
             <section class="form-section">
@@ -236,8 +238,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="../shared/diagnoses.js"></script>
     <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../practice-data.js"></script>
     <script src="../toolkit.js"></script>
 </body>
 </html>

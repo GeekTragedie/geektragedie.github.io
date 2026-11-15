@@ -77,7 +77,30 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <details id="how-to-use" class="collapsible help how-to sidebar-details">
+                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <ol class="list-decimal space-y-1">
+                            <li>Choose the plan type, then pick diagnoses using ICD-10 or DSM-5-TR.</li>
+                            <li>Insert suggested goals or write your own, up to 5 goals with 5 objectives each.</li>
+                            <li>Use <strong>Help Make It SMART</strong> to tighten each objective.</li>
+                            <li>As your client makes progress, move finished goals to <strong>Achieved goals</strong> and fill in the discharge criteria.</li>
+                            <li>Copy the plan into your EHR, or print or export it from the tool menu.</li>
+                        </ol>
+                        <p><strong>Saving your work:</strong> <strong>Session-only:</strong> nothing is saved in your browser, and refreshing the page clears every field. Use <strong>Save .json</strong> if you want to keep a copy, and store it somewhere secure. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
+                        <p>Import, save, print, and clear are further down this menu.</p>
+                        <h3 class="why-heading">Why this matters</h3>
+                        <p>A treatment plan connects the diagnosis to measurable goals and the interventions you’ll use, which is the heart of medical necessity. Goals written with the client, in their own words when you can, improve engagement and outcomes. Review the plan on a set schedule and whenever the client’s needs change.</p>
+                    </div>
+                </details>
+                <details id="your-data" class="collapsible help sidebar-details">
+                    <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <p>Everything you enter stays in this browser tab. Nothing is sent to or stored by this site, and nothing is saved: refreshing the page clears every field.</p><p>Use <strong>Save .json</strong> to keep a copy, and store it somewhere secure.</p>
+                        <p><strong>Practice data</strong> you upload is kept on this device until you click <strong>Forget practice data</strong>.</p><p>Use initials or client codes instead of full names whenever you can, and don’t use a shared or public computer for client information.</p>
+                    </div>
+                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
                 <nav class="sidebar-group" aria-label="On this page">
                     <span class="sidebar-label">On this page</span>
@@ -87,7 +110,6 @@
                         <li><a href="#active-goals-heading">Active goals</a></li>
                         <li><a href="#archived-goals-heading">Achieved goals</a></li>
                         <li><a href="#discharge-heading">Discharge criteria</a></li>
-                        <li><a href="#references">References</a></li>
                     </ul>
                 </nav>
 
@@ -119,20 +141,6 @@
             Write treatment plans with goals matched to the diagnosis, a SMART objective helper, interventions, and a record of achieved and archived goals (up to 5 active goals with 5 objectives each). Nothing is saved in your browser, so export a <code>.json</code> file before you close the page.
         </p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Choose the plan type, then pick diagnoses using ICD-10 or DSM-5-TR.</li>
-                    <li>Insert suggested goals or write your own, up to 5 goals with 5 objectives each.</li>
-                    <li>Use <strong>Help Make It SMART</strong> to tighten each objective.</li>
-                    <li>As your client makes progress, move finished goals to <strong>Achieved goals</strong> and fill in the discharge criteria.</li>
-                    <li>Copy the plan into your EHR, or print or export it from the tool menu.</li>
-                </ol>
-                <p><strong>Saving your work:</strong> <strong>Session-only:</strong> nothing is saved in your browser, and refreshing the page clears every field. Use <strong>Save .json</strong> if you want to keep a copy, and store it somewhere secure. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
-                <p>Import, save, print, and clear are in the tool menu.</p>
-            </div>
-        </details>
 
         <form id="treatmentPlanForm" class="space-y-6">
 
@@ -185,7 +193,7 @@
                     </div>
                     <div>
                         <label for="clinicianNameCreds" class="block text-xs font-semibold mb-1">Clinician Name &amp; Credentials:</label>
-                        <input type="text" id="clinicianNameCreds" placeholder="e.g., Jane Doe, LMHC" class="w-full p-2 border rounded-md text-sm">
+                        <input type="text" id="clinicianNameCreds" data-practice="therapist.clinicianFullName" placeholder="e.g., Jane Doe, LMHC" class="w-full p-2 border rounded-md text-sm">
                     </div>
                 </div>
             </section>
@@ -356,8 +364,10 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="../shared/diagnoses.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../practice-data.js"></script>
     <script src="../toolkit.js"></script>
 </body>
 </html>

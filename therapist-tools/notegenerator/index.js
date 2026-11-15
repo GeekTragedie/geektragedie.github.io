@@ -19,12 +19,16 @@ $(document).ready(function() {
     });
 
     // --- Data Loading ---
-    $.getJSON('diagnoses.json', data => { allDiagnosesData = data; });
-    $.getJSON('therapy_styles.json', data => {
-        $('#theorySelect').empty();
-        data.forEach(style => $('#theorySelect').append(new Option(style.name, style.name)));
-        $('#theorySelect').trigger('change');
-    });
+    TTShared.loadDiagnoses()
+        .then(data => { allDiagnosesData = data; })
+        .catch(() => TTShared.showLoadError('#diagnosisSelect', 'diagnosis list'));
+    TTShared.loadTherapyStyles()
+        .then(data => {
+            $('#theorySelect').empty();
+            data.forEach(style => $('#theorySelect').append(new Option(style.name, style.name)));
+            $('#theorySelect').trigger('change');
+        })
+        .catch(() => TTShared.showLoadError('#theorySelect', 'therapy styles'));
     $.getJSON('note-templates.json', function(data) {
         noteTemplatesData = data.templates;
         const select = $('#noteTemplateSelect');
@@ -60,7 +64,7 @@ $(document).ready(function() {
         const diagnoses = allDiagnosesData[classification];
         if (diagnoses) {
             diagnoses.forEach(function(diagnosis) {
-                $('#diagnosisSelect').append(new Option(diagnosis.name, diagnosis.code));
+                $('#diagnosisSelect').append(new Option(`${diagnosis.name} (${diagnosis.code})`, diagnosis.code));
             });
         }
         $('#diagnosisSelect').trigger('change');
@@ -88,7 +92,7 @@ $(document).ready(function() {
         let noteContent = "";
 
         const selectedLocations = $('input[name="location"]:checked').map(function() { return $(this).val(); }).get();
-        const locationText = selectedLocations.length > 0 ? selectedLocations.join(', ') : 'an unspecified location';
+        const locationText = selectedLocations.length > 0 ? TTShared.listJoin(selectedLocations) : 'an unspecified location';
         const selectedDiagnoses = $('#diagnosisSelect').val();
         let diagnosisText = 'an unspecified diagnosis';
         if (selectedDiagnoses && selectedDiagnoses.length > 0) {
@@ -96,10 +100,10 @@ $(document).ready(function() {
                 const diagnosisObj = (allDiagnosesData[currentDiagnosisClassification] || []).find(d => d.code === code);
                 return diagnosisObj ? diagnosisObj.name : code;
             });
-            diagnosisText = `${currentDiagnosisClassification} diagnosis of ${selectedDiagnosisNames.join(', ')}`;
+            diagnosisText = `${currentDiagnosisClassification} diagnosis of ${TTShared.listJoin(selectedDiagnosisNames)}`;
         }
         const selectedTheories = $('#theorySelect').val();
-        const theoryText = selectedTheories && selectedTheories.length > 0 ? selectedTheories.join(', ') : 'various therapeutic approaches';
+        const theoryText = selectedTheories && selectedTheories.length > 0 ? TTShared.listJoin(selectedTheories) : 'various therapeutic approaches';
 
         const intro = `The clinician met with the client ${locationText} to treat their ${diagnosisText}. The clinician utilized ${theoryText} to support the client in building their skills.`;
 

@@ -76,7 +76,31 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <details id="how-to-use" class="collapsible help how-to sidebar-details">
+                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <ol class="list-decimal space-y-1">
+                            <li>Set your practice name, tax year, and tax rates under <strong>Practice &amp; tax rates</strong>.</li>
+                            <li>Log each payout and expense in the <strong>Income &amp; expense ledger</strong>. Flag contractors who need a 1099-NEC.</li>
+                            <li>Check the <strong>Quarterly tax planner</strong> before each IRS and WA DOR due date.</li>
+                            <li>Check off each month under <strong>Monthly reconciliation</strong> once your bank statement matches.</li>
+                            <li>Track renewals under <strong>Licenses</strong>, and print the year-end packet for your CPA.</li>
+                        </ol>
+                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                        <p>Import, save, print, and clear are further down this menu.</p>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                        <h3 class="why-heading">Why this matters</h3>
+                        <p>Keeping business money separate, tracking deductible expenses, and paying quarterly estimated taxes keeps a private practice sustainable and ready for an audit. This tool is an organizer, not tax advice, so check your situation with a CPA.</p>
+                    </div>
+                </details>
+                <details id="your-data" class="collapsible help sidebar-details">
+                    <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <p>Everything you enter stays in this browser on this device. Nothing is sent to or stored by this site.</p><p><strong>Save in this browser</strong> keeps your entries between visits. Turning it off erases them from this device. Use <strong>Save .json</strong> for a backup you control.</p>
+                        <p><strong>Practice data</strong> you upload is kept on this device until you click <strong>Forget practice data</strong>.</p><p>Use initials or client codes instead of full names whenever you can, and don’t use a shared or public computer for client information.</p>
+                    </div>
+                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
                 <nav class="sidebar-group" aria-label="On this page">
                     <span class="sidebar-label">On this page</span>
@@ -87,7 +111,6 @@
                         <li><button type="button" data-click='.dash-tab-btn[data-tab="taxes"]'>Quarterly tax planner</button></li>
                         <li><button type="button" data-click='.dash-tab-btn[data-tab="reconcile"]'>Monthly reconciliation</button></li>
                         <li><button type="button" data-click='.dash-tab-btn[data-tab="compliance"]'>Licenses</button></li>
-                        <li><a href="#references">References</a></li>
                     </ul>
                 </nav>
 
@@ -122,20 +145,6 @@
             <strong>Please note:</strong> This isn’t legal, tax, or CPA advice. Tax rules vary by federal, state, county, and city, so check with a CPA, bookkeeper, or attorney about your own practice.
         </p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Set your practice name, tax year, and tax rates under <strong>Practice &amp; tax rates</strong>.</li>
-                    <li>Log each payout and expense in the <strong>Income &amp; expense ledger</strong>. Flag contractors who need a 1099-NEC.</li>
-                    <li>Check the <strong>Quarterly tax planner</strong> before each IRS and WA DOR due date.</li>
-                    <li>Check off each month under <strong>Monthly reconciliation</strong> once your bank statement matches.</li>
-                    <li>Track renewals under <strong>Licenses</strong>, and print the year-end packet for your CPA.</li>
-                </ol>
-                <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                <p>Import, save, print, and clear are in the tool menu.</p>
-            </div>
-        </details>
 
         <!-- Practice & Tax Year Settings Bar -->
         <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="settings-heading">
@@ -143,7 +152,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
                 <div>
                     <label for="practiceName" class="block text-xs font-semibold mb-1">Practice Name:</label>
-                    <input type="text" id="practiceName" placeholder="e.g., Jane Doe Counseling PLLC" class="w-full p-2 border rounded-md text-sm">
+                    <input type="text" id="practiceName" data-practice="business.legalBusinessName" placeholder="e.g., Jane Doe Counseling PLLC" class="w-full p-2 border rounded-md text-sm">
                 </div>
                 <div>
                     <label for="taxYear" class="block text-xs font-semibold mb-1">Tax Year:</label>
@@ -577,6 +586,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
+    <script src="../practice-data.js"></script>
     <script src="../toolkit.js"></script>
 </body>
 </html>

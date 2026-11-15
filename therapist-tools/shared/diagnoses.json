@@ -1,0 +1,891 @@
+{
+  "meta": {
+    "description": "Shared diagnosis list for the Therapist Toolkit. One billable ICD-10-CM code per entry, with the official ICD-10-CM title (icd) and the DSM-5-TR name (dsm). DSM-5-TR uses ICD-10-CM codes, so the ICD/DSM toggle only changes which name is shown.",
+    "codeSet": "ICD-10-CM FY2026 (effective October 1, 2025)",
+    "review": "Verify codes against the current CMS ICD-10-CM release before billing."
+  },
+  "families": [
+    "Neurodevelopmental Disorders",
+    "Schizophrenia Spectrum & Other Psychotic Disorders",
+    "Bipolar & Related Disorders",
+    "Depressive Disorders",
+    "Anxiety Disorders",
+    "Obsessive-Compulsive & Related Disorders",
+    "Trauma- & Stressor-Related Disorders",
+    "Dissociative Disorders",
+    "Somatic Symptom & Related Disorders",
+    "Feeding & Eating Disorders",
+    "Sleep-Wake Disorders",
+    "Gender Dysphoria",
+    "Disruptive, Impulse-Control & Conduct Disorders",
+    "Substance-Related & Addictive Disorders",
+    "Personality Disorders",
+    "Other Conditions That May Be a Focus of Clinical Attention"
+  ],
+  "diagnoses": [
+    {
+      "code": "F70",
+      "icd": "Mild intellectual disabilities",
+      "dsm": "Intellectual Disability, Mild",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F80.82",
+      "icd": "Social pragmatic communication disorder",
+      "dsm": "Social (Pragmatic) Communication Disorder",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F84.0",
+      "icd": "Autistic disorder",
+      "dsm": "Autism Spectrum Disorder",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F90.0",
+      "icd": "Attention-deficit hyperactivity disorder, predominantly inattentive type",
+      "dsm": "Attention-Deficit/Hyperactivity Disorder, Predominantly Inattentive Presentation",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F90.1",
+      "icd": "Attention-deficit hyperactivity disorder, predominantly hyperactive type",
+      "dsm": "Attention-Deficit/Hyperactivity Disorder, Predominantly Hyperactive/Impulsive Presentation",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F90.2",
+      "icd": "Attention-deficit hyperactivity disorder, combined type",
+      "dsm": "Attention-Deficit/Hyperactivity Disorder, Combined Presentation",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F90.8",
+      "icd": "Attention-deficit hyperactivity disorder, other type",
+      "dsm": "Other Specified Attention-Deficit/Hyperactivity Disorder",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F90.9",
+      "icd": "Attention-deficit hyperactivity disorder, unspecified type",
+      "dsm": "Unspecified Attention-Deficit/Hyperactivity Disorder",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F81.0",
+      "icd": "Specific reading disorder",
+      "dsm": "Specific Learning Disorder, With Impairment in Reading",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F81.2",
+      "icd": "Mathematics disorder",
+      "dsm": "Specific Learning Disorder, With Impairment in Mathematics",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F81.81",
+      "icd": "Disorder of written expression",
+      "dsm": "Specific Learning Disorder, With Impairment in Written Expression",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F95.2",
+      "icd": "Tourette's disorder",
+      "dsm": "Tourette's Disorder",
+      "family": "Neurodevelopmental Disorders"
+    },
+    {
+      "code": "F20.9",
+      "icd": "Schizophrenia, unspecified",
+      "dsm": "Schizophrenia",
+      "family": "Schizophrenia Spectrum & Other Psychotic Disorders"
+    },
+    {
+      "code": "F20.81",
+      "icd": "Schizophreniform disorder",
+      "dsm": "Schizophreniform Disorder",
+      "family": "Schizophrenia Spectrum & Other Psychotic Disorders"
+    },
+    {
+      "code": "F25.0",
+      "icd": "Schizoaffective disorder, bipolar type",
+      "dsm": "Schizoaffective Disorder, Bipolar Type",
+      "family": "Schizophrenia Spectrum & Other Psychotic Disorders"
+    },
+    {
+      "code": "F25.1",
+      "icd": "Schizoaffective disorder, depressive type",
+      "dsm": "Schizoaffective Disorder, Depressive Type",
+      "family": "Schizophrenia Spectrum & Other Psychotic Disorders"
+    },
+    {
+      "code": "F22",
+      "icd": "Delusional disorders",
+      "dsm": "Delusional Disorder",
+      "family": "Schizophrenia Spectrum & Other Psychotic Disorders"
+    },
+    {
+      "code": "F23",
+      "icd": "Brief psychotic disorder",
+      "dsm": "Brief Psychotic Disorder",
+      "family": "Schizophrenia Spectrum & Other Psychotic Disorders"
+    },
+    {
+      "code": "F29",
+      "icd": "Unspecified psychosis not due to a substance or known physiological condition",
+      "dsm": "Unspecified Schizophrenia Spectrum and Other Psychotic Disorder",
+      "family": "Schizophrenia Spectrum & Other Psychotic Disorders"
+    },
+    {
+      "code": "F31.0",
+      "icd": "Bipolar disorder, current episode hypomanic",
+      "dsm": "Bipolar I Disorder, Current or Most Recent Episode Hypomanic",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.11",
+      "icd": "Bipolar disorder, current episode manic without psychotic features, mild",
+      "dsm": "Bipolar I Disorder, Current or Most Recent Episode Manic, Mild",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.12",
+      "icd": "Bipolar disorder, current episode manic without psychotic features, moderate",
+      "dsm": "Bipolar I Disorder, Current or Most Recent Episode Manic, Moderate",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.13",
+      "icd": "Bipolar disorder, current episode manic without psychotic features, severe",
+      "dsm": "Bipolar I Disorder, Current or Most Recent Episode Manic, Severe",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.31",
+      "icd": "Bipolar disorder, current episode depressed, mild",
+      "dsm": "Bipolar I Disorder, Current or Most Recent Episode Depressed, Mild",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.32",
+      "icd": "Bipolar disorder, current episode depressed, moderate",
+      "dsm": "Bipolar I Disorder, Current or Most Recent Episode Depressed, Moderate",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.4",
+      "icd": "Bipolar disorder, current episode depressed, severe, without psychotic features",
+      "dsm": "Bipolar I Disorder, Current or Most Recent Episode Depressed, Severe",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.81",
+      "icd": "Bipolar II disorder",
+      "dsm": "Bipolar II Disorder",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F31.9",
+      "icd": "Bipolar disorder, unspecified",
+      "dsm": "Unspecified Bipolar and Related Disorder",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F34.0",
+      "icd": "Cyclothymic disorder",
+      "dsm": "Cyclothymic Disorder",
+      "family": "Bipolar & Related Disorders"
+    },
+    {
+      "code": "F32.0",
+      "icd": "Major depressive disorder, single episode, mild",
+      "dsm": "Major Depressive Disorder, Single Episode, Mild",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.1",
+      "icd": "Major depressive disorder, single episode, moderate",
+      "dsm": "Major Depressive Disorder, Single Episode, Moderate",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.2",
+      "icd": "Major depressive disorder, single episode, severe without psychotic features",
+      "dsm": "Major Depressive Disorder, Single Episode, Severe",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.3",
+      "icd": "Major depressive disorder, single episode, severe with psychotic features",
+      "dsm": "Major Depressive Disorder, Single Episode, With Psychotic Features",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.4",
+      "icd": "Major depressive disorder, single episode, in partial remission",
+      "dsm": "Major Depressive Disorder, Single Episode, In Partial Remission",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.5",
+      "icd": "Major depressive disorder, single episode, in full remission",
+      "dsm": "Major Depressive Disorder, Single Episode, In Full Remission",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.9",
+      "icd": "Major depressive disorder, single episode, unspecified",
+      "dsm": "Major Depressive Disorder, Single Episode, Unspecified",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F33.0",
+      "icd": "Major depressive disorder, recurrent, mild",
+      "dsm": "Major Depressive Disorder, Recurrent Episode, Mild",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F33.1",
+      "icd": "Major depressive disorder, recurrent, moderate",
+      "dsm": "Major Depressive Disorder, Recurrent Episode, Moderate",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F33.2",
+      "icd": "Major depressive disorder, recurrent severe without psychotic features",
+      "dsm": "Major Depressive Disorder, Recurrent Episode, Severe",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F33.3",
+      "icd": "Major depressive disorder, recurrent, severe with psychotic symptoms",
+      "dsm": "Major Depressive Disorder, Recurrent Episode, With Psychotic Features",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F33.41",
+      "icd": "Major depressive disorder, recurrent, in partial remission",
+      "dsm": "Major Depressive Disorder, Recurrent Episode, In Partial Remission",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F33.42",
+      "icd": "Major depressive disorder, recurrent, in full remission",
+      "dsm": "Major Depressive Disorder, Recurrent Episode, In Full Remission",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F33.9",
+      "icd": "Major depressive disorder, recurrent, unspecified",
+      "dsm": "Major Depressive Disorder, Recurrent Episode, Unspecified",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F34.1",
+      "icd": "Dysthymic disorder",
+      "dsm": "Persistent Depressive Disorder",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F34.81",
+      "icd": "Disruptive mood dysregulation disorder",
+      "dsm": "Disruptive Mood Dysregulation Disorder",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.81",
+      "icd": "Premenstrual dysphoric disorder",
+      "dsm": "Premenstrual Dysphoric Disorder",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.89",
+      "icd": "Other specified depressive episodes",
+      "dsm": "Other Specified Depressive Disorder",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F32.A",
+      "icd": "Depression, unspecified",
+      "dsm": "Unspecified Depressive Disorder",
+      "family": "Depressive Disorders"
+    },
+    {
+      "code": "F93.0",
+      "icd": "Separation anxiety disorder of childhood",
+      "dsm": "Separation Anxiety Disorder",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F94.0",
+      "icd": "Selective mutism",
+      "dsm": "Selective Mutism",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F40.218",
+      "icd": "Other animal type phobia",
+      "dsm": "Specific Phobia, Animal",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F40.10",
+      "icd": "Social phobia, unspecified",
+      "dsm": "Social Anxiety Disorder",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F41.0",
+      "icd": "Panic disorder [episodic paroxysmal anxiety]",
+      "dsm": "Panic Disorder",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F40.00",
+      "icd": "Agoraphobia, unspecified",
+      "dsm": "Agoraphobia",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F41.1",
+      "icd": "Generalized anxiety disorder",
+      "dsm": "Generalized Anxiety Disorder",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F41.8",
+      "icd": "Other specified anxiety disorders",
+      "dsm": "Other Specified Anxiety Disorder",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F41.9",
+      "icd": "Anxiety disorder, unspecified",
+      "dsm": "Unspecified Anxiety Disorder",
+      "family": "Anxiety Disorders"
+    },
+    {
+      "code": "F42.2",
+      "icd": "Mixed obsessional thoughts and acts",
+      "dsm": "Obsessive-Compulsive Disorder",
+      "family": "Obsessive-Compulsive & Related Disorders"
+    },
+    {
+      "code": "F45.22",
+      "icd": "Body dysmorphic disorder",
+      "dsm": "Body Dysmorphic Disorder",
+      "family": "Obsessive-Compulsive & Related Disorders"
+    },
+    {
+      "code": "F42.3",
+      "icd": "Hoarding disorder",
+      "dsm": "Hoarding Disorder",
+      "family": "Obsessive-Compulsive & Related Disorders"
+    },
+    {
+      "code": "F63.3",
+      "icd": "Trichotillomania",
+      "dsm": "Trichotillomania (Hair-Pulling Disorder)",
+      "family": "Obsessive-Compulsive & Related Disorders"
+    },
+    {
+      "code": "F42.4",
+      "icd": "Excoriation (skin-picking) disorder",
+      "dsm": "Excoriation (Skin-Picking) Disorder",
+      "family": "Obsessive-Compulsive & Related Disorders"
+    },
+    {
+      "code": "F42.8",
+      "icd": "Other obsessive-compulsive disorder",
+      "dsm": "Other Specified Obsessive-Compulsive and Related Disorder",
+      "family": "Obsessive-Compulsive & Related Disorders"
+    },
+    {
+      "code": "F42.9",
+      "icd": "Obsessive-compulsive disorder, unspecified",
+      "dsm": "Unspecified Obsessive-Compulsive and Related Disorder",
+      "family": "Obsessive-Compulsive & Related Disorders"
+    },
+    {
+      "code": "F94.1",
+      "icd": "Reactive attachment disorder of childhood",
+      "dsm": "Reactive Attachment Disorder",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F94.2",
+      "icd": "Disinhibited attachment disorder of childhood",
+      "dsm": "Disinhibited Social Engagement Disorder",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.10",
+      "icd": "Post-traumatic stress disorder, unspecified",
+      "dsm": "Posttraumatic Stress Disorder",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.0",
+      "icd": "Acute stress reaction",
+      "dsm": "Acute Stress Disorder",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.20",
+      "icd": "Adjustment disorder, unspecified",
+      "dsm": "Adjustment Disorder, Unspecified",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.21",
+      "icd": "Adjustment disorder with depressed mood",
+      "dsm": "Adjustment Disorder, With Depressed Mood",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.22",
+      "icd": "Adjustment disorder with anxiety",
+      "dsm": "Adjustment Disorder, With Anxiety",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.23",
+      "icd": "Adjustment disorder with mixed anxiety and depressed mood",
+      "dsm": "Adjustment Disorder, With Mixed Anxiety and Depressed Mood",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.24",
+      "icd": "Adjustment disorder with disturbance of conduct",
+      "dsm": "Adjustment Disorder, With Disturbance of Conduct",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.25",
+      "icd": "Adjustment disorder with mixed disturbance of emotions and conduct",
+      "dsm": "Adjustment Disorder, With Mixed Disturbance of Emotions and Conduct",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.81",
+      "icd": "Prolonged grief disorder",
+      "dsm": "Prolonged Grief Disorder",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.89",
+      "icd": "Other reactions to severe stress",
+      "dsm": "Other Specified Trauma- and Stressor-Related Disorder",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F43.9",
+      "icd": "Reaction to severe stress, unspecified",
+      "dsm": "Unspecified Trauma- and Stressor-Related Disorder",
+      "family": "Trauma- & Stressor-Related Disorders"
+    },
+    {
+      "code": "F44.81",
+      "icd": "Dissociative identity disorder",
+      "dsm": "Dissociative Identity Disorder",
+      "family": "Dissociative Disorders"
+    },
+    {
+      "code": "F44.0",
+      "icd": "Dissociative amnesia",
+      "dsm": "Dissociative Amnesia",
+      "family": "Dissociative Disorders"
+    },
+    {
+      "code": "F48.1",
+      "icd": "Depersonalization-derealization syndrome",
+      "dsm": "Depersonalization/Derealization Disorder",
+      "family": "Dissociative Disorders"
+    },
+    {
+      "code": "F44.89",
+      "icd": "Other dissociative and conversion disorders",
+      "dsm": "Other Specified Dissociative Disorder",
+      "family": "Dissociative Disorders"
+    },
+    {
+      "code": "F44.9",
+      "icd": "Dissociative and conversion disorder, unspecified",
+      "dsm": "Unspecified Dissociative Disorder",
+      "family": "Dissociative Disorders"
+    },
+    {
+      "code": "F45.1",
+      "icd": "Undifferentiated somatoform disorder",
+      "dsm": "Somatic Symptom Disorder",
+      "family": "Somatic Symptom & Related Disorders"
+    },
+    {
+      "code": "F45.21",
+      "icd": "Hypochondriasis",
+      "dsm": "Illness Anxiety Disorder",
+      "family": "Somatic Symptom & Related Disorders"
+    },
+    {
+      "code": "F50.019",
+      "icd": "Anorexia nervosa, restricting type, unspecified",
+      "dsm": "Anorexia Nervosa, Restricting Type",
+      "family": "Feeding & Eating Disorders"
+    },
+    {
+      "code": "F50.029",
+      "icd": "Anorexia nervosa, binge eating/purging type, unspecified",
+      "dsm": "Anorexia Nervosa, Binge-Eating/Purging Type",
+      "family": "Feeding & Eating Disorders"
+    },
+    {
+      "code": "F50.20",
+      "icd": "Bulimia nervosa, unspecified",
+      "dsm": "Bulimia Nervosa",
+      "family": "Feeding & Eating Disorders"
+    },
+    {
+      "code": "F50.819",
+      "icd": "Binge eating disorder, unspecified",
+      "dsm": "Binge-Eating Disorder",
+      "family": "Feeding & Eating Disorders"
+    },
+    {
+      "code": "F50.82",
+      "icd": "Avoidant/restrictive food intake disorder",
+      "dsm": "Avoidant/Restrictive Food Intake Disorder",
+      "family": "Feeding & Eating Disorders"
+    },
+    {
+      "code": "F50.89",
+      "icd": "Other specified eating disorder",
+      "dsm": "Other Specified Feeding or Eating Disorder",
+      "family": "Feeding & Eating Disorders"
+    },
+    {
+      "code": "F50.9",
+      "icd": "Eating disorder, unspecified",
+      "dsm": "Unspecified Feeding or Eating Disorder",
+      "family": "Feeding & Eating Disorders"
+    },
+    {
+      "code": "F51.01",
+      "icd": "Primary insomnia",
+      "dsm": "Insomnia Disorder",
+      "family": "Sleep-Wake Disorders"
+    },
+    {
+      "code": "F51.5",
+      "icd": "Nightmares",
+      "dsm": "Nightmare Disorder",
+      "family": "Sleep-Wake Disorders"
+    },
+    {
+      "code": "F64.0",
+      "icd": "Transsexualism",
+      "dsm": "Gender Dysphoria in Adolescents and Adults",
+      "family": "Gender Dysphoria"
+    },
+    {
+      "code": "F64.2",
+      "icd": "Gender identity disorder of childhood",
+      "dsm": "Gender Dysphoria in Children",
+      "family": "Gender Dysphoria"
+    },
+    {
+      "code": "F91.3",
+      "icd": "Oppositional defiant disorder",
+      "dsm": "Oppositional Defiant Disorder",
+      "family": "Disruptive, Impulse-Control & Conduct Disorders"
+    },
+    {
+      "code": "F63.81",
+      "icd": "Intermittent explosive disorder",
+      "dsm": "Intermittent Explosive Disorder",
+      "family": "Disruptive, Impulse-Control & Conduct Disorders"
+    },
+    {
+      "code": "F91.1",
+      "icd": "Conduct disorder, childhood-onset type",
+      "dsm": "Conduct Disorder, Childhood-Onset Type",
+      "family": "Disruptive, Impulse-Control & Conduct Disorders"
+    },
+    {
+      "code": "F91.2",
+      "icd": "Conduct disorder, adolescent-onset type",
+      "dsm": "Conduct Disorder, Adolescent-Onset Type",
+      "family": "Disruptive, Impulse-Control & Conduct Disorders"
+    },
+    {
+      "code": "F91.9",
+      "icd": "Conduct disorder, unspecified",
+      "dsm": "Unspecified Disruptive, Impulse-Control, and Conduct Disorder",
+      "family": "Disruptive, Impulse-Control & Conduct Disorders"
+    },
+    {
+      "code": "F10.10",
+      "icd": "Alcohol abuse, uncomplicated",
+      "dsm": "Alcohol Use Disorder, Mild",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F10.20",
+      "icd": "Alcohol dependence, uncomplicated",
+      "dsm": "Alcohol Use Disorder, Moderate or Severe",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F11.10",
+      "icd": "Opioid abuse, uncomplicated",
+      "dsm": "Opioid Use Disorder, Mild",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F11.20",
+      "icd": "Opioid dependence, uncomplicated",
+      "dsm": "Opioid Use Disorder, Moderate or Severe",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F12.10",
+      "icd": "Cannabis abuse, uncomplicated",
+      "dsm": "Cannabis Use Disorder, Mild",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F12.20",
+      "icd": "Cannabis dependence, uncomplicated",
+      "dsm": "Cannabis Use Disorder, Moderate or Severe",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F14.10",
+      "icd": "Cocaine abuse, uncomplicated",
+      "dsm": "Cocaine Use Disorder, Mild",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F14.20",
+      "icd": "Cocaine dependence, uncomplicated",
+      "dsm": "Cocaine Use Disorder, Moderate or Severe",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F15.10",
+      "icd": "Other stimulant abuse, uncomplicated",
+      "dsm": "Amphetamine-Type Substance Use Disorder, Mild",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F15.20",
+      "icd": "Other stimulant dependence, uncomplicated",
+      "dsm": "Amphetamine-Type Substance Use Disorder, Moderate or Severe",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F17.200",
+      "icd": "Nicotine dependence, unspecified, uncomplicated",
+      "dsm": "Tobacco Use Disorder, Moderate or Severe",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F63.0",
+      "icd": "Pathological gambling",
+      "dsm": "Gambling Disorder",
+      "family": "Substance-Related & Addictive Disorders"
+    },
+    {
+      "code": "F60.0",
+      "icd": "Paranoid personality disorder",
+      "dsm": "Paranoid Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.1",
+      "icd": "Schizoid personality disorder",
+      "dsm": "Schizoid Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F21",
+      "icd": "Schizotypal disorder",
+      "dsm": "Schizotypal Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.2",
+      "icd": "Antisocial personality disorder",
+      "dsm": "Antisocial Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.3",
+      "icd": "Borderline personality disorder",
+      "dsm": "Borderline Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.4",
+      "icd": "Histrionic personality disorder",
+      "dsm": "Histrionic Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.81",
+      "icd": "Narcissistic personality disorder",
+      "dsm": "Narcissistic Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.6",
+      "icd": "Avoidant personality disorder",
+      "dsm": "Avoidant Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.7",
+      "icd": "Dependent personality disorder",
+      "dsm": "Dependent Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.5",
+      "icd": "Obsessive-compulsive personality disorder",
+      "dsm": "Obsessive-Compulsive Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.89",
+      "icd": "Other specific personality disorders",
+      "dsm": "Other Specified Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F60.9",
+      "icd": "Personality disorder, unspecified",
+      "dsm": "Unspecified Personality Disorder",
+      "family": "Personality Disorders"
+    },
+    {
+      "code": "F99",
+      "icd": "Mental disorder, not otherwise specified",
+      "dsm": "Unspecified Mental Disorder",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z03.89",
+      "icd": "Encounter for observation for other suspected diseases and conditions ruled out",
+      "dsm": "No Diagnosis or Condition",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "R45.851",
+      "icd": "Suicidal ideations",
+      "dsm": "Suicidal Ideation (symptom code)",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "R45.850",
+      "icd": "Homicidal ideations",
+      "dsm": "Homicidal Ideation (symptom code)",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z91.51",
+      "icd": "Personal history of suicidal behavior",
+      "dsm": "Personal History of Suicidal Behavior",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z91.52",
+      "icd": "Personal history of nonsuicidal self-harm",
+      "dsm": "Personal History of Nonsuicidal Self-Injury",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z63.0",
+      "icd": "Problems in relationship with spouse or partner",
+      "dsm": "Relationship Distress With Spouse or Intimate Partner",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z62.820",
+      "icd": "Parent-biological child conflict",
+      "dsm": "Parent-Child Relational Problem",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z63.4",
+      "icd": "Disappearance and death of family member",
+      "dsm": "Uncomplicated Bereavement",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z63.5",
+      "icd": "Disruption of family by separation and divorce",
+      "dsm": "Disruption of Family by Separation or Divorce",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z63.8",
+      "icd": "Other specified problems related to primary support group",
+      "dsm": "High Expressed Emotion Level Within Family",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z63.7",
+      "icd": "Other stressful life events affecting family and household",
+      "dsm": "Other Stressful Life Events Affecting Family and Household",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z60.0",
+      "icd": "Problems of adjustment to life-cycle transitions",
+      "dsm": "Phase of Life Problem",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z56.9",
+      "icd": "Unspecified problems related to employment",
+      "dsm": "Other Problem Related to Employment",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z59.01",
+      "icd": "Sheltered homelessness",
+      "dsm": "Sheltered Homelessness",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z59.02",
+      "icd": "Unsheltered homelessness",
+      "dsm": "Unsheltered Homelessness",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z65.1",
+      "icd": "Imprisonment and other incarceration",
+      "dsm": "Imprisonment or Other Incarceration",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z65.2",
+      "icd": "Problems related to release from prison",
+      "dsm": "Problems Related to Release From Prison",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z65.3",
+      "icd": "Problems related to other legal circumstances",
+      "dsm": "Problems Related to Other Legal Circumstances",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    },
+    {
+      "code": "Z65.4",
+      "icd": "Victim of crime and terrorism",
+      "dsm": "Victim of Crime",
+      "family": "Other Conditions That May Be a Focus of Clinical Attention"
+    }
+  ]
+}
