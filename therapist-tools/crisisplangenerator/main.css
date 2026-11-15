@@ -62,3 +62,62 @@
     gap: 1rem;
     font-size: 0.9rem;
 }
+/* Contact rows: inputs share the row and wrap neatly; Remove stays at the end */
+.contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+.contact-row input[type="text"] {
+    flex: 1 1 170px;
+    min-width: 0;
+}
+.contact-row .remove-row-btn {
+    margin-left: auto;
+    white-space: nowrap;
+}
+@media (max-width: 640px) {
+    .contact-row input[type="text"] {
+        flex-basis: 100%;
+    }
+    .contact-row .remove-row-btn {
+        width: 100%;
+        padding: 4px 0;
+        text-align: right;
+    }
+}
+.suggested-row {
+    border-color: var(--accent) !important;
+}
+.recommended-badge {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 0 7px;
+    border-radius: 99px;
+    background-color: var(--badge-bg);
+    color: var(--badge-color);
+    font-size: 0.75em;
+    font-weight: 700;
+}
+.removed-chip {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    margin: 0 8px 6px 0;
+    padding: 3px 10px;
+    border: 1px dashed var(--border-color);
+    border-radius: 99px;
+}
+/* Live preview looks like a printed page in both themes */
+.crisis-paper {
+    padding: 20px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    color: #111;
+}
+.crisis-paper h2,
+.crisis-paper h3 {
+    color: #111 !important;
+}

@@ -1,0 +1,31 @@
+{
+  "templates": ["stanley-brown"],
+  "planTitle": "My Safety Plan",
+  "planState": "WA",
+  "clientName": "A.M. (sample)",
+  "planDate": "2026-11-10",
+  "clinicianName": "Jordan Rivera, MA, LMHC",
+  "warningSigns": ["Withdrawing from friends, family, and texts/calls", "Sleeping too much or severe insomnia / racing thoughts at night"],
+  "warningSignsCustom": "Thinking “everyone would be better off without me.”",
+  "triggers": ["Conflict with a partner, friend, or family member", "Being alone, especially at night"],
+  "triggersCustom": "",
+  "copingStrategies": [],
+  "copingStrategiesCustom": "Take a cold shower, walk the dog around the block, and put on my comfort playlist.",
+  "templateFields": {
+    "sb-social-distraction": "The coffee shop on Main St.; gaming online with my cousin; the library.",
+    "sb-environment-safety": "My partner keeps my medications in a lockbox and gives me one week at a time. No firearms in the home.",
+    "sb-reasons-for-living": "My dog, my niece, and finishing my degree.",
+    "sb-what-matters": "Being someone my family can count on, and my art.",
+    "youth-caregiver-role": "Parent"
+  },
+  "personalContacts": [
+    { "enabled": true, "name": "Sam (sample)", "relationship": "Partner", "phone": "(555) 010-0144" },
+    { "enabled": true, "name": "Jamie (sample)", "relationship": "Best friend", "phone": "(555) 010-0177" }
+  ],
+  "professionalContacts": [
+    { "enabled": true, "role": "Therapist", "name": "Jordan Rivera, LMHC", "phone": "(555) 010-0199, weekdays 9–5" },
+    { "enabled": true, "role": "Local emergency room", "name": "Example General Hospital", "phone": "(555) 010-0100" }
+  ],
+  "removedSections": [],
+  "printLayoutStyle": "clinical"
+}

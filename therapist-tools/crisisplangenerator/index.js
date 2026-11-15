@@ -1,9 +1,20 @@
 $(document).ready(function() {
     let planTemplates = [];
     let defaultHotlinesData = [];
+    let statesData = { list: [], states: {} };
+    let removedSections = [];
+    const isoToday = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 
     // Initialize Date to Today
-    $('#planDate').val(new Date().toISOString().split('T')[0]);
+    $('#planDate').val(isoToday());
+
+    $('#triggersSelect').select2({
+        placeholder: 'Select triggers or type a custom one and press Enter...',
+        allowClear: true,
+        multiple: true,
+        tags: true,
+        width: '100%'
+    });
 
     // Initialize Select2 with `tags: true` so clinicians/clients can select presets OR type custom items
     $('#warningSignsSelect').select2({
@@ -27,12 +38,13 @@ $(document).ready(function() {
         planTemplates = data.templates || [];
         defaultHotlinesData = data.defaultHotlines || [];
 
-        // Populate Plan Templates Dropdown
-        const select = $('#planTemplateSelect');
-        select.empty();
+        // Plan types are checkboxes that combine into one plan
+        const typeBox = $('#planTypeChecks').empty();
         planTemplates.forEach(t => {
-            select.append(new Option(t.name, t.id));
+            typeBox.append(`<label><input type="checkbox" class="plan-type-cb" value="${escapeAttr(t.id)}"${t.recommended ? ' checked' : ''}> <span><strong>${escapeHtml(t.name)}</strong>${t.recommended ? ' <span class="recommended-badge">Recommended</span>' : ''}<br><span class="muted text-xs">${escapeHtml(t.description || '')}</span></span></label>`);
         });
+        const trSelect = $('#triggersSelect').empty();
+        (data.triggers || []).forEach(tr => trSelect.append(new Option(tr, tr)));
 
         // Populate Warning Signs
         const wsSelect = $('#warningSignsSelect');
@@ -48,9 +60,16 @@ $(document).ready(function() {
             csSelect.append(new Option(cs, cs));
         });
 
-        // Initialize Default Contact Rows
-        initDefaultContactLists();
-        select.trigger('change');
+        TTShared.loadStates().then(states => {
+            statesData = states;
+            const st = $('#planState').empty().append(new Option('Choose a state…', ''));
+            (statesData.list || []).forEach(([code, name]) => st.append(new Option(name, code)));
+            if (window.TTPractice) window.TTPractice.fill();
+        }).catch(() => {}).finally(() => {
+            // Initialize Default Contact Rows
+            initDefaultContactLists();
+            onTypesChange();
+        });
     });
 
     function initDefaultContactLists() {
@@ -64,23 +83,90 @@ $(document).ready(function() {
         addProfessionalContactRow({ enabled: true, role: 'Local Emergency Room / Urgent Care', name: '', phone: '' });
 
         $('#hotlinesList').empty();
-        defaultHotlinesData.forEach((hl, idx) => {
-            // Check 988 and Crisis Text Line by default; leave specialized lines unchecked until toggled
-            const checkedByDefault = idx < 2;
-            addHotlineRow({ enabled: checkedByDefault, name: hl.name, contact: hl.contact });
+        defaultHotlinesData.forEach(hl => addHotlineRow({ enabled: false, name: hl.name, contact: hl.contact, auto: true }));
+        syncSuggestedResources();
+    }
+
+    function selectedTypes() {
+        return $('.plan-type-cb:checked').map(function() { return this.value; }).get();
+    }
+    function stateResources() {
+        const code = $('#planState').val();
+        const data = (statesData.states || {})[code];
+        return data && Array.isArray(data.resources) ? data.resources : [];
+    }
+    // Check the crisis lines that fit the chosen plan types and state. Lines you edited or
+    // added yourself are left alone; suggested lines that no longer fit are unchecked.
+    function syncSuggestedResources() {
+        const tags = new Set();
+        selectedTypes().forEach(id => {
+            const t = planTemplates.find(x => x.id === id);
+            (t && t.resourceTags ? t.resourceTags : []).forEach(tag => tags.add(tag));
+        });
+        const suggested = [];
+        defaultHotlinesData.forEach(h => { if ((h.tags || []).some(tag => tags.has(tag))) suggested.push(h); });
+        stateResources().forEach(r => { if ((r.tags || []).some(tag => tags.has(tag))) suggested.push(r); });
+        const names = suggested.map(r => r.name);
+        // Add state lines that aren't listed yet
+        stateResources().forEach(r => {
+            const exists = $('.hotline-contact-row').filter(function() { return $(this).find('.hotline-name').val() === r.name; }).length;
+            if (!exists) addHotlineRow({ enabled: false, name: r.name, contact: r.contact, auto: true });
+        });
+        $('.hotline-contact-row').each(function() {
+            const row = $(this);
+            if (row.attr('data-auto') !== 'true') return;
+            const isSuggested = names.includes(row.find('.hotline-name').val());
+            row.find('.contact-enable-cb').prop('checked', isSuggested);
+            row.toggleClass('suggested-row', isSuggested);
         });
     }
+    function onTypesChange() {
+        const types = selectedTypes();
+        $('.plan-template-section').addClass('hidden');
+        types.forEach(id => $(`#${id}-fields`).removeClass('hidden'));
+        $('#planTypeTip').toggleClass('hidden', types.length < 3);
+        const citations = [];
+        types.forEach(id => {
+            const t = planTemplates.find(x => x.id === id);
+            (t && t.citations ? t.citations : []).forEach(c => { if (!citations.includes(c)) citations.push(c); });
+        });
+        renderCitations(citations);
+        syncSuggestedResources();
+        updatePreview();
+    }
+    $(document).on('change', '.plan-type-cb', onTypesChange);
+    $('#planState').on('change', function() { syncSuggestedResources(); updatePreview(); });
+    // Once a suggested line is edited by hand, it's yours and won't be auto-checked again
+    $(document).on('input change', '.hotline-contact-row input', function(e) {
+        if (e.originalEvent) $(this).closest('.hotline-contact-row').attr('data-auto', 'false').removeClass('suggested-row');
+    });
+
+    function renderRemovedSections() {
+        const labels = { personal: 'People I can reach out to', professional: 'Clinicians and facilities', hotlines: 'Crisis lines and resources' };
+        $('.support-subsection').each(function() { $(this).toggleClass('hidden', removedSections.includes(this.dataset.section)); });
+        const bar = $('#removedSectionsBar').empty().toggleClass('hidden', removedSections.length === 0);
+        removedSections.forEach(key => bar.append(`<span class="removed-chip">${escapeHtml(labels[key])} removed <button type="button" class="btn-link text-xs restore-section-btn" data-section="${key}">Add back</button></span>`));
+        updatePreview();
+    }
+    $(document).on('click', '.remove-section-btn', function() {
+        if (!removedSections.includes(this.dataset.section)) removedSections.push(this.dataset.section);
+        renderRemovedSections();
+    });
+    $(document).on('click', '.restore-section-btn', function() {
+        removedSections = removedSections.filter(k => k !== this.dataset.section);
+        renderRemovedSections();
+    });
 
     // --- 2. Dynamic Contact Row Builders (Toggleable & Removable) ---
     function addPersonalContactRow(item = { enabled: true, name: '', relationship: '', phone: '' }) {
         const checked = item.enabled !== false ? 'checked' : '';
         const row = $(`
-            <div class="contact-row personal-contact-row flex flex-wrap md:flex-nowrap items-center gap-2 p-2 border rounded-md">
+            <div class="contact-row personal-contact-row p-2 border rounded-md">
                 <input type="checkbox" class="contact-enable-cb cursor-pointer" title="Include in plan" ${checked}>
                 <input type="text" class="contact-name flex-1 p-2 border rounded-md text-sm" placeholder="Name (e.g., Sam Rivera)" value="${escapeAttr(item.name)}">
                 <input type="text" class="contact-rel flex-1 p-2 border rounded-md text-sm" placeholder="Relationship (e.g., Partner / Best Friend)" value="${escapeAttr(item.relationship)}">
                 <input type="text" class="contact-phone flex-1 p-2 border rounded-md text-sm" placeholder="Phone / Contact Info" value="${escapeAttr(item.phone)}">
-                <button type="button" class="remove-row-btn btn-link text-xs px-2">Remove</button>
+                <button type="button" class="remove-row-btn btn-link text-xs px-2" aria-label="Remove this line">Remove</button>
             </div>
         `);
         $('#personalContactsList').append(row);
@@ -89,12 +175,12 @@ $(document).ready(function() {
     function addProfessionalContactRow(item = { enabled: true, role: '', name: '', phone: '' }) {
         const checked = item.enabled !== false ? 'checked' : '';
         const row = $(`
-            <div class="contact-row professional-contact-row flex flex-wrap md:flex-nowrap items-center gap-2 p-2 border rounded-md">
+            <div class="contact-row professional-contact-row p-2 border rounded-md">
                 <input type="checkbox" class="contact-enable-cb cursor-pointer" title="Include in plan" ${checked}>
                 <input type="text" class="contact-role flex-1 p-2 border rounded-md text-sm" placeholder="Role (e.g., Therapist, Local Hospital)" value="${escapeAttr(item.role)}">
                 <input type="text" class="contact-name flex-1 p-2 border rounded-md text-sm" placeholder="Name / Location / Address" value="${escapeAttr(item.name)}">
                 <input type="text" class="contact-phone flex-1 p-2 border rounded-md text-sm" placeholder="Phone / Pager / Hours" value="${escapeAttr(item.phone)}">
-                <button type="button" class="remove-row-btn btn-link text-xs px-2">Remove</button>
+                <button type="button" class="remove-row-btn btn-link text-xs px-2" aria-label="Remove this line">Remove</button>
             </div>
         `);
         $('#professionalContactsList').append(row);
@@ -103,11 +189,11 @@ $(document).ready(function() {
     function addHotlineRow(item = { enabled: true, name: '', contact: '' }) {
         const checked = item.enabled !== false ? 'checked' : '';
         const row = $(`
-            <div class="contact-row hotline-contact-row flex flex-wrap md:flex-nowrap items-center gap-2 p-2 border rounded-md">
+            <div class="contact-row hotline-contact-row p-2 border rounded-md" data-auto="${item.auto ? 'true' : 'false'}">
                 <input type="checkbox" class="contact-enable-cb cursor-pointer" title="Include in plan" ${checked}>
                 <input type="text" class="hotline-name flex-1 p-2 border rounded-md text-sm font-semibold" placeholder="Resource Name" value="${escapeAttr(item.name)}">
                 <input type="text" class="hotline-contact flex-1 p-2 border rounded-md text-sm" placeholder="Phone / Text / Website" value="${escapeAttr(item.contact)}">
-                <button type="button" class="remove-row-btn btn-link text-xs px-2">Remove</button>
+                <button type="button" class="remove-row-btn btn-link text-xs px-2" aria-label="Remove this line">Remove</button>
             </div>
         `);
         $('#hotlinesList').append(row);
@@ -119,22 +205,10 @@ $(document).ready(function() {
 
     $(document).on('click', '.remove-row-btn', function() {
         $(this).closest('.contact-row').remove();
+        updatePreview();
     });
 
     // --- 3. Template Switching & APA Citations ---
-    $('#planTemplateSelect').on('change', function() {
-        const selectedId = $(this).val();
-        const selectedTemplate = planTemplates.find(t => t.id === selectedId);
-
-        $('.plan-template-section').addClass('hidden');
-        $(`#${selectedId}-fields`).removeClass('hidden');
-
-        if (selectedTemplate) {
-            $('#planTemplateDescription').text(selectedTemplate.description || '');
-            renderCitations(selectedTemplate.citations);
-        }
-    });
-
     function renderCitations(citations) {
         const container = $('#sourcesContainer');
         const list = $('#sourcesList');
@@ -152,11 +226,11 @@ $(document).ready(function() {
 
     // --- 4. Collect All Current Form State ---
     function collectFormState() {
-        const templateId = $('#planTemplateSelect').val();
-        const selectedTemplate = planTemplates.find(t => t.id === templateId);
+        const templateIds = selectedTypes();
+        const picked = planTemplates.filter(t => templateIds.includes(t.id));
 
         const templateFields = {};
-        $('#template-specific-fields-container').find('textarea, input').each(function() {
+        $('#template-specific-fields-container').find('textarea, input, select').each(function() {
             if (this.id) templateFields[this.id] = $(this).val();
         });
 
@@ -190,8 +264,13 @@ $(document).ready(function() {
         });
 
         return {
-            template: templateId,
-            templateName: selectedTemplate ? selectedTemplate.name : 'Crisis & Safety Plan',
+            templates: templateIds,
+            planTitle: $('#planTitle').val().trim(),
+            templateName: $('#planTitle').val().trim() || (picked.length === 1 ? picked[0].name : 'My Safety and Crisis Plan'),
+            planState: $('#planState').val(),
+            triggers: $('#triggersSelect').val() || [],
+            triggersCustom: $('#triggersCustom').val().trim(),
+            removedSections: [...removedSections],
             clientName: $('#clientName').val().trim(),
             planDate: $('#planDate').val(),
             clinicianName: $('#clinicianName').val().trim(),
@@ -216,9 +295,16 @@ $(document).ready(function() {
         if (state.warningSignsCustom) wsItems.push(state.warningSignsCustom);
         if (wsItems.length > 0) {
             sections.push({
-                title: 'Warning Signs & Triggers',
+                title: 'Warning Signs',
                 items: wsItems
             });
+        }
+
+        // Triggers
+        const trItems = [...(state.triggers || [])];
+        if (state.triggersCustom) trItems.push(state.triggersCustom);
+        if (trItems.length > 0) {
+            sections.push({ title: 'Triggers', items: trItems });
         }
 
         // Coping Strategies
@@ -226,17 +312,18 @@ $(document).ready(function() {
         if (state.copingStrategiesCustom) csItems.push(state.copingStrategiesCustom);
         if (csItems.length > 0) {
             sections.push({
-                title: 'Internal Coping & Grounding Strategies',
+                title: 'Coping and Grounding Strategies I Can Do on My Own',
                 items: csItems
             });
         }
 
         const tf = state.templateFields || {};
-        switch (state.template) {
+        (state.templates || []).forEach(templateId => { switch (templateId) {
             case 'stanley-brown':
                 if (tf['sb-social-distraction']) sections.push({ title: 'People & Social Settings for Distraction', text: tf['sb-social-distraction'] });
-                if (tf['sb-environment-safety']) sections.push({ title: 'Making the Environment Safe (Lethal Means Restriction)', text: tf['sb-environment-safety'] });
-                if (tf['sb-reasons-for-living']) sections.push({ title: 'Reasons for Living / What Matters Most', text: tf['sb-reasons-for-living'] });
+                if (tf['sb-environment-safety']) sections.push({ title: 'Making My Environment Safer: Limiting Access to Means', text: tf['sb-environment-safety'] });
+                if (tf['sb-reasons-for-living']) sections.push({ title: 'My Reasons for Living', text: tf['sb-reasons-for-living'] });
+                if (tf['sb-what-matters']) sections.push({ title: 'What Matters Most to Me', text: tf['sb-what-matters'] });
                 break;
             case 'wrap':
                 if (tf['wrap-baseline']) sections.push({ title: 'Wellness Baseline & Daily Maintenance', text: tf['wrap-baseline'] });
@@ -247,8 +334,8 @@ $(document).ready(function() {
             case 'youth-caregiver':
                 if (tf['youth-trusted-adults']) sections.push({ title: 'Trusted Adults I Can Reach Out To', text: tf['youth-trusted-adults'] });
                 if (tf['youth-communication-signal']) sections.push({ title: 'Low-Pressure Signal / Code Word for Caregivers', text: tf['youth-communication-signal'] });
-                if (tf['youth-caregiver-steps']) sections.push({ title: 'Caregiver Support & Validation Steps', text: tf['youth-caregiver-steps'] });
-                if (tf['youth-home-safety']) sections.push({ title: 'Home Safety & Securing Lethal Means', text: tf['youth-home-safety'] });
+                if (tf['youth-caregiver-steps']) sections.push({ title: `How My ${tf['youth-caregiver-role'] || 'Caregiver'} Will Support Me`, text: tf['youth-caregiver-steps'] });
+                if (tf['youth-home-safety']) sections.push({ title: `Home Safety: Limiting Access to Means (${tf['youth-caregiver-role'] || 'Caregiver'})`, text: tf['youth-home-safety'] });
                 break;
             case 'dv-safety':
                 if (tf['dv-safe-areas']) sections.push({ title: 'Safe Areas in the Home During an Incident', text: tf['dv-safe-areas'] });
@@ -267,13 +354,13 @@ $(document).ready(function() {
                 if (tf['rp-craving-surf']) sections.push({ title: 'Urge Surfing & 15-Minute Delay Plan', text: tf['rp-craving-surf'] });
                 if (tf['rp-harm-reduction']) sections.push({ title: 'If a Slip Occurs (Harm Reduction & Reset Plan)', text: tf['rp-harm-reduction'] });
                 break;
-        }
+        } });
 
         // Active Personal Contacts
         const activePersonal = (state.personalContacts || [])
             .filter(c => c.enabled && (c.name || c.phone))
             .map(c => `${c.name}${c.relationship ? ' (' + c.relationship + ')' : ''}${c.phone ? ' — ' + c.phone : ''}`);
-        if (activePersonal.length > 0) {
+        if (activePersonal.length > 0 && !(state.removedSections || []).includes('personal')) {
             sections.push({
                 title: 'Personal Support Network',
                 items: activePersonal
@@ -284,7 +371,7 @@ $(document).ready(function() {
         const activeProf = (state.professionalContacts || [])
             .filter(c => c.enabled && (c.name || c.phone))
             .map(c => `${c.role ? c.role + ': ' : ''}${c.name}${c.phone ? ' — ' + c.phone : ''}`);
-        if (activeProf.length > 0) {
+        if (activeProf.length > 0 && !(state.removedSections || []).includes('professional')) {
             sections.push({
                 title: 'Clinicians, Prescribers & Local Urgent Care',
                 items: activeProf
@@ -295,7 +382,7 @@ $(document).ready(function() {
         const activeHotlines = (state.hotlines || [])
             .filter(h => h.enabled && (h.name || h.contact))
             .map(h => `${h.name}: ${h.contact}`);
-        if (activeHotlines.length > 0) {
+        if (activeHotlines.length > 0 && !(state.removedSections || []).includes('hotlines')) {
             sections.push({
                 title: '24/7 Emergency & Crisis Resources',
                 items: activeHotlines,
@@ -387,21 +474,18 @@ $(document).ready(function() {
     }
 
     // --- 6. Form Submit, Copy, Print, Export & Import Handlers ---
-    $('#crisisForm').on('submit', function(e) {
-        e.preventDefault();
-        const state = collectFormState();
-        const html = renderPlanHtml(state);
-        $('#generatedPlanHtml').html(html);
-        $('#generatedPlanContainer').removeClass('hidden');
-        $('html, body').animate({ scrollTop: $('#generatedPlanContainer').offset().top - 20 }, 400);
-    });
-
-    $('input[name="printLayoutStyle"]').on('change', function() {
-        if (!$('#generatedPlanContainer').hasClass('hidden')) {
-            const state = collectFormState();
-            $('#generatedPlanHtml').html(renderPlanHtml(state));
-        }
-    });
+    let previewQueued = false;
+    function updatePreview() {
+        if (previewQueued) return;
+        previewQueued = true;
+        requestAnimationFrame(() => {
+            previewQueued = false;
+            $('#generatedPlanHtml').html(renderPlanHtml(collectFormState()));
+        });
+    }
+    $('#crisisForm').on('submit', function(e) { e.preventDefault(); });
+    $('#crisisForm').on('input change', updatePreview);
+    $('#addPersonalContactBtn, #addProfessionalContactBtn, #addHotlineBtn').on('click', () => setTimeout(updatePreview, 0));
 
     $('#copyPlanButton').on('click', function() {
         const state = collectFormState();
@@ -568,11 +652,15 @@ $(document).ready(function() {
     }
 
     function applyImportedData(data) {
-        if (data.template && planTemplates.some(t => t.id === data.template)) {
-            $('#planTemplateSelect').val(data.template).trigger('change');
-        }
+        const types = Array.isArray(data.templates) ? data.templates : (data.template ? [data.template] : null);
+        if (types) $('.plan-type-cb').each(function() { this.checked = types.includes(this.value); });
+        $('#planTitle').val(data.planTitle || '');
+        if (data.planState) $('#planState').val(data.planState);
+        ensureSelect2OptionsAndSet('#triggersSelect', data.triggers || []);
+        $('#triggersCustom').val(data.triggersCustom || '');
+        removedSections = Array.isArray(data.removedSections) ? data.removedSections : [];
         $('#clientName').val(data.clientName || '');
-        $('#planDate').val(data.planDate || new Date().toISOString().split('T')[0]);
+        $('#planDate').val(data.planDate || isoToday());
         $('#clinicianName').val(data.clinicianName || '');
 
         ensureSelect2OptionsAndSet('#warningSignsSelect', data.warningSigns || []);
@@ -607,20 +695,21 @@ $(document).ready(function() {
             $(`input[name="printLayoutStyle"][value="${escapeAttr(data.printLayoutStyle)}"]`).prop('checked', true);
         }
 
-        // Automatically render preview on import
-        $('#crisisForm').trigger('submit');
+        renderRemovedSections();
+        onTypesChange();
     }
 
     // Clear Form Handler
     $('#crisisForm').on('reset', function() {
         setTimeout(() => {
-            $('#planDate').val(new Date().toISOString().split('T')[0]);
-            $('#warningSignsSelect').val(null).trigger('change');
+            $('#planDate').val(isoToday());
+            $('#warningSignsSelect, #triggersSelect').val(null).trigger('change');
+            removedSections = [];
+            $('.plan-type-cb').each(function() { this.checked = planTemplates.some(t => t.id === this.value && t.recommended); });
+            renderRemovedSections();
             $('#copingStrategiesSelect').val(null).trigger('change');
             initDefaultContactLists();
-            $('#planTemplateSelect').trigger('change');
-            $('#generatedPlanHtml').empty();
-            $('#generatedPlanContainer').addClass('hidden');
+            onTypesChange();
         }, 0);
     });
 

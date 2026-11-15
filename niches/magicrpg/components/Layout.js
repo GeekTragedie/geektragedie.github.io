@@ -51,7 +51,7 @@ export default function Layout({ children, title = 'Magic RPG Character Creator'
                       <a href="../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
                       <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                       <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
-                      <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
+                      <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
                       <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                       <a href="../../therapist-tools/referraldatabase/index.html">Referral Database</a>
                       <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
