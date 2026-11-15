@@ -1,0 +1,617 @@
+/* ND Self-Retreat Builder: binder-specific styles.
+   Theme colors, nav, footer, panels, and buttons come from ../../assets/site.css.
+   The sidebar layout and utilities come from ../../therapist-tools/toolkit.css.
+   Everything here uses the site's theme variables so it works in both themes. */
+
+body {
+    background-image:
+        linear-gradient(var(--overlay-color), var(--overlay-color)),
+        url('../bird-eggs.jpg');
+}
+
+.identity-line {
+    margin: 0 0 4px 0;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* --- Mode banner --- */
+.mode-banner {
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    font-size: 0.92em;
+    border-left: 4px solid var(--accent);
+}
+.mode-banner strong { color: var(--text-heading); }
+
+.mode-switch {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.mode-switch .btn[aria-pressed="true"] {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+}
+.sidebar-hint {
+    font-size: 0.78em;
+    line-height: 1.35;
+}
+.sidebar-toc button.is-current {
+    color: var(--accent);
+    font-weight: 600;
+    background-color: var(--badge-bg);
+}
+.sidebar-days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.sidebar-days .day-pill {
+    padding: 3px 8px;
+    font-size: 0.8em;
+}
+
+/* --- Binder tab bar --- */
+.binder-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+.binder-tab {
+    padding: 7px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.86em;
+    font-weight: 600;
+    cursor: pointer;
+}
+.binder-tab:hover { color: var(--text-heading); border-color: var(--accent); }
+.binder-tab[aria-selected="true"] {
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--badge-bg);
+}
+.tab-badge {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.78em;
+    background-color: var(--badge-bg);
+    color: var(--badge-color);
+}
+
+.binder-panel { display: none; }
+.binder-panel.active { display: block; }
+
+.binder-section {
+    padding: 18px;
+    margin-bottom: 18px;
+}
+.binder-section > h2 {
+    margin-bottom: 6px;
+    font-size: 1.25em;
+    color: var(--accent);
+}
+.binder-section h3 { font-size: 1.05em; margin: 0 0 8px 0; }
+.binder-section h4 { font-size: 0.95em; margin: 14px 0 8px 0; }
+.section-intro { margin-top: 0; font-size: 0.92em; }
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+}
+.head-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* --- Tables --- */
+.table-responsive { overflow-x: auto; }
+.binder-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+.binder-table th,
+.binder-table td {
+    border: 1px solid var(--border-color);
+    padding: 9px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+.binder-table th {
+    background-color: var(--bg-subpanel);
+    color: var(--text-heading);
+}
+.binder-table ul { margin: 0; padding-left: 18px; }
+.clickable-row { cursor: pointer; }
+.clickable-row:hover td { background-color: var(--badge-bg); }
+
+/* --- Pickable menu items --- */
+.pick-item {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background-color: var(--bg-subpanel);
+    color: var(--text-main);
+    font: inherit;
+    font-size: 0.95em;
+    text-align: left;
+    cursor: pointer;
+}
+.pick-item:hover,
+.pick-item:focus-visible {
+    border-color: var(--accent);
+    background-color: var(--badge-bg);
+}
+
+/* --- Neurotype badges --- */
+.nt-badge {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 0 6px;
+    border: 1px solid currentColor;
+    border-radius: 99px;
+    font-size: 0.72em;
+    font-weight: 600;
+    line-height: 1.6;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.nt-autism { color: var(--accent); }
+.nt-adhd { color: var(--warning); }
+.nt-cptsd { color: var(--success); }
+.suggested-badge {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 1px 7px;
+    border-radius: 4px;
+    background-color: var(--badge-bg);
+    color: var(--badge-color);
+    font-size: 0.75em;
+    font-weight: 700;
+}
+.is-suggested { border-left: 3px solid var(--accent) !important; }
+
+/* --- Chips (toggles, ratings, lists) --- */
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.chip-btn,
+.day-pill {
+    padding: 5px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: 99px;
+    background-color: var(--bg-input);
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.84em;
+    cursor: pointer;
+}
+.chip-btn:hover,
+.day-pill:hover { border-color: var(--accent); color: var(--text-heading); }
+.chip-btn.active,
+.chip-btn[aria-pressed="true"],
+.day-pill.active {
+    border-color: var(--accent);
+    background-color: var(--badge-bg);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.list-chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 99px;
+    background-color: var(--bg-subpanel);
+    font-size: 0.86em;
+}
+.list-chip .chip-main {
+    padding: 5px 4px 5px 11px;
+    border: none;
+    background: none;
+    color: var(--text-main);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+.list-chip .chip-main:hover { color: var(--accent); }
+.list-chip .chip-endpoint {
+    color: var(--text-muted);
+    font-size: 0.88em;
+}
+.list-chip .chip-x {
+    padding: 4px 10px 4px 6px;
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    font: inherit;
+    cursor: pointer;
+}
+.list-chip .chip-x:hover { color: var(--danger); }
+
+.add-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+.add-row input { flex: 1 1 160px; padding: 6px 9px; }
+
+/* --- Forms --- */
+.form-row { margin-bottom: 12px; }
+.form-row > label,
+.field-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.88em;
+    font-weight: 600;
+}
+.tool-panel input[type="text"],
+.tool-panel input[type="date"],
+.tool-panel input[type="number"],
+.tool-panel select,
+.tool-panel textarea {
+    width: 100%;
+    padding: 7px 10px;
+}
+.tool-panel textarea { resize: vertical; }
+.field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+.field-hint {
+    margin: 4px 0 0 0;
+    color: var(--text-muted);
+    font-size: 0.8em;
+}
+.check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.check-inline {
+    display: inline-flex;
+    gap: 6px;
+    align-items: flex-start;
+    font-size: 0.9em;
+    font-weight: normal;
+    cursor: pointer;
+}
+.check-inline input { margin-top: 3px; }
+
+/* --- Setup tab --- */
+.setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 18px;
+}
+.setup-card { padding: 16px; }
+.setup-card h3 {
+    margin: 0 0 4px 0;
+    color: var(--accent);
+    font-size: 1em;
+}
+.setup-card .section-intro { margin-bottom: 12px; font-size: 0.85em; }
+.nt-toggles .check-inline { font-size: 1em; font-weight: 600; }
+.runway-row {
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) minmax(160px, 2fr);
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+/* --- Prep checklists --- */
+.progress-bar-wrap {
+    height: 10px;
+    margin: 6px 0 16px 0;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 99px;
+    background-color: var(--bg-input);
+}
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--accent);
+    transition: width 0.25s ease;
+}
+.prep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+}
+.prep-cat-box { padding: 14px; }
+.prep-cat-box h3 {
+    margin: 0 0 8px 0;
+    color: var(--accent);
+    font-size: 0.98em;
+}
+.prep-note { margin: 0 0 8px 0; font-size: 0.85em; }
+.check-item {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 7px;
+    font-size: 0.9em;
+    font-weight: normal;
+    cursor: pointer;
+}
+.check-item input { margin-top: 4px; flex-shrink: 0; }
+.check-item.done > span:first-of-type {
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+.callout-box {
+    padding: 14px;
+    margin-top: 14px;
+    border-left: 4px solid var(--accent);
+}
+.callout-box ul { margin: 6px 0 0 0; padding-left: 20px; font-size: 0.9em; }
+.callout-box li { margin-bottom: 4px; }
+
+/* --- Daily tracker --- */
+.day-selector-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+}
+.day-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.day-date { display: flex; flex-direction: column; gap: 4px; font-size: 0.85em; font-weight: 600; min-width: 220px; }
+.anchor-block { margin-bottom: 22px; }
+.anchor-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    background-color: var(--bg-subpanel);
+}
+.anchor-header h3 { margin: 0; font-size: 1.02em; }
+.inline-checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.check-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-input);
+    font-size: 0.84em;
+    font-weight: normal;
+    cursor: pointer;
+}
+.weather-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+.weather-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 7px;
+    background-color: var(--bg-subpanel);
+}
+.weather-label { font-size: 0.86em; font-weight: 600; color: var(--text-heading); }
+.intentions-box { padding: 12px 14px; }
+.intentions-box h4 { margin-top: 0; }
+.section-divider {
+    margin: 22px 0;
+    border: none;
+    border-top: 1px solid var(--border-color);
+}
+.save-badge { font-size: 0.8em; color: var(--success); }
+
+/* --- Rhythm --- */
+.rhythm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+}
+.rhythm-card { padding: 14px 16px; font-size: 0.9em; }
+.rhythm-card h3 { color: var(--accent); font-size: 1em; }
+.rhythm-card ol,
+.rhythm-card ul { padding-left: 20px; margin: 0 0 8px 0; }
+.rhythm-card li { margin-bottom: 5px; }
+.sub-block {
+    padding: 10px 12px;
+    margin-top: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+.sub-block h4 { margin: 0 0 6px 0; font-size: 0.92em; }
+.evening-modes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.evening-modes p { margin: 4px 0 0 0; font-size: 0.92em; }
+.guardrails-banner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    background-color: var(--badge-bg);
+    font-size: 0.86em;
+}
+
+/* --- Menus --- */
+.practice-table input,
+.practice-table select { min-width: 110px; padding: 5px 7px !important; font-size: 0.92em; }
+.icon-btn {
+    padding: 3px 9px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: none;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.85em;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+.icon-btn.danger:hover { color: var(--danger); border-color: var(--danger); }
+.bins-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+
+/* --- Sensory & journal --- */
+.card-list { display: flex; flex-direction: column; gap: 10px; }
+.exp-card,
+.kit-item,
+.prompt-card {
+    padding: 11px 13px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-subpanel);
+    font-size: 0.9em;
+}
+.exp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.exp-cat { margin-bottom: 4px; font-size: 0.85em; }
+.kit-item input { margin-top: 6px; }
+.prompt-card {
+    display: block;
+    width: 100%;
+    color: var(--text-main);
+    font: inherit;
+    font-size: 0.9em;
+    text-align: left;
+    cursor: pointer;
+}
+.prompt-card:hover,
+.prompt-card:focus-visible { border-color: var(--accent); }
+.prompt-insert { margin-left: 6px; color: var(--accent); font-size: 0.8em; font-weight: 600; }
+.journal-editor-box { margin-top: 16px; }
+.crisis-note {
+    padding: 10px 14px;
+    margin-top: 14px;
+    border-left: 4px solid var(--success);
+    font-size: 0.88em;
+}
+
+/* --- Print dialog --- */
+.print-dialog {
+    width: min(560px, 94vw);
+    padding: 22px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--bg-dropdown);
+    color: var(--text-main);
+}
+.print-dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
+.print-dialog h2 { margin-top: 0; color: var(--text-heading); }
+.print-dialog fieldset {
+    margin: 0 0 14px 0;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+.print-dialog legend { padding: 0 4px; color: var(--accent); font-weight: 700; font-size: 0.9em; }
+.print-dialog label { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; font-size: 0.92em; }
+.print-dialog input[type="number"] {
+    width: 80px;
+    padding: 4px 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    font: inherit;
+}
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* --- Toast --- */
+.toast {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 999;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: var(--accent);
+    color: var(--accent-contrast);
+    font-weight: 600;
+    font-size: 0.9em;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 720px) {
+    .weather-row,
+    .evening-modes,
+    .runway-row { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-bar-fill,
+    .toast { transition: none; }
+}
+
+/* Fallback if someone uses the browser's own Print instead of
+   "Build printable binder": print only the open tab, plainly. */
+@media print {
+    .top-nav,
+    .site-footer,
+    .binder-tabs,
+    .mode-banner,
+    #how-to-use,
+    .toast,
+    .no-print { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .panel,
+    .subpanel { background: #fff !important; border-color: #999 !important; backdrop-filter: none; }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.practice-table td:last-child { white-space: nowrap; }

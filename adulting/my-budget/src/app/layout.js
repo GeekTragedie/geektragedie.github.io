@@ -49,6 +49,7 @@ export default function RootLayout({ children }) {
                     <div className="dropdown-content">
                         <a href="../../adulting/my-budget/index.html" aria-current="page">My Budget</a>
                         <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+                        <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
                     </div>
                 </li>
                 <li className="dropdown">

@@ -122,6 +122,7 @@
             <div class="dropdown-content">
                 <a href="../adulting/my-budget/index.html">My Budget</a>
                 <a href="../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+                <a href="../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
             </div>
         </li>
         <li class="dropdown">
@@ -169,6 +170,17 @@
     <!-- General audience -->
     <div class="panel notes-panel" role="tabpanel" id="general" aria-labelledby="tab-general">
         <h2>For Everyone</h2>
+
+        <section class="release">
+            <h3>November 14, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> The <strong>ND Self-Retreat Builder</strong> in Adulting. It’s a low-demand, zero-decision planner for a neurodivergent self-retreat, built around three daily anchors. It includes prep-week checklists, a daily body-weather tracker, wake-up, activity, craft, and game menus, a sensory lab, and journal prompts.</li>
+                <li><span class="change-type">Added</span> The builder has two modes. <strong>Creator’s Example</strong> is a real, filled-in AuDHD + CPTSD retreat you can learn from or use as-is. <strong>Build My Own</strong> starts you off with simple placeholders. Each mode keeps its own entries.</li>
+                <li><span class="change-type">Added</span> <strong>Autism</strong>, <strong>ADHD</strong>, and <strong>CPTSD</strong> toggles (diagnosed or self-identified) change the suggestions throughout the binder, and small tags show why each one is there. Retreats can run 2, 3, 5, or 7 days. You choose your own morning cue, sanctuary space, contact plan, nature spot, movement, food rescue plan, and main sensory focus.</li>
+                <li><span class="change-type">Added</span> <strong>Build printable binder</strong> lets you pick the pages you want and <strong>Download PDF</strong> in one click, either blank to fill in by hand or filled in with your entries. If you’d rather use your browser’s print window, there’s also an <strong>Open print view</strong> button.</li>
+                <li><span class="change-type">Changed</span> The <strong>Adulting</strong> menu at the top of every page now lists the ND Self-Retreat Builder, and the Adulting page has a card for it.</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>November 3, 2026</h3>
@@ -249,6 +261,7 @@
                 <li>No accounts and no tracking.</li>
                 <li>The tools work inside your browser, and what you type isn’t sent to or saved by this site. Files only download when you click a save button.</li>
                 <li>Some of the new therapist tools can remember your entries on your own device if you turn on browser saving. It’s off unless you turn it on.</li>
+                <li>The <strong>ND Self-Retreat Builder</strong> is the one exception: it saves on your device by default, because a retreat lasts several days. You can turn that off from its tool menu, which also erases what it saved.</li>
             </ul>
             <h3>Coming Soon</h3>
             <p class="muted">Planned updates will be listed here.</p>
@@ -462,6 +475,17 @@
     <!-- Tech audience -->
     <div class="panel notes-panel" role="tabpanel" id="tech" aria-labelledby="tab-tech">
         <h2>For the Tech-Savvy</h2>
+
+        <section class="release">
+            <h3>November 14, 2026</h3>
+            <ul>
+                <li><span class="change-type">Added</span> <code>adulting/nd-self-retreat/</code> (<code>index.html</code>, <code>index.js</code>, <code>main.css</code>, <code>retreat-data.js</code>), written in vanilla JS with no dependencies. It reuses <code>../../therapist-tools/toolkit.css</code> and <code>toolkit.js</code> for the sidebar tool menu, <code>[data-click]</code> tab switching, and the How-to-use <code>&lt;details&gt;</code>. All presets and recommendation content live in <code>retreat-data.js</code>. Items carry <code>for</code> tags (<code>'autism'</code>, <code>'adhd'</code>, <code>'cptsd'</code>, or combos like <code>'autism+cptsd'</code>) and <code>requires</code> setup flags, and are filtered at render time.</li>
+                <li><span class="change-type">Added</span> Template strings use <code>**bold**</code>, <code>_italic_</code>, and <code>{token}</code> placeholders filled from Retreat Setup. Markup is applied to the template before substitution, and token values are HTML-escaped, so typed text never becomes markup.</li>
+                <li><span class="change-type">Added</span> State is saved under <code>localStorage</code> key <code>nd_self_retreat_builder_v2</code> as <code>{ version: 2, mode, activeTab, activeDay, profiles: { creator, custom } }</code>, and it's on by default. A <code>nd_self_retreat_builder_save_enabled = 'false'</code> flag turns it off and removes the stored data. On first load, the original binder’s <code>nd_self_retreat_binder_v1</code> data migrates into the creator profile: days, prep checks (the closet IDs map to <code>prep_sanct_1–4</code>), and bookmark inputs (which move into practice rows). The <code>.json</code> import accepts both v2 exports and v1 backups.</li>
+                <li><span class="change-type">Added</span> <strong>Download PDF</strong> uses <code>html2pdf.js</code> 0.10.1 from cdnjs, which bundles jsPDF and html2canvas. It's loaded lazily on first click with an SRI <code>integrity</code> hash and <code>crossorigin="anonymous"</code>. Each binder section is rendered offscreen inside its own <code>.pdf-root</code> wrapper (the print CSS is scoped to it automatically) and added to a single Letter-size jsPDF one section at a time, which keeps every canvas under browser size limits. <code>pagebreak.avoid</code> keeps rows, checkboxes, and boxes from splitting across pages. Pages are JPEG images (scale 1.6), so a 30-page binder is about 4–6 MB and its text isn't selectable. <strong>Open print view</strong> keeps the original <code>window.open</code> + <code>print()</code> path.</li>
+                <li><span class="change-type">Changed</span> Added the new link to the Adulting <code>.dropdown</code> on every static page, both Next.js layouts, and the exported <code>my-budget</code> and <code>magicrpg</code> HTML, RSC payload, and page chunk. The exports were patched in place, not rebuilt.</li>
+            </ul>
+        </section>
 
         <section class="release">
             <h3>November 3, 2026</h3>
