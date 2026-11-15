@@ -599,3 +599,13 @@ mark.missing {
     background-color: rgba(251, 191, 36, 0.3);
     color: inherit;
 }
+
+/* The hidden attribute always wins, even on .btn (site.css sets display on buttons) */
+.tool-layout [hidden] {
+    display: none !important;
+}
+.sidebar-hint {
+    color: var(--text-muted);
+    font-size: 0.78em;
+    line-height: 1.35;
+}

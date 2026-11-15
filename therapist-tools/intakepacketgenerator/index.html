@@ -81,12 +81,12 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Fill in your practice details once (or import your Practice Info Sheet .json), then click <strong>Apply Details to Boilerplate Below</strong>.</li>
-                            <li>Choose which sections to include in the packet.</li>
-                            <li>Open any section to edit its wording.</li>
-                            <li>Preview the packet, then print it or save it as a PDF from the tool menu.</li>
-                            <li>For a new client’s first session, switch to <strong>90791 intake note</strong> to write a session-only intake evaluation.</li>
+                            <li>Fill in your practice details (or upload your practice info once), fees, insurance, and policies.</li>
+                            <li>Choose which sections go in the packet, including any assessments and your own uploaded section.</li>
+                            <li>Read the live preview. Open a section under <strong>Section wording</strong> to change its text; edited sections stop updating automatically until you reset them.</li>
+                            <li>Print the packet or save it as a PDF from the tool menu.</li>
                         </ol>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
                         <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
                         <p>Import, save, print, and clear are further down this menu.</p>
                         <h3 class="why-heading">Why this matters</h3>
@@ -105,16 +105,16 @@
                 <nav class="sidebar-group" aria-label="On this page">
                     <span class="sidebar-label">On this page</span>
                     <ul class="sidebar-toc">
-                        <li><button type="button" data-click='.mode-tab-btn[data-mode="packet"]'>Intake packet builder</button></li>
                         <li><a href="#practice-vars-heading">Practice details</a></li>
-                        <li><a href="#sections-toggle-heading">Sections to include</a></li>
-                        <li><button type="button" data-click='.mode-tab-btn[data-mode="intakenote"]'>90791 intake note</button></li>
+                        <li><a href="#sections-toggle-heading">What goes in the packet</a></li>
+                        <li><a href="#sectionEditors">Section wording</a></li>
+                        <li><a href="#packetPreviewContainer">Packet preview</a></li>
                     </ul>
                 </nav>
 
                 <div class="sidebar-group" role="group" aria-label="Your file">
                     <span class="sidebar-label">Your file</span>
-                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn" title="Upload an Intake Packet .json OR your Practice Info Sheet .json!">Import .json</button>
+                    <button type="button" id="importJsonButton" class="btn btn-sm sidebar-btn" title="Upload an Intake Packet .json">Import .json</button>
                     <input type="file" id="importJsonFile" accept=".json" class="hidden">
                     <button type="button" id="exportJsonButtonTop" class="btn btn-sm sidebar-btn btn-primary">Save packet .json</button>
                     <label class="sidebar-check"><input type="checkbox" id="localCacheToggle"><span>Save in this browser (keeps your entries on this device)</span></label>
@@ -126,17 +126,10 @@
                     <button type="button" id="exportPacketTxtBtn" class="btn btn-sm sidebar-btn">Export packet .txt</button>
                 </div>
 
-                <div class="sidebar-group" role="group" aria-label="Intake note (90791)">
-                    <span class="sidebar-label">Intake note (90791)</span>
-                    <button type="button" id="copyIntakeNoteBtn" class="btn btn-sm sidebar-btn">Copy note</button>
-                    <button type="button" id="printIntakeNoteBtn" class="btn btn-sm sidebar-btn">Print note</button>
-                    <button type="button" id="exportIntakeNoteTxtBtn" class="btn btn-sm sidebar-btn">Export note .txt</button>
-                    <button type="reset" form="intakeNoteForm" class="btn btn-sm sidebar-btn">Clear note</button>
-                </div>
 
                 <div class="sidebar-group" role="group" aria-label="Start over">
                     <span class="sidebar-label">Start over</span>
-                    <button type="button" id="resetDefaultTemplatesBtn" class="btn btn-sm sidebar-btn btn-danger">Restore default wording</button>
+                    <button type="button" id="resetDefaultTemplatesBtn" class="btn btn-sm sidebar-btn btn-danger">Reset all section wording</button>
                 </div>
             </div>
             </details>
@@ -145,334 +138,147 @@
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Intake Packet Generator</h1>
         <p class="muted text-center text-sm mb-6">
-            Build your client intake packet once (first-time therapy guide, disclosure statement, informed consent, practice policies, HIPAA notice, and intake questions), then save it as a <code>.json</code> file to reload and update later. It also writes 90791 intake notes.
+            Build the paperwork a new client reads and signs before their first session: a welcome guide, disclosure statement, informed consent, policies, privacy notice, questionnaire, and one signature page. Every section updates from your settings, and you can edit the wording of any section.
         </p>
         <p class="subpanel text-sm p-3 rounded-md mb-6">
-            <strong>Please note:</strong> These templates are a starting point, not legal advice. Check that your disclosure statement and informed consent meet your licensing board’s current rules (in Washington, WAC 246-809-710) and your malpractice carrier’s requirements.
+            <strong>Please note:</strong> These templates are a starting point, not legal advice. Check that your disclosure statement and informed consent meet your licensing board’s current rules and your malpractice carrier’s requirements.
+        </p>
+        <p class="subpanel text-sm p-3 rounded-md mb-6 intake-note-moved">
+            <strong>Writing your own intake note for the first session?</strong> The clinician’s 90791 intake note moved to the <a href="../notegenerator/index.html?template=intake" class="accent-text">Session Note Generator → Intake (90791)</a>. This page is the packet for your client.
         </p>
 
-
-        <!-- Mode Switcher Tabs -->
-        <div class="subpanel p-3 rounded-md mb-6">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="text-sm font-bold">Select Workspace Mode:</span>
-                <div class="flex flex-wrap gap-2" role="tablist">
-                    <button type="button" class="mode-tab-btn btn btn-primary px-4 py-2 text-sm font-semibold rounded-md" data-mode="packet">
-                        1. Client Intake Packet Builder (Disclosure, Consent, HIPAA &amp; Questions)
-                    </button>
-                    <button type="button" class="mode-tab-btn btn px-4 py-2 text-sm font-semibold rounded-md" data-mode="intakenote">
-                        2. Clinician's 90791 Intake Note &amp; First-Session Checklist (Session-Only)
-                    </button>
+        <form id="packetForm" class="space-y-4" novalidate>
+            <fieldset class="subpanel p-4 rounded-md space-y-3" id="practice-vars-heading">
+                <legend class="text-lg font-semibold">You and your practice</legend>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label for="pktPracticeName" class="block font-semibold mb-1">Practice name</label><input type="text" id="pktPracticeName" data-practice="business.legalBusinessName" placeholder="e.g., Example Counseling, PLLC" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktClinicianName" class="block font-semibold mb-1">Your name and credentials</label><input type="text" id="pktClinicianName" data-practice="therapist.clinicianFullName" placeholder="e.g., Jane Doe, MA, LMHC" class="pkt-var w-full p-2 border rounded-md"></div>
                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="pktDegree" class="block font-semibold mb-1">Degree</label>
+                        <select id="pktDegree" class="pkt-var w-full p-2 border rounded-md">
+                            <option value="">Choose…</option>
+                            <option>Master of Arts (MA)</option>
+                            <option>Master of Science (MS)</option>
+                            <option>Master of Education (MEd)</option>
+                            <option>Master of Social Work (MSW)</option>
+                            <option>Master of Marriage and Family Therapy (MMFT)</option>
+                            <option>Doctor of Psychology (PsyD)</option>
+                            <option>Doctor of Philosophy (PhD)</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div><label for="pktDegreeField" class="block font-semibold mb-1">Degree field or school</label><input type="text" id="pktDegreeField" placeholder="e.g., Clinical Mental Health Counseling" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktEducationApproach" class="block font-semibold mb-1">Training and approach</label><input type="text" id="pktEducationApproach" placeholder="e.g., person-centered, neuro-affirming, CBT" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div><label for="pktLicenseType" class="block font-semibold mb-1">License type</label><select id="pktLicenseType" class="pkt-var w-full p-2 border rounded-md"></select></div>
+                    <div><label for="pktLicenseState" class="block font-semibold mb-1">License state</label><select id="pktLicenseState" data-practice="therapist.licenses.0.state" class="pkt-var w-full p-2 border rounded-md"></select></div>
+                    <div><label for="pktLicenseNumber" class="block font-semibold mb-1">License number</label><input type="text" id="pktLicenseNumber" data-practice="therapist.licenses.0.number" placeholder="e.g., LH00000000" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+                <div id="supervisorBlock" class="hidden telehealth-like grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div><label for="pktSupervisorName" class="block font-semibold mb-1">Supervisor’s name and credentials</label><input type="text" id="pktSupervisorName" class="pkt-var w-full p-2 border rounded-md" placeholder="e.g., Sam Okafor, LMHC"></div>
+                    <div><label for="pktSupervisorLicense" class="block font-semibold mb-1">Supervisor’s license number</label><input type="text" id="pktSupervisorLicense" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktSupervisorContact" class="block font-semibold mb-1">Supervisor’s phone or email</label><input type="text" id="pktSupervisorContact" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div><label for="pktNpiNumber" class="block font-semibold mb-1">NPI</label><input type="text" id="pktNpiNumber" data-practice="therapist.npiType1" placeholder="10 digits" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktPhone" class="block font-semibold mb-1">Phone</label><input type="text" id="pktPhone" data-practice="business.businessPhone" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktEmail" class="block font-semibold mb-1">Email</label><input type="text" id="pktEmail" data-practice="business.businessEmail" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label for="pktWebsite" class="block font-semibold mb-1">Website</label><input type="text" id="pktWebsite" data-practice="business.businessWebsite" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktAddress" class="block font-semibold mb-1">Office or mailing address</label><input type="text" id="pktAddress" data-practice="business.businessAddress" data-practice-join=", " placeholder="Street, City, State ZIP" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+            </fieldset>
+
+            <fieldset class="subpanel p-4 rounded-md space-y-3">
+                <legend class="text-lg font-semibold">Fees, insurance, and billing</legend>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label for="pktIntakeFee" class="block font-semibold mb-1">Intake evaluation fee (90791)</label><input type="text" id="pktIntakeFee" placeholder="e.g., $200" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktAssessmentFee" class="block font-semibold mb-1">Assessment fee <span class="muted text-sm">(optional)</span></label><input type="text" id="pktAssessmentFee" placeholder="e.g., $175 per hour of testing" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktStandardFee" class="block font-semibold mb-1">Session fee, 53+ minutes (90837)</label><input type="text" id="pktStandardFee" placeholder="e.g., $165" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktShortFee" class="block font-semibold mb-1">Session fee, 38–52 minutes (90834) <span class="muted text-sm">(optional)</span></label><input type="text" id="pktShortFee" placeholder="e.g., $140" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+                <div>
+                    <span class="block font-semibold mb-1">Fee structure</span>
+                    <div class="flex flex-wrap gap-x-4 items-center">
+                        <label><input type="radio" name="feeModel" value="fixed" checked> Fixed fee for everyone</label>
+                        <label><input type="radio" name="feeModel" value="sliding"> Sliding scale available:</label>
+                        <input type="text" id="pktSlidingRange" class="pkt-var p-2 border rounded-md flex-1" placeholder="e.g., $85–$120, based on income">
+                    </div>
+                </div>
+                <div>
+                    <span class="block font-semibold mb-1">Insurance</span>
+                    <div class="flex flex-wrap gap-x-4">
+                        <label><input type="radio" name="insuranceModel" value="oon" checked> Out of network only</label>
+                        <label><input type="radio" name="insuranceModel" value="innetwork"> In network with some plans</label>
+                        <label><input type="radio" name="insuranceModel" value="none"> Private pay only, no insurance paperwork</label>
+                    </div>
+                    <input type="text" id="pktPanels" class="pkt-var w-full p-2 border rounded-md mt-2 hidden" placeholder="Plans you’re in network with, e.g., Premera, Regence, Aetna">
+                </div>
+                <div class="check-grid">
+                    <label><input type="checkbox" id="pktSuperbills" checked> I provide superbills for out-of-network reimbursement</label>
+                    <label><input type="checkbox" id="pktMedicaid"> I accept Medicaid <span class="muted text-sm" id="medicaidNameHint"></span></label>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label for="pktBillingPlatform" class="block font-semibold mb-1">Billing platform <span class="muted text-sm">(optional)</span></label><input type="text" id="pktBillingPlatform" placeholder="e.g., SimplePractice, Headway, Ivy Pay" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktPaymentMethods" class="block font-semibold mb-1">Payment methods</label><input type="text" id="pktPaymentMethods" placeholder="e.g., credit card, HSA/FSA card" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label for="pktCancelHours" class="block font-semibold mb-1">Cancellation notice (hours)</label><input type="number" id="pktCancelHours" min="0" max="168" value="24" class="pkt-var w-full p-2 border rounded-md"></div>
+                    <div><label for="pktCancelFee" class="block font-semibold mb-1">Late cancellation / no-show fee</label><input type="text" id="pktCancelFee" placeholder="e.g., $100, or the full session fee" class="pkt-var w-full p-2 border rounded-md"></div>
+                </div>
+            </fieldset>
+
+            <fieldset class="subpanel p-4 rounded-md space-y-3">
+                <legend class="text-lg font-semibold">Policies</legend>
+                <div>
+                    <span class="block font-semibold mb-1">Use of AI tools</span>
+                    <div class="check-list">
+                        <label><input type="radio" name="aiUse" value="none" checked> I don’t use AI tools with client information</label>
+                        <label><input type="radio" name="aiUse" value="admin"> Only for administrative tasks (scheduling, billing), never session content</label>
+                        <label><input type="radio" name="aiUse" value="documentation"> An AI note-assist tool, only with the client’s separate consent</label>
+                    </div>
+                    <div id="aiDetailsBlock" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        <div><label for="pktAiTool" class="block font-semibold mb-1">Tool name <span class="muted text-sm">(optional)</span></label><input type="text" id="pktAiTool" class="pkt-var w-full p-2 border rounded-md" placeholder="e.g., Example Notes AI"></div>
+                        <div><label for="pktAiData" class="block font-semibold mb-1">How it handles data</label><input type="text" id="pktAiData" class="pkt-var w-full p-2 border rounded-md" placeholder="e.g., recordings are deleted once the note is drafted; covered by a BAA"></div>
+                    </div>
+                </div>
+                <div class="check-list">
+                    <label><input type="checkbox" id="pktRetention" checked> Include a record retention policy <span class="muted text-sm" id="retentionHint"></span></label>
+                    <label><input type="checkbox" id="pktMinorConsent"> I see minors (adds minor consent and a parent or guardian signature) <span class="muted text-sm" id="minorHint"></span></label>
+                    <label><input type="checkbox" id="pktNoForensic" checked> State that I don’t provide forensic or custody evaluations</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="subpanel p-4 rounded-md space-y-3" id="sections-toggle-heading">
+                <legend class="text-lg font-semibold">What goes in the packet</legend>
+                <div class="check-grid" id="sectionChecks"></div>
+                <div id="assessmentPicker" class="hidden">
+                    <span class="block font-semibold mb-1">Assessments to include <span class="muted text-sm">(from the Assessment Database)</span></span>
+                    <div class="check-grid" id="assessmentChecks"><p class="muted text-sm">Loading assessments…</p></div>
+                </div>
+                <div id="customSectionBlock" class="hidden space-y-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label for="pktCustomTitle" class="block font-semibold mb-1">Your section’s title</label><input type="text" id="pktCustomTitle" class="pkt-var w-full p-2 border rounded-md" placeholder="e.g., Additional Disclosures"></div>
+                        <div><label for="pktCustomUpload" class="block font-semibold mb-1">Upload a .txt or .md file <span class="muted text-sm">(or paste below)</span></label><input type="file" id="pktCustomUpload" accept=".txt,.md,text/plain,text/markdown" class="w-full"></div>
+                    </div>
+                    <textarea id="pktCustomText" rows="4" class="pkt-var w-full p-2 border rounded-md" placeholder="Your own disclaimer or policy text"></textarea>
+                </div>
+            </fieldset>
+
+            <section class="space-y-3" aria-label="Section wording" id="sectionEditors"></section>
+        </form>
+
+        <section id="packetPreviewContainer" class="subpanel p-4 rounded-md mt-6" aria-labelledby="packetPreviewHeading">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                <h2 id="packetPreviewHeading" class="text-xl font-semibold">Packet preview</h2>
+                <span class="muted text-sm">Updates as you type. <mark class="missing">Highlighted</mark> parts still need details.</span>
             </div>
-        </div>
-
-        <!-- =========================================================
-             MODE 1: CLIENT INTAKE PACKET BUILDER
-             ========================================================= -->
-        <div id="mode-packet" class="workspace-mode space-y-6">
-
-            <!-- Step 1: Practice & Clinician Header Info (Auto-fills into packet text) -->
-            <section class="subpanel p-5 rounded-md space-y-4" aria-labelledby="practice-vars-heading">
-                <div class="flex flex-wrap justify-between items-center border-b pb-2">
-                    <div>
-                        <h2 id="practice-vars-heading" class="text-xl font-bold">1. Practice &amp; Clinician Details (Upload Once, Reuse Anytime)</h2>
-                        <p class="muted text-xs">Fill these in once (or import your Practice Info Sheet <code>.json</code>) and click <strong>Apply Details to Boilerplate Below</strong> to auto-personalize your packet.</p>
-                    </div>
-                    <button type="button" id="applyVarsToTextBtn" class="btn btn-primary px-4 py-1.5 text-xs font-semibold rounded-md">
-                        Apply Details to Boilerplate Below
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                    <div>
-                        <label for="pktPracticeName" class="block text-xs font-semibold mb-1">Practice / Business Name:</label>
-                        <input type="text" id="pktPracticeName" data-practice="business.legalBusinessName" placeholder="e.g., Example Counseling PLLC" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktClinicianName" class="block text-xs font-semibold mb-1">Clinician Name &amp; Credentials:</label>
-                        <input type="text" id="pktClinicianName" data-practice="therapist.clinicianFullName" placeholder="e.g., Jane Doe, LMHC" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktLicenseNumber" class="block text-xs font-semibold mb-1">State &amp; License Number(s):</label>
-                        <input type="text" id="pktLicenseNumber" placeholder="e.g., WA LH00000000" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktNpiNumber" class="block text-xs font-semibold mb-1">NPI Number:</label>
-                        <input type="text" id="pktNpiNumber" data-practice="therapist.npiType1" placeholder="e.g., 1234567890" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktPhone" class="block text-xs font-semibold mb-1">Practice Phone:</label>
-                        <input type="text" id="pktPhone" data-practice="business.businessPhone" placeholder="e.g., 555-555-0100" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktEmail" class="block text-xs font-semibold mb-1">Practice Email:</label>
-                        <input type="text" id="pktEmail" data-practice="business.businessEmail" placeholder="e.g., clinician@example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktWebsite" class="block text-xs font-semibold mb-1">Practice Website:</label>
-                        <input type="text" id="pktWebsite" data-practice="business.businessWebsite" placeholder="e.g., example.com" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktAddress" class="block text-xs font-semibold mb-1">Office / Mailing Address:</label>
-                        <input type="text" id="pktAddress" data-practice="business.businessAddress" data-practice-join=", " placeholder="Street, City, State, ZIP" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktIntakeFee" class="block text-xs font-semibold mb-1">Intake Session Fee (90791):</label>
-                        <input type="text" id="pktIntakeFee" placeholder="e.g., $200 (55 mins)" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktStandardFee" class="block text-xs font-semibold mb-1">Ongoing Session Fee (90837):</label>
-                        <input type="text" id="pktStandardFee" placeholder="e.g., $165 (53+ mins)" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktCancelWindow" class="block text-xs font-semibold mb-1">Cancellation Window &amp; Late Fee:</label>
-                        <input type="text" id="pktCancelWindow" placeholder="e.g., 24 hours notice; $100 late fee" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                    <div>
-                        <label for="pktEducationApproach" class="block text-xs font-semibold mb-1">Degrees, Training &amp; Clinical Approach:</label>
-                        <input type="text" id="pktEducationApproach" placeholder="e.g., MA in Counseling & Drama Therapy; Person-Centered, Neuro-Affirming" class="pkt-var w-full p-2 border rounded-md text-sm">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Step 2: Toggle Which Packet Sections to Include in PDF -->
-            <section class="subpanel p-5 rounded-md space-y-3" aria-labelledby="sections-toggle-heading">
-                <h2 id="sections-toggle-heading" class="text-xl font-bold">2. Choose Which Sections to Include in Your Printed PDF Packet</h2>
-                <p class="muted text-xs">Uncheck any section you don't need right now. Checked sections will appear in your live preview and PDF printout.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="welcome" checked>
-                        <span><strong>Part 1:</strong> Welcome &amp; "What to Expect in Your First Therapy Session" (New-to-Therapy Guide)</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="disclosure" checked>
-                        <span><strong>Part 2:</strong> Professional Disclosure Statement (WA DOH WAC 246-809-710 / State Compliant)</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="consent" checked>
-                        <span><strong>Part 3:</strong> Informed Consent for Psychotherapy &amp; Limits of Confidentiality</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="policies" checked>
-                        <span><strong>Part 4:</strong> Practice Policies (Fees, Cancellations, Communication, Social Media, AI Consent)</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="telehealth" checked>
-                        <span><strong>Part 5:</strong> Telehealth Informed Consent &amp; Emergency Safety Protocol</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="hipaa" checked>
-                        <span><strong>Part 6:</strong> HIPAA Notice of Privacy Practices &amp; Good Faith Estimate (No Surprises Act)</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="questionnaire" checked>
-                        <span><strong>Part 7:</strong> Client Background &amp; Intake Questionnaire (No Clinical Assessments/Scales)</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="pkt-section-cb mr-2" value="signatures" checked>
-                        <span><strong>Part 8:</strong> Informed Consent Acknowledgment &amp; Client/Clinician Signatures</span>
-                    </label>
-                </div>
-            </section>
-
-            <!-- Step 3: Editable Packet Sections -->
-            <section class="space-y-4" aria-label="Editable Packet Sections">
-                <!-- Part 1: Welcome & First-Time Therapy Guide -->
-                <details id="editor-welcome" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 1: Welcome &amp; "What to Expect in Your First Therapy Session" (For First-Time Therapy Clients)</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <p class="muted text-xs mb-2">Demystifies the intake process, explains how the first session differs from ongoing therapy, and reassures clients that they are in control of their pace.</p>
-                    <textarea id="textWelcome" aria-label="Part 1: Welcome &amp; &quot;What to Expect in Your First Therapy Session&quot; (For First-Time Therapy Clients)" rows="9" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-
-                <!-- Part 2: Professional Disclosure Statement -->
-                <details id="editor-disclosure" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 2: Professional Disclosure Statement &amp; Client Rights (WAC 246-809-710)</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <p class="muted text-xs mb-2">Includes clinician qualifications, therapeutic orientation, client right to refuse treatment or choose a practitioner, and mandatory state DOH complaint contact info.</p>
-                    <textarea id="textDisclosure" aria-label="Part 2: Professional Disclosure Statement &amp; Client Rights (WAC 246-809-710)" rows="9" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-
-                <!-- Part 3: Informed Consent & Confidentiality -->
-                <details id="editor-consent" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 3: Informed Consent for Psychotherapy &amp; Limits of Confidentiality</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <p class="muted text-xs mb-2">Covers the risks and benefits of therapy, mandatory reporting exceptions (imminent harm, child/vulnerable adult abuse, court orders), and minor/family policies.</p>
-                    <textarea id="textConsent" aria-label="Part 3: Informed Consent for Psychotherapy &amp; Limits of Confidentiality" rows="9" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-
-                <!-- Part 4: Practice Policies -->
-                <details id="editor-policies" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 4: Practice Policies, Fees, Cancellations, Communication &amp; AI Note-Taker Consent</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <p class="muted text-xs mb-2">Outlines session lengths, fees, insurance/superbills, cancellation policy, 24-hour response window, emergency 988/911 boundaries, and optional AI ambient note-taking consent.</p>
-                    <textarea id="textPolicies" aria-label="Part 4: Practice Policies, Fees, Cancellations, Communication &amp; AI Note-Taker Consent" rows="10" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-
-                <!-- Part 5: Telehealth Informed Consent -->
-                <details id="editor-telehealth" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 5: Telehealth Informed Consent &amp; Safety Protocol</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <p class="muted text-xs mb-2">Covers physical location verification (must be physically located in clinician's licensed state at session time), privacy, tech failure backup plan, and local emergency contacts.</p>
-                    <textarea id="textTelehealth" aria-label="Part 5: Telehealth Informed Consent &amp; Safety Protocol" rows="7" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-
-                <!-- Part 6: HIPAA Notice & Good Faith Estimate -->
-                <details id="editor-hipaa" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 6: HIPAA Notice of Privacy Practices Summary &amp; Good Faith Estimate (No Surprises Act)</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <p class="muted text-xs mb-2">Summarizes client rights over Protected Health Information (PHI) under HIPAA and their right to a Good Faith Estimate of medical/mental health charges.</p>
-                    <textarea id="textHipaa" aria-label="Part 6: HIPAA Notice of Privacy Practices Summary &amp; Good Faith Estimate (No Surprises Act)" rows="8" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-
-                <!-- Part 7: Client Intake Questionnaire (Prompts) -->
-                <details id="editor-questionnaire" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 7: Client Intake &amp; Background Questions (Open-Ended Prompts — No Diagnostic Scales)</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <p class="muted text-xs mb-2">Customize the open-ended reflection questions that print with write-in lines for the client (demographics, goals, strengths, sensory/communication needs, and history).</p>
-                    <textarea id="textQuestionnaire" aria-label="Part 7: Client Intake &amp; Background Questions (Open-Ended Prompts — No Diagnostic Scales)" rows="10" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-
-                <!-- Part 8: Signatures & Attestation -->
-                <details id="editor-signatures" class="pkt-editor-block collapsible help">
-                    <summary><span>Part 8: Acknowledgment, Consent &amp; Signature Block Text</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                    <textarea id="textSignatures" aria-label="Part 8: Acknowledgment, Consent &amp; Signature Block Text" rows="5" class="pkt-textarea w-full p-3 border rounded-md text-sm"></textarea>
-                    </div>
-                </details>
-            </section>
-
-            <!-- Packet Action Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 pt-6 border-t">
-                <button type="button" id="previewPacketBtn" class="btn btn-primary px-6 py-3 font-semibold rounded-md">
-                    Preview Full Intake Packet
-                </button>
-            </div>
-
-            <!-- Live Rendered Packet Preview -->
-            <div id="packetPreviewContainer" class="subpanel hidden p-6 rounded-md mt-6">
-                <div id="packetPreviewHtml"></div>
-            </div>
-        </div>
-
-        <!-- =========================================================
-             MODE 2: CLINICIAN'S FIRST-SESSION 90791 INTAKE NOTE
-             ========================================================= -->
-        <div id="mode-intakenote" class="workspace-mode hidden space-y-6">
-            <div class="subpanel p-5 rounded-md space-y-4">
-                <div class="flex flex-wrap justify-between items-center border-b pb-2">
-                    <div>
-                        <h2 class="text-2xl font-bold">Clinician's First-Session Intake Note Generator (CPT 90791)</h2>
-                        <p class="muted text-xs">
-                            <strong>Strictly Session-Only Privacy:</strong> Client intake note fields are never cached in the browser and wipe completely on refresh.
-                        </p>
-                    </div>
-                </div>
-
-                <form id="intakeNoteForm" class="space-y-4">
-                    <!-- Session Metadata -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                        <div>
-                            <label for="inDate" class="block text-xs font-semibold mb-1">Intake Date:</label>
-                            <input type="date" id="inDate" class="w-full p-2 border rounded-md text-sm">
-                        </div>
-                        <div>
-                            <label for="inDuration" class="block text-xs font-semibold mb-1">Session Length &amp; CPT Code:</label>
-                            <input type="text" id="inDuration" value="55 minutes (CPT 90791)" class="w-full p-2 border rounded-md text-sm">
-                        </div>
-                        <div>
-                            <label for="inModality" class="block text-xs font-semibold mb-1">Session Location / Modality:</label>
-                            <select id="inModality" class="w-full p-2 border rounded-md text-sm">
-                                <option value="via HIPAA-compliant telehealth (client at home in licensed state)">Telehealth (Client at Home)</option>
-                                <option value="in person at the clinician's office">In-Person Office</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="inParticipants" class="block text-xs font-semibold mb-1">Participants Present:</label>
-                            <input type="text" id="inParticipants" value="Client only (individual intake)" class="w-full p-2 border rounded-md text-sm">
-                        </div>
-                    </div>
-
-                    <!-- First-Session Ethical & Orientation Checklist -->
-                    <div class="border-t pt-3">
-                        <p class="text-sm font-bold mb-2">First-Session Orientation &amp; Informed Consent Checklist (Included in Note Intro):</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="in-checklist-cb mr-2" value="Reviewed signed Informed Consent, Disclosure Statement, and HIPAA Notice of Privacy Practices" checked>
-                                <span>Reviewed signed Informed Consent, Disclosure &amp; HIPAA Notice</span>
-                            </label>
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="in-checklist-cb mr-2" value="Discussed limits of confidentiality (imminent self/other harm, child/vulnerable adult abuse)" checked>
-                                <span>Discussed mandatory reporting &amp; limits of confidentiality</span>
-                            </label>
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="in-checklist-cb mr-2" value="Verified client physical location and emergency contact for telehealth safety" checked>
-                                <span>Verified physical address &amp; emergency contact on file</span>
-                            </label>
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="in-checklist-cb mr-2" value="Oriented client to what to expect in therapy, session structure, and collaborative pacing" checked>
-                                <span>Oriented client to therapy process &amp; collaborative pacing</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Biopsychosocial Assessment Fields -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t">
-                        <div>
-                            <label for="inPresenting" class="block text-sm font-semibold mb-1">1. Presenting Problem &amp; Chief Complaint (Client's Words):</label>
-                            <textarea id="inPresenting" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Why the client is seeking therapy now, onset, duration, and impact on daily functioning..."></textarea>
-                        </div>
-                        <div>
-                            <label for="inPsychHistory" class="block text-sm font-semibold mb-1">2. Prior Therapy &amp; Psychiatric / Medication History:</label>
-                            <textarea id="inPsychHistory" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Past counseling experiences (what helped/didn't help), prior diagnoses, current medications & prescriber..."></textarea>
-                        </div>
-                        <div>
-                            <label for="inMedicalSub" class="block text-sm font-semibold mb-1">3. Medical, Sleep, Sensory &amp; Substance Use History:</label>
-                            <textarea id="inMedicalSub" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Relevant medical conditions, chronic pain, sleep/appetite, sensory considerations, alcohol/substance use..."></textarea>
-                        </div>
-                        <div>
-                            <label for="inPsychosocial" class="block text-sm font-semibold mb-1">4. Psychosocial, Family, Cultural &amp; Trauma Context:</label>
-                            <textarea id="inPsychosocial" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Living situation, relationships, work/school, cultural/identity factors, trauma history..."></textarea>
-                        </div>
-                        <div>
-                            <label for="inStrengths" class="block text-sm font-semibold mb-1">5. Client Strengths, Values, Special Interests &amp; Supports:</label>
-                            <textarea id="inStrengths" rows="2" class="w-full p-2 border rounded-md text-sm" placeholder="Internal resilience, coping skills, community/family support, pets, creative outlets..."></textarea>
-                        </div>
-                        <div>
-                            <label for="inRiskSafety" class="block text-sm font-semibold mb-1">6. Suicide, Self-Harm &amp; Safety Risk Assessment:</label>
-                            <textarea id="inRiskSafety" rows="2" class="w-full p-2 border rounded-md text-sm">Client denied current suicidal ideation, intent, or plan, and denied homicidal ideation. Protective factors identified.</textarea>
-                        </div>
-                        <div>
-                            <label for="inMse" class="block text-sm font-semibold mb-1">7. Mental Status Exam (MSE) Observations:</label>
-                            <textarea id="inMse" rows="2" class="w-full p-2 border rounded-md text-sm">Alert and oriented x4; dressed appropriately; cooperative attitude; speech normal rate/rhythm; mood and affect congruent with content; thought process logical and goal-directed; insight and judgment intact.</textarea>
-                        </div>
-                        <div>
-                            <label for="inDiagnosisPlan" class="block text-sm font-semibold mb-1">8. Initial Diagnostic Impression, Medical Necessity &amp; Plan:</label>
-                            <textarea id="inDiagnosisPlan" rows="2" class="w-full p-2 border rounded-md text-sm" placeholder="Provisional ICD-10/DSM-5-TR code(s), client's initial therapy goals, recommended frequency (e.g., weekly 90837)..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-3 pt-4 border-t">
-                        <button type="submit" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate 90791 Intake Note</button>
-                    </div>
-                </form>
-
-                <div id="generatedIntakeNoteContainer" class="subpanel hidden p-4 rounded-md mt-4 border">
-                    <h3 class="text-lg font-bold mb-2">Generated 90791 Intake Evaluation Note:</h3>
-                    <p id="generatedIntakeNoteText" class="whitespace-pre-wrap text-sm"></p>
-                </div>
-            </div>
-        </div>
-
+            <div id="packetPreviewHtml" class="packet-paper" aria-live="polite"></div>
+        </section>
         <!-- Full reference list, filled in by ../references.js from references.json -->
         <details id="references" class="collapsible references" data-tool="intakepacketgenerator" data-src="../references.json">
             <summary>
@@ -516,6 +322,7 @@
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../shared/diagnoses.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
     <script src="../practice-data.js"></script>

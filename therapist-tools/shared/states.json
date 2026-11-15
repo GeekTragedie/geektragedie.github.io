@@ -4,17 +4,210 @@
     "review": "Laws change. Verify every citation against the official state source before relying on it."
   },
   "list": [
-    ["AL", "Alabama"], ["AK", "Alaska"], ["AZ", "Arizona"], ["AR", "Arkansas"], ["CA", "California"],
-    ["CO", "Colorado"], ["CT", "Connecticut"], ["DE", "Delaware"], ["DC", "District of Columbia"], ["FL", "Florida"],
-    ["GA", "Georgia"], ["HI", "Hawaii"], ["ID", "Idaho"], ["IL", "Illinois"], ["IN", "Indiana"],
-    ["IA", "Iowa"], ["KS", "Kansas"], ["KY", "Kentucky"], ["LA", "Louisiana"], ["ME", "Maine"],
-    ["MD", "Maryland"], ["MA", "Massachusetts"], ["MI", "Michigan"], ["MN", "Minnesota"], ["MS", "Mississippi"],
-    ["MO", "Missouri"], ["MT", "Montana"], ["NE", "Nebraska"], ["NV", "Nevada"], ["NH", "New Hampshire"],
-    ["NJ", "New Jersey"], ["NM", "New Mexico"], ["NY", "New York"], ["NC", "North Carolina"], ["ND", "North Dakota"],
-    ["OH", "Ohio"], ["OK", "Oklahoma"], ["OR", "Oregon"], ["PA", "Pennsylvania"], ["RI", "Rhode Island"],
-    ["SC", "South Carolina"], ["SD", "South Dakota"], ["TN", "Tennessee"], ["TX", "Texas"], ["UT", "Utah"],
-    ["VT", "Vermont"], ["VA", "Virginia"], ["WA", "Washington"], ["WV", "West Virginia"], ["WI", "Wisconsin"],
-    ["WY", "Wyoming"]
+    [
+      "AL",
+      "Alabama"
+    ],
+    [
+      "AK",
+      "Alaska"
+    ],
+    [
+      "AZ",
+      "Arizona"
+    ],
+    [
+      "AR",
+      "Arkansas"
+    ],
+    [
+      "CA",
+      "California"
+    ],
+    [
+      "CO",
+      "Colorado"
+    ],
+    [
+      "CT",
+      "Connecticut"
+    ],
+    [
+      "DE",
+      "Delaware"
+    ],
+    [
+      "DC",
+      "District of Columbia"
+    ],
+    [
+      "FL",
+      "Florida"
+    ],
+    [
+      "GA",
+      "Georgia"
+    ],
+    [
+      "HI",
+      "Hawaii"
+    ],
+    [
+      "ID",
+      "Idaho"
+    ],
+    [
+      "IL",
+      "Illinois"
+    ],
+    [
+      "IN",
+      "Indiana"
+    ],
+    [
+      "IA",
+      "Iowa"
+    ],
+    [
+      "KS",
+      "Kansas"
+    ],
+    [
+      "KY",
+      "Kentucky"
+    ],
+    [
+      "LA",
+      "Louisiana"
+    ],
+    [
+      "ME",
+      "Maine"
+    ],
+    [
+      "MD",
+      "Maryland"
+    ],
+    [
+      "MA",
+      "Massachusetts"
+    ],
+    [
+      "MI",
+      "Michigan"
+    ],
+    [
+      "MN",
+      "Minnesota"
+    ],
+    [
+      "MS",
+      "Mississippi"
+    ],
+    [
+      "MO",
+      "Missouri"
+    ],
+    [
+      "MT",
+      "Montana"
+    ],
+    [
+      "NE",
+      "Nebraska"
+    ],
+    [
+      "NV",
+      "Nevada"
+    ],
+    [
+      "NH",
+      "New Hampshire"
+    ],
+    [
+      "NJ",
+      "New Jersey"
+    ],
+    [
+      "NM",
+      "New Mexico"
+    ],
+    [
+      "NY",
+      "New York"
+    ],
+    [
+      "NC",
+      "North Carolina"
+    ],
+    [
+      "ND",
+      "North Dakota"
+    ],
+    [
+      "OH",
+      "Ohio"
+    ],
+    [
+      "OK",
+      "Oklahoma"
+    ],
+    [
+      "OR",
+      "Oregon"
+    ],
+    [
+      "PA",
+      "Pennsylvania"
+    ],
+    [
+      "RI",
+      "Rhode Island"
+    ],
+    [
+      "SC",
+      "South Carolina"
+    ],
+    [
+      "SD",
+      "South Dakota"
+    ],
+    [
+      "TN",
+      "Tennessee"
+    ],
+    [
+      "TX",
+      "Texas"
+    ],
+    [
+      "UT",
+      "Utah"
+    ],
+    [
+      "VT",
+      "Vermont"
+    ],
+    [
+      "VA",
+      "Virginia"
+    ],
+    [
+      "WA",
+      "Washington"
+    ],
+    [
+      "WV",
+      "West Virginia"
+    ],
+    [
+      "WI",
+      "Wisconsin"
+    ],
+    [
+      "WY",
+      "Wyoming"
+    ]
   ],
   "states": {
     "_default": {
@@ -28,7 +221,9 @@
       "minorConsentAge": null,
       "board": null,
       "medicaid": null,
-      "resources": []
+      "resources": [],
+      "reporting": null,
+      "licensingLaw": null
     },
     "WA": {
       "name": "Washington",
@@ -72,11 +267,42 @@
         "noShowNote": "Washington Apple Health (Medicaid) clients cannot be billed for missed appointments or late cancellations."
       },
       "resources": [
-        { "name": "Washington Recovery Help Line (mental health, substance use, and problem gambling)", "contact": "1-866-789-1511", "tags": ["substance", "general"] },
-        { "name": "WA 211 (local services and community resources)", "contact": "Dial 211 or wa211.org", "tags": ["general"] },
-        { "name": "Washington State Domestic Violence Hotline", "contact": "1-800-562-6025", "tags": ["dv"] },
-        { "name": "Teen Link (Washington, teen-to-teen support)", "contact": "1-866-833-6546", "tags": ["youth"] }
-      ]
+        {
+          "name": "Washington Recovery Help Line (mental health, substance use, and problem gambling)",
+          "contact": "1-866-789-1511",
+          "tags": [
+            "substance",
+            "general"
+          ]
+        },
+        {
+          "name": "WA 211 (local services and community resources)",
+          "contact": "Dial 211 or wa211.org",
+          "tags": [
+            "general"
+          ]
+        },
+        {
+          "name": "Washington State Domestic Violence Hotline",
+          "contact": "1-800-562-6025",
+          "tags": [
+            "dv"
+          ]
+        },
+        {
+          "name": "Teen Link (Washington, teen-to-teen support)",
+          "contact": "1-866-833-6546",
+          "tags": [
+            "youth"
+          ]
+        }
+      ],
+      "reporting": {
+        "child": "the Washington State Department of Children, Youth, and Families (DCYF)",
+        "adult": "Adult Protective Services through the Washington State Department of Social and Health Services (DSHS)",
+        "cite": "Wash. Rev. Code §§ 26.44.030, 74.34.020"
+      },
+      "licensingLaw": "chapter 18.225 RCW"
     }
   }
 }

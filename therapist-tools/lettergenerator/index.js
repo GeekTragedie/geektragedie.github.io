@@ -93,7 +93,7 @@ $(function () {
     const getJSON = (url) => Promise.resolve($.getJSON(url));
     Promise.all([
         getJSON('letter-types.json'),
-        getJSON('license-types.json'),
+        getJSON('../shared/license-types.json'),
         TTShared.loadDiagnoses().catch(() => { TTShared.showLoadError('#diagnosisSelect', 'diagnosis list'); return { ICD: [], DSM: [], byCode: {} }; }),
         getJSON('accommodations.json').catch(() => ({})),
         TTShared.loadStates().catch(() => statesData)

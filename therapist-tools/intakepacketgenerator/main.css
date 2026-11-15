@@ -30,3 +30,46 @@
     font-size: 0.92rem;
     line-height: 1.6;
 }
+/* The live preview looks like a printed page in both themes */
+.packet-paper {
+    max-height: 900px;
+    overflow-y: auto;
+    padding: 24px 28px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    color: #111;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+.packet-paper .packet-doc-header {
+    border-bottom-color: #111;
+}
+.packet-paper .packet-section.page-break-section {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 2px dashed #bbb;
+}
+.packet-paper mark.missing {
+    background-color: #fde68a;
+    color: #111;
+}
+.edited-badge {
+    margin-left: 6px;
+    padding: 0 7px;
+    border: 1px solid var(--warning);
+    border-radius: 99px;
+    color: var(--warning);
+    font-size: 0.75em;
+    font-weight: 700;
+}
+.reset-section {
+    margin-top: 8px;
+}
+#supervisorBlock {
+    padding: 10px 12px;
+    border-left: 3px solid var(--accent);
+    background-color: var(--bg-subpanel);
+}
+.intake-note-moved {
+    border-left: 4px solid var(--accent);
+}
