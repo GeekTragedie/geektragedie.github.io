@@ -81,10 +81,13 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Pick a check-in in the tool menu: right now, daily pacing, caseload, checklists, or burnout.</li>
+                            <li>Pick a check-in under <strong>Check-ins</strong> in the tool menu: right now, personal wellness, daily pacing, caseload, checklists, or burnout.</li>
                             <li>Answer honestly. The summary cards at the top update as you go.</li>
+                            <li>Hide any check-in or tool you don’t use with its <strong>Hide</strong> button. <strong>Show hidden tools</strong> brings them back.</li>
+                            <li>Under Caseload &amp; boundaries, you can import a caseload saved from Caseload at a Glance. If you’ve uploaded practice data, your license, malpractice, and CAQH dates show up under Checklists.</li>
                             <li>Print a snapshot if you’d like to bring it to consultation or your own therapy.</li>
                         </ol>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills every check-in with a made-up week so you can see how it works.</span></p>
                         <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
                         <p>Import, save, print, and clear are further down this menu.</p>
                         <h3 class="why-heading">Why this matters</h3>
@@ -100,15 +103,10 @@
                 </details>
                 <button type="button" class="btn btn-sm sidebar-btn" data-open="#references">References</button>
 
-                <nav class="sidebar-group" aria-label="On this page">
-                    <span class="sidebar-label">On this page</span>
-                    <ul class="sidebar-toc">
-                        <li><button type="button" data-click='.sc-tab-btn[data-tab="micro"]'>Right now</button></li>
-                        <li><button type="button" data-click='.sc-tab-btn[data-tab="daily"]'>Daily energy &amp; pacing</button></li>
-                        <li><button type="button" data-click='.sc-tab-btn[data-tab="caseload"]'>Caseload &amp; boundaries</button></li>
-                        <li><button type="button" data-click='.sc-tab-btn[data-tab="macro"]'>Checklists</button></li>
-                        <li><button type="button" data-click='.sc-tab-btn[data-tab="proqol"]'>Burnout check</button></li>
-                    </ul>
+                <nav class="sidebar-group" aria-label="Check-ins">
+                    <span class="sidebar-label">Check-ins</span>
+                    <ul class="sidebar-toc checkin-list" id="checkinList"></ul>
+                    <button type="button" id="showHiddenToolsBtn" class="btn btn-sm sidebar-btn" hidden>Show hidden tools</button>
                 </nav>
 
                 <div class="sidebar-group" role="group" aria-label="Your file">
@@ -144,7 +142,7 @@
             <div class="subpanel p-3 rounded-md border text-center">
                 <div class="muted text-xs font-semibold">Right-Now Nervous System Battery</div>
                 <div id="statCurrentBattery" class="text-xl font-bold mt-1">75% — Grounded</div>
-                <div id="statPleaseCount" class="muted text-xs mt-1">PLEASE Basics: 0 / 5 Checked</div>
+                <div id="statPleaseCount" class="muted text-xs mt-1">PLEASE basics: 0 / 6 checked</div>
             </div>
             <div class="subpanel p-3 rounded-md border text-center">
                 <div class="muted text-xs font-semibold">Schedule &amp; Client-Order Pacing</div>
@@ -154,7 +152,7 @@
             <div class="subpanel p-3 rounded-md border text-center">
                 <div class="muted text-xs font-semibold">Weighted Caseload Load</div>
                 <div id="statCaseloadLoad" class="text-xl font-bold mt-1">0 Clients (0% Load)</div>
-                <div id="statCaseloadAdvice" class="muted text-xs mt-1">Enter caseload tiers in Tab 3</div>
+                <div id="statCaseloadAdvice" class="muted text-xs mt-1">Enter caseload tiers under Caseload &amp; boundaries</div>
             </div>
             <div class="subpanel p-3 rounded-md border text-center">
                 <div class="muted text-xs font-semibold">Big-Picture Self-Care &amp; ProQOL</div>
@@ -163,29 +161,7 @@
             </div>
         </section>
 
-        <!-- Primary Navigation Toggles (Prevents Overwhelm!) -->
-        <div class="subpanel p-3 rounded-md mb-6">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider muted">Choose Your Check-In Scale:</span>
-                <div class="flex flex-wrap gap-2" role="tablist">
-                    <button type="button" class="sc-tab-btn btn btn-primary px-3 py-2 text-xs font-semibold rounded-md" data-tab="micro">
-                        1. Right Now (PLEASE &amp; Between Sessions)
-                    </button>
-                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="daily">
-                        2. Daily Energy, Client Order &amp; Transition
-                    </button>
-                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="caseload">
-                        3. Caseload Weight &amp; Boundaries
-                    </button>
-                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="macro">
-                        4. Weekly / Monthly / Yearly Checklists
-                    </button>
-                    <button type="button" class="sc-tab-btn btn px-3 py-2 text-xs font-semibold rounded-md" data-tab="proqol">
-                        5. Burnout &amp; Vicarious Trauma Check
-                    </button>
-                </div>
-            </div>
-        </div>
+        <p class="checkin-current text-sm mb-4">Showing <strong id="currentCheckinName">Right now</strong>. <span class="muted">Pick another check-in under Check-ins in the tool menu.</span></p>
 
         <!-- =========================================================
              TAB 1: RIGHT NOW / MICRO CHECK-IN (DBT PLEASE & SOMATIC)
@@ -193,32 +169,32 @@
         <section id="sc-tab-micro" class="sc-tab-section space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Left: Somatic & Energy Sliders -->
-                <div class="subpanel p-5 rounded-md space-y-4">
+                <div data-tool="energy" data-tool-name="Energy check-in" class="subpanel p-5 rounded-md space-y-4">
                     <div>
                         <h2 class="text-xl font-bold">In-the-Moment Somatic &amp; Energy Check-In</h2>
                         <p class="muted text-xs">Take 30 seconds between sessions to check your own body and nervous system.</p>
                     </div>
 
                     <div>
-                        <div class="flex justify-between text-xs font-semibold mb-1">
+                        <div class="slider-row text-xs font-semibold mb-1">
                             <label for="sliderPhysicalEnergy">Physical &amp; Somatic Energy (1 = Depleted, 10 = Rested):</label>
-                            <span id="valPhysicalEnergy">7 / 10</span>
+                            <span id="valPhysicalEnergy" class="slider-value">7 / 10</span>
                         </div>
                         <input type="range" id="sliderPhysicalEnergy" min="1" max="10" value="7" class="w-full cursor-pointer">
                     </div>
 
                     <div>
-                        <div class="flex justify-between text-xs font-semibold mb-1">
+                        <div class="slider-row text-xs font-semibold mb-1">
                             <label for="sliderEmotionalCap">Emotional &amp; Empathy Bandwidth (1 = Numb/Fried, 10 = Grounded):</label>
-                            <span id="valEmotionalCap">7 / 10</span>
+                            <span id="valEmotionalCap" class="slider-value">7 / 10</span>
                         </div>
                         <input type="range" id="sliderEmotionalCap" min="1" max="10" value="7" class="w-full cursor-pointer">
                     </div>
 
                     <div>
-                        <div class="flex justify-between text-xs font-semibold mb-1">
+                        <div class="slider-row text-xs font-semibold mb-1">
                             <label for="sliderSensoryDrain">Sensory &amp; Screen-Time Drain (1 = Calm, 10 = Overstimulated):</label>
-                            <span id="valSensoryDrain">3 / 10</span>
+                            <span id="valSensoryDrain" class="slider-value">3 / 10</span>
                         </div>
                         <input type="range" id="sliderSensoryDrain" min="1" max="10" value="3" class="w-full cursor-pointer">
                     </div>
@@ -228,16 +204,20 @@
                 </div>
 
                 <!-- Right: DBT PLEASE Acronym + Between-Session Reset -->
-                <div class="subpanel p-5 rounded-md space-y-4">
+                <div data-tool="please" data-tool-name="PLEASE check" class="subpanel p-5 rounded-md space-y-4">
                     <div>
                         <h2 class="text-xl font-bold">DBT "PLEASE" Vulnerability Check</h2>
-                        <p class="muted text-xs">We teach clients PLEASE skills every week—have you tended to your own biological baseline today?</p>
+                        <p class="muted text-xs">We teach clients PLEASE skills every week. Have you tended to your own baseline today? In DBT, P and L together mean treating PhysicaL illness; they’re split here so each gets its own check.</p>
                     </div>
 
                     <div class="space-y-2 text-sm">
                         <label class="flex items-start cursor-pointer p-2 border rounded-md">
-                            <input type="checkbox" class="please-cb mt-1 mr-3" value="PL">
-                            <span><strong>PL — PhysicaL Illness &amp; Body Needs:</strong> Took prescribed meds/supplements, used the restroom (not holding it through 3 sessions!), and stretched sore muscles.</span>
+                            <input type="checkbox" class="please-cb mt-1 mr-3" value="P">
+                            <span><strong>P — Physical Health:</strong> Took prescribed meds or supplements and tended to any illness, pain, or appointment I’ve been putting off.</span>
+                        </label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md">
+                            <input type="checkbox" class="please-cb mt-1 mr-3" value="L">
+                            <span><strong>L — Listen to Body Signals:</strong> Used the restroom when I needed to (not holding it through three sessions!), stretched, and noticed tension instead of pushing through it.</span>
                         </label>
                         <label class="flex items-start cursor-pointer p-2 border rounded-md">
                             <input type="checkbox" class="please-cb mt-1 mr-3" value="E">
@@ -260,8 +240,9 @@
             </div>
 
             <!-- 5-Minute Between-Session Somatic Reset Menu -->
-            <div class="subpanel p-5 rounded-md">
-                <h3 class="text-lg font-bold mb-2">5-Minute Between-Session Somatic Reset Menu (Pick One Before Your Next Client)</h3>
+            <div data-tool="resets" data-tool-name="Five-minute resets" class="subpanel p-5 rounded-md">
+                <h3 class="text-lg font-bold">Five-Minute Reset Between Sessions</h3>
+                <p class="muted text-xs mb-2">Pick one before your next client.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                     <label class="p-3 border rounded-md flex items-start cursor-pointer">
                         <input type="checkbox" class="micro-reset-cb mt-0.5 mr-2" value="eye_break">
@@ -283,13 +264,64 @@
             </div>
         </section>
 
+        <!-- Personal wellness: life outside of work -->
+        <section id="sc-tab-wellness" class="sc-tab-section hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-tool="wellness-scales" data-tool-name="Personal wellness scales" class="subpanel p-5 rounded-md space-y-4">
+                    <div>
+                        <h2 class="text-xl font-bold">Personal Wellness Check-In</h2>
+                        <p class="muted text-xs">How is the rest of your life doing this week, outside the therapy room?</p>
+                    </div>
+                    <div>
+                        <div class="slider-row text-xs font-semibold mb-1"><label for="wellSleep">Sleep (1 = running on empty, 10 = rested)</label><span id="valWellSleep" class="slider-value">6 / 10</span></div>
+                        <input type="range" id="wellSleep" class="wellness-slider w-full cursor-pointer" data-key="sleep" min="1" max="10" value="6">
+                    </div>
+                    <div>
+                        <div class="slider-row text-xs font-semibold mb-1"><label for="wellConnection">Connection with people I’m not the therapist for (1 = isolated, 10 = connected)</label><span id="valWellConnection" class="slider-value">6 / 10</span></div>
+                        <input type="range" id="wellConnection" class="wellness-slider w-full cursor-pointer" data-key="connection" min="1" max="10" value="6">
+                    </div>
+                    <div>
+                        <div class="slider-row text-xs font-semibold mb-1"><label for="wellJoy">Joy, play, and special interests (1 = none, 10 = plenty)</label><span id="valWellJoy" class="slider-value">6 / 10</span></div>
+                        <input type="range" id="wellJoy" class="wellness-slider w-full cursor-pointer" data-key="joy" min="1" max="10" value="6">
+                    </div>
+                    <div>
+                        <div class="slider-row text-xs font-semibold mb-1"><label for="wellBody">Body and movement (1 = neglected, 10 = cared for)</label><span id="valWellBody" class="slider-value">6 / 10</span></div>
+                        <input type="range" id="wellBody" class="wellness-slider w-full cursor-pointer" data-key="body" min="1" max="10" value="6">
+                    </div>
+                    <div>
+                        <div class="slider-row text-xs font-semibold mb-1"><label for="wellStress">Life stress outside work (1 = calm, 10 = overwhelming)</label><span id="valWellStress" class="slider-value">4 / 10</span></div>
+                        <input type="range" id="wellStress" class="wellness-slider w-full cursor-pointer" data-key="stress" min="1" max="10" value="4">
+                    </div>
+                    <div id="wellnessCallout" class="p-3 border rounded-md text-xs space-y-1"></div>
+                </div>
+                <div data-tool="wellness-week" data-tool-name="This week I…" class="subpanel p-5 rounded-md space-y-3">
+                    <div>
+                        <h2 class="text-xl font-bold">This Week I…</h2>
+                        <p class="muted text-xs">Check what you’ve done for yourself in the past seven days.</p>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md"><input type="checkbox" class="wellness-cb mt-1 mr-3" value="friend"><span>Spent time with a friend, partner, or community</span></label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md"><input type="checkbox" class="wellness-cb mt-1 mr-3" value="fun"><span>Did something just for fun, with no goal attached</span></label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md"><input type="checkbox" class="wellness-cb mt-1 mr-3" value="outside"><span>Got outside or into daylight</span></label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md"><input type="checkbox" class="wellness-cb mt-1 mr-3" value="no"><span>Said no to something so I could rest</span></label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md"><input type="checkbox" class="wellness-cb mt-1 mr-3" value="help"><span>Asked for help or let someone take care of me</span></label>
+                        <label class="flex items-start cursor-pointer p-2 border rounded-md"><input type="checkbox" class="wellness-cb mt-1 mr-3" value="dayoff"><span>Took a full day with no work tasks at all</span></label>
+                    </div>
+                    <div>
+                        <label for="wellnessNote" class="block text-xs font-semibold mb-1">One thing I want more of next week</label>
+                        <input type="text" id="wellnessNote" placeholder="e.g., a game night, a long walk, an early bedtime" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- =========================================================
              TAB 2: DAILY SCHEDULE, CLIENT ORDER & WORK-TO-HOME TRANSITION
              ========================================================= -->
         <section id="sc-tab-daily" class="sc-tab-section hidden space-y-6">
-            <div class="subpanel p-5 rounded-md space-y-4">
+            <div data-tool="schedule" data-tool-name="Weekly schedule" class="subpanel p-5 rounded-md space-y-4">
                 <div>
-                    <h2 class="text-xl font-bold">Weekly Schedule Architecture, Energy Curve &amp; Client-Order Audit</h2>
+                    <h2 class="text-xl font-bold">Weekly Schedule and Client-Order Check</h2>
                     <p class="muted text-xs">
                         Burnout often comes less from <em>how many</em> clients you see than from <strong>what order</strong> you see them in, like three high-acuity sessions back-to-back at 4:00 PM. Map your workdays below to check your pacing.
                     </p>
@@ -299,25 +331,30 @@
                     <table class="sc-table w-full text-left border-collapse text-xs">
                         <thead>
                             <tr class="border-b">
-                                <th class="p-2">Day of Week</th>
-                                <th class="p-2">Work Status</th>
-                                <th class="p-2">Total Clients</th>
-                                <th class="p-2">High-Acuity / Heavy Sessions</th>
-                                <th class="p-2">Max Back-to-Back (No Break)</th>
-                                <th class="p-2">Your Peak Energy Window</th>
-                                <th class="p-2">Where Are High-Need Clients Placed?</th>
-                                <th class="p-2">Pacing Verdict</th>
+                                <th class="p-2">Day</th>
+                                <th class="p-2">Work status</th>
+                                <th class="p-2">Total clients</th>
+                                <th class="p-2">Heavy sessions</th>
+                                <th class="p-2">Most back-to-back (no break)</th>
+                                <th class="p-2">Your peak energy window</th>
+                                <th class="p-2">Where are your heavy sessions?</th>
+                                <th class="p-2">Pacing</th>
+                                <th class="p-2"><span class="sr-only">Remove</span></th>
                             </tr>
                         </thead>
                         <tbody id="scheduleAuditTableBody"></tbody>
                     </table>
+                </div>
+                <div class="flex flex-wrap gap-3 text-xs">
+                    <button type="button" id="addScheduleRowBtn" class="btn btn-sm">+ Add a day</button>
+                    <button type="button" id="resetScheduleBtn" class="btn-link">Reset to a standard week</button>
                 </div>
 
                 <details class="collapsible help">
                     <summary><span>Scheduling rules of thumb</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                     <ul class="list-disc ml-5 space-y-1">
-                        <li><strong>Match Acuity to Your Chronotype:</strong> Place high-acuity, complex trauma, or new 90791 intakes in your personal peak energy window—never in your final slot of the day if you experience afternoon energy dips.</li>
+                        <li><strong>Match Acuity to Your Chronotype:</strong> Place heavy sessions, like high-acuity, complex trauma, or new 90791 intakes, in your personal peak energy window—never in your final slot of the day if you experience afternoon energy dips.</li>
                         <li><strong>The "Rule of 3" Buffer:</strong> Avoid scheduling more than 3 clinical hours in a row without at least a 30-minute movement/meal/admin buffer.</li>
                         <li><strong>Soft-Landing Final Hour:</strong> Whenever possible, make your last session of the day a lower-acuity, resource-building, or familiar ongoing client so your nervous system isn't spiked right at 5:00 PM.</li>
                     </ul>
@@ -326,9 +363,9 @@
             </div>
 
             <!-- End-of-Workday Transition Ritual (Closing the Clinical Container) -->
-            <div class="subpanel p-5 rounded-md space-y-4">
+            <div data-tool="transition" data-tool-name="End-of-day ritual" class="subpanel p-5 rounded-md space-y-4">
                 <div>
-                    <h2 class="text-xl font-bold">End-of-Day Transition Ritual (Closing the Clinical Container)</h2>
+                    <h2 class="text-xl font-bold">End-of-Day Transition Ritual</h2>
                     <p class="muted text-xs">
                         Especially if you work from home or in solo private practice, your brain needs a concrete sensory cue that <strong>"Therapist Mode is OFF"</strong> and <strong>"Human Mode is ON."</strong> Check off your transition steps today:
                     </p>
@@ -337,27 +374,27 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                     <label class="flex items-start p-3 border rounded-md cursor-pointer">
                         <input type="checkbox" class="transition-cb mt-1 mr-3" value="notes_parked">
-                        <span><strong>1. Close or Park Open Loops:</strong> Finish today's notes OR write a 3-bullet "Tomorrow Parking Lot" list so unfinished tasks aren't rattling around in your head tonight.</span>
+                        <span><strong>Close or Park Open Loops:</strong> Finish today's notes OR write a 3-bullet "Tomorrow Parking Lot" list so unfinished tasks aren't rattling around in your head tonight.</span>
                     </label>
                     <label class="flex items-start p-3 border rounded-md cursor-pointer">
                         <input type="checkbox" class="transition-cb mt-1 mr-3" value="tabs_closed">
-                        <span><strong>2. Shut Down EHR &amp; Work Tabs:</strong> Close Headway, Google Voice, work email, and lock the computer/office door.</span>
+                        <span><strong>Shut Down EHR &amp; Work Tabs:</strong> Close Headway, Google Voice, work email, and lock the computer/office door.</span>
                     </label>
                     <label class="flex items-start p-3 border rounded-md cursor-pointer">
                         <input type="checkbox" class="transition-cb mt-1 mr-3" value="workspace_reset">
-                        <span><strong>3. Physical Space Reset:</strong> Clear your therapy mug/water glass, turn off the therapy lamp/ring light, or physically leave the room.</span>
+                        <span><strong>Physical Space Reset:</strong> Clear your therapy mug/water glass, turn off the therapy lamp/ring light, or physically leave the room.</span>
                     </label>
                     <label class="flex items-start p-3 border rounded-md cursor-pointer">
                         <input type="checkbox" class="transition-cb mt-1 mr-3" value="sensory_change">
-                        <span><strong>4. Sensory / Clothing Change ("Mister Rogers Rule"):</strong> Change out of your "session clothes/cardigan," wash your hands/face, or take a quick shower.</span>
+                        <span><strong>Sensory / Clothing Change ("Mister Rogers Rule"):</strong> Change out of your "session clothes/cardigan," wash your hands/face, or take a quick shower.</span>
                     </label>
                     <label class="flex items-start p-3 border rounded-md cursor-pointer">
                         <input type="checkbox" class="transition-cb mt-1 mr-3" value="fake_commute">
-                        <span><strong>5. 10-Minute "Fake Commute" / Decompression:</strong> Walk the dog, listen to music/fiction podcast, play a game, or sit in silence for 10 minutes before jumping into household chores or caregiving.</span>
+                        <span><strong>10-Minute "Fake Commute" / Decompression:</strong> Walk the dog, listen to music/fiction podcast, play a game, or sit in silence for 10 minutes before jumping into household chores or caregiving.</span>
                     </label>
                     <label class="flex items-start p-3 border rounded-md cursor-pointer">
                         <input type="checkbox" class="transition-cb mt-1 mr-3" value="release_mantra">
-                        <span><strong>6. Symbolic Container Release:</strong> Remind yourself: <em>"I did good work in the room today. My clients' lives belong to them tonight, and my evening belongs to me."</em></span>
+                        <span><strong>Symbolic Container Release:</strong> Remind yourself: <em>"I did good work in the room today. My clients' lives belong to them tonight, and my evening belongs to me."</em></span>
                     </label>
                 </div>
 
@@ -372,7 +409,7 @@
              TAB 3: CASELOAD ACUITY WEIGHT & BOUNDARY CHECK
              ========================================================= -->
         <section id="sc-tab-caseload" class="sc-tab-section hidden space-y-6">
-            <div class="subpanel p-5 rounded-md space-y-4">
+            <div data-tool="weighted" data-tool-name="Caseload calculator" class="subpanel p-5 rounded-md space-y-4">
                 <div>
                     <h2 class="text-xl font-bold">Weighted Caseload Acuity Calculator</h2>
                     <p class="muted text-xs">
@@ -402,10 +439,16 @@
                         <span class="muted text-xs">Resourced, biweekly/monthly, skill integration</span>
                     </div>
                     <div>
-                        <label for="caseloadIntakesMonth" class="block text-xs font-semibold mb-1">New 90791 Intakes This Month:</label>
+                        <label for="caseloadIntakesMonth" class="block text-xs font-semibold mb-1">New 90791 Intakes This Month (0.5x Each):</label>
                         <input type="number" id="caseloadIntakesMonth" min="0" max="30" value="2" class="w-full p-2 border rounded-md text-sm">
                         <span class="muted text-xs">New intakes take extra onboarding energy</span>
                     </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 text-xs">
+                    <button type="button" id="importCaseloadBtn" class="btn btn-sm">Import from Caseload at a Glance (.json)</button>
+                    <input type="file" id="caseloadFileInput" accept=".json" class="hidden">
+                    <span id="caseloadImportNote" class="muted"></span>
                 </div>
 
                 <!-- Caseload Verdict & Progress Bar -->
@@ -413,7 +456,7 @@
             </div>
 
             <!-- Countertransference & Boundary Leak Check -->
-            <div class="subpanel p-5 rounded-md space-y-3">
+            <div data-tool="boundaries" data-tool-name="Boundary check" class="subpanel p-5 rounded-md space-y-3">
                 <h3 class="text-lg font-bold">Subtle Boundary Leak &amp; "Working Harder Than the Client" Check</h3>
                 <p class="muted text-xs">Check any early warning signs you've noticed in yourself over the past 2 weeks:</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
@@ -449,10 +492,10 @@
              TAB 4: BIG-PICTURE TIMELINES (WEEKLY -> MONTHLY -> QUARTERLY -> YEARLY)
              ========================================================= -->
         <section id="sc-tab-macro" class="sc-tab-section hidden space-y-6">
-            <div class="subpanel p-5 rounded-md space-y-4">
+            <div data-tool="checklists" data-tool-name="Checklists" class="subpanel p-5 rounded-md space-y-4">
                 <div class="flex flex-wrap justify-between items-center gap-3 border-b pb-3">
                     <div>
-                        <h2 class="text-xl font-bold">Big-Picture Sustainability Checklists (By Timeline)</h2>
+                        <h2 class="text-xl font-bold">Big-Picture Checklists</h2>
                         <p class="muted text-xs">Switch between Weekly, Monthly, Quarterly, and Yearly care so you only see one horizon at a time.</p>
                     </div>
                     <div class="flex flex-wrap gap-2">
@@ -471,13 +514,15 @@
                     </div>
                 </div>
 
+                <div id="renewalsBox" class="renewals-box p-3 border rounded-md text-xs" hidden></div>
+
                 <!-- Dynamic Checklist Container for Selected Horizon -->
                 <div id="macroChecklistContainer" class="space-y-2"></div>
 
                 <!-- Add Custom Item to Current Horizon -->
                 <div class="flex flex-wrap gap-2 pt-3 border-t">
                     <input type="text" id="newMacroItemInput" placeholder="Add a custom self-care or medical/life item to this timeline..." class="flex-1 p-2 border rounded-md text-xs">
-                    <button type="button" id="addMacroItemBtn" class="btn px-4 py-2 text-xs font-semibold rounded-md">+ Add to Current Timeline</button>
+                    <button type="button" id="addMacroItemBtn" class="btn px-4 py-2 text-xs font-semibold rounded-md">+ Add to this timeline</button>
                 </div>
             </div>
         </section>
@@ -486,11 +531,11 @@
              TAB 5: COMPASSION SATISFACTION, BURNOUT & VICARIOUS TRAUMA (PROQOL-INSPIRED)
              ========================================================= -->
         <section id="sc-tab-proqol" class="sc-tab-section hidden space-y-6">
-            <div class="subpanel p-5 rounded-md space-y-4">
+            <div data-tool="proqol" data-tool-name="Burnout check" class="subpanel p-5 rounded-md space-y-4">
                 <div>
-                    <h2 class="text-xl font-bold">Professional Quality of Life &amp; Burnout Pulse Check</h2>
+                    <h2 class="text-xl font-bold">Burnout and Vicarious Trauma Check</h2>
                     <p class="muted text-xs">
-                        Inspired by Stamm's (2010) Professional Quality of Life (ProQOL) model. Rate how frequently you have experienced each statement over the <strong>past 30 days</strong> (1 = Never, 5 = Very Often):
+                        Inspired by Stamm's (2010) Professional Quality of Life (ProQOL) model. Rate how often you’ve experienced each statement over the <strong>past 30 days</strong> (1 = never, 5 = very often). This nine-item check is for reflection only. It isn’t the ProQOL itself, and its scores can’t be compared with ProQOL cutoffs.
                     </p>
                 </div>
 
@@ -500,8 +545,8 @@
             </div>
 
             <!-- Personal Reflection Journal Box -->
-            <div class="subpanel p-5 rounded-md space-y-2">
-                <label for="selfCareJournalNotes" class="block text-base font-bold">Clinician Self-Reflection &amp; Action Plan Notes:</label>
+            <div data-tool="journal" data-tool-name="Reflection notes" class="subpanel p-5 rounded-md space-y-2">
+                <label for="selfCareJournalNotes" class="block text-base font-bold">Reflection and Action Plan</label>
                 <p class="muted text-xs">What is 1 small adjustment you can make this week to protect your energy, schedule, or joy?</p>
                 <textarea id="selfCareJournalNotes" rows="3" class="w-full p-3 border rounded-md text-sm" placeholder="e.g., Move my 4pm Thursday high-acuity slot to 11am; schedule my annual dental cleaning; block off Friday afternoon for admin & rest..."></textarea>
             </div>

@@ -1,0 +1,134 @@
+{
+  "micro": {
+    "physicalEnergy": 5,
+    "emotionalCap": 4,
+    "sensoryDrain": 7,
+    "pleaseChecked": [
+      "P",
+      "E",
+      "S"
+    ],
+    "microResetsChecked": [
+      "somatic_shake"
+    ]
+  },
+  "wellness": {
+    "sleep": 4,
+    "connection": 7,
+    "joy": 3,
+    "body": 5,
+    "stress": 6,
+    "checked": [
+      "friend",
+      "outside"
+    ],
+    "note": "A board game night with friends"
+  },
+  "ui": {
+    "tab": "micro",
+    "hidden": []
+  },
+  "daily": {
+    "scheduleDays": [
+      {
+        "day": "Monday",
+        "status": "Off / Rest / Admin",
+        "statusOther": "",
+        "totalClients": 0,
+        "highAcuityClients": 0,
+        "maxBackToBack": 0,
+        "peakEnergy": "Morning (9am–1pm)",
+        "highNeedPlacement": "In My Peak Energy Window"
+      },
+      {
+        "day": "Tuesday",
+        "status": "Clinical Day",
+        "statusOther": "",
+        "totalClients": 6,
+        "highAcuityClients": 2,
+        "maxBackToBack": 3,
+        "peakEnergy": "Morning (9am–1pm)",
+        "highNeedPlacement": "In My Peak Energy Window"
+      },
+      {
+        "day": "Wednesday",
+        "status": "Clinical Day",
+        "statusOther": "",
+        "totalClients": 8,
+        "highAcuityClients": 3,
+        "maxBackToBack": 4,
+        "peakEnergy": "Morning (9am–1pm)",
+        "highNeedPlacement": "Stacked Back-to-Back"
+      },
+      {
+        "day": "Thursday",
+        "status": "Other",
+        "statusOther": "Groups and testing",
+        "totalClients": 4,
+        "highAcuityClients": 1,
+        "maxBackToBack": 2,
+        "peakEnergy": "Midday (11am–3pm)",
+        "highNeedPlacement": "Spread Out With Buffers"
+      },
+      {
+        "day": "Friday",
+        "status": "Clinical Day",
+        "statusOther": "",
+        "totalClients": 5,
+        "highAcuityClients": 2,
+        "maxBackToBack": 3,
+        "peakEnergy": "Morning (9am–1pm)",
+        "highNeedPlacement": "At End of Day / Low Energy"
+      },
+      {
+        "day": "Saturday",
+        "status": "Off / Rest / Admin",
+        "statusOther": "",
+        "totalClients": 0,
+        "highAcuityClients": 0,
+        "maxBackToBack": 0,
+        "peakEnergy": "Morning (9am–1pm)",
+        "highNeedPlacement": "In My Peak Energy Window"
+      },
+      {
+        "day": "Sunday",
+        "status": "Off / Rest / Admin",
+        "statusOther": "",
+        "totalClients": 0,
+        "highAcuityClients": 0,
+        "maxBackToBack": 0,
+        "peakEnergy": "Morning (9am–1pm)",
+        "highNeedPlacement": "In My Peak Energy Window"
+      }
+    ],
+    "transitionChecked": [
+      "notes_parked",
+      "tabs_closed",
+      "fake_commute"
+    ],
+    "customTransitionRitual": "Phone on Do Not Disturb at 5:15, then a walk around the block."
+  },
+  "caseload": {
+    "idealSessions": 20,
+    "tier1": 2,
+    "tier2": 9,
+    "tier3": 7,
+    "intakesMonth": 2,
+    "boundaryLeaks": [
+      "running_over",
+      "checking_after_hours"
+    ]
+  },
+  "proqol": {
+    "cs1": 4,
+    "cs2": 3,
+    "cs3": 4,
+    "bo1": 4,
+    "bo2": 3,
+    "bo3": 4,
+    "sts1": 3,
+    "sts2": 2,
+    "sts3": 2
+  },
+  "journalNotes": "Move my Wednesday 4 pm intake to Tuesday morning. Book the dentist."
+}

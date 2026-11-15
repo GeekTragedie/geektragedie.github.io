@@ -9,6 +9,7 @@
 //   <input data-practice="business.businessAddress" data-practice-join=", ">
 // Empty fields are filled; anything the user already typed is left alone.
 // Tools can also listen for:  document.addEventListener('practicedata:loaded', e => e.detail)
+// and 'practicedata:forgotten' (fired after Forget).
 window.TTPractice = window.TTPractice || (function () {
     'use strict';
 
@@ -73,6 +74,7 @@ window.TTPractice = window.TTPractice || (function () {
 
     function forget() {
         localStorage.removeItem(KEY);
+        document.dispatchEvent(new CustomEvent('practicedata:forgotten'));
         renderStatus();
     }
 

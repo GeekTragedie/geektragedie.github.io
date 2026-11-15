@@ -19,6 +19,32 @@ $(document).ready(function() {
         { id: 'sts3', domain: 'sts', text: 'I find myself avoiding certain topics, emotions, or activities because they remind me of frightening clinical material.' }
     ];
 
+    const TABS = [
+        { id: 'micro', name: 'Right now' },
+        { id: 'wellness', name: 'Personal wellness' },
+        { id: 'daily', name: 'Daily energy & pacing' },
+        { id: 'caseload', name: 'Caseload & boundaries' },
+        { id: 'macro', name: 'Checklists' },
+        { id: 'proqol', name: 'Burnout check' }
+    ];
+    const PLEASE_TOTAL = 6;
+    // Caseload weights, matching the labels on the page
+    const WEIGHTS = { tier1: 3, tier2: 1.5, tier3: 1, intake: 0.5 };
+    const BANDWIDTH_FACTOR = 1.25;
+    const WORK_STATUSES = ['Clinical Day', 'Admin / Supervision Only', 'Off / Rest / Admin', 'Other'];
+    const PEAK_WINDOWS = ['Morning (9am–1pm)', 'Midday (11am–3pm)', 'Afternoon/Eve (1pm–6pm)'];
+    const PLACEMENTS = ['In My Peak Energy Window', 'Spread Out With Buffers', 'Stacked Back-to-Back', 'At End of Day / Low Energy'];
+    const PLACEMENT_LABELS = {
+        'In My Peak Energy Window': 'In my peak energy window',
+        'Spread Out With Buffers': 'Spread out with buffers',
+        'Stacked Back-to-Back': 'Stacked back-to-back',
+        'At End of Day / Low Energy': 'At the end of the day / low energy'
+    };
+
+    function getDefaultWellness() {
+        return { sleep: 6, connection: 6, joy: 6, body: 6, stress: 4, checked: [], note: '' };
+    }
+
     function getDefaultScheduleDays() {
         // Pre-configured for a Tuesday–Friday 9am-5pm private practice rhythm (customizable!)
         return DAYS_OF_WEEK.map(day => {
@@ -26,6 +52,7 @@ $(document).ready(function() {
             return {
                 day: day,
                 status: isOff ? 'Off / Rest / Admin' : 'Clinical Day',
+                statusOther: '',
                 totalClients: isOff ? 0 : 5,
                 highAcuityClients: isOff ? 0 : 1,
                 maxBackToBack: isOff ? 0 : 3,
@@ -90,6 +117,8 @@ $(document).ready(function() {
             intakesMonth: 2,
             boundaryLeaks: []
         },
+        wellness: getDefaultWellness(),
+        ui: { tab: 'micro', hidden: [] },
         macro: getDefaultMacroItems(),
         proqol: {
             cs1: 4, cs2: 4, cs3: 4,
@@ -99,13 +128,79 @@ $(document).ready(function() {
         journalNotes: ''
     };
 
-    // --- 1. Main Tab Navigation ---
-    $('.sc-tab-btn').on('click', function() {
-        const tab = $(this).data('tab');
-        $('.sc-tab-btn').removeClass('btn-primary');
-        $(this).addClass('btn-primary');
+    // --- 1. Check-ins (in the tool menu) and hideable tools ---
+    function normalizeState() {
+        const m = appState.micro || (appState.micro = {});
+        // Older saves had one "PL" box; it is now separate P and L boxes
+        m.pleaseChecked = (m.pleaseChecked || []).flatMap(v => (v === 'PL' ? ['P', 'L'] : [v]));
+        appState.wellness = { ...getDefaultWellness(), ...(appState.wellness || {}) };
+        appState.ui = { tab: 'micro', hidden: [], ...(appState.ui || {}) };
+        if (!Array.isArray(appState.ui.hidden)) appState.ui.hidden = [];
+        if (!TABS.some(t => t.id === appState.ui.tab)) appState.ui.tab = 'micro';
+        appState.daily = appState.daily || {};
+        if (!Array.isArray(appState.daily.scheduleDays)) appState.daily.scheduleDays = getDefaultScheduleDays();
+        appState.daily.scheduleDays.forEach(d => { if (d.statusOther === undefined) d.statusOther = ''; });
+    }
+
+    function isHidden(key) {
+        return appState.ui.hidden.includes(key);
+    }
+
+    function renderCheckins() {
+        const list = $('#checkinList');
+        list.empty();
+        TABS.forEach(t => {
+            if (isHidden(`tab:${t.id}`)) return;
+            const active = appState.ui.tab === t.id;
+            list.append(`<li class="checkin-item${active ? ' is-active' : ''}">
+                <button type="button" class="sc-tab-link" data-tab="${t.id}" aria-pressed="${active}">${escapeHtml(t.name)}</button>
+                <button type="button" class="checkin-hide" data-hide="tab:${t.id}" aria-label="Hide ${escapeAttr(t.name)}" title="Hide this check-in">Hide</button>
+            </li>`);
+        });
+        const n = appState.ui.hidden.length;
+        $('#showHiddenToolsBtn').prop('hidden', n === 0).text(`Show hidden tools (${n})`);
+    }
+
+    function applyVisibility() {
+        // If the open check-in was hidden, open the first one still showing
+        if (isHidden(`tab:${appState.ui.tab}`)) {
+            const next = TABS.find(t => !isHidden(`tab:${t.id}`));
+            appState.ui.tab = next ? next.id : appState.ui.tab;
+        }
         $('.sc-tab-section').addClass('hidden');
-        $(`#sc-tab-${tab}`).removeClass('hidden');
+        if (!isHidden(`tab:${appState.ui.tab}`)) $(`#sc-tab-${appState.ui.tab}`).removeClass('hidden');
+        const tab = TABS.find(t => t.id === appState.ui.tab);
+        const allHidden = TABS.every(t => isHidden(`tab:${t.id}`));
+        $('#currentCheckinName').text(allHidden ? 'nothing (every check-in is hidden)' : tab.name);
+        $('[data-tool-name]').each(function() {
+            const id = this.dataset.tool;
+            $(this).toggleClass('hidden', isHidden(`tool:${id}`));
+            if (!$(this).children('.tool-hide-btn').length) {
+                $(this).addClass('has-hide-btn').prepend(`<button type="button" class="tool-hide-btn btn-link text-xs" data-hide="tool:${id}" aria-label="Hide ${escapeAttr(this.dataset.toolName)}">Hide</button>`);
+            }
+        });
+        renderCheckins();
+    }
+
+    $(document).on('click', '.sc-tab-link', function() {
+        appState.ui.tab = $(this).data('tab');
+        applyVisibility();
+        saveToLocalCacheIfEnabled();
+        const menu = document.querySelector('.tool-menu');
+        if (menu && !window.matchMedia('(min-width: 901px)').matches) menu.open = false;
+        const target = document.getElementById(`sc-tab-${appState.ui.tab}`);
+        if (target && target.getBoundingClientRect().top < 0) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    $(document).on('click', '[data-hide]', function() {
+        const key = $(this).data('hide');
+        if (!appState.ui.hidden.includes(key)) appState.ui.hidden.push(key);
+        applyVisibility();
+        saveToLocalCacheIfEnabled();
+    });
+    $('#showHiddenToolsBtn').on('click', function() {
+        appState.ui.hidden = [];
+        applyVisibility();
+        saveToLocalCacheIfEnabled();
     });
 
     // Macro Horizon Sub-Tabs
@@ -118,7 +213,10 @@ $(document).ready(function() {
 
     // --- 2. Render All Sections ---
     function renderAll() {
+        normalizeState();
+        applyVisibility();
         renderMicroTab();
+        renderWellnessTab();
         renderDailyTab();
         renderCaseloadTab();
         renderMacroTab();
@@ -166,10 +264,52 @@ $(document).ready(function() {
         } else {
             callout.html(`
                 <div class="font-bold text-red">🔴 Battery at ${batteryPct}% — High Depletion / Sensory Overload</div>
-                <p><strong>Immediate Care Needed:</strong> Check the DBT PLEASE boxes on the right (have you eaten or used the restroom?). Focus purely on holding a safe, grounded container for your remaining sessions today, defer non-urgent admin to tomorrow, and do a full somatic reset at 5:00 PM.</p>
+                <p><strong>Immediate Care Needed:</strong> Check the DBT PLEASE boxes (have you eaten or used the restroom?). Focus purely on holding a safe, grounded container for your remaining sessions today, defer non-urgent admin to tomorrow, and do a full somatic reset at 5:00 PM.</p>
             `);
         }
     }
+
+    // PERSONAL WELLNESS
+    const WELLNESS_TIPS = {
+        sleep: 'Sleep is lowest. Protect one earlier night this week, and keep your heaviest sessions out of the day after a short night.',
+        connection: 'Connection is lowest. Reach out to one person you don’t hold space for at work, even with a short text.',
+        joy: 'Joy and play are lowest. Put one special interest or hobby on the calendar like an appointment.',
+        body: 'Body and movement are lowest. Add a short walk or stretch between sessions, or book that appointment you’ve been putting off.',
+        stress: 'Stress outside work is high. Consider lightening something at work this week, and bring it to your own therapy or support.'
+    };
+    function renderWellnessTab() {
+        const w = appState.wellness;
+        const names = { sleep: 'WellSleep', connection: 'WellConnection', joy: 'WellJoy', body: 'WellBody', stress: 'WellStress' };
+        Object.entries(names).forEach(([k, id]) => {
+            $(`#${id.charAt(0).toLowerCase() + id.slice(1)}`).val(w[k]);
+            $(`#val${id}`).text(`${w[k]} / 10`);
+        });
+        $('.wellness-cb').each(function() { $(this).prop('checked', (w.checked || []).includes(this.value)); });
+        $('#wellnessNote').val(w.note || '');
+        // Stress is reversed so 10 always means "doing well"
+        const scores = { sleep: w.sleep, connection: w.connection, joy: w.joy, body: w.body, stress: 11 - w.stress };
+        const pct = Math.round(Object.values(scores).reduce((a, b) => a + b, 0) / 50 * 100);
+        const lowest = Object.entries(scores).sort((a, b) => a[1] - b[1])[0];
+        const tone = pct >= 70 ? ['text-green', '🟢', 'Well supported'] : (pct >= 45 ? ['text-amber', '🟡', 'Running a little low'] : ['text-red', '🔴', 'Running on empty']);
+        const tip = lowest[1] <= 6 ? WELLNESS_TIPS[lowest[0]] : 'Nothing is running low right now. Keep doing what’s working.';
+        $('#wellnessCallout').html(`<div class="font-bold ${tone[0]}">${tone[1]} Personal wellness at ${pct}%: ${tone[2]}</div><p>${escapeHtml(tip)}</p><p class="muted">${(w.checked || []).length} of 6 “this week” items checked.</p>`);
+        return pct;
+    }
+    $(document).on('input change', '.wellness-slider', function() {
+        appState.wellness[this.dataset.key] = parseInt(this.value, 10) || 1;
+        renderWellnessTab();
+        updateTopSummaryCards();
+        saveToLocalCacheIfEnabled();
+    });
+    $(document).on('change', '.wellness-cb', function() {
+        appState.wellness.checked = $('.wellness-cb:checked').map(function() { return this.value; }).get();
+        renderWellnessTab();
+        saveToLocalCacheIfEnabled();
+    });
+    $('#wellnessNote').on('input', function() {
+        appState.wellness.note = this.value;
+        saveToLocalCacheIfEnabled();
+    });
 
     // TAB 2: DAILY SCHEDULE & CLIENT ORDER
     function renderDailyTab() {
@@ -178,41 +318,22 @@ $(document).ready(function() {
 
         (appState.daily.scheduleDays || []).forEach((d, idx) => {
             const verdict = evaluateDaySustainability(d);
+            const opt = (list, cur, labels) => list.map(v => `<option value="${escapeAttr(v)}" ${cur === v ? 'selected' : ''}>${escapeHtml((labels && labels[v]) || v)}</option>`).join('');
+            const statusLabels = { 'Clinical Day': 'Clinical day', 'Admin / Supervision Only': 'Admin or supervision only', 'Off / Rest / Admin': 'Off / rest day', 'Other': 'Other…' };
             tbody.append(`
                 <tr class="border-b schedule-day-row" data-idx="${idx}">
-                    <td class="p-2 font-bold">${escapeHtml(d.day)}</td>
-                    <td class="p-2">
-                        <select class="day-status p-1 border rounded-md text-xs">
-                            <option value="Clinical Day" ${d.status === 'Clinical Day' ? 'selected' : ''}>Clinical Day</option>
-                            <option value="Admin / Supervision Only" ${d.status === 'Admin / Supervision Only' ? 'selected' : ''}>Admin / Supervision Only</option>
-                            <option value="Off / Rest / Admin" ${d.status === 'Off / Rest / Admin' ? 'selected' : ''}>Off / Rest Day</option>
-                        </select>
+                    <td class="p-2" data-label="Day"><input type="text" class="day-name w-full p-1 border rounded-md text-xs font-bold" value="${escapeAttr(d.day)}" aria-label="Day name"></td>
+                    <td class="p-2" data-label="Work status">
+                        <select class="day-status p-1 border rounded-md text-xs" aria-label="Work status">${opt(WORK_STATUSES, d.status, statusLabels)}</select>
+                        <input type="text" class="day-status-other p-1 border rounded-md text-xs mt-1 w-full ${d.status === 'Other' ? '' : 'hidden'}" placeholder="e.g., Groups only, Testing day" value="${escapeAttr(d.statusOther || '')}" aria-label="Other work status">
                     </td>
-                    <td class="p-2">
-                        <input type="number" min="0" max="15" class="day-total w-16 p-1 border rounded-md text-xs" value="${d.totalClients || 0}">
-                    </td>
-                    <td class="p-2">
-                        <input type="number" min="0" max="15" class="day-high w-16 p-1 border rounded-md text-xs" value="${d.highAcuityClients || 0}">
-                    </td>
-                    <td class="p-2">
-                        <input type="number" min="0" max="12" class="day-b2b w-16 p-1 border rounded-md text-xs" value="${d.maxBackToBack || 0}">
-                    </td>
-                    <td class="p-2">
-                        <select class="day-peak p-1 border rounded-md text-xs">
-                            <option value="Morning (9am–1pm)" ${d.peakEnergy === 'Morning (9am–1pm)' ? 'selected' : ''}>Morning (9am–1pm)</option>
-                            <option value="Midday (11am–3pm)" ${d.peakEnergy === 'Midday (11am–3pm)' ? 'selected' : ''}>Midday (11am–3pm)</option>
-                            <option value="Afternoon/Eve (1pm–6pm)" ${d.peakEnergy === 'Afternoon/Eve (1pm–6pm)' ? 'selected' : ''}>Afternoon/Eve (1pm–6pm)</option>
-                        </select>
-                    </td>
-                    <td class="p-2">
-                        <select class="day-placement p-1 border rounded-md text-xs">
-                            <option value="In My Peak Energy Window" ${d.highNeedPlacement === 'In My Peak Energy Window' ? 'selected' : ''}>In My Peak Energy Window</option>
-                            <option value="Spread Out With Buffers" ${d.highNeedPlacement === 'Spread Out With Buffers' ? 'selected' : ''}>Spread Out With Buffers</option>
-                            <option value="Stacked Back-to-Back" ${d.highNeedPlacement === 'Stacked Back-to-Back' ? 'selected' : ''}>Stacked Back-to-Back</option>
-                            <option value="At End of Day / Low Energy" ${d.highNeedPlacement === 'At End of Day / Low Energy' ? 'selected' : ''}>At End of Day / Low Energy</option>
-                        </select>
-                    </td>
-                    <td class="p-2">${verdict.badgeHtml}</td>
+                    <td class="p-2" data-label="Total clients"><input type="number" min="0" max="15" class="day-total w-16 p-1 border rounded-md text-xs" value="${d.totalClients || 0}" aria-label="Total clients"></td>
+                    <td class="p-2" data-label="Heavy sessions"><input type="number" min="0" max="15" class="day-high w-16 p-1 border rounded-md text-xs" value="${d.highAcuityClients || 0}" aria-label="Heavy sessions"></td>
+                    <td class="p-2" data-label="Most back-to-back"><input type="number" min="0" max="12" class="day-b2b w-16 p-1 border rounded-md text-xs" value="${d.maxBackToBack || 0}" aria-label="Most back-to-back"></td>
+                    <td class="p-2" data-label="Peak energy"><select class="day-peak p-1 border rounded-md text-xs" aria-label="Peak energy window">${opt(PEAK_WINDOWS, d.peakEnergy)}</select></td>
+                    <td class="p-2" data-label="Heavy sessions are"><select class="day-placement p-1 border rounded-md text-xs" aria-label="Where heavy sessions are">${opt(PLACEMENTS, d.highNeedPlacement, PLACEMENT_LABELS)}</select></td>
+                    <td class="p-2 verdict-cell" data-label="Pacing">${verdict.badgeHtml}</td>
+                    <td class="p-2" data-label=""><button type="button" class="remove-day-btn btn-link text-xs" aria-label="Remove ${escapeAttr(d.day)}">Remove</button></td>
                 </tr>
             `);
         });
@@ -224,15 +345,16 @@ $(document).ready(function() {
     }
 
     function evaluateDaySustainability(d) {
-        if (d.status !== 'Clinical Day' || d.totalClients === 0) {
+        const seesClients = d.status === 'Clinical Day' || d.status === 'Other';
+        if (!seesClients || !d.totalClients) {
             return { status: 'rest', badgeHtml: `<span class="sc-badge badge-neutral">Rest / Admin</span>` };
         }
         const warnings = [];
-        if (d.totalClients > 7) warnings.push('7+ clients');
-        if (d.highAcuityClients >= 3) warnings.push('3+ high-acuity');
+        if (d.totalClients > 7) warnings.push('8+ clients');
+        if (d.highAcuityClients >= 3) warnings.push('3+ heavy sessions');
         if (d.maxBackToBack >= 4) warnings.push(`${d.maxBackToBack} back-to-back without break`);
         if (d.highNeedPlacement === 'Stacked Back-to-Back' || d.highNeedPlacement === 'At End of Day / Low Energy') {
-            warnings.push(d.highNeedPlacement);
+            warnings.push(`heavy sessions ${PLACEMENT_LABELS[d.highNeedPlacement].toLowerCase()}`);
         }
 
         if (warnings.length >= 2 || d.totalClients >= 8 || d.maxBackToBack >= 5) {
@@ -253,6 +375,13 @@ $(document).ready(function() {
     }
 
     // TAB 3: CASELOAD ACUITY & BOUNDARIES
+    function computeCaseloadLoad(c) {
+        const headcount = c.tier1 + c.tier2 + c.tier3;
+        const units = (c.tier1 * WEIGHTS.tier1) + (c.tier2 * WEIGHTS.tier2) + (c.tier3 * WEIGHTS.tier3) + (c.intakesMonth * WEIGHTS.intake);
+        const bandwidth = Math.max(1, c.idealSessions * BANDWIDTH_FACTOR);
+        return { headcount, units, bandwidth, pct: Math.round((units / bandwidth) * 100) };
+    }
+
     function renderCaseloadTab() {
         const c = appState.caseload;
         $('#caseloadIdealSessions').val(c.idealSessions);
@@ -265,11 +394,9 @@ $(document).ready(function() {
             $(this).prop('checked', (c.boundaryLeaks || []).includes($(this).val()));
         });
 
-        const rawHeadcount = c.tier1 + c.tier2 + c.tier3;
-        // Weighted units: Tier 1 = 2.5x, Tier 2 = 1.35x, Tier 3 = 1.0x + 0.5 per monthly intake
-        const weightedUnits = (c.tier1 * 2.5) + (c.tier2 * 1.35) + (c.tier3 * 1.0) + (c.intakesMonth * 0.5);
-        const idealCap = Math.max(1, c.idealSessions * 1.25); // Normalizing so a standard mix hits ~100% at ideal cap
-        const loadPct = Math.round((weightedUnits / idealCap) * 100);
+        const load = computeCaseloadLoad(c);
+        const rawHeadcount = load.headcount;
+        const loadPct = load.pct;
 
         const box = $('#caseloadAnalysisBox');
         let statusTitle = '';
@@ -280,7 +407,7 @@ $(document).ready(function() {
             adviceText = `Your acuity mix is balanced. You have room to take on new intakes if desired, or enjoy the extra breathing room for creative projects and rest.`;
         } else if (loadPct <= 105) {
             statusTitle = `🟡 At Full Capacity (${loadPct}% of Emotional Bandwidth — ${rawHeadcount} Active Clients)`;
-            adviceText = `Even if your headcount looks modest on paper, your Tier 1 & Tier 2 acuity weight puts you at 100% capacity. Avoid squeezing in "just one more high-need intake" until an active client steps down to biweekly/maintenance.`;
+            adviceText = `Even if your headcount looks modest on paper, your Tier 1 and Tier 2 acuity weight puts you at about full capacity. Avoid squeezing in "just one more high-need intake" until an active client steps down to biweekly/maintenance.`;
         } else {
             statusTitle = `🔴 Acuity Overload (${loadPct}% of Emotional Bandwidth — ${rawHeadcount} Active Clients)`;
             adviceText = `Your caseload is carrying heavy emotional weight (${c.tier1} high-acuity crisis clients). Strongly consider pausing new intakes (use the “I’m at full capacity” reason in your Personal Referral Database email), stepping stable clients down to biweekly, and bringing Tier 1 cases to consultation.`;
@@ -295,6 +422,7 @@ $(document).ready(function() {
                 <div class="sc-progress-fill ${barColorClass}" style="width: ${barWidth}%;"></div>
             </div>
             <p class="text-xs">${adviceText}</p>
+            <p class="text-xs muted">How it’s figured: (${c.tier1} × 3) + (${c.tier2} × 1.5) + (${c.tier3} × 1) + (${c.intakesMonth} intakes × 0.5) = ${fmt(load.units)} units. Your bandwidth is your session cap plus 25% room, ${c.idealSessions} × 1.25 = ${fmt(load.bandwidth)} units. ${fmt(load.units)} ÷ ${fmt(load.bandwidth)} = ${loadPct}%.</p>
         `);
     }
 
@@ -322,6 +450,43 @@ $(document).ready(function() {
         });
     }
 
+    // Upcoming renewals from uploaded practice data (license, malpractice, CAQH every 120 days)
+    function parseLocalDate(v) {
+        const m = String(v || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+        return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : null;
+    }
+    function renderRenewals(data) {
+        const box = $('#renewalsBox');
+        const t = data && data.therapist;
+        if (!t) { box.prop('hidden', true).empty(); return; }
+        const items = [];
+        (t.licenses || []).forEach(l => {
+            const d = parseLocalDate(l.expiration);
+            if (d) items.push({ what: `${l.type || 'License'}${l.state ? ` (${l.state})` : ''} renewal`, date: d });
+        });
+        const mal = parseLocalDate(t.malpracticeRenewal);
+        if (mal) items.push({ what: 'Malpractice insurance renewal', date: mal });
+        const caqh = parseLocalDate(t.caqhAttestDate);
+        if (caqh) {
+            const next = new Date(caqh.getFullYear(), caqh.getMonth(), caqh.getDate() + 120);
+            items.push({ what: 'CAQH re-attestation (every 120 days)', date: next });
+        }
+        if (!items.length) { box.prop('hidden', true).empty(); return; }
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+        items.sort((a, b) => a.date - b.date);
+        const rows = items.map(i => {
+            const days = Math.round((i.date - today) / 86400000);
+            const when = days < 0 ? `${-days} day${days === -1 ? '' : 's'} overdue` : (days === 0 ? 'due today' : `in ${days} day${days === 1 ? '' : 's'}`);
+            const cls = days < 0 ? 'text-red' : (days <= 90 ? 'text-amber' : '');
+            return `<li><strong>${escapeHtml(i.what)}:</strong> ${i.date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })} <span class="${cls}">(${when})</span></li>`;
+        }).join('');
+        box.prop('hidden', false).html(`<div class="font-bold text-sm mb-1">Upcoming renewals <span class="muted font-normal">(from your practice data)</span></div><ul class="list-disc ml-5 space-y-1">${rows}</ul>`);
+    }
+    if (window.TTPractice) {
+        window.TTPractice.onLoad(renderRenewals);
+        document.addEventListener('practicedata:forgotten', () => renderRenewals(null));
+    }
+
     // TAB 5: PROQOL PULSE CHECK
     function renderProqolTab() {
         const container = $('#proqolQuestionsContainer');
@@ -341,7 +506,7 @@ $(document).ready(function() {
 
             container.append(`
                 <div class="p-3 border rounded-md text-sm space-y-1">
-                    <div class="font-semibold">${idx + 1}. ${escapeHtml(q.text)}</div>
+                    <div class="font-semibold">${escapeHtml(q.text)}</div>
                     <div class="pt-1 flex flex-wrap gap-2">${radiosHtml}</div>
                 </div>
             `);
@@ -356,13 +521,33 @@ $(document).ready(function() {
         const boScore = (p.bo1 || 2) + (p.bo2 || 2) + (p.bo3 || 2); // 3 to 15
         const stsScore = (p.sts1 || 2) + (p.sts2 || 1) + (p.sts3 || 1); // 3 to 15
 
-        const csLevel = csScore >= 11 ? 'High (Protective)' : (csScore >= 7 ? 'Moderate' : 'Low');
-        const boLevel = boScore >= 11 ? 'High (Action Needed)' : (boScore >= 7 ? 'Moderate (Watch Pacing)' : 'Low (Resourced)');
-        const stsLevel = stsScore >= 10 ? 'Elevated (Seek Consultation/Support)' : (stsScore >= 6 ? 'Mild/Moderate' : 'Low');
+        const csKey = csScore >= 11 ? 'high' : (csScore >= 7 ? 'moderate' : 'low');
+        const boKey = boScore >= 11 ? 'high' : (boScore >= 7 ? 'moderate' : 'low');
+        const stsKey = stsScore >= 10 ? 'high' : (stsScore >= 6 ? 'moderate' : 'low');
+        const csLevel = { high: 'High (Protective)', moderate: 'Moderate', low: 'Low' }[csKey];
+        const boLevel = { high: 'High (Action Needed)', moderate: 'Moderate (Watch Pacing)', low: 'Low (Resourced)' }[boKey];
+        const stsLevel = { high: 'Elevated (Seek Consultation/Support)', moderate: 'Mild/Moderate', low: 'Low' }[stsKey];
+        const RECS = {
+            cs: {
+                high: 'Your work still feels meaningful, which protects against burnout. Notice what’s feeding that and keep it in your week.',
+                moderate: 'Meaning is there but thinner. Revisit why you chose this work: a client win, a training you loved, or a population you want more of.',
+                low: 'The work feels less rewarding right now. Talk it through in consultation or your own therapy, and look at whether your caseload still fits your interests and values.'
+            },
+            bo: {
+                low: 'Your workload feels manageable. Keep protecting your breaks and your days off.',
+                moderate: 'Workload is starting to wear on you. Check your schedule for back-to-back heavy sessions, trim one admin task, and protect one full day off this week.',
+                high: 'Burnout is high. Pause new intakes if you can, bring it to supervision or consultation, and look at your caseload weight and schedule under the other check-ins. Your own therapy can help too.'
+            },
+            sts: {
+                low: 'Clients’ trauma isn’t following you home much right now. Keep your end-of-day ritual going.',
+                moderate: 'Some clinical material is staying with you. Strengthen your end-of-day ritual and bring the cases that stick to peer consultation.',
+                high: 'Secondary traumatic stress is elevated. Get consultation on the cases that stay with you, think about lowering your trauma-heavy load for a while, and reach out to your own therapist. If intrusive images or avoidance are affecting daily life, that’s a sign to get support now.'
+            }
+        };
 
         $('#proqolResultsBox').html(`
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-center text-xs">
-                <div class="p-3 border rounded-md">
+                <div class="p-3 border rounded-md proqol-score" data-level="${csKey}">
                     <div class="muted font-semibold">Compassion Satisfaction</div>
                     <div class="text-lg font-bold mt-1">${csScore} / 15 — ${csLevel}</div>
                     <div class="muted mt-1">Joy &amp; fulfillment from clinical work</div>
@@ -378,6 +563,12 @@ $(document).ready(function() {
                     <div class="muted mt-1">Vicarious trauma &amp; somatic residue</div>
                 </div>
             </div>
+            <div class="proqol-recs text-xs space-y-1">
+                <div class="font-bold text-sm">What might help</div>
+                <p><strong>Compassion satisfaction:</strong> ${escapeHtml(RECS.cs[csKey])}</p>
+                <p><strong>Burnout:</strong> ${escapeHtml(RECS.bo[boKey])}</p>
+                <p><strong>Secondary traumatic stress:</strong> ${escapeHtml(RECS.sts[stsKey])}</p>
+            </div>
         `);
     }
 
@@ -389,7 +580,7 @@ $(document).ready(function() {
         const batteryPct = Math.round(((m.physicalEnergy + m.emotionalCap + invertedSensory) / 30) * 100);
         const batteryLabel = batteryPct >= 70 ? 'Grounded' : (batteryPct >= 45 ? 'Moderate Drain' : 'Depleted');
         $('#statCurrentBattery').text(`${batteryPct}% — ${batteryLabel}`);
-        $('#statPleaseCount').text(`PLEASE Basics: ${(m.pleaseChecked || []).length} / 5 Checked`);
+        $('#statPleaseCount').text(`PLEASE basics: ${(m.pleaseChecked || []).length} / ${PLEASE_TOTAL} checked`);
 
         // Card 2: Schedule & Transition
         let heavyDays = 0;
@@ -397,18 +588,15 @@ $(document).ready(function() {
             const v = evaluateDaySustainability(d);
             if (v.status === 'heavy') heavyDays++;
         });
-        $('#statScheduleScore').text(heavyDays === 0 ? '🟢 Sustainable' : `🟡 ${heavyDays} Heavy Day(s)`);
-        $('#statTransitionCount').text(`After-Work Transition: ${(appState.daily.transitionChecked || []).length} / 6`);
+        $('#statScheduleScore').text(heavyDays === 0 ? '🟢 Sustainable' : `🟡 ${heavyDays} heavy day${heavyDays === 1 ? '' : 's'}`);
+        $('#statTransitionCount').text(`After-work transition: ${(appState.daily.transitionChecked || []).length} / 6`);
 
         // Card 3: Caseload
         const c = appState.caseload;
-        const rawTotal = c.tier1 + c.tier2 + c.tier3;
-        const weightedUnits = (c.tier1 * 2.5) + (c.tier2 * 1.35) + (c.tier3 * 1.0) + (c.intakesMonth * 0.5);
-        const idealCap = Math.max(1, c.idealSessions * 1.25);
-        const loadPct = Math.round((weightedUnits / idealCap) * 100);
-        $('#statCaseloadLoad').text(`${rawTotal} Clients (${loadPct}% Load)`);
+        const load = computeCaseloadLoad(c);
+        $('#statCaseloadLoad').text(`${load.headcount} clients (${load.pct}% load)`);
         const leaksCount = (c.boundaryLeaks || []).length;
-        $('#statCaseloadAdvice').text(leaksCount === 0 ? '0 Boundary Leaks Checked' : `⚠️ ${leaksCount} Boundary Leak(s) Noted`);
+        $('#statCaseloadAdvice').text(leaksCount === 0 ? 'No boundary leaks checked' : `⚠️ ${leaksCount} boundary leak${leaksCount === 1 ? '' : 's'} noted`);
 
         // Card 4: Macro & ProQOL
         let totalMacroDone = 0;
@@ -419,11 +607,11 @@ $(document).ready(function() {
                 if (item.done) totalMacroDone++;
             });
         });
-        $('#statMacroDone').text(`${totalMacroDone} / ${totalMacroAll} Habits Done`);
+        $('#statMacroDone').text(`${totalMacroDone} / ${totalMacroAll} habits done`);
 
         const p = appState.proqol || {};
         const boScore = (p.bo1 || 2) + (p.bo2 || 2) + (p.bo3 || 2);
-        $('#statProqolStatus').text(`Burnout Score: ${boScore} / 15`);
+        $('#statProqolStatus').text(`Burnout score: ${boScore} / 15`);
     }
 
     // --- 4. Interactive Listeners ---
@@ -452,7 +640,10 @@ $(document).ready(function() {
         const d = appState.daily.scheduleDays[idx];
         if (!d) return;
 
+        d.day = $(this).find('.day-name').val();
         d.status = $(this).find('.day-status').val();
+        d.statusOther = $(this).find('.day-status-other').val();
+        $(this).find('.day-status-other').toggleClass('hidden', d.status !== 'Other');
         d.totalClients = parseInt($(this).find('.day-total').val(), 10) || 0;
         d.highAcuityClients = parseInt($(this).find('.day-high').val(), 10) || 0;
         d.maxBackToBack = parseInt($(this).find('.day-b2b').val(), 10) || 0;
@@ -460,9 +651,59 @@ $(document).ready(function() {
         d.highNeedPlacement = $(this).find('.day-placement').val();
 
         const verdict = evaluateDaySustainability(d);
-        $(this).find('td:last').html(verdict.badgeHtml);
+        $(this).find('.verdict-cell').html(verdict.badgeHtml);
         updateTopSummaryCards();
         saveToLocalCacheIfEnabled();
+    });
+
+    $(document).on('click', '.remove-day-btn', function() {
+        const idx = $(this).closest('.schedule-day-row').data('idx');
+        appState.daily.scheduleDays.splice(idx, 1);
+        renderDailyTab();
+        updateTopSummaryCards();
+        saveToLocalCacheIfEnabled();
+    });
+    $('#addScheduleRowBtn').on('click', function() {
+        appState.daily.scheduleDays.push({ day: 'New day', status: 'Clinical Day', statusOther: '', totalClients: 0, highAcuityClients: 0, maxBackToBack: 0, peakEnergy: PEAK_WINDOWS[0], highNeedPlacement: PLACEMENTS[0] });
+        renderDailyTab();
+        saveToLocalCacheIfEnabled();
+        $('#scheduleAuditTableBody .day-name').last().trigger('focus').trigger('select');
+    });
+    $('#resetScheduleBtn').on('click', function() {
+        if (!confirm('Reset your schedule to a standard Tuesday–Friday week?')) return;
+        appState.daily.scheduleDays = getDefaultScheduleDays();
+        renderDailyTab();
+        updateTopSummaryCards();
+        saveToLocalCacheIfEnabled();
+    });
+
+    // Caseload at a Glance import: count clients by acuity and intake phase
+    $('#importCaseloadBtn').on('click', () => $('#caseloadFileInput').click());
+    $('#caseloadFileInput').on('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            try {
+                const parsed = JSON.parse(evt.target.result);
+                const clients = parsed && Array.isArray(parsed.clients) ? parsed.clients : null;
+                if (!clients) throw new Error('No clients');
+                const has = (c, word) => String(c.acuity || '').toLowerCase().includes(word);
+                const c = appState.caseload;
+                c.tier1 = clients.filter(x => has(x, 'high')).length;
+                c.tier3 = clients.filter(x => has(x, 'low')).length;
+                c.tier2 = clients.length - c.tier1 - c.tier3;
+                c.intakesMonth = clients.filter(x => /intake/i.test(String(x.phase || ''))).length;
+                renderCaseloadTab();
+                updateTopSummaryCards();
+                saveToLocalCacheIfEnabled();
+                $('#caseloadImportNote').text(`Imported ${clients.length} clients: ${c.tier1} high acuity (Tier 1), ${c.tier2} moderate (Tier 2), ${c.tier3} low (Tier 3), and ${c.intakesMonth} in the intake phase. Adjust the numbers if they don’t look right.`);
+            } catch (err) {
+                alert('That file doesn’t look like a Caseload at a Glance .json. Save one from Caseload at a Glance and try again.');
+            }
+        };
+        reader.readAsText(file);
+        $(this).val('');
     });
 
     $('.transition-cb').on('change', function() {
@@ -548,6 +789,7 @@ $(document).ready(function() {
                 try {
                     const parsed = JSON.parse(raw);
                     Object.assign(appState, parsed);
+                    normalizeState();
                 } catch (e) {
                     console.error('Error loading cached self-care dashboard:', e);
                 }
@@ -578,7 +820,11 @@ $(document).ready(function() {
         appState.daily = { scheduleDays: getDefaultScheduleDays(), transitionChecked: [], customTransitionRitual: '' };
         appState.caseload = { idealSessions: 20, tier1: 2, tier2: 10, tier3: 8, intakesMonth: 2, boundaryLeaks: [] };
         appState.macro = getDefaultMacroItems();
+        appState.wellness = getDefaultWellness();
+        appState.proqol = { cs1: 4, cs2: 4, cs3: 4, bo1: 2, bo2: 2, bo3: 2, sts1: 2, sts2: 1, sts3: 1 };
+        appState.ui = { tab: 'micro', hidden: [] };
         appState.journalNotes = '';
+        $('#caseloadImportNote').text('');
         localStorage.removeItem(STORAGE_KEY);
         renderAll();
     });
@@ -597,7 +843,7 @@ $(document).ready(function() {
     }
 
     $('#exportJsonButtonTop').on('click', function() {
-        downloadFile(JSON.stringify(appState, null, 2), `clinician_selfcare_checkin_${new Date().toISOString().split('T')[0]}.json`, 'application/json;charset=utf-8');
+        downloadFile(JSON.stringify(appState, null, 2), `clinician_selfcare_checkin_${localDateISO()}.json`, 'application/json;charset=utf-8');
     });
 
     $('#importJsonButton').on('click', () => $('#importJsonFile').click());
@@ -609,7 +855,9 @@ $(document).ready(function() {
         reader.onload = function(evt) {
             try {
                 const parsed = JSON.parse(evt.target.result);
+                if (!parsed || typeof parsed !== 'object' || (!parsed.micro && !parsed.daily && !parsed.caseload)) throw new Error('Not a self-care file');
                 Object.assign(appState, parsed);
+                normalizeState();
                 renderAll();
             } catch (err) {
                 alert('Invalid JSON file. Please upload a valid Self-Care Dashboard .json file.');
@@ -623,12 +871,12 @@ $(document).ready(function() {
         const schedRows = (appState.daily.scheduleDays || []).map(d => `
             <tr>
                 <td><strong>${escapeHtml(d.day)}</strong></td>
-                <td>${escapeHtml(d.status)}</td>
+                <td>${escapeHtml(d.status === 'Other' ? (d.statusOther || 'Other') : d.status)}</td>
                 <td>${d.totalClients}</td>
                 <td>${d.highAcuityClients}</td>
                 <td>${d.maxBackToBack}</td>
                 <td>${escapeHtml(d.peakEnergy)}</td>
-                <td>${escapeHtml(d.highNeedPlacement)}</td>
+                <td>${escapeHtml(PLACEMENT_LABELS[d.highNeedPlacement] || d.highNeedPlacement)}</td>
             </tr>
         `).join('');
 
@@ -656,7 +904,7 @@ $(document).ready(function() {
                         <h1>Clinician Self-Care, Caseload &amp; Energy Snapshot</h1>
                         <div>Personal Sustainability &amp; Work-Life Balance Check-In</div>
                     </div>
-                    <div><strong>Date:</strong> ${new Date().toISOString().split('T')[0]}</div>
+                    <div><strong>Date:</strong> ${localDateISO()}</div>
                 </div>
 
                 <div class="grid-4">
@@ -669,11 +917,15 @@ $(document).ready(function() {
                 <h3>Weekly Schedule &amp; Client-Order Pacing</h3>
                 <table>
                     <thead>
-                        <tr><th>Day</th><th>Status</th><th>Clients</th><th>High-Acuity</th><th>Max Back-to-Back</th><th>Peak Window</th><th>High-Need Placement</th></tr>
+                        <tr><th>Day</th><th>Status</th><th>Clients</th><th>Heavy sessions</th><th>Most back-to-back</th><th>Peak window</th><th>Heavy sessions are</th></tr>
                     </thead>
                     <tbody>${schedRows}</tbody>
                 </table>
 
+                <h3>Personal Wellness</h3>
+                <p>${escapeHtml($('#wellnessCallout div').first().text())}. Sleep ${appState.wellness.sleep}/10, connection ${appState.wellness.connection}/10, joy ${appState.wellness.joy}/10, body ${appState.wellness.body}/10, outside stress ${appState.wellness.stress}/10.${appState.wellness.note ? ` Want more of: ${escapeHtml(appState.wellness.note)}` : ''}</p>
+                <h3>Burnout Check</h3>
+                <div class="box" style="margin-bottom:14px;">${$('#proqolResultsBox .proqol-recs').html() || ''}</div>
                 ${appState.daily.customTransitionRitual ? `<p><strong>After-Work Transition Ritual:</strong> ${escapeHtml(appState.daily.customTransitionRitual)}</p>` : ''}
                 ${appState.journalNotes ? `<h3>Personal Action Plan &amp; Reflection Notes</h3><p style="white-space:pre-wrap;">${escapeHtml(appState.journalNotes)}</p>` : ''}
             </body>
@@ -686,6 +938,15 @@ $(document).ready(function() {
             printWindow.close();
         }, 250);
     });
+
+    function fmt(n) {
+        return Number.isInteger(n) ? String(n) : String(Math.round(n * 100) / 100);
+    }
+
+    function localDateISO() {
+        const d = new Date();
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
 
     function escapeHtml(str) {
         if (!str) return '';

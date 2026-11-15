@@ -41,7 +41,8 @@
     border-radius: 999px;
     font-size: 0.7rem;
     font-weight: 600;
-    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.35;
 }
 
 .badge-green {
@@ -64,7 +65,7 @@
 }
 
 .table-responsive {
-    overflow-x: auto;
+    container-type: inline-size;
 }
 
 .sc-table th,
@@ -77,4 +78,106 @@
     text-indent: -2em;
     text-align: left;
     line-height: 1.6;
+}
+
+/* Slider labels: the "7 / 10" value never breaks onto two lines */
+.slider-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+.slider-value {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Schedule: when there isn't room for every column, each day becomes a stacked card (no sideways scrolling) */
+.sc-table select,
+.sc-table input[type="text"] {
+    max-width: 100%;
+}
+@container (max-width: 1050px) {
+    .sc-table thead {
+        display: none;
+    }
+    .sc-table,
+    .sc-table tbody {
+        display: block;
+        width: 100%;
+    }
+    .sc-table tr.schedule-day-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        gap: 0.5rem 1rem;
+        padding: 0.75rem 0;
+    }
+    .sc-table tr.schedule-day-row td {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        padding: 0 !important;
+    }
+    .sc-table tr.schedule-day-row td[data-label]:not([data-label=""])::before {
+        content: attr(data-label);
+        font-weight: 700;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+    }
+    .sc-table tr.schedule-day-row td:first-child {
+        grid-column: 1 / -1;
+    }
+    .sc-table tr.schedule-day-row td:last-child {
+        justify-content: flex-end;
+    }
+    .sc-table tr.schedule-day-row td.verdict-cell {
+        align-items: flex-start;
+    }
+}
+
+/* Check-ins in the tool menu */
+.checkin-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.checkin-item .sc-tab-link {
+    flex: 1;
+}
+.checkin-item.is-active .sc-tab-link {
+    color: var(--text-heading);
+    font-weight: 700;
+    background-color: var(--bg-panel-hover);
+    box-shadow: inset 3px 0 0 var(--accent, currentColor);
+}
+.sidebar-toc .checkin-hide {
+    width: auto;
+    flex-shrink: 0;
+    font-size: 0.75em;
+    opacity: 0.7;
+}
+.sidebar-toc .checkin-hide:hover,
+.sidebar-toc .checkin-hide:focus-visible {
+    opacity: 1;
+}
+
+/* Hide button on each tool */
+.has-hide-btn {
+    position: relative;
+}
+.tool-hide-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.8rem;
+}
+.has-hide-btn > div:first-of-type,
+.has-hide-btn > h3:first-of-type {
+    padding-right: 3rem;
+}
+
+.proqol-recs p {
+    margin: 0;
+}
+.renewals-box ul {
+    margin: 0;
 }
