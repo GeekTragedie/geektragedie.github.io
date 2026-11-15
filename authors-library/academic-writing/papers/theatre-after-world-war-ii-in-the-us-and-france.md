@@ -1,0 +1,47 @@
+# Theatre after World War II in the US and France
+
+**Degree / Program:** BFA in Theatre  
+**Course / Context:** Theatre History: Modern Drama and Theatre (Dr. Raimondo Genna), University of South Dakota  
+**Date:** 7 December 2017  
+
+---
+
+<div class="paper mla">
+
+<div class="mla-heading"><p>GeekTragedie</p><p>Dr. Raimondo Genna</p><p>Theatre History: Modern Drama and Theatre</p><p>7 December 2017</p></div>
+
+<p class="paper-title">Exam 3 Essay</p>
+
+Theatre has a way of reflecting society’s ideals and showing how that society is viewing the world. These views, throughout history, have changed. Wars, for example, tend to have many effects on people’s thoughts, actions, and ideals. These wars, however, do not always cause the same effects on all people involved. Since theatre expresses the ideals of the society it comes out of, the aftermath of war’s effects on people can be examined by looking at the theatre in different countries. The aftermath of World War II affected the US and France differently, causing a shift in their ideals which can be examined through their theatrical works.
+
+Before looking at how theatre was affected in the United States by World War II, it is important to understand what life was like in the US after the war. Although the United States was not majorly, physically affected by WWII, there were larger shifts in terms of ownership. The United States was “largely unscathed” by World War II “in terms of property damage” (Genna). Many other countries’ land was ravaged by war, and this difference in how the war affected those countries can be an explanation for the shift that occurred in the US. After the war, there seemed to be more of a movement towards materialism and consumerism. People in the US wanted to ensure ownership over their possessions, and the materials owned had to be state-of-the-art. There was the idea that everyone had to “keep up with the Joneses or die” (Genna), meaning that in order to be seen as successful, one had to have the latest and greatest consumer goods. The quantity and quality of one’s goods defined their status in the US after the war. This ideal had its effects on theatre through the play *Death of a Salesman* by Arthur Miller.
+
+The importance of materialism manifests itself in *Death of a Salesman* through the characters Happy and Willy. Happy’s sleeping with his bosses fiancés can be viewed as wanting ownership. Happy wants to feel as though he can have power over these women and when he sleeps with them, he feels as though he has ownership over them. Happy sleeps with these women before they are married because then he feels as though he has ownership over the women before his bosses own them, making Happy feel as though he has more material ownership than his bosses, even though he does not have more money than his superiors. This feeling of ownership ties to the US ideals of materialism and consumerism after WWII.
+
+The idea of Willy’s materialism with women is also visible when look at the affair he has with the woman in Boston. This woman feeds Willy’s sense of value, making him feel as though he is more important and successful, despite not having all of the material items those around him own. The societal pressure of having quality consumer goods makes Willy feel unsuccessful because he does not have the items that his boss, Howard, owns. Shown towards the end of Act 1, Howard owns a tape recorder and tells Willy that Willy needs to get one. Willy, even though he cannot afford a tape recorder, tells Howard that he was considering buying one. Willy knows that if he tells Howard that he is going to own a tape recorder, Willy will be viewed as more successful and Howard may like him more. Another example of Willy believing material objects is important is when Willy discusses having bought a refrigerator that seems to continually break. The reason he gives to having bought the refrigerator is because the advertisement for the model was the largest. This advertisement brings more attention to the item, so Willy believes that it is the best item because others also own it. Willy believed that buying that refrigerator was a surefire way to show he is successful. Through Happy and Willy’s views on ownership and materials in *Death of a Salesman*, the United States materialistic and consumerist ideals are shown.
+
+The aftermath of World War II affected France differently than the United States, which in turn changed the way theatre in France was shaped. There was more physically destructive aftermath in France Post WWII as people’s possessions were destroyed or taken away during the war. These effects caused France to think more existentially, leading to the existentialist movement. Albert Camus, an existentialist philosopher, used *The Myth of Sisyphus* to help portray of his belief in the meaning of life. In the myth that is used by Camus, a man rolled a boulder up a hill and when he reached the top, the boulder would roll back down. Then the man would have to repeat the same action again, but he does not seem to mind. Camus believed that everyone in life relates to Sisyphus because they all perform the same actions over and over and the actions are really meaningless; however, people need to embrace this meaninglessness and enjoy life. This existentialist belief can be seen in Samuel Beckett’s play *Waiting for Godot.*
+
+The play *Waiting for Godot* contains existentialist themes that are shown through Vladimir and Estragon’s actions and discussion throughout the play. In the play, the two main characters are waiting for a person named Godot and what they do to pass their time as they wait. In the play, the characters seem to discuss the same topics and perform the same actions and these conversations and actions then that have no effects on anything in both Act 1 and Act 2. The only outcome of their action is that they pass the time while they wait for Godot to arrive, which never seems to happen. Despite the characters never having their expectations met, similar to Sisyphus in the myth, the characters seem to find some reason behind passing their time in the way they do. The repeated actions of Vladimir and Estragon having no meaning relates to the existentialist movement in the US, but there are more examples of this connection found in the play.
+
+Vladimir attempts to find meaning in his behavior in attempting to prove his existence. Vladimir tells the boy in the play to give a message to Godot in both Act 1 and Act 2, “Tell him… tell him you saw us.” (1.1189). When he says this line to the play, Vladimir is attempting to validate his existence and create meaning in his life through other people. Vladimir feels as though if he is seen, then he would be important. This yearning for validation can only be met through the arrival of Godot. Godot, however, never comes and never validates Vladimir’s existence. Vladimir’s attempts towards validation reference France’s rise in existentialism because Vladimir never finds the meaning for his existence, and he is never validated. The audience is shown the meaninglessness in performing the same actions continuously, but the audience can understand the fact that Godot is not coming. Vladimir needs to accept this idea and find something that will make him content in his life. The audience is never given the satisfaction of Vladimir understanding this concept, which relates to people’s lives because they never seem to realize their own actions are similar to that of Vladimir, performing the same actions every day, attempting to find meaning that will not come.
+
+While Vladimir and Estragon’s experiences can be connected to existentialism, the real absurdist hero in *Waiting for Godot* is Lucky. Lucky seems to always perform the same actions for his master, Pozzo, in the play. Lucky seems to be content with whatever commands he is continually given, such as to dance, think, or speak. Lucky is okay being the person that always rolls the boulder up the hill, only for the boulder to fall down, resulting in him having to start over again. There are many examples of existentialism found in Beckett’s play, connecting the play to Post WWII France.
+
+Overall, World War II affected countries involved in different ways. In the US, materialism and consumerism rose, while in France, society leaned more towards existentialism. The ideologies of these two countries after the war, materialism in the US and existentialism in France, in turn, affected the plays that were produced during this time period, as seen through *Death of a Salesman* and *Waiting for Godot* respectively*.* When a large event happens in the history of a country or, in this case, the world, many aspects are impacted. Theatre, then, reflects these effects and then shows these shifts to their audiences.
+
+<div class="references">
+
+## Works Cited
+
+Beckett, Samuel. “Waiting for Godot.” *The Norton Anthology of Drama Volume Two,* W. W. Norton & Company, Inc., 2009, pp. 849-905.
+
+Camus, Albert. “The Myth of Sisyphus.” *The Myth of Sisyphus,* Vintage Books, 1955, pp. 119-123.
+
+Genna, Raimondo. “Theatre After World War II.” *Post-war theatre: French Theatre of the Absurd*, Theatre History: Modern Drama & Theatre, 13 Nov. 2017, University of South Dakota, Vermillion, SD. Lecture.
+
+Miller, Arthur. “Death of a Salesman.” *The Norton Anthology of Drama Volume Two,* W. W. Norton & Company, Inc., 2009, pp. 759-824.
+
+</div>
+
+</div>

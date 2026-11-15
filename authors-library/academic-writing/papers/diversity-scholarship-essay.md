@@ -1,0 +1,21 @@
+# Diversity Scholarship Essay
+
+**Degree / Program:** MA in Mental Health Counseling  
+**Course / Context:** Scholarship application, California Institute of Integral Studies  
+**Date:** Undated (early 2018)  
+
+---
+
+<p class="piece-note">Personal details (finances, military service, family, and staff names) have been generalized.</p>
+
+<div class="paper mla">
+
+When I was a junior in high school, I went on a mission trip to Ukraine to help teach high school students English. During my travels, I enjoyed working with the students to break down our language barriers and learn about each other’s cultures. On my flight home, I reflected on the trip and realized how much I enjoyed helping other people, and from that moment, helping others became my main goal in life. When I introspectively look at myself, I do not see individual characteristics, I see the stories, like my Ukraine experience, that have helped shape who I am. This trip helped me realize how large the world is and how small the Midwest is. I know being a white, heterosexual, cisgender woman moving from the Midwest seem to fall under the category of diverse or inclusive; however, having realized my upbringing, I have tried to take as many opportunities as I could to diversify my education, including course work and careers, qualifying me to be considered for the Diversity Scholarship at California Institute of Integral Studies.
+
+During my college career, sought out courses that would aid me in my mission to learn more about cultural diversity: Social Psychology of Prejudice, Psychology of Sexual Orientation and Gender Diversity (PSOGD), and Arts in Health: Ethics and Multiculturalism. In these classes, I have studied diverse minority populations and how society treats them. My course on social prejudice covered multiple populations, including race, LGBTQ, body size, and disabilities. PSOGD helped me understand the history, research, and social injustices regarding members of the LGBTQ community. These two courses taught me to think critically about my own status and challenge societies views. In my multiculturalism class, we read the book *Understanding White Privilege* by Frances Kendall. I believe this book challenged my views of myself and others. I am passionate about equality and justice for those who have not had the same opportunities those with higher privilege.
+
+I have worked in various facilities working with diverse populations. I have gained firsthand experience with racial minorities when I worked in the USD Writing Center where I had the privilege to work with English as a Second Language students from multiple countries. I have also worked at the Family Visitation Center working with various families where the children have been taken out of their home due to various instances. Many of these families have different backgrounds than me and I had the opportunity to create relationships with the children in these families. I also helped adults with developmental disabilities perform a play for the local public. Finally, I created a theatre program for the socially outcast adolescents at a local juvenile detention center. I feel a need to reach out to populations being pushed away from the societal norm just because they are different.
+
+Having taken these various courses and worked with diverse populations, the people I have met and ideas I have learned continue with me. I am motivated to make the world a better place for those who may not have had the same privileges as myself. While attending graduate school to become a drama therapist, I want to be an advocate for social change and specifically work with marginalized populations that have not had the same opportunities as those who many have had more privilege. I would like to work with at-risk youth, homeless adolescents, and youth in juvenile detention centers because I feel as though they deserve a voice in society. I feel as though they are part of the future and would like to work towards helping them discover themselves. While this is my ultimate goal, my parents have made me very independent, and I have worked four different jobs at the same time over the course of my undergraduate career. I am grateful for the opportunity to apply for the Diversity Scholarship at CIIS and appreciate your consideration of my application.
+
+</div>
