@@ -1,228 +1,149 @@
+// One resource list (data/resources.json), shown in two places:
+//   Adulting → Healthcare → Mental Health Resources   <body data-collection="clients">
+//   Therapist Tools → Resource Library                <body data-collection="therapists" data-resources-base="../../adulting/healthcare/resources/">
+// Each entry lists its collections, so nothing is stored twice.
 document.addEventListener('DOMContentLoaded', () => {
     const resourceList = document.getElementById('resource-list');
     const filterContainer = document.getElementById('filter-container');
     const searchBar = document.getElementById('search-bar');
     const sortBy = document.getElementById('sort-by');
     const activeFiltersDisplay = document.getElementById('active-filters-display');
+    const countEl = document.getElementById('resource-count');
+
+    const COLLECTION = document.body.dataset.collection || 'clients';
+    const BASE = document.body.dataset.resourcesBase || './';
+
+    const esc = (v) => String(v === undefined || v === null ? '' : v)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    // Citations use *asterisks* for italics; escape first, then turn those into <em>
+    const cite = (v) => esc(v).replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    const safeUrl = (u) => (/^(https?:|\.{0,2}\/|[\w-]+\/)/i.test(String(u || '')) && !/^javascript:/i.test(String(u)) ? u : '#');
 
     let allResources = [];
     let sortColumn = 'title';
     let sortAscending = true;
 
-    const activeFilters = {
-        audience: new Set(),
-        format: new Set(),
-        language: new Set(),
-        features: new Set(),
-        diagnosis: new Set(),
-        symptom: new Set(),
-        therapyStyle: new Set()
+    const GROUPS = [
+        { key: 'diagnosis', title: 'Diagnosis', topic: true },
+        { key: 'symptom', title: 'Symptom', topic: true },
+        { key: 'therapyStyle', title: 'Therapy Style', topic: true },
+        { key: 'format', title: 'Format' },
+        { key: 'audience', title: 'Audience' },
+        { key: 'features', title: 'Features' },
+        { key: 'language', title: 'Language' }
+    ];
+    const activeFilters = Object.fromEntries(GROUPS.map((g) => [g.key, new Set()]));
+    const valuesOf = (res, g) => {
+        const v = g.topic ? (res.topics || {})[g.key] : res[g.key];
+        return Array.isArray(v) ? v : (v ? [v] : []);
     };
-    const filterKeys = Object.keys(activeFilters);
 
-    fetch('./data/resources.json')
-        .then(response => {
+    fetch(`${BASE}data/resources.json`)
+        .then((response) => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
         })
-        .then(data => {
-            allResources = data;
+        .then((data) => {
+            allResources = data.filter((r) => (r.collections || ['clients']).includes(COLLECTION));
             updateUI();
             searchBar.addEventListener('input', updateUI);
             sortBy.addEventListener('change', () => {
-                const val = sortBy.value;
                 sortColumn = 'title';
-                sortAscending = val === 'a-z';
+                sortAscending = sortBy.value === 'a-z';
                 updateUI();
             });
         })
-        .catch(error => {
+        .catch((error) => {
             console.error('Fetch error:', error);
-            resourceList.innerHTML = `<tr><td colspan="5" style="color: #ef4444;">Error loading resources data. Check data file path.</td></tr>`;
+            resourceList.innerHTML = '<tr><td colspan="5" style="color: #ef4444;">Error loading resources data. Check data file path.</td></tr>';
         });
 
-    window.sortTable = function(columnKey) {
-        if (columnKey === 'description' || columnKey === 'tags') return;
-        if (sortColumn === columnKey) {
-            sortAscending = !sortAscending;
-        } else {
-            sortColumn = columnKey;
-            sortAscending = true;
-        }
+    window.sortTable = function (columnKey) {
+        if (sortColumn === columnKey) sortAscending = !sortAscending;
+        else { sortColumn = columnKey; sortAscending = true; }
         updateUI();
     };
 
     function updateUI() {
-        const filteredResources = getFilteredAndSortedResources();
-        populateAllFilters(filteredResources);
+        const filtered = getFilteredAndSortedResources();
+        populateAllFilters(filtered);
         updateActiveFiltersDisplay();
-        displayResourcesTable(filteredResources);
+        displayResourcesTable(filtered);
+        if (countEl) countEl.textContent = `${filtered.length} of ${allResources.length} resources`;
     }
 
     function getFilteredAndSortedResources() {
-        const searchQuery = searchBar.value.toLowerCase();
-
-        const checkboxFiltered = allResources.filter(resource => {
-            const check = (key, resourceValue) => {
-                if (activeFilters[key].size === 0) return true;
-                if (Array.isArray(resourceValue)) {
-                    return resourceValue.some(val => activeFilters[key].has(val));
-                }
-                return activeFilters[key].has(resourceValue);
-            };
-            return filterKeys.every(key => {
-                if (['diagnosis', 'symptom', 'therapyStyle'].includes(key)) {
-                    return check(key, resource.topics[key]);
-                }
-                return check(key, resource[key]);
+        const q = searchBar.value.toLowerCase().trim();
+        return allResources
+            .filter((res) => GROUPS.every((g) => activeFilters[g.key].size === 0 || valuesOf(res, g).some((v) => activeFilters[g.key].has(v))))
+            .filter((res) => !q || [res.title, res.description, ...GROUPS.flatMap((g) => valuesOf(res, g))].join(' ').toLowerCase().includes(q))
+            .sort((a, b) => {
+                const A = String(a[sortColumn] || '').toLowerCase();
+                const B = String(b[sortColumn] || '').toLowerCase();
+                return A < B ? (sortAscending ? -1 : 1) : A > B ? (sortAscending ? 1 : -1) : 0;
             });
-        });
-
-        const searchFiltered = checkboxFiltered.filter(resource => {
-            if (searchQuery === '') return true;
-            return resource.title.toLowerCase().includes(searchQuery) ||
-                   resource.description.toLowerCase().includes(searchQuery);
-        });
-
-        return searchFiltered.sort((a, b) => {
-            let valA = (a[sortColumn] || '').toString().toLowerCase();
-            let valB = (b[sortColumn] || '').toString().toLowerCase();
-            if (valA < valB) return sortAscending ? -1 : 1;
-            if (valA > valB) return sortAscending ? 1 : -1;
-            return 0;
-        });
     }
 
-    function populateAllFilters(filteredResources) {
-        const filterData = { audience: {}, format: {}, language: {}, features: {}, diagnosis: {}, symptom: {}, therapyStyle: {} };
-        const allFilterValues = { audience: new Set(), format: new Set(), language: new Set(), features: new Set(), diagnosis: new Set(), symptom: new Set(), therapyStyle: new Set() };
-
-        allResources.forEach(res => {
-            res.audience.forEach(i => allFilterValues.audience.add(i));
-            allFilterValues.format.add(res.format);
-            res.language.forEach(i => allFilterValues.language.add(i));
-            res.features.forEach(i => allFilterValues.features.add(i));
-            res.topics.diagnosis.forEach(i => allFilterValues.diagnosis.add(i));
-            res.topics.symptom.forEach(i => allFilterValues.symptom.add(i));
-            res.topics.therapyStyle.forEach(i => allFilterValues.therapyStyle.add(i));
-        });
-
-        filteredResources.forEach(res => {
-            res.audience.forEach(i => filterData.audience[i] = (filterData.audience[i] || 0) + 1);
-            filterData.format[res.format] = (filterData.format[res.format] || 0) + 1;
-            res.language.forEach(i => filterData.language[i] = (filterData.language[i] || 0) + 1);
-            res.features.forEach(i => filterData.features[i] = (filterData.features[i] || 0) + 1);
-            res.topics.diagnosis.forEach(i => filterData.diagnosis[i] = (filterData.diagnosis[i] || 0) + 1);
-            res.topics.symptom.forEach(i => filterData.symptom[i] = (filterData.symptom[i] || 0) + 1);
-            res.topics.therapyStyle.forEach(i => filterData.therapyStyle[i] = (filterData.therapyStyle[i] || 0) + 1);
-        });
-
-        const openGroups = new Set();
-        filterContainer.querySelectorAll('details[open]').forEach(el => {
-            openGroups.add(el.dataset.group);
-        });
-
-        filterContainer.innerHTML = `
-            ${createFilterGroupHTML('Diagnosis', 'diagnosis', Array.from(allFilterValues.diagnosis).sort(), filterData.diagnosis, openGroups.has('diagnosis'))}
-            ${createFilterGroupHTML('Symptom', 'symptom', Array.from(allFilterValues.symptom).sort(), filterData.symptom, openGroups.has('symptom'))}
-            ${createFilterGroupHTML('Format', 'format', Array.from(allFilterValues.format).sort(), filterData.format, openGroups.has('format'))}
-            ${createFilterGroupHTML('Audience', 'audience', Array.from(allFilterValues.audience).sort(), filterData.audience, openGroups.has('audience'))}
-            ${createFilterGroupHTML('Therapy Style', 'therapyStyle', Array.from(allFilterValues.therapyStyle).sort(), filterData.therapyStyle, openGroups.has('therapyStyle'))}
-        `;
-
-        filterContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', (e) => {
-                const group = e.target.dataset.group;
-                const value = e.target.dataset.value;
-                if (e.target.checked) {
-                    activeFilters[group].add(value);
-                } else {
-                    activeFilters[group].delete(value);
-                }
+    function populateAllFilters(filtered) {
+        const openGroups = new Set([...filterContainer.querySelectorAll('details[open]')].map((el) => el.dataset.group));
+        filterContainer.innerHTML = GROUPS.map((g) => {
+            const all = [...new Set(allResources.flatMap((r) => valuesOf(r, g)))].sort((a, b) => a.localeCompare(b));
+            const counts = {};
+            filtered.forEach((r) => valuesOf(r, g).forEach((v) => { counts[v] = (counts[v] || 0) + 1; }));
+            const active = activeFilters[g.key].size;
+            return `<details class="filter-accordion" data-group="${g.key}" ${openGroups.has(g.key) || active ? 'open' : ''}>
+                <summary>${esc(g.title)}${active ? ` (${active})` : ''}</summary>
+                <div class="filter-options">${all.map((opt) => {
+                    const n = counts[opt] || 0;
+                    const checked = activeFilters[g.key].has(opt);
+                    return `<label class="filter-option" style="${!checked && !n ? 'opacity: 0.4;' : ''}"><span><input type="checkbox" data-group="${g.key}" data-value="${esc(opt)}" ${checked ? 'checked' : ''} ${!checked && !n ? 'disabled' : ''}>${esc(opt)}</span><span class="filter-count">(${n})</span></label>`;
+                }).join('')}</div>
+            </details>`;
+        }).join('');
+        filterContainer.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
+            cb.addEventListener('change', (e) => {
+                const set = activeFilters[e.target.dataset.group];
+                if (e.target.checked) set.add(e.target.dataset.value); else set.delete(e.target.dataset.value);
                 updateUI();
             });
         });
-    }
-
-    function createFilterGroupHTML(title, groupKey, options, counts, isOpen) {
-        const activeCountInGroup = activeFilters[groupKey].size;
-        const groupBadge = activeCountInGroup > 0 ? ` (${activeCountInGroup})` : '';
-
-        return `
-            <details class="filter-accordion" data-group="${groupKey}" ${isOpen || activeCountInGroup > 0 ? 'open' : ''}>
-                <summary>${title}${groupBadge}</summary>
-                <div class="filter-options">
-                    ${options.map(option => {
-                        const count = counts[option] || 0;
-                        const isChecked = activeFilters[groupKey].has(option);
-                        return `
-                        <label class="filter-option" style="${!isChecked && count === 0 ? 'opacity: 0.4;' : ''}">
-                            <span>
-                                <input type="checkbox" data-group="${groupKey}" data-value="${option}" ${isChecked ? 'checked' : ''} ${!isChecked && count === 0 ? 'disabled' : ''}>${option}
-                            </span>
-                            <span class="filter-count">(${count})</span>
-                        </label>
-                    `}).join('')}
-                </div>
-            </details>
-        `;
     }
 
     function updateActiveFiltersDisplay() {
-        activeFiltersDisplay.innerHTML = '';
-        let hasActiveFilters = false;
-
-        filterKeys.forEach(group => {
-            activeFilters[group].forEach(value => {
-                hasActiveFilters = true;
-                const tag = document.createElement('div');
-                tag.className = 'active-filter-tag';
-                tag.innerHTML = `${value} <button class="remove-filter-btn" data-group="${group}" data-value="${value}">&times;</button>`;
-                activeFiltersDisplay.appendChild(tag);
-            });
-        });
-
-        if (hasActiveFilters) {
-            const clearButton = document.createElement('button');
-            clearButton.className = 'clear-all-btn';
-            clearButton.textContent = 'Clear All';
-            clearButton.onclick = () => {
-                filterKeys.forEach(group => activeFilters[group].clear());
-                updateUI();
-            };
-            activeFiltersDisplay.appendChild(clearButton);
-        }
-
-        activeFiltersDisplay.querySelectorAll('.remove-filter-btn').forEach(button => {
-            button.onclick = (e) => {
-                const group = e.target.dataset.group;
-                const value = e.target.dataset.value;
-                activeFilters[group].delete(value);
-                updateUI();
-            };
-        });
+        const tags = [];
+        GROUPS.forEach((g) => activeFilters[g.key].forEach((v) => tags.push(`<div class="active-filter-tag">${esc(v)} <button class="remove-filter-btn" data-group="${g.key}" data-value="${esc(v)}" aria-label="Remove ${esc(v)}">&times;</button></div>`)));
+        activeFiltersDisplay.innerHTML = tags.length ? `${tags.join('')}<button class="clear-all-btn" type="button">Clear All</button>` : '';
+        activeFiltersDisplay.querySelectorAll('.remove-filter-btn').forEach((b) => b.addEventListener('click', () => { activeFilters[b.dataset.group].delete(b.dataset.value); updateUI(); }));
+        const clear = activeFiltersDisplay.querySelector('.clear-all-btn');
+        if (clear) clear.addEventListener('click', () => { GROUPS.forEach((g) => activeFilters[g.key].clear()); updateUI(); });
     }
 
-    function displayResourcesTable(filteredList) {
-        resourceList.innerHTML = '';
-        if (filteredList.length === 0) {
-            resourceList.innerHTML = `<tr><td colspan="5" style="color: #aaa;">No resources found matching current criteria.</td></tr>`;
+    // Entries with a `view` open on this site (full page, hosted PDF, or summary); others go straight to the source.
+    function viewHref(res) {
+        return `${BASE}view.html?id=${encodeURIComponent(res.id)}${COLLECTION === 'therapists' ? '&from=therapists' : ''}`;
+    }
+    const VIEW_LABEL = { page: 'Read on this site', file: 'Open the PDF', summary: 'Read the overview' };
+
+    function displayResourcesTable(list) {
+        if (!list.length) {
+            resourceList.innerHTML = '<tr><td colspan="5" style="color: #aaa;">No resources found matching current criteria.</td></tr>';
             return;
         }
-
-        filteredList.forEach(resource => {
-            const tr = document.createElement('tr');
-            const tags = [...resource.audience, ...resource.features, ...resource.topics.diagnosis, ...resource.topics.symptom]
-                .map(t => `<span class="tag-item">${t}</span>`).join('');
-            
-            tr.innerHTML = `
-                <td><a href="${resource.url}" target="_blank" rel="noopener noreferrer">${resource.title}</a></td>
-                <td><span class="resource-type-badge">${resource.format}</span></td>
-                <td>${resource.description}</td>
+        resourceList.innerHTML = list.map((res) => {
+            const tags = [...res.audience, ...res.features, ...res.topics.diagnosis, ...res.topics.symptom].map((t) => `<span class="tag-item">${esc(t)}</span>`).join('');
+            const onSite = res.view && res.view.type;
+            const main = onSite ? viewHref(res) : safeUrl(res.url);
+            const actions = [
+                onSite ? `<a class="resource-action" href="${esc(viewHref(res))}">${esc(VIEW_LABEL[onSite] || 'View')}</a>` : '',
+                res.url ? `<a class="resource-action" href="${esc(safeUrl(res.url))}" target="_blank" rel="noopener noreferrer">${onSite ? 'Original source ↗' : 'Open ↗'}</a>` : ''
+            ].filter(Boolean).join('');
+            return `<tr>
+                <td><a href="${esc(main)}"${onSite ? '' : ' target="_blank" rel="noopener noreferrer"'}>${esc(res.title)}</a><div class="resource-actions">${actions}</div></td>
+                <td><span class="resource-type-badge">${esc(res.format)}</span></td>
+                <td>${esc(res.description)}</td>
                 <td><div class="tag-list">${tags}</div></td>
-                <td style="font-size: 0.8em; color: #888;">${resource.citation}</td>
-            `;
-            resourceList.appendChild(tr);
-        });
+                <td style="font-size: 0.8em; color: #888;">${cite(res.citation)}</td>
+            </tr>`;
+        }).join('');
     }
 });
