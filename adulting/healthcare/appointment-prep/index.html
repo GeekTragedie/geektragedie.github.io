@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="../../../therapist-tools/toolkit.css">
+<link rel="stylesheet" href="../client-tools.css">
+<link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+<title>Healthcare: Therapy Appointment Prep</title>
+</head>
+<body aria-label="Therapy Appointment Prep">
+<script src="../../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="../../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../adulting/index.html" class="dropbtn active">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+                <a href="../../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../../adulting/healthcare/index.html">Healthcare</a>
+                <a href="../../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../../therapist-tools/notegenerator/index.html">Session Note Generator</a>
+                <a href="../../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
+                <a href="../../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
+                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
+                <a href="../../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <a class="btn btn-sm sidebar-btn" href="../index.html">← Healthcare</a>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">Prep</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#ap-visit">The appointment</a></li>
+                        <li><a href="#ap-since">Since last time</a></li>
+                        <li><a href="#ap-topics">What I want to talk about</a></li>
+                        <li><a href="#ap-questions">Questions to ask</a></li>
+                        <li><a href="#ap-hard">Hard to say out loud</a></li>
+                        <li><a href="#ap-after">After the session</a></li>
+                        <li><a href="#ctOutputHeading">My summary</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="import">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json,application/json" class="hidden">
+                    <button type="button" class="btn btn-sm sidebar-btn btn-primary" data-action="export">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="saveLocalToggle"><span>Save in this browser (keeps your entries on this device; leave off on shared computers)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="print">Print</button>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="copy">Copy as text</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" class="btn btn-sm sidebar-btn btn-danger" data-action="reset">Clear this page</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">Therapy Appointment Prep</h1>
+        <p class="ct-intro">A few minutes of prep before therapy can make the hour count, especially if your mind goes blank once you sit down. Jot down what’s happened, what you want to talk about, and what you want to ask, then bring it with you.</p>
+
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Fill in whatever is useful. Nothing here is required.</li>
+                    <li>Star the one topic that matters most, so it doesn’t get pushed to the last five minutes.</li>
+                    <li>Print the summary, copy it into your phone, or hand it to your therapist.</li>
+                    <li>After the session, add what you’re trying this week, and save a .json to start next time’s prep from it.</li>
+                </ol>
+                <p><strong>Your privacy:</strong> nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
+            </div>
+        </details>
+
+        <section class="ct-section" aria-labelledby="ap-visit">
+            <h2 id="ap-visit">The appointment</h2>
+            <div class="ct-grid">
+                <label class="ct-field">Date<input type="date" data-field="visit.date"></label>
+                <label class="ct-field">With<input type="text" data-field="visit.with" placeholder="Therapist’s name"></label>
+                <label class="ct-field">How we’re meeting<select data-field="visit.format"><option value="">Choose…</option><option>In person</option><option>Video</option><option>Phone</option></select></label>
+            </div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="ap-since">
+            <h2 id="ap-since">Since last time</h2>
+            <div class="ct-scale">
+                <div class="ct-scale-head"><label for="apMood">Overall mood</label><output id="apMoodOut"></output></div>
+                <input type="range" id="apMood" min="1" max="10" data-field="since.mood">
+                <div class="ct-scale-ends"><span>1 = really rough</span><span>10 = really good</span></div>
+            </div>
+            <div class="ct-scale">
+                <div class="ct-scale-head"><label for="apSleep">Sleep</label><output id="apSleepOut"></output></div>
+                <input type="range" id="apSleep" min="1" max="10" data-field="since.sleep">
+                <div class="ct-scale-ends"><span>1 = barely</span><span>10 = rested</span></div>
+            </div>
+            <div class="ct-grid">
+                <label class="ct-field ct-wide">What went well<textarea data-field="since.wins" placeholder="Big or small"></textarea></label>
+                <label class="ct-field ct-wide">What was hard<textarea data-field="since.hard"></textarea></label>
+                <label class="ct-field ct-wide">What I tried from last session, and how it went<textarea data-field="since.tried" placeholder="e.g., The breathing thing helped once. I forgot the journal."></textarea></label>
+                <label class="ct-field ct-wide">Changes in medication, health, or other appointments<textarea data-field="since.health" placeholder="e.g., Started a new medication on the 3rd. Saw my doctor about headaches."></textarea></label>
+            </div>
+            <div class="ct-checks" style="margin-top:.75rem">
+                <label><input type="checkbox" data-field="since.safety"> I’ve had thoughts of hurting myself or not wanting to be here</label>
+            </div>
+            <div id="apSafetyNote" class="ct-callout is-urgent" hidden>
+                <p><strong>Thank you for noting this.</strong> Try to bring it up at the start of the session, not the end, so there’s time to talk it through. You can just hand your therapist this page.</p>
+                <p>If you might act on these thoughts before your appointment, call or text <strong>988</strong>, text <strong>HOME to 741741</strong>, or call <strong>911</strong>. The <a href="../my-safety-plan/index.html">My Safety Plan</a> tool can help too.</p>
+            </div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="ap-topics">
+            <h2 id="ap-topics">What I want to talk about</h2>
+            <p class="ct-help">One topic per line. The first one is your top priority; reorder by cutting and pasting.</p>
+            <textarea data-field="topics" aria-labelledby="ap-topics" placeholder="e.g., The fight with my roommate&#10;Whether I should go back to school"></textarea>
+        </section>
+
+        <section class="ct-section" aria-labelledby="ap-questions">
+            <h2 id="ap-questions">Questions to ask</h2>
+            <p class="ct-help">It’s okay to ask your therapist about how therapy works. Tap any that fit.</p>
+            <textarea data-field="questions" aria-labelledby="ap-questions"></textarea>
+            <div class="ct-chips" id="apQuestionChips"></div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="ap-hard">
+            <h2 id="ap-hard">Hard to say out loud</h2>
+            <p class="ct-help">Something you want your therapist to know but find hard to say. You can hand this part over and let them start.</p>
+            <textarea data-field="hard" aria-labelledby="ap-hard"></textarea>
+        </section>
+
+        <section class="ct-section" aria-labelledby="ap-after">
+            <h2 id="ap-after">After the session</h2>
+            <div class="ct-grid">
+                <label class="ct-field ct-wide">What I want to remember<textarea data-field="after.notes"></textarea></label>
+                <label class="ct-field ct-wide">What I’m trying this week<textarea data-field="after.trying"></textarea></label>
+                <label class="ct-field">Next appointment<input type="date" data-field="after.next"></label>
+            </div>
+        </section>
+
+        <section aria-labelledby="ctOutputHeading">
+            <h2 id="ctOutputHeading" class="text-xl font-bold mb-2 ct-print-hide">My summary</h2>
+            <p class="muted text-sm mb-2 ct-print-hide">Updates as you type. This is what prints.</p>
+            <div id="ctOutput" class="ct-output"></div>
+        </section>
+
+    </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+
+<script src="../../../therapist-tools/shared/diagnoses.js"></script>
+<script src="../client-tools.js"></script>
+<script src="index.js"></script>
+<script src="../../../therapist-tools/toolkit.js"></script>
+</body>
+</html>

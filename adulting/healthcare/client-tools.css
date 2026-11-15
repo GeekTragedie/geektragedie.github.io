@@ -1,0 +1,173 @@
+/* Shared styles for the Healthcare client tools.
+   Theme and the sidebar layout come from ../../../assets/site.css and ../../../therapist-tools/toolkit.css */
+
+body {
+    background-image:
+        linear-gradient(var(--overlay-color), var(--overlay-color)),
+        url('../bird-eggs.jpg');
+}
+
+.ct-intro {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 46rem;
+    margin: 0 auto 1.5rem;
+}
+.ct-section {
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    background-color: var(--bg-subpanel, transparent);
+}
+.ct-section > h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    color: var(--accent);
+}
+.ct-section > .ct-help {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0 0 0.8rem;
+}
+.ct-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+    gap: 0.75rem 1rem;
+    align-items: start;
+}
+.ct-wide { grid-column: 1 / -1; }
+.ct-section label.ct-field,
+.ct-row-field {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.ct-section input[type="text"],
+.ct-section input[type="date"],
+.ct-section input[type="number"],
+.ct-section input[type="tel"],
+.ct-section select,
+.ct-section textarea {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    font: inherit;
+    font-weight: 400;
+}
+.ct-section textarea { min-height: 4.5rem; resize: vertical; }
+.ct-checks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 0.4rem 1rem;
+}
+.ct-checks label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.ct-checks input { margin-top: 0.2rem; flex-shrink: 0; }
+
+/* Sliders */
+.ct-scale { margin-bottom: 0.75rem; }
+.ct-scale-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.ct-scale-head output { white-space: nowrap; flex-shrink: 0; }
+.ct-scale input[type="range"] { width: 100%; }
+.ct-scale-ends {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* Repeatable rows */
+.ct-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)) auto;
+    gap: 0.5rem 0.75rem;
+    align-items: end;
+    margin-bottom: 0.5rem;
+}
+.ct-row-remove { padding-bottom: 0.55rem; }
+.ct-row-add { margin-top: 0.25rem; }
+
+/* Suggestion chips */
+.ct-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.ct-chip {
+    border: 1px dashed var(--border-color);
+    border-radius: 999px;
+    background: none;
+    color: var(--text-main);
+    padding: 0.2rem 0.65rem;
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.ct-chip:hover, .ct-chip:focus-visible { border-style: solid; }
+
+/* Callouts */
+.ct-callout {
+    border-left: 4px solid var(--accent);
+    background-color: var(--bg-panel-hover);
+    border-radius: 0.4rem;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+}
+.ct-callout.is-urgent { border-left-color: var(--danger); }
+.ct-callout p { margin: 0.25rem 0; }
+.ct-callout ul { margin: 0.25rem 0 0 1.1rem; list-style: disc; }
+
+/* Live output / printout */
+.ct-output {
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    padding: 1.25rem 1.4rem;
+    background-color: var(--bg-input, transparent);
+}
+.ct-output h2 { font-size: 1.3rem; margin: 0 0 0.25rem; }
+.ct-output h3 { font-size: 1rem; margin: 1rem 0 0.25rem; color: var(--accent); }
+.ct-output ul { margin: 0.2rem 0 0 1.2rem; list-style: disc; }
+.ct-output p { margin: 0.2rem 0; }
+.ct-output .ct-empty { color: var(--text-muted); }
+.ct-output table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.9rem; }
+.ct-output th, .ct-output td { border: 1px solid var(--border-color); padding: 0.4rem 0.5rem; text-align: left; vertical-align: top; }
+
+.ct-sources { font-size: 0.8rem; color: var(--text-muted); }
+.ct-sources p { padding-left: 2em; text-indent: -2em; margin: 0 0 0.4em; overflow-wrap: anywhere; }
+
+.ct-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translateX(-50%) translateY(150%);
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    transition: transform 0.25s ease;
+    z-index: 50;
+}
+.ct-toast.show { transform: translateX(-50%) translateY(0); }
+
+@media print {
+    body { background: #fff !important; color: #000; }
+    .top-nav, .site-footer, .tool-sidebar, .ct-no-print, .tool-panel > h1, .ct-intro, .ct-section, #how-to-use, .ct-toast { display: none !important; }
+    .panel, .tool-panel, .container { background: #fff !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; max-width: none !important; }
+    .ct-output { border: 0; padding: 0; color: #000; }
+    .ct-output h3 { color: #000; }
+    .ct-output th, .ct-output td { border-color: #000; color: #000; }
+    .ct-print-hide { display: none !important; }
+}

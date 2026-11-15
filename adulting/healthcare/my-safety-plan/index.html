@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="../../../therapist-tools/toolkit.css">
+<link rel="stylesheet" href="../client-tools.css">
+<link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+<title>Healthcare: My Safety Plan</title>
+</head>
+<body aria-label="My Safety Plan">
+<script src="../../../assets/theme.js"></script>
+
+<nav class="top-nav" aria-label="Main Navigation">
+    <a href="../../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="../../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../authors-library/pnoc/index.html">Progress Notes on Confinement</a>
+                <a href="../../../authors-library/academic-writing/index.html">Academic Writing</a>
+                <a href="../../../authors-library/creative-writing/index.html">Creative Writing</a>
+                <a href="../../../authors-library/art/index.html">Art</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../niches/index.html" class="dropbtn">Niches &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../niches/potions-spreadsheet/index.html">RPG Potion Creation Index</a>
+                <a href="../../../niches/haunted-wiki/index.html">Haunted Locations Wiki</a>
+                <a href="../../../niches/incarceration-museum-wiki/index.html">Incarceration Museum Wiki</a>
+                <a href="../../../niches/magicrpg/index.html">Magic RPG Character Creator</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../adulting/index.html" class="dropbtn active">Adulting &#9662;</a>
+            <div class="dropdown-content">
+                <a href="../../../adulting/my-budget/index.html">My Budget</a>
+                <a href="../../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
+                <a href="../../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../../adulting/healthcare/index.html">Healthcare</a>
+                <a href="../../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="../../../therapist-tools/index.html" class="dropbtn">Therapist Tools &#9662;</a>
+            <div class="dropdown-content">
+                <span class="dropdown-label">Day-to-Day</span>
+                <a href="../../../therapist-tools/notegenerator/index.html">Session Note Generator</a>
+                <a href="../../../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
+                <a href="../../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
+                <a href="../../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
+                <a href="../../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
+                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
+                <a href="../../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
+                <a href="../../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Finance &amp; Business</span>
+                <a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
+                <a href="../../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
+                <a href="../../../therapist-tools/practiceinfosheet/index.html">Practice Info Sheet</a>
+                <span class="dropdown-label">Licensure</span>
+                <a href="../../../therapist-tools/ceutracker/index.html">CEU Tracker</a>
+                <a href="../../../therapist-tools/supervisionlog/index.html">Supervision Log</a>
+                <span class="dropdown-label">Starting a Practice</span>
+                <a href="../../../therapist-tools/practicestartingaid/index.html">Practice Starting Aid</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main class="container tool-container has-sidebar">
+    <div class="tool-layout">
+        <aside class="tool-sidebar" aria-label="Tool menu">
+            <details class="tool-menu" open>
+                <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="tool-menu-body">
+                <a class="btn btn-sm sidebar-btn" href="../index.html">← Healthcare</a>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
+                <nav class="sidebar-group" aria-label="On this page">
+                    <span class="sidebar-label">My plan</span>
+                    <ul class="sidebar-toc">
+                        <li><a href="#sp-warning">Warning signs</a></li>
+                        <li><a href="#sp-coping">Things I can do</a></li>
+                        <li><a href="#sp-distract">People and places</a></li>
+                        <li><a href="#sp-help">People I can ask</a></li>
+                        <li><a href="#sp-crisis">Professionals and crisis lines</a></li>
+                        <li><a href="#sp-safer">Making my space safer</a></li>
+                        <li><a href="#sp-reasons">What matters to me</a></li>
+                        <li><a href="#ctOutputHeading">My finished plan</a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-group" role="group" aria-label="Your file">
+                    <span class="sidebar-label">Your file</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="import">Import .json</button>
+                    <input type="file" id="importJsonFile" accept=".json,application/json" class="hidden">
+                    <button type="button" class="btn btn-sm sidebar-btn btn-primary" data-action="export">Save .json</button>
+                    <label class="sidebar-check"><input type="checkbox" id="saveLocalToggle"><span>Save in this browser (keeps your entries on this device; leave off on shared computers)</span></label>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Print and share">
+                    <span class="sidebar-label">Print &amp; share</span>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="print">Print</button>
+                    <button type="button" class="btn btn-sm sidebar-btn" data-action="copy">Copy as text</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" class="btn btn-sm sidebar-btn btn-danger" data-action="reset">Clear this page</button>
+                </div>
+            </div>
+            </details>
+        </aside>
+
+    <div class="panel tool-panel">
+        <h1 class="text-4xl font-bold text-center mb-2">My Safety Plan</h1>
+        <p class="ct-intro">A safety plan is a short list you write ahead of time, for the moments when things get really hard. Fill in what you can. It works best when you make it with your therapist or someone you trust, and keep it somewhere easy to find.</p>
+
+        <div class="ct-callout is-urgent ct-no-print" role="note">
+            <p><strong>If you might act on thoughts of hurting yourself right now,</strong> call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), text <strong>HOME to 741741</strong>, or call <strong>911</strong>. You don’t have to finish this page first.</p>
+        </div>
+
+        <details id="how-to-use" class="collapsible help how-to mb-6">
+            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+            <div class="collapsible-body">
+                <ol class="list-decimal space-y-1">
+                    <li>Go through the steps in order. Each one is something to try if the step before it isn’t enough.</li>
+                    <li>Tap a suggestion to add it, or write your own words. Your own words work best.</li>
+                    <li>Pick your state to see crisis lines near you.</li>
+                    <li>Print your plan or save a copy on your phone. Share it with someone you trust if that feels okay.</li>
+                </ol>
+                <p><strong>Your privacy:</strong> nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
+                <p><strong>Where this comes from:</strong> safety planning is one of the best-studied ways to get through a suicidal crisis (Stanley &amp; Brown, 2012). This page is written in our own words. It isn’t the Stanley-Brown Safety Plan Form and isn’t affiliated with or endorsed by its authors; you can find the official form at <a href="https://suicidesafetyplan.com/forms/" target="_blank" rel="noopener">suicidesafetyplan.com</a>.</p>
+            </div>
+        </details>
+
+        <section class="ct-section" aria-labelledby="sp-warning">
+            <h2 id="sp-warning">My warning signs</h2>
+            <p class="ct-help">Thoughts, feelings, situations, or things I do that tell me a hard time might be starting.</p>
+            <textarea data-field="warningSigns" aria-labelledby="sp-warning" placeholder="e.g., I stop answering texts. I can’t sleep. I start thinking nobody would notice if I were gone."></textarea>
+            <div class="ct-chips" data-chips="warningSigns" data-source="warningSigns"></div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="sp-coping">
+            <h2 id="sp-coping">Things I can do on my own to feel a little better</h2>
+            <p class="ct-help">Small things that help me ride out the feeling, even a bit.</p>
+            <textarea data-field="coping" aria-labelledby="sp-coping" placeholder="e.g., Hold something cold. Put on my comfort playlist. Take a shower."></textarea>
+            <div class="ct-chips" data-chips="coping" data-source="copingStrategies"></div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="sp-distract">
+            <h2 id="sp-distract">People and places that take my mind off things</h2>
+            <p class="ct-help">I don’t have to talk about how I feel with them. Being around them helps.</p>
+            <div data-rows="distractions" data-row-fields="name,contact" data-row-labels="Person or place,Phone or address" data-row-placeholders="e.g., My cousin Ana, the library|" data-add-label="+ Add a person or place"></div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="sp-help">
+            <h2 id="sp-help">People I can ask for help</h2>
+            <p class="ct-help">People I can tell that I’m not okay.</p>
+            <div data-rows="helpers" data-row-fields="name,phone" data-row-labels="Name,Phone" data-add-label="+ Add someone"></div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="sp-crisis">
+            <h2 id="sp-crisis">Professionals and crisis lines</h2>
+            <div class="ct-grid">
+                <label class="ct-field">My therapist or counselor<input type="text" data-field="pros.therapist" placeholder="Name"></label>
+                <label class="ct-field">Their phone<input type="tel" data-field="pros.therapistPhone"></label>
+                <label class="ct-field">My doctor or psychiatrist<input type="text" data-field="pros.doctor" placeholder="Name"></label>
+                <label class="ct-field">Their phone<input type="tel" data-field="pros.doctorPhone"></label>
+                <label class="ct-field ct-wide">Nearest emergency room or urgent care<input type="text" data-field="pros.er" placeholder="Name and address"></label>
+                <label class="ct-field">My state<select id="spState" data-field="state"></select></label>
+            </div>
+            <p class="ct-help" style="margin-top:.75rem">Also show lines for:</p>
+            <div class="ct-checks">
+                <label><input type="checkbox" data-list="lineTags" value="lgbtq"> LGBTQ+ people</label>
+                <label><input type="checkbox" data-list="lineTags" value="youth"> Young people</label>
+                <label><input type="checkbox" data-list="lineTags" value="veterans"> Veterans</label>
+                <label><input type="checkbox" data-list="lineTags" value="dv"> Domestic or dating violence</label>
+                <label><input type="checkbox" data-list="lineTags" value="substance"> Alcohol or drug use</label>
+            </div>
+        </section>
+
+        <section class="ct-section" aria-labelledby="sp-safer">
+            <h2 id="sp-safer">Making my space safer</h2>
+            <p class="ct-help">Putting distance between yourself and things you could use to hurt yourself is one of the most protective steps there is. Think about medications, firearms, sharp objects, or anything else. Someone you trust can hold onto them, lock them up, or take them out of the house for a while.</p>
+            <textarea data-field="safer" aria-labelledby="sp-safer" placeholder="e.g., My sister keeps my extra medication. I gave my brother the key to the lockbox."></textarea>
+        </section>
+
+        <section class="ct-section" aria-labelledby="sp-reasons">
+            <h2 id="sp-reasons">What matters to me</h2>
+            <p class="ct-help">People, pets, plans, values, or little things I want to stick around for.</p>
+            <textarea data-field="reasons" aria-labelledby="sp-reasons" placeholder="e.g., My cat, Juniper. Seeing the next season of my show. My niece’s birthday."></textarea>
+        </section>
+
+        <section aria-labelledby="ctOutputHeading">
+            <h2 id="ctOutputHeading" class="text-xl font-bold mb-2 ct-print-hide">My finished plan</h2>
+            <p class="muted text-sm mb-2 ct-print-hide">Updates as you type. This is what prints.</p>
+            <div id="ctOutput" class="ct-output"></div>
+        </section>
+
+    </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p class="disclaimer">
+            <strong>Clinical Disclaimer:</strong> Everything on this site is for education and self-advocacy. It isn’t therapy, a diagnosis, or medical advice, and it shouldn’t replace individualized care from a qualified healthcare or mental health professional. Visiting or using this site does not establish a clinician-client relationship.
+        </p>
+        <p class="disclaimer">
+            If you’re experiencing a mental health crisis in the U.S., call or text 988. If you or someone else is in immediate danger, call 911 or your local emergency number.
+        </p>
+        <p class="disclaimer">
+            <strong>Site Status &amp; Archival Note:</strong> This site is a living collection of passion projects, updated whenever time, life seasons, and my current interests align. Because this archive includes older essays and academic work alongside newer tools, some materials reflect earlier stages of my education or historical research rather than the latest guidance. Please note the writing/edit dates and cited sources on individual pages to understand their original context.
+        </p>
+        <div class="footer-controls">
+            <a href="../../../patch-notes/index.html" class="footer-link">Patch Notes</a>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle between dark and light mode">
+                <span class="label-for-dark">☀️ Light Mode</span><span class="label-for-light">🌙 Dark Mode</span>
+            </button>
+        </div>
+        <p class="copyright">
+            &copy; 2026 GeekTragedie. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+
+<script src="../../../therapist-tools/shared/diagnoses.js"></script>
+<script src="../client-tools.js"></script>
+<script src="index.js"></script>
+<script src="../../../therapist-tools/toolkit.js"></script>
+</body>
+</html>

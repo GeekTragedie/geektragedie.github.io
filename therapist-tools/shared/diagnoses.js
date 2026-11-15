@@ -7,6 +7,7 @@
 //       dx.byCode['F41.1'] -> { code, icd, dsm, family }
 //       dx.families -> DSM-5-TR chapter names, in order
 //   });
+//   TTShared.loadCrisisLines().then((c) => c.national);
 //   TTShared.loadTherapyStyles().then((styles) => [{ name, skills: [...] }]);
 //   TTShared.label(entry, system) -> "F41.1 - Generalized Anxiety Disorder"
 //   TTShared.listJoin(['A', 'B', 'C']) -> "A, B, and C" (Oxford comma)
@@ -51,6 +52,16 @@ window.TTShared = window.TTShared || (function () {
         return getJson('states.json');
     }
 
+    // CPT codes ({ codes: [{ code, desc, minutes?, addOn? }] })
+    function loadCptCodes() {
+        return getJson('cpt-codes.json');
+    }
+
+    // National crisis and support lines ({ national: [{ name, contact, tags }] })
+    function loadCrisisLines() {
+        return getJson('crisis-lines.json');
+    }
+
     function label(entry, system) {
         const name = system === 'DSM' ? (entry.dsm || entry.name) : (entry.icd || entry.name);
         return `${entry.code} - ${name}`;
@@ -74,5 +85,5 @@ window.TTShared = window.TTShared || (function () {
         el.parentNode.appendChild(note);
     }
 
-    return { base, loadDiagnoses, loadTherapyStyles, loadStates, label, listJoin, showLoadError };
+    return { base, getJson, loadDiagnoses, loadTherapyStyles, loadStates, loadCrisisLines, loadCptCodes, label, listJoin, showLoadError };
 })();

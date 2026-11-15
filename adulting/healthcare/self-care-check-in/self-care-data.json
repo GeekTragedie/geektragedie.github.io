@@ -1,0 +1,412 @@
+{
+ "meta": {
+  "description": "Self-Care Check-In suggestions. Every tip is written in our own words and cites the public sources it comes from. Sources were checked on 2026-11-14.",
+  "checked": "2026-11-14"
+ },
+ "sources": {
+  "NIMH": {
+   "org": "National Institute of Mental Health",
+   "title": "Caring for your mental health",
+   "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+   "date": "reviewed April 2026"
+  },
+  "CDC_SLEEP": {
+   "org": "Centers for Disease Control and Prevention",
+   "title": "About sleep",
+   "url": "https://www.cdc.gov/sleep/about/index.html",
+   "date": "updated May 15, 2024"
+  },
+  "NHLBI_SLEEP": {
+   "org": "National Heart, Lung, and Blood Institute",
+   "title": "Healthy sleep habits",
+   "url": "https://www.nhlbi.nih.gov/health/sleep-deprivation/healthy-sleep-habits",
+   "date": "updated March 24, 2022"
+  },
+  "CDC_PA": {
+   "org": "Centers for Disease Control and Prevention",
+   "title": "Adult activity: An overview",
+   "url": "https://www.cdc.gov/physical-activity-basics/guidelines/adults.html",
+   "date": "updated December 20, 2023"
+  },
+  "CDC_PA_CHRONIC": {
+   "org": "Centers for Disease Control and Prevention",
+   "title": "Chronic conditions and disabilities activity",
+   "url": "https://www.cdc.gov/physical-activity-basics/guidelines/chronic-health-conditions-and-disabilities.html",
+   "date": "updated December 4, 2025"
+  },
+  "CDC_STRESS": {
+   "org": "Centers for Disease Control and Prevention",
+   "title": "Managing stress",
+   "url": "https://www.cdc.gov/mental-health/living-with/index.html",
+   "date": "updated May 12, 2026"
+  },
+  "CDC_WATER": {
+   "org": "Centers for Disease Control and Prevention",
+   "title": "About water and healthier drinks",
+   "url": "https://www.cdc.gov/healthy-weight-growth/water-healthy-drinks/index.html",
+   "date": "updated March 5, 2026"
+  },
+  "SAMHSA_COPE": {
+   "org": "Substance Abuse and Mental Health Services Administration",
+   "title": "How to cope",
+   "url": "https://www.samhsa.gov/find-support/how-to-cope",
+   "date": "updated April 24, 2023"
+  },
+  "SAMHSA_HELP": {
+   "org": "Substance Abuse and Mental Health Services Administration",
+   "title": "National Helpline",
+   "url": "https://www.samhsa.gov/find-help/helplines/national-helpline",
+   "date": "updated June 9, 2023"
+  },
+  "NHS": {
+   "org": "NHS (UK)",
+   "title": "5 steps to mental wellbeing",
+   "url": "https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/five-steps-to-mental-wellbeing/",
+   "date": "reviewed October 14, 2026"
+  },
+  "WHO": {
+   "org": "World Health Organization",
+   "title": "Doing what matters in times of stress: An illustrated guide",
+   "url": "https://www.who.int/publications/i/item/9789240003927",
+   "date": "2020"
+  },
+  "NAS_BURNOUT": {
+   "org": "National Autistic Society",
+   "title": "Understanding autistic burnout",
+   "url": "https://www.autism.org.uk/advice-and-guidance/professional-practice/autistic-burnout",
+   "date": "March 1, 2022"
+  },
+  "NAS_SENSORY": {
+   "org": "National Autistic Society",
+   "title": "Sensory differences",
+   "url": "https://www.autism.org.uk/advice-and-guidance/topics/sensory-differences/sensory-differences/all-audiences",
+   "date": "n.d."
+  },
+  "RAYMAKER": {
+   "org": "Raymaker, D. M., et al.",
+   "title": "Defining autistic burnout (Autism in Adulthood, 2(2), 132–143)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7313636/",
+   "date": "2020"
+  }
+ },
+ "areas": {
+  "energy": {
+   "name": "Energy and body",
+   "tips": [
+    {
+     "text": "Take two minutes to notice your body: hungry, thirsty, needing the bathroom, too hot or cold, or in pain? Take care of the easiest one first.",
+     "sources": [
+      "NHS",
+      "WHO"
+     ]
+    },
+    {
+     "text": "Drink some water and have a small snack if it’s been a while. Running low can make your thinking foggy and your mood worse.",
+     "sources": [
+      "CDC_WATER",
+      "NIMH"
+     ]
+    },
+    {
+     "text": "Take a 5–10 minute break that asks nothing of you. If you nap, about 20 minutes keeps it from messing with night sleep.",
+     "sources": [
+      "NHLBI_SLEEP"
+     ]
+    },
+    {
+     "text": "Cross off or postpone one thing today. Realistic goals protect your energy.",
+     "sources": [
+      "NIMH",
+      "NAS_BURNOUT"
+     ]
+    }
+   ]
+  },
+  "sleep": {
+   "name": "Sleep",
+   "tips": [
+    {
+     "text": "Try to wake up around the same time every day, weekends too, within about an hour.",
+     "sources": [
+      "NHLBI_SLEEP",
+      "CDC_SLEEP"
+     ]
+    },
+    {
+     "text": "Give yourself some quiet, screen-free time before bed if that works for you. (If a show or audio calms you, that’s okay too.)",
+     "sources": [
+      "CDC_SLEEP",
+      "NHLBI_SLEEP"
+     ]
+    },
+    {
+     "text": "Make your bedroom quiet, cool, and dark. A dim night light is fine.",
+     "sources": [
+      "NHLBI_SLEEP",
+      "CDC_SLEEP"
+     ]
+    },
+    {
+     "text": "Have your last caffeine earlier in the day, since it can last up to 8 hours, and skip alcohol and big meals close to bedtime.",
+     "sources": [
+      "NHLBI_SLEEP"
+     ]
+    },
+    {
+     "text": "Get a few minutes of daylight during the day if you can.",
+     "sources": [
+      "NHLBI_SLEEP"
+     ]
+    }
+   ]
+  },
+  "food": {
+   "name": "Food and water",
+   "tips": [
+    {
+     "text": "Keep a water bottle where you’ll see it, or set a reminder. Thirst signals can be easy to miss.",
+     "sources": [
+      "CDC_WATER"
+     ]
+    },
+    {
+     "text": "If you haven’t eaten in a while, any food counts. Start with something easy you like.",
+     "sources": [
+      "NIMH"
+     ]
+    },
+    {
+     "text": "Keep a few easy, low-effort foods you like on hand for low-energy days.",
+     "sources": [
+      "NAS_BURNOUT"
+     ]
+    },
+    {
+     "text": "Have water with meals. Chilling it or adding lemon can make it easier.",
+     "sources": [
+      "CDC_WATER"
+     ]
+    }
+   ]
+  },
+  "movement": {
+   "name": "Movement",
+   "tips": [
+    {
+     "text": "A 5–10 minute walk counts, even indoors. Short bits of movement add up.",
+     "sources": [
+      "CDC_PA"
+     ]
+    },
+    {
+     "text": "Stand up and stretch between long stretches of sitting.",
+     "sources": [
+      "CDC_PA",
+      "CDC_STRESS"
+     ]
+    },
+    {
+     "text": "Pick movement you actually like, such as dancing, gardening, or chair exercises.",
+     "sources": [
+      "NHS"
+     ]
+    },
+    {
+     "text": "If you have a health condition or disability, do what your body allows today, and ask your clinician what suits you. Rest counts.",
+     "sources": [
+      "CDC_PA_CHRONIC"
+     ]
+    }
+   ]
+  },
+  "connection": {
+   "name": "Connection",
+   "tips": [
+    {
+     "text": "Send one low-pressure message to someone you trust, like a meme or a “thinking of you.”",
+     "sources": [
+      "NIMH",
+      "NHS"
+     ]
+    },
+    {
+     "text": "Low-demand time together counts: texting, a video call, or just being in the same room doing your own things.",
+     "sources": [
+      "NHS"
+     ]
+    },
+    {
+     "text": "Do one small kind thing for someone, like a thank-you or really listening.",
+     "sources": [
+      "NHS",
+      "WHO"
+     ]
+    },
+    {
+     "text": "Look for a community or support group where you can be yourself without masking.",
+     "sources": [
+      "SAMHSA_COPE",
+      "NAS_BURNOUT"
+     ]
+    }
+   ]
+  },
+  "joy": {
+   "name": "Joy and meaning",
+   "tips": [
+    {
+     "text": "Spend 10 minutes on a hobby or special interest, just because you like it.",
+     "sources": [
+      "NIMH",
+      "SAMHSA_COPE",
+      "NAS_BURNOUT"
+     ]
+    },
+    {
+     "text": "Write down one to three specific things you’re grateful for today.",
+     "sources": [
+      "NIMH",
+      "CDC_STRESS"
+     ]
+    },
+    {
+     "text": "Try one tiny new thing: a recipe, a song, a craft.",
+     "sources": [
+      "NHS"
+     ]
+    },
+    {
+     "text": "Name one thing that matters to you and take one small step toward it.",
+     "sources": [
+      "WHO"
+     ]
+    }
+   ]
+  },
+  "stress": {
+   "name": "Stress",
+   "tips": [
+    {
+     "text": "Slow your breathing for a minute or two. If focusing on your breath feels bad, try the next idea instead.",
+     "sources": [
+      "CDC_STRESS",
+      "NIMH"
+     ]
+    },
+    {
+     "text": "Ground yourself: press your feet into the floor and name a few things you can see and hear.",
+     "sources": [
+      "WHO"
+     ]
+    },
+    {
+     "text": "Take a break from the news and social media.",
+     "sources": [
+      "CDC_STRESS",
+      "SAMHSA_COPE"
+     ]
+    },
+    {
+     "text": "Write down what’s on your mind for five minutes.",
+     "sources": [
+      "CDC_STRESS",
+      "SAMHSA_COPE"
+     ]
+    },
+    {
+     "text": "Notice a stressful thought, name it (“I’m having the thought that…”), and come back to what you’re doing.",
+     "sources": [
+      "WHO"
+     ]
+    }
+   ]
+  },
+  "mood": {
+   "name": "Mood",
+   "tips": [
+    {
+     "text": "Move gently or take a short walk. Activity can lift your mood a little.",
+     "sources": [
+      "NIMH"
+     ]
+    },
+    {
+     "text": "Tell one person you trust how you’re really doing.",
+     "sources": [
+      "SAMHSA_COPE",
+      "NIMH"
+     ]
+    },
+    {
+     "text": "Talk to yourself the way you’d talk to a friend, and make room for the feeling instead of fighting it.",
+     "sources": [
+      "WHO"
+     ]
+    },
+    {
+     "text": "Do one small, doable thing, like a shower, a dish, or a reply, and count it as a win.",
+     "sources": [
+      "NIMH"
+     ]
+    }
+   ]
+  },
+  "sensory": {
+   "name": "Sensory load",
+   "tips": [
+    {
+     "text": "Use headphones, earplugs, or sunglasses to turn the world down.",
+     "sources": [
+      "NAS_SENSORY"
+     ]
+    },
+    {
+     "text": "Go somewhere quieter and dimmer for a few minutes, or lower the lights and noise where you are.",
+     "sources": [
+      "NAS_SENSORY"
+     ]
+    },
+    {
+     "text": "Use comfort items or stim freely: fidgets, a weighted blanket, rocking.",
+     "sources": [
+      "NAS_SENSORY",
+      "NAS_BURNOUT"
+     ]
+    },
+    {
+     "text": "Plan recovery time after busy or loud events, and check ahead what a place will be like.",
+     "sources": [
+      "NAS_SENSORY"
+     ]
+    },
+    {
+     "text": "It’s okay to tell people you need quiet and talk less for a while.",
+     "sources": [
+      "NAS_SENSORY"
+     ]
+    }
+   ]
+  }
+ },
+ "getHelp": [
+  {
+   "text": "If, for two weeks or more, you have trouble sleeping, changes in appetite, trouble getting out of bed, trouble concentrating, or lose interest in things you used to enjoy, it’s a good time to talk with a doctor or therapist. A primary care provider is a good place to start.",
+   "sources": [
+    "NIMH"
+   ]
+  },
+  {
+   "text": "For help finding mental health or substance use treatment, the SAMHSA National Helpline is free, confidential, and open 24/7 at 1-800-662-4357. It’s for information and referrals, not crisis support.",
+   "sources": [
+    "SAMHSA_HELP"
+   ]
+  },
+  {
+   "text": "Exhaustion, losing skills you usually have, and lower tolerance for sensory input lasting months can be autistic burnout. Autistic adults describe needing support and accommodations, not just rest.",
+   "sources": [
+    "RAYMAKER",
+    "NAS_BURNOUT"
+   ]
+  }
+ ]
+}

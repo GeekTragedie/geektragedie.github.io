@@ -34,9 +34,13 @@ $(document).ready(function() {
     });
 
     // --- 1. Load Data from JSON ---
-    $.getJSON('crisis-plan-data.json', function(data) {
+    // National crisis lines are shared with the client tools (../shared/crisis-lines.json)
+    Promise.all([
+        $.getJSON('crisis-plan-data.json'),
+        TTShared.loadCrisisLines().catch(() => ({ national: [] }))
+    ]).then(function([data, crisisLines]) {
         planTemplates = data.templates || [];
-        defaultHotlinesData = data.defaultHotlines || [];
+        defaultHotlinesData = crisisLines.national || [];
 
         // Plan types are checkboxes that combine into one plan
         const typeBox = $('#planTypeChecks').empty();
