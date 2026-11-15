@@ -100,7 +100,10 @@ $(function () {
     ]).then(([types, licenses, dx, accom, states]) => {
         letterTypes = types.letterTypes;
         diagnoses = dx;
-        accommodationSuggestions = accom;
+        // accommodations.json stores each accommodation once (library) and lists ids per code (byCode)
+        accommodationSuggestions = accom && accom.byCode
+            ? Object.fromEntries(Object.entries(accom.byCode).map(([code, ids]) => [code, ids.map((id) => accom.library[id]).filter(Boolean)]))
+            : accom;
         statesData = states;
 
         const typeSelect = $('#letterTypeSelect').append('<option value=""></option>');

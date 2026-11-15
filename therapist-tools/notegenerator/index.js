@@ -72,8 +72,13 @@ $(function () {
     Promise.all([
         getJSON('note-templates.json'),
         TTShared.loadDiagnoses().catch(() => { TTShared.showLoadError('#diagnosisSelect', 'diagnosis list'); return diagnoses; }),
-        TTShared.loadTherapyStyles().catch(() => { TTShared.showLoadError('#theorySelect', 'therapy styles'); return []; })
-    ]).then(([tpl, dx, st]) => {
+        TTShared.loadTherapyStyles().catch(() => { TTShared.showLoadError('#theorySelect', 'therapy styles'); return []; }),
+        TTShared.loadCptCodes().catch(() => { TTShared.showLoadError('#cptCode', 'CPT code list'); return { codes: [] }; })
+    ]).then(([tpl, dx, st, cpt]) => {
+        // CPT codes are shared with the Superbill Generator (../shared/cpt-codes.json)
+        const label = (c) => `${c.code} ${c.desc}${c.minutes ? ` (${c.minutes} minutes)` : ''}`;
+        (cpt.codes || []).filter((c) => !c.addOn).forEach((c) => $('#cptCode').append(new Option(label(c), c.code)));
+        $('#cptAddOns').html((cpt.codes || []).filter((c) => c.addOn).map((c) => `<label><input type="checkbox" value="${c.code}"> + ${c.code} ${c.desc}</label>`).join(''));
         templates = tpl.templates;
         diagnoses = dx;
         styles = st;

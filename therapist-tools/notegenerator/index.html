@@ -16,8 +16,6 @@
 <nav class="top-nav" aria-label="Main Navigation">
     <a href="../../index.html" class="nav-brand">GeekTragedie's Wonderland</a>
     <ul class="nav-links">
-        <li><a href="../../index.html">Home</a></li>
-        <li><a href="../../resources/index.html">Resources</a></li>
         <li class="dropdown">
             <a href="../../authors-library/index.html" class="dropbtn">Author's Library &#9662;</a>
             <div class="dropdown-content">
@@ -42,6 +40,8 @@
                 <a href="../../adulting/my-budget/index.html">My Budget</a>
                 <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
                 <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../adulting/healthcare/index.html">Healthcare</a>
+                <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
             </div>
         </li>
         <li class="dropdown">
@@ -179,19 +179,9 @@
                         <label for="cptCode" class="block font-semibold mb-1">CPT code <span class="muted text-sm">(optional)</span></label>
                         <select id="cptCode" class="w-full p-2 border rounded-md">
                             <option value="">None</option>
-                            <option value="90791">90791 Psychiatric diagnostic evaluation</option>
-                            <option value="90832">90832 Psychotherapy, 30 min (16–37)</option>
-                            <option value="90834">90834 Psychotherapy, 45 min (38–52)</option>
-                            <option value="90837">90837 Psychotherapy, 60 min (53+)</option>
-                            <option value="90846">90846 Family psychotherapy without client</option>
-                            <option value="90847">90847 Family/couple psychotherapy with client</option>
-                            <option value="90853">90853 Group psychotherapy</option>
-                            <option value="90839">90839 Crisis psychotherapy, first 60 min</option>
+                            <!-- Filled from ../shared/cpt-codes.json -->
                         </select>
-                        <div class="check-list mt-2" id="cptAddOns">
-                            <label><input type="checkbox" value="90785"> + 90785 Interactive complexity</label>
-                            <label><input type="checkbox" value="90840"> + 90840 Crisis, each extra 30 min</label>
-                        </div>
+                        <div class="check-list mt-2" id="cptAddOns"></div>
                         <p id="cptHint" class="field-hint muted text-sm"></p>
                     </div>
                 </div>

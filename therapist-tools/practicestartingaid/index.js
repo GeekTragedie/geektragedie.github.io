@@ -15,10 +15,46 @@ $(document).ready(function() {
         subletScript: ''
     };
 
+    // The roadmap text lives in launch-roadmap-data.json. Saves and the browser cache only keep
+    // what you changed (status, cost, notes, your own steps, removed steps), not a copy of every task.
+    let defaultPhases = [];
+    const clonePhases = () => JSON.parse(JSON.stringify(defaultPhases));
+    const TRACKED = ['status', 'cost', 'notes'];
+    function serialize() {
+        const progress = {};
+        const customTasks = {};
+        const removedTasks = [];
+        defaultPhases.forEach(dp => {
+            const phase = (appState.phases || []).find(p => p.id === dp.id) || { tasks: [] };
+            dp.tasks.forEach(dt => {
+                const t = phase.tasks.find(x => x.id === dt.id);
+                if (!t) { removedTasks.push(dt.id); return; }
+                const changed = {};
+                TRACKED.forEach(k => { if ((t[k] ?? '') !== (dt[k] ?? '')) changed[k] = t[k]; });
+                if (Object.keys(changed).length) progress[t.id] = changed;
+            });
+            const extra = phase.tasks.filter(t => !dp.tasks.some(d => d.id === t.id));
+            if (extra.length) customTasks[dp.id] = extra;
+        });
+        return { version: 2, rates: appState.rates, subletScript: appState.subletScript, progress, customTasks, removedTasks };
+    }
+    function deserialize(parsed) {
+        if (!parsed || typeof parsed !== 'object') return null;
+        if (Array.isArray(parsed.phases)) return parsed; // older saves kept the whole roadmap
+        if (parsed.version !== 2) return null;
+        const removed = new Set(parsed.removedTasks || []);
+        const phases = clonePhases().map(ph => {
+            const tasks = ph.tasks.filter(t => !removed.has(t.id)).map(t => ({ ...t, ...((parsed.progress || {})[t.id] || {}) }));
+            return { ...ph, tasks: tasks.concat((parsed.customTasks || {})[ph.id] || []) };
+        });
+        return { ...appState, rates: parsed.rates || appState.rates, subletScript: parsed.subletScript ?? appState.subletScript, phases };
+    }
+
     // --- 1. Load Default Launch Roadmap JSON & Check Local Cache ---
     $.getJSON('launch-roadmap-data.json', function(data) {
         if (data && Array.isArray(data.phases)) {
-            appState.phases = data.phases;
+            defaultPhases = data.phases;
+            appState.phases = clonePhases();
         }
         appState.subletScript = $('#subletEmailScript').val();
         checkLocalCacheOnLoad();
@@ -316,10 +352,8 @@ $(document).ready(function() {
             const raw = localStorage.getItem(STORAGE_KEY);
             if (raw) {
                 try {
-                    const parsed = JSON.parse(raw);
-                    if (parsed && Array.isArray(parsed.phases)) {
-                        appState = parsed;
-                    }
+                    const loaded = deserialize(JSON.parse(raw));
+                    if (loaded) appState = loaded;
                 } catch (e) {
                     console.error('Error loading cached launch roadmap:', e);
                 }
@@ -339,17 +373,15 @@ $(document).ready(function() {
 
     function saveToLocalCacheIfEnabled() {
         if ($('#localCacheToggle').is(':checked')) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(serialize()));
         }
     }
 
     $('#resetDefaultRoadmapBtn').on('click', function() {
         if (!confirm('Reset all checklist tasks back to default? Make sure you have exported your .json backup first.')) return;
         localStorage.removeItem(STORAGE_KEY);
-        $.getJSON('launch-roadmap-data.json', function(data) {
-            appState.phases = data.phases || [];
-            renderAll();
-        });
+        appState.phases = clonePhases();
+        renderAll();
     });
 
     function downloadFile(content, filename, type) {
@@ -365,7 +397,7 @@ $(document).ready(function() {
     }
 
     $('#exportJsonButtonTop, #exportJsonButtonBottom').on('click', function() {
-        downloadFile(JSON.stringify(appState, null, 2), `private_practice_launch_plan_${new Date().toISOString().split('T')[0]}.json`, 'application/json;charset=utf-8');
+        downloadFile(JSON.stringify(serialize(), null, 2), `private_practice_launch_plan_${new Date().toISOString().split('T')[0]}.json`, 'application/json;charset=utf-8');
     });
 
     $('#importJsonButton').on('click', () => $('#importJsonFile').click());
@@ -376,12 +408,11 @@ $(document).ready(function() {
         const reader = new FileReader();
         reader.onload = function(evt) {
             try {
-                const parsed = JSON.parse(evt.target.result);
-                if (parsed && Array.isArray(parsed.phases)) {
-                    appState = parsed;
-                    populatePhaseDropdowns();
-                    renderAll();
-                }
+                const loaded = deserialize(JSON.parse(evt.target.result));
+                if (!loaded) throw new Error('Not a launch plan');
+                appState = loaded;
+                populatePhaseDropdowns();
+                renderAll();
             } catch (err) {
                 alert('Invalid JSON file. Please upload a valid Practice Starting Aid .json file.');
             }

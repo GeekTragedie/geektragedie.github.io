@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "description": "Outpatient psychotherapy CPT codes shared by the Session Note Generator and the Superbill Generator. Add-on codes are billed with a primary code.",
+    "reviewed": "2026-11-14"
+  },
+  "codes": [
+    { "code": "90791", "desc": "Psychiatric diagnostic evaluation" },
+    { "code": "90832", "desc": "Psychotherapy, 30 minutes", "minutes": "16–37" },
+    { "code": "90834", "desc": "Psychotherapy, 45 minutes", "minutes": "38–52" },
+    { "code": "90837", "desc": "Psychotherapy, 60 minutes", "minutes": "53+" },
+    { "code": "90839", "desc": "Psychotherapy for crisis, first 60 minutes" },
+    { "code": "90840", "desc": "Psychotherapy for crisis, each additional 30 minutes", "addOn": true },
+    { "code": "90785", "desc": "Interactive complexity", "addOn": true },
+    { "code": "90846", "desc": "Family psychotherapy without the client present" },
+    { "code": "90847", "desc": "Family or couple psychotherapy with the client present" },
+    { "code": "90853", "desc": "Group psychotherapy" }
+  ]
+}

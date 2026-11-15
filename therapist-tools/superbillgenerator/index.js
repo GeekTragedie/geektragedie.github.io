@@ -1,17 +1,7 @@
 $(document).ready(function() {
-    // CPT codes for outpatient psychotherapy. Add-on codes are billed on their own line.
-    const CPT_CODES = [
-        { code: '90791', desc: 'Psychiatric diagnostic evaluation' },
-        { code: '90832', desc: 'Psychotherapy, 30 minutes' },
-        { code: '90834', desc: 'Psychotherapy, 45 minutes' },
-        { code: '90837', desc: 'Psychotherapy, 60 minutes' },
-        { code: '90839', desc: 'Psychotherapy for crisis, first 60 minutes' },
-        { code: '90840', desc: 'Psychotherapy for crisis, each additional 30 minutes (add-on)' },
-        { code: '90785', desc: 'Interactive complexity (add-on)' },
-        { code: '90846', desc: 'Family psychotherapy without the client present' },
-        { code: '90847', desc: 'Family psychotherapy with the client present' },
-        { code: '90853', desc: 'Group psychotherapy' }
-    ];
+    // CPT codes come from ../shared/cpt-codes.json (shared with the Session Note Generator).
+    // Add-on codes are billed on their own line.
+    let CPT_CODES = [];
     const POS_OPTIONS = [
         { code: '11', label: 'In person, office (POS 11)', telehealth: false },
         { code: '12', label: 'In person, client’s home (POS 12)', telehealth: false },
@@ -112,9 +102,13 @@ $(document).ready(function() {
     Promise.all([
         TTShared.loadDiagnoses().catch(() => { TTShared.showLoadError('#superbillDiagnoses', 'diagnosis list'); return dxData; }),
         fetch(`${TTShared.base}license-types.json`).then(r => r.json()).catch(() => ({ licenseTypes: [] })),
-        TTShared.loadStates().catch(() => ({ list: [] }))
-    ]).then(([dx, lic, states]) => {
+        TTShared.loadStates().catch(() => ({ list: [] })),
+        TTShared.loadCptCodes().catch(() => ({ codes: [] }))
+    ]).then(([dx, lic, states, cpt]) => {
         dxData = dx;
+        CPT_CODES = (cpt.codes || []).map((c) => ({ code: c.code, desc: c.addOn ? `${c.desc} (add-on)` : c.desc }));
+        $('#superbillServiceEntries').empty();
+        addService();
         const typeSel = $('#superbillLicenseType').empty().append(new Option('Choose…', ''));
         (lic.licenseTypes || []).forEach(t => typeSel.append(new Option(t, t)));
         if (!typeSel.find('option[value="Other"]').length) typeSel.append(new Option('Other', 'Other'));
@@ -484,6 +478,5 @@ $(document).ready(function() {
     }
     const escapeAttr = escapeHtml;
 
-    addService();
     render();
 });
