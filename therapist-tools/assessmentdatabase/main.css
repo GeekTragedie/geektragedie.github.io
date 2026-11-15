@@ -45,3 +45,102 @@
     text-align: left;
     line-height: 1.6;
 }
+/* --- Side filter (same pattern as the Resources page) --- */
+.as-browser-grid {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+.as-filters {
+    padding: 12px;
+    border-radius: 8px;
+}
+.filter-accordion {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.filter-accordion summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--accent);
+    font-size: 0.9em;
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+}
+.filter-accordion summary::-webkit-details-marker { display: none; }
+.filter-accordion summary::after {
+    content: '▸';
+    color: var(--text-muted);
+    font-size: 0.8em;
+    transition: transform 0.2s;
+}
+.filter-accordion[open] summary::after { transform: rotate(90deg); }
+.filter-active {
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: 99px;
+    background-color: var(--accent);
+    color: var(--accent-contrast);
+    font-size: 0.75em;
+}
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 240px;
+    margin-top: 6px;
+    padding-left: 2px;
+    overflow-y: auto;
+}
+.filter-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-main) !important;
+    font-size: 0.82em;
+    font-weight: normal;
+    cursor: pointer;
+}
+/* Labels are short enough for one line; anything longer wraps instead of being cut off */
+.filter-option > span:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.filter-option input { margin-right: 6px; accent-color: var(--accent); }
+.filter-count { color: var(--text-muted); font-size: 0.85em; }
+.as-active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+.active-filter-tag {
+    padding: 2px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--badge-bg);
+    font-size: 0.8em;
+}
+.remove-filter-btn {
+    border: none;
+    background: none;
+    color: var(--danger);
+    font-weight: bold;
+    cursor: pointer;
+}
+.clear-all-btn {
+    padding: 2px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: none;
+    color: var(--text-muted);
+    font-size: 0.8em;
+    cursor: pointer;
+}
+@media (max-width: 760px) {
+    .as-browser-grid { grid-template-columns: minmax(0, 1fr); }
+}

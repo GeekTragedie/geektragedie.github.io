@@ -8,7 +8,6 @@
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
     <link rel="stylesheet" href="main.css" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body aria-label="Assessment Database page">
 <script src="../../assets/theme.js"></script>
@@ -82,11 +81,12 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Filter by diagnosis, symptom, or age group, or search, to narrow the list.</li>
-                            <li>Open an assessment’s PDF, or read the scoring notes and cutoffs on its card.</li>
-                            <li>Check the assessments you want, then print a scoring and citation sheet or copy their APA citations from the tool menu.</li>
-                            <li>Add your own measures under <strong>Add your own</strong>. They’re saved in your library file.</li>
+                            <li>Use the filters on the left (category, age group, who completes it, and symptoms) or search by name, code, or keyword. Counts show how many assessments match.</li>
+                            <li>Check the box on any card to select it, then use <strong>Print Assessment(s)</strong> for a scoring and citation sheet, or copy the APA citations.</li>
+                            <li>Add your own assessments with the form, and save your library as a <code>.json</code> file.</li>
+                            <li>Use <strong>Start over</strong> to clear your filters and selection.</li>
                         </ol>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Loads the library with a made-up custom assessment added so you can see how it works.</span></p>
                         <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
                         <p>Import, save, print, and clear are further down this menu.</p>
                         <h3 class="why-heading">Why this matters</h3>
@@ -120,9 +120,14 @@
 
                 <div class="sidebar-group" role="group" aria-label="Print and share">
                     <span class="sidebar-label">Print &amp; share</span>
-                    <button type="button" id="printScoringGuideBtn" class="btn btn-sm sidebar-btn">Print scoring &amp; citation sheet</button>
+                    <button type="button" id="printScoringGuideBtn" class="btn btn-sm sidebar-btn">Print Assessment(s)</button>
                     <button type="button" id="copySelectedCitationsBtn" class="btn btn-sm sidebar-btn">Copy APA citations</button>
                     <button type="button" id="exportCsvButton" class="btn btn-sm sidebar-btn">Export index (.csv)</button>
+                </div>
+
+                <div class="sidebar-group" role="group" aria-label="Start over">
+                    <span class="sidebar-label">Start over</span>
+                    <button type="button" id="startOverBtn" class="btn btn-sm sidebar-btn">Start over</button>
                 </div>
             </div>
             </details>
@@ -238,72 +243,34 @@
         </section>
 
         <!-- Section 1: Search & Filter by Diagnosis, Symptom, Age Group, or Respondent -->
-        <section class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="filter-heading">
-            <div class="flex flex-wrap justify-between items-center gap-2">
+        <section class="as-browser mb-8" aria-labelledby="filter-heading">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
                 <div>
-                    <h2 id="filter-heading" class="text-xl font-bold">1. Filter Assessments by Diagnosis, Symptom &amp; Population</h2>
-                    <p class="muted text-xs">Check the box on any assessment card below to add it to your Client Assessment Packet &amp; Citation List.</p>
+                    <h2 id="filter-heading" class="text-xl font-bold">Find an Assessment</h2>
+                    <p class="muted text-xs">Filter on the left, then check the box on any card to add it to your selection for printing and citations.</p>
                 </div>
                 <span id="assessmentCountBadge" class="text-xs font-bold">0 Assessments Shown</span>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                <div>
-                    <label for="filterCategorySelect" class="block text-xs font-semibold mb-1">Diagnostic Category:</label>
-                    <select id="filterCategorySelect" class="w-full p-2 border rounded-md text-sm">
-                        <option value="ALL">All Diagnostic Categories</option>
-                        <option value="Depression & Mood">Depression &amp; Mood</option>
-                        <option value="Anxiety, Panic & Worry">Anxiety, Panic &amp; Worry</option>
-                        <option value="Trauma, PTSD & Dissociation">Trauma, PTSD &amp; Dissociation</option>
-                        <option value="ADHD & Executive Functioning">ADHD &amp; Executive Functioning</option>
-                        <option value="Autism, Sensory & Camouflaging">Autism, Sensory &amp; Camouflaging</option>
-                        <option value="OCD & Repetitive Thoughts/Behaviors">OCD &amp; Repetitive Behaviors</option>
-                        <option value="Bipolar & Mood Spectrum">Bipolar &amp; Mood Spectrum</option>
-                        <option value="Suicide & Safety Risk">Suicide &amp; Safety Risk</option>
-                        <option value="Substance Use & Behavioral">Substance Use &amp; Behavioral</option>
-                        <option value="Eating, Feeding & Body Image">Eating, Feeding &amp; Body Image</option>
-                        <option value="Youth, Pediatric & Caregiver">Youth, Pediatric &amp; Caregiver</option>
-                        <option value="Cross-Cutting, Functioning & QoL">Cross-Cutting &amp; Functioning</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="filterSymptomsSelect" class="block text-xs font-semibold mb-1">Filter by Symptom(s) / Construct:</label>
-                    <select id="filterSymptomsSelect" class="w-full" multiple="multiple"></select>
-                </div>
-
-                <div>
-                    <label for="filterPopulationSelect" class="block text-xs font-semibold mb-1">Age Group / Respondent:</label>
-                    <select id="filterPopulationSelect" class="w-full p-2 border rounded-md text-sm">
-                        <option value="ALL">All Ages &amp; Respondents</option>
-                        <option value="Adult">Adults (18+)</option>
-                        <option value="Adolescent">Adolescents / Teens</option>
-                        <option value="Child">Children / Pediatric</option>
-                        <option value="Caregiver">Parent / Caregiver Report</option>
-                        <option value="Clinician">Clinician-Administered</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="searchAssessmentInput" class="block text-xs font-semibold mb-1">Search Acronym, Diagnosis Code, or Keyword:</label>
-                    <input type="text" id="searchAssessmentInput" placeholder="e.g., PCL-5, F43.10, masking, dissociation..." class="w-full p-2 border rounded-md text-sm">
+            <div class="as-browser-grid">
+                <aside class="as-filters subpanel" aria-label="Filter assessments">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-sm">Filters</span>
+                        <button type="button" id="resetFiltersBtn" class="btn-link text-xs">Reset filters</button>
+                    </div>
+                    <div id="filterGroups"></div>
+                </aside>
+                <div class="as-results">
+                    <label for="searchAssessmentInput" class="sr-only">Search assessments</label>
+                    <input type="search" id="searchAssessmentInput" placeholder="Search by name, code, or keyword (e.g., PCL-5, F43.10, masking)" class="w-full p-2 border rounded-md text-sm">
+                    <div id="activeFiltersBar" class="as-active-filters"></div>
+                    <div class="flex flex-wrap items-center gap-3 text-xs my-2">
+                        <span class="font-bold">Selected: <span id="selectedAssessmentsCount">0</span></span>
+                        <button type="button" id="selectAllShownBtn" class="btn-link">Select all shown</button>
+                        <button type="button" id="clearSelectedBtn" class="btn-link">Clear selection</button>
+                    </div>
+                    <div id="assessmentCardsGrid" class="grid grid-cols-1 gap-4"></div>
                 </div>
             </div>
-
-            <!-- Selected Assessment Packet Action Bar -->
-            <div class="flex flex-wrap justify-between items-center gap-3 pt-3 border-t text-xs">
-                <div class="flex items-center gap-3">
-                    <span class="font-bold">Selected for Packet / Note: <span id="selectedAssessmentsCount">0</span></span>
-                    <button type="button" id="selectAllShownBtn" class="btn-link">Select All Shown</button>
-                    <button type="button" id="clearSelectedBtn" class="btn-link">Clear Selection</button>
-                    <button type="button" id="resetFiltersBtn" class="btn-link">Reset All Filters</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: Assessment Cards Grid -->
-        <section class="mb-8" aria-label="Clinical Assessments Directory">
-            <div id="assessmentCardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
         </section>
 
         <!-- Live APA citations for the assessments currently shown or selected -->
@@ -359,7 +326,6 @@
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="index.js"></script>
     <script src="../references.js"></script>
     <script src="../practice-data.js"></script>

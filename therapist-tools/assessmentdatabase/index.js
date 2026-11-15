@@ -5,78 +5,118 @@ $(document).ready(function() {
     let assessmentsList = [];
     let selectedPacketIds = new Set();
 
-    // Initialize Select2 for Symptom Multi-Filter
-    $('#filterSymptomsSelect').select2({
-        placeholder: 'Filter by specific symptoms (e.g., Flashbacks, Masking, Sleep)...',
-        allowClear: true,
-        multiple: true,
-        width: '100%'
-    });
+    // Side-filter state: each group is a set of checked values (empty = no filter)
+    const filters = { category: new Set(), age: new Set(), respondent: new Set(), symptom: new Set() };
+    const openGroups = new Set(['category']);
+    function ageBuckets(a) {
+        const t = (a.ageGroup || '').toLowerCase();
+        const out = [];
+        if (/adult|18\+|16\+/.test(t)) out.push('Adults');
+        if (/adolescent|teen|11–17|12–|13–|16\+|grades/.test(t)) out.push('Adolescents');
+        if (/child|pediatric|6–|grades|youth/.test(t)) out.push('Children');
+        return out.length ? out : ['Any age'];
+    }
+    function respondentBuckets(a) {
+        const t = (a.respondent || 'Self-Report').toLowerCase();
+        const out = [];
+        if (/self/.test(t)) out.push('Self-report');
+        if (/clinician|interview/.test(t)) out.push('Clinician-rated');
+        if (/caregiver|parent|teacher|informant|proxy/.test(t)) out.push('Caregiver or teacher');
+        return out.length ? out : ['Self-report'];
+    }
+    const GROUPS = [
+        { key: 'category', label: 'Category', values: a => [a.category || 'Other'] },
+        { key: 'age', label: 'Age group', values: ageBuckets },
+        { key: 'respondent', label: 'Who completes it', values: respondentBuckets },
+        { key: 'symptom', label: 'Symptoms measured', values: a => a.symptoms || [] }
+    ];
+    // Shorter labels so every filter option fits on one line
+    const SHORT_LABELS = {
+        'Autism, Sensory & Camouflaging': 'Autism & sensory', 'OCD & Repetitive Thoughts/Behaviors': 'OCD & repetitive',
+        'Trauma, PTSD & Dissociation': 'Trauma & PTSD', 'ADHD & Executive Functioning': 'ADHD & executive function',
+        'Anxiety, Panic & Worry': 'Anxiety & panic', 'Depression & Mood': 'Depression & mood', 'Bipolar & Mood Spectrum': 'Bipolar spectrum',
+        'Suicide & Safety Risk': 'Suicide & safety', 'Substance Use & Behavioral': 'Substance use', 'Eating, Feeding & Body Image': 'Eating & feeding',
+        'Youth, Pediatric & Caregiver': 'Youth & caregiver', 'Cross-Cutting, Functioning & QoL': 'Functioning',
+        'ADHD & Executive Functioning ': 'ADHD & executive',
+        'Absorption / Imaginative involvement': 'Absorption', 'Binge eating and compensatory behaviors': 'Binge eating & purging',
+        'Drug use problems in the past 12 months': 'Drug use problems', 'Fear of aversive consequences (choking/GI)': 'Fear-based food avoidance',
+        'Fear something awful might happen': 'Dread / catastrophizing', 'Negative alterations in mood/cognition': 'Negative mood & thoughts',
+        'Picky eating / sensory food aversion': 'Picky / sensory eating', 'Preparatory behavior / Past attempts': 'Past attempts / preparation',
+        'Pressured speech / Racing thoughts': 'Racing thoughts', 'Social communication differences': 'Social communication',
+        'Social relatedness across lifespan': 'Social relatedness', 'Substance dependence symptoms': 'Substance dependence',
+        'Dissociative amnesia / Time loss': 'Dissociative amnesia', 'Intrusive memories / Flashbacks': 'Flashbacks',
+        'Sensory processing differences': 'Sensory processing', 'Circumscribed special interests': 'Special interests',
+        'Hazardous alcohol consumption': 'Hazardous drinking', 'School performance impairment': 'School impairment',
+        'Alcohol dependence symptoms': 'Alcohol dependence', 'Anxiety and depression screen': 'Anxiety & depression',
+        'Nervousness / Feeling on edge': 'Feeling on edge', 'Developmental trauma history': 'Developmental trauma',
+        'Low appetite or interest in food': 'Low appetite', 'Negative self-concept / Shame': 'Shame / self-concept',
+        'Time blindness / Forgetfulness': 'Time blindness', 'Life activities / Work / School': 'Work & school',
+        'Disturbances in relationships': 'Relationship problems', 'Goal-directed hyperactivity': 'Goal-directed activity',
+        'Suicidal method / intent / plan': 'Suicidal intent / plan'
+    };
+    SHORT_LABELS['ADHD & Executive Functioning'] = 'ADHD & executive';
+    const shortLabel = (v) => SHORT_LABELS[v] || (/^13 psychiatric domains/.test(v) ? '13 symptom domains' : v);
 
     // --- 1. Load Assessments from JSON & Local Cache ---
     $.getJSON('assessments-data.json', function(data) {
         assessmentsList = (data && Array.isArray(data.assessments)) ? data.assessments : [];
         checkLocalCacheOnLoad();
-        populateSymptomFilterOptions();
         renderAll();
     });
 
-    function populateSymptomFilterOptions() {
-        const el = $('#filterSymptomsSelect');
-        const currentVals = el.val() || [];
-        el.empty();
-
-        const allSymptoms = new Set();
-        assessmentsList.forEach(a => {
-            (a.symptoms || []).forEach(s => allSymptoms.add(s));
-        });
-
-        [...allSymptoms].sort().forEach(sym => {
-            el.append(new Option(sym, sym));
-        });
-
-        el.val(currentVals).trigger('change.select2');
-    }
+    function populateSymptomFilterOptions() { /* filter options are rebuilt in renderFilters() */ }
 
     // --- 2. Filtering Logic ---
-    function getFilteredAssessments() {
-        const cat = $('#filterCategorySelect').val();
-        const selectedSymptoms = $('#filterSymptomsSelect').val() || [];
-        const pop = $('#filterPopulationSelect').val();
+    function matches(a, skipGroup) {
         const kw = ($('#searchAssessmentInput').val() || '').toLowerCase().trim();
+        for (const g of GROUPS) {
+            if (g.key === skipGroup) continue;
+            const set = filters[g.key];
+            if (set.size && !g.values(a).some(v => set.has(v))) return false;
+        }
+        if (kw) {
+            const hay = [a.acronym, a.fullName, a.category, a.ageGroup, a.respondent, a.scoringCutoffs, a.citation,
+                ...(a.diagnoses || []), ...(a.symptoms || [])].join(' ').toLowerCase();
+            if (!hay.includes(kw)) return false;
+        }
+        return true;
+    }
+    function getFilteredAssessments() {
+        return assessmentsList.filter(a => matches(a));
+    }
 
-        return assessmentsList.filter(a => {
-            if (cat !== 'ALL' && a.category !== cat) return false;
-
-            if (selectedSymptoms.length > 0) {
-                const aSyms = a.symptoms || [];
-                const hasMatch = selectedSymptoms.some(s => aSyms.includes(s));
-                if (!hasMatch) return false;
-            }
-
-            if (pop !== 'ALL') {
-                const popHay = `${a.ageGroup || ''} ${a.respondent || ''}`.toLowerCase();
-                if (!popHay.includes(pop.toLowerCase())) return false;
-            }
-
-            if (kw) {
-                const hay = [
-                    a.acronym, a.fullName, a.category, a.ageGroup, a.respondent,
-                    a.scoringCutoffs, a.citation,
-                    ...(a.diagnoses || []),
-                    ...(a.symptoms || [])
-                ].join(' ').toLowerCase();
-                if (!hay.includes(kw)) return false;
-            }
-
-            return true;
+    // Each option's count reflects the other active filters, like the Resources page.
+    function renderFilters() {
+        const box = $('#filterGroups');
+        box.find('details').each(function() { if (this.open) openGroups.add(this.dataset.group); else openGroups.delete(this.dataset.group); });
+        box.empty();
+        GROUPS.forEach(g => {
+            const counts = new Map();
+            assessmentsList.forEach(a => g.values(a).forEach(v => counts.set(v, (counts.get(v) || 0) + (matches(a, g.key) ? 1 : 0))));
+            filters[g.key].forEach(v => { if (!counts.has(v)) counts.set(v, 0); });
+            const values = [...counts.keys()].sort((x, y) => x.localeCompare(y));
+            const active = filters[g.key].size;
+            const opts = values.map(v => `<label class="filter-option" title="${escapeAttr(v)}"><span><input type="checkbox" class="as-filter-cb" data-group="${g.key}" value="${escapeAttr(v)}" ${filters[g.key].has(v) ? 'checked' : ''}> ${escapeHtml(shortLabel(v))}</span><span class="filter-count">${counts.get(v)}</span></label>`).join('');
+            box.append(`<details class="filter-accordion" data-group="${g.key}" ${openGroups.has(g.key) || active ? 'open' : ''}><summary>${escapeHtml(g.label)}${active ? ` <span class="filter-active">${active}</span>` : ''}</summary><div class="filter-options">${opts}</div></details>`);
         });
+        const chips = [];
+        GROUPS.forEach(g => filters[g.key].forEach(v => chips.push(`<span class="active-filter-tag">${escapeHtml(shortLabel(v))} <button type="button" class="remove-filter-btn" data-group="${g.key}" data-value="${escapeAttr(v)}" aria-label="Remove filter ${escapeAttr(v)}">×</button></span>`)));
+        $('#activeFiltersBar').html(chips.length ? `${chips.join('')} <button type="button" class="clear-all-btn" id="clearAllFiltersBtn">Clear all</button>` : '');
+    }
+
+    // PDFs that aren't in the pdfs/ folder yet go to the "Future Feature Attraction" page.
+    // Links you add yourself (https://…) are used as-is; set "pdfAvailable": true once a file is in pdfs/.
+    function pdfHref(a) {
+        if (!a.pdfPath) return '';
+        if (/^https?:\/\//i.test(a.pdfPath) || a.pdfAvailable) return a.pdfPath;
+        return `../../coming-soon/index.html?feature=${encodeURIComponent(`${a.acronym} PDF`)}&from=${encodeURIComponent('../therapist-tools/assessmentdatabase/index.html')}`;
     }
 
     // --- 3. Render Cards & APA Citations ---
     function renderAll() {
         const filtered = getFilteredAssessments();
-        $('#assessmentCountBadge').text(`${filtered.length} of ${assessmentsList.length} Assessments Shown`);
+        renderFilters();
+        $('#assessmentCountBadge').text(`${filtered.length} of ${assessmentsList.length} assessments shown`);
         $('#selectedAssessmentsCount').text(selectedPacketIds.size);
 
         const grid = $('#assessmentCardsGrid');
@@ -85,7 +125,7 @@ $(document).ready(function() {
         if (filtered.length === 0) {
             grid.append(`
                 <div class="subpanel p-6 rounded-md text-center muted md:col-span-2">
-                    No assessments match your current filter. Click <strong>Reset All Filters</strong> or add a custom assessment above.
+                    No assessments match your filters. Click <strong>Reset filters</strong>, or add your own assessment above.
                 </div>
             `);
         } else {
@@ -94,9 +134,10 @@ $(document).ready(function() {
                 const dxBadges = (a.diagnoses || []).map(d => `<span class="as-tag tag-dx">${escapeHtml(d)}</span>`).join(' ');
                 const symBadges = (a.symptoms || []).map(s => `<span class="as-tag tag-sym">${escapeHtml(s)}</span>`).join(' ');
 
-                const pdfBtnHtml = a.pdfPath
-                    ? `<a href="${escapeAttr(a.pdfPath)}" target="_blank" rel="noopener" class="btn btn-primary px-3 py-1.5 text-xs font-semibold rounded-md inline-block">Open / Print PDF (${escapeHtml(a.acronym)})</a>`
-                    : `<span class="muted text-xs">No PDF path linked yet</span>`;
+                const href = pdfHref(a);
+                const pdfBtnHtml = href
+                    ? `<a href="${escapeAttr(href)}" target="_blank" rel="noopener" class="btn btn-primary px-3 py-1.5 text-xs font-semibold rounded-md inline-block">Open / Print PDF (${escapeHtml(a.acronym)})</a>`
+                    : `<span class="muted text-xs">No PDF linked yet</span>`;
 
                 grid.append(`
                     <div class="subpanel p-5 rounded-md border assessment-card flex flex-col justify-between ${isSelected ? 'selected-card' : ''}">
@@ -178,14 +219,34 @@ $(document).ready(function() {
     }
 
     // --- 4. Event Listeners for Filters, Selection & Custom Form ---
-    $('#filterCategorySelect, #filterSymptomsSelect, #filterPopulationSelect, #searchAssessmentInput').on('input change', renderAll);
-
-    $('#resetFiltersBtn').on('click', function() {
-        $('#filterCategorySelect').val('ALL');
-        $('#filterSymptomsSelect').val(null).trigger('change.select2');
-        $('#filterPopulationSelect').val('ALL');
-        $('#searchAssessmentInput').val('');
+    $('#searchAssessmentInput').on('input', renderAll);
+    $(document).on('change', '.as-filter-cb', function() {
+        const set = filters[this.dataset.group];
+        if (this.checked) set.add(this.value); else set.delete(this.value);
         renderAll();
+    });
+    $(document).on('click', '.remove-filter-btn', function() {
+        filters[this.dataset.group].delete(this.dataset.value);
+        renderAll();
+    });
+    function resetFilters() {
+        Object.values(filters).forEach(set => set.clear());
+        $('#searchAssessmentInput').val('');
+    }
+    $(document).on('click', '#resetFiltersBtn, #clearAllFiltersBtn', function() {
+        resetFilters();
+        renderAll();
+    });
+    // Start over: clear filters, the selection, and the add/edit form, then go back to the top.
+    $('#startOverBtn').on('click', function() {
+        if (!confirm('Start over? This clears your filters, your selection, and the add/edit form. Your assessment library stays as it is.')) return;
+        resetFilters();
+        selectedPacketIds.clear();
+        const form = document.getElementById('customAssessmentForm');
+        if (form) form.reset();
+        $('#editingAssessmentId').val('');
+        renderAll();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     $(document).on('change', '.select-assessment-cb', function() {
@@ -332,7 +393,7 @@ $(document).ready(function() {
     });
 
     // --- 5. Print Scoring & Citation Guide + Export (.json / .csv) ---
-    $('#printScoringGuideBtn, #printFullGuideBottomBtn').on('click', function() {
+    $('#printScoringGuideBtn').on('click', function() {
         const targetList = selectedPacketIds.size > 0
             ? assessmentsList.filter(a => selectedPacketIds.has(a.id))
             : getFilteredAssessments();
