@@ -40,6 +40,7 @@
                 <a href="../../adulting/my-budget/index.html">My Budget</a>
                 <a href="../../adulting/banking-project/learning-java/index.html">Simple Bank Project</a>
                 <a href="../../adulting/nd-self-retreat/index.html">ND Self-Retreat Builder</a>
+                <a href="../../adulting/assignments-organizer/index.html">Assignments Organizer</a>
                 <a href="../../adulting/healthcare/index.html">Healthcare</a>
                 <a href="../../adulting/healthcare/resources/index.html">Mental Health Resources</a>
             </div>
@@ -56,6 +57,7 @@
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
                 <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
@@ -152,7 +154,7 @@
                             <label for="clientDOB" class="block font-semibold mb-1">Date of birth</label>
                             <input type="date" id="clientDOB" class="w-full p-2 border rounded-md">
                         </div>
-                        <div data-show-for="esa accommodation referral gender">
+                        <div data-show-for="esa accommodation referral gender housing character">
                             <label for="clientStartDate" class="block font-semibold mb-1">Client since (month and year)</label>
                             <input type="month" id="clientStartDate" class="w-full p-2 border rounded-md">
                         </div>
@@ -374,6 +376,98 @@
                                 <label><input type="checkbox" value="risk of harm from another person"> Risk from others (e.g., IPV)</label>
                             </div>
                             <textarea id="safetyDetails" rows="2" class="w-full p-2 border rounded-md" placeholder="Details and current safety plan (optional)"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Housing / roommate reference -->
+                <fieldset id="housingFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="housing">
+                    <legend class="text-lg font-semibold">Housing reference details</legend>
+                    <p class="muted text-sm">A character reference for a landlord, roommate, or housing program. It shares no diagnosis. Asking for an emotional support animal or a disability accommodation? Use the ESA letter instead.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="housingRecipient" class="block font-semibold mb-1">Addressed to <span class="muted text-sm">(optional)</span></label>
+                            <input type="text" id="housingRecipient" class="w-full p-2 border rounded-md" placeholder="Leave blank for “To whom it may concern”">
+                        </div>
+                        <div>
+                            <label for="housingSituation" class="block font-semibold mb-1">Looking for</label>
+                            <select id="housingSituation" class="w-full p-2 border rounded-md">
+                                <option value="housing">Housing (general)</option>
+                                <option value="a shared home with roommates">A shared home with roommates</option>
+                                <option value="a rental home">A rental home</option>
+                                <option value="a place in a housing program">A housing program</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">Strengths to mention</span>
+                        <div class="check-grid" id="housingStrengthChecks">
+                            <label><input type="checkbox" value="Dependable and follows through on commitments"> Dependable</label>
+                            <label><input type="checkbox" value="Considerate and respectful of others’ space"> Considerate</label>
+                            <label><input type="checkbox" value="Communicates openly and works through conflict calmly"> Communicates openly</label>
+                            <label><input type="checkbox" value="Loyal, compassionate, and helpful"> Loyal and helpful</label>
+                            <label><input type="checkbox" value="Creative and resourceful"> Creative</label>
+                            <label><input type="checkbox" value="Gets along well with pets"> Good with pets</label>
+                            <label><input type="checkbox" value="Motivated to live more independently and has done well in shared or independent living before"> Ready for independence</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="housingDetails" class="block font-semibold mb-1">Anything else to add <span class="muted text-sm">(optional)</span></label>
+                        <textarea id="housingDetails" rows="2" class="w-full p-2 border rounded-md" placeholder="e.g., Keeps a steady routine and takes care of shared spaces."></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- Character reference for court -->
+                <fieldset id="characterFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="character">
+                    <legend class="text-lg font-semibold">Character reference details</legend>
+                    <p class="muted text-sm">Get a signed release of information before writing, and ask the client’s attorney what the court needs. Describe only what you know from your work together.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="characterRecipient" class="block font-semibold mb-1">Addressed to</label>
+                            <input type="text" id="characterRecipient" class="w-full p-2 border rounded-md" placeholder="Leave blank for “To the Honorable Judge and the Court”">
+                        </div>
+                        <div>
+                            <label for="characterMatter" class="block font-semibold mb-1">In connection with</label>
+                            <input type="text" id="characterMatter" class="w-full p-2 border rounded-md" placeholder="e.g., upcoming sentencing on a misdemeanor charge">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <span class="block font-semibold mb-1">Relationship</span>
+                            <div class="flex flex-wrap gap-x-4">
+                                <label><input type="radio" name="characterRelationship" value="current" checked> Current client</label>
+                                <label><input type="radio" name="characterRelationship" value="former"> Former client</label>
+                            </div>
+                        </div>
+                        <div id="characterEndBlock" class="hidden">
+                            <label for="characterEndDate" class="block font-semibold mb-1">Therapy ended (month and year)</label>
+                            <input type="month" id="characterEndDate" class="w-full p-2 border rounded-md">
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">Qualities you’ve seen</span>
+                        <div class="check-grid" id="characterTraitChecks">
+                            <label><input type="checkbox" value="Compassion and understanding toward others"> Compassionate</label>
+                            <label><input type="checkbox" value="Dedication to work and to the people who depend on that work"> Dedicated</label>
+                            <label><input type="checkbox" value="Honesty and willingness to take responsibility"> Honest, takes responsibility</label>
+                            <label><input type="checkbox" value="Commitment to growth and to the work of therapy"> Committed to growth</label>
+                            <label><input type="checkbox" value="Consideration and respect for others"> Considerate</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="characterDetails" class="block font-semibold mb-1">More about their character or progress <span class="muted text-sm">(optional)</span></label>
+                        <textarea id="characterDetails" rows="2" class="w-full p-2 border rounded-md" placeholder="e.g., Over our work together, they built skills for planning ahead and asking for support."></textarea>
+                    </div>
+                    <div>
+                        <label for="characterImpact" class="block font-semibold mb-1">How a sentence would affect their work or others <span class="muted text-sm">(optional)</span></label>
+                        <textarea id="characterImpact" rows="2" class="w-full p-2 border rounded-md" placeholder="e.g., They work as a paraprofessional, and their students rely on them being there."></textarea>
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">Alternatives to ask the Court to consider <span class="muted text-sm">(optional)</span></span>
+                        <div class="check-grid" id="characterAlternativeChecks">
+                            <label><input type="checkbox" value="probation"> Probation</label>
+                            <label><input type="checkbox" value="community service"> Community service</label>
+                            <label><input type="checkbox" value="continued or court-ordered therapy"> Continued or court-ordered therapy</label>
                         </div>
                     </div>
                 </fieldset>

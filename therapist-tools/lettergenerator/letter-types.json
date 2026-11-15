@@ -49,6 +49,19 @@
             ]
         },
         {
+            "id": "housing",
+            "name": "Housing / Roommate Reference Letter",
+            "templatePath": "templates/housing_reference.json",
+            "citations": []
+        },
+        {
+            "id": "character",
+            "name": "Character Reference for Court (draft)",
+            "draft": true,
+            "templatePath": "templates/character_reference.json",
+            "citations": []
+        },
+        {
             "id": "roi",
             "name": "Release of Information (ROI) Authorization (draft)",
             "draft": true,

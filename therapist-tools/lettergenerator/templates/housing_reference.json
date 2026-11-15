@@ -1,0 +1,17 @@
+{
+  "title": "Housing / Roommate Reference Letter",
+  "sections": [
+    { "type": "paragraph", "content": "[DATE_GENERATED]" },
+    { "type": "paragraph", "content": "From: [CLINICIAN_NAME_CREDS]<br>Regarding: Housing reference for [CLIENT_FULL_NAME]" },
+    { "type": "paragraph", "content": "[HOUSING_SALUTATION]" },
+    { "type": "paragraph", "content": "I am writing in support of [CLIENT_FIRST_NAME] as [CLIENT_FIRST_NAME] looks for [HOUSING_SITUATION]. I have been [CLIENT_FIRST_NAME]’s counselor since [HOUSING_START_DATE], and in that time I have seen [CLIENT_FIRST_NAME] stay motivated and make steady progress." },
+    { "type": "paragraph", "content": "In my experience, [CLIENT_FIRST_NAME] shows these strengths, which I believe will carry over to shared living:", "when": "hasHousingStrengths" },
+    { "type": "list", "key": "HOUSING_STRENGTH_ITEMS", "when": "hasHousingStrengths" },
+    { "type": "paragraph", "content": "[HOUSING_DETAILS]", "when": "hasHousingDetails" },
+    { "type": "paragraph", "content": "I expect that [CLIENT_FIRST_NAME] will respect the agreements and boundaries of a shared home." },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] has signed a release of information allowing me to share this letter. If you have questions, I’m glad to answer what I can within that release. I can be reached at [CLINICIAN_CONTACT]." },
+    { "type": "paragraph", "content": "[VERIFICATION_CLAUSE]" },
+    { "type": "paragraph", "content": "Best wishes," },
+    { "type": "signature" }
+  ]
+}
