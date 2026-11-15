@@ -1,57 +1,19 @@
 {
   "title": "Academic Accommodation Letter",
   "sections": [
-    {
-      "type": "paragraph",
-      "content": "Date: [DATE_GENERATED]"
-    },
-    {
-      "type": "paragraph",
-      "content": "To: [RECIPIENT_NAME_OR_DEPARTMENT]"
-    },
-    {
-      "type": "paragraph",
-      "content": "From: [CLINICIAN_NAME], [LICENSE_TYPE]"
-    },
-    {
-      "type": "paragraph",
-      "content": "Regarding: Academic Accommodation for [CLIENT_FULL_NAME]"
-    },
-    {
-      "type": "paragraph",
-      "content": "To Whom It May Concern,"
-    },
-    {
-      "type": "paragraph",
-      "content": "I am the mental health counselor for [CLIENT_FIRST_NAME], a student at [INSTITUTION_NAME]. This letter is provided at their request to support their need for academic accommodations."
-    },
-    {
-      "type": "paragraph",
-      "content": "[CLIENT_FIRST_NAME] has a diagnosed mental health condition that presents challenges within a traditional academic setting. To ensure equitable access to their education, the following accommodations are recommended based on the functional limitations associated with their diagnosis:"
-    },
-    {
-      "type": "paragraph",
-      "content": "[ACCOMMODATION_DETAILS]"
-    },
-    {
-      "type": "paragraph",
-      "content": "[CLIENT_FIRST_NAME] is a capable and dedicated student. These accommodations are intended to mitigate barriers and provide them with the opportunity to demonstrate their knowledge and skills. They understand their responsibility to communicate with their professors in a timely manner regarding these accommodations."
-    },
-    {
-      "type": "paragraph",
-      "content": "Thank you for your partnership in supporting this student. Please feel free to contact me if you require further information."
-    },
-    {
-      "type": "paragraph",
-      "content": "Sincerely,"
-    },
-    {
-      "type": "signature",
-      "lines": [
-        "[CLINICIAN_NAME], [LICENSE_TYPE]",
-        "License #: [LICENSE_NUMBER]",
-        "[CLINICIAN_EMAIL]"
-      ]
-    }
+    { "type": "paragraph", "content": "[DATE_GENERATED]" },
+    { "type": "paragraph", "content": "<strong>RE: Academic Accommodation Recommendations for [CLIENT_FULL_NAME][CLIENT_DOB_PAREN]</strong>" },
+    { "type": "paragraph", "content": "To Whom This May Concern," },
+    { "type": "paragraph", "content": "I am [A_LICENSE_TYPE] in [LICENSE_STATE_PHRASE] (License No. [LICENSE_NUMBER]). I have provided mental health treatment to [CLIENT_FULL_NAME], a student at [INSTITUTION_NAME], since [ACCOM_START_DATE][TREATMENT_LENGTH_PAREN]. I am writing at [CLIENT_FIRST_NAME]’s request to support their request for academic accommodations." },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] has been diagnosed with [DIAGNOSIS_LIST]. This condition is a disability under Section 504 of the Rehabilitation Act of 1973 and the Americans with Disabilities Act, as amended by the ADA Amendments Act of 2008 (ADAAA), because it substantially limits one or more major life activities.", "when": "includeDiagnosis" },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] has a condition that I am treating, which may qualify as a disability under Section 504 of the Rehabilitation Act of 1973 and the Americans with Disabilities Act, as amended by the ADA Amendments Act of 2008 (ADAAA). At their request, specific diagnostic information is not included in this letter.", "when": "!includeDiagnosis" },
+    { "type": "paragraph", "content": "<strong>Functional impact.</strong> [FUNCTIONAL_IMPACT]", "when": "hasFunctionalImpact" },
+    { "type": "paragraph", "content": "Based on the functional impact I have observed, I recommend the following accommodations:" },
+    { "type": "list", "key": "ACCOMMODATION_ITEMS" },
+    { "type": "paragraph", "content": "These recommendations follow the Association on Higher Education and Disability (AHEAD) guidance that documentation describe how a condition affects the student and how each accommodation addresses that impact. Final accommodation decisions rest with [INSTITUTION_NAME]’s disability services office." },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] is a capable student. These accommodations are meant to remove barriers so they can demonstrate their knowledge and skills, and they understand their responsibility to communicate with their instructors about these accommodations in a timely manner." },
+    { "type": "paragraph", "content": "[VERIFICATION_CLAUSE]" },
+    { "type": "paragraph", "content": "Respectfully," },
+    { "type": "signature" }
   ]
 }

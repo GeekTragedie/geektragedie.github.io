@@ -46,6 +46,10 @@
         align-items: center;
         gap: 4px;
     }
+    .featured-card {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent) inset;
+    }
     .tag {
         color: var(--badge-color);
         background-color: var(--badge-bg);
@@ -111,6 +115,7 @@
                 <span class="dropdown-label">Day-to-Day</span>
                 <a href="../therapist-tools/notegenerator/index.html">Note Generator</a>
                 <a href="../therapist-tools/lettergenerator/index.html">Letter Generator</a>
+                <a href="../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
                 <a href="../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
@@ -144,11 +149,20 @@
         <p class="section-desc">The everyday paperwork: letters, notes, and client support.</p>
 
         <div class="card-grid">
+            <a href="./lettergenerator/index.html?type=roi" class="card featured-card">
+                <div>
+                    <span class="tag">Featured · New</span>
+                    <h3>Release of Information (ROI)</h3>
+                    <p>A HIPAA authorization form with every required element: who shares, with whom, what, why, when it expires, and the client’s rights. Print it for your client to sign.</p>
+                </div>
+                <div class="card-action">Make an ROI form &rarr;</div>
+            </a>
+
             <a href="./lettergenerator/index.html" class="card">
                 <div>
                     <span class="tag">Active Tool</span>
                     <h3>Letter Generator</h3>
-                    <p>Fill-in-the-blank letters for ESAs, academic accommodations, and referrals, with suggestions based on diagnosis.</p>
+                    <p>Letters for emotional support animals, academic accommodations, referrals, and gender-affirming care, plus ROI forms, with a live preview and suggestions based on diagnosis.</p>
                 </div>
                 <div class="card-action">Open Letter Generator &rarr;</div>
             </a>

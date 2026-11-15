@@ -1,52 +1,22 @@
 {
   "title": "Referral Letter",
   "sections": [
-    {
-      "type": "paragraph",
-      "content": "Date: [DATE_GENERATED]"
-    },
-    {
-      "type": "paragraph",
-      "content": "To: [REFERRED_TO_PROVIDER]"
-    },
-    {
-      "type": "paragraph",
-      "content": "From: [CLINICIAN_NAME], [LICENSE_TYPE]"
-    },
-    {
-      "type": "paragraph",
-      "content": "Regarding: Referral for [CLIENT_FULL_NAME]"
-    },
-    {
-      "type": "paragraph",
-      "content": "Dear [REFERRED_TO_PROVIDER],"
-    },
-    {
-      "type": "paragraph",
-      "content": "I am writing to refer my client, [CLIENT_FULL_NAME] (DOB: [CLIENT_DOB]), for [REASON_FOR_REFERRAL]. [CLIENT_FIRST_NAME] has been my client since [START_DATE] for treatment of [CLIENT_DIAGNOSIS]."
-    },
-    {
-      "type": "paragraph",
-      "content": "During our work together, we have identified a need for the specialized services you provide. I believe your expertise in this area would be of great benefit to [CLIENT_FIRST_NAME] and would complement our ongoing therapeutic work."
-    },
-    {
-        "type": "paragraph",
-        "content": "I have discussed this referral with [CLIENT_FIRST_NAME], and they have consented to the release of this information to you. Please feel free to contact me at [CLINICIAN_EMAIL] if you require any further information."
-    },
-    {
-      "type": "paragraph",
-      "content": "Thank you for your time and consideration."
-    },
-    {
-      "type": "paragraph",
-      "content": "Sincerely,"
-    },
-    {
-      "type": "signature",
-      "lines": [
-        "[CLINICIAN_NAME], [LICENSE_TYPE]",
-        "License #: [LICENSE_NUMBER]"
-      ]
-    }
+    { "type": "paragraph", "content": "[DATE_GENERATED]" },
+    { "type": "paragraph", "content": "To: [REFERRED_TO_PROVIDER]<br>From: [CLINICIAN_NAME_CREDS]" },
+    { "type": "paragraph", "content": "<strong>RE: [REFERRAL_TYPE_TITLE] for [CLIENT_FULL_NAME][CLIENT_DOB_PAREN]</strong>" },
+    { "type": "paragraph", "content": "Dear [REFERRED_TO_PROVIDER]," },
+    { "type": "paragraph", "content": "[REFERRAL_OPENING]" },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] has been in treatment with me since [REFERRAL_START_DATE] for [DIAGNOSIS_LIST].", "when": "hasDiagnosis" },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] has been in treatment with me since [REFERRAL_START_DATE].", "when": "!hasDiagnosis" },
+    { "type": "paragraph", "content": "Specifically, I am asking for:", "when": "hasReferralGoals" },
+    { "type": "list", "key": "REFERRAL_GOAL_ITEMS", "when": "hasReferralGoals" },
+    { "type": "paragraph", "content": "[REASON_FOR_REFERRAL]", "when": "hasReason" },
+    { "type": "paragraph", "content": "<strong>What has worked well:</strong> [WHAT_WORKED]", "when": "hasWhatWorked" },
+    { "type": "paragraph", "content": "<strong>Safety:</strong> [SAFETY_LINE]", "when": "hasSafety" },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] has signed a release of information authorizing me to share this information with you. I am glad to coordinate care and can be reached at [CLINICIAN_CONTACT]." },
+    { "type": "paragraph", "content": "[VERIFICATION_CLAUSE]" },
+    { "type": "paragraph", "content": "Thank you for your time and care." },
+    { "type": "paragraph", "content": "Respectfully," },
+    { "type": "signature" }
   ]
 }

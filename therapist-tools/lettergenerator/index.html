@@ -8,6 +8,7 @@
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="main.css">
 </head>
 <body aria-label="Client therapy letter generator page">
 <script src="../../assets/theme.js"></script>
@@ -49,6 +50,7 @@
                 <span class="dropdown-label">Day-to-Day</span>
                 <a href="../../therapist-tools/notegenerator/index.html">Note Generator</a>
                 <a href="../../therapist-tools/lettergenerator/index.html" aria-current="page">Letter Generator</a>
+                <a href="../../therapist-tools/lettergenerator/index.html?type=roi">ROI Authorization</a>
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Crisis Plan Generator</a>
@@ -79,11 +81,12 @@
                     <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
                         <ol class="list-decimal space-y-1">
-                            <li>Choose the letter type: emotional support animal, academic accommodation, or referral.</li>
-                            <li>Fill in the client and clinician details and pick diagnoses. Suggested accommodations appear based on diagnosis.</li>
-                            <li>Generate the letter and review every line before you sign it.</li>
-                            <li>Print it from the tool menu (the button appears once a letter is generated).</li>
+                            <li>Choose a letter: emotional support animal, academic accommodation, referral, gender-affirming care, or a release of information (ROI) form.</li>
+                            <li>Fill in the client and your details. Upload your practice info once to fill in your license, NPI, and contact details on every visit.</li>
+                            <li>Watch the preview: it writes the letter as you type and highlights anything still missing.</li>
+                            <li>Read every line, then print or copy the letter from the tool menu and sign it.</li>
                         </ol>
+                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
                         <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time.</p>
                         <p>Import, save, print, and clear are further down this menu.</p>
                         <h3 class="why-heading">Why this matters</h3>
@@ -108,7 +111,8 @@
 
                 <div class="sidebar-group" role="group" aria-label="Print and share">
                     <span class="sidebar-label">Print &amp; share</span>
-                    <button type="button" id="printLetterButton" class="btn btn-sm sidebar-btn hidden">Print letter</button>
+                    <button type="button" id="printLetterButton" class="btn btn-sm sidebar-btn" disabled>Print letter</button>
+                    <button type="button" id="copyLetterButton" class="btn btn-sm sidebar-btn" disabled>Copy letter</button>
                 </div>
 
                 <div class="sidebar-group" role="group" aria-label="Start over">
@@ -120,169 +124,383 @@
         </aside>
 
     <div class="panel tool-panel">
-        <h1 class="text-4xl font-bold text-center mb-6">Client Therapy Letter Generator</h1>
-
-
-        <form id="letterGeneratorForm" class="space-y-4">
-            <div class="mb-4">
-                <label for="letterTypeSelect" class="block text-lg font-semibold mb-2">Select Letter Type:</label>
+        <h1 class="text-4xl font-bold text-center mb-2">Client Therapy Letter Generator</h1>
+        <p class="muted text-center text-sm mb-6">Pick a letter, fill in the details, and the letter writes itself in the preview below. Nothing is saved or sent anywhere; use <strong>Save .json</strong> in the tool menu to keep a copy.</p>
+        <form id="letterGeneratorForm" class="space-y-4" novalidate>
+            <div class="subpanel p-4 rounded-md">
+                <label for="letterTypeSelect" class="block text-lg font-semibold mb-2">Letter type</label>
                 <select id="letterTypeSelect" class="w-full p-2 border rounded-md"></select>
+                <p id="draftNotice" class="draft-notice hidden" role="note"><strong>Draft template.</strong> This letter was drafted from published standards and hasn’t been reviewed for your state or setting yet. Read every line and edit it before you use it.</p>
             </div>
 
             <div id="formFields" class="hidden space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="clientFirstName" class="block text-lg font-semibold mb-2">Client's First Name:</label>
-                        <input type="text" id="clientFirstName" class="w-full p-2 border rounded-md">
-                    </div>
-                    <div>
-                        <label for="clientLastName" class="block text-lg font-semibold mb-2">Client's Last Name:</label>
-                        <input type="text" id="clientLastName" class="w-full p-2 border rounded-md">
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="clinicianFirstName" class="block text-lg font-semibold mb-2">Clinician's First Name:</label>
-                        <input type="text" id="clinicianFirstName" class="w-full p-2 border rounded-md">
-                    </div>
-                    <div>
-                        <label for="clinicianLastName" class="block text-lg font-semibold mb-2">Clinician's Last Name:</label>
-                        <input type="text" id="clinicianLastName" class="w-full p-2 border rounded-md">
-                    </div>
-                </div>
-                <div>
-                    <label for="signatureUpload" class="block text-lg font-semibold mb-2">Upload Signature Image:</label>
-                    <input type="file" id="signatureUpload" accept="image/*" class="w-full">
-                    <img id="signaturePreview" src="#" alt="Signature Preview" class="hidden mt-4 max-h-20">
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="licenseTypeSelect" class="block text-lg font-semibold mb-2">Clinician's License Type:</label>
-                        <select id="licenseTypeSelect" class="w-full p-2 border rounded-md"></select>
-                    </div>
-                    <div id="customLicenseTypeWrapper" class="hidden">
-                        <label for="customLicenseType" class="block text-lg font-semibold mb-2">Custom License Type:</label>
-                        <input type="text" id="customLicenseType" class="w-full p-2 border rounded-md">
-                    </div>
-                    <div>
-                        <label for="licenseNumber" class="block text-lg font-semibold mb-2">License Number:</label>
-                        <input type="text" id="licenseNumber" data-practice="therapist.licenses.0.number" class="w-full p-2 border rounded-md">
-                    </div>
-                </div>
-                <div>
-                    <label for="clinicianEmail" class="block text-lg font-semibold mb-2">Clinician's Email:</label>
-                    <input type="email" id="clinicianEmail" data-practice="business.businessEmail" class="w-full p-2 border rounded-md">
-                </div>
-
-                <div id="esaFields" class="hidden space-y-4">
+                <!-- Client -->
+                <fieldset class="subpanel p-4 rounded-md space-y-3">
+                    <legend class="text-lg font-semibold">Client</legend>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label for="startDate" class="block text-lg font-semibold mb-2">Client Since (Month and Year):</label>
-                            <input type="month" id="startDate" class="w-full p-2 border rounded-md">
+                            <label for="clientFirstName" class="block font-semibold mb-1">First name <span class="muted text-sm" data-show-for="gender">(the name they use)</span></label>
+                            <input type="text" id="clientFirstName" class="w-full p-2 border rounded-md" autocomplete="off">
                         </div>
                         <div>
-                            <label for="licenseExpiration" class="block text-lg font-semibold mb-2">License Expiration Date:</label>
-                            <input type="date" id="licenseExpiration" data-practice="therapist.licenses.0.expiration" class="w-full p-2 border rounded-md">
+                            <label for="clientLastName" class="block font-semibold mb-1">Last name</label>
+                            <input type="text" id="clientLastName" class="w-full p-2 border rounded-md" autocomplete="off">
                         </div>
                     </div>
-                    <div>
-                        <label for="animalType" class="block text-lg font-semibold mb-2">Animal Type:</label>
-                        <input type="text" id="animalType" class="w-full p-2 border rounded-md" placeholder="e.g., dog, cat">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div data-show-for="accommodation referral gender roi">
+                            <label for="clientDOB" class="block font-semibold mb-1">Date of birth</label>
+                            <input type="date" id="clientDOB" class="w-full p-2 border rounded-md">
+                        </div>
+                        <div data-show-for="esa accommodation referral gender">
+                            <label for="clientStartDate" class="block font-semibold mb-1">Client since (month and year)</label>
+                            <input type="month" id="clientStartDate" class="w-full p-2 border rounded-md">
+                        </div>
                     </div>
-                    <div>
-                        <label for="petDescription" class="block text-lg font-semibold mb-2">Description of Pet:</label>
-                        <textarea id="petDescription" rows="3" class="w-full p-3 border rounded-md"></textarea>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-show-for="gender">
+                        <div>
+                            <label for="clientPronouns" class="block font-semibold mb-1">Pronouns</label>
+                            <input type="text" id="clientPronouns" class="w-full p-2 border rounded-md" placeholder="e.g., she/her, they/them">
+                        </div>
+                        <div>
+                            <label for="clientLegalName" class="block font-semibold mb-1">Legal name, if different <span class="muted text-sm">(optional)</span></label>
+                            <input type="text" id="clientLegalName" class="w-full p-2 border rounded-md" placeholder="Only if a recipient requires it">
+                        </div>
                     </div>
-                </div>
+                </fieldset>
 
-                <div id="accommodationFields" class="hidden space-y-4">
-                    <div class="subpanel p-4 rounded-lg space-y-4 border">
-                        <h4 class="text-xl font-semibold">Clinical Information</h4>
-                        <div class="flex items-center gap-x-4">
-                            <span class="text-lg font-semibold">Coding System:</span>
-                            <label><input type="radio" name="codingSystem" value="ICD" class="mr-1"> ICD</label>
-                            <label><input type="radio" name="codingSystem" value="DSM" class="mr-1"> DSM</label>
+                <!-- Clinician -->
+                <fieldset class="subpanel p-4 rounded-md space-y-3">
+                    <legend class="text-lg font-semibold">You (the clinician)</legend>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="clinicianFirstName" class="block font-semibold mb-1">First name</label>
+                            <input type="text" id="clinicianFirstName" class="w-full p-2 border rounded-md">
                         </div>
                         <div>
-                            <label for="diagnosisSelect" class="block text-lg font-semibold mb-2">Select Diagnosis:</label>
-                            <select id="diagnosisSelect" class="w-full"></select>
+                            <label for="clinicianLastName" class="block font-semibold mb-1">Last name</label>
+                            <input type="text" id="clinicianLastName" class="w-full p-2 border rounded-md">
                         </div>
-                        <hr>
-                        <h4 class="text-xl font-semibold">Accommodation Builder</h4>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label for="suggestionSelect" class="block text-lg font-semibold mb-2">Add a Suggested Accommodation:</label>
-                            <div class="flex gap-2">
-                                <select id="suggestionSelect" class="w-full p-2 border rounded-md" disabled>
-                                    <option value="">-- First Select a Diagnosis --</option>
-                                </select>
-                                <button type="button" id="addAccommodationButton" class="btn btn-primary px-4 py-2 font-semibold rounded-md" disabled>Add</button>
+                            <label for="licenseTypeSelect" class="block font-semibold mb-1">License type</label>
+                            <select id="licenseTypeSelect" class="w-full p-2 border rounded-md"></select>
+                        </div>
+                        <div id="customLicenseTypeWrapper" class="hidden">
+                            <label for="customLicenseType" class="block font-semibold mb-1">Your license type</label>
+                            <input type="text" id="customLicenseType" class="w-full p-2 border rounded-md" placeholder="e.g., Licensed Clinical Mental Health Counselor (LCMHC)">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="licenseState" class="block font-semibold mb-1">License state</label>
+                            <select id="licenseState" data-practice="therapist.licenses.0.state" class="w-full p-2 border rounded-md"></select>
+                        </div>
+                        <div>
+                            <label for="licenseNumber" class="block font-semibold mb-1">License number</label>
+                            <input type="text" id="licenseNumber" data-practice="therapist.licenses.0.number" class="w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label for="licenseExpiration" class="block font-semibold mb-1">License expiration</label>
+                            <input type="date" id="licenseExpiration" data-practice="therapist.licenses.0.expiration" class="w-full p-2 border rounded-md" aria-describedby="licenseExpirationError">
+                            <p id="licenseExpirationError" class="danger-text text-sm mt-1 hidden" role="alert">This date is in the past. Renew your license, or check the date, before sending a letter.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="clinicianNpi" class="block font-semibold mb-1">NPI</label>
+                            <input type="text" id="clinicianNpi" data-practice="therapist.npiType1" inputmode="numeric" class="w-full p-2 border rounded-md" placeholder="10 digits">
+                        </div>
+                        <div>
+                            <label for="clinicianPhone" class="block font-semibold mb-1">Phone</label>
+                            <input type="tel" id="clinicianPhone" data-practice="business.businessPhone" class="w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label for="clinicianEmail" class="block font-semibold mb-1">Email</label>
+                            <input type="email" id="clinicianEmail" data-practice="business.businessEmail" class="w-full p-2 border rounded-md">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="clinicianAddress" class="block font-semibold mb-1">Practice address</label>
+                        <textarea id="clinicianAddress" data-practice="business.businessAddress" rows="2" class="w-full p-2 border rounded-md" placeholder="Street&#10;City, State ZIP"></textarea>
+                    </div>
+                    <div class="signature-box">
+                        <span class="block font-semibold mb-1">Signature <span class="muted text-sm">(optional; you can also sign the printed letter)</span></span>
+                        <div class="chip-tabs" role="tablist" aria-label="Signature method">
+                            <button type="button" class="chip-tab" role="tab" aria-selected="true" data-sig-mode="upload">Upload image</button>
+                            <button type="button" class="chip-tab" role="tab" aria-selected="false" data-sig-mode="draw">Draw it</button>
+                        </div>
+                        <div data-sig-panel="upload">
+                            <input type="file" id="signatureUpload" accept="image/*" class="w-full">
+                        </div>
+                        <div data-sig-panel="draw" class="hidden">
+                            <canvas id="signaturePad" width="600" height="160" aria-label="Draw your signature with a mouse, finger, or stylus"></canvas>
+                            <div class="flex gap-2 mt-2">
+                                <button type="button" id="useDrawnSignature" class="btn btn-sm btn-primary">Use this signature</button>
+                                <button type="button" id="clearSignaturePad" class="btn btn-sm">Clear</button>
                             </div>
                         </div>
-                         <div class="space-y-2">
-                             <label class="block text-lg font-semibold">Or Write a Custom Accommodation:</label>
-                            <input type="text" id="customAccomName" placeholder="Custom Accommodation Name (e.g., Use of a Calculator)" class="w-full p-2 border rounded-md">
-                             <textarea id="customAccomDesc" rows="2" placeholder="Recommendation/Description..." class="w-full p-3 border rounded-md"></textarea>
-                            <button type="button" id="addCustomAccommodationButton" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Add Custom</button>
+                        <div id="signaturePreviewWrap" class="hidden mt-2">
+                            <img id="signaturePreview" src="data:," alt="Your signature" class="max-h-20">
+                            <button type="button" id="removeSignature" class="btn-link text-sm">Remove signature</button>
                         </div>
                     </div>
+                </fieldset>
 
+                <!-- ESA -->
+                <fieldset id="esaFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="esa">
+                    <legend class="text-lg font-semibold">Emotional support animal(s)</legend>
+                    <div id="animalRows" class="space-y-3"></div>
+                    <button type="button" id="addAnimalButton" class="btn btn-sm">+ Add another animal</button>
+                    <div>
+                        <span class="block font-semibold mb-1">Major life activities that are substantially limited</span>
+                        <div class="check-grid" id="lifeActivityChecks">
+                            <label><input type="checkbox" value="sleep"> Sleep</label>
+                            <label><input type="checkbox" value="concentration"> Concentration</label>
+                            <label><input type="checkbox" value="regulating physiological arousal"> Regulating physiological arousal</label>
+                            <label><input type="checkbox" value="maintaining daily routines and activities of daily living"> Maintaining daily routines / ADLs</label>
+                            <label><input type="checkbox" value="social functioning"> Social functioning</label>
+                            <label><input type="checkbox" value="__other" id="lifeActivityOtherCheck"> Other</label>
+                        </div>
+                        <input type="text" id="lifeActivityOther" class="w-full p-2 border rounded-md mt-2 hidden" placeholder="Other major life activity, e.g., self-care">
+                    </div>
+                </fieldset>
+
+                <!-- Shared clinical info (accommodation, referral) -->
+                <fieldset id="clinicalFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="accommodation referral">
+                    <legend class="text-lg font-semibold">Diagnosis</legend>
+                    <div class="flex flex-wrap items-center gap-x-4">
+                        <span class="font-semibold">Show names as:</span>
+                        <label><input type="radio" name="codingSystem" value="DSM" class="mr-1" checked> DSM-5-TR</label>
+                        <label><input type="radio" name="codingSystem" value="ICD" class="mr-1"> ICD-10-CM</label>
+                    </div>
+                    <div>
+                        <label for="diagnosisSelect" class="block font-semibold mb-1">Diagnosis or diagnoses</label>
+                        <select id="diagnosisSelect" class="w-full" multiple></select>
+                    </div>
+                    <label class="toggle-line" data-show-for="accommodation"><input type="checkbox" id="includeDiagnosis" checked> Include the diagnosis and each accommodation’s rationale <span class="muted text-sm">(recommended for a Disability Services Office; uncheck for a professor)</span></label>
+                </fieldset>
+
+                <!-- Accommodation -->
+                <fieldset id="accommodationFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="accommodation">
+                    <legend class="text-lg font-semibold">Accommodations</legend>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="institutionName" class="block font-semibold mb-1">School or institution</label>
+                            <input type="text" id="institutionName" class="w-full p-2 border rounded-md" placeholder="e.g., Example State University">
+                        </div>
+                        <div>
+                            <label for="treatmentLength" class="block font-semibold mb-1">Length of treatment</label>
+                            <input type="text" id="treatmentLength" class="w-full p-2 border rounded-md" placeholder="Fills in from “Client since”">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="functionalImpact" class="block font-semibold mb-1">Functional impact <span class="muted text-sm">(how symptoms affect learning, testing, or attendance)</span></label>
+                        <textarea id="functionalImpact" rows="3" class="w-full p-2 border rounded-md" placeholder="e.g., Intrusive anxiety during timed exams reduces working memory and processing speed; panic symptoms sometimes require leaving the room."></textarea>
+                        <div class="example-chips" data-example-target="#functionalImpact">
+                            <button type="button" class="example-chip">Symptoms reduce sustained attention during long lectures.</button>
+                            <button type="button" class="example-chip">Timed testing increases anxiety and slows processing speed.</button>
+                            <button type="button" class="example-chip">Symptom flares occasionally prevent attendance on short notice.</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="suggestionSelect" class="block font-semibold mb-1">Add a suggested accommodation</label>
+                        <div class="flex gap-2">
+                            <select id="suggestionSelect" class="w-full p-2 border rounded-md" disabled>
+                                <option value="">Select a diagnosis first</option>
+                            </select>
+                            <button type="button" id="addAccommodationButton" class="btn btn-primary px-4 py-2 font-semibold rounded-md" disabled>Add</button>
+                        </div>
+                    </div>
                     <div class="space-y-2">
-                        <h4 class="text-xl font-semibold">Selected Accommodations for Letter:</h4>
-                        <div id="selectedAccommodations" class="subpanel p-4 rounded-lg min-h-[50px] space-y-3">
-                            <p class="muted">No accommodations added yet.</p>
+                        <span class="block font-semibold">Or write your own</span>
+                        <input type="text" id="customAccomName" placeholder="Accommodation (e.g., Use of a calculator)" class="w-full p-2 border rounded-md">
+                        <textarea id="customAccomDesc" rows="2" placeholder="What it looks like and how it helps" class="w-full p-2 border rounded-md"></textarea>
+                        <button type="button" id="addCustomAccommodationButton" class="btn btn-primary px-4 py-2 font-semibold rounded-md">Add custom</button>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="block font-semibold">In this letter</span>
+                        <div id="selectedAccommodations" class="space-y-3"><p class="muted">No accommodations added yet.</p></div>
+                    </div>
+                </fieldset>
+
+                <!-- Referral -->
+                <fieldset id="referralFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="referral">
+                    <legend class="text-lg font-semibold">Referral details</legend>
+                    <div>
+                        <label for="referredToProvider" class="block font-semibold mb-1">Referring to (provider or practice)</label>
+                        <input type="text" id="referredToProvider" class="w-full p-2 border rounded-md" placeholder="e.g., Dr. Jane Smith, Example Psychiatry">
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">Type of referral</span>
+                        <div class="flex flex-wrap gap-x-4">
+                            <label><input type="radio" name="referralType" value="cotreatment" checked> Co-treatment (I’ll keep seeing them)</label>
+                            <label><input type="radio" name="referralType" value="transfer"> Transfer of care</label>
+                            <label><input type="radio" name="referralType" value="assessment"> Assessment only</label>
                         </div>
                     </div>
+                    <div id="referralGoalsBlock" class="hidden">
+                        <span class="block font-semibold mb-1">Referral goals <span class="muted text-sm">(optional)</span></span>
+                        <div class="check-grid" id="referralGoalChecks">
+                            <label><input type="checkbox" value="a psychiatric evaluation and medication management"> Medication / psychiatry</label>
+                            <label><input type="checkbox" value="psychological or diagnostic assessment"> Assessment</label>
+                            <label><input type="checkbox" value="an evaluation for a higher level of care (such as IOP, PHP, or residential)"> Higher level of care</label>
+                            <label><input type="checkbox" value="a step-down to a lower level of care"> Lower level of care</label>
+                            <label><input type="checkbox" value="a primary care visit to rule out medical causes of current symptoms"> PCP: rule out medical causes</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="reasonForReferral" class="block font-semibold mb-1">More about the reason <span class="muted text-sm">(optional)</span></label>
+                        <textarea id="reasonForReferral" rows="2" class="w-full p-2 border rounded-md" placeholder="e.g., Symptoms have not improved with therapy alone, and the client is open to exploring medication."></textarea>
+                    </div>
+                    <div>
+                        <label for="whatWorked" class="block font-semibold mb-1">What has worked well <span class="muted text-sm">(optional)</span></label>
+                        <textarea id="whatWorked" rows="2" class="w-full p-2 border rounded-md" placeholder="e.g., Responds well to CBT skills practice and a predictable session structure."></textarea>
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">Safety</span>
+                        <div class="flex flex-wrap gap-x-4">
+                            <label><input type="radio" name="safetyStatus" value="none" checked> No current safety concerns</label>
+                            <label><input type="radio" name="safetyStatus" value="concerns"> Safety concerns to note</label>
+                            <label><input type="radio" name="safetyStatus" value="omit"> Leave safety out</label>
+                        </div>
+                        <div id="safetyConcernsBlock" class="hidden mt-2 space-y-2">
+                            <div class="check-grid" id="safetyConcernChecks">
+                                <label><input type="checkbox" value="recent suicidal ideation"> Suicidal ideation</label>
+                                <label><input type="checkbox" value="non-suicidal self-injury"> Self-harm</label>
+                                <label><input type="checkbox" value="homicidal ideation or risk of harm to others"> Risk to others</label>
+                                <label><input type="checkbox" value="substance use that increases risk"> Substance use</label>
+                                <label><input type="checkbox" value="risk of harm from another person"> Risk from others (e.g., IPV)</label>
+                            </div>
+                            <textarea id="safetyDetails" rows="2" class="w-full p-2 border rounded-md" placeholder="Details and current safety plan (optional)"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
 
+                <!-- Gender-affirming care -->
+                <fieldset id="genderFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="gender">
+                    <legend class="text-lg font-semibold">Gender-affirming care</legend>
                     <div>
-                        <label for="recipientName" class="block text-lg font-semibold mb-2">Recipient Name/Department:</label>
-                        <input type="text" id="recipientName" class="w-full p-2 border rounded-md" placeholder="e.g., Disability Resource Center">
+                        <label for="gaRecipient" class="block font-semibold mb-1">Addressed to <span class="muted text-sm">(optional)</span></label>
+                        <input type="text" id="gaRecipient" class="w-full p-2 border rounded-md" placeholder="e.g., Dr. Alex Kim, Example Surgical Group">
                     </div>
                     <div>
-                        <label for="institutionName" class="block text-lg font-semibold mb-2">Institution Name:</label>
-                        <input type="text" id="institutionName" class="w-full p-2 border rounded-md" placeholder="e.g., University of Washington">
+                        <span class="block font-semibold mb-1">Care requested</span>
+                        <div class="check-grid" id="gaCareChecks">
+                            <label><input type="checkbox" value="gender-affirming hormone therapy"> Hormone therapy</label>
+                            <label><input type="checkbox" value="gender-affirming chest surgery"> Chest surgery</label>
+                            <label><input type="checkbox" value="gender-affirming genital surgery"> Genital surgery</label>
+                            <label><input type="checkbox" value="gender-affirming facial surgery"> Facial surgery</label>
+                            <label><input type="checkbox" value="__other" id="gaCareOtherCheck"> Other</label>
+                        </div>
+                        <input type="text" id="gaCareOther" class="w-full p-2 border rounded-md mt-2 hidden" placeholder="Other care, e.g., voice therapy">
                     </div>
+                    <div>
+                        <label for="gaAssessmentBasis" class="block font-semibold mb-1">Basis of your assessment</label>
+                        <input type="text" id="gaAssessmentBasis" class="w-full p-2 border rounded-md" placeholder="e.g., a psychosocial assessment over six sessions">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label class="toggle-line"><input type="checkbox" id="gaIncludeDiagnosis" checked> Include a diagnosis <span class="muted text-sm">(many insurers require one)</span></label>
+                        <select id="gaDiagnosis" class="w-full p-2 border rounded-md">
+                            <option value="Gender Dysphoria in Adolescents and Adults (F64.0)">Gender Dysphoria in Adolescents and Adults (F64.0)</option>
+                            <option value="Gender Dysphoria in Children (F64.2)">Gender Dysphoria in Children (F64.2)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">WPATH SOC-8 criteria you can confirm <span class="muted text-sm">(check only what your assessment supports)</span></span>
+                        <div class="check-list" id="gaCriteriaChecks">
+                            <label><input type="checkbox" value="[CLIENT_FIRST_NAME] experiences a marked and sustained gender incongruence."> Marked and sustained gender incongruence</label>
+                            <label><input type="checkbox" value="[CLIENT_FIRST_NAME] has the capacity to consent to the requested care and understands its risks, benefits, and alternatives."> Capacity to consent; understands risks, benefits, and alternatives</label>
+                            <label><input type="checkbox" value="Other possible causes of apparent gender incongruence have been identified and excluded."> Other possible causes considered and excluded</label>
+                            <label><input type="checkbox" value="Mental health and physical conditions that could affect the outcome have been assessed, and their risks and benefits have been discussed."> Conditions that could affect outcome assessed and discussed</label>
+                            <label><input type="checkbox" value="[CLIENT_FIRST_NAME] understands the effects of this care on fertility and has been offered information about reproductive options."> Understands effects on fertility; reproductive options discussed</label>
+                            <label><input type="checkbox" value="[CLIENT_FIRST_NAME] has been stable on gender-affirming hormone therapy for at least six months, as recommended before this surgery."> Stable on hormones for 6+ months (some surgeries)</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="gaAdditional" class="block font-semibold mb-1">Anything else to include <span class="muted text-sm">(optional)</span></label>
+                        <textarea id="gaAdditional" rows="2" class="w-full p-2 border rounded-md" placeholder="e.g., [Name] has a strong support network and a plan for post-surgical recovery."></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- ROI -->
+                <fieldset id="roiFields" class="subpanel p-4 rounded-md space-y-3 hidden" data-show-for="roi">
+                    <legend class="text-lg font-semibold">Release of information</legend>
+                    <div>
+                        <span class="block font-semibold mb-1">Direction</span>
+                        <div class="flex flex-wrap gap-x-4">
+                            <label><input type="radio" name="roiDirection" value="release" checked> Release to</label>
+                            <label><input type="radio" name="roiDirection" value="obtain"> Obtain from</label>
+                            <label><input type="radio" name="roiDirection" value="exchange"> Exchange with (both ways)</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="roiDisclosingParty" class="block font-semibold mb-1">Your practice (who holds the records)</label>
+                        <input type="text" id="roiDisclosingParty" data-practice="business.legalBusinessName" class="w-full p-2 border rounded-md" placeholder="e.g., Cedar Path Counseling, PLLC">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="roiRecipient" class="block font-semibold mb-1">Other person or organization</label>
+                            <input type="text" id="roiRecipient" class="w-full p-2 border rounded-md" placeholder="e.g., Dr. Pat Lee, Example Primary Care">
+                        </div>
+                        <div>
+                            <label for="roiRecipientContact" class="block font-semibold mb-1">Their address, phone, or fax</label>
+                            <input type="text" id="roiRecipientContact" class="w-full p-2 border rounded-md">
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">Information to share</span>
+                        <div class="check-grid" id="roiInfoChecks">
+                            <label><input type="checkbox" value="Dates of service and attendance" checked> Dates of service / attendance</label>
+                            <label><input type="checkbox" value="Diagnosis"> Diagnosis</label>
+                            <label><input type="checkbox" value="Treatment plan and progress"> Treatment plan and progress</label>
+                            <label><input type="checkbox" value="Assessment and testing results"> Assessment results</label>
+                            <label><input type="checkbox" value="Medications"> Medications</label>
+                            <label><input type="checkbox" value="Discharge summary"> Discharge summary</label>
+                            <label><input type="checkbox" value="Verbal communication for coordination of care" checked> Verbal coordination of care</label>
+                            <label><input type="checkbox" value="__other" id="roiInfoOtherCheck"> Other</label>
+                        </div>
+                        <input type="text" id="roiInfoOther" class="w-full p-2 border rounded-md mt-2 hidden" placeholder="Other information">
+                    </div>
+                    <div>
+                        <span class="block font-semibold mb-1">Purpose</span>
+                        <div class="check-grid" id="roiPurposeChecks">
+                            <label><input type="checkbox" value="coordination of care" checked> Coordination of care</label>
+                            <label><input type="checkbox" value="continuity of care during a transfer"> Transfer of care</label>
+                            <label><input type="checkbox" value="at the client’s request"> At the client’s request</label>
+                            <label><input type="checkbox" value="school or educational planning"> School / education</label>
+                            <label><input type="checkbox" value="__other" id="roiPurposeOtherCheck"> Other</label>
+                        </div>
+                        <input type="text" id="roiPurposeOther" class="w-full p-2 border rounded-md mt-2 hidden" placeholder="Other purpose">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="roiExpiration" class="block font-semibold mb-1">Expires on</label>
+                            <input type="date" id="roiExpiration" class="w-full p-2 border rounded-md">
+                        </div>
+                        <div>
+                            <label for="roiExpirationEvent" class="block font-semibold mb-1">Or expires when <span class="muted text-sm">(an event)</span></label>
+                            <input type="text" id="roiExpirationEvent" class="w-full p-2 border rounded-md" placeholder="e.g., treatment ends">
+                        </div>
+                    </div>
+                    <label class="toggle-line"><input type="checkbox" id="roiPart2"> Records may include substance use disorder treatment (adds the 42 C.F.R. Part 2 notice)</label>
+                    <label class="toggle-line"><input type="checkbox" id="roiRepresentative"> A parent, guardian, or legal representative will sign</label>
+                </fieldset>
+            </div>
+
+            <section id="generatedLetterContainer" class="subpanel hidden p-4 rounded-md" aria-labelledby="previewHeading">
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                    <h2 id="previewHeading" class="text-xl font-semibold">Letter preview</h2>
+                    <span class="muted text-sm">Updates as you type. <mark class="missing">Highlighted</mark> parts still need details.</span>
                 </div>
-
-                <div id="referralFields" class="hidden space-y-4">
-                    <div>
-                        <label for="referredToProvider" class="block text-lg font-semibold mb-2">Referred To Provider/Practice:</label>
-                        <input type="text" id="referredToProvider" class="w-full p-2 border rounded-md" placeholder="e.g., Dr. Jane Smith">
-                    </div>
-                    <div>
-                        <label for="reasonForReferral" class="block text-lg font-semibold mb-2">Reason for Referral:</label>
-                        <input type="text" id="reasonForReferral" class="w-full p-2 border rounded-md" placeholder="e.g., Medication Management">
-                    </div>
-                     <div>
-                        <label for="clientDiagnosis" class="block text-lg font-semibold mb-2">Client's Primary Diagnosis:</label>
-                        <input type="text" id="clientDiagnosis" class="w-full p-2 border rounded-md" placeholder="e.g., Generalized Anxiety Disorder">
-                    </div>
-                     <div>
-                        <label for="clientStartDate" class="block text-lg font-semibold mb-2">Client Since (Month and Year):</label>
-                        <input type="month" id="clientStartDate" class="w-full p-2 border rounded-md">
-                    </div>
-                     <div>
-                        <label for="clientDOB" class="block text-lg font-semibold mb-2">Client Date of Birth:</label>
-                        <input type="date" id="clientDOB" class="w-full p-2 border rounded-md">
-                    </div>
-                </div>
-            </div>
-
-            <div id="generatedLetterContainer" class="subpanel hidden p-4 rounded-md mb-6">
-                <h3 class="text-xl font-semibold mb-2">Generated Letter:</h3>
-                <div id="generatedLetter"></div>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t">
-                <button type="button" id="generateLetterButton" class="btn btn-primary px-6 py-3 font-semibold rounded-md">Generate Letter</button>
-            </div>
+                <div id="generatedLetter" class="letter-preview" aria-live="polite"></div>
+            </section>
         </form>
-        
         <div id="sourcesContainer" class="mt-8 pt-6 border-t hidden">
-            <h3 class="text-xl font-semibold mb-4 text-center">Sources for this letter</h3>
-            <div id="sourcesList" class="text-sm space-y-2 text-center">
-                </div>
+            <h3 class="text-xl font-semibold mb-4">Sources for this letter</h3>
+            <div id="sourcesList" class="text-sm"></div>
         </div>
-        
         <!-- Full reference list, filled in by ../references.js from references.json -->
         <details id="references" class="collapsible references" data-tool="lettergenerator" data-src="../references.json">
             <summary>

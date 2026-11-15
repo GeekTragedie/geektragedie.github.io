@@ -1,10 +1,15 @@
 {
   "licenseTypes": [
-    "Licensed Clinical Social Worker (LCSW)",
-    "Licensed Marriage and Family Therapist (LMFT)",
     "Licensed Mental Health Counselor (LMHC)",
+    "Licensed Mental Health Counselor Associate (LMHCA)",
     "Licensed Professional Counselor (LPC)",
+    "Licensed Professional Clinical Counselor (LPCC)",
+    "Licensed Clinical Professional Counselor (LCPC)",
+    "Licensed Clinical Social Worker (LCSW)",
+    "Licensed Independent Clinical Social Worker (LICSW)",
+    "Licensed Marriage and Family Therapist (LMFT)",
     "Licensed Psychologist (PhD, PsyD)",
+    "Psychiatric Mental Health Nurse Practitioner (PMHNP)",
     "Other"
   ]
 }

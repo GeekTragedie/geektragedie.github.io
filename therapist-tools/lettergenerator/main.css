@@ -1,0 +1,86 @@
+/* Letter Generator: the live letter preview and signature pad.
+   Shared form pieces (check grids, chips, draft notice) live in ../toolkit.css. */
+
+/* The preview looks like a printed page in both themes */
+.letter-preview {
+    padding: 28px 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    color: #111;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+.letter-preview p,
+.letter-preview ul {
+    margin: 0 0 1em;
+}
+.letter-preview ul {
+    padding-left: 22px;
+}
+.letter-preview li {
+    margin-bottom: 0.4em;
+}
+.letter-preview .signature-img {
+    display: block;
+    max-height: 60px;
+    margin-bottom: 4px;
+}
+.letter-preview .sig-line {
+    margin-top: 28px;
+    border-top: 1px solid #111;
+    padding-top: 2px;
+    font-size: 0.9em;
+}
+.letter-preview .sig-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0 24px;
+}
+.letter-preview mark.missing {
+    background-color: #fde68a;
+    color: #111;
+}
+.letter-preview .empty-state {
+    color: #555;
+    font-style: italic;
+}
+.animal-row {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+.animal-row-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+#signaturePad {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: 160px;
+    border: 1px dashed var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    touch-action: none;
+    cursor: crosshair;
+}
+.accommodation-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+}
+.accommodation-card h4 {
+    margin: 0 0 4px;
+    color: var(--accent);
+    font-size: 1em;
+}
+.accommodation-card p {
+    margin: 0 0 4px;
+    font-size: 0.9em;
+}

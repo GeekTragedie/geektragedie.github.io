@@ -503,3 +503,99 @@
 .tool-menu-body details.sidebar-details .collapsible-body {
     gap: 6px;
 }
+
+/* --- Shared form pieces used by the generators --- */
+fieldset.subpanel {
+    margin: 0;
+    min-width: 0;
+}
+fieldset.subpanel > legend {
+    padding: 0 6px;
+    color: var(--text-heading);
+}
+.check-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 6px 14px;
+}
+.check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.check-grid label,
+.check-list label,
+.toggle-line {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-weight: normal;
+    line-height: 1.4;
+    cursor: pointer;
+}
+.check-grid input,
+.check-list input,
+.toggle-line input {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+.example-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+.example-chip {
+    padding: 3px 10px;
+    border: 1px dashed var(--border-color);
+    border-radius: 99px;
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.82em;
+    text-align: left;
+    cursor: pointer;
+}
+.example-chip::before {
+    content: '+ ';
+    color: var(--accent);
+}
+.example-chip:hover,
+.example-chip:focus-visible {
+    border-color: var(--accent);
+    color: var(--text-heading);
+}
+.chip-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.chip-tab {
+    padding: 4px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 99px;
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.85em;
+    cursor: pointer;
+}
+.chip-tab[aria-selected="true"] {
+    border-color: var(--accent);
+    background-color: var(--badge-bg);
+    color: var(--accent);
+    font-weight: 600;
+}
+.draft-notice {
+    margin: 10px 0 0;
+    padding: 8px 12px;
+    border-left: 4px solid var(--warning);
+    background-color: var(--bg-subpanel);
+    font-size: 0.9em;
+}
+mark.missing {
+    padding: 0 3px;
+    border-radius: 3px;
+    background-color: rgba(251, 191, 36, 0.3);
+    color: inherit;
+}

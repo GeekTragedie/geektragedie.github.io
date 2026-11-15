@@ -1,0 +1,18 @@
+{
+  "title": "Authorization to Use and Disclose Protected Health Information",
+  "sections": [
+    { "type": "paragraph", "content": "<strong>AUTHORIZATION TO [ROI_DIRECTION_TITLE] PROTECTED HEALTH INFORMATION</strong>" },
+    { "type": "paragraph", "content": "<strong>Client:</strong> [CLIENT_FULL_NAME] &nbsp;&nbsp; <strong>Date of birth:</strong> [CLIENT_DOB]" },
+    { "type": "paragraph", "content": "[ROI_AUTHORIZE_LINE]" },
+    { "type": "paragraph", "content": "<strong>Information to be shared:</strong>" },
+    { "type": "list", "key": "ROI_INFO_ITEMS" },
+    { "type": "paragraph", "content": "This authorization does not include psychotherapy notes. Psychotherapy notes may be released only under a separate, specific authorization." },
+    { "type": "paragraph", "content": "This information may include records of substance use disorder treatment protected by federal law (42 C.F.R. Part 2). Part 2 records shared under this authorization may not be used or disclosed in civil, criminal, administrative, or legislative proceedings against me unless I give separate written consent or a court order is issued.", "when": "roiPart2" },
+    { "type": "paragraph", "content": "<strong>Purpose:</strong> [ROI_PURPOSE]" },
+    { "type": "paragraph", "content": "<strong>This authorization expires:</strong> [ROI_EXPIRATION]" },
+    { "type": "paragraph", "content": "<strong>I understand that:</strong>" },
+    { "type": "list", "key": "ROI_RIGHTS_ITEMS" },
+    { "type": "signature-lines" },
+    { "type": "paragraph", "content": "[STATE_LAW_NOTE]", "when": "hasStateLawNote" }
+  ]
+}

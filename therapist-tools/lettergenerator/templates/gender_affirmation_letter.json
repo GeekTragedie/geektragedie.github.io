@@ -1,0 +1,19 @@
+{
+  "title": "Gender-Affirming Care Letter",
+  "sections": [
+    { "type": "paragraph", "content": "[DATE_GENERATED]" },
+    { "type": "paragraph", "content": "To: [GA_RECIPIENT]", "when": "hasGaRecipient" },
+    { "type": "paragraph", "content": "<strong>RE: Letter of Support for Gender-Affirming Care for [CLIENT_FULL_NAME][GA_LEGAL_NAME_PAREN][CLIENT_DOB_PAREN]</strong>" },
+    { "type": "paragraph", "content": "To Whom This May Concern," },
+    { "type": "paragraph", "content": "I am [A_LICENSE_TYPE] in [LICENSE_STATE_PHRASE] (License No. [LICENSE_NUMBER]). [CLIENT_FULL_NAME][GA_PRONOUNS_PAREN] has been my client since [GA_START_DATE]. I am writing to support [CLIENT_FIRST_NAME]’s request for [GA_CARE_LIST]." },
+    { "type": "paragraph", "content": "My assessment is based on [GA_ASSESSMENT_BASIS] and follows the World Professional Association for Transgender Health (WPATH) Standards of Care, Version 8 (SOC-8)." },
+    { "type": "paragraph", "content": "[CLIENT_FIRST_NAME] meets the criteria for [GA_DIAGNOSIS].", "when": "hasGaDiagnosis" },
+    { "type": "paragraph", "content": "Based on my assessment:" },
+    { "type": "list", "key": "GA_CRITERIA_ITEMS" },
+    { "type": "paragraph", "content": "[GA_ADDITIONAL]", "when": "hasGaAdditional" },
+    { "type": "paragraph", "content": "In my clinical opinion, [GA_CARE_LIST] is medically necessary for [CLIENT_FIRST_NAME], and I fully support moving forward. I am available to coordinate care with [CLIENT_FIRST_NAME]’s medical team." },
+    { "type": "paragraph", "content": "[VERIFICATION_CLAUSE]" },
+    { "type": "paragraph", "content": "Respectfully," },
+    { "type": "signature" }
+  ]
+}
