@@ -41,7 +41,11 @@ There are **no user accounts, no analytics, no tracking scripts, and no backend 
 
 2. **Author's Library (`/authors-library/`)**
    - **Progress Notes on Confinement (`/pnoc/`)**: First-person field reflections from visits to historic prisons, confinement sites, and memorials (e.g., Alcatraz, Cárcel de la Corona in Madrid, US Holocaust Memorial Museum).
-   - **Academic Writing, Creative Writing & Art**: Rendered dynamically from Markdown files via `marked.js` and hash routing.
+   - **Academic Writing (`/academic-writing/`)**: 111 papers and talks, grouped by degree (MA in Mental Health Counseling, Drama Therapy Specialization, Graduate School Applications, AIH Certificate, BS in Psychology, BFA in Theatre) plus Talks & Presentations. Papers live in `papers/<id>.md`, slide decks, posters, and speeches in `presentations/<id>.md`.
+   - **Creative Writing (`/creative-writing/`)**: 18 short stories, essays, plays, monologues, and poems (`short-stories/`, `plays/`, `poetry/`).
+   - **Art (`/art/`)**: Set design, photography, and visual art, including drawings, face charts, diagrams, and a labeled class-project mock-up.
+   - **About the Author (`about.html`)**: A short bio of the path to drama therapy.
+   - All sections render Markdown with `marked.js` and hash routing (`#papers/<id>`). `authors-library/library-formats.css` keeps each piece's original formatting: APA and MLA papers (`<div class="paper apa|mla">`, title pages, hanging-indent references, footnotes), poems (`<pre class="poem">`), plays, slides (`<section class="slide">`), and content notes. Its header comment documents the markup. Names of family, friends, classmates, clients, and co-authors are changed or removed.
 
 3. **Niches & Lore (`/niches/`)**
    - **Haunted Locations Wiki (`/haunted-wiki/`)**: 57 locations, 7 paranormal creator profiles, and a live Markdown/Chicago-citation **Paranormal Investigation Note Generator** (`note-generator.html`).
@@ -53,6 +57,7 @@ There are **no user accounts, no analytics, no tracking scripts, and no backend 
    - **Simple Neuro-Friendly Bank (`/banking-project/learning-java/`)**: Practice checking/savings UI backed by a Java domain model (`Bank`, `BankAccount`, `Customer`) and JUnit tests.
    - **ND Self-Retreat Builder (`/nd-self-retreat/`)**: A low-demand retreat planner with a direct PDF download.
    - **Assignments Organizer (`/assignments-organizer/`)**: A week-by-week term planner (courses, readings, assignments, due dates, status colors) with save/print and blank .xlsx/.csv templates.
+   - **Letter Generator (`/letter-generator/`)**: Personal letters of recommendation (six kinds: teaching award, academic, employment, scholarship, volunteer, character) and resignation letters (four kinds), with a live preview, copy, print, and .txt download. Built on `client-tools.js`.
    - **Healthcare (`/healthcare/`)**: The Mental Health Resources directory plus client tools.
      - **Mental Health Resources (`/healthcare/resources/`)**: A searchable, filterable index of **84 curated resources** (hotlines, PDF worksheets, videos, articles, apps, directories) loaded from `adulting/healthcare/resources/data/resources.json`, filterable by audience (including 41 clinician-tagged entries), format, **15 diagnoses**, **73 symptoms**, and **27 therapy styles**, with formatted citations. The old `/resources/` address redirects here.
        - One data file feeds two views: 70 entries for clients here and 61 in the therapist Resource Library. Entries with a `view` open in `view.html?id=` as a full page (`content/<id>.md`), a hosted PDF the license allows (`files/<id>.pdf`), or an original summary with a link to the owner.
