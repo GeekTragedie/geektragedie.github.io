@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Personal Referral Database</title>
+    <title>GeekTragedie | Personal Referral Database</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -56,11 +56,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html" aria-current="page">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -81,22 +82,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Add the providers and programs you trust, with their pronouns, languages, links, insurance, specialties, and who they serve. Private notes never leave this page.</li>
-                            <li>When a client needs a referral, filter by role, modality, availability, insurance, or age, and check the providers who fit.</li>
-                            <li>Check every reason you’re referring out, pick your state’s directories, and copy the email or print a handout for the client.</li>
-                        </ol>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the list with made-up providers so you can see how it works.</span></p>
-                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                        <p><strong>Tip:</strong> Private notes never appear in client emails or handouts. The full directory printout does include them, so keep it private.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Good referrals depend on fit: scope, level of care, insurance, availability, and the identity factors that matter to your client. A verified list and more than one option help clients follow through and reduce gaps in care. The ACA and APA ethics codes ask us to refer when a client’s needs fall outside our competence.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -150,6 +136,45 @@
             Keep a list of the providers and resources you trust. Check off the ones that fit a client or inquiry, and it writes a referral email and a client handout for you. Save the list as a <code>.json</code> file to reload later.
         </p>
 
+
+<section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~15–30 min the first time</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Copies plain text • Prints a clean PDF • Saves .json • Downloads .txt / .csv • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It keeps the providers you trust in one list and turns the ones that fit a client into a ready-to-send referral email and handout.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Under <strong>Add a Provider to Your List</strong>, enter each provider or program: pronouns, languages, links, insurance, specialties, and who they serve. Click <strong>Add Provider to Ongoing List</strong>.</li>
+                        <li>When a client needs a referral, use <strong>Find and Pick Providers for This Client</strong> to filter by role, modality, availability, insurance, or age. Check the providers who fit.</li>
+                        <li>Under <strong>Referral Email for This Client</strong>, check every reason you’re referring out and pick your state’s directories. You can edit the email right in the box.</li>
+                        <li>Use <strong>Copy email</strong>, <strong>Print client handout</strong>, or <strong>Export email .txt</strong> in the tool menu.</li>
+                        <li>Use <strong>Save list .json</strong> so your list is there next time.</li>
+                    </ol>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the list with made-up providers so you can see how it works.</span></p>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../lettergenerator/index.html">Letter Generator</a>: write a formal referral letter for a provider you picked here.</li>
+                        <li><a href="../resourcelibrary/index.html">Resource Library</a>: add handouts for the client while they wait for a new provider.</li>
+                        <li><a href="../practiceinfosheet/index.html">Practice Info Sheet</a>: your license state fills in the state directories.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Private notes never appear in client emails or handouts. The full directory printout does include them, so keep it private.</li>
+                        <li>Update <strong>Date Availability Last Verified</strong> when you check in with a provider, so you know which entries are current.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                    <h3 class="why-heading">Why this matters</h3>
+                    <p>Good referrals depend on fit: scope, level of care, insurance, availability, and the identity factors that matter to your client. A verified list and more than one option help clients follow through and reduce gaps in care. The ACA and APA ethics codes ask us to refer when a client’s needs fall outside our competence.</p>
+                </div>
+            </details>
+        </section>
 
         <!-- Section 1: Add / Edit Provider in Your Ongoing Referral List -->
         <section class="mb-8" aria-labelledby="add-referral-heading">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Practice Starting Aid</title>
+    <title>GeekTragedie | Practice Starting Aid</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -55,11 +55,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -80,22 +81,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Work through the phases in order. Each task explains what to do and links to the official site.</li>
-                            <li>Mark each task To Do, In Work, or Done, and add costs and notes as you go.</li>
-                            <li>Use the helpers to set your fees, compare EHRs, and draft an office sublet email.</li>
-                            <li>Print the checklist to bring to appointments or a consultation.</li>
-                        </ol>
-                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Opening a practice involves licensing, business, tax, insurance, privacy, and ethics steps that build on each other. Doing them in order avoids rework, such as getting an NPI before credentialing. Requirements vary by state, so check with your licensing board and local agencies.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -144,6 +130,44 @@
             <strong>Please note:</strong> Fees, laws, and tax rules change and vary by state and city. This isn’t legal or tax advice, so check current instructions with the IRS, your Secretary of State, Department of Revenue, and Department of Health.
         </p>
 
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~15–30 min to look through; use it over weeks</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Downloads .csv • Copies plain text • Saves .json • Loads .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It breaks starting a private practice into steps in the order they need to happen, so you always know what to do next.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Work through the phases in order. Each task explains what to do and links to the official site.</li>
+                        <li>Mark each task <strong>To Do</strong>, <strong>In Work</strong>, <strong>Done</strong>, or <strong>Skip / N/A</strong>, and add costs and notes as you go. Use <strong>+ Add Custom Launch Step</strong> for anything that’s missing.</li>
+                        <li>Use the <strong>Interactive Launch Helpers</strong> to set your fees, compare EHRs, and draft an office sublet email with <strong>Copy Sublet Email</strong>.</li>
+                        <li>Click <strong>Save progress .json</strong> to keep your place. Use <strong>Print checklist / PDF</strong> to bring it to appointments or a consultation, or <strong>Export .csv</strong> for a spreadsheet.</li>
+                    </ol>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../practiceinfosheet/index.html">Practice Info Sheet</a>: record your NPI, EIN, licenses, and other numbers as you get them.</li>
+                        <li><a href="../businessdashboard/index.html">Business Dashboard</a>: once you’re open, track income, expenses, quarterly taxes, and license renewals.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Use <strong>Filter by Status</strong> set to <strong>In Work Only</strong> to see just what you’re working on.</li>
+                        <li><strong>Search Steps &amp; Insider Tips</strong> finds a task fast, like “EIN” or “NPI”.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>Nothing leaves your browser. The page clears when you refresh unless you <strong>Save progress .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                    <p>Import, save, print, and clear are in the tool menu.</p>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                    <h3 class="why-heading">Why this matters</h3>
+                    <p>Opening a practice involves licensing, business, tax, insurance, privacy, and ethics steps that build on each other. Doing them in order avoids rework, such as getting an NPI before credentialing. Requirements vary by state, so check with your licensing board and local agencies.</p>
+                </div>
+            </details>
+        </section>
 
         <!-- Overall Launch Progress & Startup Cost Dashboard -->
         <section class="subpanel p-5 rounded-md mb-6 space-y-4" aria-labelledby="progress-heading">

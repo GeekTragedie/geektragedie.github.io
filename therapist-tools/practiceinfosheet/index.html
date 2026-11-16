@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Practice Info Sheet</title>
+    <title>GeekTragedie | Practice Info Sheet</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -55,11 +55,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -80,23 +81,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Fill in your clinical credentials: NPI, licenses, taxonomy, CAQH, and ProviderOne.</li>
-                            <li>Add your business details: EIN, UBI, entity type, and finance tools.</li>
-                            <li>List your tech tools and whether each one has a signed BAA.</li>
-                            <li>Pick a view in the tool menu, then print or copy just that view.</li>
-                        </ol>
-                        <p><strong>Saving your work:</strong> This sheet holds sensitive numbers. Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                        <p><strong>Tip:</strong> The Intake Packet Generator can import this sheet’s .json file to fill in your practice details.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Credentialing, billing, and insurance paneling ask for the same identifiers again and again. Keeping them in one place saves time and prevents errors. Save this sheet’s .json, then use <strong>Upload practice info</strong> on any other tool to pre-fill your details.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -147,6 +132,55 @@
             Your NPI, EIN, taxonomy codes, licenses, voicemail scripts, and tech stack in one printable place. The page clears on refresh unless you export a <code>.json</code> file or turn on browser saving.
         </p>
 
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~20–30 min the first time</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Downloads .txt • Saves .json • Loads .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It keeps the numbers you get asked for again and again (NPI, licenses, EIN, CAQH, tech tools) in one place, and can pre-fill them on your other therapist tools.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Fill in your clinical credentials in the <strong>Therapist &amp; Clinical Credentialing View</strong>: NPI, licenses, taxonomy, CAQH, and ProviderOne. Click <strong>Load Blank Voicemail Templates</strong> for starter voicemail scripts.</li>
+                        <li>Add your business details in the <strong>Business Entity, Tax &amp; Contact View</strong>: EIN, UBI, entity type, and finance tools.</li>
+                        <li>List your tech tools in the <strong>Tech &amp; Admin Stack Directory</strong>, and note whether each one has a signed BAA.</li>
+                        <li>Pick a view with the view buttons, then click <strong>Print this view</strong>, <strong>Copy this view</strong>, or <strong>Export .txt</strong> in the tool menu.</li>
+                        <li>Click <strong>Save .json</strong> to keep a copy, and <strong>Use on my other tools</strong> to pre-fill your details across the toolkit.</li>
+                    </ol>
+                    <h3>Works well with</h3>
+                    <p>After you click <strong>Use on my other tools</strong> (or use <strong>Upload practice info</strong> on another tool), these tools fill in your details for you:</p>
+                    <ul>
+                        <li><a href="../superbillgenerator/index.html">Superbill Generator</a>: your name, NPI, license, tax ID, and practice address.</li>
+                        <li><a href="../intakepacketgenerator/index.html">Intake Packet Generator</a>: your name, license, NPI, and practice contact details.</li>
+                        <li><a href="../lettergenerator/index.html">Letter Generator</a>: your practice contact details, license, and NPI.</li>
+                        <li><a href="../crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>: your name and state.</li>
+                        <li><a href="../treatmentplanbuilder/index.html">Treatment Plan Builder</a>: your name and credentials.</li>
+                        <li><a href="../notegenerator/index.html">Session Note Generator</a>: your initials.</li>
+                        <li><a href="../businessdashboard/index.html">Business Dashboard</a>: your legal business name.</li>
+                        <li><a href="../ceutracker/index.html">CEU Tracker</a> and <a href="../supervisionlog/index.html">Supervision Log</a>: your name and license number.</li>
+                        <li><a href="../referraldatabase/index.html">Personal Referral Database</a>: your licensing state.</li>
+                        <li><a href="../selfcaredashboard/index.html">Self-Care Dashboard</a>: reminders for license and malpractice renewals.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Fill in only what you have. You can come back and add the rest later.</li>
+                        <li>The Intake Packet Generator can import this sheet’s .json file to fill in your practice details.</li>
+                        <li>Click <strong>Use on my other tools</strong> again after you make changes.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>This sheet holds sensitive numbers. Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                    <p>Import, save, print, and clear are in the tool menu.</p>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                    <h3 class="why-heading">Why this matters</h3>
+                    <p>Credentialing, billing, and insurance paneling ask for the same identifiers again and again. Keeping them in one place saves time and prevents errors. Save this sheet’s .json, then use <strong>Upload practice info</strong> on any other tool to pre-fill your details.</p>
+                </div>
+            </details>
+        </section>
 
         <!-- Top Controls: Import, Export, Reset, and Local Cache Toggle -->
         <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-6">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Treatment Plan Builder</title>
+    <title>GeekTragedie | Treatment Plan Builder</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -56,11 +56,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html" aria-current="page">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -81,23 +82,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Set up the plan: plan styles, review type, dates (use the 30/90/180/365-day buttons), frequency, modality, and the client’s strengths, protective factors, and resources.</li>
-                            <li>Pick diagnoses and approaches. To start from a session note, import its <code>.json</code> to fill these in.</li>
-                            <li>Add goals from the recommendations or write your own. Use the SMART helper on each objective, and check the interventions that fit; the ones that match your approach and diagnosis are listed first.</li>
-                            <li>Click an example to start the discharge criteria and participation statement, and watch the plan preview update.</li>
-                            <li>Print, copy, or save the plan from the tool menu.</li>
-                        </ol>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
-                        <p><strong>Saving your work:</strong> <strong>Session-only:</strong> nothing is saved in your browser, and refreshing the page clears every field. Use <strong>Save .json</strong> if you want to keep a copy, and store it somewhere secure. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>A treatment plan connects the diagnosis to measurable goals and the interventions you’ll use, which is the heart of medical necessity. Goals written with the client, in their own words when you can, improve engagement and outcomes. Review the plan on a set schedule and whenever the client’s needs change.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -146,6 +131,45 @@
             Write treatment plans with goals matched to the diagnosis, a SMART objective helper, interventions that follow your approach, and a record of achieved and archived goals (up to 5 active goals with 5 objectives each). The plan preview updates as you work. Nothing is saved in your browser, so save a <code>.json</code> file before you close the page.
         </p>
 
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~20–30 min the first time</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Downloads .txt • Saves .json • Loads .json</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It helps you write a treatment plan that ties the diagnosis to measurable goals and the interventions you’ll use.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>In <strong>Plan Setup</strong>, pick plan styles and the review type. Set the dates (use the 30/90/180/365-day buttons), frequency, modality, and the client’s strengths, protective factors, and resources.</li>
+                        <li>In <strong>Diagnosis and Approach</strong>, pick diagnoses and approaches. To start from a session note, use <strong>Import .json</strong> with the note’s <code>.json</code> to fill these in.</li>
+                        <li>Add goals from the recommendations or click <strong>+ Add Active Goal</strong> to write your own. Use <strong>Help Make It SMART</strong> on each objective, and check the interventions that fit. The ones that match your approach and diagnosis are listed first.</li>
+                        <li>Click an example to start the <strong>Discharge Criteria and Client Participation</strong> text, and watch the <strong>Plan preview</strong> update.</li>
+                        <li>Click <strong>Copy for EHR</strong>, <strong>Print / save PDF</strong>, <strong>Export .txt</strong>, or <strong>Save .json</strong> in the tool menu.</li>
+                    </ol>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../notegenerator/index.html">Session Note Generator</a>: import a note’s saved .json here to fill in the diagnoses and approaches.</li>
+                        <li><a href="../crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>: when a goal involves safety, build the plan alongside it.</li>
+                        <li><a href="../practiceinfosheet/index.html">Practice Info Sheet</a>: its .json fills in your name and credentials.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>A plan holds up to 5 active goals with 5 objectives each. Click <strong>Mark Achieved / Archive</strong> to move a finished goal to the achieved log and free a slot.</li>
+                        <li>At each review, import last time’s .json and update it instead of starting over.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p><strong>Session-only:</strong> nothing is saved in your browser, and refreshing the page clears every field. Use <strong>Save .json</strong> if you want to keep a copy, and store it somewhere secure. Use initials or a client code, never full names, and keep final documents in your own secure EHR. Import, save, print, and clear are in the tool menu.</p>
+                    <h3>Why this matters</h3>
+                    <p>A treatment plan connects the diagnosis to measurable goals and the interventions you’ll use, which is the heart of medical necessity. Goals written with the client, in their own words when you can, improve engagement and outcomes. Review the plan on a set schedule and whenever the client’s needs change.</p>
+                </div>
+            </details>
+        </section>
 
         <form id="treatmentPlanForm" class="space-y-6">
 

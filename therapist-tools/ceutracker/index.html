@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: CEU Tracker</title>
+    <title>GeekTragedie | CEU Tracker</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -55,11 +55,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -80,22 +81,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Pick your state and license, then enter your renewal date and the dates of your last health equity and suicide trainings.</li>
-                            <li>Log each course with its hours, and check every requirement it counts toward. Hours only count once toward your total.</li>
-                            <li>Watch <strong>Progress</strong> to see what’s left this cycle and in the longer cycles.</li>
-                            <li>Attach certificates (a link or an embedded file) so your audit packet is ready if you’re selected.</li>
-                        </ol>
-                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Licensing boards require continuing education to keep your skills current, and many require specific topics, such as ethics, suicide prevention, or health equity, on their own cycles. Keeping certificates organized as you go makes an audit painless.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -143,6 +129,45 @@
             Log your continuing education and see what’s left before renewal, including the longer health equity and suicide prevention cycles. Nothing is sent to a server. The page clears on refresh unless you export a <code>.json</code> file or turn on browser saving in the tool menu.
         </p>
 
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~10–20 min the first time</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Downloads .csv • Saves .json • Loads .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It shows how many continuing education hours you still need before your license renews, including the longer health equity and suicide prevention cycles.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Under <strong>License &amp; Multi-Cycle Setup</strong>, pick your state and license, then enter your renewal date and the dates of your last health equity and suicide trainings.</li>
+                        <li>Under <strong>Log a Continuing Education Course</strong>, enter each course with its hours, and check every requirement it counts toward. Then click <strong>Add Course to Log</strong>. Hours only count once toward your total.</li>
+                        <li>Watch <strong>Requirement Progress &amp; Multi-Year Windows</strong> to see what’s left this cycle and in the longer cycles.</li>
+                        <li>Attach certificates (a link or an embedded file) so your audit packet is ready if you’re selected.</li>
+                        <li>Click <strong>Save .json</strong> to keep your log. Use <strong>Print audit packet</strong> or <strong>Export .csv</strong> when you need a copy.</li>
+                    </ol>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../practiceinfosheet/index.html">Practice Info Sheet</a>: upload its practice data and your name and license number fill in here.</li>
+                        <li><a href="../supervisionlog/index.html">Supervision Log</a>: track supervision hours for licensure alongside your CEUs.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Log each course the day you finish it, while the certificate is easy to find.</li>
+                        <li>Embedded certificates are saved inside your .json file, so keep that file somewhere safe.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                    <p>Import, save, print, and clear are in the tool menu.</p>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                    <h3 class="why-heading">Why this matters</h3>
+                    <p>Licensing boards require continuing education to keep your skills current, and many require specific topics, such as ethics, suicide prevention, or health equity, on their own cycles. Keeping certificates organized as you go makes an audit painless.</p>
+                </div>
+            </details>
+        </section>
 
         <!-- Section 1: Clinician Profile, State/License & Cycle Anchor Dates -->
         <section class="subpanel p-4 rounded-md mb-6" aria-labelledby="profile-heading">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Session Note Generator</title>
+    <title>GeekTragedie | Session Note Generator</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -56,11 +56,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -80,22 +81,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Pick a note format: a standard progress note, a 90791 intake, DAP, SOAP, BIRP, GIRP, PIRP, narrative, or MSE.</li>
-                            <li>Fill in the session: date, time, length, who was there, location, and an optional CPT code. For telehealth, record where the client was and that they were in a private place.</li>
-                            <li>Pick diagnoses and approaches, then choose the specific skills you worked on. Add risk and safety, and an optional Mental Status Exam.</li>
-                            <li>Read the preview, then copy it into your EHR, print it, or use <strong>Create superbill</strong> to send the session to the Superbill Generator.</li>
-                        </ol>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
-                        <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time. Use initials or a client code, never full names, and keep final documents in your own secure EHR.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Clear, timely notes support continuity of care, document medical necessity, and protect both you and your client. Structured formats such as SOAP, DAP, and BIRP keep a note focused on what you observed, what you did, and how the client responded, which is what payers and auditors look for. Record only what care requires; HIPAA’s minimum necessary standard applies whenever a note is shared.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -131,6 +117,46 @@
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Session Note Generator</h1>
         <p class="muted text-center text-sm mb-6">Fill in the session, and your note writes itself in the preview below. Use initials or a client code, not a full name. Nothing is saved or sent anywhere; use <strong>Save .json</strong> in the tool menu to keep a copy.</p>
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~5–10 min</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Downloads .txt • Saves .json • Loads .json</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It turns the details of a session into a clear, structured progress note you can paste into your EHR.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Pick a <strong>Note format</strong>: a generic progress note, a 90791 intake, DAP, SOAP, BIRP, GIRP, PIRP, narrative, or MSE.</li>
+                        <li>Fill in the <strong>Session</strong> section: date, start time, length, who was present, location, and an optional CPT code. For telehealth, record where the client was and that they were in a private place.</li>
+                        <li>In <strong>Diagnosis and approach</strong>, pick diagnoses and approaches, then the skills you worked on. Fill in the note fields, <strong>Risk and safety</strong>, and the optional <strong>Mental Status Exam</strong>.</li>
+                        <li>Read the <strong>Note preview</strong>. Fields you leave blank are left out of the note.</li>
+                        <li>Click <strong>Copy note</strong>, <strong>Print note</strong>, or <strong>Export note .txt</strong> in the tool menu. <strong>Create superbill (.json)</strong> saves the session for the Superbill Generator.</li>
+                    </ol>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../superbillgenerator/index.html">Superbill Generator</a>: click <strong>Import session note</strong> there and pick the file from <strong>Create superbill (.json)</strong> to fill in a service.</li>
+                        <li><a href="../treatmentplanbuilder/index.html">Treatment Plan Builder</a>: import this note’s saved .json there to carry over the diagnoses and approaches.</li>
+                        <li><a href="../crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>: build the safety plan your <strong>Risk and safety</strong> section refers to.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li><strong>Fill with “within normal limits”</strong> fills the whole MSE at once. Then change only what was different.</li>
+                        <li>Click an example under a field to add it.</li>
+                        <li>Use initials or a client code, never full names.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time. Use initials or a client code, never full names, and keep final documents in your own secure EHR. Import, save, print, and clear are in the tool menu.</p>
+                    <h3>Why this matters</h3>
+                    <p>Clear, timely notes support continuity of care, document medical necessity, and protect both you and your client. Structured formats such as SOAP, DAP, and BIRP keep a note focused on what you observed, what you did, and how the client responded, which is what payers and auditors look for. Record only what care requires; HIPAA’s minimum necessary standard applies whenever a note is shared.</p>
+                </div>
+            </details>
+        </section>
+
         <form id="noteForm" class="space-y-4" novalidate>
             <div class="subpanel p-4 rounded-md">
                 <label for="noteTemplateSelect" class="block text-lg font-semibold mb-2">Note format</label>

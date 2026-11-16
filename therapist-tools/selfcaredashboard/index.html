@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Self-Care Dashboard</title>
+    <title>GeekTragedie | Self-Care Dashboard</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -55,11 +55,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html" aria-current="page">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -80,23 +81,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Pick a check-in under <strong>Check-ins</strong> in the tool menu: right now, personal wellness, daily pacing, caseload, checklists, or burnout.</li>
-                            <li>Answer honestly. The summary cards at the top update as you go.</li>
-                            <li>Hide any check-in or tool you don’t use with its <strong>Hide</strong> button. <strong>Show hidden tools</strong> brings them back.</li>
-                            <li>Under Caseload &amp; boundaries, you can import a caseload saved from Caseload at a Glance. If you’ve uploaded practice data, your license, malpractice, and CAQH dates show up under Checklists.</li>
-                            <li>Print a snapshot if you’d like to bring it to consultation or your own therapy.</li>
-                        </ol>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills every check-in with a made-up week so you can see how it works.</span></p>
-                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Burnout and secondary traumatic stress are common in mental health work, and they affect the quality of care. Regular check-ins, like the burnout reflection here, and small consistent supports protect you more than occasional big resets. Caring for yourself is part of ethical practice under the ACA and APA codes.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -139,6 +124,44 @@
             Working solo means no one else is watching your battery. Check in on your body right now, look at your client order and end-of-day transition, weigh your caseload, and keep up with the bigger picture, one view at a time.
         </p>
 
+
+<section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~5–15 min</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Saves .json • Loads .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It gives you quick check-ins on your energy, schedule, caseload, and burnout risk, because working solo means no one else is watching your battery.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Pick a check-in under <strong>Check-ins</strong> in the tool menu: right now, personal wellness, daily pacing, caseload, checklists, or burnout.</li>
+                        <li>Answer honestly. The summary cards at the top update as you go.</li>
+                        <li>Hide any check-in or tool you don’t use with its <strong>Hide</strong> button. <strong>Show hidden tools</strong> brings them back.</li>
+                        <li>Under Caseload &amp; boundaries, use <strong>Import from Caseload at a Glance (.json)</strong> to fill in your caseload. If you’ve uploaded practice data, your license, malpractice, and CAQH dates show up under Checklists.</li>
+                        <li>Use <strong>Print snapshot</strong> if you’d like to bring it to consultation or your own therapy.</li>
+                    </ol>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills every check-in with a made-up week so you can see how it works.</span></p>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../caseloadataglance/index.html">Caseload at a Glance</a>: save your caseload there, then import it here.</li>
+                        <li><a href="../practiceinfosheet/index.html">Practice Info Sheet</a>: your license, malpractice, and CAQH dates appear in the checklists.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>The <strong>Right now</strong> check-in takes about 30 seconds between sessions.</li>
+                        <li>Save a .json each week if you want to compare how you’re doing over time.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
+                    <h3 class="why-heading">Why this matters</h3>
+                    <p>Burnout and secondary traumatic stress are common in mental health work, and they affect the quality of care. Regular check-ins, like the burnout reflection here, and small consistent supports protect you more than occasional big resets. Caring for yourself is part of ethical practice under the ACA and APA codes.</p>
+                </div>
+            </details>
+        </section>
 
         <!-- Live Clinician Battery & Sustainability Snapshot Bar -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6" aria-label="Clinician Battery Snapshot">

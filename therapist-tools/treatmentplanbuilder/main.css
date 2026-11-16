@@ -156,3 +156,18 @@
     flex-wrap: wrap;
     gap: 1rem 2rem;
 }
+
+/* Narrow screens: let the recommendation filter row wrap, and let long
+   Select2 choices (e.g. "Acceptance and Commitment Therapy (ACT)") wrap
+   instead of pushing the page sideways. */
+@media (max-width: 640px) {
+    #dxRecFilterSelect { max-width: 100%; min-width: 0; }
+    .flex:has(#dxRecFilterSelect) { flex-wrap: wrap; }
+    .select2-container { max-width: 100% !important; }
+    .select2-container .select2-selection__choice {
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    .select2-container .select2-selection__choice__display { white-space: normal; }
+}

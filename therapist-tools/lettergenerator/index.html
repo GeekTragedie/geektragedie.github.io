@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Therapy Letter Generator</title>
+    <title>GeekTragedie | Client Therapy Letter Generator</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -56,11 +56,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -80,22 +81,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Choose a letter: emotional support animal, academic accommodation, referral, gender-affirming care, or a release of information (ROI) form.</li>
-                            <li>Fill in the client and your details. Upload your practice info once to fill in your license, NPI, and contact details on every visit.</li>
-                            <li>Watch the preview: it writes the letter as you type and highlights anything still missing.</li>
-                            <li>Read every line, then print or copy the letter from the tool menu and sign it.</li>
-                        </ol>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
-                        <p><strong>Saving your work:</strong> Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Letters carry clinical weight outside the therapy room. Keep them factual, within your scope and your direct knowledge of the client, and limited to what the recipient needs (HIPAA’s minimum necessary standard). Get your client’s signed authorization (an ROI) before sending anything to a third party.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -129,6 +115,46 @@
     <div class="panel tool-panel">
         <h1 class="text-4xl font-bold text-center mb-2">Client Therapy Letter Generator</h1>
         <p class="muted text-center text-sm mb-6">Pick a letter, fill in the details, and the letter writes itself in the preview below. Nothing is saved or sent anywhere; use <strong>Save .json</strong> in the tool menu to keep a copy.</p>
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~10–15 min</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Saves .json • Loads .json</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It writes the client letters and forms therapists are asked for most, including a Release of Information (ROI) authorization, so you never start from a blank page.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Pick a letter under <strong>Letter type</strong>: emotional support animal, academic accommodation, referral, gender-affirming care, housing or roommate reference, character reference for court, or the <strong>Release of Information (ROI) Authorization</strong> form.</li>
+                        <li>Fill in the <strong>Client</strong> and <strong>You (the clinician)</strong> sections, then the section for your letter. Use <strong>Upload practice info</strong> in the tool menu once to fill in your license, NPI, and contact details on every visit.</li>
+                        <li>Watch the <strong>Letter preview</strong>. It writes the letter as you type and highlights anything still missing. Optional details you leave blank are left out.</li>
+                        <li>Read every line. Then click <strong>Print letter</strong> or <strong>Copy letter</strong> in the tool menu, and sign it.</li>
+                        <li>Click <strong>Save .json</strong> to keep your entries. Next time, click <strong>Import .json</strong> to load them.</li>
+                    </ol>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="index.html?type=roi">Release of Information (ROI) Authorization</a>: this same page, opened on the ROI form. Get your client’s signed ROI before you send any letter to a third party.</li>
+                        <li><a href="../practiceinfosheet/index.html">Practice Info Sheet</a>: its .json fills in your license, NPI, and practice contact details here.</li>
+                        <li><a href="../referraldatabase/index.html">Personal Referral Database</a>: look up the provider before you write a referral letter.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Letters marked “(draft)” in the list were drafted from published standards. A note under <strong>Letter type</strong> reminds you to check them for your state and setting.</li>
+                        <li>Click an example under a field to add it, then make it fit your client.</li>
+                        <li>Save a .json for each client so a later letter only needs a few changes.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>Nothing saves on its own. Use <strong>Save .json</strong> to keep your entries and <strong>Import .json</strong> to load them next time. Import, save, print, and clear are in the tool menu.</p>
+                    <h3>Why this matters</h3>
+                    <p>Letters carry clinical weight outside the therapy room. Keep them factual, within your scope and your direct knowledge of the client, and limited to what the recipient needs (HIPAA’s minimum necessary standard). Get your client’s signed authorization (an ROI) before sending anything to a third party.</p>
+                </div>
+            </details>
+        </section>
+
         <form id="letterGeneratorForm" class="space-y-4" novalidate>
             <div class="subpanel p-4 rounded-md">
                 <label for="letterTypeSelect" class="block text-lg font-semibold mb-2">Letter type</label>

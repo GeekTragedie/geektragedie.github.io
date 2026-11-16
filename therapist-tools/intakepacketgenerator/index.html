@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Tools: Intake Packet Generator</title>
+    <title>GeekTragedie | Intake Packet Generator</title>
     <link rel="stylesheet" href="../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="../toolkit.css">
@@ -55,11 +55,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html" aria-current="page">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -80,22 +81,7 @@
             <details class="tool-menu" open>
                 <summary><span>Tool menu</span><span class="chevron" aria-hidden="true">▾</span></summary>
             <div class="tool-menu-body">
-                <details id="how-to-use" class="collapsible help how-to sidebar-details">
-                    <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-                    <div class="collapsible-body">
-                        <ol class="list-decimal space-y-1">
-                            <li>Fill in your practice details (or upload your practice info once), fees, insurance, and policies.</li>
-                            <li>Choose which sections go in the packet, including any assessments and your own uploaded section.</li>
-                            <li>Read the live preview. Open a section under <strong>Section wording</strong> to change its text; edited sections stop updating automatically until you reset them.</li>
-                            <li>Print the packet or save it as a PDF from the tool menu.</li>
-                        </ol>
-                        <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
-                        <p><strong>Saving your work:</strong> Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers.</p>
-                        <p>Import, save, print, and clear are further down this menu.</p>
-                        <h3 class="why-heading">Why this matters</h3>
-                        <p>Informed consent is an ongoing conversation, not a single signature. A clear packet explains confidentiality and its limits, fees, cancellations, telehealth, and record keeping, so clients can make an informed choice before treatment starts. Licensing boards and the ACA and APA ethics codes require most of these disclosures.</p>
-                    </div>
-                </details>
+                <button type="button" class="btn btn-sm sidebar-btn" data-open="#how-to-use">How to use this tool</button>
                 <details id="your-data" class="collapsible help sidebar-details">
                     <summary><span>Your data</span><span class="chevron" aria-hidden="true">▾</span></summary>
                     <div class="collapsible-body">
@@ -149,6 +135,46 @@
         <p class="subpanel text-sm p-3 rounded-md mb-6 intake-note-moved">
             <strong>Writing your own intake note for the first session?</strong> The clinician’s 90791 intake note moved to the <a href="../notegenerator/index.html?template=intake" class="accent-text">Session Note Generator → Intake (90791)</a>. This page is the packet for your client.
         </p>
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~20–30 min the first time</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Downloads .txt • Saves .json • Loads .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It builds the paperwork a new client reads and signs before the first session, written from your own practice details and policies.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Fill in <strong>You and your practice</strong>, <strong>Fees, insurance, and billing</strong>, and <strong>Policies</strong>. Or click <strong>Upload practice info</strong> in the tool menu to fill in your practice details.</li>
+                        <li>Under <strong>What goes in the packet</strong>, check the sections you want, including any assessments and your own uploaded section.</li>
+                        <li>Read the <strong>Packet preview</strong>. Anything still missing is highlighted, and optional extras you leave blank are left out.</li>
+                        <li>To change a section’s text, open it under <strong>Section wording</strong>. Edited sections stop updating automatically until you reset them.</li>
+                        <li>Click <strong>Print packet / PDF</strong> or <strong>Export packet .txt</strong> in the tool menu. Click <strong>Save packet .json</strong> to reuse your settings.</li>
+                    </ol>
+                    <p class="sample-row"><button type="button" class="btn btn-sm" data-load-sample="sample.json">Load sample</button> <span class="muted">Fills the tool with a made-up example so you can see how it works.</span></p>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../practiceinfosheet/index.html">Practice Info Sheet</a>: its .json fills in your practice name, license, NPI, and contact details.</li>
+                        <li><a href="../assessmentdatabase/index.html">Assessment Database</a>: the assessments you can add to the packet come from here.</li>
+                        <li><a href="../notegenerator/index.html?template=intake">Session Note Generator → Intake (90791)</a>: write your own intake note after the first session.</li>
+                        <li><a href="../lettergenerator/index.html?type=roi">Release of Information (ROI) Authorization</a>: for clients who want you to share information with someone else.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Save a packet .json once. For the next client, import it and change only what’s different.</li>
+                        <li><strong>Reset all section wording</strong> puts every edited section back to the generated wording.</li>
+                    </ul>
+                    <h3>Saving your work</h3>
+                    <p>Nothing leaves your browser. The page clears when you refresh unless you <strong>Save .json</strong> or turn on <strong>Save in this browser</strong> in the tool menu. Leave browser saving off on shared computers. Import, save, print, and clear are in the tool menu.</p>
+                    <h3>Why this matters</h3>
+                    <p>Informed consent is an ongoing conversation, not a single signature. A clear packet explains confidentiality and its limits, fees, cancellations, telehealth, and record keeping, so clients can make an informed choice before treatment starts. Licensing boards and the ACA and APA ethics codes require most of these disclosures.</p>
+                </div>
+            </details>
+        </section>
 
         <form id="packetForm" class="space-y-4" novalidate>
             <fieldset class="subpanel p-4 rounded-md space-y-3" id="practice-vars-heading">
