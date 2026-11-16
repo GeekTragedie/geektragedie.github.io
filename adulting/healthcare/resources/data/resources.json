@@ -53,8 +53,7 @@
       "symptom": [
         "Suicidal Ideation",
         "Crisis",
-        "Depression",
-        "Anxiety"
+        "Emotional Distress"
       ],
       "therapyStyle": []
     },
@@ -132,7 +131,7 @@
         "ADHD"
       ],
       "symptom": [
-        "Inattention",
+        "Focus",
         "Hyperactivity",
         "School Issues"
       ],
@@ -178,8 +177,8 @@
       ],
       "symptom": [
         "Social Skills",
-        "Anxiety",
-        "Relationship Issues"
+        "Nervousness",
+        "Relationships"
       ],
       "therapyStyle": [
         "Coping Skills"
@@ -317,7 +316,6 @@
       ],
       "symptom": [
         "Dissociation",
-        "Anxiety",
         "Sensory Overload",
         "Self-Concept"
       ],
@@ -557,7 +555,7 @@
       "diagnosis": [],
       "symptom": [
         "Boundaries",
-        "Relationship Issues",
+        "Relationships",
         "Codependency"
       ],
       "therapyStyle": [
@@ -630,7 +628,6 @@
       ],
       "symptom": [
         "Emotional Dysregulation",
-        "Coping Skills",
         "School Issues"
       ],
       "therapyStyle": [
@@ -807,9 +804,7 @@
         "Panic Disorder"
       ],
       "symptom": [
-        "Anxiety",
-        "Worry",
-        "Panic"
+        "Worry"
       ],
       "therapyStyle": [
         "CBT",
@@ -851,8 +846,7 @@
       "symptom": [
         "Life Transitions",
         "Relationships",
-        "Coping Skills",
-        "Depression"
+        "Grief"
       ],
       "therapyStyle": [
         "Coping Skills"
@@ -983,7 +977,7 @@
         "Crisis",
         "Suicidal Ideation",
         "Worry",
-        "Panic"
+        "Panic Attacks"
       ],
       "therapyStyle": []
     },
@@ -1018,7 +1012,7 @@
       "symptom": [
         "Emotional Dysregulation",
         "Self-Harm",
-        "Relationship Issues"
+        "Relationships"
       ],
       "therapyStyle": [
         "DBT",
@@ -1126,10 +1120,11 @@
       ],
       "symptom": [
         "Dissociation",
-        "Coping Skills",
         "Sensory Overload"
       ],
-      "therapyStyle": []
+      "therapyStyle": [
+        "Coping Skills"
+      ]
     },
     "collections": [
       "clients",
@@ -1178,7 +1173,6 @@
       "symptom": [
         "Dissociation",
         "Trauma",
-        "Anxiety",
         "Sensory Overload"
       ],
       "therapyStyle": []
@@ -1257,7 +1251,6 @@
         "Anxiety Disorders"
       ],
       "symptom": [
-        "Anxiety",
         "Executive Dysfunction",
         "Worry"
       ],
@@ -1289,13 +1282,13 @@
     "topics": {
       "diagnosis": [],
       "symptom": [
-        "Emotional Dysregulation",
-        "Self-Compassion"
+        "Emotional Dysregulation"
       ],
       "therapyStyle": [
         "CBT",
         "Mindfulness-Based",
-        "Coping Skills"
+        "Coping Skills",
+        "Self-Compassion"
       ]
     },
     "citation": "GeekTragedie. (n.d.). *Emotional regulation cheat sheet* [Handout]. Adapted from therapywithrachdavid. (n.d.). *Emotion regulation workshop* [Presentation]. Scribd. https://www.scribd.com/presentation/741900953/Emotion-Regulation-Workshop",
@@ -1413,7 +1406,6 @@
       ],
       "symptom": [
         "Focus",
-        "Inattention",
         "Executive Dysfunction",
         "Organization"
       ],
@@ -1555,9 +1547,8 @@
         "Dissociative Disorders"
       ],
       "symptom": [
-        "Anxiety",
         "Dissociation",
-        "Panic",
+        "Panic Attacks",
         "Trauma"
       ],
       "therapyStyle": [
@@ -1598,7 +1589,6 @@
         "Anxiety Disorders"
       ],
       "symptom": [
-        "Anxiety",
         "Masculinity",
         "Emotional Expression"
       ],
@@ -1630,7 +1620,6 @@
         "Depression"
       ],
       "symptom": [
-        "Depression",
         "Motivation",
         "Rumination"
       ],
@@ -1859,7 +1848,7 @@
       "symptom": [
         "Executive Dysfunction",
         "Organization",
-        "Relationship Issues"
+        "Relationships"
       ],
       "therapyStyle": [
         "Coping Skills",
@@ -1981,7 +1970,7 @@
       "symptom": [
         "Trauma",
         "Abuse",
-        "Relationship Issues"
+        "Relationships"
       ],
       "therapyStyle": []
     },
@@ -2081,7 +2070,6 @@
     "topics": {
       "diagnosis": [],
       "symptom": [
-        "Depression",
         "Self-Esteem",
         "Gratitude"
       ],
@@ -2339,9 +2327,7 @@
       "diagnosis": [
         "Substance Use Disorder"
       ],
-      "symptom": [
-        "Addiction"
-      ],
+      "symptom": [],
       "therapyStyle": []
     },
     "citation": "Substance Abuse and Mental Health Services Administration. (n.d.). *National Helpline*. https://www.samhsa.gov/find-help/helplines/national-helpline",
@@ -2411,12 +2397,10 @@
       ],
       "symptom": [
         "Self-Esteem",
-        "Depression",
         "Gratitude"
       ],
       "therapyStyle": [
-        "Positive Psychology",
-        "Journaling"
+        "Positive Psychology"
       ]
     },
     "citation": "Therapist Aid. (n.d.). *Self-esteem journal*. Retrieved from https://www.therapistaid.com/therapy-worksheet/self-esteem-journal",
@@ -2627,8 +2611,7 @@
         "Negative Thoughts"
       ],
       "therapyStyle": [
-        "CBT",
-        "Cognitive Triangle"
+        "CBT"
       ]
     },
     "citation": "Therapist Aid. (2021). *The cognitive triangle* [Worksheet]. https://www.therapistaid.com/therapy-worksheet/cbt-triangle",
@@ -2752,9 +2735,8 @@
         "Anxiety Disorders"
       ],
       "symptom": [
-        "Anxiety",
         "Worry",
-        "Inattention"
+        "Focus"
       ],
       "therapyStyle": [
         "Psychoeducation"
@@ -2885,7 +2867,6 @@
         "Anxiety Disorders"
       ],
       "symptom": [
-        "Anxiety",
         "Worry",
         "Executive Dysfunction"
       ],
@@ -3023,7 +3004,6 @@
         "Anxiety Disorders"
       ],
       "symptom": [
-        "Anxiety",
         "Social Skills",
         "Masking"
       ],
@@ -3063,7 +3043,7 @@
       "Clinicians",
       "Parents"
     ],
-    "format": "Infographic",
+    "format": "Venn Diagram",
     "language": [
       "English"
     ],
@@ -3122,7 +3102,7 @@
       "symptom": [
         "Shame",
         "Self-Criticism",
-        "Relationship Issues",
+        "Relationships",
         "Workplace Stress"
       ],
       "therapyStyle": [
@@ -3168,7 +3148,6 @@
     "topics": {
       "diagnosis": [],
       "symptom": [
-        "Self-Care",
         "Burnout",
         "Wellness"
       ],
@@ -3208,7 +3187,7 @@
         "ADHD"
       ],
       "symptom": [
-        "Inattention",
+        "Focus",
         "Hyperactivity",
         "Executive Dysfunction"
       ],
@@ -3253,7 +3232,6 @@
       "diagnosis": [],
       "symptom": [
         "Imposter Syndrome",
-        "Anxiety",
         "Self-Esteem",
         "Workplace Stress"
       ],
@@ -3365,7 +3343,6 @@
         "Depression"
       ],
       "symptom": [
-        "Depression",
         "Rumination",
         "Motivation"
       ],

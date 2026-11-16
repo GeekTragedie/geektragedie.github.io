@@ -37,6 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const v = g.topic ? (res.topics || {})[g.key] : res[g.key];
         return Array.isArray(v) ? v : (v ? [v] : []);
     };
+    // A tag becomes a filter checkbox only when 2+ resources in this collection use it.
+    // One-off tags stay in the data, show on each entry, and still match the search box.
+    const MIN_FILTER_USES = 2;
+    let filterOptions = {};
+    const TAG_LIMIT = 6; // tags shown on a phone-width card before "+N more"
+    const TOOL_FORMAT = 'Interactive Tool';
+    const badge = (format) => (format === TOOL_FORMAT
+        ? `<span class="resource-type-badge is-tool"><span aria-hidden="true">🧩 </span>${esc(format)}</span>`
+        : `<span class="resource-type-badge">${esc(format)}</span>`);
 
     fetch(`${BASE}data/resources.json`)
         .then((response) => {
@@ -45,6 +54,20 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then((data) => {
             allResources = data.filter((r) => (r.collections || ['clients']).includes(COLLECTION));
+            filterOptions = Object.fromEntries(GROUPS.map((g) => {
+                const uses = {};
+                allResources.forEach((r) => valuesOf(r, g).forEach((v) => { uses[v] = (uses[v] || 0) + 1; }));
+                const opts = Object.keys(uses).filter((v) => uses[v] >= MIN_FILTER_USES).sort((a, b) => a.localeCompare(b));
+                // Skip a group with fewer than two options left (e.g. one language that every entry shares)
+                return [g.key, opts.length >= 2 ? opts : []];
+            }));
+            resourceList.addEventListener('click', (e) => {
+                const more = e.target.closest('.tag-more');
+                if (!more) return;
+                const list = more.closest('.tag-list');
+                list.classList.add('show-all');
+                more.remove();
+            });
             updateUI();
             searchBar.addEventListener('input', updateUI);
             sortBy.addEventListener('change', () => {
@@ -55,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((error) => {
             console.error('Fetch error:', error);
-            resourceList.innerHTML = '<tr><td colspan="5" style="color: #ef4444;">Error loading resources data. Check data file path.</td></tr>';
+            resourceList.innerHTML = '<tr><td colspan="4" style="color: #ef4444;">Error loading resources data. Check data file path.</td></tr>';
         });
 
     window.sortTable = function (columnKey) {
@@ -86,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateAllFilters(filtered) {
         const openGroups = new Set([...filterContainer.querySelectorAll('details[open]')].map((el) => el.dataset.group));
-        filterContainer.innerHTML = GROUPS.map((g) => {
-            const all = [...new Set(allResources.flatMap((r) => valuesOf(r, g)))].sort((a, b) => a.localeCompare(b));
+        filterContainer.innerHTML = GROUPS.filter((g) => filterOptions[g.key].length).map((g) => {
+            const all = filterOptions[g.key];
             const counts = {};
             filtered.forEach((r) => valuesOf(r, g).forEach((v) => { counts[v] = (counts[v] || 0) + 1; }));
             const active = activeFilters[g.key].size;
@@ -126,23 +149,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayResourcesTable(list) {
         if (!list.length) {
-            resourceList.innerHTML = '<tr><td colspan="5" style="color: #aaa;">No resources found matching current criteria.</td></tr>';
+            resourceList.innerHTML = '<tr><td colspan="4" style="color: #aaa;">No resources found matching current criteria.</td></tr>';
             return;
         }
         resourceList.innerHTML = list.map((res) => {
-            const tags = [...res.audience, ...res.features, ...res.topics.diagnosis, ...res.topics.symptom].map((t) => `<span class="tag-item">${esc(t)}</span>`).join('');
+            const t = res.topics || {};
+            const tagNames = [...new Set([...(t.diagnosis || []), ...(t.symptom || []), ...(t.therapyStyle || []), ...(res.audience || []), ...(res.features || [])])];
+            const extra = tagNames.length - TAG_LIMIT;
+            const tags = tagNames.map((name, i) => `<span class="tag-item${i >= TAG_LIMIT ? ' tag-extra' : ''}">${esc(name)}</span>`).join('')
+                + (extra > 0 ? `<button type="button" class="tag-more" aria-label="Show ${extra} more tags">+${extra} more</button>` : '');
             const onSite = res.view && res.view.type;
             const main = onSite ? viewHref(res) : safeUrl(res.url);
             const actions = [
                 onSite ? `<a class="resource-action" href="${esc(viewHref(res))}">${esc(VIEW_LABEL[onSite] || 'View')}</a>` : '',
-                res.url ? `<a class="resource-action" href="${esc(safeUrl(res.url))}" target="_blank" rel="noopener noreferrer">${onSite ? 'Original source ↗' : 'Open ↗'}</a>` : ''
+                res.url ? `<a class="resource-action" href="${esc(safeUrl(res.url))}" target="_blank" rel="noopener noreferrer">${onSite ? 'Original source ↗' : 'Open ↗'}</a>` : '',
+                res.citation ? `<details class="cite-toggle"><summary>Cite</summary><p class="cite-text">${cite(res.citation)}</p></details>` : ''
             ].filter(Boolean).join('');
-            return `<tr>
-                <td><a href="${esc(main)}"${onSite ? '' : ' target="_blank" rel="noopener noreferrer"'}>${esc(res.title)}</a><div class="resource-actions">${actions}</div></td>
-                <td><span class="resource-type-badge">${esc(res.format)}</span></td>
-                <td>${esc(res.description)}</td>
-                <td><div class="tag-list">${tags}</div></td>
-                <td style="font-size: 0.8em; color: #888;">${cite(res.citation)}</td>
+            return `<tr${res.format === TOOL_FORMAT ? ' class="is-tool-row"' : ''}>
+                <td class="col-title"><a class="resource-title" href="${esc(main)}"${onSite ? '' : ' target="_blank" rel="noopener noreferrer"'}>${esc(res.title)}</a><div class="resource-actions">${actions}</div></td>
+                <td class="col-format">${badge(res.format)}</td>
+                <td class="col-desc"><div class="resource-desc">${esc(res.description)}</div></td>
+                <td class="col-tags"><div class="tag-list">${tags}</div></td>
             </tr>`;
         }).join('');
     }

@@ -36,9 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(() => fail('The resource list couldn’t load. Refresh to try again.'));
 
     function header(res) {
-        const tags = [...res.topics.diagnosis, ...res.topics.symptom, ...res.topics.therapyStyle].map((t) => `<span class="tag-item">${esc(t)}</span>`).join('');
+        const t = res.topics || {};
+        // Every tag shows here, including ones too rare to be a filter on the lists
+        const names = [...new Set([...(t.diagnosis || []), ...(t.symptom || []), ...(t.therapyStyle || []), ...(res.audience || []), ...(res.features || [])])];
+        const tags = names.map((n) => `<span class="tag-item">${esc(n)}</span>`).join('');
+        const badge = res.format === 'Interactive Tool'
+            ? `<span class="resource-type-badge is-tool"><span aria-hidden="true">🧩 </span>${esc(res.format)}</span>`
+            : `<span class="resource-type-badge">${esc(res.format)}</span>`;
         return `<header class="viewer-header">
-            <span class="resource-type-badge">${esc(res.format)}</span>
+            ${badge}
             <h1>${esc(res.title)}</h1>
             <p class="viewer-description">${esc(res.description)}</p>
             ${tags ? `<div class="tag-list">${tags}</div>` : ''}
@@ -47,11 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function sourceBox(res, note) {
         const url = safeUrl(res.url);
+        // On-site tools (e.g. /adulting/assignments-organizer/) link straight to the tool
+        const tool = /^\/[\w\-/.]+$/.test(String(res.url || '')) ? res.url : '';
         return `<aside class="viewer-source">
-            <h2>Source</h2>
+            <h2>Source and citation</h2>
             <p class="viewer-citation">${cite(res.citation)}</p>
             ${note ? `<p class="viewer-license">${esc(note)}</p>` : ''}
             <div class="viewer-buttons">
+                ${tool ? `<a class="btn btn-primary" href="${esc(tool)}">Open the tool</a>` : ''}
                 ${url ? `<a class="btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Original source ↗</a>` : ''}
                 <button type="button" class="btn" onclick="window.print()">Print</button>
             </div>

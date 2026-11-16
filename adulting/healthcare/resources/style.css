@@ -247,8 +247,93 @@ table.data-table {
 
 .resource-count { color: var(--text-muted); font-size: 0.85em; margin: 0 0 8px; }
 .resource-note { color: var(--text-muted); font-size: 0.9em; margin-top: 6px; }
-.resource-actions { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 6px; font-size: 0.8em; }
+/* Links in the hero note use the site accent (dark #38bdf8, light #0369a1), underlined so they read as links */
+.resource-note a { color: var(--accent-blue); text-decoration: underline; text-underline-offset: 2px; }
+.resource-note a:hover { text-decoration-thickness: 2px; }
+.resource-actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-top: 6px; font-size: 0.8em; }
 .resource-action { color: var(--accent); }
+
+/* Cite: the full APA citation, folded under each title */
+.cite-toggle { font-size: 1em; }
+.cite-toggle[open] { flex-basis: 100%; }
+.cite-toggle summary {
+    display: inline-block;
+    cursor: pointer;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    padding: 0 6px;
+    user-select: none;
+}
+.cite-toggle summary::-webkit-details-marker { display: none; }
+.cite-toggle summary::before { content: '▸ '; }
+.cite-toggle[open] summary::before { content: '▾ '; }
+.cite-toggle summary:hover, .cite-toggle summary:focus-visible { color: var(--text-heading); border-color: var(--accent); }
+.cite-text {
+    margin: 6px 0 0;
+    padding-left: 2em;
+    text-indent: -2em;
+    color: var(--text-main);
+    font-weight: normal;
+    overflow-wrap: anywhere;
+    user-select: text;
+}
+
+/* Interactive tools get a distinct badge and an accent edge */
+.resource-type-badge.is-tool {
+    border-color: var(--accent);
+    color: var(--text-heading);
+    font-weight: 600;
+    white-space: nowrap;
+    padding-left: 8px;
+    box-shadow: inset 3px 0 0 var(--accent);
+}
+.data-table tr.is-tool-row td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+
+/* "+N more" only matters on phone-width cards */
+.tag-more { display: none; }
+
+/* Phones: each resource becomes a compact card */
+@media (max-width: 700px) {
+    table.data-table, .data-table tbody { display: block; background: none; }
+    .data-table thead { display: none; }
+    .data-table tr {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 6px;
+        margin-bottom: 10px;
+        padding: 12px 14px;
+        background-color: var(--bg-panel);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+    .data-table tr.is-tool-row { border-left: 3px solid var(--accent); }
+    .data-table tr.is-tool-row td:first-child { box-shadow: none; }
+    .data-table td { display: block; padding: 0; border: 0; }
+    /* Format badge sits on top as a small label, then title + links, description, tags */
+    .data-table .col-format { order: -1; line-height: 1; }
+    .data-table .resource-actions { margin-top: 4px; }
+    .resource-desc {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        color: var(--text-muted);
+        font-size: 0.95em;
+    }
+    .tag-list:not(.show-all) .tag-extra { display: none; }
+    .tag-more {
+        display: inline-block;
+        background: none;
+        border: 1px dashed var(--border-color);
+        color: var(--accent);
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 0.75em;
+        cursor: pointer;
+    }
+}
 
 /* Shared resource viewer (view.html) */
 .viewer-container { max-width: 900px; }
