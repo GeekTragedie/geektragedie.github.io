@@ -79,8 +79,9 @@
             const target = document.querySelector(opener.dataset.open);
             if (target) {
                 if (target.tagName === 'DETAILS') target.open = true;
-                reveal(target);
+                // Collapse the narrow-screen menu first, so the scroll lands on the target
                 closeMenuOnNarrow();
+                reveal(target);
             }
             return;
         }
@@ -90,8 +91,8 @@
             const control = document.querySelector(proxy.dataset.click);
             if (control) {
                 control.click();
-                reveal(control);
                 closeMenuOnNarrow();
+                reveal(control);
             }
             return;
         }
@@ -101,9 +102,9 @@
             const target = document.querySelector(link.getAttribute('href'));
             if (target) {
                 event.preventDefault();
+                closeMenuOnNarrow();
                 reveal(target);
                 history.replaceState(null, '', link.getAttribute('href'));
-                closeMenuOnNarrow();
             }
         }
     });

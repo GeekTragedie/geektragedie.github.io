@@ -44,14 +44,14 @@ body.light-mode {
     --text-main: #1e293b;
     --text-muted: #475569;
     --text-heading: #0f172a;
-    --accent-blue: #0284c7;
+    --accent-blue: #0369a1; /* sky-700: 5.9:1 on white panels, passes WCAG AA for small text */
     --danger: #dc2626;
     --success: #16a34a;
     --warning: #b45309;
     --border-color: #cbd5e1;
     --overlay-color: rgba(248, 250, 252, 0.88);
     --badge-bg: rgba(2, 132, 199, 0.12);
-    --badge-color: #0284c7;
+    --badge-color: #0369a1;
 }
 
 body {
@@ -429,6 +429,90 @@ details.collapsible.how-to ol {
     margin: 0;
     padding-left: 1.4em;
 }
+/* Links inside small muted notes (source credits, "find the official form at …") */
+.muted a:not([class]) {
+    color: var(--accent-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+/* --- Tool guide ---
+   The standard block above every interactive tool:
+   <section class="tool-guide" aria-label="About this tool">
+     <ul class="tool-glance" aria-label="At a glance">
+       <li><span aria-hidden="true">⏱️</span> ~5–10 min</li>
+       <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+       <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Saves .json</li>
+     </ul>
+     <details id="how-to-use" class="collapsible help how-to">
+       <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+       <div class="collapsible-body">
+         <h3>What it does</h3> <p>…</p>
+         <h3>Step by step</h3> <ol>…</ol>
+         <h3>Works well with</h3> <ul>…</ul>   (and/or <h3>Tips</h3>)
+       </div>
+     </details>
+   </section> */
+.tool-guide {
+    margin: 0 0 1.25rem;
+}
+.tool-glance {
+    list-style: none;
+    margin: 0 0 0.6rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+}
+.tool-glance li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background-color: var(--bg-subpanel);
+    color: var(--text-main);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+.tool-guide details.collapsible.how-to {
+    margin: 0;
+}
+.tool-guide details.collapsible.how-to summary {
+    font-size: 0.95rem;
+}
+.tool-guide .collapsible-body h3 {
+    margin: 0.4rem 0 0;
+    font-size: 0.95rem;
+    color: var(--text-heading);
+    border: 0;
+    padding: 0;
+}
+.tool-guide .collapsible-body h3:first-child { margin-top: 0; }
+.tool-guide .collapsible-body p,
+.tool-guide .collapsible-body ul,
+.tool-guide .collapsible-body ol { margin: 0; }
+.tool-guide .collapsible-body ul { padding-left: 1.4em; }
+.tool-guide .collapsible-body li + li { margin-top: 0.25em; }
+.tool-guide a {
+    color: var(--accent-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.tool-guide a:hover, .tool-guide a:focus-visible { text-decoration-thickness: 2px; }
+@media print {
+    .tool-guide { display: none !important; }
+}
+.tool-guide kbd {
+    font-family: inherit;
+    font-size: 0.85em;
+    padding: 1px 6px;
+    border: 1px solid var(--border-color);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    background-color: var(--bg-subpanel);
+}
+
 /* Reference lists: groups nest inside the outer section */
 details.collapsible.references {
     margin-top: 2rem;
