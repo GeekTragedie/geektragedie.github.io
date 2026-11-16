@@ -27,3 +27,7 @@ After the flogging is finished and the audience feels awful, Jesus does not tell
 Overall, the use of levels, focal points, and staging largely effected the audience in different ways throughout the song “Trial before Pilate.” The direction uses levels to show who has power throughout the scene. The staging also shows who is isolated at each instance in the scene. Finally, the flogging itself, using tempo and duration, has certain effects on the audience. In the end, the audience understand the logic behind Pilate crucifying Jesus and feels the responsibility for the death of Jesus.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

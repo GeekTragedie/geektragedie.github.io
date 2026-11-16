@@ -4,6 +4,6 @@ Things I've made with my hands and my camera.
 
 ---
 
-* **[Set Design](#set-design):** Sets I've designed for the stage.
-* **[Photography](#photography):** Photos I've taken.
-* **[Visual Arts](#visual-arts):** Drawings, paintings, and other pieces.
+* **[Visual Arts](#visual-arts):** Drawings, stage makeup face charts, a genogram, and a class-project brochure mock-up.
+* **[Set Design](#set-design):** Sets I've designed for the stage. *(Pieces are being added as time allows.)*
+* **[Photography](#photography):** Photos I've taken. *(Pieces are being added as time allows.)*

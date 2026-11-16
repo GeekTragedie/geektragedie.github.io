@@ -6,8 +6,6 @@
 
 ---
 
-<p class="piece-note">Answers to the course’s Play Reflection worksheet (the instructor’s questions on characters, plot, structure, language, conflict, style, and theme are summarized as headings).</p>
-
 <div class="paper">
 
 ### Major characters
@@ -49,3 +47,8 @@ This play is representational because it does not acknowledge the audience. It m
 The theme of the play is greed and can be shown, not only through Macbeth’s actions alone, but also through his wife’s actions, and through Malcolm talking about why he would not make a great king. Greed is shown through Macbeth’s actions by his need to make sure his prophesy is correct and that he is the king of Scotland. This greed is shown through him murdering Duncan, Banquo, Lady Macduff, and her children. He also starts a war to try and take Macduff’s land both because the first apparition tells him to “beware Macduff” (4.1.69). To eliminate Macduff, Macbeth takes Macduff’s land and have more power. Macbeth’s greed is driven by the greed of his wife, Lady Macbeth. Macbeth struggles with whether or not he wants to murder Duncan and tells his wife, “We will proceed no further in this business” (1.7.31). Lady Macbeth is furious with this command and says, “When you durst do it, then you were a man. /And to be more than what you were, you would /Be so much more the man” (1.7.48-50). Lady Macbeth says that he is not a man for wanting to back down from the throne. She is greedy and wants to be queen with riches and jewels and power. The greed shown through Malcolm is by the scene when he is saying he is not fit to be king because of his yearn for power. The functionality of this scene is to emphasize greed as a theme for the play because Malcolm takes back everything he says and claims he would be a great king. Malcolm claims, “I should cut off the nobles for their lands, /Desire his jewels, and this other’s house, /And my more-having would be as a sauce /To make me hunger more, that I should forge /Quarrels unjust against the good and loyal, /Destroy them for wealth” (4.3.79-83). This shows Malcolm’s thought of greed and highlights the greed of Macbeth and his wife. However, Malcolm takes back this idea of greed and says that he is lying about himself. Although he takes this back, the greed mentioned in his lie still has a function for the play. Through Malcolm, Macbeth, and Lady Macbeth’s actions, the theme of the play can be seen as greed.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from the course prompt): A Play Reflection worksheet on <em>Macbeth</em>. It asked for the play’s title and major characters, a short plot summary, a one-word picture of the plot’s structure with reasons, how the language works (with cited examples), the type of central conflict, whether the play is presentational or representational, and the play’s theme backed by cited lines.</p>
+</aside>

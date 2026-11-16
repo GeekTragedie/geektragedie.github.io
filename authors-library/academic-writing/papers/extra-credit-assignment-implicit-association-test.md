@@ -23,3 +23,7 @@ Finally, I believe my past experience working with people and having patience pr
 In class when we watched the video of the people with Down syndrome, or “up syndrome” as one of the women called it, I felt myself rooting for them. I really was so happy that they had jobs and were living their life just as abled people would. It is ridiculous the way that people in society do not think disabled people are capable of living on their own. If more people believed in those who were disabled and showed them more appreciation, I really believe those who are disabled would be able to more fully live their lives because they would not have to worry about others holding them back. Others could just lend a helping hand, as they would to any other person in the world.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

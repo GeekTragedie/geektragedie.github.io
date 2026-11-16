@@ -37,3 +37,7 @@ During the flocking exercise, I felt overwhelmed by the amount of activity happe
 The DmT experiential during my CAT course was truly impactful. The exercises granted me the ability to explore different physiological sensations as well as emotional responses. While there were some moments where I felt under engaged and overwhelmed, the overall experience was certainly memorable, and I can see the benefits of DmT. I could see myself consulting a Dance/Movement Therapist in the future when contemplating Drama Therapy techniques.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

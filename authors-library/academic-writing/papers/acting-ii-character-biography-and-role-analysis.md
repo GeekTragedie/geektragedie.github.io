@@ -6,11 +6,9 @@
 
 ---
 
-<p class="piece-note">The questions come from the Acting II instructor’s character-biography and role-analysis worksheet and are summarized here in a few words each. The worksheet asked students to answer in character, using “I.” The answers are GeekTragedie’s own, written as Amanda Van Helsing, a gender-flipped Van Helsing in a stage version of <em>Dracula</em>.</p>
+<p class="piece-note">Written in character as Amanda Van Helsing, a gender-flipped Van Helsing in a stage version of <em>Dracula</em>.</p>
 
 ## Character Biography
-
-The biography builds the character from the given circumstances in the text, the actor’s reading of the subtext, and imagination where the text gives no facts.
 
 **Name.** My name is Amanda Van Helsing.
 
@@ -54,8 +52,6 @@ The biography builds the character from the given circumstances in the text, the
 
 ## Role Analysis
 
-The role analysis looks at what the character does within the scene, again answered in character.
-
 ### 1. Environment of the scene
 
 **Place.**
@@ -89,3 +85,8 @@ I just arrived from Holland and just finished being welcomed by Dr. Seward and i
 ### 5. Super objective (spine) for the whole play
 
 My overall goal is to save Lucy and prevent this dangerous disease from happening in the future.
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from the course prompt): A two-part worksheet answered in the first person, as the character. The character biography covered heredity, race and heritage, environment, occupation, social, political, and religious standing, relationships, temperament, health, age, appearance, movement, and speech. The role analysis covered the scene’s place, weather, and time, the moment before, sensory reality, the goal, obstacle, tactics, and expectation, and the super objective, drawing on textual facts, subtext, and imagination. The questions appear here as short labels.</p>
+</aside>

@@ -66,3 +66,7 @@ Hey dad. There’s not a whole lot of too new things happening since the last we
 ### Gramonologue
 
 Hey grandma! School is good! I like my **counseling** program. I’m still in Intro to Drama Therapy, yeah they have that as a class here! No, I haven’t officially done this already, I need a certificate…. It’s more ethical if I had a certificate, Grandma. I’m also taking Writing in Psychology. I know I work in a writing center… yes I’m learning a ton in the class and I’m even having some fun in it! They let me write about what I want to write about which is fun. I’m also am taking Family of Origin systems which they teach us theory about families and we think about our own families. We had to write a paper using our families to give examples of some of the theories. It was just for helping us learn our class information. I talked about our family and who married who and when. I talked to my stepmom about dates because she makes the family calendar. Yeah, my husband is doing well…
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

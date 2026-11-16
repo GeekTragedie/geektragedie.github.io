@@ -155,3 +155,7 @@ Stolovy, T., Lev-Wiesel, R., & Witztum, E. (2015). Dissociation: Adjustment or d
 In terms of contributions to the field of clinical mental health counseling, there is a lot of research that still needs to be done regarding DID. Bell et al. (2015) state “empirical research surrounding DID remains limited” (p. 152). The field needs to increase the amount of research involving people with DID to best understand how to treat them. The research regarding treating DID is also lacking (Biswas et al., 2013, p. 46), which makes it difficult for counselors to know the best course of treatment for their clients with DID. The best way for counselors to prevent harm and increase well-being is to know what is beneficial to their clients, and the best way to know this information is to research it. So, counselors need to take action to increase the literature regarding DID and the best courses of treatment of this disorder.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

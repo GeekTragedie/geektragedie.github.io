@@ -27,3 +27,7 @@ I combined my two pieces together with a video that showed my mental process of 
 This process connects to arts in health through personal thought, creativity, and self-expression. A person has to think about where they are now and know the self. The artist should understand how these aspects of connect and play into who they are. The person then must think of who they want to be in the future, or the ideal self. These two ideas take a lot of thought process and personal knowledge or self-concept. It is important for a person to understand who they are, so they can be more calm and centered, personally, to deal with the events that happen in the healthcare facility. The process evokes creativity because a person must then take these ideas of the self and ideal self and must portray them through art. It takes creative thought to choose which modality to use and then how to connect the two art pieces together. This project enhances self-expression through the connection of personal thought and creativity. A person must take their self-understanding and express it in a creative way.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

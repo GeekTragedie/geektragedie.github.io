@@ -167,8 +167,6 @@ Through my voices of discovery experiences, I learned to think before I spoke. I
 
 ## Discussion: April 24
 
-<p class="piece-note">Prompt, summarized: sum up Chapter 10 of the course text with any closing reflections, and ask the class at least one question.</p>
-
 I think this chapter was a really good wrap up chapter of the whole book. It really speaks directly to the reader if they are wanting to take the steps to being an ally. I think one of the key things to keep in mind with this chapter is Kendall’s warning on page 172: “This is not a chapter about friendship.” Friendships and professional relationships are to be treated very differently.
 
 There are many important ideas brought up in this chapter to remember:
@@ -187,3 +185,8 @@ I have two questions I would like to pose:
 1. How could you have been an ally to the Black teacher in the beginning of the chapter and still not belittle the white, paying student? I know schools like to take students’ sides and opinions over faculty most of the time because they are paying.
 
 2. I don’t really feel as though I understand the definition give on pages 173 – 174. Could someone explain them differently? (ally, advocate, coalition, and connection)
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from Ali Boughn’s course prompts): Weekly journals responded to each class topic, some by answering set questions (Journal 2 asked how political differences help or harm us, how to handle them in an AIH session, and how the lecture affected the writer’s views). The discussion posts responded to the course text; the April 24 post summed up Chapter 10 with closing reflections and asked the class at least one question.</p>
+</aside>

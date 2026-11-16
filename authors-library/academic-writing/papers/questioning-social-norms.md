@@ -29,3 +29,7 @@ Segismund rejecting the role he has been given goes against the horoscope his fa
 Overall, both plays use meta-theatre to question different ideas in society. The questioning of society’s values shows the emerging humanism side, Shakespeare questions homosexuality while Calderon questions stereotypes. Through this acknowledgement, the plays also shine light on their residing, medieval thought process and whether or not to break the trend. This causes a tension in society on whether they should question their current standing or if they should continue along the same path they are in. It is fascinating how the ideas of homosexuality and stereotypes still struggle in today’s society, over 200 years later. It seems to be a reoccurring problem that seems as though it will never be put to rest.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

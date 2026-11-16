@@ -683,3 +683,7 @@ Carrane, J. & Allen, L. (2006). Improvising better: A guide for the working impr
 expertvillage [Screen name]. (2008, October 3). Improv warm-ups: Improv warm-ups: Emotional fruit salad [Video file]. Retrieved from https://www.youtube.com/watch?v=EKej5FyeuZ8
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

@@ -349,3 +349,8 @@
     - $20 bill
 - Perform!
 - Surveys and food.
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from the course assignment as the author describes it in her grant proposal): In the Arts in Healthcare course, each student designed a program for a population of their choice. This eight-week theatre program for youth in juvenile detention was that program, approved by the professor before it was carried out.</p>
+</aside>

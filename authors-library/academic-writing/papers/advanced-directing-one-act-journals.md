@@ -73,3 +73,7 @@ While this may take some digging, because it was hard enough to find a good trag
 The reason I would like to do blocking and work with actors is so I can get the feeling of timing in a comedy, because timing is one of the most important aspects in a comedy.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

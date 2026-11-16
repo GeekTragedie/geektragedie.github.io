@@ -19,3 +19,7 @@ I approached this process as I would a normal play, but ensured to tell the acto
 There was one bump in the road that came about. The playwright had not attended a couple of rehearsal where we ran the blocking and then attended the final rehearsal. He commented that some of my blocking was not what he had envisioned, so I made some last minute changes. I think that helped me see that reading blocking can be different and that the specificity of language is important. I also learned that actors can take last-minute change pretty well when applying them to a performance. I do kind of wish there were more script changes throughout this process, but I think it went well even though there were very few.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

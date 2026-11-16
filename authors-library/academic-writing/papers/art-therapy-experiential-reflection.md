@@ -33,3 +33,7 @@ I felt uneasy and rather overwhelmed at the beginning of the experiential when I
 Taking part in the AT experiential certainly helped me learn about myself as well as how art can be used for therapeutic goals. It was particularly beneficial having the facilitator inviting participants to consider applying various goals to the project and how the goal may change the experiential. Using the various media helped teach me more about materials as well as how I react to different media. As a future Drama Therapist, I need to remember how different media and colors can impact participants’ feelings.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

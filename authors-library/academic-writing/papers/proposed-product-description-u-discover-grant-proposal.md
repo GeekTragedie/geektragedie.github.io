@@ -6,7 +6,7 @@
 
 ---
 
-<p class="piece-note">The version submitted to the University of South Dakota U.Discover Scholar Program. The application prompt asked for a two-page project description covering the rationale, method, significance, and other funding. This proposal led to the summer 2017 theatre workshops and the poster <a href="#presentations/theatres-effects-on-youth-in-jdc"><em>Theatre’s Effects on Youth in JDC</em></a>. The original has no reference list.</p>
+<p class="piece-note">The version submitted to the University of South Dakota U.Discover Scholar Program. This proposal led to the summer 2017 theatre workshops and the poster <a href="#presentations/theatres-effects-on-youth-in-jdc"><em>Theatre’s Effects on Youth in JDC</em></a>. The original has no reference list.</p>
 
 <div class="paper apa">
 
@@ -37,3 +37,8 @@ Beyond the program helping the adolescents and the AIH field, it will also help 
 I would deeply appreciate being funded for this research. I do not have other financial support for this project, and I firmly believe more time needs to be invested into this population and this field of study. With the financial assistance from the University of South Dakota, I will be able to enhance the AIH field, improve the overall wellbeing of adolescents in the Minnehaha JDC, and increase my own knowledge in research. Thank you for your time and consideration of my research project. I would love the opportunity to be the person that enhances this field and this grant will help contribute to this cause.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from the U.Discover application prompt, written for Ali Boughn’s Arts in Healthcare course): A description of about two pages covering the proposed project and the student’s research interest. It had to explain the writer’s personal rationale, how the project would be carried out, why it matters, and any other funding received.</p>
+</aside>

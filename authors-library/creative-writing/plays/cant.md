@@ -323,3 +323,7 @@ The only thing that can protect me is letting me go! I don’t want help!
 
 **ISAAC** *(to himself)*
 But that’s not how freedom works.
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

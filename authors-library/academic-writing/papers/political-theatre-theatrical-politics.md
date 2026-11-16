@@ -29,3 +29,7 @@ The Comedy of Manners ideas can all be found in Congreve’s *The Way of the Wor
 Overall, *Tartuffe* and *The Way of the World* follow the guidelines that were created by their respective governments for playwrights during the time they were written. While France had more direct control while using the French Academy, England had less direct control because the contents of the plays were determined by what was popular to the king. Moliere’s *Tartuffe* follows the direct rules given by the French Academy through its use of the French Neoclassical ideas and the use of the three unities. Congreve’s *The Way of the World* follows the popularity of the time by following the rules of the Comedy of Manners because it was popular with King Charles II. Whether it is obvious or not, government has an influence over what art is produced in society.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

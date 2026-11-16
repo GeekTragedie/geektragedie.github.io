@@ -53,7 +53,10 @@ Class-project mock-up: a brochure for a fictional twelve-person drama therapy gr
 
 **Lechery, *Doctor Faustus*.** Overall, Lechery's colors will mainly be red and black with a little white from the pearls. Black circles will be around the pearls to help them stick out, but also to symbolize how false they are. The pearls are part of Faustus' desire, but the desire is wrong, so they are circled in black. The red is there for symbolism as well. Lechery will look young and thin in the face to look attractive and desirable. She will have her dress hanging off her shoulders for seductive purposes. To show her self-confidence and also help narrow the face, she will have a longer nose to give the illusion of being full of herself. She is going to be a beautiful woman from hell.
 
-Each design started from an eight-question character worksheet (genetics, environment, health, disfigurement, fashion, age, personality, and a summary). The summary answers are shown here.
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from the course prompt): For each character, students drew a face chart and completed an eight-question text analysis covering how genetics, environment, health, disfigurement, hair and makeup fashion, age, and personality (backed by three examples of dialogue) shape the character’s look, ending with a summary paragraph describing the planned design. The summary answers are shown above.</p>
+</aside>
 
 ---
 

@@ -25,3 +25,7 @@ While there were many challenges, I also found many aspects rewarding. I was ver
 The biggest idea that I have taken from this project is my confidence in possibly working with Greek plays in the future. I will not shy away from them or think they are too far away from my grasp. I will not think they are not too difficult to conquer and I will no longer believe that no one can relate to their stories, as I sadly did before. I will continue to challenge myself to step out of my comfort zone to try new theatrical experiences, even if I feel afraid to do so, especially in an academic setting.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

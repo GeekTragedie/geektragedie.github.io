@@ -29,3 +29,7 @@ I think our group had a great dynamic to it when we were all together. I really 
 Overall, I believe the performance went very well. I think it would have gone better with a larger audience and more energy, but that is not something that was achievable. I am very proud of what my group and I created, whether or not they feel the same way. I guess that was one thing we should have worked on during the rehearsal process: being more open to one another. I think we did do a great job of being creative and our final performance of this piece was certainly something to be proud of.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

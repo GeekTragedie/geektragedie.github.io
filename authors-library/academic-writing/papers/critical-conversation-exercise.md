@@ -67,3 +67,7 @@ Nichols, M. P. (2008). Bowen family systems therapy. In *Family therapy: Concept
 </div>
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

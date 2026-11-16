@@ -2,11 +2,15 @@
 
 Papers I wrote along the way, from theatre school to counseling grad school. Each one keeps the formatting it was turned in with (APA or MLA). Names of classmates, clients, and family are left out or changed.
 
+<div class="lib-search" data-lib-search></div>
+
 ---
 
 ## Graduate & Post-Graduate Studies
 
-### MA in Mental Health Counseling
+<details class="lib-group">
+<summary><span class="lib-group-name">MA in Mental Health Counseling</span> <span class="lib-count">19</span></summary>
+
 *Papers on counseling theory, group work, psychopathology, addiction, family systems, and research.*
 
 * **[Analysis of Mindfulness-Based Stress Reduction with Anxiety Disorders](#papers/analysis-of-mindfulness-based-stress-reduction-with-anxiety-disorders)** · *Introduction to Research Methods · December 9, 2019*  
@@ -19,7 +23,7 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
   A plan, co-written with a colleague, for getting a practice group ready for termination while keeping it in the here and now.
 * **[Group Facilitation Proposal Paper Week 3](#papers/group-facilitation-proposal-week-3)** · *Group Counseling · Fall 2019*  
   A plan, co-written with a colleague, for a mindfulness-based, person-centered practice group session, ending in a walking-meditation mirroring exercise.
-* **[Multicultural Presentation Reaction Paper](#papers/multicultural-presentation-reaction-paper-socioeconomic-status)** · *Psychopathology · September 3, 2019*  
+* **[Multicultural Presentation Reaction Paper: Socioeconomic Status](#papers/multicultural-presentation-reaction-paper-socioeconomic-status)** · *Psychopathology · September 3, 2019*  
   A reflection on bias about poverty and what counselors should keep in mind when working with clients who have low socioeconomic status.
 * **[Adlerian Theory: An Attempt at Understanding and Application](#papers/adlerian-theory-an-attempt-at-understanding-and-application)** · *Counseling Theories and Practice: Part One · August 26, 2019*  
   How Adlerian theory sees suffering, wellness, and the counselor's role, with cultural considerations for Asian American clients.
@@ -48,7 +52,11 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
 * **[Elbow Response Paper](#papers/elbow-response-paper)** · *Writing in Psychology · October 9, 2018*  
   A respectful disagreement with Peter Elbow's two-phase writing process, drawn from experience as a writing consultant and theatre director.
 
-### Drama Therapy Specialization
+</details>
+
+<details class="lib-group">
+<summary><span class="lib-group-name">Drama Therapy Specialization</span> <span class="lib-count">18</span></summary>
+
 *Scholarship on embodiment, improvisation, ethics, family systems, and theatre as therapy.*
 
 * **[Persuasive Abstract](#papers/persuasive-abstract)** · *Community Based Theatre and Sociodrama · May 20, 2020*  
@@ -57,7 +65,7 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
   Instructions for a miming circle game that builds conversation and nonverbal skills.
 * **[NADTA 40 Conference Takeaways](#papers/nadta-40-conference-takeaways)** · *NADTA 40th Annual Conference reflection · December 2019*  
   A reflection on how a first NADTA conference renewed the author's motivation and drive to lead.
-* **[Final Reflection Paper](#papers/ethics-final-reflection-paper)** · *Ethics in Creative Arts Therapy · September 4, 2019*  
+* **[Final Reflection Paper: Ethics in Creative Arts Therapy](#papers/ethics-final-reflection-paper)** · *Ethics in Creative Arts Therapy · September 4, 2019*  
   How I went from seeing ethics as scary rules to seeing them as a comfort and a playbook.
 * **[Making Ethical Decisions as a Counselor](#papers/making-ethical-decisions-as-a-counselor)** · *Ethics in Creative Arts Therapy · August 21, 2019*  
   Two working counselors' real dilemmas (burnout, and a teen client's risky drug use) analyzed step by step.
@@ -88,25 +96,33 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
 * **[Family of Origin Analysis](#papers/family-of-origin-analysis)** · *Family of Origin Systems & Creative Arts Therapy · November 7, 2018*  
   A Bowen-theory look at how a blended family's divorces, sibling roles, and unspoken rules shaped me as a future therapist.
 
-### Graduate School Applications
+</details>
+
+<details class="lib-group">
+<summary><span class="lib-group-name">Graduate School Applications</span> <span class="lib-count">5</span></summary>
+
 *The essays and statements I wrote when applying to drama therapy programs.*
 
 * **[Diversity Scholarship Essay](#papers/diversity-scholarship-essay)** · *Scholarship application, California Institute of Integral Studies · Early 2018*  
   Coursework and work experiences that broadened an understanding of diverse and marginalized communities.
-* **[Autobiographical Statement](#papers/autobiographical-statement)** · *Graduate school application · Early 2018*  
+* **[Autobiographical Statement: Role Theory and Prison Theatre](#papers/autobiographical-statement)** · *Graduate school application · Early 2018*  
   The path to drama therapy, with Landy's role theory and writing on prison theatre.
 * **[Personal Statement (Lesley University)](#papers/lesley-personal-statement)** · *Graduate school application, Lesley University · 1 February 2018*  
   Why improv, directing, research, and arts-in-health work point toward drama therapy.
-* **[Admission Essay](#papers/antioch-admission-essay)** · *Graduate school application, Antioch University Seattle · 30 January 2018*  
+* **[Admission Essay: Antioch University Seattle](#papers/antioch-admission-essay)** · *Graduate school application, Antioch University Seattle · 30 January 2018*  
   Four answers on the experiences, challenges, and goals behind applying to drama therapy school.
-* **[Autobiographical Statement (CIIS)](#papers/autobiographical-statement-ciis)** · *Graduate school application, California Institute of Integral Studies · 9 January 2018*  
+* **[Autobiographical Statement: CIIS Application](#papers/autobiographical-statement-ciis)** · *Graduate school application, California Institute of Integral Studies · 9 January 2018*  
   From a sixth-grade drama program to a juvenile detention theatre grant: the road to drama therapy.
+
+</details>
 
 ---
 
 ## Undergraduate Studies
 
-### AIH Certificate
+<details class="lib-group">
+<summary><span class="lib-group-name">AIH Certificate</span> <span class="lib-count">8</span></summary>
+
 *Journals, papers, and research from the Arts in Healthcare certificate.*
 
 * **[Internship Midterm Reflection Paper](#papers/internship-midterm-reflection-paper)** · *Arts in Health internship (Sanford Arts), University of South Dakota · Spring 2018*  
@@ -121,23 +137,27 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
   Ten annotated sources on theatre programs for youth in juvenile detention.
 * **[Proposed Product Description (U.Discover Grant Proposal)](#papers/proposed-product-description-u-discover-grant-proposal)** · *Arts in Healthcare (Ali Boughn) · Spring 2017*  
   The grant proposal for an eight-week theatre program measuring self-esteem, self-image, and self-concept in a detention center.
-* **[Artist Statement](#papers/artist-statement)** · *Arts in Healthcare (Ali Boughn) · April 14, 2017*  
+* **[Artist Statement: Chalk Self-Portraits](#papers/artist-statement)** · *Arts in Healthcare (Ali Boughn) · April 14, 2017*  
   The thinking behind two chalk self-portraits and a video about moving from "now" to an ideal future self.
 * **[Arts in Healthcare Journals (Fall 2015)](#papers/arts-in-healthcare-journals-fall-2015)** · *Arts in Healthcare · Fall 2015*  
   A semester of class journals on guest speakers, healing environments, ethics, and self-care.
 
-### BS in Psychology
+</details>
+
+<details class="lib-group">
+<summary><span class="lib-group-name">BS in Psychology</span> <span class="lib-count">12</span></summary>
+
 *Research and papers on psychological science, prejudice, stigma, and development.*
 
-* **[Exam 3 Reaction Paper](#papers/exam-3-reaction-paper)** · *Evolutionary Psychology (Dr. Holly Straub) · April 30, 2018*  
+* **[Exam 3 Reaction Paper: The Lottery of Birth](#papers/exam-3-reaction-paper)** · *Evolutionary Psychology (Dr. Holly Straub) · April 30, 2018*  
   A reaction to *Creating Freedom: The Lottery of Birth*: nature, nurture, and how free we really are.
-* **[Reaction Paper to Special Event Attendance](#papers/reaction-paper-to-special-event-attendance)** · *Human Development (Dr. Jean Caraway) · April 30, 2017*  
+* **[Reaction Paper to Special Event Attendance: Gender Revolution](#papers/reaction-paper-to-special-event-attendance)** · *Human Development (Dr. Jean Caraway) · April 30, 2017*  
   Notes on a screening of *Gender Revolution* and how development differs across generations of the LGBTQ community.
 * **[LGBTQ Community Representation in Education](#papers/lgbtq-community-representation-in-education)** · *Psychology of Social Prejudice (Dr. Cindy Struckman-Johnson) · Spring 2017*  
   A proposal to reduce anti-LGBTQ prejudice through teacher training, inclusive sex education, and an LGBTQ Education Week in high schools.
 * **[Charles Silverstein's Impact on the LGBTQ Community](#papers/charles-silversteins-impact-on-the-lgbtq-community)** · *Psychology of Sexual Orientation and Gender Diversity · Spring 2017*  
   The psychologist's academic, social, and publishing impact on the LGBTQ community.
-* **[Autobiographical Essay](#papers/autobiographical-essay-lgbtq-views)** · *Psychology of Sexual Orientation and Gender Diversity · March 13, 2017*  
+* **[Autobiographical Essay: Becoming an LGBTQ Ally](#papers/autobiographical-essay-lgbtq-views)** · *Psychology of Sexual Orientation and Gender Diversity · March 13, 2017*  
   How past experiences and faith shaped my path to becoming an LGBTQ ally.
 * **[A Struggle with Stigma](#papers/a-struggle-with-stigma)** · *Abnormal Psychology · Spring 2016*  
   How stigma from a parent and from society shapes the life of a blogger living with PTSD and DID.
@@ -151,10 +171,14 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
   The conference paper arguing that detention centers need drama therapy, drawing on prison theatre, theatre in education, and session design.
 * **[Extra Credit Assignment: Implicit Association Test](#papers/extra-credit-assignment-implicit-association-test)** · *Abnormal Psychology · Undated*  
   A reflection on my Abled–Disabled IAT result and the experiences that might explain it.
-* **[Self-Reflection Paper](#papers/self-reflection-paper)** · *Psychology of Personality · Undated*  
+* **[Self-Reflection Paper: Psychology of Personality](#papers/self-reflection-paper)** · *Psychology of Personality · Undated*  
   What the MBTI, a life-story exercise, and a Q-sort taught me about my own personality.
 
-### BFA in Theatre
+</details>
+
+<details class="lib-group">
+<summary><span class="lib-group-name">BFA in Theatre</span> <span class="lib-count">39</span></summary>
+
 *Theatre history, dramaturgy, directing, devising, and performance.*
 
 * **[Stylizing 1960s America](#papers/stylizing-1960s-america)** · *Directing: Period Styles · Spring 2018*  
@@ -213,7 +237,7 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
   Rehearsal notes and a full text analysis for directing Lynn Nottage's *Poof!*
 * **[Devised Theatre Reflection Paper 2](#papers/devised-theatre-reflection-paper-2)** · *Devised Theatre · 5 May 2016*  
   Frustration and lessons from a whole-class Greek-style final project, plus planning notes for a "Disney Villains Anonymous" piece.
-* **[3-2-1 Assignment](#papers/devised-theatre-3-2-1-assignment)** · *Devised Theatre · 26 April 2016*  
+* **[3-2-1 Assignment: Devised Theatre](#papers/devised-theatre-3-2-1-assignment)** · *Devised Theatre · 26 April 2016*  
   Three takeaways, two life connections, and one question from a devised theatre class.
 * **[Devised Theatre Reflection Paper 1](#papers/devised-theatre-reflection-paper-1)** · *Devised Theatre · 15 March 2016*  
   How a group built a Cinderella-themed piece about procrastination through play.
@@ -236,9 +260,14 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
 * **[Understanding Othello's Actions through Given Circumstance](#papers/understanding-othellos-actions-through-given-circumstance)** · *Shakespeare II (Dr. Darlene Farabee), conference revision · Undated*  
   Using directors' "given circumstances" to explain Othello's choices through his military background.
 
+</details>
+
 ---
 
 ## Talks & Presentations
+
+<details class="lib-group">
+<summary><span class="lib-group-name">All talks and presentations</span> <span class="lib-count">10</span></summary>
 
 *Slides, posters, scripts, and speeches.*
 
@@ -262,3 +291,5 @@ Papers I wrote along the way, from theatre school to counseling grad school. Eac
   The slides that go with the conference paper of the same name.
 * **[What Is Geek Therapy?](#presentations/what-is-geek-therapy)** · *Guest presentation, Antioch University Seattle · Undated*  
   How geek therapy uses the games and stories people love, and where to find or train as a geek therapist.
+
+</details>

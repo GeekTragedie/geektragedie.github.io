@@ -55,3 +55,7 @@ Based on the messages I heard and believed, what did I actually tell myself?
 What do I still tell myself?
 
 - Now it is time to let go of who I’m supposed to be and embrace who I am because I am enough.
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

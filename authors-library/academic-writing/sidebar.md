@@ -1,13 +1,15 @@
 ### ACADEMIC WRITING
 - [Home](#home)
 
-### MA IN MENTAL HEALTH COUNSELING
+<details class="lib-group">
+<summary>MA IN MENTAL HEALTH COUNSELING <span class="lib-count">19</span></summary>
+
 - [Analysis of Mindfulness-Based Stress Reduction with Anxiety Disorders](#papers/analysis-of-mindfulness-based-stress-reduction-with-anxiety-disorders)
 - [Final Thoughts: Closure Reflection on Group Counseling](#papers/closure-reflection-on-group-counseling)
 - [Counseling Theories and Practice Part II: Final Synthesis Paper](#papers/counseling-theories-part-ii-final-synthesis-paper)
 - [Group Facilitation Proposal Paper Week 8](#papers/group-facilitation-proposal-week-8)
 - [Group Facilitation Proposal Paper Week 3](#papers/group-facilitation-proposal-week-3)
-- [Multicultural Presentation Reaction Paper](#papers/multicultural-presentation-reaction-paper-socioeconomic-status)
+- [Multicultural Presentation Reaction Paper: Socioeconomic Status](#papers/multicultural-presentation-reaction-paper-socioeconomic-status)
 - [Adlerian Theory: An Attempt at Understanding and Application](#papers/adlerian-theory-an-attempt-at-understanding-and-application)
 - [Three Theoretical Perspectives of Dissociative Identity Disorder](#papers/three-theoretical-perspectives-of-dissociative-identity-disorder)
 - [Depressive Reframing: Viewing Persistent Depressive Disorder through a DBT Lens](#papers/depressive-reframing-persistent-depressive-disorder-through-a-dbt-lens)
@@ -22,11 +24,15 @@
 - [The Late Bloomer: A Proud Writer](#papers/the-late-bloomer-a-proud-writer)
 - [Elbow Response Paper](#papers/elbow-response-paper)
 
-### DRAMA THERAPY SPECIALIZATION
+</details>
+
+<details class="lib-group">
+<summary>DRAMA THERAPY SPECIALIZATION <span class="lib-count">18</span></summary>
+
 - [Persuasive Abstract](#papers/persuasive-abstract)
 - [What are you Doing?](#papers/what-are-you-doing)
 - [NADTA 40 Conference Takeaways](#papers/nadta-40-conference-takeaways)
-- [Final Reflection Paper](#papers/ethics-final-reflection-paper)
+- [Final Reflection Paper: Ethics in Creative Arts Therapy](#papers/ethics-final-reflection-paper)
 - [Making Ethical Decisions as a Counselor](#papers/making-ethical-decisions-as-a-counselor)
 - [An Ethical Autobiography](#papers/an-ethical-autobiography)
 - [This was Improvised: How I will Incorporate Improvisation in Therapy](#papers/this-was-improvised)
@@ -42,38 +48,54 @@
 - [Group Leading: Emotional Focus](#papers/group-leading-emotional-focus)
 - [Family of Origin Analysis](#papers/family-of-origin-analysis)
 
-### GRADUATE SCHOOL APPLICATIONS
-- [Diversity Scholarship Essay](#papers/diversity-scholarship-essay)
-- [Autobiographical Statement](#papers/autobiographical-statement)
-- [Personal Statement (Lesley University)](#papers/lesley-personal-statement)
-- [Admission Essay](#papers/antioch-admission-essay)
-- [Autobiographical Statement (CIIS)](#papers/autobiographical-statement-ciis)
+</details>
 
-### AIH CERTIFICATE
+<details class="lib-group">
+<summary>GRADUATE SCHOOL APPLICATIONS <span class="lib-count">5</span></summary>
+
+- [Diversity Scholarship Essay](#papers/diversity-scholarship-essay)
+- [Autobiographical Statement: Role Theory and Prison Theatre](#papers/autobiographical-statement)
+- [Personal Statement (Lesley University)](#papers/lesley-personal-statement)
+- [Admission Essay: Antioch University Seattle](#papers/antioch-admission-essay)
+- [Autobiographical Statement: CIIS Application](#papers/autobiographical-statement-ciis)
+
+</details>
+
+<details class="lib-group">
+<summary>AIH CERTIFICATE <span class="lib-count">8</span></summary>
+
 - [Internship Midterm Reflection Paper](#papers/internship-midterm-reflection-paper)
 - [Population Considerations](#papers/population-considerations)
 - [Theatre Program Workshop Schedules](#papers/theatre-program-workshop-schedules)
 - [Arts in Healthcare Journals and Discussions (Spring 2017)](#papers/arts-in-healthcare-journals-and-discussions-spring-2017)
 - [Full Annotated Bibliography](#papers/full-annotated-bibliography)
 - [Proposed Product Description (U.Discover Grant Proposal)](#papers/proposed-product-description-u-discover-grant-proposal)
-- [Artist Statement](#papers/artist-statement)
+- [Artist Statement: Chalk Self-Portraits](#papers/artist-statement)
 - [Arts in Healthcare Journals (Fall 2015)](#papers/arts-in-healthcare-journals-fall-2015)
 
-### BS IN PSYCHOLOGY
-- [Exam 3 Reaction Paper](#papers/exam-3-reaction-paper)
-- [Reaction Paper to Special Event Attendance](#papers/reaction-paper-to-special-event-attendance)
+</details>
+
+<details class="lib-group">
+<summary>BS IN PSYCHOLOGY <span class="lib-count">12</span></summary>
+
+- [Exam 3 Reaction Paper: The Lottery of Birth](#papers/exam-3-reaction-paper)
+- [Reaction Paper to Special Event Attendance: Gender Revolution](#papers/reaction-paper-to-special-event-attendance)
 - [LGBTQ Community Representation in Education](#papers/lgbtq-community-representation-in-education)
 - [Charles Silverstein's Impact on the LGBTQ Community](#papers/charles-silversteins-impact-on-the-lgbtq-community)
-- [Autobiographical Essay](#papers/autobiographical-essay-lgbtq-views)
+- [Autobiographical Essay: Becoming an LGBTQ Ally](#papers/autobiographical-essay-lgbtq-views)
 - [A Struggle with Stigma](#papers/a-struggle-with-stigma)
 - [Binge Eating Disorder: Societal Causes](#papers/binge-eating-disorder-societal-causes)
 - [Homosexuality in the DSM and *American Horror Story: Asylum*](#papers/homosexuality-in-the-dsm-and-american-horror-story-asylum)
 - [Screen versus Paper: Examination of the Stroop Effect](#papers/screen-versus-paper-examination-of-the-stroop-effect)
 - [Drama Therapy in Juvenile Detention Centers](#papers/drama-therapy-in-juvenile-detention-centers)
 - [Extra Credit Assignment: Implicit Association Test](#papers/extra-credit-assignment-implicit-association-test)
-- [Self-Reflection Paper](#papers/self-reflection-paper)
+- [Self-Reflection Paper: Psychology of Personality](#papers/self-reflection-paper)
 
-### BFA IN THEATRE
+</details>
+
+<details class="lib-group">
+<summary>BFA IN THEATRE <span class="lib-count">39</span></summary>
+
 - [Stylizing 1960s America](#papers/stylizing-1960s-america)
 - [Language Research and Paraphrase Assignment](#papers/antigone-language-research-and-paraphrase)
 - [*Antigone* Analysis](#papers/antigone-analysis)
@@ -102,7 +124,7 @@
 - [Ill Usage](#papers/ill-usage)
 - [Directing Journal #2: *Poof!* Text Analysis](#papers/directing-journal-2-poof)
 - [Devised Theatre Reflection Paper 2](#papers/devised-theatre-reflection-paper-2)
-- [3-2-1 Assignment](#papers/devised-theatre-3-2-1-assignment)
+- [3-2-1 Assignment: Devised Theatre](#papers/devised-theatre-3-2-1-assignment)
 - [Devised Theatre Reflection Paper 1](#papers/devised-theatre-reflection-paper-1)
 - [Understanding the Humours: Analysis of *The Duchess of Malfi*](#papers/understanding-the-humours-the-duchess-of-malfi)
 - [Political Theatre – Theatrical Politics](#papers/political-theatre-theatrical-politics)
@@ -114,7 +136,11 @@
 - [Self-Reflection Prompt 6b: My Own Warm-Up](#papers/fundamentals-self-reflection-my-own-warm-up)
 - [Understanding Othello's Actions through Given Circumstance](#papers/understanding-othellos-actions-through-given-circumstance)
 
-### TALKS & PRESENTATIONS
+</details>
+
+<details class="lib-group">
+<summary>TALKS & PRESENTATIONS <span class="lib-count">10</span></summary>
+
 - [2023 Commencement Speech](#presentations/commencement-speech-2023)
 - [Getting Dramatic (Therapy): What Is Drama Therapy?](#presentations/getting-dramatic-therapy)
 - [Drama Therapy in King County Juvenile Detention](#presentations/drama-therapy-in-king-county-juvenile-detention)
@@ -125,3 +151,5 @@
 - [Juvenile Adolescent Population](#presentations/juvenile-adolescent-population)
 - [Drama Therapy in Juvenile Detention Centers (Slides)](#presentations/drama-therapy-in-juvenile-detention-centers-slides)
 - [What Is Geek Therapy?](#presentations/what-is-geek-therapy)
+
+</details>

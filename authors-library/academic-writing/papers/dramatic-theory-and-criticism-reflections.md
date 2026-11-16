@@ -185,3 +185,7 @@
 - What is “front” and what are the different parts of it, because the chapter only really talked about setting?
 - While I thought I understood what restored behavior was, Carlson confuses me on page 74 when he discusses it; what is restored behavior?
 - If all behavior is learned and repeated, then how can anything really be original? If everything on stage is learned behavior, how can there be a simulacra?
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

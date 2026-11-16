@@ -56,3 +56,8 @@ I feel as though my supervisors are really helping me prepare for my future. Whi
 Overall, I have really loved this internship experience and am happy to have had the opportunity to participate and be at my site twenty hours a week. Having had multiple graduate school interviews now, I feel much more prepared to enter this field than other undergraduate students I have met at my interviews. I look forward to the rest of the semester and what I will learn along the way.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from the course prompt): A reflection due at the midpoint of the internship, with a second one at the end, to be discussed with the university internship supervisor. It asked the intern to reflect on the site experience, areas of professional growth, areas still needing work, progress toward the goals set at the start, and what they needed from their site and university supervisors. No length limit was set.</p>
+</aside>

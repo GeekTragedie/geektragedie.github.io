@@ -29,3 +29,7 @@ While being a participant and an observer of the recent era scenes, I learned mu
 I do not really have any questions at this point in time. I usually seem to come up with questions during class and attempt to ask them at that point in time. If I have more questions along the way, I will be sure to address them. Overall, I thoroughly enjoyed this research process and look forward to our upcoming scenes.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

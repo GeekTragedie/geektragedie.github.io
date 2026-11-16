@@ -153,3 +153,7 @@ Shamoon, Z. (2019). *Self of therapist & fundamental concepts of family systems 
 ![Genogram of the fictional Jarrett family from Ordinary People: parents Calvin and Beth, sons Buck (deceased) and Conrad, Beth’s parents, and Beth’s brother Ward and his wife, with lines showing close, conflictual, and distant relationships](../art/images/visual-arts/jarrett-family-genogram.png)
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

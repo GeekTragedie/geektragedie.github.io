@@ -122,3 +122,7 @@ We put our house up for sale the next week and it sold a month later. We couldn�
 Tara killed both her husband and son that day. They never found her, which bothers me to no end. I would never want to see that woman again. I don’t know if I could control my emotions or actions if I saw her.
 
 The events surrounding Oliver’s death were terrible, but a blessing. If I had never been in his life, he never would have felt the real love a mother could give, even though we didn’t really talk a whole lot. In a way, this idea brings me reassurance that we lived there for a reason; however, I will always have this fear in the back of my mind telling me that the world is never a safe place.
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

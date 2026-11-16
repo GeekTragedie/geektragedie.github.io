@@ -31,3 +31,7 @@ Through my experiences with my ex-boyfriend, I have realized how cruel the world
 The biggest impact I believe I have seen through my experience learning about the LGBTQ community is my ability to be open-minded. I think a lot of people in my life are very close-minded. I have learned to think critically about their views and then create my own beliefs. By learning more about the LGBTQ community, whether it be from class or through my friends in college, I continue to learn about struggling experience that face this community. As new people and experiences enter my life, I will continue to be open-minded and learn from my own and others’ experiences. Learning about the LGBTQ community has certainly opened my eyes and I am grateful.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

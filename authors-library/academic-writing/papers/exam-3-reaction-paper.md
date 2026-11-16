@@ -6,7 +6,7 @@
 
 ---
 
-<p class="piece-note">Prompt by Dr. Holly Straub, summarized: write a reaction paper to the film <em>Creating Freedom: The Lottery of Birth</em>, focusing on how nature, nurture, and the evolutionary perspective shape behavior and cognition, and what that means for freedom and free will. Class notes and the paper outline are not included.</p>
+<p class="piece-note">Class notes and the paper outline are not included.</p>
 
 <div class="paper mla">
 
@@ -25,3 +25,8 @@ By the series title, *Creating Freedom,* the film questions whether or not human
 Overall, the film *Creating Freedom: The Lottery of Birth* positions viewers to question nature and nurture as pertaining to evolutionary psychology as well as human behavior and cognitive processes, making them question the idea of freedom. Nature shows that survival is crucial in human society and in today’s society one needs to be employed and obedient. Humans are nurtured through education to join a particular society with a particular structure. The biggest take home for me in this video is that people should be aware of their surroundings. They should know where they come from and how they have been taught. They should be taught to question society and its ways, though they may not be able to change anything about it alone. However, there is a feeling of more freedom in their decisions when one is able to understand why society works the way it does.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from Dr. Holly Straub’s prompt): A reaction paper on the film <em>Creating Freedom: The Lottery of Birth</em>. It was to focus on how nature and nurture work together, seen from an evolutionary perspective, to shape behavior and thinking, and what that suggests about free will.</p>
+</aside>

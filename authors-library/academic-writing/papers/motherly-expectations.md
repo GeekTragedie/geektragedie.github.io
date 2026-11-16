@@ -8,7 +8,7 @@
 
 <p class="content-note"><strong>Content note:</strong> a sibling’s death by suicide and body image.</p>
 
-<p class="piece-note">Written for the Unfinished Business Analysis assignment (prompt handout by Paul David, Ph.D., used in this course), which asked students to extend their family of origin analysis into an unresolved conflict with a family member: the problem, its history, efforts to resolve it, and how it shows up in other relationships. Family names and some identifying details have been changed or generalized.</p>
+<p class="piece-note">Family names and some identifying details have been changed or generalized.</p>
 
 <div class="paper apa">
 
@@ -129,3 +129,8 @@ Winawer, H., & Wetzel, N. A. (2005). German families. In M. McGoldrick, J. Giord
 </div>
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from Dr. Paul David’s prompt): Building on the family of origin analysis, this 8–10 page paper explores an unresolved conflict with a significant family member. It needed four parts: the problem itself, how it developed, attempts to resolve it, and how it shows up in other relationships (such as triangulation or invisible loyalties). The focus stays on the writer’s own part, using course exercises and readings, in APA style with a title page, headings, and references.</p>
+</aside>

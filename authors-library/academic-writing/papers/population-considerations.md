@@ -149,3 +149,7 @@ When working with people in an ICU waiting room, the same safety precautions sho
 In conclusion, while there are overarching concerns that should be taken when considering safety, most populations are treated differently. Before working with populations, a facilitator should consider the different invitational strategies they will use. Safety and accommodations may be different when working with various populations as well. A lot of the times, before working with a population, it is always best to talk to a supervisor and ask if there are any particular things that should be considered before starting a project. One of the most important things that should be remembered is to let go and have fun.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

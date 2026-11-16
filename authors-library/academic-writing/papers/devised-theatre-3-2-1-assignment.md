@@ -28,3 +28,8 @@
 - a. What if you do not have energy to devise?
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from the course prompt): A short end-of-semester list with three parts: three things taken away from the class, two ways the class connected to life outside it, and one remaining question.</p>
+</aside>

@@ -31,3 +31,7 @@ With all of these aspects considered, I think people are certainly all different
 Overall, I really appreciated this class, personally and educationally. I was able to educate my family through this process because they are very into personality types. I also was able to grow myself, as previously expressed. I was very happy that I took this class and I learned more in this course than I thought I would.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

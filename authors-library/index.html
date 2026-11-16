@@ -14,6 +14,16 @@
     }
     .hero-panel { margin-bottom: 30px; }
     .card-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .start-here { margin: 0 0 30px; }
+    .start-here + .card-grid { margin-top: 34px; }
+    .start-here h2 { margin: 0 0 6px; }
+    .start-here > p { color: var(--text-muted); margin: 0 0 14px; }
+    .start-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .start-list a { display: block; height: 100%; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--bg-panel); color: var(--text-main); text-decoration: none; }
+    .start-list a:hover, .start-list a:focus-visible { border-color: var(--accent); }
+    .start-list strong { display: block; color: var(--text-heading); margin-bottom: 4px; }
+    .start-list .start-kind { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 6px; }
+    .start-list span.start-why { font-size: 0.92rem; color: var(--text-muted); }
 </style>
 </head>
 <body aria-label="Author's Library hub page with a close-up background texture of a bird feather covered in water droplets">
@@ -62,11 +72,12 @@
                 <a href="../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -87,6 +98,17 @@
         <p>My writing and art: trip notes, school papers, stories, plays, poems, and the things I’ve made.</p>
     </div>
 
+    <section class="start-here" aria-labelledby="start-here-heading">
+        <h2 id="start-here-heading">Where to Start</h2>
+        <p>Not sure where to begin? These four show the range of the library.</p>
+        <ul class="start-list">
+            <li><a href="./academic-writing/index.html#papers/drama-therapy-in-juvenile-detention-centers"><span class="start-kind">Research thread</span><strong>Drama Therapy in Juvenile Detention Centers</strong><span class="start-why">Where my juvenile detention work began (2015). Follow it to the 2017 program and the <em>Theatre’s Effects on Youth in JDC</em> poster under Talks &amp; Presentations.</span></a></li>
+            <li><a href="./creative-writing/index.html#plays/the-last-breath"><span class="start-kind">Play</span><strong>The Last Breath</strong><span class="start-why">A one-act about a family’s last night at a hospital bedside. Opens with a content note.</span></a></li>
+            <li><a href="./academic-writing/index.html#papers/wedding-productions"><span class="start-kind">Theatre theory</span><strong>Wedding Productions</strong><span class="start-why">Why expecting a bride to play every role feeds the “bridezilla” label.</span></a></li>
+            <li><a href="./academic-writing/index.html#papers/rebuilding-a-relationship-exploring-a-sibling-playspace"><span class="start-kind">Drama therapy</span><strong>Rebuilding a Relationship: Exploring a Sibling Playspace</strong><span class="start-why">An arts-based class experience built around the playspace I shared with my brother.</span></a></li>
+        </ul>
+    </section>
+
     <div class="card-grid">
         <a href="./pnoc/index.html" class="card">
             <h2>Progress Notes on Confinement</h2>
@@ -105,7 +127,7 @@
 
         <a href="./art/index.html" class="card">
             <h2>Art</h2>
-            <p>Set designs, photography, and visual art.</p>
+            <p>Drawings, stage makeup face charts, a genogram, and a design mock-up.</p>
         </a>
 
         <a href="./about.html" class="card">

@@ -6,7 +6,7 @@
 
 ---
 
-<p class="piece-note">A short summary of the worksheets I completed while watching recorded family and couples therapy sessions for this course. The worksheet prompts came from Dr. Zain Shamoon. The full worksheets are not included because they describe the families in the recordings and my own family history. My analysis of the fictional Jarrett family in <em>Ordinary People</em> is published separately.</p>
+<p class="piece-note">A short summary of the worksheets I completed while watching recorded family and couples therapy sessions for this course. The full worksheets are not included because they describe the families in the recordings and my own family history. My analysis of the fictional Jarrett family in <em>Ordinary People</em> is published separately.</p>
 
 - **Structural worksheet (*The Legacy of Unresolved Loss: A Family Systems Approach*).** I identified the family's strengths, its overt and covert rules, its subsystems and boundaries (rigid, diffuse, clear), and its coalitions and triangles. I proposed systemic reframing (Gehart, 2018; Hannah & Brown, 2019) as a structural intervention, so the parents could see a teenager's acting out as a bid for attention instead of only a problem.
 - **Systemic/strategic worksheet ("Strategic Couples Therapy," *Couples Therapy with the Experts*).** Using the MRI brief therapy steps, I defined the couple's problem as a communication pattern, traced two interactional loops back to homeostasis, sorted their "more of the same" solutions into actions not taken, actions taken when unnecessary, and actions taken at the wrong level (Gehart, 2018), and explained why the therapist's homework works as a therapeutic double bind.
@@ -26,3 +26,8 @@ Gehart, D. R. (2018). *Mastering competencies in family therapy: A practical app
 Hannah & Brown. (2019). *Reframing the meaning of symptoms.* Class handout from Systems Perspectives in Family Therapy. Antioch University Seattle.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+<p class="assignment-criteria"><strong>The assignment</strong> (summarized from Dr. Zain Shamoon’s prompt): For each recorded session, a worksheet asked students to apply one family systems model. The structural sheet covered members, strengths, rules, subsystem boundaries, coalitions, and one restructuring intervention; the cybernetic sheet covered a family rule, feedback, homeostasis, the therapist’s stance, and expected change; and the countertransference sheet asked about reactions, their roots, their intensity, and what to take to supervision versus personal therapy.</p>
+</aside>

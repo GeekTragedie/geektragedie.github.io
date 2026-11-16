@@ -37,3 +37,7 @@ I really enjoyed this play! I like how the play seems to tell a story about peop
 This play is very meta. There really are many plays within this play. There is the play of *Three Sisters,* the play where the actors are rehearsing *Three Sisters,* and then there is the play where the characters are playing actors and talking to the audience member, Joby. The play being performed is more than just that story. There are parts of the play that break and the actors play characters that are actors and are talking to Joby, a reviewer. I also believe that at the end of the play within the play, the actors are playing characters that are actors leaving their performance. It is at this point that Lisabette is talking to the audience. Lisabette could either be the character or the actor in the play, talking to the audience. I believe that this can be a story about the actor of Lisabette learning about the theatre from her acting experience with Joby as an audience member. While these interactions are very short, I believe these scenes are crucial to understanding who the play is about.
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

@@ -21,3 +21,7 @@ I increased my organizational education through planning the trip for UCB Tour C
 Finally, I learned a lot this semester about my future and took steps towards what I am looking forward to doing. I have researched graduate schools and talked to advisors regarding my future. I have been working at a facility that counts towards clinical hours for graduate school and have been accepted to do research at a JDC in Sioux Falls by implementing a theatre program. Next year, my goal is to increase my theatre knowledge in the technical theatre realm. I also will expand my arts in healthcare knowledge with theatre through my internship experience class. I also want to attempt to facilitate a devised theatre piece with the improv club based on issues we ask college students about. I am really looking forward to next year (my final year!).
 
 </div>
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

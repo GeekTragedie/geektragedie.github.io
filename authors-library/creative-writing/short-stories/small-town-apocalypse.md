@@ -142,3 +142,7 @@ Even though the town had been through a lot, most of the people stayed living th
 Megan’s brother started school the year after she graduated. Megan decided to stay home instead of going off to college and help her mother around the house and with Toby. She joined Randy on the police force; since the town grew, it needed more people to protect the population.
 
 No matter what happens, this town will always be someone’s home. Well, why not? Centerville is the center of care!
+
+<aside class="assignment-note">
+<p><strong>About this assignment:</strong> This was written for a class assignment. Its length, format, and focus were set by the assignment’s requirements, so some choices here reflect those parameters rather than the writer’s own preferences.</p>
+</aside>

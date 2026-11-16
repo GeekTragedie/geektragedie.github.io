@@ -10,7 +10,7 @@ body {
 }
 body.light-mode {
     --accent: #0f766e;
-    --link-color: #0284c7;
+    --link-color: #0369a1;
     --table-header-bg: #e2e8f0;
 }
 
