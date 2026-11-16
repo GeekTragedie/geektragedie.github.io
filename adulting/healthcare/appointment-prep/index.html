@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../../../therapist-tools/toolkit.css">
 <link rel="stylesheet" href="../client-tools.css">
 <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
-<title>Healthcare: Therapy Appointment Prep</title>
+<title>GeekTragedie | Therapy Appointment Prep</title>
 </head>
 <body aria-label="Therapy Appointment Prep">
 <script src="../../../assets/theme.js"></script>
@@ -55,11 +55,12 @@
                 <a href="../../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -121,18 +122,42 @@
         <h1 class="text-4xl font-bold text-center mb-2">Therapy Appointment Prep</h1>
         <p class="ct-intro">A few minutes of prep before therapy can make the hour count, especially if your mind goes blank once you sit down. Jot down what’s happened, what you want to talk about, and what you want to ask, then bring it with you.</p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Fill in whatever is useful. Nothing here is required.</li>
-                    <li>Star the one topic that matters most, so it doesn’t get pushed to the last five minutes.</li>
-                    <li>Print the summary, copy it into your phone, or hand it to your therapist.</li>
-                    <li>After the session, add what you’re trying this week, and save a .json to start next time’s prep from it.</li>
-                </ol>
-                <p><strong>Your privacy:</strong> nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
-            </div>
-        </details>
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~5–15 min</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Saves .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It turns a few minutes of notes into a one-page summary to bring to therapy, so the hour still counts if your mind goes blank.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Fill in <strong>The appointment</strong> and <strong>Since last time</strong>. Nothing here is required.</li>
+                        <li>In <strong>What I want to talk about</strong>, write one topic per line. Put the one that matters most first, so it doesn’t get pushed to the last five minutes.</li>
+                        <li>Tap any <strong>Questions to ask</strong> that fit, and add anything that’s <strong>Hard to say out loud</strong>.</li>
+                        <li>Check <strong>My summary</strong>. Anything you leave blank is left out. Then <strong>Print</strong> it, use <strong>Copy as text</strong> to put it in your phone, or hand it to your therapist.</li>
+                        <li>After the session, fill in <strong>After the session</strong>, and save a .json to start next time’s prep from it.</li>
+                    </ol>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../self-care-check-in/index.html">Self-Care Check-In</a>: notice patterns during the week, then bring them here.</li>
+                        <li><a href="../my-safety-plan/index.html">My Safety Plan</a>: if you’ve had thoughts of hurting yourself, make or review your plan with your therapist.</li>
+                        <li><a href="../insurance-reimbursement/index.html">Insurance Reimbursement Helper</a>: if you ask for a superbill, this walks you through sending it to insurance.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>The topic on the first line shows up in your summary as <strong>Most important today</strong>.</li>
+                        <li>If you check the box about thoughts of hurting yourself, your summary asks your therapist to talk about safety first.</li>
+                    </ul>
+                    <h3>Your privacy</h3>
+                    <p>Nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
+                </div>
+            </details>
+        </section>
 
         <section class="ct-section" aria-labelledby="ap-visit">
             <h2 id="ap-visit">The appointment</h2>

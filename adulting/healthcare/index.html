@@ -16,6 +16,9 @@
     .card-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 28px; }
     .hc-section-title { font-size: 1.5rem; margin: 10px 0 12px; }
     .hc-section-note { color: var(--text-muted); margin: -4px 0 14px; }
+    /* Four client tools: two per row, so none sits alone */
+    .card-grid.two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 640px) { .card-grid.two-up { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body aria-label="Healthcare page with a background texture of robin eggs in a nest">
@@ -64,11 +67,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -95,7 +99,7 @@
             <div>
                 <span class="tag">Directory</span>
                 <h2>Mental Health Resources</h2>
-                <p>Hotlines, support groups, apps, and reading, searchable by topic, audience, and format.</p>
+                <p>Worksheets, videos, handouts, hotlines, and guides, searchable by topic, audience, and format.</p>
             </div>
         </a>
         <a href="./hypermobility/index.html" class="card">
@@ -109,7 +113,7 @@
 
     <h2 class="hc-section-title">Client Tools</h2>
     <p class="hc-section-note">Made for you, the client: plain language, nothing to sign up for, and everything stays in your browser.</p>
-    <div class="card-grid">
+    <div class="card-grid two-up">
         <a href="./self-care-check-in/index.html" class="card">
             <div>
                 <span class="tag">Check in</span>

@@ -64,11 +64,12 @@ export default function RootLayout({ children }) {
                         <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                         <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                         <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                        <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                         <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                        <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                         <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                         <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                        <span className="dropdown-label">Clinical Reference & Utilities</span>
+                        <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                        <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                         <span className="dropdown-label">Finance & Business</span>
                         <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                         <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>

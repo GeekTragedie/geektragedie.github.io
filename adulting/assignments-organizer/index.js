@@ -54,7 +54,29 @@
         grid.innerHTML = html + '</tbody></table>';
     }
 
+    // Cells are keyed by course position. When one course is removed from the list,
+    // shift the later courses' cells down so each entry stays with its own course.
+    let prevCourses = null;
+    function keepCellsWithCourses(s) {
+        const now = s.courses.map((c) => `${c.name || ''}\u0001${c.when || ''}`);
+        const before = prevCourses;
+        prevCourses = now;
+        if (!before || now.length !== before.length - 1) return;
+        let gone = before.findIndex((v, i) => v !== now[i]);
+        if (gone === -1) gone = before.length - 1;
+        const rest = before.slice(0, gone).concat(before.slice(gone + 1));
+        if (rest.some((v, i) => v !== now[i])) return; // not a single removal (e.g. an import)
+        const moved = {};
+        Object.entries(s.cells).forEach(([k, v]) => {
+            const [w, c] = k.split('|').map(Number);
+            if (c === gone) return;
+            moved[`${w}|${c > gone ? c - 1 : c}`] = v;
+        });
+        s.cells = moved;
+    }
+
     function render(s) {
+        keepCellsWithCourses(s);
         const key = `${weeksOf(s)}|${courseNames(s).join('\u0001')}`;
         if (key !== gridKey) { gridKey = key; drawGrid(s); }
         else grid.querySelectorAll('[data-week-dates]').forEach((el) => { el.textContent = weekDates(s, Number(el.dataset.weekDates)); });

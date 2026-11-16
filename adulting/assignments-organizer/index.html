@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../../therapist-tools/toolkit.css">
 <link rel="stylesheet" href="../healthcare/client-tools.css">
 <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
-<title>Adulting: Assignments Organizer</title>
+<title>GeekTragedie | Assignments Organizer</title>
 </head>
 <body aria-label="Assignments Organizer">
 <script src="../../assets/theme.js"></script>
@@ -55,11 +55,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -124,18 +125,41 @@
         <h1 class="text-4xl font-bold text-center mb-2">Assignments Organizer</h1>
         <p class="ct-intro">A week-by-week view of every class: readings, assignments, and due dates in one place, with colors for what’s done, skimmed, or still waiting. Fill it in here, or download a blank spreadsheet.</p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Name the term, pick the first day of week 1, and set how many weeks it runs.</li>
-                    <li>Add each course and when it meets.</li>
-                    <li>Fill in each week’s readings and assignments from the syllabus. Mark each one as done, skimmed, or not finished as you go.</li>
-                    <li>Print the plan, save a .json to keep working on it later, or download it as a spreadsheet.</li>
-                </ol>
-                <p><strong>Your privacy:</strong> nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a file.</p>
-            </div>
-        </details>
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~30+ min the first time</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Downloads .csv • Blank .xlsx / .csv templates • Saves .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It puts every class’s readings, assignments, and due dates in one week-by-week grid, so nothing hides in a syllabus.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>In <strong>Term</strong>, name the term, pick the day <strong>Week 1 starts</strong>, and set the <strong>Number of weeks</strong> (up to 20).</li>
+                        <li>In <strong>Courses</strong>, use <strong>+ Add a course</strong> for each class and when it meets.</li>
+                        <li>In <strong>Week by Week</strong>, fill in each week’s readings, assignment, and due date from the syllabus. Set the status to Done, Skimmed, or Not finished as you go, and the cell color changes to match.</li>
+                        <li>Check the <strong>Printable plan</strong>. Weeks and classes with nothing filled in are left out.</li>
+                        <li>Use <strong>Print</strong>, <strong>Save .json</strong> to keep working on it later, or <strong>My plan as .csv</strong> to open it in a spreadsheet.</li>
+                    </ol>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../nd-self-retreat/index.html">ND Self-Retreat Builder</a>: plan a low-demand rest break for after finals or a heavy week.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Prefer paper or your own spreadsheet? Grab <strong>Blank template (.xlsx)</strong> or <strong>Blank template (.csv)</strong> from the tool menu.</li>
+                        <li><strong>Copy as text</strong> copies your plan as comma-separated rows, ready to paste into a spreadsheet or notes app.</li>
+                        <li>Fill it in from the syllabus once at the start of the term. After that, a weekly update only takes a minute.</li>
+                    </ul>
+                    <h3>Your privacy</h3>
+                    <p>Nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a file.</p>
+                </div>
+            </details>
+        </section>
 
         <section class="ct-section" aria-labelledby="ao-term">
             <h2 id="ao-term">Term</h2>

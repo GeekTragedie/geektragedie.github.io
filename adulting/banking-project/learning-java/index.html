@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Neuro-Friendly Bank</title>
+    <title>GeekTragedie | Simple Bank Project</title>
     <link rel="stylesheet" href="../../../assets/site.css">
     <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
     <link rel="stylesheet" href="style.css">
@@ -54,11 +54,12 @@
                 <a href="../../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -81,19 +82,40 @@
 </header>
 
     <div class="bank-layout">
-        <aside class="sidebar panel">
-            <h2>Instructions</h2>
-            <p>
-                1. Enter your name and address to get started.
-                <br>2. Your checking and savings accounts will be created automatically.
-                <br>3. Use the Deposit section to add funds to your accounts.
-                <br>4. Use the Withdraw section to take out funds. Watch for messages regarding your balance!
-                <br>5. "Fast Withdraw" instantly takes out a preset amount (default $60).
-                <br>6. Look for messages at the bottom of the page confirming your transactions or alerting you to issues.
-            </p>
-        </aside>
 
         <main>
+            <section class="tool-guide" aria-label="About this tool">
+                <ul class="tool-glance" aria-label="At a glance">
+                    <li><span aria-hidden="true">⏱️</span> ~2–5 min</li>
+                    <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                    <li><span aria-hidden="true">📤</span> Practice only: nothing is saved, and reloading starts over</li>
+                </ul>
+                <details id="how-to-use" class="collapsible help how-to">
+                    <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                    <div class="collapsible-body">
+                        <h3>What it does</h3>
+                        <p>It’s a practice bank for getting comfortable with deposits, withdrawals, and balances, with no real money and no real account.</p>
+                        <h3>Step by step</h3>
+                        <ol>
+                            <li>In <strong>Your Information</strong>, enter a name and address, then press <strong>Create Accounts</strong>. Your checking and savings accounts are created automatically, each starting at 0.00.</li>
+                            <li>In the <strong>Deposit</strong> section, type an amount and press <strong>Deposit to Checking</strong> or <strong>Deposit to Savings</strong>.</li>
+                            <li>In the <strong>Withdraw</strong> section, type an amount and press <strong>Withdraw from Checking</strong> or <strong>Withdraw from Savings</strong>. Watch for messages about your balance!</li>
+                            <li><strong>Fast Withdraw</strong> instantly takes out a preset amount ($60) from checking or savings.</li>
+                            <li>Look for messages at the bottom of the page, under <strong>Messages</strong>, confirming your transactions or alerting you to issues. Your balances are in the <strong>Account Summary</strong>.</li>
+                        </ol>
+                        <h3>Works well with</h3>
+                        <ul>
+                            <li><a href="../../my-budget/index.html">My Budget</a>: plan where your real money goes each month.</li>
+                        </ul>
+                        <h3>Tips</h3>
+                        <ul>
+                            <li>A made-up name and address work fine. Nothing you type is kept.</li>
+                            <li>Try taking out more than you have. The bank stops you and explains why, which is safe to practice here.</li>
+                        </ul>
+                    </div>
+                </details>
+            </section>
+
             <section class="user-setup panel">
                 <h2>Your Information</h2>
                 <div class="input-group">

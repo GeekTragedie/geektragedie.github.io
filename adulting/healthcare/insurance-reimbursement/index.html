@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../../../therapist-tools/toolkit.css">
 <link rel="stylesheet" href="../client-tools.css">
 <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
-<title>Healthcare: Insurance Reimbursement Helper</title>
+<title>GeekTragedie | Insurance Reimbursement Helper</title>
 </head>
 <body aria-label="Insurance Reimbursement Helper">
 <script src="../../../assets/theme.js"></script>
@@ -55,11 +55,12 @@
                 <a href="../../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -125,19 +126,44 @@
         <h1 class="text-4xl font-bold text-center mb-2">Insurance Reimbursement Helper</h1>
         <p class="ct-intro">If you see a therapist who isn’t in your insurance network, you usually pay up front, and they give you a <strong>superbill</strong>: an itemized receipt with the codes insurance needs. You send it to your insurance company, and if your plan has out-of-network benefits, they pay part of it back. This page walks you through it.</p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Check that your superbill has everything on the list. If your therapist gave you a .json file from the Superbill Generator, use <strong>Check a superbill</strong> in the tool menu.</li>
-                    <li>Call the number on your insurance card and fill in the answers as you go.</li>
-                    <li>Use the answers to estimate what you’ll get back.</li>
-                    <li>Send the claim, then log it so you can follow up.</li>
-                </ol>
-                <p><strong>Your privacy:</strong> nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
-                <p><strong>Good to know:</strong> every plan is different. The estimate is a rough guide, not a promise of payment, and this page isn’t legal or financial advice.</p>
-            </div>
-        </details>
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~15–30 min, including the call to your plan</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Saves .json • Checks a superbill .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It walks you through getting money back from insurance when you see an out-of-network therapist, from checking your superbill to tracking each claim.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Ask your therapist for a superbill. In <strong>Check your superbill</strong>, check each item you can find on it. If your therapist gave you a .json file from the Superbill Generator, use <strong>Check a superbill (.json)</strong> in the tool menu to check it for you.</li>
+                        <li>Call the number on your insurance card and fill in <strong>Ask your plan</strong> as you go. Use <strong>+ Add a call</strong> to log who you talked to.</li>
+                        <li>In <strong>Estimate what you’ll get back</strong>, add your therapist’s fee and the number of sessions.</li>
+                        <li>Send the claim using the <strong>Send it in</strong> checklist, then use <strong>+ Add a claim</strong> under <strong>Track your claims</strong> so you can follow up.</li>
+                        <li>Use <strong>Print</strong>, <strong>Copy as text</strong>, or <strong>Save .json</strong> in the tool menu. Plan questions you leave blank are left out of your summary.</li>
+                    </ol>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>: the tool your therapist can use to make your superbill. You get the superbill from your therapist, not from this page. Ask them for the signed printed copy, and the .json file too if they’re willing, so you can check it here.</li>
+                        <li><a href="../appointment-prep/index.html">Therapy Appointment Prep</a>: add “Can you give me a superbill for my insurance?” to your questions for next session.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Checking a superbill file also fills in the fee and number of sessions for the estimate, if you haven’t typed them yet.</li>
+                        <li><strong>Import .json</strong> takes a superbill file too, not just a file saved from this page.</li>
+                        <li>A file can’t show a signature, so check that one yourself on the printed copy.</li>
+                    </ul>
+                    <h3>Your privacy</h3>
+                    <p>Nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
+                    <h3>Good to know</h3>
+                    <p>Every plan is different. The estimate is a rough guide, not a promise of payment, and this page isn’t legal or financial advice.</p>
+                </div>
+            </details>
+        </section>
 
         <section class="ct-section" aria-labelledby="ir-check">
             <h2 id="ir-check">Check your superbill</h2>

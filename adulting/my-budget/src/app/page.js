@@ -543,7 +543,11 @@ export default function BudgetPage() {
             aria-expanded={isExpanded}
             aria-controls={id}
             tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onToggle(); }}
+            onKeyDown={(e) => {
+                // Only the header itself toggles; keys typed in the title box stay in the box
+                if (e.target !== e.currentTarget) return;
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); }
+            }}
         >
             <input
                 type="text"
@@ -602,6 +606,40 @@ export default function BudgetPage() {
                     </div>
                 </div>
 
+                <section className="tool-guide" aria-label="About this tool">
+                    <ul className="tool-glance" aria-label="At a glance">
+                        <li><span aria-hidden="true">⏱️</span> ~10–20 min</li>
+                        <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                        <li><span aria-hidden="true">📤</span> Prints the budget • Saves .json • Loads .json</li>
+                    </ul>
+                    <details id="how-to-use" className="collapsible help how-to">
+                        <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span className="chevron" aria-hidden="true">▾</span></summary>
+                        <div className="collapsible-body">
+                            <h3>What it does</h3>
+                            <p>It adds up your household’s monthly take-home pay and spending, so you can see at a glance whether you end the month ahead or behind.</p>
+                            <h3>Step by step</h3>
+                            <ol>
+                                <li>Type each person’s name in the <strong>Name</strong> boxes. Use <strong>Add Person</strong> for more people (up to 10), or <strong>Remove</strong> to take someone out.</li>
+                                <li>Under <strong>INCOME</strong>, enter each person’s primary net income (take-home pay). Use <strong>+ Add</strong> beside a name for side income.</li>
+                                <li>Go through <strong>HOUSING</strong>, <strong>DEBT REPAYMENT</strong>, <strong>LIVING EXPENSES</strong>, and <strong>SAVINGS &amp; INVESTMENTS</strong>. Type a monthly amount for each item. Rename any item by typing over its name, and jot reminders in <strong>Notes</strong>.</li>
+                                <li>Check the <strong>BUDGET SUMMARY</strong> at the bottom. A deficit shows in parentheses, like (250.00).</li>
+                                <li>Use <strong>Export .json</strong> to save your budget, <strong>Import .json</strong> to pick it back up later, and <strong>Print Budget</strong> for a paper copy.</li>
+                            </ol>
+                            <h3>Works well with</h3>
+                            <ul>
+                                <li><a href="../banking-project/learning-java/index.html">Simple Bank Project</a>: a no-stakes place to practice deposits, withdrawals, and balances.</li>
+                            </ul>
+                            <h3>Tips</h3>
+                            <ul>
+                                <li>The page starts with example numbers. Type over them with yours.</li>
+                                <li>Nothing saves on its own, and reloading the page brings the example numbers back. Use <strong>Export .json</strong> before you close the page.</li>
+                                <li>Totals update when you leave a box, so press <kbd>Tab</kbd> to move to the next one.</li>
+                                <li>Click a section’s bar (the ▼ arrow) to fold it closed while you work on another.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </section>
+
                 {errorMessage && (
                     <div className={styles.errorMessage} role="alert" aria-live="polite">
                         <ExclamationIcon /> {errorMessage}
@@ -659,7 +697,7 @@ export default function BudgetPage() {
                     
                     {/* INCOME section */}
                     <div className={styles.categoryGroup}>
-                        <CategoryHeader id="income-section" labelName="label_income_category" isExpanded={isIncomeExpanded} onToggle={() => setIsIncomeExpanded(!isIncomeExpanded)} />
+                        {CategoryHeader({ id: "income-section", labelName: "label_income_category", isExpanded: isIncomeExpanded, onToggle: () => setIsIncomeExpanded(!isIncomeExpanded) })}
                         {isIncomeExpanded && (
                             <div id="income-section" role="rowgroup">
                                 {people.map(person => (
@@ -709,10 +747,10 @@ export default function BudgetPage() {
                     
                     {/* HOUSING section */}
                     <div className={styles.categoryGroup}>
-                        <CategoryHeader id="housing-section" labelName="label_housing_category" isExpanded={isHousingExpanded} onToggle={() => setIsHousingExpanded(!isHousingExpanded)} />
+                        {CategoryHeader({ id: "housing-section", labelName: "label_housing_category", isExpanded: isHousingExpanded, onToggle: () => setIsHousingExpanded(!isHousingExpanded) })}
                         {isHousingExpanded && (
                             <div id="housing-section" role="rowgroup">
-                                {housingItems.map(item => item.type === 'subheader' ? <SubheaderRow key={item.labelName} labelName={item.labelName} /> : <BudgetItemRow key={item.amountName} amountName={item.amountName} noteName={item.noteName} labelName={item.labelName} transactionType={item.transactionType} initialAmount={inputs[item.amountName]} initialNote={inputs[item.noteName]} onUpdateInput={updateGeneralInputState} />)}
+                                {housingItems.map(item => item.type === 'subheader' ? <React.Fragment key={item.labelName}>{SubheaderRow({ labelName: item.labelName })}</React.Fragment> : <BudgetItemRow key={item.amountName} amountName={item.amountName} noteName={item.noteName} labelName={item.labelName} transactionType={item.transactionType} initialAmount={inputs[item.amountName]} initialNote={inputs[item.noteName]} onUpdateInput={updateGeneralInputState} />)}
                                 <div className={styles.totalRow} role="row">
                                     <div className={styles.totalLabel} role="cell">Total Housing Expenses</div>
                                     <div className={`${styles.totalAmount} ${styles.amountDisplay}`} role="cell">{formatCurrency(totalHousingExpenses)}</div>
@@ -724,7 +762,7 @@ export default function BudgetPage() {
 
                     {/* DEBT REPAYMENT section */}
                     <div className={styles.categoryGroup}>
-                        <CategoryHeader id="debt-section" labelName="label_debt_category" isExpanded={isDebtExpanded} onToggle={() => setIsDebtExpanded(!isDebtExpanded)} />
+                        {CategoryHeader({ id: "debt-section", labelName: "label_debt_category", isExpanded: isDebtExpanded, onToggle: () => setIsDebtExpanded(!isDebtExpanded) })}
                         {isDebtExpanded && (
                             <div id="debt-section" role="rowgroup">
                                 {debtItems.map(item => <BudgetItemRow key={item.amountName} amountName={item.amountName} noteName={item.noteName} labelName={item.labelName} transactionType={item.transactionType} initialAmount={inputs[item.amountName]} initialNote={inputs[item.noteName]} onUpdateInput={updateGeneralInputState} />)}
@@ -739,10 +777,10 @@ export default function BudgetPage() {
                     
                     {/* LIVING EXPENSES section */}
                     <div className={styles.categoryGroup}>
-                        <CategoryHeader id="living-expenses-section" labelName="label_living_expenses_category" isExpanded={isLivingExpensesExpanded} onToggle={() => setIsLivingExpensesExpanded(!isLivingExpensesExpanded)} />
+                        {CategoryHeader({ id: "living-expenses-section", labelName: "label_living_expenses_category", isExpanded: isLivingExpensesExpanded, onToggle: () => setIsLivingExpensesExpanded(!isLivingExpensesExpanded) })}
                         {isLivingExpensesExpanded && (
                             <div id="living-expenses-section" role="rowgroup">
-                                {livingExpenseItems.map(item => item.type === 'subheader' ? <SubheaderRow key={item.labelName} labelName={item.labelName} /> : <BudgetItemRow key={item.amountName} amountName={item.amountName} noteName={item.noteName} labelName={item.labelName} transactionType={item.transactionType} initialAmount={inputs[item.amountName]} initialNote={inputs[item.noteName]} onUpdateInput={updateGeneralInputState} />)}
+                                {livingExpenseItems.map(item => item.type === 'subheader' ? <React.Fragment key={item.labelName}>{SubheaderRow({ labelName: item.labelName })}</React.Fragment> : <BudgetItemRow key={item.amountName} amountName={item.amountName} noteName={item.noteName} labelName={item.labelName} transactionType={item.transactionType} initialAmount={inputs[item.amountName]} initialNote={inputs[item.noteName]} onUpdateInput={updateGeneralInputState} />)}
                                 <div className={styles.totalRow} role="row">
                                     <div className={styles.totalLabel} role="cell">Total Living Expenses</div>
                                     <div className={`${styles.totalAmount} ${styles.amountDisplay}`} role="cell">{formatCurrency(totalLivingExpenses)}</div>
@@ -754,7 +792,7 @@ export default function BudgetPage() {
 
                     {/* SAVINGS & INVESTMENTS section */}
                     <div className={styles.categoryGroup}>
-                        <CategoryHeader id="savings-section" labelName="label_savings_category" isExpanded={isSavingsExpanded} onToggle={() => setIsSavingsExpanded(!isSavingsExpanded)} />
+                        {CategoryHeader({ id: "savings-section", labelName: "label_savings_category", isExpanded: isSavingsExpanded, onToggle: () => setIsSavingsExpanded(!isSavingsExpanded) })}
                         {isSavingsExpanded && (
                             <div id="savings-section" role="rowgroup">
                                 {commonSavingsItems.map(item => <BudgetItemRow key={item.amountName} amountName={item.amountName} noteName={item.noteName} labelName={item.labelName} transactionType={item.transactionType} initialAmount={inputs[item.amountName]} initialNote={inputs[item.noteName]} onUpdateInput={updateGeneralInputState} />)}

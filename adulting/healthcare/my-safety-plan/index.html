@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../../../therapist-tools/toolkit.css">
 <link rel="stylesheet" href="../client-tools.css">
 <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
-<title>Healthcare: My Safety Plan</title>
+<title>GeekTragedie | My Safety Plan</title>
 </head>
 <body aria-label="My Safety Plan">
 <script src="../../../assets/theme.js"></script>
@@ -55,11 +55,12 @@
                 <a href="../../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -126,19 +127,43 @@
             <p><strong>If you might act on thoughts of hurting yourself right now,</strong> call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), text <strong>HOME to 741741</strong>, or call <strong>911</strong>. You don’t have to finish this page first.</p>
         </div>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Go through the steps in order. Each one is something to try if the step before it isn’t enough.</li>
-                    <li>Tap a suggestion to add it, or write your own words. Your own words work best.</li>
-                    <li>Pick your state to see crisis lines near you.</li>
-                    <li>Print your plan or save a copy on your phone. Share it with someone you trust if that feels okay.</li>
-                </ol>
-                <p><strong>Your privacy:</strong> nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
-                <p><strong>Where this comes from:</strong> safety planning is one of the best-studied ways to get through a suicidal crisis (Stanley &amp; Brown, 2012). This page is written in our own words. It isn’t the Stanley-Brown Safety Plan Form and isn’t affiliated with or endorsed by its authors; you can find the official form at <a href="https://suicidesafetyplan.com/forms/" target="_blank" rel="noopener">suicidesafetyplan.com</a>.</p>
-            </div>
-        </details>
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~10–20 min</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Prints a clean PDF • Copies plain text • Saves .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It helps you write down, ahead of time, the steps and people that can get you through a really hard moment, in one short plan you can keep close.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Go through the steps in order, starting with <strong>My warning signs</strong>. Each one is something to try if the step before it isn’t enough.</li>
+                        <li>Tap a suggestion to add it, or write your own words. Your own words work best.</li>
+                        <li>In <strong>Professionals and crisis lines</strong>, pick your state to see crisis lines near you. Check any boxes under <strong>Also show lines for</strong> that fit.</li>
+                        <li>Read <strong>My finished plan</strong> at the bottom. Steps you haven’t filled in yet say “Not filled in yet.”</li>
+                        <li>Print your plan or save a copy on your phone with <strong>Print</strong>, <strong>Copy as text</strong>, or <strong>Save .json</strong>. Share it with someone you trust if that feels okay.</li>
+                    </ol>
+                    <h3>Works well with</h3>
+                    <ul>
+                        <li><a href="../appointment-prep/index.html">Therapy Appointment Prep</a>: add “go over my safety plan” as a topic, so there’s time to work on it with your therapist.</li>
+                        <li><a href="../self-care-check-in/index.html">Self-Care Check-In</a>: a quick daily look at how you’re doing, for the calmer days.</li>
+                    </ul>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Put one idea on each line. Each line becomes its own point in your finished plan.</li>
+                        <li>Leave <strong>Save in this browser</strong> off on a shared computer. Save a .json file or print instead.</li>
+                    </ul>
+                    <h3>Your privacy</h3>
+                    <p>Nothing you type is sent anywhere. It stays in this browser tab unless you turn on <strong>Save in this browser</strong> or save a .json file.</p>
+                    <h3>Where this comes from</h3>
+                    <p>Safety planning is one of the best-studied ways to get through a suicidal crisis (Stanley &amp; Brown, 2012). This page is written in our own words. It isn’t the Stanley-Brown Safety Plan Form and isn’t affiliated with or endorsed by its authors; you can find the official form at <a href="https://suicidesafetyplan.com/forms/" target="_blank" rel="noopener">suicidesafetyplan.com</a>.</p>
+                </div>
+            </details>
+        </section>
 
         <section class="ct-section" aria-labelledby="sp-warning">
             <h2 id="sp-warning">My warning signs</h2>

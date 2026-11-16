@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../healthcare/client-tools.css">
 <link rel="stylesheet" href="letter-generator.css">
 <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
-<title>Adulting: Letter Generator</title>
+<title>GeekTragedie | Letter Generator</title>
 </head>
 <body aria-label="Letter Generator">
 <script src="../../assets/theme.js"></script>
@@ -56,11 +56,12 @@
                 <a href="../../therapist-tools/intakepacketgenerator/index.html">Intake Packet Generator</a>
                 <a href="../../therapist-tools/treatmentplanbuilder/index.html">Treatment Plan Builder</a>
                 <a href="../../therapist-tools/crisisplangenerator/index.html">Safety / Crisis Plan Builder</a>
-                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
                 <a href="../../therapist-tools/referraldatabase/index.html">Personal Referral Database</a>
-                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <a href="../../therapist-tools/caseloadataglance/index.html">Caseload at a Glance</a>
                 <a href="../../therapist-tools/selfcaredashboard/index.html">Self-Care Dashboard</a>
+                <span class="dropdown-label">Clinical Reference &amp; Utilities</span>
+                <a href="../../therapist-tools/assessmentdatabase/index.html">Assessment Database</a>
+                <a href="../../therapist-tools/resourcelibrary/index.html">Resource Library</a>
                 <span class="dropdown-label">Finance &amp; Business</span>
                 <a href="../../therapist-tools/superbillgenerator/index.html">Superbill Generator</a>
                 <a href="../../therapist-tools/businessdashboard/index.html">Business Dashboard</a>
@@ -119,20 +120,35 @@
         <h1 class="text-4xl font-bold text-center mb-2">Letter Generator</h1>
         <p class="ct-intro">Write a letter of recommendation or a resignation letter in your own name. Pick the kind of letter, fill in the details, and the letter takes shape in the preview as you type.</p>
 
-        <details id="how-to-use" class="collapsible help how-to mb-6">
-            <summary><span>How to use this tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
-            <div class="collapsible-body">
-                <ol class="list-decimal space-y-1">
-                    <li>Choose a letter type, then what the letter is for.</li>
-                    <li>Fill in your details and the details of the person or job the letter is about. Anything still missing shows up in the preview in [brackets].</li>
-                    <li>For a recommendation, tap the strengths that fit and add a story or two. Specific examples are what make a recommendation believable.</li>
-                    <li>Read the whole preview, then copy it into your email or document, print it, or download it as a .txt file. Edit the wording there so it sounds like you.</li>
-                </ol>
-                <p>Not sure where to start? <strong>Load example</strong> fills in a made-up letter of the type you picked.</p>
-            </div>
-        </details>
 
         <p class="ct-callout lg-privacy"><strong>Private by design:</strong> your letter is put together right here in your browser. Nothing you type is sent anywhere or stored by this site unless you turn on <strong>Save in this browser</strong> or save a file.</p>
+
+        <section class="tool-guide" aria-label="About this tool">
+            <ul class="tool-glance" aria-label="At a glance">
+                <li><span aria-hidden="true">⏱️</span> ~10–20 min</li>
+                <li><span aria-hidden="true">🔒</span> 100% browser-local: no data leaves your device</li>
+                <li><span aria-hidden="true">📤</span> Copies plain text • Prints a clean PDF • Downloads .txt • Saves .json • Saves in this browser (opt-in)</li>
+            </ul>
+            <details id="how-to-use" class="collapsible help how-to">
+                <summary><span><span aria-hidden="true">📖</span> How to Use This Tool</span><span class="chevron" aria-hidden="true">▾</span></summary>
+                <div class="collapsible-body">
+                    <h3>What it does</h3>
+                    <p>It helps you write a letter of recommendation or a resignation letter in your own name, without starting from a blank page.</p>
+                    <h3>Step by step</h3>
+                    <ol>
+                        <li>Under <strong>Letter type</strong>, choose a letter type, then what the letter is for.</li>
+                        <li>Fill in your details and the details of the person or job the letter is about. Optional fields you leave blank are left out of the letter. Anything still missing shows up in the preview in [brackets].</li>
+                        <li>For a recommendation, tap the strengths that fit and add a story or two. Specific examples are what make a recommendation believable.</li>
+                        <li>Read the whole <strong>Preview</strong>, then use <strong>Copy letter</strong>, <strong>Print letter</strong>, or <strong>Download .txt</strong>. Edit the wording in your email or document so it sounds like you.</li>
+                    </ol>
+                    <h3>Tips</h3>
+                    <ul>
+                        <li>Not sure where to start? <strong>Load example</strong> fills in a made-up letter of the type you picked. It replaces what’s on the page, so save a .json first if you want to keep your entries.</li>
+                        <li>Save a .json so your next letter only needs a few changes.</li>
+                    </ul>
+                </div>
+            </details>
+        </section>
 
         <section class="ct-section" aria-labelledby="lg-type">
             <h2 id="lg-type">Letter type</h2>
