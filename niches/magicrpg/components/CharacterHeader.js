@@ -161,11 +161,10 @@ export default function CharacterHeader({ character, updateCharacter }) {
         />
         <SelectField
           label="Academy House"
-          value={character.magicalFaction || character.hogwartsHouse}
+          value={character.magicalFaction || ""}
           options={houseOptions}
           onChange={(e) => {
             updateCharacter('magicalFaction', e.target.value);
-            updateCharacter('hogwartsHouse', e.target.value);
           }}
         />
       </div>
