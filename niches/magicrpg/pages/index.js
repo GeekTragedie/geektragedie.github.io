@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import CharacterSheet from '../components/CharacterSheet';
 import Layout from '../components/Layout';
+import WorldGuide from '../components/WorldGuide';
 import initialCharacters from '../data/characters.json';
 
 export default function Home() {
@@ -24,14 +25,19 @@ export default function Home() {
     }
   }, []);
 
-  const handleCharacterChange = (updatedCharacter) => {
-    setCharacter(updatedCharacter);
-    localStorage.setItem('magicrpgMagicCharacter', JSON.stringify(updatedCharacter));
+  // The sheet passes either a new character or an updater function (prev => next).
+  // Saving happens in the effect below, after React has applied the change.
+  const handleCharacterChange = (update) => {
+    setCharacter(update);
   };
+
+  useEffect(() => {
+    if (character) localStorage.setItem('magicrpgMagicCharacter', JSON.stringify(character));
+  }, [character]);
 
   if (!character) {
     return (
-      <Layout title="Magic RPG - Loading Character...">
+      <Layout title="GeekTragedie | Magic RPG Character Creator">
         <div className="loading-message">Loading character sheet...</div>
         <style jsx>{`
           .loading-message {
@@ -51,9 +57,10 @@ export default function Home() {
     : '';
 
   return (
-    <Layout title={`Magic RPG - ${character.characterName}'s Sheet`}>
+    <Layout title={character.characterName ? `GeekTragedie | Magic RPG: ${character.characterName}` : 'GeekTragedie | Magic RPG Character Creator'}>
       <div className={`page-content ${houseClass}`}>
         <h1>Magic RPG Character Creator</h1>
+        <WorldGuide />
         <CharacterSheet character={character} onCharacterChange={handleCharacterChange} />
       </div>
 

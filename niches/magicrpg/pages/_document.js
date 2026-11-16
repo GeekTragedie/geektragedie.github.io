@@ -7,6 +7,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="stylesheet" href="../../assets/site.css" />
+        <link rel="icon" type="image/jpeg" href="../../assets/favicon.jpg" />
       </Head>
       <body aria-label="Magic RPG Character Creator page with a background texture of stacked firewood logs">
         {/* Runs before the page paints so the saved theme never flashes */}

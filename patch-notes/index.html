@@ -343,6 +343,19 @@
         <h2>For Niche Explorers</h2>
 
         <section class="release">
+            <h3>November 15, 2026</h3>
+            <h4><a href="../niches/magicrpg/index.html" class="accent-text">Magic RPG Character Creator</a></h4>
+            <ul>
+                <li><span class="change-type">Added</span> <strong>Welcome to the Academy</strong> at the top of the character sheet. It opens with “Magic is born from the unexplained,” then covers who can join the school, admissions, Magic Scholars, courses, and a note that illness, injury, disability, and mental health exist alongside magic, which, like medicine, can’t fix everything.</li>
+                <li><span class="change-type">Added</span> A <strong>Kind of Folk</strong> choice: human, vampire, werewolf, siren, gorgon, giant, half-giant, fairy, gnome, or other (worked out with your Storytellers, with a box to describe it).</li>
+                <li><span class="change-type">Added</span> <strong>Magic Type</strong> (from your admissions assessment) and <strong>Source of Magic</strong>. Pick <strong>Magic Scholar</strong> for a character with little or no inherent magic, and the focus field becomes <strong>Focus Object</strong> for the wand, amulet, or other object they channel magic through.</li>
+                <li><span class="change-type">Added</span> <strong>Ethics of Magic</strong> as a favorite-subject choice, plus college courses taught with magic in mind: Magical Psychology, Magical Law, Arcane Engineering, and Healing Arts.</li>
+                <li><span class="change-type">Fixed</span> Your character now saves between visits. Before, the sheet started over every time you reloaded.</li>
+                <li><span class="change-type">Fixed</span> The browser tab shows “GeekTragedie | Magic RPG: [your character’s name]” and the site icon.</li>
+            </ul>
+        </section>
+
+        <section class="release">
             <h3>November 14, 2026</h3>
             <ul>
                 <li>No changes to the niche projects in this update. The Niches menu at the top of every page is unchanged.</li>
@@ -669,6 +682,7 @@
                 <li><span class="change-type">Changed</span> <code>resources.json</code> tags were deduplicated (for example, symptom “Anxiety” dropped where the “Anxiety Disorders” diagnosis already applies, and “Relationship Issues” merged into “Relationships”). <code>script.js</code> builds filters per collection from tags used two or more times and hides a group with fewer than two options. The citation column became a <code>details.cite-toggle</code>, and rows become cards under 700px.</li>
                 <li><span class="change-type">Changed</span> Author’s Library: <code>home.md</code> and <code>sidebar.md</code> wrap each group in <code>&lt;details class="lib-group"&gt;</code> with a count. A <code>&lt;div data-lib-search&gt;</code> placeholder becomes the search box, and the sidebar link for the open piece gets <code>aria-current</code> (all in the shared <code>app.js</code>). My Budget’s header components are now called as functions so React keeps the same input element while you type.</li>
                 <li><span class="change-type">Added</span> <code>&lt;aside class="assignment-note"&gt;</code> in <code>library-formats.css</code>: one fixed first paragraph, plus an optional <code>p.assignment-criteria</code> summary in our own words. It goes at the very end of a piece, after any <code>.paper</code> div. Prompt summaries that used to sit at the top as a <code>.piece-note</code> moved into it.</li>
+                <li><span class="change-type">Fixed</span> Magic RPG: <code>handleCharacterChange</code> received updater functions from the sheet and saved <code>JSON.stringify(fn)</code>, which stored the text “undefined”, so nothing was ever saved. Saving now happens in a <code>useEffect</code> on <code>character</code>. A new <code>components/WorldGuide.js</code> holds the Academy guide, and new fields <code>magicalFolk</code>, <code>customFolk</code>, <code>magicType</code>, and <code>magicSource</code> are in <code>data/characters.json</code>.</li>
             </ul>
         </section>
 

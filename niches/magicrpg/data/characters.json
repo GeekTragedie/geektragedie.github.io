@@ -45,9 +45,9 @@
     },
     "turnOrder": 0,
     "currency": {
-      "goldCoins": 0,   
+      "goldCoins": 0,
       "silverShards": 0,
-      "copperBits": 0   
+      "copperBits": 0
     },
     "spells": [],
     "inventory": [],
@@ -86,6 +86,10 @@
         "other": ""
       },
       "notes": ""
-    }
+    },
+    "magicalFolk": "",
+    "customFolk": "",
+    "magicType": "",
+    "magicSource": ""
   }
 ]

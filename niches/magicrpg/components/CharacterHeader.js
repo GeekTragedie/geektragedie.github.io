@@ -24,6 +24,31 @@ export default function CharacterHeader({ character, updateCharacter }) {
     "Unbound Lineage"
   ]; 
   
+  // Magical folx who can join the school; anything else is worked out with the Storytellers
+  const folkOptions = [
+    "",
+    "Human",
+    "Vampire",
+    "Werewolf",
+    "Siren",
+    "Gorgon",
+    "Giant",
+    "Half-Giant",
+    "Fairy",
+    "Gnome",
+    "Other (ask your Storytellers)"
+  ];
+  const OTHER_FOLK = "Other (ask your Storytellers)";
+
+  // Admissions assesses every student; Magic Scholars have little or no inherent magic
+  // and focus their magic through an object such as a wand or amulet.
+  const magicSourceOptions = [
+    "",
+    "Inherent magic",
+    "Magic Scholar"
+  ];
+  const isScholar = (character.magicSource || "").startsWith("Magic Scholar");
+
   const yearOptions = ["1", "2", "3", "4", "5", "6", "7"];
   
   const houseOptions = [
@@ -43,14 +68,17 @@ export default function CharacterHeader({ character, updateCharacter }) {
     "History of Magic",
     "Botanical Magic",
     "Potions",
-    "Alchemical Alteration"
+    "Alchemical Alteration",
+    "Ethics of Magic"
   ];
 
   // All Core and Elective Classes for Favorite Subject #2
   const allSubjectOptions = [
     "",
-    "Charms", "Abjuration", "History of Magic", "Botanical Magic", "Potions", "Alchemical Alteration",
-    "Astronomy", "Ancient Runes", "Arithmancy", "Magical Zoology", "Divination", "Mundane Studies" 
+    "Charms", "Abjuration", "History of Magic", "Botanical Magic", "Potions", "Alchemical Alteration", "Ethics of Magic",
+    "Astronomy", "Ancient Runes", "Arithmancy", "Magical Zoology", "Divination", "Mundane Studies",
+    // Human-college courses, taught with magic in mind
+    "Magical Psychology", "Magical Law", "Arcane Engineering", "Healing Arts" 
   ];
 
   const currentYearInt = parseInt(character.year) || 0;
@@ -83,6 +111,34 @@ export default function CharacterHeader({ character, updateCharacter }) {
             placeholder="e.g., fae/faer"
           />
         )}
+      </div>
+      <div className="header-row">
+        <SelectField
+          label="Kind of Folk"
+          value={character.magicalFolk || ""}
+          options={folkOptions}
+          onChange={(e) => updateCharacter('magicalFolk', e.target.value)}
+        />
+        {character.magicalFolk === OTHER_FOLK && (
+          <InputField
+            label="Describe Your Folk"
+            value={character.customFolk || ""}
+            onChange={(e) => updateCharacter('customFolk', e.target.value)}
+            placeholder="Work it out with your Storytellers"
+          />
+        )}
+        <InputField
+          label="Magic Type (from admissions)"
+          value={character.magicType || ""}
+          onChange={(e) => updateCharacter('magicType', e.target.value)}
+          placeholder="e.g., elemental, illusion, healing"
+        />
+        <SelectField
+          label="Source of Magic"
+          value={character.magicSource || ""}
+          options={magicSourceOptions}
+          onChange={(e) => updateCharacter('magicSource', e.target.value)}
+        />
       </div>
       <div className="header-row">
         <SelectField
@@ -129,10 +185,10 @@ export default function CharacterHeader({ character, updateCharacter }) {
           />
         )}
         <InputField
-          label="Focus / Catalyst"
+          label={isScholar ? "Focus Object" : "Focus / Catalyst"}
           value={character.wand}
           onChange={(e) => updateCharacter('wand', e.target.value)}
-          placeholder="e.g., Crystal Conduit, Silver Staff, Ash Ring"
+          placeholder={isScholar ? "e.g., Wand, Amulet, Ring" : "e.g., Crystal Conduit, Silver Staff, Ash Ring"}
         />
       </div>
       <style jsx>{`
